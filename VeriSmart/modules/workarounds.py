@@ -411,4 +411,4 @@ class workarounds(core.module.Translator):
         return False
 
     def loadfromstring(self, string, env, fill_only_fields=None):
-        super(self.__class__, self).loadfromstring(string, env, fill_only_fields=['threadName', 'varType', 'varID', 'varArity', 'varSize'])
+        super(workarounds, self).loadfromstring(string, env, fill_only_fields=['threadName', 'varType', 'varID', 'varArity', 'varSize'])
