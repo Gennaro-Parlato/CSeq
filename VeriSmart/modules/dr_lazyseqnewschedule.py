@@ -78,7 +78,7 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 
 	def additionaDefs(self):
 		#header += 'unsigned int __cs_ts = 0; \n'   #POR 
-		#header += 'unsigned int __cs_tsplusone = %s; \n' % (self.__threadbound+1)   #POR 
+		#header += 'unsigned int __cs_tsplusone = %s; \n' % (self.getThreadbound()+1)   #POR 
 		#header += '_Bool __cs_is_por_exec = 1; \n'   #POR 
 		#header += '_Bool __cs_isFirstRound = 1; \n'   #POR 
 		header = '_Bool __cs_dataraceDetectionStarted = 0; \n'   #DR
@@ -109,10 +109,9 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 
 		self.__wwDatarace = env.wwDatarace
 		self.__noShadow = env.no_shadow
-		self.__enableDRlocals = env.enableDRlocals
-                 
-
+		self.__enableDRlocals = env.local
 		super(dr_lazyseqnewschedule, self).loadfromstring(string, env)
+
 
 	def visit_ExprList(self, n):
             visited_subexprs = []
@@ -477,7 +476,7 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 	########################################################################################
 
 
-	def __createMainRoundRobin(self, ROUNDS):
+	def createMainRoundRobin(self, ROUNDS):
 		'''  New main driver:
 		'''
 		main = ''
@@ -490,13 +489,13 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 			Pre-guessed jump lengths have a size in bits depending on the size of the thread.
 		'''
 		for r in range(0, ROUNDS):
-			for t in range(0,self.__threadbound+1):
-				threadsize = self.__lines[self.__threadName[t]]
+			for t in range(0,self.getThreadbound()+1):
+				threadsize = self.getLines()[self.getThreadName()[t]]
 				k = int(math.floor(math.log(threadsize,2)))+1
 				self._bitwidth['main','__cs_tmp_t%s_r%s' % (t,r)] = k
 
-		maxts = ROUNDS*(self.__threadbound+1)-2  #DR
-		main +="          unsigned int __cs_dr_ts %s;\n" % self.__extra_nondet   #DR
+		maxts = ROUNDS*(self.getThreadbound()+1)-2  #DR
+		main +="          unsigned int __cs_dr_ts %s;\n" % self.getExtra_nondet()   #DR
 		self._bitwidth['main','__cs_dr_ts'] = int(math.floor(math.log(maxts,2)))+1  #DR
 		main +="          __CSEQ_assume(__cs_dr_ts <= %s);\n" % maxts  #DR
 
@@ -509,7 +508,7 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 		main +="__CSEQ_rawline(\"    /* main */\");\n"
 		#caledem
 		main +="__cs_active_thread[%s] = 1;\n" % self.Parser.threadOccurenceIndex['main']
-		main +="          unsigned int __cs_tmp_t%s_r0 %s;\n" % (self.Parser.threadOccurenceIndex['main'], self.__extra_nondet)
+		main +="          unsigned int __cs_tmp_t%s_r0 %s;\n" % (self.Parser.threadOccurenceIndex['main'], self.getExtra_nondet())
 		main +="          __cs_pc_cs[%s] = __cs_tmp_t%s_r0;\n" % (self.Parser.threadOccurenceIndex['main'], self.Parser.threadOccurenceIndex['main'])
 		main +="          __CSEQ_assume(__cs_pc_cs[%s] > 0);\n" % self.Parser.threadOccurenceIndex['main']
 		main +="          __CSEQ_assume(__cs_pc_cs[%s] <= %s);\n" % (self.Parser.threadOccurenceIndex['main'], "$ML" + str(self.Parser.threadOccurenceIndex['main']))
@@ -521,13 +520,13 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 		# Other threads
 		ts = 1 #DR
 		i = 0
-		for t in self.__threadName:
+		for t in self.getThreadName():
 			if t == 'main': continue
-			if i <= self.__threadbound:
+			if i <= self.getThreadbound():
 				main +="__CSEQ_rawline(\"    /* %s */\");\n" % t
 				#main +="__CSEQ_rawline(\"__cs_ts=%s;\");\n" % i   #POR
-				#main +="__CSEQ_rawline(\"__cs_tsplusone=%s;\");\n" % ( self.__threadbound+1+i)   #POR
-				main +="         unsigned int __cs_tmp_t%s_r0 %s;\n" % (i, self.__extra_nondet)
+				#main +="__CSEQ_rawline(\"__cs_tsplusone=%s;\");\n" % ( self.getThreadbound()+1+i)   #POR
+				main +="         unsigned int __cs_tmp_t%s_r0 %s;\n" % (i, self.getExtra_nondet())
 				main +="         if (__cs_dataraceContinue & __cs_active_thread[%s]) {\n" % (i)           #DR
 				main +="             __cs_pc_cs[%s] = __cs_tmp_t%s_r0;\n" % (i, i)
 				main +="             __CSEQ_assume(__cs_pc_cs[%s] <= %s);\n" % (i, "$ML" + str(self.Parser.threadOccurenceIndex[t]))
@@ -551,10 +550,10 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 			#main +="__CSEQ_rawline(\"__cs_isFirstRound= 0;\");\n"  #POR
 			# For main thread
 			main +="__CSEQ_rawline(\"    /* main */\");\n"
-			#main +="__CSEQ_rawline(\"__cs_ts=%s;\");\n" % (round * (self.__threadbound+1))   #POR
-			#main +="__CSEQ_rawline(\"__cs_tsplusone=%s;\");\n" % ( (round+1) * ( self.__threadbound+1) )  #POR
-			main +="          unsigned int __cs_tmp_t%s_r%s %s;\n" % (self.Parser.threadOccurenceIndex['main'],round, self.__extra_nondet)
-			main +="          if (__cs_dr_ts > %s &  __cs_dataraceContinue & __cs_active_thread[%s]) {\n" %  (ts - (self.__threadbound+1), self.Parser.threadOccurenceIndex['main'])          #DR
+			#main +="__CSEQ_rawline(\"__cs_ts=%s;\");\n" % (round * (self.getThreadbound()+1))   #POR
+			#main +="__CSEQ_rawline(\"__cs_tsplusone=%s;\");\n" % ( (round+1) * ( self.getThreadbound()+1) )  #POR
+			main +="          unsigned int __cs_tmp_t%s_r%s %s;\n" % (self.Parser.threadOccurenceIndex['main'],round, self.getExtra_nondet())
+			main +="          if (__cs_dr_ts > %s &  __cs_dataraceContinue & __cs_active_thread[%s]) {\n" %  (ts - (self.getThreadbound()+1), self.Parser.threadOccurenceIndex['main'])          #DR
 			if self.__guess_cs_only:
 				main +="             __cs_pc_cs[%s] = __cs_tmp_t%s_r%s;\n" % (self.Parser.threadOccurenceIndex['main'], self.Parser.threadOccurenceIndex['main'], round)
 			else:
@@ -574,17 +573,17 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 			# For other threads
 			ts += 1 #DR
 			i = 0
-			for t in self.__threadName:
+			for t in self.getThreadName():
 				if t == 'main': continue
-				if i <= self.__threadbound:
+				if i <= self.getThreadbound():
 					main +="__CSEQ_rawline(\"    /* %s */\");\n" % t
-					#main +="__CSEQ_rawline(\"__cs_ts=%s;\");\n" % (round * (self.__threadbound+1) + i )   #POR
+					#main +="__CSEQ_rawline(\"__cs_ts=%s;\");\n" % (round * (self.getThreadbound()+1) + i )   #POR
 					#if (round == ROUNDS -1):
-						#main +="__CSEQ_rawline(\"__cs_tsplusone=%s;\");\n" % ( (round+1) * ( self.__threadbound+1))  #POR
+						#main +="__CSEQ_rawline(\"__cs_tsplusone=%s;\");\n" % ( (round+1) * ( self.getThreadbound()+1))  #POR
 					#else:
-						#main +="__CSEQ_rawline(\"__cs_tsplusone=%s;\");\n" % ( (round+1) * ( self.__threadbound+1) + i)  #POR
-					main +="         unsigned int __cs_tmp_t%s_r%s %s;\n" % (i, round, self.__extra_nondet)
-					main +="         if (__cs_dr_ts > %s & __cs_dataraceContinue & __cs_active_thread[%s]) {\n" % ( ts - (self.__threadbound+1) ,i)           #DR
+						#main +="__CSEQ_rawline(\"__cs_tsplusone=%s;\");\n" % ( (round+1) * ( self.getThreadbound()+1) + i)  #POR
+					main +="         unsigned int __cs_tmp_t%s_r%s %s;\n" % (i, round, self.getExtra_nondet())
+					main +="         if (__cs_dr_ts > %s & __cs_dataraceContinue & __cs_active_thread[%s]) {\n" % ( ts - (self.getThreadbound()+1) ,i)           #DR
 					if self.__guess_cs_only:
 						main +="             __cs_pc_cs[%s] = __cs_tmp_t%s_r%s;\n" % (i, i, round)
 					else:
@@ -609,16 +608,16 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 		#'''
 
 		## For the last call to main thread
-		#k = int(math.floor(math.log(self.__lines['main'],2)))+1
-		#main += "          unsigned int __cs_tmp_t0_r%s %s;\n" % (ROUNDS, self.__extra_nondet)
+		#k = int(math.floor(math.log(self.getLines()['main'],2)))+1
+		#main += "          unsigned int __cs_tmp_t0_r%s %s;\n" % (ROUNDS, self.getExtra_nondet())
 		#self._bitwidth['main','__cs_tmp_t0_r%s' % (ROUNDS)] = k
-		#main +="           if (__cs_dr_ts > %s & __cs_dataraceContinue & __cs_active_thread[0]) {\n" % ((round-1) * (self.__threadbound+1)+i) #DR
+		#main +="           if (__cs_dr_ts > %s & __cs_dataraceContinue & __cs_active_thread[0]) {\n" % ((round-1) * (self.getThreadbound()+1)+i) #DR
 		#if self.__guess_cs_only:
 		#    main +="             __cs_pc_cs[0] = __cs_tmp_t0_r%s;\n" % (ROUNDS)
 		#else:
 		#    main +="             __cs_pc_cs[0] = __cs_pc[0] + __cs_tmp_t0_r%s;\n" % (ROUNDS)
 		#main +="             __CSEQ_assume(__cs_pc_cs[0] >= __cs_pc[0]);\n"
-		#main +="             __CSEQ_assume(__cs_pc_cs[0] <= %s);\n" % (self.__lines['main'])
+		#main +="             __CSEQ_assume(__cs_pc_cs[0] <= %s);\n" % (self.getLines()['main'])
 		##main +="             __cs_noportest=0;\n"  #POR
 		#main +="             __cs_main_thread();\n"
 		#main +="           }\n"

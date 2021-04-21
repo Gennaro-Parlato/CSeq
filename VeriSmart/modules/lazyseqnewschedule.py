@@ -60,7 +60,7 @@ class lazyseqnewschedule(core.module.Translator):
 
 	_currentThread = ''             # name of the current thread (also used to build thread labels)
 
-	__threadbound = 0                # bound on the number of threads
+	__threadbound = 0             	# bound on the number of threads
 
 	__firstThreadCreate = False      # set once the first thread creation is met
 	__globalMemoryAccessed = False   # used to limit context-switch points (when global memory is not accessed, no need to insert them)
@@ -187,7 +187,12 @@ class lazyseqnewschedule(core.module.Translator):
 				elif self.__one_pc_cs:
 					self.output += self.__createMainRoundRobinOnePCCS(rounds)
 				else:
-					self.output += self.__createMainRoundRobin(rounds)
+					#print(self.__class__)
+					#print(self.output)
+					#mainFunc=self.__createMainRoundRobin(rounds)
+					#print(mainFunc)
+					#sys.exit(0)
+					self.output += self.createMainRoundRobin(rounds)    #name changed form __createMainRoundRobin since this would not ovverride
 			else:
 				if self.__decomposepc:
 					self.output += self.__createMainDecomposePC(rounds)
@@ -1235,7 +1240,7 @@ class lazyseqnewschedule(core.module.Translator):
 
 		return main
 
-	def __createMainRoundRobin(self, ROUNDS):
+	def createMainRoundRobin(self, ROUNDS):  #name changed from __createMainRoundRobin since this would not ovverride
 		'''  New main driver:
 		'''
 		main = ''
@@ -1706,3 +1711,15 @@ class lazyseqnewschedule(core.module.Translator):
 
 		return globalAccess
 	
+# access methods
+	def getThreadbound(self):
+		return self.__threadbound
+
+	def getLines(self):
+		return self.__lines
+
+	def getThreadName(self):
+		return self.__threadName
+
+	def getExtra_nondet(self):
+		return self.__extra_nondet
