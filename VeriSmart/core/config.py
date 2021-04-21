@@ -2,6 +2,6 @@
 debugpath = 'log'
 
 # default analysis
-defaultchain = 'Calenda-DeMattia'
-defaultDRchain = 'Calenda-DeMattiaDR'
+defaultchain = 'assertionChecking'
+defaultDRchain = 'datarace'
 
