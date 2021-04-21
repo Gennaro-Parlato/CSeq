@@ -443,9 +443,37 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 
 #QUI
 	def visit_StructRef(self, n):
-		n.show()
+		old_stats = self.__stats
+
+		self.__stats = Stats.noACC
 		sref = self._parenthesize_unless_simple(n.name)
-		return sref + n.type + self.visit(n.field)
+		opt1 = self.__optional2
+		wse = self.__WSE 
+
+		self.visit(n.field)
+		self.__WSE = wse + n.type + self.__WSE
+		opt2 = self.__optional2
+		
+		ret =''
+		if not self.__optional2:
+			ret = sref 
+		
+		if old_stats == Stats.ACC:
+			p2 = '(__cs_dataraceSecondThread  && (__cs_dataraceNotDetected = __cs_dataraceNotDetected && ! __CPROVER_get_field(&%s,"dr_write")))' % self.__WSE
+			if ret != '':
+				ret += ','
+			ret += p2
+			
+		if old_stats == Stats.TOP:
+			if ret != '':
+                                ret += ','
+			ret += self.__WSE
+
+		self.__optional2 = opt1 and opt2
+
+		self.__optional1 = self.__optional2
+
+		return ret
 
 #	def visit_ParamList(self, n):
 		#print(n)
