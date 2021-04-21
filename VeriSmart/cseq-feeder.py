@@ -384,7 +384,7 @@ def main():
     cseqenv.starttime = time.time()  # save wall time
 
     # Extract the configuration from the command-line or set it to the default.
-    if " --dr " in cseqenv.cmdline:
+    if "--dr" in cseqenv.cmdline:
         cseqenv.chainfile = "modules/%s.chain" % core.utils.extractparamvalue(cseqenv.cmdline, "-C", "--chain",
                                                                               core.config.defaultDRchain)
     else:
@@ -802,7 +802,7 @@ def main():
                 cseqenv.maps.append(m.outputtoinput)
                 cseqenv.lastlinenoinlastmodule = m.output.count("\n")
 
-            if cseqenv.debug:
+            if cseqenv.debug and m.getname() is not "loopAnalysis":
                 fileno = "0" + str(cseqenv.transforms + 1).zfill(2)
                 core.utils.saveFile("%s/_%s_input___%s.c" % (cseqenv.debugpath, fileno, m.getname()), m.input)
                 core.utils.saveFile("%s/_%s_output__%s.c" % (cseqenv.debugpath, fileno, m.getname()), m.output)

@@ -23,6 +23,7 @@ def main(args):
 			os.system(cmdline + " -H")
 			sys.exit(0)
 		cmdline += " %s" % argument
+	#print(cmdline)
 	os.system(cmdline)
 	sys.exit(0)
 
