@@ -184,7 +184,7 @@ class dr_instrumenter(core.module.Translator):
 		self.addInputParam('svcomp', 'extra instrumentation for SVCOMP', '', None, True)
 		self.addInputParam('roundint', 'round to integer built-in types', '', None, True)
 		self.addInputParam('bit-pthread', 'set bit vector for pthread types', '', None, True)
-		self.addInputParam('threads', 'max no. of thread creations (0 = auto)', 't', '0', False)
+		self.addInputParam('threads', 'max no. of thread creations (0 = auto)', 't', '0', False)  #POR
 
 	#Caledem
 	def setInstanceInfo(self, swarmdirname, filename, confignumber, configintervals):
@@ -224,7 +224,8 @@ class dr_instrumenter(core.module.Translator):
 			'__cs_thread_index'
 		]
 
-		super(self.__class__, self).loadfromstring(string, env)
+		#print("DR QUI")
+		super(dr_instrumenter, self).loadfromstring(string, env)
 		
 		self.lastoutputlineno = 0
 		self.removelinenumbers()

@@ -386,7 +386,9 @@ class loopAnalysis(core.module.Translator):
 		output = instance
 		analysistime = time.time()
 		for env.transforms, m in enumerate(env.backendmodules):
+			#print(m.getname() + "QUI")
 			try:
+				timeBefore = time.time()
 				if env.debug:
 					print("/* " + m.getname())
 				m.initParams(env)
@@ -398,6 +400,13 @@ class loopAnalysis(core.module.Translator):
 				if "inputtooutput" in dir(m):
 					env.maps.append(m.outputtoinput)
 					env.lastlinenoinlastmodule = m.output.count("\n")
+
+				if not env.isSwarm and env.debug:
+					fileno = "0" + str(env.transforms + 1).zfill(2)
+					core.utils.saveFile("%s/_%s_input___%s.c" % (env.debugpath, fileno, m.getname()), m.input)
+					core.utils.saveFile("%s/_%s_output__%s.c" % (env.debugpath, fileno, m.getname()), m.output)
+					print("[%s] ok %0.2fs */" % (fileno, int(time.time()) - int(timeBefore)))
+					sys.stdout.flush()	
 
 			except KeyboardInterrupt as e:
 				print("Chain interrupted by user")

@@ -204,7 +204,7 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 		wse = n.name
 		self.__optional2 = True
 		if self.__enableDRlocals or self._isGlobal(self._currentThread, n.name) or self._isPointer(self._currentThread, n.name):   #POR
-			ret += '(__cs_dataraceSecondThread  && (__cs_dataraceNotDetected && = ! __CPROVER_get_field(&%s,"dr_write")))' % wse
+			ret += '(__cs_dataraceSecondThread  && (__cs_dataraceNotDetected = ! __CPROVER_get_field(&%s,"dr_write")))' % wse
 			self.__optional2 = False
 
 			if self.__visitingLHS:

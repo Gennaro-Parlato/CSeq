@@ -224,7 +224,7 @@ class instrumenter(core.module.Translator):
 		]
 
 
-		super(self.__class__, self).loadfromstring(string, env)
+		super(instrumenter, self).loadfromstring(string, env)
 		self.lastoutputlineno = 0
 		self.removelinenumbers()
 		# self.output = core.utils.strip(self.output)
