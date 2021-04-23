@@ -243,6 +243,12 @@ class Parser(pycparser.c_generator.CGenerator):
                 tmp[key] = i
                 i += 1
         self.threadOccurenceIndex = tmp
+        # check if we need to generate missing functionbodies
+        diff = set(self.threadName) - set(self.threadOccurenceIndex.keys())
+        if len(diff) != 0:
+            print(utils.colors.DARKRED + 'Missing function bodies for the following thread functions: ' + str(
+                diff) + utils.colors.NO)
+            exit(1)
 
     def show(self):
         # print utils.strip(self.__sourcecode)
