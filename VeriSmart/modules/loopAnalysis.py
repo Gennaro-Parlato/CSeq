@@ -385,7 +385,8 @@ class loopAnalysis(core.module.Translator):
 	def backendChain(self, env, instance, confignumber, configintervals, swarmdirname, filename):
 		output = instance
 		analysistime = time.time()
-		for env.transforms, m in enumerate(env.backendmodules):
+		#print (env.transforms)
+		for i, m in enumerate(env.backendmodules):
 			#print(m.getname() + "QUI")
 			try:
 				timeBefore = time.time()
@@ -403,10 +404,12 @@ class loopAnalysis(core.module.Translator):
 
 				if not env.isSwarm and env.debug:
 					fileno = "0" + str(env.transforms + 1).zfill(2)
-					core.utils.saveFile("%s/_%s_input___%s.c" % (env.debugpath, fileno, m.getname()), m.input)
-					core.utils.saveFile("%s/_%s_output__%s.c" % (env.debugpath, fileno, m.getname()), m.output)
+					#core.utils.saveFile("%s/_%s_input___%s.c" % (env.debugpath, fileno, m.getname()), m.input)
+					#core.utils.saveFile("%s/_%s_output__%s.c" % (env.debugpath, fileno, m.getname()), m.output)
 					print("[%s] ok %0.2fs */" % (fileno, int(time.time()) - int(timeBefore)))
 					sys.stdout.flush()	
+
+				env.transforms += 1
 
 			except KeyboardInterrupt as e:
 				print("Chain interrupted by user")

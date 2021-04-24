@@ -11,7 +11,7 @@ Transformation:
 
 Prerequisites:
 	- all functions should have been inlined, except the main(), all thread functions, all __CSEQ_atomic_ functions, and function __CSEQ_assert
-	- all loops should habe been unrolled
+	- all loops should have been unrolled
 	- no two threads refers to the same thread function (use module duplicator.py)
 
 TODO:
@@ -90,8 +90,8 @@ class lazyseqnewschedule(core.module.Translator):
 
 	__guess_cs_only = False
 
-	# POR data structs for Read/Write analysis
 	__inReference = False            # True iff within & scope
+	expList = []     #assigned with  the list of the expressions of an ExprList node
 
 	def init(self):
 		self.addInputParam('rounds', 'round-robin schedules', 'r', '1', False)
@@ -699,8 +699,13 @@ class lazyseqnewschedule(core.module.Translator):
 
 		return n.name
 
+	def frefVisit(self,n):
+		return self._parenthesize_unless_simple(n.name)
+
+
 	def visit_FuncCall(self, n):
-		fref = self._parenthesize_unless_simple(n.name)
+		fref = self.frefVisit(n)
+
 		args = self.visit(n.args)
 
 		if fref == '__CSEQ_atomic_begin':
@@ -724,9 +729,16 @@ class lazyseqnewschedule(core.module.Translator):
 		#                          ^^^
 		#
 		if fref == core.common.changeID['pthread_create']: # TODO re-write AST-based (see other modules)
-			fName = args[:args.rfind(',')]
-			fName = fName[fName.rfind(',')+2:]
-			fName = fName.replace('&', '')
+#QUI
+			#n.show()
+			#print(fref + '\n' + str(self.expList))
+			#sys.exit(0)
+#			fName = args[:args.rfind(',')]
+#			fName = fName[fName.rfind(',')+2:]
+#			fName = fName.replace('&', '')
+			fName = self.expList[2]
+			fName = fName.strip()
+			fName = fName.strip('()&')
 			##__threadName in funcDef
 			# if fName not in self.__threadName:
 			#     self.__threadName.append(fName)
@@ -1710,7 +1722,16 @@ class lazyseqnewschedule(core.module.Translator):
 		self.__globalMemoryAccessed = oldGlobalMemoryAccessed
 
 		return globalAccess
-	
+
+
+	def visit_ExprList(self, n):
+		visited_subexprs = []
+		for expr in n.exprs:
+			visited_subexprs.append(self._visit_expr(expr))
+		self.expList = visited_subexprs.copy()
+		return ', '.join(visited_subexprs)
+
+
 # access methods
 	def getThreadbound(self):
 		return self.__threadbound
@@ -1723,3 +1744,7 @@ class lazyseqnewschedule(core.module.Translator):
 
 	def getExtra_nondet(self):
 		return self.__extra_nondet
+
+	def setExpList(self,list):
+		self.expList = list.copy()
+

@@ -371,8 +371,6 @@ class inliner(core.module.Translator):
                 self.inlinedStack[-1] += '__CSEQ_assume(0);\n'  # Stop execution
                 reachBound = True
             else:
-                # print fref ; print self.currFuncPtrParamMap  #QUI
-                # n.show()
                 self.inlinedStack[-1] += (self._inlineFunction(self.Parser.funcASTNode[fref], n, False)) + '\n'
 
             if self.Parser.funcIsVoid[fref]:

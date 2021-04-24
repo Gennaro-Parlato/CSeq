@@ -23,6 +23,7 @@ class Stats(Enum):
 class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 
 	# DR data for discarding clearly benign dataraces (i.e., when we have write-write of the same value
+	__enableDR = False   #True iff input option --dr is chosen
 	__wwDatarace = False 
 	__noShadow = False
 	__enableDRlocals = False  # data race code also on local vars
@@ -39,6 +40,7 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 
 	__visitingLHS = False  # set to True when vising the left hand side of an assignment to determine whether the this is an access meaningful for data race detection
 	__access = False  # set to True to denote that the LHS of an assignment is meaningful for data race detection
+	__funcID = False  # set to True iff we are visiting the id of a function  in a function call
 
 	def init(self):
 		self.addInputParam('rounds', 'round-robin schedules', 'r', '1', False)
@@ -76,7 +78,7 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 		else:
 		    return core.utils.printFile('modules/dr_0lazyseqBnewschedule.c').replace('<insert-threadsizes-here>',lines)
 
-	def additionaDefs(self):
+	def additionalDefs(self):
 		#header += 'unsigned int __cs_ts = 0; \n'   #POR 
 		#header += 'unsigned int __cs_tsplusone = %s; \n' % (self.getThreadbound()+1)   #POR 
 		#header += '_Bool __cs_is_por_exec = 1; \n'   #POR 
@@ -107,6 +109,7 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 
 	def loadfromstring(self, string, env):
 
+		self.__enableDR = env.enableDR
 		self.__wwDatarace = env.wwDatarace
 		self.__noShadow = env.no_shadow
 		self.__enableDRlocals = env.local
@@ -129,19 +132,20 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
             self.__optional1 = opt
             self.__optional2 = self.__optional1
             self.__WSE = ', '.join(wseList)
-            #n.show()
-#            print(self.__WSE)
-            #sys.exit(0)
+            self.setExpList(visited_subexprs)
             return ', '.join(visited_subexprs)
 
+#    visit_FuncCall routines
+	def frefVisit(self,n):
+		old_funcID = self.__funcID
+		self.__funcID = True
+		ret = self._parenthesize_unless_simple(n.name)
+		self.__funcID =  old_funcID
+		return ret
 
-	def visit_FuncCall(self, n):
-            
-            fref = self._parenthesize_unless_simple(n.name)
-            #print(n.name)
-            #n.show()
-            return fref + '(' + self.visit(n.args) + ')'
-
+#	def visit_FuncCall(self, n):
+#            fref = self._parenthesize_unless_simple(n.name)
+#            return fref + '(' + self.visit(n.args) + ')'
 
 
 
@@ -200,17 +204,22 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
                 return ret
 
 	def visit_ID(self, n):
+		if n.name in self.getThreadName():
+			self.__WSE = super(dr_lazyseqnewschedule, self).visit_ID(n)
+			self.__optional1 = True
+			self.__optional2 = True
+			return self.__WSE
+			
 		ret = ''   # noACC is default
 		wse = n.name
 		self.__optional2 = True
-		if self.__enableDRlocals or self._isGlobal(self._currentThread, n.name) or self._isPointer(self._currentThread, n.name):   #POR
+		if not self.__funcID and (self.__enableDRlocals or self._isGlobal(self._currentThread, n.name) or self._isPointer(self._currentThread, n.name)):   
 			ret += '(__cs_dataraceSecondThread  && (__cs_dataraceNotDetected = ! __CPROVER_get_field(&%s,"dr_write")))' % wse
 			self.__optional2 = False
 
 			if self.__visitingLHS:
                            self.__access = True
                            self.__visitingLHS = False
-
 		self.__optional1 = False   # no subexpressions 
 		super(dr_lazyseqnewschedule, self).visit_ID(n)
 		self.__WSE = wse
@@ -242,13 +251,13 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 
                 opt1 = self.__optional2
 
-                wse = self.__WSE  # wse now contains the lvalue where the data is assigned
+                lwse = self.__WSE  # lwse now contains the lvalue where the data is assigned
                 if self.__access:
                     if ret != '':
                        ret += ','
-                    p1 = '__cs_dataraceDetectionStarted && !__cs_dataraceSecondThread && __CPROVER_set_field(&%s,"dr_write",1), ' % wse
+                    p1 = '__cs_dataraceDetectionStarted && !__cs_dataraceSecondThread && __CPROVER_set_field(&%s,"dr_write",1), ' % lwse
  
-                    p2 = '(__cs_dataraceSecondThread  && (__cs_dataraceNotDetected = __cs_dataraceNotDetected && ! __CPROVER_get_field(&%s,"dr_write")))' % wse
+                    p2 = '(__cs_dataraceSecondThread  && (__cs_dataraceNotDetected = __cs_dataraceNotDetected && ! __CPROVER_get_field(&%s,"dr_write")))' % lwse
                     ret += p1 + p2
 
                 self.__access = old_access
@@ -263,12 +272,16 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
                       ret += ', '
                    ret +=  rvalue 
 
+                rwse = self.__WSE
+
                 self.__optional1 = opt1 and self.__optional2
                 self.__optional2 = False  #Assignment has side effects
 
 		#print self.__sharedVarsW
-                ret = '%s %s %s' % (lvalue, n.op, rvalue)
-                self.__WSE = wse
+                if ret != '':
+                    ret += ','
+                ret += '%s %s %s' % (lwse, n.op, rwse)
+                self.__WSE = lwse
 
                 self.__stats = old_drStats  
 
@@ -333,7 +346,7 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 			if n.op == "++" or n.op == "--":
 				ret += '%s%s' % (n.op,wse)
 			else:
-				ret += '%s%s' % (wse,n.op)
+				ret += '%s%s' % (wse,n.op[1:])
 			
 		else:
 			self.__WSE = super(dr_lazyseqnewschedule, self).visit_UnaryOp(n) 

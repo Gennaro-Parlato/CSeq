@@ -802,7 +802,7 @@ def main():
                 cseqenv.maps.append(m.outputtoinput)
                 cseqenv.lastlinenoinlastmodule = m.output.count("\n")
 
-            if cseqenv.debug and m.getname() is not "loopAnalysis":
+            if cseqenv.debug and str(m.getname()) != "loopAnalysis":
                 fileno = "0" + str(cseqenv.transforms + 1).zfill(2)
                 core.utils.saveFile("%s/_%s_input___%s.c" % (cseqenv.debugpath, fileno, m.getname()), m.input)
                 core.utils.saveFile("%s/_%s_output__%s.c" % (cseqenv.debugpath, fileno, m.getname()), m.output)
