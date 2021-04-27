@@ -18,7 +18,8 @@ void *thread1(void *arg)
 
 void *thread2(void *arg)
 {
-//  int *x, a[3][4];
+  int *x, a[3][4];
+  int i=1;
 //  *x =  1;
 //  data = foo(3)+7;
 //  a[1][1]= 7+x;
@@ -26,7 +27,8 @@ void *thread2(void *arg)
 //  sizeof (int);
 //  data, x++, a[0][2];
 //  *x = (int) 3.14;
-  data = 3;
+  data += 3;
+  data = a[i][0] * data;
 }
 
 

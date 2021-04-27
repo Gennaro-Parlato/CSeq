@@ -64,6 +64,7 @@ class lazyseqnewschedule(core.module.Translator):
 
 	__firstThreadCreate = False      # set once the first thread creation is met
 	__globalMemoryAccessed = False   # used to limit context-switch points (when global memory is not accessed, no need to insert them)
+	__globalMemoryTest = False       # set to True when visiting AST when running method __globalAccess 
 
 	__first = False
 	__atomic = False                 # no context-switch points between atomic_start() and atomic_end()
@@ -92,6 +93,7 @@ class lazyseqnewschedule(core.module.Translator):
 
 	__inReference = False            # True iff within & scope
 	expList = []     #assigned with  the list of the expressions of an ExprList node
+	
 
 	def init(self):
 		self.addInputParam('rounds', 'round-robin schedules', 'r', '1', False)
@@ -389,6 +391,7 @@ class lazyseqnewschedule(core.module.Translator):
 
 		if n.block_items:
 			for stmt in n.block_items:
+
 				self.initFlags()
 				# Case 1: last statement in a thread (must correspond to last label)
 				if type(stmt) == pycparser.c_ast.FuncCall and stmt.name.name == core.common.changeID['pthread_exit']: ##if type(stmt) == pycparser.c_ast.FuncCall and self._parenthesize_unless_simple(stmt.name) == core.common.changeID['pthread_exit']:
@@ -479,7 +482,6 @@ class lazyseqnewschedule(core.module.Translator):
 				else:
 					code = self.visit(stmt) + ";\n"
 					compoundList.append(code)
-
 		compoundList[len(compoundList)-1] = compoundList[len(compoundList)-1] + '\n}'
 		listToStr = ''.join(stmt for stmt in compoundList)
 		return listToStr
@@ -702,8 +704,11 @@ class lazyseqnewschedule(core.module.Translator):
 	def frefVisit(self,n):
 		return self._parenthesize_unless_simple(n.name)
 
+	def addRetFuncCall(self,fname,tindex=None):
+		pass
 
 	def visit_FuncCall(self, n):
+		
 		fref = self.frefVisit(n)
 
 		args = self.visit(n.args)
@@ -729,7 +734,6 @@ class lazyseqnewschedule(core.module.Translator):
 		#                          ^^^
 		#
 		if fref == core.common.changeID['pthread_create']: # TODO re-write AST-based (see other modules)
-#QUI
 			#n.show()
 			#print(fref + '\n' + str(self.expList))
 			#sys.exit(0)
@@ -756,8 +760,8 @@ class lazyseqnewschedule(core.module.Translator):
 		if fref == core.common.changeID['pthread_exit']:
 			# 17 March 2021
 			#threadIndex = self.Parser.threadIndex[self._currentThread] if self._currentThread in self.Parser.threadIndex else 0
-			threadIndex = self.Parser.threadOccurenceIndex[
-				self._currentThread] if self._currentThread in self.Parser.threadOccurenceIndex else 0
+			threadIndex = self.Parser.threadOccurenceIndex[self._currentThread] if self._currentThread in self.Parser.threadOccurenceIndex else 0
+			self.addRetFuncCall(fref,threadIndex)
 			return fref + '(' + args + ', %s)' % threadIndex
 
 		'''
@@ -779,6 +783,7 @@ class lazyseqnewschedule(core.module.Translator):
 				fref.startswith('__cs_cond_wait_')):
 			#threadIndex = self.Parser.threadIndex[self._currentThread] if self._currentThread in self.Parser.threadIndex else 0
 			threadIndex= self.Parser.threadOccurenceIndex[self._currentThread] if self._currentThread in self.Parser.threadOccurenceIndex else 0 # 17 March 2021
+			self.addRetFuncCall(fref,threadIndex)
 			return fref + '(' + args + ', %s)' % threadIndex
 
 		#S: fake implementation of pthread_key_create
@@ -791,6 +796,7 @@ class lazyseqnewschedule(core.module.Translator):
 			args = args[:args.rfind(',')]
 			#print (fref + '(' + args + ')')
 
+		self.addRetFuncCall(fref)
 
 		return fref + '(' + args + ')'
 
@@ -1701,6 +1707,9 @@ class lazyseqnewschedule(core.module.Translator):
 	#       could be useful for refinement)
 	#
 	def __globalAccess(self, stmt):
+		old_gmt = self.__globalMemoryTest 
+		self.__globalMemoryTest = True
+
 		if self.__atomic: return False  # if between atomic_begin() and atomic_end() calls no context switchs needed..
 
 		oldStmtCount = self.__stmtCount             # backup counters
@@ -1720,7 +1729,8 @@ class lazyseqnewschedule(core.module.Translator):
 		self.__stmtCount = oldStmtCount             # restore counters
 		self.__maxInCompound = oldMaxInCompound
 		self.__globalMemoryAccessed = oldGlobalMemoryAccessed
-
+		
+		self.__globalMemoryTest = old_gmt
 		return globalAccess
 
 
@@ -1748,3 +1758,5 @@ class lazyseqnewschedule(core.module.Translator):
 	def setExpList(self,list):
 		self.expList = list.copy()
 
+	def getGlobalMemoryTest(self):
+		return self.__globalMemoryTest

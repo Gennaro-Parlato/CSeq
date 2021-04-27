@@ -112,11 +112,14 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 		self.__enableDR = env.enableDR
 		self.__wwDatarace = env.wwDatarace
 		self.__noShadow = env.no_shadow
-		self.__enableDRlocals = env.local
+		#self.__enableDRlocals = env.local
 		super(dr_lazyseqnewschedule, self).loadfromstring(string, env)
 
 
 	def visit_ExprList(self, n):
+            if self.getGlobalMemoryTest(): 
+                return super(dr_lazyseqnewschedule, self).visit_ExprList(n)
+
             visited_subexprs = []
             wseList = []
             opt = True
@@ -143,6 +146,16 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 		self.__funcID =  old_funcID
 		return ret
 
+	def addRetFuncCall(self,fname,tindex=None):
+		if tindex == None:
+			self.__WSE = '%s ( %s )' % (fname,self.__WSE)
+		else: 
+			#print(fname)
+			#print(self.__WSE)
+			self.__WSE = '%s ( %s, %s )' % (fname,self.__WSE, tindex)
+			#print(self.__WSE)
+		self.__optional1 = self.__optional2
+
 #	def visit_FuncCall(self, n):
 #            fref = self._parenthesize_unless_simple(n.name)
 #            return fref + '(' + self.visit(n.args) + ')'
@@ -151,6 +164,9 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 
 
 	def visit_ArrayRef(self, n):
+                if self.getGlobalMemoryTest(): 
+                    return super(dr_lazyseqnewschedule, self).visit_ArrayRef(n)
+
                 ret = ''
                 old_drStats = self.__stats  #DR  
 
@@ -183,7 +199,7 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
                    if ret != '':
                       ret += ','
                 
-                   if self.__enableDRlocals or self._isGlobal(self._currentThread, arrref) or self._isPointer(self._currentThread, arrref):   #POR
+                   if self._isGlobal(self._currentThread, arrref) or self._isPointer(self._currentThread, arrref):   #POR
                       ret += '(__cs_dataraceSecondThread  && (__cs_dataraceNotDetected = __cs_dataraceNotDetected && ! __CPROVER_get_field(&%s,"dr_write")))' % wse
                       if self.__visitingLHS:
                           self.__access = True
@@ -204,6 +220,9 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
                 return ret
 
 	def visit_ID(self, n):
+		if self.getGlobalMemoryTest(): 
+			return super(dr_lazyseqnewschedule, self).visit_ID(n)
+
 		if n.name in self.getThreadName():
 			self.__WSE = super(dr_lazyseqnewschedule, self).visit_ID(n)
 			self.__optional1 = True
@@ -224,11 +243,15 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 		super(dr_lazyseqnewschedule, self).visit_ID(n)
 		self.__WSE = wse
                 
-		if ret == '':
-                    ret = wse 
+		if self.__stats == Stats.TOP:
+			ret =  wse if ret == '' else '%s, %s' % (ret, wse)
+				
 		return ret
 
 	def visit_Assignment(self, n):
+                if self.getGlobalMemoryTest(): 
+                     return super(dr_lazyseqnewschedule, self).visit_Assignment(n)
+
                 #print(type(n.lvalue))
                 assert (self.__stats != Stats.noACC),"Assignment explored in noACC mode!" # noACC is not possible here since an assignment expression is not an lvalue
 
@@ -255,10 +278,10 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
                 if self.__access:
                     if ret != '':
                        ret += ','
-                    p1 = '__cs_dataraceDetectionStarted && !__cs_dataraceSecondThread && __CPROVER_set_field(&%s,"dr_write",1), ' % lwse
+                    p1 = '__cs_dataraceDetectionStarted && !__cs_dataraceSecondThread && __CPROVER_set_field(&%s,"dr_write",1)' % lwse
  
-                    p2 = '(__cs_dataraceSecondThread  && (__cs_dataraceNotDetected = __cs_dataraceNotDetected && ! __CPROVER_get_field(&%s,"dr_write")))' % lwse
-                    ret += p1 + p2
+                    #p2 = '(__cs_dataraceSecondThread  && (__cs_dataraceNotDetected = __cs_dataraceNotDetected && ! __CPROVER_get_field(&%s,"dr_write")))' % lwse
+                    ret += p1 #+ p2
 
                 self.__access = old_access
 
@@ -288,8 +311,11 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
                 return ret
 
 	def visit_UnaryOp(self, n):
+		if self.getGlobalMemoryTest(): 
+			return super(dr_lazyseqnewschedule, self).visit_UnaryOp(n)
+
 #		n.show()
-#		print (n.op)
+#		print(self.__stats)
 		ret = ''        
 		old_stats = self.__stats  
 		old_visitingLHS = self.__visitingLHS  #only used for inc/dec
@@ -366,6 +392,9 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 
 	def visit_TernaryOp(self, n):
 		
+		if self.getGlobalMemoryTest(): 
+			return super(dr_lazyseqnewschedule, self).visit_TernaryOp(n)
+
 		old_stats = self.__stats
 
 		self.__stats = Stats.ACC
@@ -413,12 +442,18 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 
 
 	def visit_Constant(self, n):
-		self.__optional1 =  True
+		if self.getGlobalMemoryTest(): 
+			return super(dr_lazyseqnewschedule, self).visit_Constant(n)
+
+		self.__optional1 = True
 		self.__optional2 = True
 		self.__WSE = n.value
 		return n.value
 
 	def visit_BinaryOp(self, n):
+		if self.getGlobalMemoryTest(): 
+			return super(dr_lazyseqnewschedule, self).visit_BinaryOp(n)
+
 		#print(n.op)
 		old_stats = self.__stats
 
@@ -454,8 +489,10 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 
 		return ret
 
-#QUI
 	def visit_StructRef(self, n):
+		if self.getGlobalMemoryTest(): 
+			return super(dr_lazyseqnewschedule, self).visit_StructRef(n)
+
 		old_stats = self.__stats
 
 		self.__stats = Stats.noACC
@@ -494,6 +531,9 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 
 
 	def visit_Cast(self, n):
+           if self.getGlobalMemoryTest(): 
+                return super(dr_lazyseqnewschedule, self).visit_Cast(n)
+
            old_stats = self.__stats
            s = '(' + self._generate_type(n.to_type) + ')'
            if self.__stats == Stats.PRE or self.__stats == Stats.TOP: 
