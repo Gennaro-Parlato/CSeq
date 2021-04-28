@@ -26,7 +26,7 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 	__enableDR = False   #True iff input option --dr is chosen
 	__wwDatarace = False 
 	__noShadow = False
-	__enableDRlocals = False  # data race code also on local vars
+	#__enableDRlocals = False  # data race code also on local vars
 
 	__stats =  Stats.TOP  # TOP iff at the top level of an expression
                               # ACC iff ACCESS mode
@@ -41,7 +41,7 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 	__visitingLHS = False  # set to True when vising the left hand side of an assignment to determine whether the this is an access meaningful for data race detection
 	__access = False  # set to True to denote that the LHS of an assignment is meaningful for data race detection
 	__funcID = False  # set to True iff we are visiting the id of a function  in a function call
-
+		
 	def init(self):
 		self.addInputParam('rounds', 'round-robin schedules', 'r', '1', False)
 		self.addInputParam('threads', 'max no. of thread creations (0 = auto)', 't', '0', False)
@@ -166,11 +166,11 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 	def visit_ArrayRef(self, n):
                 if self.getGlobalMemoryTest(): 
                     return super(dr_lazyseqnewschedule, self).visit_ArrayRef(n)
-
                 ret = ''
                 old_drStats = self.__stats  #DR  
 
                 self.__stats = Stats.PRE #DR
+
 
                 arrref = self._parenthesize_unless_simple(n.name)
                 wse = self.__WSE 
@@ -196,10 +196,11 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
                 #  the value of ret at this point is fine for noACC and PRE modes
 
                 if self.__stats == Stats.ACC or  self.__stats == Stats.TOP:
-                   if ret != '':
-                      ret += ','
+                   if self._isGlobal(self.getCurrentThread(), arrref) or self._isPointer(self.getCurrentThread(), arrref):   #POR
+
+                      if ret != '':
+                          ret += ','
                 
-                   if self._isGlobal(self._currentThread, arrref) or self._isPointer(self._currentThread, arrref):   #POR
                       ret += '(__cs_dataraceSecondThread  && (__cs_dataraceNotDetected = __cs_dataraceNotDetected && ! __CPROVER_get_field(&%s,"dr_write")))' % wse
                       if self.__visitingLHS:
                           self.__access = True
@@ -216,14 +217,13 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
                 self.__WSE = wse
 
                 self.__stats = old_drStats  #DR  
-
                 return ret
 
 	def visit_ID(self, n):
 		if self.getGlobalMemoryTest(): 
 			return super(dr_lazyseqnewschedule, self).visit_ID(n)
 
-		if n.name in self.getThreadName():
+		if self.__funcID:
 			self.__WSE = super(dr_lazyseqnewschedule, self).visit_ID(n)
 			self.__optional1 = True
 			self.__optional2 = True
@@ -232,20 +232,26 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 		ret = ''   # noACC is default
 		wse = n.name
 		self.__optional2 = True
-		if not self.__funcID and (self.__enableDRlocals or self._isGlobal(self._currentThread, n.name) or self._isPointer(self._currentThread, n.name)):   
-			ret += '(__cs_dataraceSecondThread  && (__cs_dataraceNotDetected = ! __CPROVER_get_field(&%s,"dr_write")))' % wse
-			self.__optional2 = False
+		if (self._isGlobal(self.getCurrentThread(), n.name) or self._isPointer(self.getCurrentThread(), n.name)):   
+			if self.__stats != Stats.noACC: 
+				ret += '(__cs_dataraceSecondThread  && (__cs_dataraceNotDetected = ! __CPROVER_get_field(&%s,"dr_write")))' % wse
+				self.__optional2 = False
 
 			if self.__visitingLHS:
                            self.__access = True
                            self.__visitingLHS = False
-		self.__optional1 = False   # no subexpressions 
+		self.__optional1 = True   # no subexpressions 
 		super(dr_lazyseqnewschedule, self).visit_ID(n)
 		self.__WSE = wse
                 
 		if self.__stats == Stats.TOP:
 			ret =  wse if ret == '' else '%s, %s' % (ret, wse)
 				
+		#print("visit_ID ret: " + ret)
+		#print("Optional1: " + str(self.__optional1))
+		#print("Optional2: " + str(self.__optional2))
+		#print("Stats: " + str(self.__stats))
+		#n.show()
 		return ret
 
 	def visit_Assignment(self, n):
@@ -266,6 +272,7 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
                 self.__access = False
 
                 lvalue = self.visit(n.lvalue)
+                #print("Visited left-handside")
                 
                 self.__visitingLHS = old_visitingLHS
 
@@ -278,10 +285,10 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
                 if self.__access:
                     if ret != '':
                        ret += ','
-                    p1 = '__cs_dataraceDetectionStarted && !__cs_dataraceSecondThread && __CPROVER_set_field(&%s,"dr_write",1)' % lwse
+                    p1 = '__cs_dataraceDetectionStarted && !__cs_dataraceSecondThread && __CPROVER_set_field(&%s,"dr_write",1), ' % lwse
  
-                    #p2 = '(__cs_dataraceSecondThread  && (__cs_dataraceNotDetected = __cs_dataraceNotDetected && ! __CPROVER_get_field(&%s,"dr_write")))' % lwse
-                    ret += p1 #+ p2
+                    p2 = '(__cs_dataraceSecondThread  && (__cs_dataraceNotDetected = __cs_dataraceNotDetected && ! __CPROVER_get_field(&%s,"dr_write")))' % lwse
+                    ret += p1 + p2
 
                 self.__access = old_access
 
@@ -289,6 +296,8 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
                 self.__stats = Stats.ACC 
 
                 rvalue = self.visit(n.rvalue)
+                #print("RVALUE: " + rvalue)
+                #n.rvalue.show()
 
                 if not self.__optional2:
                    if ret != '':
@@ -711,4 +720,5 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 #	def visit_Compound(self,n):
 #		for stm in n.block_items:
 #                    stm.show()
-#		return super(dr_lazyseqnewschedule,self).visit_Compound(n)
+#		return super(dr_lazyseqnewschedule,self).visit_Compound(n
+

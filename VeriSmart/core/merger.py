@@ -208,7 +208,7 @@ struct device {
         #cmdline = 'cpp -Iinclude -E -C ' + filename + ' > ' + filename + '.1' + '.c'
         #cmdline = 'gcc -Iinclude -P -E - '  # hyphen at the end forces input from stdin
         cmdline = 'gcc %s -nostdinc %s -E - ' % (macros,includestring) # hyphen at the end forces input from stdin
-        # print(cmdline)
+        #print(cmdline)
         p = subprocess.Popen(shlex.split(cmdline), stdout=subprocess.PIPE, stdin=subprocess.PIPE, stderr=subprocess.PIPE)
         string = (p.communicate(input=string.encode())[0]).decode()
 
