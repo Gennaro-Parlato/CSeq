@@ -644,7 +644,7 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 			#main +="__CSEQ_rawline(\"__cs_tsplusone=%s;\");\n" % ( (round+1) * ( self.getThreadbound()+1) )  #POR
 			main +="          unsigned int __cs_tmp_t%s_r%s %s;\n" % (self.Parser.threadOccurenceIndex['main'],round, self.getExtra_nondet())
 			main +="          if (__cs_dr_ts > %s &  __cs_dataraceContinue & __cs_active_thread[%s]) {\n" %  (ts - (self.getThreadbound()+1), self.Parser.threadOccurenceIndex['main'])          #DR
-			if self.__guess_cs_only:
+			if self.getGuessCsOnly():
 				main +="             __cs_pc_cs[%s] = __cs_tmp_t%s_r%s;\n" % (self.Parser.threadOccurenceIndex['main'], self.Parser.threadOccurenceIndex['main'], round)
 			else:
 				main +="             __cs_pc_cs[%s] = __cs_pc[%s] + __cs_tmp_t%s_r%s;\n" % (self.Parser.threadOccurenceIndex['main'], self.Parser.threadOccurenceIndex['main'], self.Parser.threadOccurenceIndex['main'], round)
@@ -674,7 +674,7 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 						#main +="__CSEQ_rawline(\"__cs_tsplusone=%s;\");\n" % ( (round+1) * ( self.getThreadbound()+1) + i)  #POR
 					main +="         unsigned int __cs_tmp_t%s_r%s %s;\n" % (i, round, self.getExtra_nondet())
 					main +="         if (__cs_dr_ts > %s & __cs_dataraceContinue & __cs_active_thread[%s]) {\n" % ( ts - (self.getThreadbound()+1) ,i)           #DR
-					if self.__guess_cs_only:
+					if self.getGuessCsOnly():
 						main +="             __cs_pc_cs[%s] = __cs_tmp_t%s_r%s;\n" % (i, i, round)
 					else:
 						main +="             __cs_pc_cs[%s] = __cs_pc[%s] + __cs_tmp_t%s_r%s;\n" % (i, i, i, round)
@@ -702,7 +702,7 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 		#main += "          unsigned int __cs_tmp_t0_r%s %s;\n" % (ROUNDS, self.getExtra_nondet())
 		#self._bitwidth['main','__cs_tmp_t0_r%s' % (ROUNDS)] = k
 		#main +="           if (__cs_dr_ts > %s & __cs_dataraceContinue & __cs_active_thread[0]) {\n" % ((round-1) * (self.getThreadbound()+1)+i) #DR
-		#if self.__guess_cs_only:
+		#if self.getGuessCsOnly():
 		#    main +="             __cs_pc_cs[0] = __cs_tmp_t0_r%s;\n" % (ROUNDS)
 		#else:
 		#    main +="             __cs_pc_cs[0] = __cs_pc[0] + __cs_tmp_t0_r%s;\n" % (ROUNDS)

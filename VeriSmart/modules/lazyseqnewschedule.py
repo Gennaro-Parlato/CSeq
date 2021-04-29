@@ -1763,3 +1763,7 @@ class lazyseqnewschedule(core.module.Translator):
 
 	def getCurrentThread(self):
 		return self.__currentThread
+	
+	def getGuessCsOnly(self):
+		return self.__guess_cs_only
+	
