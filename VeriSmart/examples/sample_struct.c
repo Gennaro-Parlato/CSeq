@@ -18,13 +18,16 @@ void *thread1(void *arg)
 typedef struct { char nome[3]; 
 		 int x,y,z; } luogo;
 
+luogo g;
+
 
 void *thread2(void *arg)
 {
   luogo l, *p;
   l.x = 10;
-  p = (luogo) malloc(sizeof(luogo));
+  p = (luogo *) malloc(sizeof(luogo));
   p->x = 100;  
+  g.x = l.y;
   
 }
 

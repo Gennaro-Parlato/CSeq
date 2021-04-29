@@ -41,6 +41,7 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 	__visitingLHS = False  # set to True when vising the left hand side of an assignment to determine whether the this is an access meaningful for data race detection
 	__access = False  # set to True to denote that the LHS of an assignment is meaningful for data race detection
 	__funcID = False  # set to True iff we are visiting the id of a function  in a function call
+	__visitingStruct = False # True iff we are visiting a structure name
 		
 	def init(self):
 		self.addInputParam('rounds', 'round-robin schedules', 'r', '1', False)
@@ -357,10 +358,14 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 				if ret != '':
 					ret += ','
 				ret += '(__cs_dataraceSecondThread  && (__cs_dataraceNotDetected = __cs_dataraceNotDetected && ! __CPROVER_get_field(%s,"dr_write")))' %  wse
+			if self.__visitingStruct:  #these parentheses are required to force priority in the c expression (* x).y
+				self.__WSE = '(%s)' % self.__WSE  
+
 			if old_stats == Stats.TOP: 
 				if ret != '':
 					ret += ','
 				ret += self.__WSE
+
 
 		elif n.op == "++" or n.op == "--" or n.op == "p++" or n.op == "p--": 
 			if  n.op == "p++": 
@@ -503,11 +508,18 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 			return super(dr_lazyseqnewschedule, self).visit_StructRef(n)
 
 		old_stats = self.__stats
+		old_visitingStruct = self.__visitingStruct
 
+		self.__visitingStruct = True
 		self.__stats = Stats.noACC
 		sref = self._parenthesize_unless_simple(n.name)
 		opt1 = self.__optional2
+		self.__visitingStruct = old_visitingStruct
+
 		wse = self.__WSE 
+
+#		print("RET: " + ret)
+		#print("WSE: " + self.__WSE)
 
 		self.visit(n.field)
 		self.__WSE = wse + n.type + self.__WSE
