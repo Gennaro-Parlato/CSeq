@@ -318,12 +318,12 @@ class loopAnalysis(core.module.Translator):
 														double=env.shifted_window, skiplist=env.skip_thread)
 			singleConfigFilename = configfile + ".tmp"
 			lenConf, result, generatedData = configGen.generatingConfigPercentage(singleConfigFilename,
-																				  softLimit=env.soft_limit,
-																				  hardLimit=env.hard_limit,
-																				  verbose=env.debug,
-																				  randomness=(
-																					  not env.no_random),
-																				  start=env.start_sample)
+											  	softLimit=env.soft_limit,
+											  	hardLimit=env.hard_limit,
+											  	verbose=env.debug,
+										  		randomness=(not env.no_random),
+											 	start=env.start_sample)
+
 			return configGen.generatorConfigIterator(singleConfigFilename, lenConf, generatedData)
 
 		else:

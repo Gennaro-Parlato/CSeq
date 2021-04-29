@@ -382,6 +382,7 @@ class Translator(BasicModule, pycparser.c_generator.CGenerator):
 
         self.input = string
         self.Parser.reset()  # resets all the parser datastructs
+        #print(string)
         self.Parser.loadfromstring(string, fill_only_fields)
         self.ast = self.Parser.ast
         self.output = self.visit(self.ast)

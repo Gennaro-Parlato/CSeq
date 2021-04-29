@@ -58,12 +58,13 @@ class lazyseqnewschedule(core.module.Translator):
 
 	__stmtCount = -1                 # thread statement counter (to build thread labels)
 
-	_currentThread = ''             # name of the current thread (also used to build thread labels)
+	__currentThread = ''             # name of the current thread (also used to build thread labels)
 
 	__threadbound = 0             	# bound on the number of threads
 
 	__firstThreadCreate = False      # set once the first thread creation is met
 	__globalMemoryAccessed = False   # used to limit context-switch points (when global memory is not accessed, no need to insert them)
+	__globalMemoryTest = False       # set to True when visiting AST when running method __globalAccess 
 
 	__first = False
 	__atomic = False                 # no context-switch points between atomic_start() and atomic_end()
@@ -92,6 +93,7 @@ class lazyseqnewschedule(core.module.Translator):
 
 	__inReference = False            # True iff within & scope
 	expList = []     #assigned with  the list of the expressions of an ExprList node
+	
 
 	def init(self):
 		self.addInputParam('rounds', 'round-robin schedules', 'r', '1', False)
@@ -325,13 +327,13 @@ class lazyseqnewschedule(core.module.Translator):
 		s = n.name if no_type else self._generate_decl(n)
 
 		if 'scalar' in self.__preanalysis and n.name in self.__preanalysis['scalar']:
-			self._bitwidth[self._currentThread, n.name] = self.__preanalysis['scalar'][n.name]
+			self._bitwidth[self.__currentThread, n.name] = self.__preanalysis['scalar'][n.name]
 
 		if 'pointer' in self.__preanalysis and n.name in self.__preanalysis['pointer']:
-			self._bitwidth[self._currentThread, n.name] = self.__preanalysis['pointer'][n.name]
+			self._bitwidth[self.__currentThread, n.name] = self.__preanalysis['pointer'][n.name]
 
 		if 'array' in self.__preanalysis and n.name in self.__preanalysis['array']:
-			self._bitwidth[self._currentThread, n.name] = self.__preanalysis['array'][n.name]
+			self._bitwidth[self.__currentThread, n.name] = self.__preanalysis['array'][n.name]
 
 		if (self.__visiting_struct and
 				'struct' in self.__preanalysis and
@@ -389,6 +391,7 @@ class lazyseqnewschedule(core.module.Translator):
 
 		if n.block_items:
 			for stmt in n.block_items:
+
 				self.initFlags()
 				# Case 1: last statement in a thread (must correspond to last label)
 				if type(stmt) == pycparser.c_ast.FuncCall and stmt.name.name == core.common.changeID['pthread_exit']: ##if type(stmt) == pycparser.c_ast.FuncCall and self._parenthesize_unless_simple(stmt.name) == core.common.changeID['pthread_exit']:
@@ -410,7 +413,7 @@ class lazyseqnewschedule(core.module.Translator):
 					if not self.__atomic and self.__stmtCount == -1:   # first statement in a thread
 						self.__stmtCount += 1
 						self.__maxInCompound = self.__stmtCount
-						threadIndex = self.Parser.threadOccurenceIndex[self._currentThread]
+						threadIndex = self.Parser.threadOccurenceIndex[self.__currentThread]
 						code = '$I1$I2$I3' + self.visit(stmt.stmt) + ';\n'
 					elif (not self.__visit_funcReference and (
 						(type(stmt) == pycparser.c_ast.FuncCall and stmt.name.name == '__CSEQ_atomic_begin') or
@@ -427,7 +430,7 @@ class lazyseqnewschedule(core.module.Translator):
 						self.__stmtCount += 1
 						self.__maxInCompound = self.__stmtCount
 #@@@@		code = self.visit(stmt)
-						threadIndex = self.Parser.threadOccurenceIndex[self._currentThread]
+						threadIndex = self.Parser.threadOccurenceIndex[self.__currentThread]
 						code = '$I1$I2$I3' + self.visit(stmt.stmt) + ';\n'
 					else:
 						code = self.visit(stmt.stmt) + ';\n'
@@ -440,7 +443,7 @@ class lazyseqnewschedule(core.module.Translator):
 
 				# Case 3: all the rest....
 				elif (type(stmt) not in (pycparser.c_ast.Compound, pycparser.c_ast.Goto, pycparser.c_ast.Decl)
-					and not (self._currentThread=='main' and self.__firstThreadCreate == False) or (self._currentThread=='main' and self.__stmtCount == -1)) :
+					and not (self.__currentThread=='main' and self.__firstThreadCreate == False) or (self.__currentThread=='main' and self.__stmtCount == -1)) :
 
 					# --1-- Simulate a visit to the stmt block to see whether it makes any use of pointers or shared memory.
 					globalAccess = self.__globalAccess(stmt)
@@ -455,7 +458,7 @@ class lazyseqnewschedule(core.module.Translator):
 					if not self.__atomic and self.__stmtCount == -1:   # first statement in a thread
 						self.__stmtCount += 1
 						self.__maxInCompound = self.__stmtCount
-						threadIndex = self.Parser.threadOccurenceIndex[self._currentThread]
+						threadIndex = self.Parser.threadOccurenceIndex[self.__currentThread]
 						code = '$I1$I2$I3' + self.visit(stmt) + ';\n'
 					elif (not self.__visit_funcReference and (
 						(type(stmt) == pycparser.c_ast.FuncCall and stmt.name.name == '__CSEQ_atomic_begin') or
@@ -471,7 +474,7 @@ class lazyseqnewschedule(core.module.Translator):
 						)):
 						self.__stmtCount += 1
 						self.__maxInCompound = self.__stmtCount
-						threadIndex = self.Parser.threadOccurenceIndex[self._currentThread]
+						threadIndex = self.Parser.threadOccurenceIndex[self.__currentThread]
 						code = '$I1$I2$I3' + self.visit(stmt) + ';\n'
 					else:
 						code = self.visit(stmt) + ";\n"
@@ -479,7 +482,6 @@ class lazyseqnewschedule(core.module.Translator):
 				else:
 					code = self.visit(stmt) + ";\n"
 					compoundList.append(code)
-
 		compoundList[len(compoundList)-1] = compoundList[len(compoundList)-1] + '\n}'
 		listToStr = ''.join(stmt for stmt in compoundList)
 		return listToStr
@@ -490,7 +492,7 @@ class lazyseqnewschedule(core.module.Translator):
 			n.decl.name == '__CSEQ_assert' or
 			n.decl.name in self.Parser.funcReferenced ):   # <--- functions called through pointers are not inlined yet
 			# return self.Parser.funcBlock[n.decl.name]
-			self._currentThread = n.decl.name
+			self.__currentThread = n.decl.name
 			self.__visit_funcReference = True
 			#ret = self.otherparser.visit(n)
 			oldatomic = self.__atomic
@@ -499,12 +501,12 @@ class lazyseqnewschedule(core.module.Translator):
 			body = self.visit(n.body)
 			self.__atomic = oldatomic
 			s = decl + '\n' + body + '\n'
-			self._currentThread = ''
+			self.__currentThread = ''
 			self.__visit_funcReference = False
 			return s
 		elif (n.decl.name != 'main' and n.decl.name not in self.Parser.threadName): return ''  #S:added to remove not yet inlined functions that are not referenced any more
 		self.__first = False
-		self._currentThread = n.decl.name
+		self.__currentThread = n.decl.name
 		self.__firstThreadCreate = False
 
 		#Caledem
@@ -521,7 +523,7 @@ class lazyseqnewschedule(core.module.Translator):
 
 		f = ''
 
-		self.__lines[self._currentThread] = self.__stmtCount
+		self.__lines[self.__currentThread] = self.__stmtCount
 		###print "THREAD %s, LINES %s \n\n" % (self._currentThread, self.__lines)
 
 		#
@@ -537,9 +539,9 @@ class lazyseqnewschedule(core.module.Translator):
 
 		# Remove arguments (if any) for main() and transform them into local variables in main_thread.
 		# TODO re-implement seriously.
-		if self._currentThread == 'main':
+		if self.__currentThread == 'main':
 			f = '%s main_thread(void)\n' % self.Parser.funcBlockOut[
-				self._currentThread]
+				self.__currentThread]
 			main_args = self.Parser.funcBlockIn['main']
 			args = ''
 			if main_args.find('void') != -1 or main_args == '':
@@ -563,7 +565,7 @@ class lazyseqnewschedule(core.module.Translator):
 
 		f += body + '\n'
 
-		self._currentThread = ''
+		self.__currentThread = ''
 
 		return f + '\n\n'
 
@@ -589,7 +591,7 @@ class lazyseqnewschedule(core.module.Translator):
 			elseEnd = self.__maxInCompound   # label for the last stmt in the if_false block if () {...} else { block; }
 
 			if ifStart < ifEnd:
-				#threadIndex = self.Parser.threadIndex[self._currentThread] if self._currentThread in self.Parser.threadIndex else 0
+				#threadIndex = self.Parser.threadIndex[self.__currentThread] if self.__currentThread in self.Parser.threadIndex else 0
 				# GUARD(%s,%s)
 				if not self.__visit_funcReference:
 					# elseHeader = '$G' + str(ifEnd+1) + ' '
@@ -617,7 +619,7 @@ class lazyseqnewschedule(core.module.Translator):
 		header = ''
 
 		if ifStart+1 < nextLabelID:
-			#threadIndex = self.Parser.threadIndex[self._currentThread] if self._currentThread in self.Parser.threadIndex else 0
+			#threadIndex = self.Parser.threadIndex[self.__currentThread] if self.__currentThread in self.Parser.threadIndex else 0
 			# GUARD(%s,%s)
 			if not self.__visit_funcReference:
 				# footer = '$G' + str(nextLabelID) + ' '
@@ -648,8 +650,8 @@ class lazyseqnewschedule(core.module.Translator):
 
 
 	def visit_Return(self, n):
-		if self._currentThread != '__CSEQ_assert' and self._currentThread not in self.Parser.funcReferenced and not self.__atomic:
-			self.error("error: %s: return statement in thread '%s'.\n" % (self.getname(), self._currentThread))
+		if self.__currentThread != '__CSEQ_assert' and self.__currentThread not in self.Parser.funcReferenced and not self.__atomic:
+			self.error("error: %s: return statement in thread '%s'.\n" % (self.getname(), self.__currentThread))
 
 		s = 'return'
 		if n.expr: s += ' ' + self.visit(n.expr)
@@ -657,26 +659,26 @@ class lazyseqnewschedule(core.module.Translator):
 
 
 	def visit_Label(self, n):
-		self.__labelLine[self._currentThread, n.name] = self.__stmtCount
+		self.__labelLine[self.__currentThread, n.name] = self.__stmtCount
 		return n.name + ':\n' + self._generate_stmt(n.stmt)
 
 
 	def visit_Goto(self, n):
-		self.__gotoLine[self._currentThread, n.name] = self.__stmtCount
-		extra = '<%s,%s>\n' % (self._currentThread, n.name) + self._make_indent()
+		self.__gotoLine[self.__currentThread, n.name] = self.__stmtCount
+		extra = '<%s,%s>\n' % (self.__currentThread, n.name) + self._make_indent()
 		extra = ''
 		return extra + 'goto ' + n.name + ';'
 
 	def fixArrayIndex(self,s):
-		threadIndex = self.Parser.threadOccurenceIndex[self._currentThread] if self._currentThread in self.Parser.threadOccurenceIndex else 0 # 17 March 2021
-		if s == '__cs_thread_index' and self._currentThread != '':
+		threadIndex = self.Parser.threadOccurenceIndex[self.__currentThread] if self.__currentThread in self.Parser.threadOccurenceIndex else 0 # 17 March 2021
+		if s == '__cs_thread_index' and self.__currentThread != '':
 			s = '%s' % threadIndex
 		return s             
 
 	def visit_ArrayRef(self, n):
 		arrref = self._parenthesize_unless_simple(n.name)
 		subscript = self.visit(n.subscript)
-		#threadIndex = self.Parser.threadIndex[self._currentThread] if self._currentThread in self.Parser.threadIndex else 0
+		#threadIndex = self.Parser.threadIndex[self.__currentThread] if self.__currentThread in self.Parser.threadIndex else 0
 		subscript = self.fixArrayIndex(subscript)
 		s = arrref + '[' + subscript + ']'
 		return s
@@ -688,9 +690,9 @@ class lazyseqnewschedule(core.module.Translator):
 		# If this ID corresponds either to a global variable,
 		# or to a pointer...
 		#
-		if ((self._isGlobal(self._currentThread, n.name) or self._isPointer(self._currentThread, n.name)) and not
+		if ((self._isGlobal(self.__currentThread, n.name) or self._isPointer(self.__currentThread, n.name)) and not
 			n.name.startswith('__cs_thread_local_')):
-			#print "variable %s in %s is global\n" % (n.name, self._currentThread)
+			#print "variable %s in %s is global\n" % (n.name, self.__currentThread)
 			self.__globalMemoryAccessed = True
 
 		# Rename the IDs of main() arguments
@@ -702,8 +704,11 @@ class lazyseqnewschedule(core.module.Translator):
 	def frefVisit(self,n):
 		return self._parenthesize_unless_simple(n.name)
 
+	def addRetFuncCall(self,fname,tindex=None):
+		pass
 
 	def visit_FuncCall(self, n):
+		
 		fref = self.frefVisit(n)
 
 		args = self.visit(n.args)
@@ -729,7 +734,6 @@ class lazyseqnewschedule(core.module.Translator):
 		#                          ^^^
 		#
 		if fref == core.common.changeID['pthread_create']: # TODO re-write AST-based (see other modules)
-#QUI
 			#n.show()
 			#print(fref + '\n' + str(self.expList))
 			#sys.exit(0)
@@ -755,9 +759,9 @@ class lazyseqnewschedule(core.module.Translator):
 
 		if fref == core.common.changeID['pthread_exit']:
 			# 17 March 2021
-			#threadIndex = self.Parser.threadIndex[self._currentThread] if self._currentThread in self.Parser.threadIndex else 0
-			threadIndex = self.Parser.threadOccurenceIndex[
-				self._currentThread] if self._currentThread in self.Parser.threadOccurenceIndex else 0
+			#threadIndex = self.Parser.threadIndex[self.__currentThread] if self.__currentThread in self.Parser.threadIndex else 0
+			threadIndex = self.Parser.threadOccurenceIndex[self.__currentThread] if self.__currentThread in self.Parser.threadOccurenceIndex else 0
+			self.addRetFuncCall(fref,threadIndex)
 			return fref + '(' + args + ', %s)' % threadIndex
 
 		'''
@@ -777,8 +781,9 @@ class lazyseqnewschedule(core.module.Translator):
 		# Optimization for removing __cs_thread_index variable from global scope
 		if ((fref == core.common.changeID['pthread_mutex_lock'] ) or (fref == core.common.changeID['pthread_mutex_unlock']) or
 				fref.startswith('__cs_cond_wait_')):
-			#threadIndex = self.Parser.threadIndex[self._currentThread] if self._currentThread in self.Parser.threadIndex else 0
-			threadIndex= self.Parser.threadOccurenceIndex[self._currentThread] if self._currentThread in self.Parser.threadOccurenceIndex else 0 # 17 March 2021
+			#threadIndex = self.Parser.threadIndex[self.__currentThread] if self.__currentThread in self.Parser.threadIndex else 0
+			threadIndex= self.Parser.threadOccurenceIndex[self.__currentThread] if self.__currentThread in self.Parser.threadOccurenceIndex else 0 # 17 March 2021
+			self.addRetFuncCall(fref,threadIndex)
 			return fref + '(' + args + ', %s)' % threadIndex
 
 		#S: fake implementation of pthread_key_create
@@ -791,6 +796,7 @@ class lazyseqnewschedule(core.module.Translator):
 			args = args[:args.rfind(',')]
 			#print (fref + '(' + args + ')')
 
+		self.addRetFuncCall(fref)
 
 		return fref + '(' + args + ')'
 
@@ -1701,6 +1707,9 @@ class lazyseqnewschedule(core.module.Translator):
 	#       could be useful for refinement)
 	#
 	def __globalAccess(self, stmt):
+		old_gmt = self.__globalMemoryTest 
+		self.__globalMemoryTest = True
+
 		if self.__atomic: return False  # if between atomic_begin() and atomic_end() calls no context switchs needed..
 
 		oldStmtCount = self.__stmtCount             # backup counters
@@ -1720,7 +1729,8 @@ class lazyseqnewschedule(core.module.Translator):
 		self.__stmtCount = oldStmtCount             # restore counters
 		self.__maxInCompound = oldMaxInCompound
 		self.__globalMemoryAccessed = oldGlobalMemoryAccessed
-
+		
+		self.__globalMemoryTest = old_gmt
 		return globalAccess
 
 
@@ -1748,3 +1758,12 @@ class lazyseqnewschedule(core.module.Translator):
 	def setExpList(self,list):
 		self.expList = list.copy()
 
+	def getGlobalMemoryTest(self):
+		return self.__globalMemoryTest
+
+	def getCurrentThread(self):
+		return self.__currentThread
+	
+	def getGuessCsOnly(self):
+		return self.__guess_cs_only
+	

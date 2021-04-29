@@ -26,7 +26,7 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 	__enableDR = False   #True iff input option --dr is chosen
 	__wwDatarace = False 
 	__noShadow = False
-	__enableDRlocals = False  # data race code also on local vars
+	#__enableDRlocals = False  # data race code also on local vars
 
 	__stats =  Stats.TOP  # TOP iff at the top level of an expression
                               # ACC iff ACCESS mode
@@ -41,7 +41,8 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 	__visitingLHS = False  # set to True when vising the left hand side of an assignment to determine whether the this is an access meaningful for data race detection
 	__access = False  # set to True to denote that the LHS of an assignment is meaningful for data race detection
 	__funcID = False  # set to True iff we are visiting the id of a function  in a function call
-
+	__visitingStruct = False # True iff we are visiting a structure name
+		
 	def init(self):
 		self.addInputParam('rounds', 'round-robin schedules', 'r', '1', False)
 		self.addInputParam('threads', 'max no. of thread creations (0 = auto)', 't', '0', False)
@@ -112,11 +113,14 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 		self.__enableDR = env.enableDR
 		self.__wwDatarace = env.wwDatarace
 		self.__noShadow = env.no_shadow
-		self.__enableDRlocals = env.local
+		#self.__enableDRlocals = env.local
 		super(dr_lazyseqnewschedule, self).loadfromstring(string, env)
 
 
 	def visit_ExprList(self, n):
+            if self.getGlobalMemoryTest(): 
+                return super(dr_lazyseqnewschedule, self).visit_ExprList(n)
+
             visited_subexprs = []
             wseList = []
             opt = True
@@ -143,6 +147,16 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 		self.__funcID =  old_funcID
 		return ret
 
+	def addRetFuncCall(self,fname,tindex=None):
+		if tindex == None:
+			self.__WSE = '%s ( %s )' % (fname,self.__WSE)
+		else: 
+			#print(fname)
+			#print(self.__WSE)
+			self.__WSE = '%s ( %s, %s )' % (fname,self.__WSE, tindex)
+			#print(self.__WSE)
+		self.__optional1 = self.__optional2
+
 #	def visit_FuncCall(self, n):
 #            fref = self._parenthesize_unless_simple(n.name)
 #            return fref + '(' + self.visit(n.args) + ')'
@@ -151,10 +165,13 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 
 
 	def visit_ArrayRef(self, n):
+                if self.getGlobalMemoryTest(): 
+                    return super(dr_lazyseqnewschedule, self).visit_ArrayRef(n)
                 ret = ''
                 old_drStats = self.__stats  #DR  
 
                 self.__stats = Stats.PRE #DR
+
 
                 arrref = self._parenthesize_unless_simple(n.name)
                 wse = self.__WSE 
@@ -180,10 +197,11 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
                 #  the value of ret at this point is fine for noACC and PRE modes
 
                 if self.__stats == Stats.ACC or  self.__stats == Stats.TOP:
-                   if ret != '':
-                      ret += ','
+                   if self._isGlobal(self.getCurrentThread(), arrref) or self._isPointer(self.getCurrentThread(), arrref):   #POR
+
+                      if ret != '':
+                          ret += ','
                 
-                   if self.__enableDRlocals or self._isGlobal(self._currentThread, arrref) or self._isPointer(self._currentThread, arrref):   #POR
                       ret += '(__cs_dataraceSecondThread  && (__cs_dataraceNotDetected = __cs_dataraceNotDetected && ! __CPROVER_get_field(&%s,"dr_write")))' % wse
                       if self.__visitingLHS:
                           self.__access = True
@@ -200,11 +218,13 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
                 self.__WSE = wse
 
                 self.__stats = old_drStats  #DR  
-
                 return ret
 
 	def visit_ID(self, n):
-		if n.name in self.getThreadName():
+		if self.getGlobalMemoryTest(): 
+			return super(dr_lazyseqnewschedule, self).visit_ID(n)
+
+		if self.__funcID:
 			self.__WSE = super(dr_lazyseqnewschedule, self).visit_ID(n)
 			self.__optional1 = True
 			self.__optional2 = True
@@ -213,22 +233,32 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 		ret = ''   # noACC is default
 		wse = n.name
 		self.__optional2 = True
-		if not self.__funcID and (self.__enableDRlocals or self._isGlobal(self._currentThread, n.name) or self._isPointer(self._currentThread, n.name)):   
-			ret += '(__cs_dataraceSecondThread  && (__cs_dataraceNotDetected = ! __CPROVER_get_field(&%s,"dr_write")))' % wse
-			self.__optional2 = False
+		if (self._isGlobal(self.getCurrentThread(), n.name) or self._isPointer(self.getCurrentThread(), n.name)):   
+			if self.__stats != Stats.noACC: 
+				ret += '(__cs_dataraceSecondThread  && (__cs_dataraceNotDetected = ! __CPROVER_get_field(&%s,"dr_write")))' % wse
+				self.__optional2 = False
 
 			if self.__visitingLHS:
                            self.__access = True
                            self.__visitingLHS = False
-		self.__optional1 = False   # no subexpressions 
+		self.__optional1 = True   # no subexpressions 
 		super(dr_lazyseqnewschedule, self).visit_ID(n)
 		self.__WSE = wse
                 
-		if ret == '':
-                    ret = wse 
+		if self.__stats == Stats.TOP:
+			ret =  wse if ret == '' else '%s, %s' % (ret, wse)
+				
+		#print("visit_ID ret: " + ret)
+		#print("Optional1: " + str(self.__optional1))
+		#print("Optional2: " + str(self.__optional2))
+		#print("Stats: " + str(self.__stats))
+		#n.show()
 		return ret
 
 	def visit_Assignment(self, n):
+                if self.getGlobalMemoryTest(): 
+                     return super(dr_lazyseqnewschedule, self).visit_Assignment(n)
+
                 #print(type(n.lvalue))
                 assert (self.__stats != Stats.noACC),"Assignment explored in noACC mode!" # noACC is not possible here since an assignment expression is not an lvalue
 
@@ -243,6 +273,7 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
                 self.__access = False
 
                 lvalue = self.visit(n.lvalue)
+                #print("Visited left-handside")
                 
                 self.__visitingLHS = old_visitingLHS
 
@@ -266,6 +297,8 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
                 self.__stats = Stats.ACC 
 
                 rvalue = self.visit(n.rvalue)
+                #print("RVALUE: " + rvalue)
+                #n.rvalue.show()
 
                 if not self.__optional2:
                    if ret != '':
@@ -288,8 +321,11 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
                 return ret
 
 	def visit_UnaryOp(self, n):
+		if self.getGlobalMemoryTest(): 
+			return super(dr_lazyseqnewschedule, self).visit_UnaryOp(n)
+
 #		n.show()
-#		print (n.op)
+#		print(self.__stats)
 		ret = ''        
 		old_stats = self.__stats  
 		old_visitingLHS = self.__visitingLHS  #only used for inc/dec
@@ -322,10 +358,14 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 				if ret != '':
 					ret += ','
 				ret += '(__cs_dataraceSecondThread  && (__cs_dataraceNotDetected = __cs_dataraceNotDetected && ! __CPROVER_get_field(%s,"dr_write")))' %  wse
+			if self.__visitingStruct:  #these parentheses are required to force priority in the c expression (* x).y
+				self.__WSE = '(%s)' % self.__WSE  
+
 			if old_stats == Stats.TOP: 
 				if ret != '':
 					ret += ','
 				ret += self.__WSE
+
 
 		elif n.op == "++" or n.op == "--" or n.op == "p++" or n.op == "p--": 
 			if  n.op == "p++": 
@@ -366,6 +406,9 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 
 	def visit_TernaryOp(self, n):
 		
+		if self.getGlobalMemoryTest(): 
+			return super(dr_lazyseqnewschedule, self).visit_TernaryOp(n)
+
 		old_stats = self.__stats
 
 		self.__stats = Stats.ACC
@@ -413,12 +456,18 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 
 
 	def visit_Constant(self, n):
-		self.__optional1 =  True
+		if self.getGlobalMemoryTest(): 
+			return super(dr_lazyseqnewschedule, self).visit_Constant(n)
+
+		self.__optional1 = True
 		self.__optional2 = True
 		self.__WSE = n.value
 		return n.value
 
 	def visit_BinaryOp(self, n):
+		if self.getGlobalMemoryTest(): 
+			return super(dr_lazyseqnewschedule, self).visit_BinaryOp(n)
+
 		#print(n.op)
 		old_stats = self.__stats
 
@@ -454,14 +503,23 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 
 		return ret
 
-#QUI
 	def visit_StructRef(self, n):
-		old_stats = self.__stats
+		if self.getGlobalMemoryTest(): 
+			return super(dr_lazyseqnewschedule, self).visit_StructRef(n)
 
+		old_stats = self.__stats
+		old_visitingStruct = self.__visitingStruct
+
+		self.__visitingStruct = True
 		self.__stats = Stats.noACC
 		sref = self._parenthesize_unless_simple(n.name)
 		opt1 = self.__optional2
+		self.__visitingStruct = old_visitingStruct
+
 		wse = self.__WSE 
+
+#		print("RET: " + ret)
+		#print("WSE: " + self.__WSE)
 
 		self.visit(n.field)
 		self.__WSE = wse + n.type + self.__WSE
@@ -494,6 +552,9 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 
 
 	def visit_Cast(self, n):
+           if self.getGlobalMemoryTest(): 
+                return super(dr_lazyseqnewschedule, self).visit_Cast(n)
+
            old_stats = self.__stats
            s = '(' + self._generate_type(n.to_type) + ')'
            if self.__stats == Stats.PRE or self.__stats == Stats.TOP: 
@@ -595,7 +656,7 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 			#main +="__CSEQ_rawline(\"__cs_tsplusone=%s;\");\n" % ( (round+1) * ( self.getThreadbound()+1) )  #POR
 			main +="          unsigned int __cs_tmp_t%s_r%s %s;\n" % (self.Parser.threadOccurenceIndex['main'],round, self.getExtra_nondet())
 			main +="          if (__cs_dr_ts > %s &  __cs_dataraceContinue & __cs_active_thread[%s]) {\n" %  (ts - (self.getThreadbound()+1), self.Parser.threadOccurenceIndex['main'])          #DR
-			if self.__guess_cs_only:
+			if self.getGuessCsOnly():
 				main +="             __cs_pc_cs[%s] = __cs_tmp_t%s_r%s;\n" % (self.Parser.threadOccurenceIndex['main'], self.Parser.threadOccurenceIndex['main'], round)
 			else:
 				main +="             __cs_pc_cs[%s] = __cs_pc[%s] + __cs_tmp_t%s_r%s;\n" % (self.Parser.threadOccurenceIndex['main'], self.Parser.threadOccurenceIndex['main'], self.Parser.threadOccurenceIndex['main'], round)
@@ -625,7 +686,7 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 						#main +="__CSEQ_rawline(\"__cs_tsplusone=%s;\");\n" % ( (round+1) * ( self.getThreadbound()+1) + i)  #POR
 					main +="         unsigned int __cs_tmp_t%s_r%s %s;\n" % (i, round, self.getExtra_nondet())
 					main +="         if (__cs_dr_ts > %s & __cs_dataraceContinue & __cs_active_thread[%s]) {\n" % ( ts - (self.getThreadbound()+1) ,i)           #DR
-					if self.__guess_cs_only:
+					if self.getGuessCsOnly():
 						main +="             __cs_pc_cs[%s] = __cs_tmp_t%s_r%s;\n" % (i, i, round)
 					else:
 						main +="             __cs_pc_cs[%s] = __cs_pc[%s] + __cs_tmp_t%s_r%s;\n" % (i, i, i, round)
@@ -653,7 +714,7 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 		#main += "          unsigned int __cs_tmp_t0_r%s %s;\n" % (ROUNDS, self.getExtra_nondet())
 		#self._bitwidth['main','__cs_tmp_t0_r%s' % (ROUNDS)] = k
 		#main +="           if (__cs_dr_ts > %s & __cs_dataraceContinue & __cs_active_thread[0]) {\n" % ((round-1) * (self.getThreadbound()+1)+i) #DR
-		#if self.__guess_cs_only:
+		#if self.getGuessCsOnly():
 		#    main +="             __cs_pc_cs[0] = __cs_tmp_t0_r%s;\n" % (ROUNDS)
 		#else:
 		#    main +="             __cs_pc_cs[0] = __cs_pc[0] + __cs_tmp_t0_r%s;\n" % (ROUNDS)
@@ -671,4 +732,5 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 #	def visit_Compound(self,n):
 #		for stm in n.block_items:
 #                    stm.show()
-#		return super(dr_lazyseqnewschedule,self).visit_Compound(n)
+#		return super(dr_lazyseqnewschedule,self).visit_Compound(n
+
