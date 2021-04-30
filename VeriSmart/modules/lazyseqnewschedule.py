@@ -383,6 +383,8 @@ class lazyseqnewschedule(core.module.Translator):
 		   self.__struct_stack.pop()
 		return s
 
+	def additionalCode(self,threadIndex):
+		return ''
 
 	def visit_Compound(self, n):
 		compoundList = ["{\n"]
@@ -414,7 +416,7 @@ class lazyseqnewschedule(core.module.Translator):
 						self.__stmtCount += 1
 						self.__maxInCompound = self.__stmtCount
 						threadIndex = self.Parser.threadOccurenceIndex[self.__currentThread]
-						code = '$I1$I2$I3' + self.visit(stmt.stmt) + ';\n'
+						code = '$I' + self.additionalCode(threadIndex) + self.additionalCode(threadIndex) +  self.visit(stmt.stmt) + ';\n'
 					elif (not self.__visit_funcReference and (
 						(type(stmt) == pycparser.c_ast.FuncCall and stmt.name.name == '__CSEQ_atomic_begin') or
 						(not self.__atomic and
@@ -431,7 +433,7 @@ class lazyseqnewschedule(core.module.Translator):
 						self.__maxInCompound = self.__stmtCount
 #@@@@		code = self.visit(stmt)
 						threadIndex = self.Parser.threadOccurenceIndex[self.__currentThread]
-						code = '$I1$I2$I3' + self.visit(stmt.stmt) + ';\n'
+						code = '$I' + self.additionalCode(threadIndex) + self.additionalCode(threadIndex) + self.visit(stmt.stmt) + ';\n'
 					else:
 						code = self.visit(stmt.stmt) + ';\n'
 
@@ -459,7 +461,7 @@ class lazyseqnewschedule(core.module.Translator):
 						self.__stmtCount += 1
 						self.__maxInCompound = self.__stmtCount
 						threadIndex = self.Parser.threadOccurenceIndex[self.__currentThread]
-						code = '$I1$I2$I3' + self.visit(stmt) + ';\n'
+						code = '$I' + self.additionalCode(threadIndex) + self.visit(stmt) + ';\n'
 					elif (not self.__visit_funcReference and (
 						(type(stmt) == pycparser.c_ast.FuncCall and stmt.name.name == '__CSEQ_atomic_begin') or
 						(not self.__atomic and
@@ -475,7 +477,7 @@ class lazyseqnewschedule(core.module.Translator):
 						self.__stmtCount += 1
 						self.__maxInCompound = self.__stmtCount
 						threadIndex = self.Parser.threadOccurenceIndex[self.__currentThread]
-						code = '$I1$I2$I3' + self.visit(stmt) + ';\n'
+						code = '$I' + self.additionalCode(threadIndex) + self.visit(stmt) + ';\n'
 					else:
 						code = self.visit(stmt) + ";\n"
 					compoundList.append(code)
@@ -795,7 +797,6 @@ class lazyseqnewschedule(core.module.Translator):
 			#print (fref + '(' + args + ')')
 			args = args[:args.rfind(',')]
 			#print (fref + '(' + args + ')')
-
 		self.addRetFuncCall(fref)
 
 		return fref + '(' + args + ')'
@@ -1751,6 +1752,9 @@ class lazyseqnewschedule(core.module.Translator):
 
 	def getThreadName(self):
 		return self.__threadName
+
+	def getCurrentThreadIndex(self):
+		return  self.Parser.threadOccurenceIndex[self.__currentThread]
 
 	def getExtra_nondet(self):
 		return self.__extra_nondet

@@ -88,6 +88,8 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 		header += '_Bool __cs_dataraceSecondThread = 0; \n'   #DR
 		header += '_Bool __cs_dataraceNotDetected = 1; \n'   #DR
 		header += '_Bool __cs_dataraceContinue = 1; \n'   #DR
+		header += '_Bool __cs_dataraceActiveVP1 = 0; \n'   #DR
+		header += '_Bool __cs_dataraceActiveVP2 = 0; \n'   #DR
 		# DR API implementation
 		if self.__enableDR and self.__noShadow:
 			header += 'const void * shadowmem[SMSIZE]={0,0,0,0,0};\n\
@@ -104,9 +106,6 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 					}\n'
 		return header
 
-	def initFlags(self):
-            self.__stats  =  Stats.TOP
-            return
 
 	def loadfromstring(self, string, env):
 
@@ -115,6 +114,19 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 		self.__noShadow = env.no_shadow
 		#self.__enableDRlocals = env.local
 		super(dr_lazyseqnewschedule, self).loadfromstring(string, env)
+
+# routines for visit_Compound
+
+	def initFlags(self):
+            self.__stats  =  Stats.TOP
+            return
+
+	def additionalCode(self,threadIndex):
+		s = '__cs_dataraceActiveVP1 = ( $L1 == (__cs_pc_cs[%s]-1) ) ; \n' % threadIndex
+		s += '__cs_dataraceActiveVP2 = ( $L2 == __cs_pc_cs[%s] ) ; \n $L3' % threadIndex   #DR
+		return s
+
+#end routines for visit_Compound
 
 
 	def visit_ExprList(self, n):
@@ -202,7 +214,7 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
                       if ret != '':
                           ret += ','
                 
-                      ret += '(__cs_dataraceSecondThread  && (__cs_dataraceNotDetected = __cs_dataraceNotDetected && ! __CPROVER_get_field(&%s,"dr_write")))' % wse
+                      ret += '( __cs_dataraceActiveVP2 && __cs_dataraceSecondThread  && (__cs_dataraceNotDetected = __cs_dataraceNotDetected && ! __CPROVER_get_field(&%s,"dr_write")))' % wse
                       if self.__visitingLHS:
                           self.__access = True
                           self.__visitingLHS = False
@@ -235,7 +247,7 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 		self.__optional2 = True
 		if (self._isGlobal(self.getCurrentThread(), n.name) or self._isPointer(self.getCurrentThread(), n.name)):   
 			if self.__stats != Stats.noACC: 
-				ret += '(__cs_dataraceSecondThread  && (__cs_dataraceNotDetected = ! __CPROVER_get_field(&%s,"dr_write")))' % wse
+				ret += '( __cs_dataraceActiveVP2 && __cs_dataraceSecondThread  && (__cs_dataraceNotDetected = __cs_dataraceNotDetected && ! __CPROVER_get_field(&%s,"dr_write")))' %  wse
 				self.__optional2 = False
 
 			if self.__visitingLHS:
@@ -286,9 +298,9 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
                 if self.__access:
                     if ret != '':
                        ret += ','
-                    p1 = '__cs_dataraceDetectionStarted && !__cs_dataraceSecondThread && __CPROVER_set_field(&%s,"dr_write",1), ' % lwse
+                    p1 = '( __cs_dataraceActiveVP1 && __cs_dataraceDetectionStarted && !__cs_dataraceSecondThread && __CPROVER_set_field(&%s,"dr_write",1) ), ' % lwse
  
-                    p2 = '(__cs_dataraceSecondThread  && (__cs_dataraceNotDetected = __cs_dataraceNotDetected && ! __CPROVER_get_field(&%s,"dr_write")))' % lwse
+                    p2 = '( __cs_dataraceActiveVP2 && __cs_dataraceSecondThread  && (__cs_dataraceNotDetected = __cs_dataraceNotDetected && ! __CPROVER_get_field(&%s,"dr_write")))' % lwse
                     ret += p1 + p2
 
                 self.__access = old_access
@@ -324,8 +336,7 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 		if self.getGlobalMemoryTest(): 
 			return super(dr_lazyseqnewschedule, self).visit_UnaryOp(n)
 
-#		n.show()
-#		print(self.__stats)
+		#print(self.__stats)
 		ret = ''        
 		old_stats = self.__stats  
 		old_visitingLHS = self.__visitingLHS  #only used for inc/dec
@@ -357,7 +368,7 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 			if self.__stats == Stats.ACC or self.__stats == Stats.PRE:
 				if ret != '':
 					ret += ','
-				ret += '(__cs_dataraceSecondThread  && (__cs_dataraceNotDetected = __cs_dataraceNotDetected && ! __CPROVER_get_field(%s,"dr_write")))' %  wse
+				ret += '( __cs_dataraceActiveVP2 && __cs_dataraceSecondThread  && (__cs_dataraceNotDetected = __cs_dataraceNotDetected && ! __CPROVER_get_field(&%s,"dr_write")))' % wse
 			if self.__visitingStruct:  #these parentheses are required to force priority in the c expression (* x).y
 				self.__WSE = '(%s)' % self.__WSE  
 
@@ -377,9 +388,9 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 			if self.__access:
 				if ret != '':
 					ret += ','
-				p1 = '__cs_dataraceDetectionStarted && !__cs_dataraceSecondThread && __CPROVER_set_field(&%s,"dr_write",1), ' % wse
+				p1 = '( __cs_dataraceActiveVP1 && __cs_dataraceDetectionStarted && !__cs_dataraceSecondThread && __CPROVER_set_field(&%s,"dr_write",1) ), ' % wse
  
-				p2 = '(__cs_dataraceSecondThread  && (__cs_dataraceNotDetected = __cs_dataraceNotDetected && ! __CPROVER_get_field(&%s,"dr_write")))' % wse
+				p2 = '( __cs_dataraceActiveVP2 && __cs_dataraceSecondThread  && (__cs_dataraceNotDetected = __cs_dataraceNotDetected && ! __CPROVER_get_field(&%s,"dr_write")))' % wse
 				ret += p1 + p2
 			if ret != '':
 				ret += ','
@@ -389,8 +400,11 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 				ret += '%s%s' % (wse,n.op[1:])
 			
 		else:
-			self.__WSE = super(dr_lazyseqnewschedule, self).visit_UnaryOp(n) 
+			super(dr_lazyseqnewschedule, self).visit_UnaryOp(n) 
+			self.__WSE = "%s ( %s )" % (n.op,self.__WSE)
 			self.__optional1 = self.__optional2
+			#print(self.__WSE)
+			#n.show()
 			return self.__WSE
 
 		self.__visitingLHS =old_visitingLHS  #only used for inc/dec
@@ -444,14 +458,14 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 			else:	
 				ret = '(%s ? %s : %s)' % (cond,iftrue,iffalse)
 
-		if old_stats == Stats.Top:
+		if old_stats == Stats.TOP:
 			if ret != '':
 				ret += ','
 			ret += self.__WSE
 
 		self.__optional2 = opt2C and opt2T and opt2F 
 		self.__optional1 = self.__optional2
-
+		#print(ret)
 		return ret
 
 
@@ -478,7 +492,7 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 
 		self.__stats = Stats.ACC
 		rval_str = self._parenthesize_if(n.right, lambda d: not self._is_simple_node(d))
-		self.__WSE = '%s %s %s' % (wse, n.op, self.__WSE)
+		self.__WSE = '(%s %s %s)' % (wse, n.op, self.__WSE)
 		optR = self.__optional2
 
 		ret = ''
@@ -501,6 +515,7 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 		self.__optional2 = optL and optR 
 		self.__optional1 = self.__optional2
 
+#		print("RET: " + ret)
 		return ret
 
 	def visit_StructRef(self, n):
@@ -530,7 +545,7 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 			ret = sref 
 		
 		if old_stats == Stats.ACC:
-			p2 = '(__cs_dataraceSecondThread  && (__cs_dataraceNotDetected = __cs_dataraceNotDetected && ! __CPROVER_get_field(&%s,"dr_write")))' % self.__WSE
+			p2 = '( __cs_dataraceActiveVP2 && __cs_dataraceSecondThread  && (__cs_dataraceNotDetected = __cs_dataraceNotDetected && ! __CPROVER_get_field(&%s,"dr_write")))' % self.__WSE
 			if ret != '':
 				ret += ','
 			ret += p2

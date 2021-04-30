@@ -4,8 +4,11 @@
 
     In addition to workarounds.py this module:
       1. transforms asserts into assumes:
-        assert --> __CPROVER_assume
-        __CPROVER_assert --> __CPROVER_assume
+        a.  assert --> __CPROVER_assume
+        b. __CPROVER_assert --> __CPROVER_assume
+	c.  remove all ERROR labels
+            - goto ERROR; ---> assert(0);
+            - ERROR :;    ----> assert(0);
        
 """
 from modules import workarounds

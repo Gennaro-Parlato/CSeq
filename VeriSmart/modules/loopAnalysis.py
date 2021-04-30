@@ -185,17 +185,17 @@ class loopAnalysis(core.module.Translator):
 					# Stop stripping at m
 					m = i
 					stringToStrip = seqCode[j:i]
-					while(seqCode[m-3 : m] != "$I3"):
+					while(seqCode[m-3 : m] != "$L3"):
 						stringToStrip += seqCode[m]
 						m += 1
 
 					# First statement of thread
 					if count == 0:
 						for sub in (
-							("$I1", ''),
-							("$I2", '__CSEQ_rawline("IF(%s,%s,t%s_%s)");' % (self.__threadIndex[tName], count, tName, count + 1)),
-							("$I3", ""),
-							("$L", str(count))):
+							("$I",'__CSEQ_rawline("IF(%s,%s,t%s_%s)");' % (self.__threadIndex[tName], count, tName, count + 1)),
+							("$L1", str(count)),
+							("$L2", str(count)),
+							("$L3", '')):
     							stringToStrip = stringToStrip.replace(*sub)
 						output.append(stringToStrip)
 						count += 1
@@ -203,10 +203,10 @@ class loopAnalysis(core.module.Translator):
 					
 					elif ICount in cRange:
 						for sub in (
-							("$I1", '__CSEQ_rawline("t%s_%s:");\n'% (tName, count)),
-							("$I2", '__CSEQ_rawline("IF(%s,%s,t%s_%s)");' % (self.__threadIndex[tName], count, tName, count + 1)),
-							("$I3", ""),
-							("$L", str(count))):
+							("$I", '__CSEQ_rawline("t%s_%s:");\n __CSEQ_rawline("IF(%s,%s,t%s_%s)");' % (tName, count, self.__threadIndex[tName], count, tName, count + 1)),
+							("$L1", str(count)),
+							("$L2", str(count)),
+							("$L3", '')):
     							stringToStrip = stringToStrip.replace(*sub)
 						output.append(stringToStrip)
 						count += 1
@@ -394,6 +394,8 @@ class loopAnalysis(core.module.Translator):
 					print("/* " + m.getname())
 				m.initParams(env)
 				m.setInstanceInfo(swarmdirname, filename, confignumber, configintervals)
+				#print(output)
+				#sys.exit(0)
 				m.loadfromstring(output, env)
 				output = m.getoutput()
 
