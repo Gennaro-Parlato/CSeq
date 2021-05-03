@@ -123,7 +123,7 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 
 	def additionalCode(self,threadIndex):
 		s = '__cs_dataraceActiveVP1 = ( $L1 == (__cs_pc_cs[%s]-1) ) ; \n' % threadIndex
-		s += '__cs_dataraceActiveVP2 = ( $L2 == __cs_pc_cs[%s] ) ; \n $L3' % threadIndex   #DR
+		s += '__cs_dataraceActiveVP2 = ( $L2 == __cs_pc_cs[%s] ) ; \n' % threadIndex   #DR
 		return s
 
 #end routines for visit_Compound

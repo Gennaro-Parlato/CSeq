@@ -416,7 +416,7 @@ class lazyseqnewschedule(core.module.Translator):
 						self.__stmtCount += 1
 						self.__maxInCompound = self.__stmtCount
 						threadIndex = self.Parser.threadOccurenceIndex[self.__currentThread]
-						code = '$I' + self.additionalCode(threadIndex) + self.additionalCode(threadIndex) +  self.visit(stmt.stmt) + ';\n'
+						code = '$I1' + self.additionalCode(threadIndex) + '$I2' +  self.visit(stmt.stmt) + ';\n'
 					elif (not self.__visit_funcReference and (
 						(type(stmt) == pycparser.c_ast.FuncCall and stmt.name.name == '__CSEQ_atomic_begin') or
 						(not self.__atomic and
@@ -433,7 +433,7 @@ class lazyseqnewschedule(core.module.Translator):
 						self.__maxInCompound = self.__stmtCount
 #@@@@		code = self.visit(stmt)
 						threadIndex = self.Parser.threadOccurenceIndex[self.__currentThread]
-						code = '$I' + self.additionalCode(threadIndex) + self.additionalCode(threadIndex) + self.visit(stmt.stmt) + ';\n'
+						code = '$I1' + self.additionalCode(threadIndex) + '$I2' + self.visit(stmt.stmt) + ';\n'
 					else:
 						code = self.visit(stmt.stmt) + ';\n'
 
@@ -461,7 +461,7 @@ class lazyseqnewschedule(core.module.Translator):
 						self.__stmtCount += 1
 						self.__maxInCompound = self.__stmtCount
 						threadIndex = self.Parser.threadOccurenceIndex[self.__currentThread]
-						code = '$I' + self.additionalCode(threadIndex) + self.visit(stmt) + ';\n'
+						code = '$I1' + self.additionalCode(threadIndex)+ '$I2' + self.visit(stmt) + ';\n'
 					elif (not self.__visit_funcReference and (
 						(type(stmt) == pycparser.c_ast.FuncCall and stmt.name.name == '__CSEQ_atomic_begin') or
 						(not self.__atomic and
@@ -477,7 +477,7 @@ class lazyseqnewschedule(core.module.Translator):
 						self.__stmtCount += 1
 						self.__maxInCompound = self.__stmtCount
 						threadIndex = self.Parser.threadOccurenceIndex[self.__currentThread]
-						code = '$I' + self.additionalCode(threadIndex) + self.visit(stmt) + ';\n'
+						code = '$I1' + self.additionalCode(threadIndex) + '$I2' + self.visit(stmt) + ';\n'
 					else:
 						code = self.visit(stmt) + ";\n"
 					compoundList.append(code)
