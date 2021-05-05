@@ -416,7 +416,8 @@ class lazyseqnewschedule(core.module.Translator):
 						self.__stmtCount += 1
 						self.__maxInCompound = self.__stmtCount
 						threadIndex = self.Parser.threadOccurenceIndex[self.__currentThread]
-						code = '$I1' + self.additionalCode(threadIndex) + '$I2' +  self.visit(stmt.stmt) + ';\n'
+						s = self.visit(stmt.stmt)
+						code = '$I1' + self.additionalCode(threadIndex) + '$I2' + s +  ';\n'
 					elif (not self.__visit_funcReference and (
 						(type(stmt) == pycparser.c_ast.FuncCall and stmt.name.name == '__CSEQ_atomic_begin') or
 						(not self.__atomic and
@@ -433,7 +434,8 @@ class lazyseqnewschedule(core.module.Translator):
 						self.__maxInCompound = self.__stmtCount
 #@@@@		code = self.visit(stmt)
 						threadIndex = self.Parser.threadOccurenceIndex[self.__currentThread]
-						code = '$I1' + self.additionalCode(threadIndex) + '$I2' + self.visit(stmt.stmt) + ';\n'
+						s = self.visit(stmt.stmt)
+						code = '$I1' + self.additionalCode(threadIndex) + '$I2' + s + ';\n'
 					else:
 						code = self.visit(stmt.stmt) + ';\n'
 
@@ -461,7 +463,8 @@ class lazyseqnewschedule(core.module.Translator):
 						self.__stmtCount += 1
 						self.__maxInCompound = self.__stmtCount
 						threadIndex = self.Parser.threadOccurenceIndex[self.__currentThread]
-						code = '$I1' + self.additionalCode(threadIndex)+ '$I2' + self.visit(stmt) + ';\n'
+						s =  self.visit(stmt)
+						code = '$I1' + self.additionalCode(threadIndex)+ '$I2' + s + ';\n'
 					elif (not self.__visit_funcReference and (
 						(type(stmt) == pycparser.c_ast.FuncCall and stmt.name.name == '__CSEQ_atomic_begin') or
 						(not self.__atomic and
@@ -477,7 +480,8 @@ class lazyseqnewschedule(core.module.Translator):
 						self.__stmtCount += 1
 						self.__maxInCompound = self.__stmtCount
 						threadIndex = self.Parser.threadOccurenceIndex[self.__currentThread]
-						code = '$I1' + self.additionalCode(threadIndex) + '$I2' + self.visit(stmt) + ';\n'
+						s = self.visit(stmt)
+						code = '$I1' + self.additionalCode(threadIndex) + '$I2' + s + ';\n'
 					else:
 						code = self.visit(stmt) + ";\n"
 					compoundList.append(code)
@@ -1711,7 +1715,9 @@ class lazyseqnewschedule(core.module.Translator):
 		old_gmt = self.__globalMemoryTest 
 		self.__globalMemoryTest = True
 
-		if self.__atomic: return False  # if between atomic_begin() and atomic_end() calls no context switchs needed..
+		if self.__atomic: 
+			self.__globalMemoryTest = old_gmt
+			return False  # if between atomic_begin() and atomic_end() calls no context switchs needed..
 
 		oldStmtCount = self.__stmtCount             # backup counters
 		oldMaxInCompound = self.__maxInCompound

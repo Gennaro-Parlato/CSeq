@@ -20,6 +20,7 @@ void *thread2(void *arg)
 {
   int *x, a[3][4];
   int i=1;
+  i = data;
 //  *x =  1;
 //  data = foo(3)+7;
 //  a[1][1]= 7+x;

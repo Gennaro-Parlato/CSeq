@@ -398,6 +398,8 @@ class loopAnalysis(core.module.Translator):
 				#sys.exit(0)
 				m.loadfromstring(output, env)
 				output = m.getoutput()
+			#	print(output)
+			#	sys.exit(0)
 
 				# linemapping only works on Translator (C-to-C) modules
 				if "inputtooutput" in dir(m):

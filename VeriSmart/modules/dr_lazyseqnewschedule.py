@@ -41,7 +41,12 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 	__visitingLHS = False  # set to True when vising the left hand side of an assignment to determine whether the this is an access meaningful for data race detection
 	__access = False  # set to True to denote that the LHS of an assignment is meaningful for data race detection
 	__funcID = False  # set to True iff we are visiting the id of a function  in a function call
+
 	__visitingStruct = False # True iff we are visiting a structure name
+
+	__VP1required = False  # True iff write for datarace detection occurs in the code at this visible point
+
+	__VP2required = False  # True iff write for datarace detection occurs in the code at this visible point
 		
 	def init(self):
 		self.addInputParam('rounds', 'round-robin schedules', 'r', '1', False)
@@ -119,11 +124,17 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 
 	def initFlags(self):
             self.__stats  =  Stats.TOP
+            self.__VP1required = False
+            self.__VP2required = False
             return
 
 	def additionalCode(self,threadIndex):
-		s = '__cs_dataraceActiveVP1 = ( $L1 == (__cs_pc_cs[%s]-1) ) ; \n' % threadIndex
-		s += '__cs_dataraceActiveVP2 = ( $L2 == __cs_pc_cs[%s] ) ; \n' % threadIndex   #DR
+		s = ''
+
+		if self.__VP1required:
+			s += '__cs_dataraceActiveVP1 = ( $L1 == (__cs_pc_cs[%s]-1) ) ; \n' % threadIndex
+		if self.__VP2required:
+			s += '__cs_dataraceActiveVP2 = ( $L2 == __cs_pc_cs[%s] ) ; \n' % threadIndex   #DR
 		return s
 
 #end routines for visit_Compound
@@ -215,6 +226,8 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
                           ret += ','
                 
                       ret += '( __cs_dataraceActiveVP2 && __cs_dataraceSecondThread  && (__cs_dataraceNotDetected = __cs_dataraceNotDetected && ! __CPROVER_get_field(&%s,"dr_write")))' % wse
+                      self.__VP2required = True
+
                       if self.__visitingLHS:
                           self.__access = True
                           self.__visitingLHS = False
@@ -233,9 +246,10 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
                 return ret
 
 	def visit_ID(self, n):
+		#print(n.name)
+		#print(self.getGlobalMemoryTest())
 		if self.getGlobalMemoryTest(): 
 			return super(dr_lazyseqnewschedule, self).visit_ID(n)
-
 		if self.__funcID:
 			self.__WSE = super(dr_lazyseqnewschedule, self).visit_ID(n)
 			self.__optional1 = True
@@ -248,6 +262,7 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 		if (self._isGlobal(self.getCurrentThread(), n.name) or self._isPointer(self.getCurrentThread(), n.name)):   
 			if self.__stats != Stats.noACC: 
 				ret += '( __cs_dataraceActiveVP2 && __cs_dataraceSecondThread  && (__cs_dataraceNotDetected = __cs_dataraceNotDetected && ! __CPROVER_get_field(&%s,"dr_write")))' %  wse
+				self.__VP2required = True
 				self.__optional2 = False
 
 			if self.__visitingLHS:
@@ -299,8 +314,11 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
                     if ret != '':
                        ret += ','
                     p1 = '( __cs_dataraceActiveVP1 && __cs_dataraceDetectionStarted && !__cs_dataraceSecondThread && __CPROVER_set_field(&%s,"dr_write",1) ), ' % lwse
+                    self.__VP1required = True
  
                     p2 = '( __cs_dataraceActiveVP2 && __cs_dataraceSecondThread  && (__cs_dataraceNotDetected = __cs_dataraceNotDetected && ! __CPROVER_get_field(&%s,"dr_write")))' % lwse
+                    self.__VP2required = True
+
                     ret += p1 + p2
 
                 self.__access = old_access
@@ -369,6 +387,8 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 				if ret != '':
 					ret += ','
 				ret += '( __cs_dataraceActiveVP2 && __cs_dataraceSecondThread  && (__cs_dataraceNotDetected = __cs_dataraceNotDetected && ! __CPROVER_get_field(&%s,"dr_write")))' % wse
+				self.__VP2required = True
+
 			if self.__visitingStruct:  #these parentheses are required to force priority in the c expression (* x).y
 				self.__WSE = '(%s)' % self.__WSE  
 
@@ -389,8 +409,11 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 				if ret != '':
 					ret += ','
 				p1 = '( __cs_dataraceActiveVP1 && __cs_dataraceDetectionStarted && !__cs_dataraceSecondThread && __CPROVER_set_field(&%s,"dr_write",1) ), ' % wse
- 
+				self.__VP1required = True 
+
 				p2 = '( __cs_dataraceActiveVP2 && __cs_dataraceSecondThread  && (__cs_dataraceNotDetected = __cs_dataraceNotDetected && ! __CPROVER_get_field(&%s,"dr_write")))' % wse
+				self.__VP2required = True 
+
 				ret += p1 + p2
 			if ret != '':
 				ret += ','
@@ -546,6 +569,8 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 		
 		if old_stats == Stats.ACC:
 			p2 = '( __cs_dataraceActiveVP2 && __cs_dataraceSecondThread  && (__cs_dataraceNotDetected = __cs_dataraceNotDetected && ! __CPROVER_get_field(&%s,"dr_write")))' % self.__WSE
+			self.__VP2required = True 
+
 			if ret != '':
 				ret += ','
 			ret += p2
