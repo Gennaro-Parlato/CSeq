@@ -44,9 +44,9 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 
 	__visitingStruct = False # True iff we are visiting a structure name
 
-	__VP1required = False  # True iff write for datarace detection occurs in the code at this visible point
+	__VP1required = False  # True iff current visible point is the last one of this context
 
-	__VP2required = False  # True iff write for datarace detection occurs in the code at this visible point
+	__VP2required = False  # True iff current visible point is the first one of this context
 		
 	def init(self):
 		self.addInputParam('rounds', 'round-robin schedules', 'r', '1', False)
@@ -134,7 +134,7 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 		if self.__VP1required:
 			s += '__cs_dataraceActiveVP1 = ( $L1 == (__cs_pc_cs[%s]-1) ) ; \n' % threadIndex
 		if self.__VP2required:
-			s += '__cs_dataraceActiveVP2 = ( $L2 == __cs_pc_cs[%s] ) ; \n' % threadIndex   #DR
+			s += '__cs_dataraceActiveVP2 = ( $L2 == __cs_pc[%s] ) ; \n' % threadIndex   #DR
 		return s
 
 #end routines for visit_Compound
