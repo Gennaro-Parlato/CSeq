@@ -180,22 +180,22 @@ class loopAnalysis(core.module.Translator):
 		iList = 0
 		cRange = range(list[iList][0], list[iList][1] + 1)
 		while (i < len(seqCode) and not done):
-			if seqCode[i] == '$':
+			if seqCode[i] == '@':
 				if seqCode[i + 1] == 'I':
 					# Stop stripping at m
 					m = i
 					stringToStrip = seqCode[j:i]
-					while(seqCode[m-3 : m] != "$I2"):
+					while(seqCode[m-3 : m] != "@I2"):
 						stringToStrip += seqCode[m]
 						m += 1
 
 					# First statement of thread
 					if count == 0:
 						for sub in (
-							("$I1",'__CSEQ_rawline("IF(%s,%s,t%s_%s)");' % (self.__threadIndex[tName], count, tName, count + 1)),
-							("$L1", str(count)),
-							("$L2", str(count)),
-							("$I2", '')):
+							("@I1",'__CSEQ_rawline("IF(%s,%s,t%s_%s)");' % (self.__threadIndex[tName], count, tName, count + 1)),
+							("@L1", str(count)),
+							("@L2", str(count)),
+							("@I2", '')):
     							stringToStrip = stringToStrip.replace(*sub)
 						output.append(stringToStrip)
 						count += 1
@@ -203,10 +203,10 @@ class loopAnalysis(core.module.Translator):
 					
 					elif ICount in cRange:
 						for sub in (
-							("$I1", '__CSEQ_rawline("t%s_%s:");\n __CSEQ_rawline("IF(%s,%s,t%s_%s)");' % (tName, count, self.__threadIndex[tName], count, tName, count + 1)),
-							("$L1", str(count)),
-							("$L2", str(count)),
-							("$I2", '')):
+							("@I1", '__CSEQ_rawline("t%s_%s:");\n __CSEQ_rawline("IF(%s,%s,t%s_%s)");' % (tName, count, self.__threadIndex[tName], count, tName, count + 1)),
+							("@L1", str(count)),
+							("@L2", str(count)),
+							("@I2", '')):
     							stringToStrip = stringToStrip.replace(*sub)
 						output.append(stringToStrip)
 						count += 1
@@ -286,8 +286,9 @@ class loopAnalysis(core.module.Translator):
 		i = 0
 		#Implementare per quando ci sono piu di 9 thread
 		while i < len(mainDriver):
-			if mainDriver[i] == '$':
+			if mainDriver[i] == '@':
 				numthread = mainDriver[i+3]
+				#print("numthread: " + numthread)
 				tname = self.__threadName[int(numthread)]
 				if tname == 'main':
 					tname = 'main_thread'

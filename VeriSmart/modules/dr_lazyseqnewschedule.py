@@ -132,9 +132,9 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 		s = ''
 
 		if self.__VP1required:
-			s += '__cs_dataraceActiveVP1 = ( $L1 == (__cs_pc_cs[%s]-1) ) ; \n' % threadIndex
+			s += '__cs_dataraceActiveVP1 = ( @L1 == (__cs_pc_cs[%s]-1) ) ; \n' % threadIndex
 		if self.__VP2required:
-			s += '__cs_dataraceActiveVP2 = ( $L2 == __cs_pc[%s] ) ; \n' % threadIndex   #DR
+			s += '__cs_dataraceActiveVP2 = ( @L2 == __cs_pc[%s] ) ; \n' % threadIndex   #DR
 		return s
 
 #end routines for visit_Compound

@@ -399,7 +399,7 @@ class lazyseqnewschedule(core.module.Translator):
 				if type(stmt) == pycparser.c_ast.FuncCall and stmt.name.name == core.common.changeID['pthread_exit']: ##if type(stmt) == pycparser.c_ast.FuncCall and self._parenthesize_unless_simple(stmt.name) == core.common.changeID['pthread_exit']:
 					self.__stmtCount += 1
 					self.__maxInCompound = self.__stmtCount
-					code = '$F ' + self.visit(stmt) + ';\n'
+					code = '@F ' + self.visit(stmt) + ';\n'
 					compoundList.append(code)
 
 				# Case 2: labels
@@ -417,7 +417,7 @@ class lazyseqnewschedule(core.module.Translator):
 						self.__maxInCompound = self.__stmtCount
 						threadIndex = self.Parser.threadOccurenceIndex[self.__currentThread]
 						s = self.visit(stmt.stmt)
-						code = '$I1' + self.additionalCode(threadIndex) + '$I2' + s +  ';\n'
+						code = '@I1' + self.additionalCode(threadIndex) + '@I2' + s +  ';\n'
 					elif (not self.__visit_funcReference and (
 						(type(stmt) == pycparser.c_ast.FuncCall and stmt.name.name == '__CSEQ_atomic_begin') or
 						(not self.__atomic and
@@ -435,13 +435,13 @@ class lazyseqnewschedule(core.module.Translator):
 #@@@@		code = self.visit(stmt)
 						threadIndex = self.Parser.threadOccurenceIndex[self.__currentThread]
 						s = self.visit(stmt.stmt)
-						code = '$I1' + self.additionalCode(threadIndex) + '$I2' + s + ';\n'
+						code = '@I1' + self.additionalCode(threadIndex) + '@I2' + s + ';\n'
 					else:
 						code = self.visit(stmt.stmt) + ';\n'
 
 					guard = ''
 					if not self.__atomic:
-						guard = '$G'
+						guard = '@G'
 					code = self._make_indent() + stmt.name + ': ' + guard + code + '\n'
 					compoundList.append(code)
 
@@ -464,7 +464,7 @@ class lazyseqnewschedule(core.module.Translator):
 						self.__maxInCompound = self.__stmtCount
 						threadIndex = self.Parser.threadOccurenceIndex[self.__currentThread]
 						s =  self.visit(stmt)
-						code = '$I1' + self.additionalCode(threadIndex)+ '$I2' + s + ';\n'
+						code = '@I1' + self.additionalCode(threadIndex)+ '@I2' + s + ';\n'
 					elif (not self.__visit_funcReference and (
 						(type(stmt) == pycparser.c_ast.FuncCall and stmt.name.name == '__CSEQ_atomic_begin') or
 						(not self.__atomic and
@@ -481,7 +481,7 @@ class lazyseqnewschedule(core.module.Translator):
 						self.__maxInCompound = self.__stmtCount
 						threadIndex = self.Parser.threadOccurenceIndex[self.__currentThread]
 						s = self.visit(stmt)
-						code = '$I1' + self.additionalCode(threadIndex) + '$I2' + s + ';\n'
+						code = '@I1' + self.additionalCode(threadIndex) + '@I2' + s + ';\n'
 					else:
 						code = self.visit(stmt) + ";\n"
 					compoundList.append(code)
@@ -600,17 +600,17 @@ class lazyseqnewschedule(core.module.Translator):
 				#threadIndex = self.Parser.threadIndex[self.__currentThread] if self.__currentThread in self.Parser.threadIndex else 0
 				# GUARD(%s,%s)
 				if not self.__visit_funcReference:
-					# elseHeader = '$G' + str(ifEnd+1) + ' '
-					elseHeader = '$G '
+					# elseHeader = '@G' + str(ifEnd+1) + ' '
+					elseHeader = '@G '
 					# if self.__decomposepc:
 						## elseHeader = '__CSEQ_assume( __cs_pc_cs_%s >= %s );' % (threadIndex, str(ifEnd+1))
-						# elseHeader = '__CSEQ_rawline($G__cs_pc_cs_%s >= $$);\n' % (threadIndex)
+						# elseHeader = '__CSEQ_rawline(@G__cs_pc_cs_%s >= $$);\n' % (threadIndex)
 					# elif self.__one_pc_cs:
 						## elseHeader = '__CSEQ_assume( __cs_pc_cs >= %s );' % (str(ifEnd+1))
-						# elseHeader = '__CSEQ_rawline($G__cs_pc_cs_ >= $$);\n'
+						# elseHeader = '__CSEQ_rawline(@G__cs_pc_cs_ >= $$);\n'
 					# else:
 						## elseHeader = '__CSEQ_assume( __cs_pc_cs[%s] >= %s );' % (threadIndex, str(ifEnd+1))
-						# elseHeader = '__CSEQ_rawline($G__cs_pc_cs_[%s] >= $$);\n' % (threadIndex)
+						# elseHeader = '__CSEQ_rawline(@G__cs_pc_cs_[%s] >= $$);\n' % (threadIndex)
 						## elseHeader = (guard.replace('$$',str(self.__stmtCount+1))
 
 			else:
@@ -628,17 +628,17 @@ class lazyseqnewschedule(core.module.Translator):
 			#threadIndex = self.Parser.threadIndex[self.__currentThread] if self.__currentThread in self.Parser.threadIndex else 0
 			# GUARD(%s,%s)
 			if not self.__visit_funcReference:
-				# footer = '$G' + str(nextLabelID) + ' '
-				footer = '$G' + ' '
+				# footer = '@G' + str(nextLabelID) + ' '
+				footer = '@G' + ' '
 				#if self.__decomposepc:
 					## footer = '__CSEQ_assume( __cs_pc_cs_%s >= %s );' % (threadIndex, nextLabelID)
-					#footer = '__CSEQ_rawline($G__cs_pc_cs_%s >= $$);\n' % (threadIndex)
+					#footer = '__CSEQ_rawline(@G__cs_pc_cs_%s >= $$);\n' % (threadIndex)
 				#elif self.__one_pc_cs:
 					## footer = '__CSEQ_assume( __cs_pc_cs >= %s );' % (nextLabelID)
-					#footer = '__CSEQ_rawline($G__cs_pc_cs_ >= $$);\n'
+					#footer = '__CSEQ_rawline(@G__cs_pc_cs_ >= $$);\n'
 				#else:
 					## footer = '__CSEQ_assume( __cs_pc_cs[%s] >= %s );' % (threadIndex, nextLabelID)
-					#footer = '__CSEQ_rawline($G__cs_pc_cs_[%s] >= $$);\n' % (threadIndex)
+					#footer = '__CSEQ_rawline(@G__cs_pc_cs_[%s] >= $$);\n' % (threadIndex)
 
 		else:
 			footer = ''
