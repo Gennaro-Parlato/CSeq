@@ -710,7 +710,7 @@ class lazyseqnewschedule(core.module.Translator):
 	def frefVisit(self,n):
 		return self._parenthesize_unless_simple(n.name)
 
-	def addRetFuncCall(self,fname,tindex=None):
+	def addRetFuncCall(self,fname,args,tindex=None):
 		pass
 
 	def visit_FuncCall(self, n):
@@ -767,7 +767,7 @@ class lazyseqnewschedule(core.module.Translator):
 			# 17 March 2021
 			#threadIndex = self.Parser.threadIndex[self.__currentThread] if self.__currentThread in self.Parser.threadIndex else 0
 			threadIndex = self.Parser.threadOccurenceIndex[self.__currentThread] if self.__currentThread in self.Parser.threadOccurenceIndex else 0
-			self.addRetFuncCall(fref,threadIndex)
+			self.addRetFuncCall(fref,args,threadIndex)
 			return fref + '(' + args + ', %s)' % threadIndex
 
 		'''
@@ -789,7 +789,7 @@ class lazyseqnewschedule(core.module.Translator):
 				fref.startswith('__cs_cond_wait_')):
 			#threadIndex = self.Parser.threadIndex[self.__currentThread] if self.__currentThread in self.Parser.threadIndex else 0
 			threadIndex= self.Parser.threadOccurenceIndex[self.__currentThread] if self.__currentThread in self.Parser.threadOccurenceIndex else 0 # 17 March 2021
-			self.addRetFuncCall(fref,threadIndex)
+			self.addRetFuncCall(fref,args,threadIndex)
 			return fref + '(' + args + ', %s)' % threadIndex
 
 		#S: fake implementation of pthread_key_create
@@ -801,7 +801,7 @@ class lazyseqnewschedule(core.module.Translator):
 			#print (fref + '(' + args + ')')
 			args = args[:args.rfind(',')]
 			#print (fref + '(' + args + ')')
-		self.addRetFuncCall(fref)
+		self.addRetFuncCall(fref,args)
 
 		return fref + '(' + args + ')'
 

@@ -170,7 +170,10 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 		self.__funcID =  old_funcID
 		return ret
 
-	def addRetFuncCall(self,fname,tindex=None):
+	def addRetFuncCall(self,fname,args,tindex=None):
+		if args == '': 
+			self.__WSE = args
+
 		if tindex == None:
 			self.__WSE = '%s ( %s )' % (fname,self.__WSE)
 		else: 
@@ -336,6 +339,7 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
                    ret +=  rvalue 
 
                 rwse = self.__WSE
+                #print("WSE: " + rwse)
 
                 self.__optional1 = opt1 and self.__optional2
                 self.__optional2 = False  #Assignment has side effects
@@ -347,7 +351,6 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
                 self.__WSE = lwse
 
                 self.__stats = old_drStats  
-
                 return ret
 
 	def visit_UnaryOp(self, n):
@@ -469,7 +472,7 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 
 		if opt2T:
 			if opt2F:
-				if optC:
+				if opt2C:
 					ret = ''
 				else:
 					ret = cond
