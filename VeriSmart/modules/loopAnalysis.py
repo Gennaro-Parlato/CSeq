@@ -180,22 +180,22 @@ class loopAnalysis(core.module.Translator):
 		iList = 0
 		cRange = range(list[iList][0], list[iList][1] + 1)
 		while (i < len(seqCode) and not done):
-			if seqCode[i] == '@':
-				if seqCode[i + 1] == 'I':
+			if seqCode[i:i+3] == '@#@':
+				if seqCode[i + 3] == 'I':
 					# Stop stripping at m
 					m = i
 					stringToStrip = seqCode[j:i]
-					while(seqCode[m-3 : m] != "@I2"):
+					while(seqCode[m-5 : m] != "@#@I2"):
 						stringToStrip += seqCode[m]
 						m += 1
 
 					# First statement of thread
 					if count == 0:
 						for sub in (
-							("@I1",'__CSEQ_rawline("IF(%s,%s,t%s_%s)");' % (self.__threadIndex[tName], count, tName, count + 1)),
-							("@L1", str(count)),
-							("@L2", str(count)),
-							("@I2", '')):
+							("@#@I1",'__CSEQ_rawline("IF(%s,%s,t%s_%s)");' % (self.__threadIndex[tName], count, tName, count + 1)),
+							("@#@L1", str(count)),
+							("@#@L2", str(count)),
+							("@#@I2", '')):
     							stringToStrip = stringToStrip.replace(*sub)
 						output.append(stringToStrip)
 						count += 1
@@ -203,10 +203,10 @@ class loopAnalysis(core.module.Translator):
 					
 					elif ICount in cRange:
 						for sub in (
-							("@I1", '__CSEQ_rawline("t%s_%s:");\n __CSEQ_rawline("IF(%s,%s,t%s_%s)");' % (tName, count, self.__threadIndex[tName], count, tName, count + 1)),
-							("@L1", str(count)),
-							("@L2", str(count)),
-							("@I2", '')):
+							("@#@I1", '__CSEQ_rawline("t%s_%s:");\n __CSEQ_rawline("IF(%s,%s,t%s_%s)");' % (tName, count, self.__threadIndex[tName], count, tName, count + 1)),
+							("@#@L1", str(count)),
+							("@#@L2", str(count)),
+							("@#@I2", '')):
     							stringToStrip = stringToStrip.replace(*sub)
 						output.append(stringToStrip)
 						count += 1
@@ -223,46 +223,8 @@ class loopAnalysis(core.module.Translator):
 					j = i
 					ICount += 1
 
-					'''
-					# First statement of thread
-					if count == 0:
-						if seqCode[i + 2] == '1':
-							s = seqCode[j:i] + '__CSEQ_rawline("IF(%s,%s,t%s_%s)");' % (self.__threadIndex[tName], count, tName, count + 1)
-							count += 1	
-						if seqCode[i + 2] == '2':
-							s = seqCode[j:i] + '__CSEQ_rawline("t%s_%s:");\n'% (tName, count)
-						output.append(s)
-						i += 3
-					
-					# Context switch counted
-					elif ICount in cRange:
-						if seqCode[i + 2] == '1':
-							s = seqCode[j:i] + '__CSEQ_rawline("IF(%s,%s,t%s_%s)");' % (self.__threadIndex[tName], count, tName, count + 1)
-							count += 1
-							if ICount == list[iList][1] and iList < len(list) - 1:
-								iList += 1
-								cRange = range(list[iList][0], list[iList][1] + 1)
-						if seqCode[i + 2] == '2':
-							s = seqCode[j:i] + '__CSEQ_rawline("t%s_%s:");\n'% (tName, count)
-						output.append(s)
-						i += 3
-						
-
-					# Context switch not counted
-					else:
-						if seqCode[j:i] != '':
-							output.append(seqCode[j:i])
-						if seqCode[i + 2] == '1':
-							i += 4
-						if seqCode[i + 2] == '2':
-							i += 3
-					
-					print(count)
-					j = i
-					ICount += 1
-					'''
 				# Guard label
-				elif seqCode[i + 1] == 'G':
+				elif seqCode[i + 3] == 'G':
 					s = seqCode[j:i] + '__CSEQ_assume( __cs_pc_cs[%s] >= %s );\n' % (
 						self.__threadIndex[tName], count)
 					output.append(s)
@@ -286,15 +248,15 @@ class loopAnalysis(core.module.Translator):
 		i = 0
 		#Implementare per quando ci sono piu di 9 thread
 		while i < len(mainDriver):
-			if mainDriver[i] == '@':
-				numthread = mainDriver[i+3]
+			if mainDriver[i:i+3] == '@#@':
+				numthread = mainDriver[i+5]
 				#print("numthread: " + numthread)
 				tname = self.__threadName[int(numthread)]
 				if tname == 'main':
 					tname = 'main_thread'
 				maxthreadlabel = maxlabels[tname]
 				output += str(maxthreadlabel)
-				i+=4
+				i+=6
 			else:
 				output += mainDriver[i]
 				i+=1

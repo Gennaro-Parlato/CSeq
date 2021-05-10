@@ -170,7 +170,7 @@ class constants(core.module.Translator):
         if n.op == '*' and self._isInteger(lval_str) and self._isInteger(rval_str):
             return str(int(lval_str) * int(rval_str))
         if n.op == '/' and self._isInteger(lval_str) and self._isInteger(rval_str):
-            return str(int(lval_str) / int(rval_str))
+            return str(int(int(lval_str) / int(rval_str)))
 
         return '%s %s %s' % (lval_str, n.op, rval_str)
 
