@@ -425,6 +425,7 @@ class loopAnalysis(core.module.Translator):
 		cbmcresult = output[0]
 		memsize = output[1]
 		processedResult = self.processResult(cbmcresult, env.backend)
+		#print("processedResult: " + processedResult)
 		analysistime = time.time() - analysistime
 		if processedResult == "TRUE":
 			if env.isSwarm:
