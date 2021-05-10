@@ -74,6 +74,7 @@ import inspect, os, sys, getopt, time
 import pycparser.c_parser, pycparser.c_ast, pycparser.c_generator
 import core.common, core.module, core.parser, core.utils
 
+#from pycparser import c_ast
 
 class workarounds(core.module.Translator):
     __threadLocals = []
@@ -412,3 +413,13 @@ class workarounds(core.module.Translator):
 
     def loadfromstring(self, string, env, fill_only_fields=None):
         super(workarounds, self).loadfromstring(string, env, fill_only_fields=['threadName', 'varType', 'varID', 'varArity', 'varSize'])
+
+
+#    def visit_Assignment(self, n):
+#        n.show()
+#        rval_str = self._parenthesize_if(
+#                            n.rvalue,
+#                            lambda n: isinstance(n, c_ast.Assignment))
+#        print( '%s %s %s' % (self.visit(n.lvalue), n.op, rval_str) )
+#        sys.exit(0)
+

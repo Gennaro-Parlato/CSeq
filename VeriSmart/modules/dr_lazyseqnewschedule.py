@@ -47,7 +47,8 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 	__VP1required = False  # True iff current visible point is the last one of this context
 
 	__VP2required = False  # True iff current visible point is the first one of this context
-		
+	__enableDRcode = True  # Disabled when visiting atomic o or special function definitions		
+
 	def init(self):
 		self.addInputParam('rounds', 'round-robin schedules', 'r', '1', False)
 		self.addInputParam('threads', 'max no. of thread creations (0 = auto)', 't', '0', False)
@@ -141,7 +142,7 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 
 
 	def visit_ExprList(self, n):
-            if self.getGlobalMemoryTest(): 
+            if self.getGlobalMemoryTest() or not self.__enableDRcode: 
                 return super(dr_lazyseqnewschedule, self).visit_ExprList(n)
 
             visited_subexprs = []
@@ -191,7 +192,7 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 
 
 	def visit_ArrayRef(self, n):
-                if self.getGlobalMemoryTest(): 
+                if self.getGlobalMemoryTest() or not self.__enableDRcode: 
                     return super(dr_lazyseqnewschedule, self).visit_ArrayRef(n)
                 ret = ''
                 old_drStats = self.__stats  #DR  
@@ -251,7 +252,7 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 	def visit_ID(self, n):
 		#print(n.name)
 		#print(self.getGlobalMemoryTest())
-		if self.getGlobalMemoryTest(): 
+		if self.getGlobalMemoryTest() or not self.__enableDRcode: 
 			return super(dr_lazyseqnewschedule, self).visit_ID(n)
 		if self.__funcID:
 			self.__WSE = super(dr_lazyseqnewschedule, self).visit_ID(n)
@@ -286,7 +287,7 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 		return ret
 
 	def visit_Assignment(self, n):
-                if self.getGlobalMemoryTest(): 
+                if self.getGlobalMemoryTest() or not self.__enableDRcode: 
                      return super(dr_lazyseqnewschedule, self).visit_Assignment(n)
 
                 #print(type(n.lvalue))
@@ -354,7 +355,7 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
                 return ret
 
 	def visit_UnaryOp(self, n):
-		if self.getGlobalMemoryTest(): 
+		if self.getGlobalMemoryTest() or not self.__enableDRcode: 
 			return super(dr_lazyseqnewschedule, self).visit_UnaryOp(n)
 
 		#print(self.__stats)
@@ -446,7 +447,7 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 
 	def visit_TernaryOp(self, n):
 		
-		if self.getGlobalMemoryTest(): 
+		if self.getGlobalMemoryTest() or not self.__enableDRcode: 
 			return super(dr_lazyseqnewschedule, self).visit_TernaryOp(n)
 
 		old_stats = self.__stats
@@ -496,7 +497,7 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 
 
 	def visit_Constant(self, n):
-		if self.getGlobalMemoryTest(): 
+		if self.getGlobalMemoryTest() or not self.__enableDRcode: 
 			return super(dr_lazyseqnewschedule, self).visit_Constant(n)
 
 		self.__optional1 = True
@@ -505,7 +506,7 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 		return n.value
 
 	def visit_BinaryOp(self, n):
-		if self.getGlobalMemoryTest(): 
+		if self.getGlobalMemoryTest() or not self.__enableDRcode: 
 			return super(dr_lazyseqnewschedule, self).visit_BinaryOp(n)
 
 		#print(n.op)
@@ -545,7 +546,7 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 		return ret
 
 	def visit_StructRef(self, n):
-		if self.getGlobalMemoryTest(): 
+		if self.getGlobalMemoryTest() or not self.__enableDRcode: 
 			return super(dr_lazyseqnewschedule, self).visit_StructRef(n)
 
 		old_stats = self.__stats
@@ -595,7 +596,7 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 
 
 	def visit_Cast(self, n):
-           if self.getGlobalMemoryTest(): 
+           if self.getGlobalMemoryTest() or not self.__enableDRcode: 
                 return super(dr_lazyseqnewschedule, self).visit_Cast(n)
 
            old_stats = self.__stats
@@ -612,6 +613,15 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
            self.__optional1 = self.__optional2
            return ret
 
+	def visit_FuncDef(self, n):
+		if (n.decl.name.startswith('__CSEQ_atomic_') or n.decl.name == '__CSEQ_assert'):
+			self.__enableDRcode = False
+		ret = super(dr_lazyseqnewschedule,self).visit_FuncDef(n)
+
+		if (n.decl.name.startswith('__CSEQ_atomic_') or n.decl.name == '__CSEQ_assert'):
+			self.__enableDRcode = True
+
+		return ret
 
 	########################################################################################
 	########################################################################################
