@@ -228,14 +228,14 @@ class loopAnalysis(core.module.Translator):
 					s = seqCode[j:i] + '__CSEQ_assume( __cs_pc_cs[%s] >= %s );\n' % (
 						self.__threadIndex[tName], count)
 					output.append(s)
-					i += 2
+					i += 4
 					j = i
 
 				# Last statement of thread
 				else:
 					s = seqCode[j:i] + '__CSEQ_rawline("t%s_%s: ");' % (tName, count)
 					output.append(s)
-					i += 2
+					i += 4
 					done = True
 					maxlabels[tName] = count
 			else:
@@ -361,8 +361,8 @@ class loopAnalysis(core.module.Translator):
 				#sys.exit(0)
 				m.loadfromstring(output, env)
 				output = m.getoutput()
-			#	print(output)
-			#	sys.exit(0)
+				#print(output)
+				#sys.exit(0)
 
 				# linemapping only works on Translator (C-to-C) modules
 				if "inputtooutput" in dir(m):
