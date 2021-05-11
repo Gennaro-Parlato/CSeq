@@ -714,11 +714,12 @@ class lazyseqnewschedule(core.module.Translator):
 		pass
 
 	def visit_FuncCall(self, n):
-		
 		fref = self.frefVisit(n)
 
 		args = self.visit(n.args)
-
+		#print("FREF: " + fref)
+		#print("ARGS: " + args)
+		#n.show()
 		if fref == '__CSEQ_atomic_begin':
 			if not self.__visit_funcReference:
 				self.__atomic = True
@@ -801,8 +802,14 @@ class lazyseqnewschedule(core.module.Translator):
 			#print (fref + '(' + args + ')')
 			args = args[:args.rfind(',')]
 			#print (fref + '(' + args + ')')
-		self.addRetFuncCall(fref,args)
 
+		if fref == core.common.changeID['pthread_create']: # TODO re-write AST-based (see other modules)
+			self.addRetFuncCall(fref,args, self.Parser.threadOccurenceIndex[fName])
+		else:
+			self.addRetFuncCall(fref,args)
+		#ret = fref + '(' + args + ')'
+		#print("GMT: " + str(self.getGlobalMemoryTest() ))
+		#print(ret)
 		return fref + '(' + args + ')'
 
 	########################################################################################

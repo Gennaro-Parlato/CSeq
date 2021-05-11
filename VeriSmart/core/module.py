@@ -378,6 +378,9 @@ class Translator(BasicModule, pycparser.c_generator.CGenerator):
 
     def loadfromstring(self, string, env, fill_only_fields=None):
         self.__produce_counter_examples = env.cex
+        #if self.__class__.__name__ == 'instrumenter': 
+            #print("QUI " + self.__class__.__name__)
+            #print(string)
         super(Translator, self).loadfromstring(string, env)
 
         self.input = string
