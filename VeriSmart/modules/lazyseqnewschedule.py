@@ -803,10 +803,10 @@ class lazyseqnewschedule(core.module.Translator):
 			args = args[:args.rfind(',')]
 			#print (fref + '(' + args + ')')
 
-		if fref == core.common.changeID['pthread_create']: # TODO re-write AST-based (see other modules)
-			self.addRetFuncCall(fref,args, self.Parser.threadOccurenceIndex[fName])
-		else:
-			self.addRetFuncCall(fref,args)
+#		if fref == core.common.changeID['pthread_create']: # TODO re-write AST-based (see other modules)
+#			self.addRetFuncCall(fref,args, self.Parser.threadOccurenceIndex[fName])
+#		else:
+		self.addRetFuncCall(fref,args)
 		#ret = fref + '(' + args + ')'
 		#print("GMT: " + str(self.getGlobalMemoryTest() ))
 		#print(ret)
