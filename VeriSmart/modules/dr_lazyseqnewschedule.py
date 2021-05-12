@@ -71,21 +71,6 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 		self.addOutputParam('threadNames')
 		self.addOutputParam('threadIndex')
 
-	def initHeaderSwarm(env):
-		if env.local==1:
-		     return  core.utils.printFile('modules/dr_1lazyseqBnewschedule.c').replace('<insert-threadsizes-here>',"$THREADSIZE")
-		elif env.local==2:
-		     return core.utils.printFile('modules/dr_2lazyseqBnewschedule.c').replace('<insert-threadsizes-here>',"$THREADSIZE")
-		else:
-		     return core.utils.printFile('modules/dr_0lazyseqBnewschedule.c').replace('<insert-threadsizes-here>',"$THREADSIZE")
-
-	def initHeader(env,lines):
-		if env.local==1:						
-                    return core.utils.printFile('modules/dr_1lazyseqBnewschedule.c').replace('<insert-threadsizes-here>',lines)
-		elif env.local==2:
-		    return core.utils.printFile('modules/dr_2lazyseqBnewschedule.c').replace('<insert-threadsizes-here>',lines)
-		else:
-		    return core.utils.printFile('modules/dr_0lazyseqBnewschedule.c').replace('<insert-threadsizes-here>',lines)
 
 	def additionalDefs(self):
 		#header += 'unsigned int __cs_ts = 0; \n'   #POR 
@@ -155,8 +140,8 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
             #n.show()
             for expr in n.exprs:
                 self.__stats = Stats.TOP
-                s = self.visit(expr)
-                #print(s)
+            #    s = self.visit(expr)
+            #    print("element: " + s)
                 #print(self.__WSE)
                 visited_subexprs.append('('+ self.visit(expr) + ')')
                 wseList.append('('+ str(self.__WSE)+')')
@@ -166,8 +151,10 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
             self.__optional2 = self.__optional1
             self.__WSE = ', '.join(wseList)
             self.setExpList(visited_subexprs)
-            #ret = ', '.join(visited_subexprs)
+            ret = ', '.join(visited_subexprs)
+            #print("List: " + str(visited_subexprs))
             #print("DR: " + ret)
+            #n.show()
             return ', '.join(visited_subexprs)
 
 #    visit_FuncCall routines
@@ -179,16 +166,17 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 		return ret
 
 	def addRetFuncCall(self,fname,args,tindex=None):
-		if args == '' : 
-			self.__WSE = args
+#		if args == '' : 
+#			self.__WSE = args
 
 		if tindex == None:
-			self.__WSE = '%s ( %s )' % (fname,self.__WSE)
+			self.__WSE = '%s ( %s )' % (fname,args)
 		else: 
 			#print(fname)
 			#print(self.__WSE)
-			self.__WSE = '%s ( %s, %s )' % (fname,self.__WSE, tindex)
+			self.__WSE = '%s ( %s, %s )' % (fname,args, tindex)
 			#print(self.__WSE)
+		self.__optional2 = True  #function calls appear only in the WSE formulas (all the rewriting is on the parameters)
 		self.__optional1 = self.__optional2
 
 #		if (fname == 'assume_abort_if_not' and not (self.getGlobalMemoryTest() or not self.__enableDRcode)):

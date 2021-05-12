@@ -417,7 +417,7 @@ class lazyseqnewschedule(core.module.Translator):
 						self.__maxInCompound = self.__stmtCount
 						threadIndex = self.Parser.threadOccurenceIndex[self.__currentThread]
 						s = self.visit(stmt.stmt)
-						code = '@#@I1' + self.additionalCode(threadIndex) + '@I2' + s +  ';\n'
+						code = '@#@I1' + self.additionalCode(threadIndex) + '@#@I2' + s +  ';\n'
 					elif (not self.__visit_funcReference and (
 						(type(stmt) == pycparser.c_ast.FuncCall and stmt.name.name == '__CSEQ_atomic_begin') or
 						(not self.__atomic and
