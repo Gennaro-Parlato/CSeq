@@ -32,6 +32,9 @@ VERSION = 'workaround-0.1-2016.11.13'
 
         - split declaration of local variables + init value to two separate statements:
             int x = value; --> int x; x = value;
+            
+          (there are few exceptions such as for example when the variable is declared const)
+
 
         - remove  if(!1) { .. }  and  if(0) { .. }
 
@@ -146,6 +149,7 @@ class workarounds(core.module.Translator):
         # no_type is used when a Decl is part of a DeclList, where the type is
         # explicitly only for the first delaration in a list.
         #
+
         s = n.name if no_type else self._generate_decl(n)
 
         if n.bitsize: s += ' : ' + self.visit(n.bitsize)
@@ -177,6 +181,9 @@ class workarounds(core.module.Translator):
             elif isinstance(n.init, pycparser.c_ast.ExprList):
                 initType = 1
                 assignmentStmt = ' = (' + self.visit(n.init) + ')'
+            elif (n.quals and 'const' in n.quals):
+                initType = 1
+                assignmentStmt = ' = ' + self.visit(n.init)  
             else:
                 initType = 0
                 assignmentStmt = ' = ' + self.visit(n.init)

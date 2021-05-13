@@ -544,7 +544,10 @@ class inliner(core.module.Translator):
         if n.bitsize:
             s += ' : ' + self.visit(n.bitsize)
         # S: added to handle declaration of constant variables or struct def with no variables declared, no transformation is required.
-        if "const" in s.split() or n.name == None:
+        spl = s.split()
+        if "const" in spl or n.name == None:
+            if "static" not in spl:
+                s = "static " + s
             if n.init:
                 processInit = True
                 if isinstance(n.init, c_ast.InitList):
