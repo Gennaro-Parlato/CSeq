@@ -50,6 +50,8 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 	__enableDRcode = True  # Disabled when visiting atomic o or special function definitions		
 
 	__isArray = False                # used to flag that we are below an ArrayRef node
+	__const = {}                # variables that are declared const
+	__const[''] = []            # init const vars for global scope
 
 	def init(self):
 		self.addInputParam('rounds', 'round-robin schedules', 'r', '1', False)
@@ -259,11 +261,16 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 			self.__optional1 = True
 			self.__optional2 = True
 			return self.__WSE
-			
+
 		ret = ''   # noACC is default
 		wse = n.name
 		self.__optional2 = True
-		if (self._isGlobal(self.getCurrentThread(), n.name) or self._isPointer(self.getCurrentThread(), n.name)) and not self.__isArray:   
+		
+#		if (n.name == '__cs_param_read_nvram_buf'):
+#			print("Const check: " + str(self._isConst(self.getCurrentThread(), n.name)))
+			
+		
+		if (self._isGlobal(self.getCurrentThread(), n.name) or self._isPointer(self.getCurrentThread(), n.name)) and not self.__isArray and not self._isConst(self.getCurrentThread(),n.name):
 			if self.__stats != Stats.noACC: 
 				ret += '( __cs_dataraceActiveVP2 && __cs_dataraceSecondThread  && (__cs_dataraceNotDetected = __cs_dataraceNotDetected && ! __CPROVER_get_field(&%s,"dr_write")))' %  wse
 				self.__VP2required = True
@@ -502,6 +509,7 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 
 		self.__optional2 = opt2C and opt2T and opt2F 
 		self.__optional1 = self.__optional2
+		self.__stats = old_stats
 		#print(ret)
 		return ret
 
@@ -551,6 +559,7 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 
 		self.__optional2 = optL and optR 
 		self.__optional1 = self.__optional2
+		self.__stats = old_stats
 
 #		print("RET: " + ret)
 		return ret
@@ -597,6 +606,7 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 		self.__optional2 = opt1 and opt2
 
 		self.__optional1 = self.__optional2
+		self.__stats = old_stats
 
 		return ret
 
@@ -621,16 +631,31 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
               else: 
                  ret += ', ' + self.__WSE
            self.__optional1 = self.__optional2
+           self.__stats = old_stats
            return ret
 
 	def visit_FuncDef(self, n):
 		if (n.decl.name.startswith('__CSEQ_atomic_') or n.decl.name == '__CSEQ_assert'):
 			self.__enableDRcode = False
+
+		self.__const[n.decl.name] = []
+
 		ret = super(dr_lazyseqnewschedule,self).visit_FuncDef(n)
 
 		if (n.decl.name.startswith('__CSEQ_atomic_') or n.decl.name == '__CSEQ_assert'):
 			self.__enableDRcode = True
 
+		return ret
+
+	def visit_Decl(self,n):
+		if (n.quals and 'const' in n.quals):
+			self.__const[self.getCurrentThread()].append(n.name)
+		ret = super(dr_lazyseqnewschedule,self).visit_Decl(n)
+
+		if n.init and n.storage and 'static' in n.storage and '__cs_dataraceActiveVP' in ret:  #this is needed to avoid 
+			spl = ret.split('=')
+			splr = (' = ' .join(spl[1:])).split(',')
+			ret = spl[0]+'= %s ; '% splr.pop() + ','.join(splr) + ';'
 		return ret
 
 	########################################################################################
@@ -796,4 +821,7 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 #		for stm in n.block_items:
 #                    stm.show()
 #		return super(dr_lazyseqnewschedule,self).visit_Compound(n
+######################
 
+	def _isConst(self,f,v):
+		return ( v in self.__const[f] or v in self.__const[''])

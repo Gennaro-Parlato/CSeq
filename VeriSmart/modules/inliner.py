@@ -546,8 +546,14 @@ class inliner(core.module.Translator):
         # S: added to handle declaration of constant variables or struct def with no variables declared, no transformation is required.
         spl = s.split()
         if "const" in spl or n.name == None:
+            #print(spl)
             if "static" not in spl:
-                s = "static " + s
+                if (isinstance(n, c_ast.Decl) and  # it is a declaration
+                     self.currentFunction[-1] != '' and  # Not a global declaration
+                     self.indent_level > 0 and  # This is needed to rule out function decls
+                     not s.startswith('static ') and  # This may not usefull
+                     not self.__parsingStruct):  # and not part of a struct or union
+                   s = "static " + s
             if n.init:
                 processInit = True
                 if isinstance(n.init, c_ast.InitList):
