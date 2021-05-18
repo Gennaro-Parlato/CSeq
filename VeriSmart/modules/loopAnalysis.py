@@ -71,12 +71,9 @@ class loopAnalysis(core.module.Translator):
 		swarmdirname = dirname + "/" + filename[:-2] + '.swarm%s/' % env.suffix
 		instanceIterator = self.generateInstanceIterator(
 			env, configIterator, seqcode)
-		if env.instances_only:
+		if env.isSwarm and env.instances_only:
 			sequentializationtime = time.time() - env.starttime
 			print("Time for producing $file = %0.2fs" % sequentializationtime)
-		if env.seq_only:
-			print("Sequentialization completed.")
-			sys.exit(0)
 		
 		backendStart = time.time()
 		if env.isSwarm:
@@ -139,8 +136,11 @@ class loopAnalysis(core.module.Translator):
 		backendTime = time.time() - backendStart
 		
 		if env.instances_only:
-			print("Time for generating instances = %0.2fs" % backendTime )
-			print("Instances generated in " + swarmdirname)
+			if env.isSwarm:
+				print("Time for generating instances = %0.2fs" % backendTime )
+				print("Instances generated in " + swarmdirname)
+			else:
+				print("Sequentialization completed.")
 			sys.exit(0)
 
 		if not foundbug:
