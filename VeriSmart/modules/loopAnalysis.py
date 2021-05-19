@@ -139,8 +139,7 @@ class loopAnalysis(core.module.Translator):
 			if env.isSwarm:
 				print("Time for generating instances = %0.2fs" % backendTime )
 				print("Instances generated in " + swarmdirname)
-			else:
-				print("Sequentialization completed.")
+			# in the non swarm case, it is the only process running that signals that the sequentialization has succeded
 			sys.exit(0)
 
 		if not foundbug:
@@ -383,6 +382,8 @@ class loopAnalysis(core.module.Translator):
 				sys.exit(1)
 
 		if env.instances_only:
+			if not env.isSwarm:
+				print("Sequentialization successfully completed.")
 			return True
 		cbmcresult = output[0]
 		memsize = output[1]
