@@ -20,6 +20,7 @@ void __cs_init_scalar(void *__cs_var, unsigned int __cs_size) {
 void __CSEQ_message(char *__cs_message) { ; }
 
 typedef int __cs_t;
+typedef int __cs_once_t;
 
 void *__cs_threadargs[<insert-numthreads-here>];
 void *__cs_thread_joinargs[<insert-numthreads-here>];
@@ -171,3 +172,9 @@ int   __cs_attr_setschedpolicy(__cs_attr_t * t, int s) { return 0;}
 int   __cs_attr_setscope(__cs_attr_t * t, int s) { return 0;}
 int   __cs_attr_setstackaddr(__cs_attr_t * t, void * s) { return 0;}
 int   __cs_attr_setstacksize(__cs_attr_t * t, unsigned int s) { return 0;}
+
+typedef int __cs_mutexattr_t;
+typedef int __cs_rwlockattr_t;
+typedef int __cs_rwlock_t;
+typedef int __cs_condattr_t:
+

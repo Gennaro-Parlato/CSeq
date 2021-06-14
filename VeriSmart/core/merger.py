@@ -205,7 +205,7 @@ struct device {
             includestring += ' -I' + ' -I'.join(env.includepath.split(':'))
 
         # Pre-process away GNU C extensions.
-        macros = "-D'__attribute__(x)=' -D'__extension__(x)=' -D'__volatile__=' -D'__asm__=' -D'__attribute(x)=' -D'__extension__=' -D'__const=const'"
+        macros = "-D'__attribute__(x)=' -D'__extension__(x)=' -D'__volatile__=' -D'__asm__=' -D'__attribute(x)=' -D'__extension__=' -D'__const=const' -D'__restrict=' -D'__inline=' "
 
         #cmdline = 'cpp -Iinclude -E -C ' + filename + ' > ' + filename + '.1' + '.c'
         #cmdline = 'gcc -Iinclude -P -E - '  # hyphen at the end forces input from stdin
