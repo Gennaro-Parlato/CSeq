@@ -194,7 +194,6 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
                 if self.getGlobalMemoryTest() or not self.__enableDRcode: 
                     return super(dr_lazyseqnewschedule, self).visit_ArrayRef(n)
 
-
                 ret = ''
                 old_drStats = self.__stats  #DR  
 
@@ -228,6 +227,7 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
                 #  the value of ret at this point is fine for noACC and PRE modes
 
                 if old_drStats == Stats.ACC or  old_drStats == Stats.TOP:
+                   print(old_drStats)
                    if self._isGlobal(self.getCurrentThread(), arrref) or self._isPointer(self.getCurrentThread(), arrref):   #POR
                       if ret != '':
                           ret += ','
@@ -270,7 +270,8 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 #			print("Const check: " + str(self._isConst(self.getCurrentThread(), n.name)))
 			
 		
-		if (self._isGlobal(self.getCurrentThread(), n.name) or self._isPointer(self.getCurrentThread(), n.name)) and not self.__isArray and not self._isConst(self.getCurrentThread(),n.name):
+		#if (self._isGlobal(self.getCurrentThread(), n.name) or self._isPointer(self.getCurrentThread(), n.name)) and not self.__isArray and not self._isConst(self.getCurrentThread(),n.name):
+		if ( not self.isThread(n.name) and not self.__isArray and not self._isConst(self.getCurrentThread(),n.name)):
 			if self.__stats != Stats.noACC: 
 				ret += '( __cs_dataraceActiveVP2 && __cs_dataraceSecondThread  && (__cs_dataraceNotDetected = __cs_dataraceNotDetected && ! __CPROVER_get_field(&%s,"dr_write")))' %  wse
 				self.__VP2required = True
@@ -658,6 +659,15 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 			ret = spl[0]+'= %s ; '% splr.pop() + ','.join(splr) + ';'
 		return ret
 
+	def visit_Typename(self, n):
+		name = super(dr_lazyseqnewschedule,self).visit_Typename(n)
+		self.__WSE = name
+		return name
+
+#	def visit_Compound(self,n):
+#		for stm in n.block_items:
+#                    stm.show()
+#		return super(dr_lazyseqnewschedule,self).visit_Compound(n
 	########################################################################################
 	########################################################################################
 	########################################################################################
@@ -817,10 +827,6 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 
 		return main
 
-#	def visit_Compound(self,n):
-#		for stm in n.block_items:
-#                    stm.show()
-#		return super(dr_lazyseqnewschedule,self).visit_Compound(n
 ######################
 
 	def _isConst(self,f,v):

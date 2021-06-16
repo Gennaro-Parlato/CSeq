@@ -482,6 +482,7 @@ class lazyseqnewschedule(core.module.Translator):
 						threadIndex = self.Parser.threadOccurenceIndex[self.__currentThread]
 						s = self.visit(stmt)
 						code = '@#@I1' + self.additionalCode(threadIndex) + '@#@I2' + s + ';\n'
+	
 					else:
 						code = self.visit(stmt) + ";\n"
 					compoundList.append(code)
@@ -1784,3 +1785,6 @@ class lazyseqnewschedule(core.module.Translator):
 	def getGuessCsOnly(self):
 		return self.__guess_cs_only
 	
+# predicate methods
+	def isThread(self,name):
+		return (name == 'main' or name in self.Parser.threadName)
