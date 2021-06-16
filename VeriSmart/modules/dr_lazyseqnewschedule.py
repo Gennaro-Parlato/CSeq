@@ -227,7 +227,6 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
                 #  the value of ret at this point is fine for noACC and PRE modes
 
                 if old_drStats == Stats.ACC or  old_drStats == Stats.TOP:
-                   print(old_drStats)
                    if self._isGlobal(self.getCurrentThread(), arrref) or self._isPointer(self.getCurrentThread(), arrref):   #POR
                       if ret != '':
                           ret += ','
