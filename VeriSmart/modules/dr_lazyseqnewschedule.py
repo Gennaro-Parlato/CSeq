@@ -50,6 +50,7 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 	__enableDRcode = True  # Disabled when visiting atomic o or special function definitions		
 
 	__isArray = False                # used to flag that we are below an ArrayRef node
+	__arrayName = ''            # contains the array name when on visiting array ref (going-up)
 	__const = {}                # variables that are declared const
 	__const[''] = []            # init const vars for global scope
 
@@ -193,7 +194,7 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 	def visit_ArrayRef(self, n):
                 if self.getGlobalMemoryTest() or not self.__enableDRcode: 
                     return super(dr_lazyseqnewschedule, self).visit_ArrayRef(n)
-
+                self.__arrayName = ''
                 ret = ''
                 old_drStats = self.__stats  #DR  
 
@@ -224,24 +225,28 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
                       ret += ','
                    ret += subscript
 
+                #print(self.__arrayName)  
                 #  the value of ret at this point is fine for noACC and PRE modes
-
-                if old_drStats == Stats.ACC or  old_drStats == Stats.TOP:
-                   if self._isGlobal(self.getCurrentThread(), arrref) or self._isPointer(self.getCurrentThread(), arrref):   #POR
-                      if ret != '':
-                          ret += ','
+                if old_drStats != Stats.PRE:
+                   if old_drStats == Stats.ACC or  old_drStats == Stats.TOP:
+                      #print(self.__arrayName)
+                      if self._isGlobal(self.getCurrentThread(), self.__arrayName) or self._isPointer(self.getCurrentThread(), self.__arrayName):   #POR
+                         if ret != '':
+                             ret += ','
                 
-                      ret += '( __cs_dataraceActiveVP2 && __cs_dataraceSecondThread  && (__cs_dataraceNotDetected = __cs_dataraceNotDetected && ! __CPROVER_get_field(&%s,"dr_write")))' % wse
-                      self.__VP2required = True
+                         ret += '( __cs_dataraceActiveVP2 && __cs_dataraceSecondThread  && (__cs_dataraceNotDetected = __cs_dataraceNotDetected && ! __CPROVER_get_field(&%s,"dr_write")))' % wse
+                         self.__VP2required = True
 
-                      if self.__visitingLHS:
-                          self.__access = True
-                          self.__visitingLHS = False
+                   if self.__visitingLHS:
+                         self.__access = True
+                         self.__visitingLHS = False
+                         self.__arrayName = ''
                     
                 if old_drStats == Stats.TOP:
                    if ret != '':
                       ret += ','
                    ret += wse
+                #print(self.__access)
                    
                 self.__optional1 = opt1 and self.__optional2 
                 self.__optional2 = self.__optional1  
@@ -285,6 +290,9 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
                 
 		if self.__stats == Stats.TOP:
 			ret =  wse if ret == '' else '%s, %s' % (ret, wse)
+
+		if self.__isArray:
+			self.__arrayName = n.name
 				
 		#print("visit_ID ret: " + ret)
 		#print("Optional1: " + str(self.__optional1))
