@@ -5,6 +5,11 @@
 
 	2021.03.30  Initial version
 
+       TODO:  now DR is detected also when the two accesses are from atomic blocks, we need to 
+              discard those
+              - possible solution use a bit-field of the SM to annotate whether a write of the first step of DRD is done into an atomic block
+                (within an atomic block before setting it to true we check if the same location was already marked as written, since
+                 this could have occurred outside the atomic block but still at the same visible point)
 """
 import math, re, os.path
 import sys
@@ -86,6 +91,7 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 		header += '_Bool __cs_dataraceContinue = 1; \n'   #DR
 		header += '_Bool __cs_dataraceActiveVP1 = 0; \n'   #DR
 		header += '_Bool __cs_dataraceActiveVP2 = 0; \n'   #DR
+#		header += '_Bool __cs_atomicDR = 0; \n'   #DR: is set to true iff in the first pass of the  
 		# DR API implementation
 		if self.__enableDR and self.__noShadow:
 			header += 'const void * shadowmem[SMSIZE]={0,0,0,0,0};\n\
@@ -113,10 +119,14 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 
 # routines for visit_Compound
 
-	def initFlags(self):
+	def initFlags(self,count):
             self.__stats  =  Stats.TOP
-            self.__VP1required = False
-            self.__VP2required = False
+            if count == -1:
+                self.__VP1required = True
+                self.__VP2required = True
+            else:
+                self.__VP1required = False
+                self.__VP2required = False
             return
 
 	def additionalCode(self,threadIndex):
@@ -171,7 +181,6 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 	def addRetFuncCall(self,fname,args,tindex=None):
 #		if args == '' : 
 #			self.__WSE = args
-
 		if tindex == None:
 			self.__WSE = '%s ( %s )' % (fname,args)
 		else: 
@@ -333,7 +342,9 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
                     if ret != '':
                        ret += ','
                     p1 = '( __cs_dataraceActiveVP1 && __cs_dataraceDetectionStarted && !__cs_dataraceSecondThread && __CPROVER_set_field(&%s,"dr_write",1) ), ' % lwse
-                    self.__VP1required = True
+#                    if self.isAtomic(): 
+#                          p1 += '( __cs_dataraceActiveVP1 && __cs_dataraceDetectionStarted && !__cs_dataraceSecondThread && !__cs_atomicDR && (__cs_atomicDR = 1)), '
+                    self.__VP1required = True 
  
                     p2 = '( __cs_dataraceActiveVP2 && __cs_dataraceSecondThread  && (__cs_dataraceNotDetected = __cs_dataraceNotDetected && ! __CPROVER_get_field(&%s,"dr_write")))' % lwse
                     self.__VP2required = True
@@ -642,18 +653,22 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
            self.__stats = old_stats
            return ret
 
+
 	def visit_FuncDef(self, n):
-		if (n.decl.name.startswith('__CSEQ_atomic_') or n.decl.name == '__CSEQ_assert'):
+		#if (n.decl.name.startswith('__CSEQ_atomic_') or n.decl.name == '__CSEQ_assert'):
+		if (n.decl.name == '__CSEQ_assert'):
 			self.__enableDRcode = False
 
 		self.__const[n.decl.name] = []
 
 		ret = super(dr_lazyseqnewschedule,self).visit_FuncDef(n)
 
-		if (n.decl.name.startswith('__CSEQ_atomic_') or n.decl.name == '__CSEQ_assert'):
+		#if (n.decl.name.startswith('__CSEQ_atomic_') or n.decl.name == '__CSEQ_assert'):
+		if (n.decl.name == '__CSEQ_assert'):
 			self.__enableDRcode = True
 
 		return ret
+
 
 	def visit_Decl(self,n):
 		if (n.quals and 'const' in n.quals):

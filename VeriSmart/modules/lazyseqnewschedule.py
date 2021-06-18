@@ -125,7 +125,7 @@ class lazyseqnewschedule(core.module.Translator):
 	def additionalDefs(self):
             return ''
 
-	def initFlags(self):
+	def initFlags(self,count):
             return
  
 	def loadfromstring(self, string, env):
@@ -386,6 +386,7 @@ class lazyseqnewschedule(core.module.Translator):
 	def additionalCode(self,threadIndex):
 		return ''
 
+
 	def visit_Compound(self, n):
 		compoundList = ["{\n"]
 		# Insert the labels at the beginning of each statement,
@@ -394,7 +395,7 @@ class lazyseqnewschedule(core.module.Translator):
 		if n.block_items:
 			for stmt in n.block_items:
 
-				self.initFlags()
+				self.initFlags(self.__stmtCount)
 				# Case 1: last statement in a thread (must correspond to last label)
 				if type(stmt) == pycparser.c_ast.FuncCall and stmt.name.name == core.common.changeID['pthread_exit']: ##if type(stmt) == pycparser.c_ast.FuncCall and self._parenthesize_unless_simple(stmt.name) == core.common.changeID['pthread_exit']:
 					self.__stmtCount += 1
@@ -492,6 +493,7 @@ class lazyseqnewschedule(core.module.Translator):
 		compoundList[len(compoundList)-1] = compoundList[len(compoundList)-1] + '\n}'
 		listToStr = ''.join(stmt for stmt in compoundList)
 		return listToStr
+
 
 	def visit_FuncDef(self, n):
 		if (n.decl.name.startswith('__CSEQ_atomic_') or
@@ -1788,3 +1790,5 @@ class lazyseqnewschedule(core.module.Translator):
 # predicate methods
 	def isThread(self,name):
 		return (name == 'main' or name in self.Parser.threadName)
+	def isAtomic(self):
+		return self.__atomic
