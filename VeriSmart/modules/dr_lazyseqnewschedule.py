@@ -52,12 +52,15 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 	__VP1required = False  # True iff current visible point is the last one of this context
 
 	__VP2required = False  # True iff current visible point is the first one of this context
-	__enableDRcode = True  # Disabled when visiting atomic o or special function definitions		
+	__enableDRcode = True  # Disabled when visiting assert conditions
 
 	__isArray = False                # used to flag that we are below an ArrayRef node
 	__arrayName = ''            # contains the array name when on visiting array ref (going-up)
 	__const = {}                # variables that are declared const
 	__const[''] = []            # init const vars for global scope
+
+	__codeContainsAtomic = False #set to True if code contains blocks that are executed atomically
+	__codeContainsAtomicCheck = True #this is set to False as soon as __codeContainsAtomic is determined
 
 	def init(self):
 		self.addInputParam('rounds', 'round-robin schedules', 'r', '1', False)
@@ -243,7 +246,11 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
                          if ret != '':
                              ret += ','
                 
-                         ret += '( __cs_dataraceActiveVP2 && __cs_dataraceSecondThread  && (__cs_dataraceNotDetected = __cs_dataraceNotDetected && ! __CPROVER_get_field(&%s,"dr_write")))' % wse
+                         if self.isAtomic():
+                             n.show()
+                             ret += '( __cs_dataraceActiveVP2 && __cs_dataraceSecondThread  && (__cs_dataraceNotDetected = __cs_dataraceNotDetected && ! __CPROVER_get_field(&%s,"dr_write_noatomic")))' % wse
+                         else:
+                             ret += '( __cs_dataraceActiveVP2 && __cs_dataraceSecondThread  && (__cs_dataraceNotDetected = __cs_dataraceNotDetected && ! __CPROVER_get_field(&%s,"dr_write")))' % wse
                          self.__VP2required = True
 
                    if self.__visitingLHS:
@@ -286,7 +293,10 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 		#if (self._isGlobal(self.getCurrentThread(), n.name) or self._isPointer(self.getCurrentThread(), n.name)) and not self.__isArray and not self._isConst(self.getCurrentThread(),n.name):
 		if ( not self.isThread(n.name) and not self.__isArray and not self._isConst(self.getCurrentThread(),n.name)):
 			if self.__stats != Stats.noACC: 
-				ret += '( __cs_dataraceActiveVP2 && __cs_dataraceSecondThread  && (__cs_dataraceNotDetected = __cs_dataraceNotDetected && ! __CPROVER_get_field(&%s,"dr_write")))' %  wse
+				if self.isAtomic():
+					ret += '( __cs_dataraceActiveVP2 && __cs_dataraceSecondThread  && (__cs_dataraceNotDetected = __cs_dataraceNotDetected && ! __CPROVER_get_field(&%s,"dr_write_noatomic")))' %  wse
+				else: 
+					ret += '( __cs_dataraceActiveVP2 && __cs_dataraceSecondThread  && (__cs_dataraceNotDetected = __cs_dataraceNotDetected && ! __CPROVER_get_field(&%s,"dr_write")))' %  wse
 				self.__VP2required = True
 				self.__optional2 = False
 
@@ -342,11 +352,16 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
                     if ret != '':
                        ret += ','
                     p1 = '( __cs_dataraceActiveVP1 && __cs_dataraceDetectionStarted && !__cs_dataraceSecondThread && __CPROVER_set_field(&%s,"dr_write",1) ), ' % lwse
+                    if self.codeContainsAtomic() and not self.isAtomic(): 
+                        p1 += '( __cs_dataraceActiveVP1 && __cs_dataraceDetectionStarted && !__cs_dataraceSecondThread && __CPROVER_set_field(&%s,"dr_write_noatomic",1) ), ' % lwse
 #                    if self.isAtomic(): 
 #                          p1 += '( __cs_dataraceActiveVP1 && __cs_dataraceDetectionStarted && !__cs_dataraceSecondThread && !__cs_atomicDR && (__cs_atomicDR = 1)), '
                     self.__VP1required = True 
  
-                    p2 = '( __cs_dataraceActiveVP2 && __cs_dataraceSecondThread  && (__cs_dataraceNotDetected = __cs_dataraceNotDetected && ! __CPROVER_get_field(&%s,"dr_write")))' % lwse
+                    if self.isAtomic():
+                          p2 = '( __cs_dataraceActiveVP2 && __cs_dataraceSecondThread  && (__cs_dataraceNotDetected = __cs_dataraceNotDetected && ! __CPROVER_get_field(&%s,"dr_write_noatomic")))' % lwse
+                    else:
+                          p2 = '( __cs_dataraceActiveVP2 && __cs_dataraceSecondThread  && (__cs_dataraceNotDetected = __cs_dataraceNotDetected && ! __CPROVER_get_field(&%s,"dr_write")))' % lwse
                     self.__VP2required = True
 
                     ret += p1 + p2
@@ -417,9 +432,14 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 				if ret != '':
 					ret += ','
 				p1 = '( __cs_dataraceActiveVP1 && __cs_dataraceDetectionStarted && !__cs_dataraceSecondThread && __CPROVER_set_field(&%s,"dr_write",1) ), ' % wse
+				if self.codeContainsAtomic() and not self.isAtomic():
+					p1 += '( __cs_dataraceActiveVP1 && __cs_dataraceDetectionStarted && !__cs_dataraceSecondThread && __CPROVER_set_field(&%s,"dr_write_noatomic",1) ), ' % wse
 				self.__VP1required = True 
 
-				p2 = '( __cs_dataraceActiveVP2 && __cs_dataraceSecondThread  && (__cs_dataraceNotDetected = __cs_dataraceNotDetected && ! __CPROVER_get_field(&%s,"dr_write")))' % wse
+				if self.isAtomic():
+					p2 = '( __cs_dataraceActiveVP2 && __cs_dataraceSecondThread  && (__cs_dataraceNotDetected = __cs_dataraceNotDetected && ! __CPROVER_get_field(&%s,"dr_write_noatomic")))' % wse
+				else:
+					p2 = '( __cs_dataraceActiveVP2 && __cs_dataraceSecondThread  && (__cs_dataraceNotDetected = __cs_dataraceNotDetected && ! __CPROVER_get_field(&%s,"dr_write")))' % wse
 				self.__VP2required = True 
 
 				ret += p1 + p2
@@ -440,7 +460,10 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 				if self.__stats == Stats.ACC or self.__stats == Stats.PRE:
 					if ret != '':
 						ret += ','
-					ret += '( __cs_dataraceActiveVP2 && __cs_dataraceSecondThread  && (__cs_dataraceNotDetected = __cs_dataraceNotDetected && ! __CPROVER_get_field(&%s,"dr_write")))' % wse
+					if self.isAtomic():
+						ret += '( __cs_dataraceActiveVP2 && __cs_dataraceSecondThread  && (__cs_dataraceNotDetected = __cs_dataraceNotDetected && ! __CPROVER_get_field(&%s,"dr_write_noatomic")))' % wse
+					else:
+						ret += '( __cs_dataraceActiveVP2 && __cs_dataraceSecondThread  && (__cs_dataraceNotDetected = __cs_dataraceNotDetected && ! __CPROVER_get_field(&%s,"dr_write")))' % wse
 					self.__VP2required = True
 
 				if self.__visitingStruct:  #these parentheses are required to force priority in the c expression (* x).y
@@ -610,7 +633,10 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 			ret = sref 
 		
 		if old_stats == Stats.ACC:
-			p2 = '( __cs_dataraceActiveVP2 && __cs_dataraceSecondThread  && (__cs_dataraceNotDetected = __cs_dataraceNotDetected && ! __CPROVER_get_field(&%s,"dr_write")))' % self.__WSE
+			if self.isAtomic():
+				p2 = '( __cs_dataraceActiveVP2 && __cs_dataraceSecondThread  && (__cs_dataraceNotDetected = __cs_dataraceNotDetected && ! __CPROVER_get_field(&%s,"dr_write_noatomic")))' % self.__WSE
+			else:
+				p2 = '( __cs_dataraceActiveVP2 && __cs_dataraceSecondThread  && (__cs_dataraceNotDetected = __cs_dataraceNotDetected && ! __CPROVER_get_field(&%s,"dr_write")))' % self.__WSE
 			self.__VP2required = True 
 
 			if ret != '':
@@ -705,7 +731,9 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 		main += "int main(void) {\n"
 
 		#DR init
-		main += '__CPROVER_field_decl_global("dr_write", (_Bool) 0); \n' #% (ROUNDS)
+		if self.codeContainsAtomic(): 
+			main += '__CPROVER_field_decl_global("dr_write_noatomic", (_Bool) 0); \n' #set whenever writes meaningful for DR occur outside atomic blocks
+		main += '__CPROVER_field_decl_global("dr_write", (_Bool) 0); \n' #set whenever a meaningful write occurs
 
 		''' Part I:
 			Pre-guessed jump lengths have a size in bits depending on the size of the thread.
@@ -853,3 +881,12 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 
 	def _isConst(self,f,v):
 		return ( v in self.__const[f] or v in self.__const[''])
+
+	def codeContainsAtomic(self):
+		if self.__codeContainsAtomicCheck:
+			for i in self.Parser.funcName:
+				if i.startswith("__CSEQ_atomic"):
+					self.__codeContainsAtomic = True
+					break
+			self.__codeContainsAtomicCheck = False
+		return self.__codeContainsAtomic
