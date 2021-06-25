@@ -1,58 +1,28 @@
 #include <pthread.h>
 #include <assert.h>
 
-pthread_mutex_t  m;
 int data = 0;
 
-int __VERIFIER_atomic_foo(int x, int y) {
-    data ++;
+int __VERIFIER_atomic_foo(int *x, int y) {
+    *x=y;
     return x+5;
 }
 
 void *thread1(void *arg)
 {
-  data++;
-}
-
-
-void *thread2(void *arg)
-{
-  int *x, a[3][4];
-  int i=1;
-  i = 2;
-  a[1][1]= 7;
-  x =  malloc(sizeof(int));
-//  i = data;
-//  *x =  1;
-  data = __VERIFIER_atomic_foo(i,*x)+7;
-//  *(a+3) = x; 
-//  sizeof (int);
-//  data, x++, a[0][2];
-//  *x = (int) 3.14;
-//  data = a[i][0] * data;
-}
-
-
-void *thread3(void *arg)
-{
-  pthread_mutex_lock(&m);
-  if (data >= 3){
-    ERROR: __VERIFIER_error();
-    ;
-  }
-  pthread_mutex_unlock(&m);
+  int v;
+  v = data;
+  __VERIFIER_atomic_foo(&data,3);
 }
 
 
 int main()
 {
-  pthread_mutex_init(&m, 0);
-
   pthread_t t1, t2, t3;
 
   pthread_create(&t1, 0, thread1, 0);
-  pthread_create(&t2, 0, thread2, 0);
-  pthread_create(&t3, 0, thread3, 0);
+  pthread_create(&t2, 0, thread1, 0);
+  pthread_create(&t3, 0, thread1, 0);
 
   pthread_join(t1, 0);
   pthread_join(t2, 0);

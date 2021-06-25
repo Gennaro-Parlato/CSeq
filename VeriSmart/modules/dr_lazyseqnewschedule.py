@@ -44,7 +44,7 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 	__WSE = '' #contains the WSE comma expression of the last visited subexpression
 
 	__visitingLHS = False  # set to True when vising the left hand side of an assignment to determine whether the this is an access meaningful for data race detection
-	__access = False  # set to True to denote that the LHS of an assignment is meaningful for data race detection
+#	__access = False  # set to True to denote that the LHS of an assignment is meaningful for data race detection
 	__funcID = False  # set to True iff we are visiting the id of a function  in a function call
 
 	__visitingStruct = False # True iff we are visiting a structure name
@@ -254,7 +254,7 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
                          self.__VP2required = True
 
                    if self.__visitingLHS:
-                         self.__access = True
+                         #self.__access = True
                          self.__visitingLHS = False
                          self.__arrayName = ''
                     
@@ -301,7 +301,7 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 				self.__optional2 = False
 
 			if self.__visitingLHS:
-                           self.__access = True
+                           #self.__access = True
                            self.__visitingLHS = False
 		self.__optional1 = True   # no subexpressions 
 		super(dr_lazyseqnewschedule, self).visit_ID(n)
@@ -334,8 +334,8 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 
                 old_visitingLHS = self.__visitingLHS
                 self.__visitingLHS = True
-                old_access = self.__access
-                self.__access = False
+                #old_access = self.__access
+                #self.__access = False
 
                 lvalue = self.visit(n.lvalue)
                 #print("Visited left-handside")
@@ -348,25 +348,25 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
                 opt1 = self.__optional2
 
                 lwse = self.__WSE  # lwse now contains the lvalue where the data is assigned
-                if self.__access:
-                    if ret != '':
-                       ret += ','
-                    p1 = '( __cs_dataraceActiveVP1 && __cs_dataraceDetectionStarted && !__cs_dataraceSecondThread && __CPROVER_set_field(&%s,"dr_write",1) ), ' % lwse
-                    if self.codeContainsAtomic() and not self.isAtomic(): 
-                        p1 += '( __cs_dataraceActiveVP1 && __cs_dataraceDetectionStarted && !__cs_dataraceSecondThread && __CPROVER_set_field(&%s,"dr_write_noatomic",1) ), ' % lwse
-#                    if self.isAtomic(): 
-#                          p1 += '( __cs_dataraceActiveVP1 && __cs_dataraceDetectionStarted && !__cs_dataraceSecondThread && !__cs_atomicDR && (__cs_atomicDR = 1)), '
-                    self.__VP1required = True 
+                #if self.__access:
+                if ret != '':
+                    ret += ','
+                p1 = '( __cs_dataraceActiveVP1 && __cs_dataraceDetectionStarted && !__cs_dataraceSecondThread && __CPROVER_set_field(&%s,"dr_write",1) ), ' % lwse
+                if self.codeContainsAtomic() and not self.isAtomic(): 
+                    p1 += '( __cs_dataraceActiveVP1 && __cs_dataraceDetectionStarted && !__cs_dataraceSecondThread && __CPROVER_set_field(&%s,"dr_write_noatomic",1) ), ' % lwse
+#                if self.isAtomic(): 
+#                      p1 += '( __cs_dataraceActiveVP1 && __cs_dataraceDetectionStarted && !__cs_dataraceSecondThread && !__cs_atomicDR && (__cs_atomicDR = 1)), '
+                self.__VP1required = True 
  
-                    if self.isAtomic():
-                          p2 = '( __cs_dataraceActiveVP2 && __cs_dataraceSecondThread  && (__cs_dataraceNotDetected = __cs_dataraceNotDetected && ! __CPROVER_get_field(&%s,"dr_write_noatomic")))' % lwse
-                    else:
-                          p2 = '( __cs_dataraceActiveVP2 && __cs_dataraceSecondThread  && (__cs_dataraceNotDetected = __cs_dataraceNotDetected && ! __CPROVER_get_field(&%s,"dr_write")))' % lwse
-                    self.__VP2required = True
+                if self.isAtomic():
+                      p2 = '( __cs_dataraceActiveVP2 && __cs_dataraceSecondThread  && (__cs_dataraceNotDetected = __cs_dataraceNotDetected && ! __CPROVER_get_field(&%s,"dr_write_noatomic")))' % lwse
+                else:
+                      p2 = '( __cs_dataraceActiveVP2 && __cs_dataraceSecondThread  && (__cs_dataraceNotDetected = __cs_dataraceNotDetected && ! __CPROVER_get_field(&%s,"dr_write")))' % lwse
+                self.__VP2required = True
 
-                    ret += p1 + p2
+                ret += p1 + p2
 
-                self.__access = old_access
+                #self.__access = old_access
 
 
                 self.__stats = Stats.ACC 
@@ -406,7 +406,7 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 		ret = ''        
 		old_stats = self.__stats  
 		old_visitingLHS = self.__visitingLHS  #only used for inc/dec
-		old_access = self.__access  #only used for inc/dec
+		#old_access = self.__access  #only used for inc/dec
 
 		self.__stats = Stats.ACC 
 		if n.op == "&":
@@ -414,7 +414,7 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 		if n.op == "++" or n.op == "--" or n.op == "p++" or n.op == "p--":
 			self.__stats = Stats.noACC
 			self.__visitingLHS = True
-			self.__access = False
+			#self.__access = False
 		operand = self._parenthesize_unless_simple(n.expr)
 
 #		ret = '%s%s' % (n.op, operand)
@@ -428,21 +428,21 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 				self.__WSE = '(%s - 1)' % wse
 			else:
 				self.__WSE = wse
-			if self.__access:
-				if ret != '':
-					ret += ','
-				p1 = '( __cs_dataraceActiveVP1 && __cs_dataraceDetectionStarted && !__cs_dataraceSecondThread && __CPROVER_set_field(&%s,"dr_write",1) ), ' % wse
-				if self.codeContainsAtomic() and not self.isAtomic():
-					p1 += '( __cs_dataraceActiveVP1 && __cs_dataraceDetectionStarted && !__cs_dataraceSecondThread && __CPROVER_set_field(&%s,"dr_write_noatomic",1) ), ' % wse
-				self.__VP1required = True 
+			#if self.__access:
+			if ret != '':
+				ret += ','
+			p1 = '( __cs_dataraceActiveVP1 && __cs_dataraceDetectionStarted && !__cs_dataraceSecondThread && __CPROVER_set_field(&%s,"dr_write",1) ), ' % wse
+			if self.codeContainsAtomic() and not self.isAtomic():
+				p1 += '( __cs_dataraceActiveVP1 && __cs_dataraceDetectionStarted && !__cs_dataraceSecondThread && __CPROVER_set_field(&%s,"dr_write_noatomic",1) ), ' % wse
+			self.__VP1required = True 
 
-				if self.isAtomic():
-					p2 = '( __cs_dataraceActiveVP2 && __cs_dataraceSecondThread  && (__cs_dataraceNotDetected = __cs_dataraceNotDetected && ! __CPROVER_get_field(&%s,"dr_write_noatomic")))' % wse
-				else:
-					p2 = '( __cs_dataraceActiveVP2 && __cs_dataraceSecondThread  && (__cs_dataraceNotDetected = __cs_dataraceNotDetected && ! __CPROVER_get_field(&%s,"dr_write")))' % wse
-				self.__VP2required = True 
+			if self.isAtomic():
+				p2 = '( __cs_dataraceActiveVP2 && __cs_dataraceSecondThread  && (__cs_dataraceNotDetected = __cs_dataraceNotDetected && ! __CPROVER_get_field(&%s,"dr_write_noatomic")))' % wse
+			else:
+				p2 = '( __cs_dataraceActiveVP2 && __cs_dataraceSecondThread  && (__cs_dataraceNotDetected = __cs_dataraceNotDetected && ! __CPROVER_get_field(&%s,"dr_write")))' % wse
+			self.__VP2required = True 
 
-				ret += p1 + p2
+			ret += p1 + p2
 			if ret != '':
 				ret += ','
 			if n.op == "++" or n.op == "--":
@@ -461,9 +461,9 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 					if ret != '':
 						ret += ','
 					if self.isAtomic():
-						ret += '( __cs_dataraceActiveVP2 && __cs_dataraceSecondThread  && (__cs_dataraceNotDetected = __cs_dataraceNotDetected && ! __CPROVER_get_field(&%s,"dr_write_noatomic")))' % wse
+						ret += '( __cs_dataraceActiveVP2 && __cs_dataraceSecondThread  && (__cs_dataraceNotDetected = __cs_dataraceNotDetected && ! __CPROVER_get_field(%s,"dr_write_noatomic")))' % wse
 					else:
-						ret += '( __cs_dataraceActiveVP2 && __cs_dataraceSecondThread  && (__cs_dataraceNotDetected = __cs_dataraceNotDetected && ! __CPROVER_get_field(&%s,"dr_write")))' % wse
+						ret += '( __cs_dataraceActiveVP2 && __cs_dataraceSecondThread  && (__cs_dataraceNotDetected = __cs_dataraceNotDetected && ! __CPROVER_get_field(%s,"dr_write")))' % wse
 					self.__VP2required = True
 
 				if self.__visitingStruct:  #these parentheses are required to force priority in the c expression (* x).y
@@ -492,7 +492,7 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 				ret += self.__WSE
 
 		self.__visitingLHS =old_visitingLHS  #only used for inc/dec
-		self.__access = old_access #only used for inc/dec
+		#self.__access = old_access #only used for inc/dec
 
 		self.__optional1 = self.__optional2
 		if n.op == "++" or n.op == "--" or n.op == "p++" or n.op == "p--":

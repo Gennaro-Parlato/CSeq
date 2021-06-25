@@ -21,18 +21,18 @@ void *thread1(void *arg)
 void *thread2(void *arg)
 {
   int *x, a[3][4];
-  int i=1;
-  p =  malloc(sizeof(int));
+//  int i=1;
+//  p =  malloc(sizeof(int));
 //  i = data;
-//  *x =  1;
+  *x = data;
 //  data = foo(3)+7;
-  a[1][1]= 7+x;
+//  a[1][1]= 7+x;
 //  *(a+3) = x; 
 //  sizeof (int);
 //  data, x++, a[0][2];
 //  *x = (int) 3.14;
-  g[0] += 3;
-  p[0] = 1;
+//  g[0] += 3;
+//  p[0] = 1;
 //  data = a[i][0] * data;
 }
 
