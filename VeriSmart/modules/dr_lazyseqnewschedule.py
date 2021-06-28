@@ -43,7 +43,7 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 
 	__WSE = '' #contains the WSE comma expression of the last visited subexpression
 
-	__visitingLHS = False  # set to True when vising the left hand side of an assignment to determine whether the this is an access meaningful for data race detection
+	#__visitingLHS = False  # set to True when vising the left hand side of an assignment to determine whether this is an access meaningful for data race detection
 #	__access = False  # set to True to denote that the LHS of an assignment is meaningful for data race detection
 	__funcID = False  # set to True iff we are visiting the id of a function  in a function call
 
@@ -247,16 +247,16 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
                              ret += ','
                 
                          if self.isAtomic():
-                             n.show()
+                             #n.show()
                              ret += '( __cs_dataraceActiveVP2 && __cs_dataraceSecondThread  && (__cs_dataraceNotDetected = __cs_dataraceNotDetected && ! __CPROVER_get_field(&%s,"dr_write_noatomic")))' % wse
                          else:
                              ret += '( __cs_dataraceActiveVP2 && __cs_dataraceSecondThread  && (__cs_dataraceNotDetected = __cs_dataraceNotDetected && ! __CPROVER_get_field(&%s,"dr_write")))' % wse
                          self.__VP2required = True
 
-                   if self.__visitingLHS:
+                   #if self.__visitingLHS:
                          #self.__access = True
-                         self.__visitingLHS = False
-                         self.__arrayName = ''
+                         #self.__visitingLHS = False
+                         #self.__arrayName = ''
                     
                 if old_drStats == Stats.TOP:
                    if ret != '':
@@ -300,9 +300,9 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 				self.__VP2required = True
 				self.__optional2 = False
 
-			if self.__visitingLHS:
+			#if self.__visitingLHS:
                            #self.__access = True
-                           self.__visitingLHS = False
+                           #self.__visitingLHS = False
 		self.__optional1 = True   # no subexpressions 
 		super(dr_lazyseqnewschedule, self).visit_ID(n)
 		self.__WSE = wse
@@ -332,15 +332,15 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 
                 self.__stats = Stats.noACC 
 
-                old_visitingLHS = self.__visitingLHS
-                self.__visitingLHS = True
+                #old_visitingLHS = self.__visitingLHS
+                #self.__visitingLHS = True
                 #old_access = self.__access
                 #self.__access = False
 
                 lvalue = self.visit(n.lvalue)
                 #print("Visited left-handside")
                 
-                self.__visitingLHS = old_visitingLHS
+                #self.__visitingLHS = old_visitingLHS
 
                 if not self.__optional1:   # OPTIONAL1
                    ret =  lvalue 
@@ -405,7 +405,7 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 		#print(self.__stats)
 		ret = ''        
 		old_stats = self.__stats  
-		old_visitingLHS = self.__visitingLHS  #only used for inc/dec
+		#old_visitingLHS = self.__visitingLHS  #only used for inc/dec
 		#old_access = self.__access  #only used for inc/dec
 
 		self.__stats = Stats.ACC 
@@ -413,7 +413,7 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 			self.__stats = Stats.noACC
 		if n.op == "++" or n.op == "--" or n.op == "p++" or n.op == "p--":
 			self.__stats = Stats.noACC
-			self.__visitingLHS = True
+			#self.__visitingLHS = True
 			#self.__access = False
 		operand = self._parenthesize_unless_simple(n.expr)
 
@@ -491,7 +491,7 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 					ret += ','
 				ret += self.__WSE
 
-		self.__visitingLHS =old_visitingLHS  #only used for inc/dec
+		#self.__visitingLHS =old_visitingLHS  #only used for inc/dec
 		#self.__access = old_access #only used for inc/dec
 
 		self.__optional1 = self.__optional2
