@@ -732,8 +732,8 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 
 		#DR init
 		if self.codeContainsAtomic(): 
-			main += '__CPROVER_field_decl_global("dr_write_noatomic", (_Bool) 0); \n' #set whenever writes meaningful for DR occur outside atomic blocks
-		main += '__CPROVER_field_decl_global("dr_write", (_Bool) 0); \n' #set whenever a meaningful write occurs
+			main += '__CPROVER_field_decl_global("dr_write_noatomic", (_Bool) 0); \n __CPROVER_field_decl_local("dr_write_noatomic", (_Bool) 0); \n ' #set whenever writes meaningful for DR occur outside atomic blocks
+		main += '__CPROVER_field_decl_global("dr_write", (_Bool) 0); \n __CPROVER_field_decl_local("dr_write", (_Bool) 0); \n' #set whenever a meaningful write occurs
 
 		''' Part I:
 			Pre-guessed jump lengths have a size in bits depending on the size of the thread.
@@ -884,7 +884,7 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 
 	def codeContainsAtomic(self):
 		if self.__codeContainsAtomicCheck:
-			for i in self.Parser.funcName:
+			for i in self.Parser.funcCallCnt: #self.Parser.funcName:
 				if i.startswith("__CSEQ_atomic"):
 					self.__codeContainsAtomic = True
 					break

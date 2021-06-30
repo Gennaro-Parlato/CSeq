@@ -223,7 +223,7 @@ class instrumenter(core.module.Translator):
 			'__cs_thread_index'
 		]
 
-		#print("QUI")
+		#print(string)
 		super(instrumenter, self).loadfromstring(string, env)
 		self.lastoutputlineno = 0
 		self.removelinenumbers()
