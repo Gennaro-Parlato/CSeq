@@ -61,6 +61,8 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 
 	__codeContainsAtomic = False #set to True if code contains blocks that are executed atomically
 	__codeContainsAtomicCheck = True #this is set to False as soon as __codeContainsAtomic is determined
+	
+#	__initializer = False #set to True when parsing initialization expression in declarations (this is needed to ensure that 
 
 	def init(self):
 		self.addInputParam('rounds', 'round-robin schedules', 'r', '1', False)
@@ -291,7 +293,10 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 			
 		
 		#if (self._isGlobal(self.getCurrentThread(), n.name) or self._isPointer(self.getCurrentThread(), n.name)) and not self.__isArray and not self._isConst(self.getCurrentThread(),n.name):
-		if ( not self.isThread(n.name) and not self.__isArray and not self._isConst(self.getCurrentThread(),n.name)):
+		if ( self._isVar(self.getCurrentThread(),n.name)): 
+# old condition: 
+# not self.isThread(n.name) and not self.__isArray and not self._isConst(self.getCurrentThread(),n.name) ):
+#			print(self._isVar(self.getCurrentThread(),n.name))
 			if self.__stats != Stats.noACC: 
 				if self.isAtomic():
 					ret += '( __cs_dataraceActiveVP2 && __cs_dataraceSecondThread  && (__cs_dataraceNotDetected = __cs_dataraceNotDetected && ! __CPROVER_get_field(&%s,"dr_write_noatomic")))' %  wse
@@ -890,3 +895,8 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 					break
 			self.__codeContainsAtomicCheck = False
 		return self.__codeContainsAtomic
+
+	def _isVar(self,f,v):
+		return ( v in self.Parser.varNames[f]) # or v in self.Parser.varNames[''])
+		
+	#	self.Parser.varNames)

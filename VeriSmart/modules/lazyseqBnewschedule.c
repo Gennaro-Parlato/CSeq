@@ -172,3 +172,9 @@ int   __cs_attr_setscope(__cs_attr_t * t, int s) { return 0;}
 int   __cs_attr_setstackaddr(__cs_attr_t * t, void * s) { return 0;}
 int   __cs_attr_setstacksize(__cs_attr_t * t, unsigned int s) { return 0;}
 
+//added to handle few svcomp benchmarks, can be removed if conflicting with many
+typedef int __cs_key_t;
+void *__cs_getspecific(__cs_key_t key){return (void *)0;}
+int __cs__setspecific(__cs_key_t key, const void *value){return 0;}
+int __cs_key_create(__cs_key_t *key) {return 0;}
+

@@ -7,6 +7,7 @@ pthread_mutex_t  m;
 //int data = (2,0); //inizializer element must be constant for storage class global and static
 int data = 0;
 const int pi = 3;
+int b[3][3]={{0,0,0},{2}};
 
 void *thread1(void *arg)
 {

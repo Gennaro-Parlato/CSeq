@@ -18,8 +18,9 @@ void *thread1(void *arg)
 typedef struct { char nome[3]; 
 		 int x,y,z; } luogo;
 
-luogo g;
+luogo g = {{0,0,0}, 1, 2, 3};
 
+pthread_mutex_t mut = { { 0, 0, 0, 0, 0, { { 0, 0 } } } };
 
 void *thread2(void *arg)
 {
