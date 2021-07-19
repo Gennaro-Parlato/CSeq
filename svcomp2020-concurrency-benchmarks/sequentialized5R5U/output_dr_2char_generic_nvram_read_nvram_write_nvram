@@ -1,0 +1,1451 @@
+CBMC version 5.12 (cbmc-5.11-4673-gff3adfd29-dirty) 64-bit x86_64 linux
+Parsing /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c
+Converting
+Type-checking _dr_2char_generic_nvram_read_nvram_write_nvram
+file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c line 1177 function nvram_init: function '__CSEQ_nondet_long' is not declared
+file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c line 1239 function whoop_wrapper_write_nvram_0: function '__CPROVER_get_field' is not declared
+file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c line 1578 function whoop_wrapper_write_nvram_0: function '__CPROVER_set_field' is not declared
+file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c line 2059 function main: function '__CPROVER_field_decl_global' is not declared
+Generating GOTO Program
+Adding CPROVER library (x86_64)
+Removal of function pointers and virtual functions
+file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c line 2037 function __cs_main_thread: replacing function pointer by 1 possible targets
+Generic Property Instrumentation
+Running with 8 object bits, 56 offset bits (default)
+Starting Bounded Model Checking
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+**** WARNING: no body for function __CSEQ_nondet_long
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+size of program expression: 16397 steps
+simple slicing removed 5 assignments
+Generated 1 VCC(s), 1 remaining after simplification
+Passing problem to propositional reduction
+converting SSA
+Running propositional reduction
+Post-processing
+Solving with Glucose Syrup with simplifier
+230277 variables, 716322 clauses
+SAT checker: instance is SATISFIABLE
+Runtime decision procedure: 1.40904s
+Building error trace
+Counterexample:
+
+State 19 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function __CPROVER_initialize line 62 thread 0
+----------------------------------------------------
+  __cs_active_thread[0l]=1 (1)
+
+State 20 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function __CPROVER_initialize line 62 thread 0
+----------------------------------------------------
+  __cs_active_thread[1l]=0 (0)
+
+State 21 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function __CPROVER_initialize line 62 thread 0
+----------------------------------------------------
+  __cs_active_thread[2l]=0 (0)
+
+State 32 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function __CPROVER_initialize line 63 thread 0
+----------------------------------------------------
+  __cs_pc[0l]=0 (00000)
+
+State 33 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function __CPROVER_initialize line 63 thread 0
+----------------------------------------------------
+  __cs_pc[1l]=0 (00000)
+
+State 34 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function __CPROVER_initialize line 63 thread 0
+----------------------------------------------------
+  __cs_pc[2l]=0 (00000)
+
+State 36 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function __CPROVER_initialize line 64 thread 0
+----------------------------------------------------
+  __cs_pc_cs[0l]=0 (000000)
+
+State 37 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function __CPROVER_initialize line 64 thread 0
+----------------------------------------------------
+  __cs_pc_cs[1l]=0 (000000)
+
+State 38 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function __CPROVER_initialize line 64 thread 0
+----------------------------------------------------
+  __cs_pc_cs[2l]=0 (000000)
+
+State 40 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function __CPROVER_initialize line 79 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 41 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function __CPROVER_initialize line 79 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 42 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function __CPROVER_initialize line 79 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[2l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 44 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function __CPROVER_initialize line 66 thread 0
+----------------------------------------------------
+  __cs_thread_lines[0l]=4 (00100)
+
+State 45 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function __CPROVER_initialize line 66 thread 0
+----------------------------------------------------
+  __cs_thread_lines[1l]=19 (10011)
+
+State 46 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function __CPROVER_initialize line 66 thread 0
+----------------------------------------------------
+  __cs_thread_lines[2l]=26 (11010)
+
+State 48 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function __CPROVER_initialize line 78 thread 0
+----------------------------------------------------
+  __cs_threadargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 49 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function __CPROVER_initialize line 78 thread 0
+----------------------------------------------------
+  __cs_threadargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 50 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function __CPROVER_initialize line 78 thread 0
+----------------------------------------------------
+  __cs_threadargs[2l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 279 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function main line 2060 thread 0
+----------------------------------------------------
+  __cs_dr_ts=2 (0010)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c line 2061 function main
+  (signed int)__cs_dr_ts <= 14
+
+State 281 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function main line 2064 thread 0
+----------------------------------------------------
+  __cs_tmp_t0_r0=2 (010)
+
+State 282 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function main line 2065 thread 0
+----------------------------------------------------
+  __cs_pc_cs[0l]=2 (000010)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c line 2066 function main
+  (signed int)__cs_pc_cs[(signed long int)0] > 0
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c line 2067 function main
+  (signed int)__cs_pc_cs[(signed long int)0] <= 4
+
+State 298 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function __cs_main_thread line 2017 thread 0
+----------------------------------------------------
+  __cs_size=4u (00000000 00000000 00000000 00000100)
+
+State 299 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function __cs_safe_malloc line 70 thread 0
+----------------------------------------------------
+  __cs_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 302 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function __cs_safe_malloc line 70 thread 0
+----------------------------------------------------
+  malloc_size=4ul (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000100)
+
+State 306 file <builtin-library-malloc> function malloc line 12 thread 0
+----------------------------------------------------
+  dynamic_object1.unused=0 (00000000 00000000 00000000 00000000)
+
+State 321 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function __cs_safe_malloc line 70 thread 0
+----------------------------------------------------
+  __cs_ptr=(const void *)&dynamic_object1.unused (00001101 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 325 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function __cs_main_thread line 2017 thread 0
+----------------------------------------------------
+  whoop_inode_0=&dynamic_object1 (00001101 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 329 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function __cs_main_thread line 2018 thread 0
+----------------------------------------------------
+  __cs_size=16u (00000000 00000000 00000000 00010000)
+
+State 330 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function __cs_safe_malloc line 70 thread 0
+----------------------------------------------------
+  __cs_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 333 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function __cs_safe_malloc line 70 thread 0
+----------------------------------------------------
+  malloc_size=16ul (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00010000)
+
+State 337 file <builtin-library-malloc> function malloc line 12 thread 0
+----------------------------------------------------
+  dynamic_object2.f_pos=0l (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 338 file <builtin-library-malloc> function malloc line 12 thread 0
+----------------------------------------------------
+  dynamic_object2.private_data=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 353 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function __cs_safe_malloc line 70 thread 0
+----------------------------------------------------
+  __cs_ptr=(const void *)&dynamic_object2.f_pos (00001110 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 357 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function __cs_main_thread line 2018 thread 0
+----------------------------------------------------
+  whoop_file_0=&dynamic_object2 (00001110 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 361 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function __cs_main_thread line 2019 thread 0
+----------------------------------------------------
+  __cs_size=4u (00000000 00000000 00000000 00000100)
+
+State 362 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function __cs_safe_malloc line 70 thread 0
+----------------------------------------------------
+  __cs_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 365 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function __cs_safe_malloc line 70 thread 0
+----------------------------------------------------
+  malloc_size=4ul (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000100)
+
+State 369 file <builtin-library-malloc> function malloc line 12 thread 0
+----------------------------------------------------
+  dynamic_object3.unused=0 (00000000 00000000 00000000 00000000)
+
+State 384 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function __cs_safe_malloc line 70 thread 0
+----------------------------------------------------
+  __cs_ptr=(const void *)&dynamic_object3.unused (00001111 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 388 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function __cs_main_thread line 2019 thread 0
+----------------------------------------------------
+  whoop_inode_1=&dynamic_object3 (00001111 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 392 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function __cs_main_thread line 2020 thread 0
+----------------------------------------------------
+  __cs_size=16u (00000000 00000000 00000000 00010000)
+
+State 393 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function __cs_safe_malloc line 70 thread 0
+----------------------------------------------------
+  __cs_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 396 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function __cs_safe_malloc line 70 thread 0
+----------------------------------------------------
+  malloc_size=16ul (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00010000)
+
+State 400 file <builtin-library-malloc> function malloc line 12 thread 0
+----------------------------------------------------
+  dynamic_object4.f_pos=0l (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 401 file <builtin-library-malloc> function malloc line 12 thread 0
+----------------------------------------------------
+  dynamic_object4.private_data=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 416 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function __cs_safe_malloc line 70 thread 0
+----------------------------------------------------
+  __cs_ptr=(const void *)&dynamic_object4.f_pos (00010000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 420 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function __cs_main_thread line 2020 thread 0
+----------------------------------------------------
+  whoop_file_1=&dynamic_object4 (00010000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 424 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function __cs_main_thread line 2021 thread 0
+----------------------------------------------------
+  __cs_size=4u (00000000 00000000 00000000 00000100)
+
+State 425 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function __cs_safe_malloc line 70 thread 0
+----------------------------------------------------
+  __cs_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 428 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function __cs_safe_malloc line 70 thread 0
+----------------------------------------------------
+  malloc_size=4ul (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000100)
+
+State 432 file <builtin-library-malloc> function malloc line 12 thread 0
+----------------------------------------------------
+  dynamic_object5.unused=0 (00000000 00000000 00000000 00000000)
+
+State 447 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function __cs_safe_malloc line 70 thread 0
+----------------------------------------------------
+  __cs_ptr=(const void *)&dynamic_object5.unused (00010001 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 451 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function __cs_main_thread line 2021 thread 0
+----------------------------------------------------
+  whoop_inode_2=&dynamic_object5 (00010001 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 455 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function __cs_main_thread line 2022 thread 0
+----------------------------------------------------
+  __cs_size=16u (00000000 00000000 00000000 00010000)
+
+State 456 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function __cs_safe_malloc line 70 thread 0
+----------------------------------------------------
+  __cs_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 459 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function __cs_safe_malloc line 70 thread 0
+----------------------------------------------------
+  malloc_size=16ul (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00010000)
+
+State 463 file <builtin-library-malloc> function malloc line 12 thread 0
+----------------------------------------------------
+  dynamic_object6.f_pos=0l (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 464 file <builtin-library-malloc> function malloc line 12 thread 0
+----------------------------------------------------
+  dynamic_object6.private_data=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 479 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function __cs_safe_malloc line 70 thread 0
+----------------------------------------------------
+  __cs_ptr=(const void *)&dynamic_object6.f_pos (00010010 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 483 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function __cs_main_thread line 2022 thread 0
+----------------------------------------------------
+  whoop_file_2=&dynamic_object6 (00010010 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 487 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function __cs_main_thread line 2023 thread 0
+----------------------------------------------------
+  __cs_size=4u (00000000 00000000 00000000 00000100)
+
+State 488 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function __cs_safe_malloc line 70 thread 0
+----------------------------------------------------
+  __cs_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 491 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function __cs_safe_malloc line 70 thread 0
+----------------------------------------------------
+  malloc_size=4ul (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000100)
+
+State 495 file <builtin-library-malloc> function malloc line 12 thread 0
+----------------------------------------------------
+  dynamic_object7.unused=0 (00000000 00000000 00000000 00000000)
+
+State 510 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function __cs_safe_malloc line 70 thread 0
+----------------------------------------------------
+  __cs_ptr=(const void *)&dynamic_object7.unused (00010011 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 514 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function __cs_main_thread line 2023 thread 0
+----------------------------------------------------
+  whoop_inode_3=&dynamic_object7 (00010011 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 518 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function __cs_main_thread line 2024 thread 0
+----------------------------------------------------
+  __cs_size=16u (00000000 00000000 00000000 00010000)
+
+State 519 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function __cs_safe_malloc line 70 thread 0
+----------------------------------------------------
+  __cs_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 522 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function __cs_safe_malloc line 70 thread 0
+----------------------------------------------------
+  malloc_size=16ul (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00010000)
+
+State 526 file <builtin-library-malloc> function malloc line 12 thread 0
+----------------------------------------------------
+  dynamic_object8.f_pos=0l (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 527 file <builtin-library-malloc> function malloc line 12 thread 0
+----------------------------------------------------
+  dynamic_object8.private_data=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 542 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function __cs_safe_malloc line 70 thread 0
+----------------------------------------------------
+  __cs_ptr=(const void *)&dynamic_object8.f_pos (00010100 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 546 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function __cs_main_thread line 2024 thread 0
+----------------------------------------------------
+  whoop_file_3=&dynamic_object8 (00010100 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 550 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function __cs_main_thread line 2025 thread 0
+----------------------------------------------------
+  __cs_size=4u (00000000 00000000 00000000 00000100)
+
+State 551 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function __cs_safe_malloc line 70 thread 0
+----------------------------------------------------
+  __cs_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 554 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function __cs_safe_malloc line 70 thread 0
+----------------------------------------------------
+  malloc_size=4ul (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000100)
+
+State 558 file <builtin-library-malloc> function malloc line 12 thread 0
+----------------------------------------------------
+  dynamic_object9.unused=0 (00000000 00000000 00000000 00000000)
+
+State 573 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function __cs_safe_malloc line 70 thread 0
+----------------------------------------------------
+  __cs_ptr=(const void *)&dynamic_object9.unused (00010101 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 577 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function __cs_main_thread line 2025 thread 0
+----------------------------------------------------
+  whoop_inode_4=&dynamic_object9 (00010101 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 581 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function __cs_main_thread line 2026 thread 0
+----------------------------------------------------
+  __cs_size=16u (00000000 00000000 00000000 00010000)
+
+State 582 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function __cs_safe_malloc line 70 thread 0
+----------------------------------------------------
+  __cs_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 585 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function __cs_safe_malloc line 70 thread 0
+----------------------------------------------------
+  malloc_size=16ul (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00010000)
+
+State 589 file <builtin-library-malloc> function malloc line 12 thread 0
+----------------------------------------------------
+  dynamic_object10.f_pos=0l (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 590 file <builtin-library-malloc> function malloc line 12 thread 0
+----------------------------------------------------
+  dynamic_object10.private_data=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 605 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function __cs_safe_malloc line 70 thread 0
+----------------------------------------------------
+  __cs_ptr=(const void *)&dynamic_object10.f_pos (00010110 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 609 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function __cs_main_thread line 2026 thread 0
+----------------------------------------------------
+  whoop_file_4=&dynamic_object10 (00010110 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 613 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function __cs_main_thread line 2027 thread 0
+----------------------------------------------------
+  __cs_size=4u (00000000 00000000 00000000 00000100)
+
+State 614 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function __cs_safe_malloc line 70 thread 0
+----------------------------------------------------
+  __cs_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 617 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function __cs_safe_malloc line 70 thread 0
+----------------------------------------------------
+  malloc_size=4ul (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000100)
+
+State 621 file <builtin-library-malloc> function malloc line 12 thread 0
+----------------------------------------------------
+  dynamic_object11.unused=0 (00000000 00000000 00000000 00000000)
+
+State 636 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function __cs_safe_malloc line 70 thread 0
+----------------------------------------------------
+  __cs_ptr=(const void *)&dynamic_object11.unused (00010111 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 640 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function __cs_main_thread line 2027 thread 0
+----------------------------------------------------
+  whoop_pci_dev=&dynamic_object11 (00010111 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 644 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function __cs_main_thread line 2028 thread 0
+----------------------------------------------------
+  __cs_size=1u (00000000 00000000 00000000 00000001)
+
+State 645 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function __cs_safe_malloc line 70 thread 0
+----------------------------------------------------
+  __cs_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 648 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function __cs_safe_malloc line 70 thread 0
+----------------------------------------------------
+  malloc_size=1ul (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000001)
+
+State 666 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function __cs_safe_malloc line 70 thread 0
+----------------------------------------------------
+  __cs_ptr=(const void *)&dynamic_object12 (00011000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 670 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function __cs_main_thread line 2028 thread 0
+----------------------------------------------------
+  whoop_buf=&dynamic_object12 (00011000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 674 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function __cs_main_thread line 2029 thread 0
+----------------------------------------------------
+  __cs_size=4u (00000000 00000000 00000000 00000100)
+
+State 675 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function __cs_safe_malloc line 70 thread 0
+----------------------------------------------------
+  __cs_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 678 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function __cs_safe_malloc line 70 thread 0
+----------------------------------------------------
+  malloc_size=4ul (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000100)
+
+State 682 file <builtin-library-malloc> function malloc line 12 thread 0
+----------------------------------------------------
+  dynamic_object13.dev=0 (00000000 00000000 00000000 00000000)
+
+State 697 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function __cs_safe_malloc line 70 thread 0
+----------------------------------------------------
+  __cs_ptr=(const void *)&dynamic_object13.dev (00011001 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 701 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function __cs_main_thread line 2029 thread 0
+----------------------------------------------------
+  whoop_platform_device=&dynamic_object13 (00011001 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 705 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function __cs_main_thread line 2030 thread 0
+----------------------------------------------------
+  __cs_size=4u (00000000 00000000 00000000 00000100)
+
+State 706 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function __cs_safe_malloc line 70 thread 0
+----------------------------------------------------
+  __cs_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 709 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function __cs_safe_malloc line 70 thread 0
+----------------------------------------------------
+  malloc_size=4ul (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000100)
+
+State 713 file <builtin-library-malloc> function malloc line 12 thread 0
+----------------------------------------------------
+  dynamic_object14.unused=0 (00000000 00000000 00000000 00000000)
+
+State 728 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function __cs_safe_malloc line 70 thread 0
+----------------------------------------------------
+  __cs_ptr=(const void *)&dynamic_object14.unused (00011010 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 732 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function __cs_main_thread line 2030 thread 0
+----------------------------------------------------
+  whoop_vm_area_struct=&dynamic_object14 (00011010 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 736 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function __cs_main_thread line 2031 thread 0
+----------------------------------------------------
+  __cs_size=4u (00000000 00000000 00000000 00000100)
+
+State 737 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function __cs_safe_malloc line 70 thread 0
+----------------------------------------------------
+  __cs_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 740 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function __cs_safe_malloc line 70 thread 0
+----------------------------------------------------
+  malloc_size=4ul (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000100)
+
+State 744 file <builtin-library-malloc> function malloc line 12 thread 0
+----------------------------------------------------
+  dynamic_object15.unused=0 (00000000 00000000 00000000 00000000)
+
+State 759 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function __cs_safe_malloc line 70 thread 0
+----------------------------------------------------
+  __cs_ptr=(const void *)&dynamic_object15.unused (00011011 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 763 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function __cs_main_thread line 2031 thread 0
+----------------------------------------------------
+  whoop_cx_dev=&dynamic_object15 (00011011 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 767 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function __cs_main_thread line 2032 thread 0
+----------------------------------------------------
+  __cs_size=4u (00000000 00000000 00000000 00000100)
+
+State 768 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function __cs_safe_malloc line 70 thread 0
+----------------------------------------------------
+  __cs_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 771 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function __cs_safe_malloc line 70 thread 0
+----------------------------------------------------
+  malloc_size=4ul (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000100)
+
+State 775 file <builtin-library-malloc> function malloc line 12 thread 0
+----------------------------------------------------
+  dynamic_object16.something=0 (00000000 00000000 00000000 00000000)
+
+State 790 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function __cs_safe_malloc line 70 thread 0
+----------------------------------------------------
+  __cs_ptr=(const void *)&dynamic_object16.something (00011100 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 794 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function __cs_main_thread line 2032 thread 0
+----------------------------------------------------
+  whoop_poll_table=&dynamic_object16 (00011100 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 798 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function __cs_main_thread line 2033 thread 0
+----------------------------------------------------
+  __cs_size=8u (00000000 00000000 00000000 00001000)
+
+State 799 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function __cs_safe_malloc line 70 thread 0
+----------------------------------------------------
+  __cs_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 802 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function __cs_safe_malloc line 70 thread 0
+----------------------------------------------------
+  malloc_size=8ul (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00001000)
+
+State 820 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function __cs_safe_malloc line 70 thread 0
+----------------------------------------------------
+  __cs_ptr=(const void *)&dynamic_object17 (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 824 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function __cs_main_thread line 2033 thread 0
+----------------------------------------------------
+  whoop_loff_t=&dynamic_object17 (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 825 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function __cs_main_thread line 2034 thread 0
+----------------------------------------------------
+  whoop_int=5 (00000000 00000000 00000000 00000101)
+
+State 828 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function __cs_main_thread line 2035 thread 0
+----------------------------------------------------
+  cond=1 (00000000 00000000 00000000 00000001)
+
+State 834 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function nvram_init line 1141 thread 0
+----------------------------------------------------
+  __cs_local_nvram_init_ret=0 (00000000 00000000 00000000 00000000)
+
+State 835 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function nvram_init line 1145 thread 0
+----------------------------------------------------
+  __cs_retval_printk_1=0 (00000000 00000000 00000000 00000000)
+
+State 836 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function nvram_init line 1156 thread 0
+----------------------------------------------------
+  __cs_retval_misc_register_1=0 (00000000 00000000 00000000 00000000)
+
+State 837 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function nvram_init line 1164 thread 0
+----------------------------------------------------
+  __cs_local_nvram_init_ret=0 (00000000 00000000 00000000 00000000)
+
+State 838 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function nvram_init line 1168 thread 0
+----------------------------------------------------
+  __cs_nondet_nvram_init___cs_tmp_if_cond_14=FALSE (00000000)
+
+State 845 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function nvram_init line 1177 thread 0
+----------------------------------------------------
+  __cs_retval_nvram_get_size_1=1879178648l (00000000 00000000 00000000 00000000 01110000 00000001 11111101 10011000)
+
+State 846 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function nvram_init line 1185 thread 0
+----------------------------------------------------
+  nvram_len=1879178648l (00000000 00000000 00000000 00000000 01110000 00000001 11111101 10011000)
+
+State 847 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function nvram_init line 1189 thread 0
+----------------------------------------------------
+  __cs_nondet_nvram_init___cs_tmp_if_cond_15=FALSE (00000000)
+
+State 852 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function __cs_main_thread line 2037 thread 0
+----------------------------------------------------
+  __cs_local_main__whoop_init_result=0 (00000000 00000000 00000000 00000000)
+
+State 855 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function __cs_main_thread line 2040 thread 0
+----------------------------------------------------
+  __cs_new_thread_id=&__cs_nondet_main_pthread_t_write_nvram (00011101 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 856 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function __cs_main_thread line 2040 thread 0
+----------------------------------------------------
+  __cs_attr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 857 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function __cs_main_thread line 2040 thread 0
+----------------------------------------------------
+  __cs_thread_function=whoop_wrapper_write_nvram_0 (00011110 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 858 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function __cs_main_thread line 2040 thread 0
+----------------------------------------------------
+  __cs_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 859 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function __cs_main_thread line 2040 thread 0
+----------------------------------------------------
+  __cs_threadID=1 (00000000 00000000 00000000 00000001)
+
+State 861 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function __cs_create line 84 thread 0
+----------------------------------------------------
+  __cs_nondet_main_pthread_t_write_nvram=1 (00000000 00000000 00000000 00000001)
+
+State 862 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function __cs_create line 85 thread 0
+----------------------------------------------------
+  __cs_active_thread[1l]=1 (1)
+
+State 863 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function __cs_create line 86 thread 0
+----------------------------------------------------
+  __cs_threadargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 866 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function __cs_create line 87 thread 0
+----------------------------------------------------
+  __cs_message="thread spawned" (00011111 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 873 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function __cs_main_thread line 2043 thread 0
+----------------------------------------------------
+  __cs_new_thread_id=&__cs_nondet_main_pthread_t_read_nvram (00100000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 874 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function __cs_main_thread line 2043 thread 0
+----------------------------------------------------
+  __cs_attr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 875 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function __cs_main_thread line 2043 thread 0
+----------------------------------------------------
+  __cs_thread_function=whoop_wrapper_read_nvram_0 (00100001 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 876 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function __cs_main_thread line 2043 thread 0
+----------------------------------------------------
+  __cs_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 877 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function __cs_main_thread line 2043 thread 0
+----------------------------------------------------
+  __cs_threadID=2 (00000000 00000000 00000000 00000010)
+
+State 879 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function __cs_create line 84 thread 0
+----------------------------------------------------
+  __cs_nondet_main_pthread_t_read_nvram=2 (00000000 00000000 00000000 00000010)
+
+State 880 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function __cs_create line 85 thread 0
+----------------------------------------------------
+  __cs_active_thread[2l]=1 (1)
+
+State 881 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function __cs_create line 86 thread 0
+----------------------------------------------------
+  __cs_threadargs[2l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 884 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function __cs_create line 87 thread 0
+----------------------------------------------------
+  __cs_message="thread spawned" (00011111 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 892 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function __cs_main_thread line 2055 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 893 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function __cs_main_thread line 2055 thread 0
+----------------------------------------------------
+  __cs_thread_index=0u (00000000 00000000 00000000 00000000)
+
+State 894 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function __cs_exit line 98 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 900 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function main line 2073 thread 0
+----------------------------------------------------
+  __cs_pc[0l]=2 (00010)
+
+State 901 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function main line 2075 thread 0
+----------------------------------------------------
+  __cs_tmp_t1_r0=3 (00011)
+
+State 903 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function main line 2078 thread 0
+----------------------------------------------------
+  __cs_pc_cs[1l]=3 (000011)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c line 2079 function main
+  (signed int)__cs_pc_cs[(signed long int)1] <= 19
+
+State 908 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function main line 2082 thread 0
+----------------------------------------------------
+  __cs_param_whoop_wrapper_write_nvram_args=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 915 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function whoop_wrapper_write_nvram_0 line 1241 thread 0
+----------------------------------------------------
+  __cs_param_write_nvram_1_file=&dynamic_object2 (00001110 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 922 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function whoop_wrapper_write_nvram_0 line 1248 thread 0
+----------------------------------------------------
+  __cs_param_write_nvram_1_count=5ul (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000101)
+
+State 929 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function whoop_wrapper_write_nvram_0 line 1254 thread 0
+----------------------------------------------------
+  __cs_param_write_nvram_1_ppos=&dynamic_object17 (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 930 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function whoop_wrapper_write_nvram_0 line 1256 thread 0
+----------------------------------------------------
+  __cs_local_write_nvram_1_p=((char *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 931 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function whoop_wrapper_write_nvram_0 line 1256 thread 0
+----------------------------------------------------
+  __cs_local_write_nvram_1_p=((char *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 932 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function whoop_wrapper_write_nvram_0 line 1258 thread 0
+----------------------------------------------------
+  __cs_local_write_nvram_1_c=0 (00000000)
+
+State 933 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function whoop_wrapper_write_nvram_0 line 1265 thread 0
+----------------------------------------------------
+  __cs_param_access_ok_3_arg0=0 (00000000 00000000 00000000 00000000)
+
+State 934 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function whoop_wrapper_write_nvram_0 line 1268 thread 0
+----------------------------------------------------
+  __cs_param_access_ok_3_arg2=5ul (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000101)
+
+State 935 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function whoop_wrapper_write_nvram_0 line 1269 thread 0
+----------------------------------------------------
+  __cs_retval_access_ok_3=16777216 (00000001 00000000 00000000 00000000)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c line 1273 function whoop_wrapper_write_nvram_0
+  (signed int)__cs_pc_cs[(signed long int)1] >= 3
+
+State 937 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function whoop_wrapper_write_nvram_0 line 1278 thread 0
+----------------------------------------------------
+  __cs_nondet_write_nvram_1___cs_tmp_if_cond_9=FALSE (00000000)
+
+State 959 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function whoop_wrapper_write_nvram_0 line 1608 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 960 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function whoop_wrapper_write_nvram_0 line 1608 thread 0
+----------------------------------------------------
+  __cs_thread_index=1u (00000000 00000000 00000000 00000001)
+
+State 961 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function __cs_exit line 98 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 968 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function main line 2087 thread 0
+----------------------------------------------------
+  __cs_pc[1l]=3 (00011)
+
+State 969 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function main line 2090 thread 0
+----------------------------------------------------
+  __cs_tmp_t2_r0=23 (10111)
+
+State 971 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function main line 2093 thread 0
+----------------------------------------------------
+  __cs_pc_cs[2l]=23 (010111)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c line 2094 function main
+  (signed int)__cs_pc_cs[(signed long int)2] <= 26
+
+State 974 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function main line 2096 thread 0
+----------------------------------------------------
+  __cs_dataraceDetectionStarted=TRUE (00000001)
+
+State 977 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function main line 2097 thread 0
+----------------------------------------------------
+  __cs_param_whoop_wrapper_read_nvram_args=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 984 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function whoop_wrapper_read_nvram_0 line 1618 thread 0
+----------------------------------------------------
+  __cs_param_read_nvram_1_file=&dynamic_object4 (00010000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 991 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function whoop_wrapper_read_nvram_0 line 1624 thread 0
+----------------------------------------------------
+  __cs_param_read_nvram_1_buf=&dynamic_object12 (00011000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 998 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function whoop_wrapper_read_nvram_0 line 1630 thread 0
+----------------------------------------------------
+  __cs_param_read_nvram_1_count=5ul (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000101)
+
+State 1005 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function whoop_wrapper_read_nvram_0 line 1636 thread 0
+----------------------------------------------------
+  __cs_param_read_nvram_1_ppos=&dynamic_object17 (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1007 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function whoop_wrapper_read_nvram_0 line 1641 thread 0
+----------------------------------------------------
+  __cs_local_read_nvram_1_p=&dynamic_object12 (00011000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1008 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function whoop_wrapper_read_nvram_0 line 1648 thread 0
+----------------------------------------------------
+  __cs_param_access_ok_1_arg0=1 (00000000 00000000 00000000 00000001)
+
+State 1009 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function whoop_wrapper_read_nvram_0 line 1651 thread 0
+----------------------------------------------------
+  __cs_param_access_ok_1_arg2=5ul (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000101)
+
+State 1010 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function whoop_wrapper_read_nvram_0 line 1652 thread 0
+----------------------------------------------------
+  __cs_retval_access_ok_1=16777216 (00000001 00000000 00000000 00000000)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c line 1656 function whoop_wrapper_read_nvram_0
+  (signed int)__cs_pc_cs[(signed long int)2] >= 5
+
+State 1012 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function whoop_wrapper_read_nvram_0 line 1661 thread 0
+----------------------------------------------------
+  __cs_nondet_read_nvram_1___cs_tmp_if_cond_6=FALSE (00000000)
+
+State 1027 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function whoop_wrapper_read_nvram_0 line 1676 thread 0
+----------------------------------------------------
+  __cs_nondet_read_nvram_1___cs_tmp_if_cond_7=FALSE (00000000)
+
+State 1035 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function whoop_wrapper_read_nvram_0 line 1688 thread 0
+----------------------------------------------------
+  __cs_nondet_read_nvram_1_i=805436844u (00110000 00000001 11111101 10101100)
+
+State 1038 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function whoop_wrapper_read_nvram_0 line 1704 thread 0
+----------------------------------------------------
+  __cs_param_nvram_read_byte_1_arg0=805436844 (00110000 00000001 11111101 10101100)
+
+State 1039 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function whoop_wrapper_read_nvram_0 line 1705 thread 0
+----------------------------------------------------
+  __cs_retval_nvram_read_byte_1=0 (00000000)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c line 1709 function whoop_wrapper_read_nvram_0
+  (signed int)__cs_pc_cs[(signed long int)2] >= 8
+
+State 1041 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function whoop_wrapper_read_nvram_0 line 1717 thread 0
+----------------------------------------------------
+  __cs_param___put_user_1_arg0=0 (00000000 00000000 00000000 00000000)
+
+State 1043 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function whoop_wrapper_read_nvram_0 line 1721 thread 0
+----------------------------------------------------
+  __cs_param___put_user_1_arg1=(const void *)&dynamic_object12 (00011000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1044 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function whoop_wrapper_read_nvram_0 line 1722 thread 0
+----------------------------------------------------
+  __cs_retval___put_user_1=0 (00000000 00000000 00000000 00000000)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c line 1726 function whoop_wrapper_read_nvram_0
+  (signed int)__cs_pc_cs[(signed long int)2] >= 9
+
+State 1046 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function whoop_wrapper_read_nvram_0 line 1731 thread 0
+----------------------------------------------------
+  __cs_nondet_read_nvram_1___cs_tmp_if_cond_8=FALSE (00000000)
+
+State 1049 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function whoop_wrapper_read_nvram_0 line 1743 thread 0
+----------------------------------------------------
+  __cs_nondet_read_nvram_1_i=805436845u (00110000 00000001 11111101 10101101)
+
+State 1050 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function whoop_wrapper_read_nvram_0 line 1743 thread 0
+----------------------------------------------------
+  __cs_local_read_nvram_1_p=&dynamic_object12 + 1l (00011000 00000000 00000000 00000000 00000000 00000000 00000000 00000001)
+
+State 1051 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function whoop_wrapper_read_nvram_0 line 1743 thread 0
+----------------------------------------------------
+  __cs_param_read_nvram_1_count=4ul (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000100)
+
+State 1054 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function whoop_wrapper_read_nvram_0 line 1759 thread 0
+----------------------------------------------------
+  __cs_param_nvram_read_byte_1_arg0=805436845 (00110000 00000001 11111101 10101101)
+
+State 1055 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function whoop_wrapper_read_nvram_0 line 1760 thread 0
+----------------------------------------------------
+  __cs_retval_nvram_read_byte_1=0 (00000000)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c line 1764 function whoop_wrapper_read_nvram_0
+  (signed int)__cs_pc_cs[(signed long int)2] >= 11
+
+State 1057 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function whoop_wrapper_read_nvram_0 line 1772 thread 0
+----------------------------------------------------
+  __cs_param___put_user_1_arg0=0 (00000000 00000000 00000000 00000000)
+
+State 1059 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function whoop_wrapper_read_nvram_0 line 1776 thread 0
+----------------------------------------------------
+  __cs_param___put_user_1_arg1=(const void *)(&dynamic_object12 + 1l) (00011000 00000000 00000000 00000000 00000000 00000000 00000000 00000001)
+
+State 1060 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function whoop_wrapper_read_nvram_0 line 1777 thread 0
+----------------------------------------------------
+  __cs_retval___put_user_1=0 (00000000 00000000 00000000 00000000)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c line 1781 function whoop_wrapper_read_nvram_0
+  (signed int)__cs_pc_cs[(signed long int)2] >= 12
+
+State 1062 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function whoop_wrapper_read_nvram_0 line 1786 thread 0
+----------------------------------------------------
+  __cs_nondet_read_nvram_1___cs_tmp_if_cond_8=FALSE (00000000)
+
+State 1065 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function whoop_wrapper_read_nvram_0 line 1798 thread 0
+----------------------------------------------------
+  __cs_nondet_read_nvram_1_i=805436846u (00110000 00000001 11111101 10101110)
+
+State 1066 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function whoop_wrapper_read_nvram_0 line 1798 thread 0
+----------------------------------------------------
+  __cs_local_read_nvram_1_p=&dynamic_object12 + 2l (00011000 00000000 00000000 00000000 00000000 00000000 00000000 00000010)
+
+State 1067 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function whoop_wrapper_read_nvram_0 line 1798 thread 0
+----------------------------------------------------
+  __cs_param_read_nvram_1_count=3ul (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000011)
+
+State 1070 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function whoop_wrapper_read_nvram_0 line 1814 thread 0
+----------------------------------------------------
+  __cs_param_nvram_read_byte_1_arg0=805436846 (00110000 00000001 11111101 10101110)
+
+State 1071 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function whoop_wrapper_read_nvram_0 line 1815 thread 0
+----------------------------------------------------
+  __cs_retval_nvram_read_byte_1=0 (00000000)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c line 1819 function whoop_wrapper_read_nvram_0
+  (signed int)__cs_pc_cs[(signed long int)2] >= 14
+
+State 1073 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function whoop_wrapper_read_nvram_0 line 1827 thread 0
+----------------------------------------------------
+  __cs_param___put_user_1_arg0=0 (00000000 00000000 00000000 00000000)
+
+State 1075 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function whoop_wrapper_read_nvram_0 line 1831 thread 0
+----------------------------------------------------
+  __cs_param___put_user_1_arg1=(const void *)(&dynamic_object12 + 2l) (00011000 00000000 00000000 00000000 00000000 00000000 00000000 00000010)
+
+State 1076 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function whoop_wrapper_read_nvram_0 line 1832 thread 0
+----------------------------------------------------
+  __cs_retval___put_user_1=0 (00000000 00000000 00000000 00000000)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c line 1836 function whoop_wrapper_read_nvram_0
+  (signed int)__cs_pc_cs[(signed long int)2] >= 15
+
+State 1078 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function whoop_wrapper_read_nvram_0 line 1841 thread 0
+----------------------------------------------------
+  __cs_nondet_read_nvram_1___cs_tmp_if_cond_8=FALSE (00000000)
+
+State 1081 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function whoop_wrapper_read_nvram_0 line 1853 thread 0
+----------------------------------------------------
+  __cs_nondet_read_nvram_1_i=805436847u (00110000 00000001 11111101 10101111)
+
+State 1082 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function whoop_wrapper_read_nvram_0 line 1853 thread 0
+----------------------------------------------------
+  __cs_local_read_nvram_1_p=&dynamic_object12 + 3l (00011000 00000000 00000000 00000000 00000000 00000000 00000000 00000011)
+
+State 1083 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function whoop_wrapper_read_nvram_0 line 1853 thread 0
+----------------------------------------------------
+  __cs_param_read_nvram_1_count=2ul (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000010)
+
+State 1086 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function whoop_wrapper_read_nvram_0 line 1869 thread 0
+----------------------------------------------------
+  __cs_param_nvram_read_byte_1_arg0=805436847 (00110000 00000001 11111101 10101111)
+
+State 1087 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function whoop_wrapper_read_nvram_0 line 1870 thread 0
+----------------------------------------------------
+  __cs_retval_nvram_read_byte_1=0 (00000000)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c line 1874 function whoop_wrapper_read_nvram_0
+  (signed int)__cs_pc_cs[(signed long int)2] >= 17
+
+State 1089 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function whoop_wrapper_read_nvram_0 line 1882 thread 0
+----------------------------------------------------
+  __cs_param___put_user_1_arg0=0 (00000000 00000000 00000000 00000000)
+
+State 1091 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function whoop_wrapper_read_nvram_0 line 1886 thread 0
+----------------------------------------------------
+  __cs_param___put_user_1_arg1=(const void *)(&dynamic_object12 + 3l) (00011000 00000000 00000000 00000000 00000000 00000000 00000000 00000011)
+
+State 1092 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function whoop_wrapper_read_nvram_0 line 1887 thread 0
+----------------------------------------------------
+  __cs_retval___put_user_1=0 (00000000 00000000 00000000 00000000)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c line 1891 function whoop_wrapper_read_nvram_0
+  (signed int)__cs_pc_cs[(signed long int)2] >= 18
+
+State 1094 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function whoop_wrapper_read_nvram_0 line 1896 thread 0
+----------------------------------------------------
+  __cs_nondet_read_nvram_1___cs_tmp_if_cond_8=FALSE (00000000)
+
+State 1097 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function whoop_wrapper_read_nvram_0 line 1908 thread 0
+----------------------------------------------------
+  __cs_nondet_read_nvram_1_i=805436848u (00110000 00000001 11111101 10110000)
+
+State 1098 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function whoop_wrapper_read_nvram_0 line 1908 thread 0
+----------------------------------------------------
+  __cs_local_read_nvram_1_p=&dynamic_object12 + 4l (00011000 00000000 00000000 00000000 00000000 00000000 00000000 00000100)
+
+State 1099 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function whoop_wrapper_read_nvram_0 line 1908 thread 0
+----------------------------------------------------
+  __cs_param_read_nvram_1_count=1ul (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000001)
+
+State 1102 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function whoop_wrapper_read_nvram_0 line 1924 thread 0
+----------------------------------------------------
+  __cs_param_nvram_read_byte_1_arg0=805436848 (00110000 00000001 11111101 10110000)
+
+State 1103 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function whoop_wrapper_read_nvram_0 line 1925 thread 0
+----------------------------------------------------
+  __cs_retval_nvram_read_byte_1=0 (00000000)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c line 1929 function whoop_wrapper_read_nvram_0
+  (signed int)__cs_pc_cs[(signed long int)2] >= 20
+
+State 1105 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function whoop_wrapper_read_nvram_0 line 1937 thread 0
+----------------------------------------------------
+  __cs_param___put_user_1_arg0=0 (00000000 00000000 00000000 00000000)
+
+State 1107 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function whoop_wrapper_read_nvram_0 line 1941 thread 0
+----------------------------------------------------
+  __cs_param___put_user_1_arg1=(const void *)(&dynamic_object12 + 4l) (00011000 00000000 00000000 00000000 00000000 00000000 00000000 00000100)
+
+State 1108 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function whoop_wrapper_read_nvram_0 line 1942 thread 0
+----------------------------------------------------
+  __cs_retval___put_user_1=0 (00000000 00000000 00000000 00000000)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c line 1946 function whoop_wrapper_read_nvram_0
+  (signed int)__cs_pc_cs[(signed long int)2] >= 21
+
+State 1110 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function whoop_wrapper_read_nvram_0 line 1951 thread 0
+----------------------------------------------------
+  __cs_nondet_read_nvram_1___cs_tmp_if_cond_8=FALSE (00000000)
+
+State 1113 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function whoop_wrapper_read_nvram_0 line 1963 thread 0
+----------------------------------------------------
+  __cs_nondet_read_nvram_1_i=805436849u (00110000 00000001 11111101 10110001)
+
+State 1114 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function whoop_wrapper_read_nvram_0 line 1963 thread 0
+----------------------------------------------------
+  __cs_local_read_nvram_1_p=&dynamic_object12 + 5l (00011000 00000000 00000000 00000000 00000000 00000000 00000000 00000101)
+
+State 1115 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function whoop_wrapper_read_nvram_0 line 1963 thread 0
+----------------------------------------------------
+  __cs_param_read_nvram_1_count=0ul (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c line 1968 function whoop_wrapper_read_nvram_0
+  !(__cs_param_read_nvram_1_count > (unsigned long int)0 && (signed long int)__cs_nondet_read_nvram_1_i < nvram_len)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c line 1970 function whoop_wrapper_read_nvram_0
+  (signed int)__cs_pc_cs[(signed long int)2] >= 23
+
+State 1133 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function whoop_wrapper_read_nvram_0 line 2006 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1134 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function whoop_wrapper_read_nvram_0 line 2006 thread 0
+----------------------------------------------------
+  __cs_thread_index=2u (00000000 00000000 00000000 00000010)
+
+State 1135 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function __cs_exit line 98 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[2l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1142 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function main line 2101 thread 0
+----------------------------------------------------
+  __cs_dataraceSecondThread=TRUE (00000001)
+
+State 1143 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function main line 2102 thread 0
+----------------------------------------------------
+  __cs_pc[2l]=23 (10111)
+
+State 1144 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function main line 2106 thread 0
+----------------------------------------------------
+  __cs_tmp_t0_r1=0 (000)
+
+State 1146 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function main line 2109 thread 0
+----------------------------------------------------
+  __cs_pc_cs[0l]=2 (000010)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c line 2110 function main
+  (signed int)__cs_pc_cs[(signed long int)0] >= (signed int)__cs_pc[(signed long int)0]
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c line 2111 function main
+  (signed int)__cs_pc_cs[(signed long int)0] <= 4
+
+State 1159 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function __cs_main_thread line 2055 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1160 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function __cs_main_thread line 2055 thread 0
+----------------------------------------------------
+  __cs_thread_index=0u (00000000 00000000 00000000 00000000)
+
+State 1161 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function __cs_exit line 98 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1168 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function main line 2118 thread 0
+----------------------------------------------------
+  __cs_dataraceSecondThread=TRUE (00000001)
+
+State 1169 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function main line 2119 thread 0
+----------------------------------------------------
+  __cs_pc[0l]=2 (00010)
+
+State 1170 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function main line 2122 thread 0
+----------------------------------------------------
+  __cs_tmp_t1_r1=16 (10000)
+
+State 1172 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function main line 2125 thread 0
+----------------------------------------------------
+  __cs_pc_cs[1l]=19 (010011)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c line 2126 function main
+  (signed int)__cs_pc_cs[(signed long int)1] >= (signed int)__cs_pc[(signed long int)1]
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c line 2127 function main
+  (signed int)__cs_pc_cs[(signed long int)1] <= 19
+
+State 1178 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function main line 2130 thread 0
+----------------------------------------------------
+  __cs_param_whoop_wrapper_write_nvram_args=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1192 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function whoop_wrapper_write_nvram_0 line 1292 thread 0
+----------------------------------------------------
+  __cs_dataraceNotDetected=FALSE (00000000)
+
+State 1193 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function whoop_wrapper_write_nvram_0 line 1293 thread 0
+----------------------------------------------------
+  __cs_nondet_write_nvram_1___cs_tmp_if_cond_10=FALSE (00000000)
+
+State 1201 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function whoop_wrapper_write_nvram_0 line 1305 thread 0
+----------------------------------------------------
+  __cs_nondet_write_nvram_1_i=805436844u (00110000 00000001 11111101 10101100)
+
+State 1204 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function whoop_wrapper_write_nvram_0 line 1321 thread 0
+----------------------------------------------------
+  __cs_param___get_user_2_arg0=0 (00000000 00000000 00000000 00000000)
+
+State 1205 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function whoop_wrapper_write_nvram_0 line 1323 thread 0
+----------------------------------------------------
+  __cs_retval___get_user_2=0 (00000000 00000000 00000000 00000000)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c line 1327 function whoop_wrapper_write_nvram_0
+  (signed int)__cs_pc_cs[(signed long int)1] >= 6
+
+State 1207 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function whoop_wrapper_write_nvram_0 line 1332 thread 0
+----------------------------------------------------
+  __cs_nondet_write_nvram_1___cs_tmp_if_cond_11=FALSE (00000000)
+
+State 1209 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function whoop_wrapper_write_nvram_0 line 1342 thread 0
+----------------------------------------------------
+  __cs_param_nvram_write_byte_2_arg0=0 (00000000)
+
+State 1210 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function whoop_wrapper_write_nvram_0 line 1344 thread 0
+----------------------------------------------------
+  __cs_param_nvram_write_byte_2_arg1=805436844 (00110000 00000001 11111101 10101100)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c line 1348 function whoop_wrapper_write_nvram_0
+  (signed int)__cs_pc_cs[(signed long int)1] >= 6
+
+State 1213 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function whoop_wrapper_write_nvram_0 line 1357 thread 0
+----------------------------------------------------
+  __cs_nondet_write_nvram_1_i=805436845u (00110000 00000001 11111101 10101101)
+
+State 1214 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function whoop_wrapper_write_nvram_0 line 1357 thread 0
+----------------------------------------------------
+  __cs_local_write_nvram_1_p=((char *)NULL) + 1l (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000001)
+
+State 1215 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function whoop_wrapper_write_nvram_0 line 1357 thread 0
+----------------------------------------------------
+  __cs_param_write_nvram_1_count=4ul (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000100)
+
+State 1218 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function whoop_wrapper_write_nvram_0 line 1373 thread 0
+----------------------------------------------------
+  __cs_param___get_user_2_arg0=0 (00000000 00000000 00000000 00000000)
+
+State 1219 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function whoop_wrapper_write_nvram_0 line 1375 thread 0
+----------------------------------------------------
+  __cs_retval___get_user_2=0 (00000000 00000000 00000000 00000000)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c line 1379 function whoop_wrapper_write_nvram_0
+  (signed int)__cs_pc_cs[(signed long int)1] >= 8
+
+State 1221 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function whoop_wrapper_write_nvram_0 line 1384 thread 0
+----------------------------------------------------
+  __cs_nondet_write_nvram_1___cs_tmp_if_cond_11=FALSE (00000000)
+
+State 1223 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function whoop_wrapper_write_nvram_0 line 1394 thread 0
+----------------------------------------------------
+  __cs_param_nvram_write_byte_2_arg0=0 (00000000)
+
+State 1224 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function whoop_wrapper_write_nvram_0 line 1396 thread 0
+----------------------------------------------------
+  __cs_param_nvram_write_byte_2_arg1=805436845 (00110000 00000001 11111101 10101101)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c line 1400 function whoop_wrapper_write_nvram_0
+  (signed int)__cs_pc_cs[(signed long int)1] >= 8
+
+State 1227 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function whoop_wrapper_write_nvram_0 line 1409 thread 0
+----------------------------------------------------
+  __cs_nondet_write_nvram_1_i=805436846u (00110000 00000001 11111101 10101110)
+
+State 1228 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function whoop_wrapper_write_nvram_0 line 1409 thread 0
+----------------------------------------------------
+  __cs_local_write_nvram_1_p=((char *)NULL) + 2l (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000010)
+
+State 1229 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function whoop_wrapper_write_nvram_0 line 1409 thread 0
+----------------------------------------------------
+  __cs_param_write_nvram_1_count=3ul (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000011)
+
+State 1232 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function whoop_wrapper_write_nvram_0 line 1425 thread 0
+----------------------------------------------------
+  __cs_param___get_user_2_arg0=0 (00000000 00000000 00000000 00000000)
+
+State 1233 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function whoop_wrapper_write_nvram_0 line 1427 thread 0
+----------------------------------------------------
+  __cs_retval___get_user_2=0 (00000000 00000000 00000000 00000000)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c line 1431 function whoop_wrapper_write_nvram_0
+  (signed int)__cs_pc_cs[(signed long int)1] >= 10
+
+State 1235 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function whoop_wrapper_write_nvram_0 line 1436 thread 0
+----------------------------------------------------
+  __cs_nondet_write_nvram_1___cs_tmp_if_cond_11=FALSE (00000000)
+
+State 1237 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function whoop_wrapper_write_nvram_0 line 1446 thread 0
+----------------------------------------------------
+  __cs_param_nvram_write_byte_2_arg0=0 (00000000)
+
+State 1238 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function whoop_wrapper_write_nvram_0 line 1448 thread 0
+----------------------------------------------------
+  __cs_param_nvram_write_byte_2_arg1=805436846 (00110000 00000001 11111101 10101110)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c line 1452 function whoop_wrapper_write_nvram_0
+  (signed int)__cs_pc_cs[(signed long int)1] >= 10
+
+State 1241 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function whoop_wrapper_write_nvram_0 line 1461 thread 0
+----------------------------------------------------
+  __cs_nondet_write_nvram_1_i=805436847u (00110000 00000001 11111101 10101111)
+
+State 1242 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function whoop_wrapper_write_nvram_0 line 1461 thread 0
+----------------------------------------------------
+  __cs_local_write_nvram_1_p=((char *)NULL) + 3l (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000011)
+
+State 1243 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function whoop_wrapper_write_nvram_0 line 1461 thread 0
+----------------------------------------------------
+  __cs_param_write_nvram_1_count=2ul (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000010)
+
+State 1246 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function whoop_wrapper_write_nvram_0 line 1477 thread 0
+----------------------------------------------------
+  __cs_param___get_user_2_arg0=0 (00000000 00000000 00000000 00000000)
+
+State 1247 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function whoop_wrapper_write_nvram_0 line 1479 thread 0
+----------------------------------------------------
+  __cs_retval___get_user_2=0 (00000000 00000000 00000000 00000000)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c line 1483 function whoop_wrapper_write_nvram_0
+  (signed int)__cs_pc_cs[(signed long int)1] >= 12
+
+State 1249 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function whoop_wrapper_write_nvram_0 line 1488 thread 0
+----------------------------------------------------
+  __cs_nondet_write_nvram_1___cs_tmp_if_cond_11=FALSE (00000000)
+
+State 1251 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function whoop_wrapper_write_nvram_0 line 1498 thread 0
+----------------------------------------------------
+  __cs_param_nvram_write_byte_2_arg0=0 (00000000)
+
+State 1252 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function whoop_wrapper_write_nvram_0 line 1500 thread 0
+----------------------------------------------------
+  __cs_param_nvram_write_byte_2_arg1=805436847 (00110000 00000001 11111101 10101111)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c line 1504 function whoop_wrapper_write_nvram_0
+  (signed int)__cs_pc_cs[(signed long int)1] >= 12
+
+State 1255 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function whoop_wrapper_write_nvram_0 line 1513 thread 0
+----------------------------------------------------
+  __cs_nondet_write_nvram_1_i=805436848u (00110000 00000001 11111101 10110000)
+
+State 1256 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function whoop_wrapper_write_nvram_0 line 1513 thread 0
+----------------------------------------------------
+  __cs_local_write_nvram_1_p=((char *)NULL) + 4l (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000100)
+
+State 1257 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function whoop_wrapper_write_nvram_0 line 1513 thread 0
+----------------------------------------------------
+  __cs_param_write_nvram_1_count=1ul (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000001)
+
+State 1260 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function whoop_wrapper_write_nvram_0 line 1529 thread 0
+----------------------------------------------------
+  __cs_param___get_user_2_arg0=0 (00000000 00000000 00000000 00000000)
+
+State 1261 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function whoop_wrapper_write_nvram_0 line 1531 thread 0
+----------------------------------------------------
+  __cs_retval___get_user_2=0 (00000000 00000000 00000000 00000000)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c line 1535 function whoop_wrapper_write_nvram_0
+  (signed int)__cs_pc_cs[(signed long int)1] >= 14
+
+State 1263 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function whoop_wrapper_write_nvram_0 line 1540 thread 0
+----------------------------------------------------
+  __cs_nondet_write_nvram_1___cs_tmp_if_cond_11=FALSE (00000000)
+
+State 1265 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function whoop_wrapper_write_nvram_0 line 1550 thread 0
+----------------------------------------------------
+  __cs_param_nvram_write_byte_2_arg0=0 (00000000)
+
+State 1266 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function whoop_wrapper_write_nvram_0 line 1552 thread 0
+----------------------------------------------------
+  __cs_param_nvram_write_byte_2_arg1=805436848 (00110000 00000001 11111101 10110000)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c line 1556 function whoop_wrapper_write_nvram_0
+  (signed int)__cs_pc_cs[(signed long int)1] >= 14
+
+State 1269 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function whoop_wrapper_write_nvram_0 line 1565 thread 0
+----------------------------------------------------
+  __cs_nondet_write_nvram_1_i=805436849u (00110000 00000001 11111101 10110001)
+
+State 1270 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function whoop_wrapper_write_nvram_0 line 1565 thread 0
+----------------------------------------------------
+  __cs_local_write_nvram_1_p=((char *)NULL) + 5l (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000101)
+
+State 1271 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function whoop_wrapper_write_nvram_0 line 1565 thread 0
+----------------------------------------------------
+  __cs_param_write_nvram_1_count=0ul (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c line 1570 function whoop_wrapper_write_nvram_0
+  !(__cs_param_write_nvram_1_count > (unsigned long int)0 && (signed long int)__cs_nondet_write_nvram_1_i < nvram_len)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c line 1572 function whoop_wrapper_write_nvram_0
+  (signed int)__cs_pc_cs[(signed long int)1] >= 16
+
+State 1287 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function whoop_wrapper_write_nvram_0 line 1583 thread 0
+----------------------------------------------------
+  dynamic_object17=805436849l (00000000 00000000 00000000 00000000 00110000 00000001 11111101 10110001)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c line 1588 function whoop_wrapper_write_nvram_0
+  *__cs_param_write_nvram_1_ppos == (signed long int)__cs_nondet_write_nvram_1_i
+
+State 1296 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function whoop_wrapper_write_nvram_0 line 1591 thread 0
+----------------------------------------------------
+  __cs_retval_write_nvram_1=5l (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000101)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c line 1595 function whoop_wrapper_write_nvram_0
+  (signed int)__cs_pc_cs[(signed long int)1] >= 19
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c line 1604 function whoop_wrapper_write_nvram_0
+  (signed int)__cs_pc_cs[(signed long int)1] >= 19
+
+State 1301 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function whoop_wrapper_write_nvram_0 line 1608 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1302 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function whoop_wrapper_write_nvram_0 line 1608 thread 0
+----------------------------------------------------
+  __cs_thread_index=1u (00000000 00000000 00000000 00000001)
+
+State 1303 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function __cs_exit line 98 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1309 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function main line 2132 thread 0
+----------------------------------------------------
+  __cs_dataraceContinue=FALSE (00000000)
+
+State 1311 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function main line 2134 thread 0
+----------------------------------------------------
+  __cs_dataraceSecondThread=TRUE (00000001)
+
+State 1312 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function main line 2135 thread 0
+----------------------------------------------------
+  __cs_pc[1l]=19 (10011)
+
+State 1313 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function main line 2138 thread 0
+----------------------------------------------------
+  __cs_tmp_t2_r1=0 (00000)
+
+State 1315 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function main line 2155 thread 0
+----------------------------------------------------
+  __cs_tmp_t0_r2=0 (000)
+
+State 1317 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function main line 2171 thread 0
+----------------------------------------------------
+  __cs_tmp_t1_r2=2 (00010)
+
+State 1319 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function main line 2187 thread 0
+----------------------------------------------------
+  __cs_tmp_t2_r2=0 (00000)
+
+State 1321 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function main line 2204 thread 0
+----------------------------------------------------
+  __cs_tmp_t0_r3=0 (000)
+
+State 1323 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function main line 2220 thread 0
+----------------------------------------------------
+  __cs_tmp_t1_r3=30 (11110)
+
+State 1325 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function main line 2236 thread 0
+----------------------------------------------------
+  __cs_tmp_t2_r3=0 (00000)
+
+State 1327 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function main line 2253 thread 0
+----------------------------------------------------
+  __cs_tmp_t0_r4=0 (000)
+
+State 1329 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function main line 2269 thread 0
+----------------------------------------------------
+  __cs_tmp_t1_r4=0 (00000)
+
+State 1331 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function main line 2285 thread 0
+----------------------------------------------------
+  __cs_tmp_t2_r4=8 (01000)
+
+State 1333 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function main line 2300 thread 0
+----------------------------------------------------
+  __cs_tmp_t0_r5=0 (000)
+
+Violated property:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U//_dr_2char_generic_nvram_read_nvram_write_nvram.c function main line 2308 thread 0
+  Data race failure
+  __cs_dataraceNotDetected != FALSE
+
+
+VERIFICATION FAILED
+
+real	0m2,089s
+user	0m2,020s
+sys	0m0,072s

@@ -1,0 +1,1047 @@
+CBMC version 5.12 (cbmc-5.11-4673-gff3adfd29-dirty) 64-bit x86_64 linux
+Parsing /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c
+Converting
+Type-checking _dr_226_stack_cas_longest-1
+file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c line 373 function thr1_0: function '__CPROVER_get_field' is not declared
+file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c line 386 function thr1_0: function '__CPROVER_set_field' is not declared
+file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c line 2509 function main: function '__CPROVER_field_decl_global' is not declared
+Generating GOTO Program
+Adding CPROVER library (x86_64)
+Removal of function pointers and virtual functions
+Generic Property Instrumentation
+Running with 8 object bits, 56 offset bits (default)
+Starting Bounded Model Checking
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c line 2495 function __cs_main_thread thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c line 353 function __CSEQ_atomic_assert thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c line 353 function __CSEQ_atomic_assert thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c line 353 function __CSEQ_atomic_assert thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c line 1038 function thr1_0 thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c line 353 function __CSEQ_atomic_assert thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c line 353 function __CSEQ_atomic_assert thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c line 353 function __CSEQ_atomic_assert thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c line 1741 function thr1_1 thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c line 353 function __CSEQ_atomic_assert thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c line 353 function __CSEQ_atomic_assert thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c line 353 function __CSEQ_atomic_assert thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c line 2444 function thr1_2 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c line 2495 function __cs_main_thread thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c line 353 function __CSEQ_atomic_assert thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c line 353 function __CSEQ_atomic_assert thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c line 353 function __CSEQ_atomic_assert thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c line 1038 function thr1_0 thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c line 353 function __CSEQ_atomic_assert thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c line 353 function __CSEQ_atomic_assert thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c line 353 function __CSEQ_atomic_assert thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c line 1741 function thr1_1 thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c line 353 function __CSEQ_atomic_assert thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c line 353 function __CSEQ_atomic_assert thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c line 353 function __CSEQ_atomic_assert thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c line 2444 function thr1_2 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c line 2495 function __cs_main_thread thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c line 353 function __CSEQ_atomic_assert thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c line 353 function __CSEQ_atomic_assert thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c line 353 function __CSEQ_atomic_assert thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c line 1038 function thr1_0 thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c line 353 function __CSEQ_atomic_assert thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c line 353 function __CSEQ_atomic_assert thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c line 353 function __CSEQ_atomic_assert thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c line 1741 function thr1_1 thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c line 353 function __CSEQ_atomic_assert thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c line 353 function __CSEQ_atomic_assert thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c line 353 function __CSEQ_atomic_assert thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c line 2444 function thr1_2 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c line 2495 function __cs_main_thread thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c line 353 function __CSEQ_atomic_assert thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c line 353 function __CSEQ_atomic_assert thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c line 353 function __CSEQ_atomic_assert thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c line 1038 function thr1_0 thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c line 353 function __CSEQ_atomic_assert thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c line 353 function __CSEQ_atomic_assert thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c line 353 function __CSEQ_atomic_assert thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c line 1741 function thr1_1 thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c line 353 function __CSEQ_atomic_assert thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c line 353 function __CSEQ_atomic_assert thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c line 353 function __CSEQ_atomic_assert thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c line 2444 function thr1_2 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c line 2495 function __cs_main_thread thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c line 353 function __CSEQ_atomic_assert thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c line 353 function __CSEQ_atomic_assert thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c line 353 function __CSEQ_atomic_assert thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c line 1038 function thr1_0 thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c line 353 function __CSEQ_atomic_assert thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c line 353 function __CSEQ_atomic_assert thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c line 353 function __CSEQ_atomic_assert thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c line 1741 function thr1_1 thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c line 353 function __CSEQ_atomic_assert thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c line 353 function __CSEQ_atomic_assert thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c line 353 function __CSEQ_atomic_assert thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c line 2444 function thr1_2 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c line 2495 function __cs_main_thread thread 0
+size of program expression: 27541 steps
+simple slicing removed 5 assignments
+Generated 1 VCC(s), 1 remaining after simplification
+Passing problem to propositional reduction
+converting SSA
+Running propositional reduction
+Post-processing
+Solving with Glucose Syrup with simplifier
+35343271 variables, 145913583 clauses
+SAT checker: instance is SATISFIABLE
+Runtime decision procedure: 249.715s
+Building error trace
+Counterexample:
+
+State 23 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function __CPROVER_initialize line 62 thread 0
+----------------------------------------------------
+  __cs_active_thread[0l]=1 (1)
+
+State 24 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function __CPROVER_initialize line 62 thread 0
+----------------------------------------------------
+  __cs_active_thread[1l]=0 (0)
+
+State 25 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function __CPROVER_initialize line 62 thread 0
+----------------------------------------------------
+  __cs_active_thread[2l]=0 (0)
+
+State 26 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function __CPROVER_initialize line 62 thread 0
+----------------------------------------------------
+  __cs_active_thread[3l]=0 (0)
+
+State 34 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function __CPROVER_initialize line 63 thread 0
+----------------------------------------------------
+  __cs_pc[0l]=0 (000000)
+
+State 35 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function __CPROVER_initialize line 63 thread 0
+----------------------------------------------------
+  __cs_pc[1l]=0 (000000)
+
+State 36 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function __CPROVER_initialize line 63 thread 0
+----------------------------------------------------
+  __cs_pc[2l]=0 (000000)
+
+State 37 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function __CPROVER_initialize line 63 thread 0
+----------------------------------------------------
+  __cs_pc[3l]=0 (000000)
+
+State 39 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function __CPROVER_initialize line 64 thread 0
+----------------------------------------------------
+  __cs_pc_cs[0l]=0 (0000000)
+
+State 40 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function __CPROVER_initialize line 64 thread 0
+----------------------------------------------------
+  __cs_pc_cs[1l]=0 (0000000)
+
+State 41 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function __CPROVER_initialize line 64 thread 0
+----------------------------------------------------
+  __cs_pc_cs[2l]=0 (0000000)
+
+State 42 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function __CPROVER_initialize line 64 thread 0
+----------------------------------------------------
+  __cs_pc_cs[3l]=0 (0000000)
+
+State 44 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function __CPROVER_initialize line 79 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 45 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function __CPROVER_initialize line 79 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 46 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function __CPROVER_initialize line 79 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[2l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 47 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function __CPROVER_initialize line 79 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[3l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 49 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function __CPROVER_initialize line 66 thread 0
+----------------------------------------------------
+  __cs_thread_lines[0l]=4 (000100)
+
+State 50 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function __CPROVER_initialize line 66 thread 0
+----------------------------------------------------
+  __cs_thread_lines[1l]=60 (111100)
+
+State 51 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function __CPROVER_initialize line 66 thread 0
+----------------------------------------------------
+  __cs_thread_lines[2l]=60 (111100)
+
+State 52 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function __CPROVER_initialize line 66 thread 0
+----------------------------------------------------
+  __cs_thread_lines[3l]=60 (111100)
+
+State 54 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function __CPROVER_initialize line 78 thread 0
+----------------------------------------------------
+  __cs_threadargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 55 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function __CPROVER_initialize line 78 thread 0
+----------------------------------------------------
+  __cs_threadargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 56 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function __CPROVER_initialize line 78 thread 0
+----------------------------------------------------
+  __cs_threadargs[2l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 57 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function __CPROVER_initialize line 78 thread 0
+----------------------------------------------------
+  __cs_threadargs[3l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 197 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function main line 2510 thread 0
+----------------------------------------------------
+  __cs_dr_ts=2 (00010)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c line 2511 function main
+  (signed int)__cs_dr_ts <= 19
+
+State 199 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function main line 2514 thread 0
+----------------------------------------------------
+  __cs_tmp_t0_r0=3 (011)
+
+State 200 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function main line 2515 thread 0
+----------------------------------------------------
+  __cs_pc_cs[0l]=3 (0000011)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c line 2516 function main
+  (signed int)__cs_pc_cs[(signed long int)0] > 0
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c line 2517 function main
+  (signed int)__cs_pc_cs[(signed long int)0] <= 4
+
+State 209 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function __cs_main_thread line 2478 thread 0
+----------------------------------------------------
+  __cs_new_thread_id=&__cs_nondet_main_t (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 210 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function __cs_main_thread line 2478 thread 0
+----------------------------------------------------
+  __cs_attr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 211 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function __cs_main_thread line 2478 thread 0
+----------------------------------------------------
+  __cs_thread_function=thr1_0 (00000011 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 212 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function __cs_main_thread line 2478 thread 0
+----------------------------------------------------
+  __cs_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 213 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function __cs_main_thread line 2478 thread 0
+----------------------------------------------------
+  __cs_threadID=1 (00000000 00000000 00000000 00000001)
+
+State 215 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function __cs_create line 84 thread 0
+----------------------------------------------------
+  __cs_nondet_main_t=1 (00000000 00000000 00000000 00000001)
+
+State 216 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function __cs_create line 85 thread 0
+----------------------------------------------------
+  __cs_active_thread[1l]=1 (1)
+
+State 217 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function __cs_create line 86 thread 0
+----------------------------------------------------
+  __cs_threadargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 220 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function __cs_create line 87 thread 0
+----------------------------------------------------
+  __cs_message="thread spawned" (00000100 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 227 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function __cs_main_thread line 2484 thread 0
+----------------------------------------------------
+  __cs_new_thread_id=&__cs_nondet_main_t (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 228 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function __cs_main_thread line 2484 thread 0
+----------------------------------------------------
+  __cs_attr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 229 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function __cs_main_thread line 2484 thread 0
+----------------------------------------------------
+  __cs_thread_function=thr1_1 (00000101 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 230 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function __cs_main_thread line 2484 thread 0
+----------------------------------------------------
+  __cs_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 231 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function __cs_main_thread line 2484 thread 0
+----------------------------------------------------
+  __cs_threadID=2 (00000000 00000000 00000000 00000010)
+
+State 233 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function __cs_create line 84 thread 0
+----------------------------------------------------
+  __cs_nondet_main_t=2 (00000000 00000000 00000000 00000010)
+
+State 234 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function __cs_create line 85 thread 0
+----------------------------------------------------
+  __cs_active_thread[2l]=1 (1)
+
+State 235 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function __cs_create line 86 thread 0
+----------------------------------------------------
+  __cs_threadargs[2l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 238 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function __cs_create line 87 thread 0
+----------------------------------------------------
+  __cs_message="thread spawned" (00000100 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 245 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function __cs_main_thread line 2490 thread 0
+----------------------------------------------------
+  __cs_new_thread_id=&__cs_nondet_main_t (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 246 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function __cs_main_thread line 2490 thread 0
+----------------------------------------------------
+  __cs_attr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 247 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function __cs_main_thread line 2490 thread 0
+----------------------------------------------------
+  __cs_thread_function=thr1_2 (00000110 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 248 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function __cs_main_thread line 2490 thread 0
+----------------------------------------------------
+  __cs_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 249 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function __cs_main_thread line 2490 thread 0
+----------------------------------------------------
+  __cs_threadID=3 (00000000 00000000 00000000 00000011)
+
+State 251 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function __cs_create line 84 thread 0
+----------------------------------------------------
+  __cs_nondet_main_t=3 (00000000 00000000 00000000 00000011)
+
+State 252 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function __cs_create line 85 thread 0
+----------------------------------------------------
+  __cs_active_thread[3l]=1 (1)
+
+State 253 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function __cs_create line 86 thread 0
+----------------------------------------------------
+  __cs_threadargs[3l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 256 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function __cs_create line 87 thread 0
+----------------------------------------------------
+  __cs_message="thread spawned" (00000100 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 263 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function __cs_main_thread line 2505 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 264 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function __cs_main_thread line 2505 thread 0
+----------------------------------------------------
+  __cs_thread_index=0u (00000000 00000000 00000000 00000000)
+
+State 265 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function __cs_exit line 98 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 271 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function main line 2523 thread 0
+----------------------------------------------------
+  __cs_pc[0l]=3 (000011)
+
+State 272 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function main line 2525 thread 0
+----------------------------------------------------
+  __cs_tmp_t1_r0=13 (001101)
+
+State 274 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function main line 2528 thread 0
+----------------------------------------------------
+  __cs_pc_cs[1l]=13 (0001101)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c line 2529 function main
+  (signed int)__cs_pc_cs[(signed long int)1] <= 60
+
+State 279 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function main line 2532 thread 0
+----------------------------------------------------
+  __cs_param_thr1_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 283 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function thr1_0 line 367 thread 0
+----------------------------------------------------
+  __cs_param___CSEQ_atomic_acquire_m=&m2 (00000111 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 286 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function __CSEQ_atomic_acquire line 288 thread 0
+----------------------------------------------------
+  cond=1 (00000000 00000000 00000000 00000001)
+
+State 289 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function __CSEQ_atomic_acquire line 289 thread 0
+----------------------------------------------------
+  m2=1 (00000000 00000000 00000000 00000001)
+
+State 297 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function thr1_0 line 375 thread 0
+----------------------------------------------------
+  __cs_nondet_thr1___cs_switch_cond_thr1_1=0 (00000000 00000000 00000000 00000000)
+
+State 298 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function thr1_0 line 379 thread 0
+----------------------------------------------------
+  __cs_nondet_thr1___cs_tmp_if_cond_6=TRUE (00000001)
+
+State 307 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function thr1_0 line 391 thread 0
+----------------------------------------------------
+  top=0 (00000000 00000000 00000000 00000000)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c line 393 function thr1_0
+  (signed int)__cs_pc_cs[(signed long int)1] >= 3
+
+State 316 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function thr1_0 line 406 thread 0
+----------------------------------------------------
+  state=1 (00000000 00000000 00000000 00000001)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c line 419 function thr1_0
+  (signed int)__cs_pc_cs[(signed long int)1] >= 4
+
+State 322 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function thr1_0 line 424 thread 0
+----------------------------------------------------
+  __cs_param___CSEQ_atomic_release_m=&m2 (00000111 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 325 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function __CSEQ_atomic_release line 293 thread 0
+----------------------------------------------------
+  cond=1 (00000000 00000000 00000000 00000001)
+
+State 328 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function __CSEQ_atomic_release line 294 thread 0
+----------------------------------------------------
+  m2=0 (00000000 00000000 00000000 00000000)
+
+State 330 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function thr1_0 line 427 thread 0
+----------------------------------------------------
+  __cs_local_push_loop_1_r=-1 (11111111 11111111 11111111 11111111)
+
+State 331 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function thr1_0 line 429 thread 0
+----------------------------------------------------
+  __cs_local_push_loop_1_arg=16777219 (00000001 00000000 00000000 00000011)
+
+State 332 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function thr1_0 line 434 thread 0
+----------------------------------------------------
+  __cs_param_push_1_d=16777219 (00000001 00000000 00000000 00000011)
+
+State 333 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function thr1_0 line 436 thread 0
+----------------------------------------------------
+  __cs_local_push_1_oldTop=-1 (11111111 11111111 11111111 11111111)
+
+State 334 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function thr1_0 line 438 thread 0
+----------------------------------------------------
+  __cs_local_push_1_newTop=-1 (11111111 11111111 11111111 11111111)
+
+State 335 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function thr1_0 line 440 thread 0
+----------------------------------------------------
+  __cs_local_push_1_casret=-1 (11111111 11111111 11111111 11111111)
+
+State 336 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function thr1_0 line 444 thread 0
+----------------------------------------------------
+  __cs_local_index_malloc_1_curr_alloc_idx=-1 (11111111 11111111 11111111 11111111)
+
+State 340 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function thr1_0 line 447 thread 0
+----------------------------------------------------
+  __cs_param___CSEQ_atomic_acquire_m=&m (00001000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 343 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function __CSEQ_atomic_acquire line 288 thread 0
+----------------------------------------------------
+  cond=1 (00000000 00000000 00000000 00000001)
+
+State 346 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function __CSEQ_atomic_acquire line 289 thread 0
+----------------------------------------------------
+  m=1 (00000000 00000000 00000000 00000001)
+
+State 354 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function thr1_0 line 455 thread 0
+----------------------------------------------------
+  __cs_nondet_index_malloc_1___cs_tmp_if_cond_1=FALSE (00000000)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c line 465 function thr1_0
+  (signed int)__cs_pc_cs[(signed long int)1] >= 8
+
+State 363 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function thr1_0 line 470 thread 0
+----------------------------------------------------
+  __cs_local_index_malloc_1_curr_alloc_idx=1 (00000000 00000000 00000000 00000001)
+
+State 371 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function thr1_0 line 479 thread 0
+----------------------------------------------------
+  next_alloc_idx=3 (00000000 00000000 00000000 00000011)
+
+State 375 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function thr1_0 line 482 thread 0
+----------------------------------------------------
+  __cs_param___CSEQ_atomic_release_m=&m (00001000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 378 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function __CSEQ_atomic_release line 293 thread 0
+----------------------------------------------------
+  cond=1 (00000000 00000000 00000000 00000001)
+
+State 381 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function __CSEQ_atomic_release line 294 thread 0
+----------------------------------------------------
+  m=0 (00000000 00000000 00000000 00000000)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c line 484 function thr1_0
+  (signed int)__cs_pc_cs[(signed long int)1] >= 11
+
+State 384 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function thr1_0 line 486 thread 0
+----------------------------------------------------
+  __cs_retval_index_malloc_1=1 (00000000 00000000 00000000 00000001)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c line 490 function thr1_0
+  (signed int)__cs_pc_cs[(signed long int)1] >= 11
+
+State 386 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function thr1_0 line 495 thread 0
+----------------------------------------------------
+  __cs_local_push_1_newTop=1 (00000000 00000000 00000000 00000001)
+
+State 387 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function thr1_0 line 499 thread 0
+----------------------------------------------------
+  __cs_nondet_push_1___cs_tmp_if_cond_3=FALSE (00000000)
+
+State 396 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function thr1_0 line 516 thread 0
+----------------------------------------------------
+  memory[1l]=16777219 (00000001 00000000 00000000 00000011)
+
+State 403 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function thr1_0 line 522 thread 0
+----------------------------------------------------
+  __cs_local_push_1_oldTop=0 (00000000 00000000 00000000 00000000)
+
+State 480 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function thr1_0 line 1065 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 481 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function thr1_0 line 1065 thread 0
+----------------------------------------------------
+  __cs_thread_index=1u (00000000 00000000 00000000 00000001)
+
+State 482 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function __cs_exit line 98 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 489 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function main line 2537 thread 0
+----------------------------------------------------
+  __cs_pc[1l]=13 (001101)
+
+State 490 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function main line 2540 thread 0
+----------------------------------------------------
+  __cs_tmp_t2_r0=13 (001101)
+
+State 492 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function main line 2543 thread 0
+----------------------------------------------------
+  __cs_pc_cs[2l]=13 (0001101)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c line 2544 function main
+  (signed int)__cs_pc_cs[(signed long int)2] <= 60
+
+State 495 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function main line 2546 thread 0
+----------------------------------------------------
+  __cs_dataraceDetectionStarted=TRUE (00000001)
+
+State 498 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function main line 2547 thread 0
+----------------------------------------------------
+  __cs_param_thr1_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 502 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function thr1_1 line 1070 thread 0
+----------------------------------------------------
+  __cs_param___CSEQ_atomic_acquire_m=&m2 (00000111 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 505 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function __CSEQ_atomic_acquire line 288 thread 0
+----------------------------------------------------
+  cond=1 (00000000 00000000 00000000 00000001)
+
+State 508 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function __CSEQ_atomic_acquire line 289 thread 0
+----------------------------------------------------
+  m2=1 (00000000 00000000 00000000 00000001)
+
+State 516 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function thr1_1 line 1078 thread 0
+----------------------------------------------------
+  __cs_nondet_thr1___cs_switch_cond_thr1_1=1 (00000000 00000000 00000000 00000001)
+
+State 517 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function thr1_1 line 1082 thread 0
+----------------------------------------------------
+  __cs_nondet_thr1___cs_tmp_if_cond_6=FALSE (00000000)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c line 1113 function thr1_1
+  (signed int)__cs_pc_cs[(signed long int)2] >= 4
+
+State 520 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function thr1_1 line 1118 thread 0
+----------------------------------------------------
+  __cs_nondet_thr1___cs_tmp_if_cond_7=TRUE (00000001)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c line 1122 function thr1_1
+  (signed int)__cs_pc_cs[(signed long int)2] >= 4
+
+State 526 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function thr1_1 line 1127 thread 0
+----------------------------------------------------
+  __cs_param___CSEQ_atomic_release_m=&m2 (00000111 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 529 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function __CSEQ_atomic_release line 293 thread 0
+----------------------------------------------------
+  cond=1 (00000000 00000000 00000000 00000001)
+
+State 532 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function __CSEQ_atomic_release line 294 thread 0
+----------------------------------------------------
+  m2=0 (00000000 00000000 00000000 00000000)
+
+State 534 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function thr1_1 line 1130 thread 0
+----------------------------------------------------
+  __cs_local_push_loop_1_r=-1 (11111111 11111111 11111111 11111111)
+
+State 535 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function thr1_1 line 1132 thread 0
+----------------------------------------------------
+  __cs_local_push_loop_1_arg=0 (00000000 00000000 00000000 00000000)
+
+State 536 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function thr1_1 line 1137 thread 0
+----------------------------------------------------
+  __cs_param_push_1_d=0 (00000000 00000000 00000000 00000000)
+
+State 537 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function thr1_1 line 1139 thread 0
+----------------------------------------------------
+  __cs_local_push_1_oldTop=-1 (11111111 11111111 11111111 11111111)
+
+State 538 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function thr1_1 line 1141 thread 0
+----------------------------------------------------
+  __cs_local_push_1_newTop=-1 (11111111 11111111 11111111 11111111)
+
+State 539 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function thr1_1 line 1143 thread 0
+----------------------------------------------------
+  __cs_local_push_1_casret=-1 (11111111 11111111 11111111 11111111)
+
+State 540 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function thr1_1 line 1147 thread 0
+----------------------------------------------------
+  __cs_local_index_malloc_1_curr_alloc_idx=-1 (11111111 11111111 11111111 11111111)
+
+State 544 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function thr1_1 line 1150 thread 0
+----------------------------------------------------
+  __cs_param___CSEQ_atomic_acquire_m=&m (00001000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 547 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function __CSEQ_atomic_acquire line 288 thread 0
+----------------------------------------------------
+  cond=1 (00000000 00000000 00000000 00000001)
+
+State 550 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function __CSEQ_atomic_acquire line 289 thread 0
+----------------------------------------------------
+  m=1 (00000000 00000000 00000000 00000001)
+
+State 558 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function thr1_1 line 1158 thread 0
+----------------------------------------------------
+  __cs_nondet_index_malloc_1___cs_tmp_if_cond_1=FALSE (00000000)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c line 1168 function thr1_1
+  (signed int)__cs_pc_cs[(signed long int)2] >= 8
+
+State 567 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function thr1_1 line 1173 thread 0
+----------------------------------------------------
+  __cs_local_index_malloc_1_curr_alloc_idx=3 (00000000 00000000 00000000 00000011)
+
+State 575 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function thr1_1 line 1182 thread 0
+----------------------------------------------------
+  next_alloc_idx=5 (00000000 00000000 00000000 00000101)
+
+State 579 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function thr1_1 line 1185 thread 0
+----------------------------------------------------
+  __cs_param___CSEQ_atomic_release_m=&m (00001000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 582 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function __CSEQ_atomic_release line 293 thread 0
+----------------------------------------------------
+  cond=1 (00000000 00000000 00000000 00000001)
+
+State 585 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function __CSEQ_atomic_release line 294 thread 0
+----------------------------------------------------
+  m=0 (00000000 00000000 00000000 00000000)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c line 1187 function thr1_1
+  (signed int)__cs_pc_cs[(signed long int)2] >= 11
+
+State 588 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function thr1_1 line 1189 thread 0
+----------------------------------------------------
+  __cs_retval_index_malloc_1=3 (00000000 00000000 00000000 00000011)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c line 1193 function thr1_1
+  (signed int)__cs_pc_cs[(signed long int)2] >= 11
+
+State 590 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function thr1_1 line 1198 thread 0
+----------------------------------------------------
+  __cs_local_push_1_newTop=3 (00000000 00000000 00000000 00000011)
+
+State 591 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function thr1_1 line 1202 thread 0
+----------------------------------------------------
+  __cs_nondet_push_1___cs_tmp_if_cond_3=FALSE (00000000)
+
+State 600 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function thr1_1 line 1219 thread 0
+----------------------------------------------------
+  memory[3l]=0 (00000000 00000000 00000000 00000000)
+
+State 607 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function thr1_1 line 1225 thread 0
+----------------------------------------------------
+  __cs_local_push_1_oldTop=0 (00000000 00000000 00000000 00000000)
+
+State 686 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function thr1_1 line 1768 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 687 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function thr1_1 line 1768 thread 0
+----------------------------------------------------
+  __cs_thread_index=2u (00000000 00000000 00000000 00000010)
+
+State 688 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function __cs_exit line 98 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[2l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 695 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function main line 2551 thread 0
+----------------------------------------------------
+  __cs_dataraceSecondThread=TRUE (00000001)
+
+State 696 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function main line 2552 thread 0
+----------------------------------------------------
+  __cs_pc[2l]=13 (001101)
+
+State 697 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function main line 2555 thread 0
+----------------------------------------------------
+  __cs_tmp_t3_r0=0 (000000)
+
+State 699 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function main line 2558 thread 0
+----------------------------------------------------
+  __cs_pc_cs[3l]=0 (0000000)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c line 2559 function main
+  (signed int)__cs_pc_cs[(signed long int)3] <= 60
+
+State 704 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function main line 2562 thread 0
+----------------------------------------------------
+  __cs_param_thr1_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 799 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function thr1_2 line 2471 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 800 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function thr1_2 line 2471 thread 0
+----------------------------------------------------
+  __cs_thread_index=3u (00000000 00000000 00000000 00000011)
+
+State 801 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function __cs_exit line 98 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[3l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 808 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function main line 2566 thread 0
+----------------------------------------------------
+  __cs_dataraceSecondThread=TRUE (00000001)
+
+State 809 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function main line 2567 thread 0
+----------------------------------------------------
+  __cs_pc[3l]=0 (000000)
+
+State 810 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function main line 2571 thread 0
+----------------------------------------------------
+  __cs_tmp_t0_r1=0 (000)
+
+State 812 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function main line 2574 thread 0
+----------------------------------------------------
+  __cs_pc_cs[0l]=3 (0000011)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c line 2575 function main
+  (signed int)__cs_pc_cs[(signed long int)0] >= (signed int)__cs_pc[(signed long int)0]
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c line 2576 function main
+  (signed int)__cs_pc_cs[(signed long int)0] <= 4
+
+State 824 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function __cs_main_thread line 2505 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 825 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function __cs_main_thread line 2505 thread 0
+----------------------------------------------------
+  __cs_thread_index=0u (00000000 00000000 00000000 00000000)
+
+State 826 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function __cs_exit line 98 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 833 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function main line 2583 thread 0
+----------------------------------------------------
+  __cs_dataraceSecondThread=TRUE (00000001)
+
+State 834 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function main line 2584 thread 0
+----------------------------------------------------
+  __cs_pc[0l]=3 (000011)
+
+State 835 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function main line 2587 thread 0
+----------------------------------------------------
+  __cs_tmp_t1_r1=1 (000001)
+
+State 837 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function main line 2590 thread 0
+----------------------------------------------------
+  __cs_pc_cs[1l]=14 (0001110)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c line 2591 function main
+  (signed int)__cs_pc_cs[(signed long int)1] >= (signed int)__cs_pc[(signed long int)1]
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c line 2592 function main
+  (signed int)__cs_pc_cs[(signed long int)1] <= 60
+
+State 843 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function main line 2595 thread 0
+----------------------------------------------------
+  __cs_param_thr1_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 869 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function thr1_0 line 530 thread 0
+----------------------------------------------------
+  __cs_dataraceNotDetected=FALSE (00000000)
+
+State 870 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function thr1_0 line 531 thread 0
+----------------------------------------------------
+  memory[2l]=0 (00000000 00000000 00000000 00000000)
+
+State 945 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function thr1_0 line 1065 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 946 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function thr1_0 line 1065 thread 0
+----------------------------------------------------
+  __cs_thread_index=1u (00000000 00000000 00000000 00000001)
+
+State 947 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function __cs_exit line 98 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 954 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function main line 2599 thread 0
+----------------------------------------------------
+  __cs_dataraceSecondThread=TRUE (00000001)
+
+State 955 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function main line 2600 thread 0
+----------------------------------------------------
+  __cs_pc[1l]=14 (001110)
+
+State 956 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function main line 2603 thread 0
+----------------------------------------------------
+  __cs_tmp_t2_r1=18 (010010)
+
+State 958 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function main line 2619 thread 0
+----------------------------------------------------
+  __cs_tmp_t3_r1=15 (001111)
+
+State 960 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function main line 2636 thread 0
+----------------------------------------------------
+  __cs_tmp_t0_r2=0 (000)
+
+State 962 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function main line 2652 thread 0
+----------------------------------------------------
+  __cs_tmp_t1_r2=0 (000000)
+
+State 964 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function main line 2668 thread 0
+----------------------------------------------------
+  __cs_tmp_t2_r2=3 (000011)
+
+State 966 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function main line 2684 thread 0
+----------------------------------------------------
+  __cs_tmp_t3_r2=19 (010011)
+
+State 968 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function main line 2701 thread 0
+----------------------------------------------------
+  __cs_tmp_t0_r3=0 (000)
+
+State 970 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function main line 2717 thread 0
+----------------------------------------------------
+  __cs_tmp_t1_r3=0 (000000)
+
+State 972 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function main line 2733 thread 0
+----------------------------------------------------
+  __cs_tmp_t2_r3=3 (000011)
+
+State 974 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function main line 2749 thread 0
+----------------------------------------------------
+  __cs_tmp_t3_r3=1 (000001)
+
+State 976 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function main line 2766 thread 0
+----------------------------------------------------
+  __cs_tmp_t0_r4=0 (000)
+
+State 978 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function main line 2782 thread 0
+----------------------------------------------------
+  __cs_tmp_t1_r4=2 (000010)
+
+State 980 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function main line 2798 thread 0
+----------------------------------------------------
+  __cs_tmp_t2_r4=1 (000001)
+
+State 982 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function main line 2814 thread 0
+----------------------------------------------------
+  __cs_tmp_t3_r4=7 (000111)
+
+State 984 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function main line 2829 thread 0
+----------------------------------------------------
+  __cs_tmp_t0_r5=0 (000)
+
+Violated property:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R3U/_dr_226_stack_cas_longest-1.c function main line 2837 thread 0
+  Data race failure
+  __cs_dataraceNotDetected != FALSE
+
+
+VERIFICATION FAILED
+
+real	4m17,281s
+user	4m11,862s
+sys	0m5,414s

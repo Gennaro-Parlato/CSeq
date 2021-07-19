@@ -1,0 +1,1406 @@
+CBMC version 5.12 (cbmc-5.11-4791-gdad55707b-dirty) 64-bit x86_64 linux
+Parsing /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c
+Converting
+Type-checking _dr_2one_time_barrier_2t
+file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c line 321 function worker_fn_0: function '__CPROVER_set_field' is not declared
+file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c line 324 function worker_fn_0: function '__CPROVER_get_field' is not declared
+file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c line 2349 function main: function '__CPROVER_field_decl_global' is not declared
+Generating GOTO Program
+Adding CPROVER library (x86_64)
+Removal of function pointers and virtual functions
+Generic Property Instrumentation
+Running with 8 object bits, 56 offset bits (default)
+Starting Bounded Model Checking
+size of program expression: 11249 steps
+simple slicing removed 5 assignments
+Generated 1 VCC(s), 1 remaining after simplification
+Passing problem to propositional reduction
+converting SSA
+Running propositional reduction
+Post-processing
+Solving with Glucose Syrup with simplifier
+88300 variables, 260568 clauses
+SAT checker: instance is SATISFIABLE
+Runtime decision procedure: 0.312932s
+Building error trace
+Counterexample:
+
+State 19 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __CPROVER_initialize line 62 thread 0
+----------------------------------------------------
+  __cs_active_thread[0l]=1 (1)
+
+State 20 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __CPROVER_initialize line 62 thread 0
+----------------------------------------------------
+  __cs_active_thread[1l]=0 (0)
+
+State 69 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __CPROVER_initialize line 1222 thread 0
+----------------------------------------------------
+  __cs_nondet_main_a[0l].b1=((Barrier *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 70 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __CPROVER_initialize line 1222 thread 0
+----------------------------------------------------
+  __cs_nondet_main_a[0l].b2=((Barrier *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 71 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __CPROVER_initialize line 1222 thread 0
+----------------------------------------------------
+  __cs_nondet_main_a[0l].tid=0 (00000000 00000000 00000000 00000000)
+
+State 72 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __CPROVER_initialize line 1222 thread 0
+----------------------------------------------------
+  __cs_nondet_main_a[0l].$pad3=0u (00000000 00000000 00000000 00000000)
+
+State 73 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __CPROVER_initialize line 1222 thread 0
+----------------------------------------------------
+  __cs_nondet_main_a[1l].b1=((Barrier *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 74 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __CPROVER_initialize line 1222 thread 0
+----------------------------------------------------
+  __cs_nondet_main_a[1l].b2=((Barrier *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 75 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __CPROVER_initialize line 1222 thread 0
+----------------------------------------------------
+  __cs_nondet_main_a[1l].tid=0 (00000000 00000000 00000000 00000000)
+
+State 76 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __CPROVER_initialize line 1222 thread 0
+----------------------------------------------------
+  __cs_nondet_main_a[1l].$pad3=0u (00000000 00000000 00000000 00000000)
+
+State 84 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __CPROVER_initialize line 63 thread 0
+----------------------------------------------------
+  __cs_pc[0l]=0 (0000000)
+
+State 85 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __CPROVER_initialize line 63 thread 0
+----------------------------------------------------
+  __cs_pc[1l]=0 (0000000)
+
+State 87 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __CPROVER_initialize line 64 thread 0
+----------------------------------------------------
+  __cs_pc_cs[0l]=0 (00000000)
+
+State 88 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __CPROVER_initialize line 64 thread 0
+----------------------------------------------------
+  __cs_pc_cs[1l]=0 (00000000)
+
+State 90 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __CPROVER_initialize line 79 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 91 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __CPROVER_initialize line 79 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 93 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __CPROVER_initialize line 66 thread 0
+----------------------------------------------------
+  __cs_thread_lines[0l]=82 (1010010)
+
+State 94 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __CPROVER_initialize line 66 thread 0
+----------------------------------------------------
+  __cs_thread_lines[1l]=70 (1000110)
+
+State 96 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __CPROVER_initialize line 78 thread 0
+----------------------------------------------------
+  __cs_threadargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 97 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __CPROVER_initialize line 78 thread 0
+----------------------------------------------------
+  __cs_threadargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 99 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __CPROVER_initialize line 308 thread 0
+----------------------------------------------------
+  in[0l]=FALSE (00000000)
+
+State 100 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __CPROVER_initialize line 308 thread 0
+----------------------------------------------------
+  in[1l]=FALSE (00000000)
+
+State 103 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __CPROVER_initialize line 309 thread 0
+----------------------------------------------------
+  post[0l]=FALSE (00000000)
+
+State 104 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __CPROVER_initialize line 309 thread 0
+----------------------------------------------------
+  post[1l]=FALSE (00000000)
+
+State 107 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __CPROVER_initialize line 307 thread 0
+----------------------------------------------------
+  pre[0l]=FALSE (00000000)
+
+State 108 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __CPROVER_initialize line 307 thread 0
+----------------------------------------------------
+  pre[1l]=FALSE (00000000)
+
+State 111 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __CPROVER_initialize line 310 thread 0
+----------------------------------------------------
+  sig1[0l]=FALSE (00000000)
+
+State 112 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __CPROVER_initialize line 310 thread 0
+----------------------------------------------------
+  sig1[1l]=FALSE (00000000)
+
+State 115 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __CPROVER_initialize line 311 thread 0
+----------------------------------------------------
+  sig2[0l]=FALSE (00000000)
+
+State 116 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __CPROVER_initialize line 311 thread 0
+----------------------------------------------------
+  sig2[1l]=FALSE (00000000)
+
+State 151 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function main line 2350 thread 0
+----------------------------------------------------
+  __cs_dr_ts=1 (01)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c line 2351 function main
+  (signed int)__cs_dr_ts <= 3
+
+State 153 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function main line 2354 thread 0
+----------------------------------------------------
+  __cs_tmp_t0_r0=19 (0010011)
+
+State 154 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function main line 2355 thread 0
+----------------------------------------------------
+  __cs_pc_cs[0l]=19 (00010011)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c line 2356 function main
+  (signed int)__cs_pc_cs[(signed long int)0] > 0
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c line 2357 function main
+  (signed int)__cs_pc_cs[(signed long int)0] <= 82
+
+State 164 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_main_thread line 1225 thread 0
+----------------------------------------------------
+  __cs_nondet_main_i=0 (00000000 00000000 00000000 00000000)
+
+State 165 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_main_thread line 1227 thread 0
+----------------------------------------------------
+  __cs_nondet_main_a[0l].b1=&__cs_nondet_main_b1 (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 166 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_main_thread line 1228 thread 0
+----------------------------------------------------
+  __cs_nondet_main_a[0l].b2=&__cs_nondet_main_b1 (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 167 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_main_thread line 1229 thread 0
+----------------------------------------------------
+  __cs_nondet_main_a[0l].tid=0 (00000000 00000000 00000000 00000000)
+
+State 168 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_main_thread line 1232 thread 0
+----------------------------------------------------
+  __cs_nondet_main_i=1 (00000000 00000000 00000000 00000001)
+
+State 169 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_main_thread line 1234 thread 0
+----------------------------------------------------
+  __cs_nondet_main_a[1l].b1=&__cs_nondet_main_b1 (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 170 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_main_thread line 1235 thread 0
+----------------------------------------------------
+  __cs_nondet_main_a[1l].b2=&__cs_nondet_main_b1 (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 171 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_main_thread line 1236 thread 0
+----------------------------------------------------
+  __cs_nondet_main_a[1l].tid=1 (00000000 00000000 00000000 00000001)
+
+State 172 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_main_thread line 1239 thread 0
+----------------------------------------------------
+  __cs_nondet_main_i=2 (00000000 00000000 00000000 00000010)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c line 1242 function __cs_main_thread
+  (signed int)__cs_pc_cs[(signed long int)0] >= 1
+
+State 174 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_main_thread line 1249 thread 0
+----------------------------------------------------
+  __cs_param_barrier_init_1_b=&__cs_nondet_main_b1 (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 175 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_main_thread line 1251 thread 0
+----------------------------------------------------
+  __cs_param_barrier_init_1_thread_count=2 (00000000 00000000 00000000 00000010)
+
+State 176 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_main_thread line 1255 thread 0
+----------------------------------------------------
+  __cs_nondet_barrier_init_1___cs_tmp_if_cond_0=FALSE (00000000)
+
+State 178 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_main_thread line 1273 thread 0
+----------------------------------------------------
+  __cs_nondet_main_b1.thread_count=2 (00000000 00000000 00000000 00000010)
+
+State 179 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_main_thread line 1274 thread 0
+----------------------------------------------------
+  __cs_nondet_main_b1.seen=0 (00000000 00000000 00000000 00000000)
+
+State 182 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_main_thread line 1275 thread 0
+----------------------------------------------------
+  __cs_m=&__cs_nondet_main_b1.lock (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00001000)
+
+State 183 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_main_thread line 1275 thread 0
+----------------------------------------------------
+  __cs_val=0 (00000000 00000000 00000000 00000000)
+
+State 184 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_mutex_init line 108 thread 0
+----------------------------------------------------
+  __cs_nondet_main_b1.lock=-1 (11111111 11111111 11111111 11111111)
+
+State 189 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_main_thread line 1276 thread 0
+----------------------------------------------------
+  __cs_cond_to_init=&__cs_nondet_main_b1.sig (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00001100)
+
+State 190 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_main_thread line 1276 thread 0
+----------------------------------------------------
+  __cs_attr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 191 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_cond_init line 141 thread 0
+----------------------------------------------------
+  __cs_nondet_main_b1.sig=-1 (11111111 11111111 11111111 11111111)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c line 1278 function __cs_main_thread
+  (signed int)__cs_pc_cs[(signed long int)0] >= 1
+
+State 195 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_main_thread line 1288 thread 0
+----------------------------------------------------
+  __cs_nondet_main_i=0 (00000000 00000000 00000000 00000000)
+
+State 198 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_main_thread line 1290 thread 0
+----------------------------------------------------
+  __cs_new_thread_id=((signed int *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 199 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_main_thread line 1290 thread 0
+----------------------------------------------------
+  __cs_attr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 200 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_main_thread line 1290 thread 0
+----------------------------------------------------
+  __cs_thread_function=worker_fn_0 (00000011 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 201 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_main_thread line 1290 thread 0
+----------------------------------------------------
+  __cs_arg=(const void *)&__cs_nondet_main_a[0l].b1 (00000100 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 202 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_main_thread line 1290 thread 0
+----------------------------------------------------
+  __cs_threadID=1 (00000000 00000000 00000000 00000001)
+
+State 205 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_create line 85 thread 0
+----------------------------------------------------
+  __cs_active_thread[1l]=1 (1)
+
+State 206 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_create line 86 thread 0
+----------------------------------------------------
+  __cs_threadargs[1l]=(const void *)&__cs_nondet_main_a[0l].b1 (00000100 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 209 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_create line 87 thread 0
+----------------------------------------------------
+  __cs_message="thread spawned" (00000101 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 213 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_main_thread line 1293 thread 0
+----------------------------------------------------
+  __cs_nondet_main_i=1 (00000000 00000000 00000000 00000001)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c line 1296 function __cs_main_thread
+  !(__cs_nondet_main_i < 1)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c line 1298 function __cs_main_thread
+  (signed int)__cs_pc_cs[(signed long int)0] >= 2
+
+State 224 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_main_thread line 1308 thread 0
+----------------------------------------------------
+  __cs_param_worker_fn_1_arg=(const void *)&__cs_nondet_main_a[1l].b1 (00000100 00000000 00000000 00000000 00000000 00000000 00000000 00011000)
+
+State 229 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_main_thread line 1312 thread 0
+----------------------------------------------------
+  __cs_local_worker_fn_1_a=__cs_nondet_main_a + 1l (00000100 00000000 00000000 00000000 00000000 00000000 00000000 00011000)
+
+State 230 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_main_thread line 1313 thread 0
+----------------------------------------------------
+  __cs_local_worker_fn_1_tid=0 (00000000 00000000 00000000 00000000)
+
+State 231 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_main_thread line 1313 thread 0
+----------------------------------------------------
+  __cs_local_worker_fn_1_tid=1 (00000000 00000000 00000000 00000001)
+
+State 238 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_main_thread line 1322 thread 0
+----------------------------------------------------
+  pre[1l]=TRUE (00000001)
+
+State 239 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_main_thread line 1322 thread 0
+----------------------------------------------------
+  pre[0l]=FALSE (00000000)
+
+State 240 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_main_thread line 1322 thread 0
+----------------------------------------------------
+  pre[1l]=TRUE (00000001)
+
+State 241 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_main_thread line 1325 thread 0
+----------------------------------------------------
+  __cs_nondet_worker_fn_1_i=0 (00000000 00000000 00000000 00000000)
+
+State 247 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_main_thread line 1334 thread 0
+----------------------------------------------------
+  __cs_nondet_worker_fn_1___cs_tmp_if_cond_3=FALSE (00000000)
+
+State 254 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_main_thread line 1359 thread 0
+----------------------------------------------------
+  __cs_nondet_worker_fn_1___cs_tmp_if_cond_4=FALSE (00000000)
+
+State 256 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_main_thread line 1379 thread 0
+----------------------------------------------------
+  __cs_nondet_worker_fn_1_i=1 (00000000 00000000 00000000 00000001)
+
+State 262 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_main_thread line 1388 thread 0
+----------------------------------------------------
+  __cs_nondet_worker_fn_1___cs_tmp_if_cond_3=FALSE (00000000)
+
+State 269 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_main_thread line 1413 thread 0
+----------------------------------------------------
+  __cs_nondet_worker_fn_1___cs_tmp_if_cond_4=FALSE (00000000)
+
+State 271 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_main_thread line 1433 thread 0
+----------------------------------------------------
+  __cs_nondet_worker_fn_1_i=2 (00000000 00000000 00000000 00000010)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c line 1436 function __cs_main_thread
+  !(__cs_nondet_worker_fn_1_i < 2)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c line 1438 function __cs_main_thread
+  (signed int)__cs_pc_cs[(signed long int)0] >= 10
+
+State 283 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_main_thread line 1450 thread 0
+----------------------------------------------------
+  __cs_param_barrier_wait_1_b=&__cs_nondet_main_b1 (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 289 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_main_thread line 1458 thread 0
+----------------------------------------------------
+  __cs_nondet_barrier_wait_1___cs_tmp_if_cond_1=FALSE (00000000)
+
+State 298 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_main_thread line 1480 thread 0
+----------------------------------------------------
+  __cs_mutex_to_lock=&__cs_nondet_main_b1.lock (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00001000)
+
+State 299 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_main_thread line 1480 thread 0
+----------------------------------------------------
+  __cs_thread_index=0 (0)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c line 122 function __cs_mutex_lock
+  *__cs_mutex_to_lock != 0
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c line 123 function __cs_mutex_lock
+  *__cs_mutex_to_lock != -2
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c line 124 function __cs_mutex_lock
+  *__cs_mutex_to_lock == -1
+
+State 303 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_mutex_lock line 125 thread 0
+----------------------------------------------------
+  __cs_nondet_main_b1.lock=1 (00000000 00000000 00000000 00000001)
+
+State 306 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_mutex_lock line 126 thread 0
+----------------------------------------------------
+  __cs_message="lock acquired" (00000110 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 315 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_main_thread line 1485 thread 0
+----------------------------------------------------
+  __cs_nondet_main_b1.seen=1 (00000000 00000000 00000000 00000001)
+
+State 321 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_main_thread line 1493 thread 0
+----------------------------------------------------
+  __cs_nondet_barrier_wait_1___cs_tmp_if_cond_2=FALSE (00000000)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c line 1510 function __cs_main_thread
+  (signed int)__cs_pc_cs[(signed long int)0] >= 17
+
+State 336 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_main_thread line 1525 thread 0
+----------------------------------------------------
+  __cs_cond_to_wait_for=&__cs_nondet_main_b1.sig (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00001100)
+
+State 337 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_main_thread line 1525 thread 0
+----------------------------------------------------
+  __cs_m=&__cs_nondet_main_b1.lock (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00001000)
+
+State 338 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_main_thread line 1525 thread 0
+----------------------------------------------------
+  __cs_thread_index=0u (00000000 00000000 00000000 00000000)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c line 151 function __cs_cond_wait_1
+  *__cs_cond_to_wait_for != 0
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c line 152 function __cs_cond_wait_1
+  *__cs_cond_to_wait_for != -2
+
+State 343 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_cond_wait_1 line 153 thread 0
+----------------------------------------------------
+  __cs_mutex_to_unlock=&__cs_nondet_main_b1.lock (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00001000)
+
+State 344 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_cond_wait_1 line 153 thread 0
+----------------------------------------------------
+  __cs_thread_index=0 (0)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c line 131 function __cs_mutex_unlock
+  *__cs_mutex_to_unlock != 0
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c line 132 function __cs_mutex_unlock
+  *__cs_mutex_to_unlock != -2
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c line 133 function __cs_mutex_unlock
+  *__cs_mutex_to_unlock == (signed int)__cs_thread_index + 1
+
+State 348 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_mutex_unlock line 134 thread 0
+----------------------------------------------------
+  __cs_nondet_main_b1.lock=-1 (11111111 11111111 11111111 11111111)
+
+State 351 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_mutex_unlock line 135 thread 0
+----------------------------------------------------
+  __cs_message="lock released" (00001000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 617 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_main_thread line 2345 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 618 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_main_thread line 2345 thread 0
+----------------------------------------------------
+  __cs_thread_index=0u (00000000 00000000 00000000 00000000)
+
+State 619 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_exit line 98 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 625 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function main line 2363 thread 0
+----------------------------------------------------
+  __cs_pc[0l]=19 (0010011)
+
+State 626 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function main line 2365 thread 0
+----------------------------------------------------
+  __cs_tmp_t1_r0=64 (1000000)
+
+State 628 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function main line 2368 thread 0
+----------------------------------------------------
+  __cs_pc_cs[1l]=64 (01000000)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c line 2369 function main
+  (signed int)__cs_pc_cs[(signed long int)1] <= 70
+
+State 631 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function main line 2371 thread 0
+----------------------------------------------------
+  __cs_dataraceDetectionStarted=TRUE (00000001)
+
+State 634 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function main line 2372 thread 0
+----------------------------------------------------
+  __cs_param_worker_fn_arg=(const void *)&__cs_nondet_main_a[0l].b1 (00000100 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 639 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function worker_fn_0 line 316 thread 0
+----------------------------------------------------
+  __cs_local_worker_fn_a=__cs_nondet_main_a (00000100 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 640 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function worker_fn_0 line 317 thread 0
+----------------------------------------------------
+  __cs_local_worker_fn_tid=0 (00000000 00000000 00000000 00000000)
+
+State 641 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function worker_fn_0 line 317 thread 0
+----------------------------------------------------
+  __cs_local_worker_fn_tid=0 (00000000 00000000 00000000 00000000)
+
+State 648 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function worker_fn_0 line 326 thread 0
+----------------------------------------------------
+  pre[0l]=TRUE (00000001)
+
+State 649 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function worker_fn_0 line 326 thread 0
+----------------------------------------------------
+  pre[0l]=TRUE (00000001)
+
+State 650 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function worker_fn_0 line 326 thread 0
+----------------------------------------------------
+  pre[1l]=TRUE (00000001)
+
+State 651 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function worker_fn_0 line 329 thread 0
+----------------------------------------------------
+  __cs_nondet_worker_fn_i=0 (00000000 00000000 00000000 00000000)
+
+State 657 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function worker_fn_0 line 338 thread 0
+----------------------------------------------------
+  __cs_nondet_worker_fn___cs_tmp_if_cond_3=FALSE (00000000)
+
+State 664 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function worker_fn_0 line 363 thread 0
+----------------------------------------------------
+  __cs_nondet_worker_fn___cs_tmp_if_cond_4=FALSE (00000000)
+
+State 666 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function worker_fn_0 line 383 thread 0
+----------------------------------------------------
+  __cs_nondet_worker_fn_i=1 (00000000 00000000 00000000 00000001)
+
+State 672 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function worker_fn_0 line 392 thread 0
+----------------------------------------------------
+  __cs_nondet_worker_fn___cs_tmp_if_cond_3=FALSE (00000000)
+
+State 679 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function worker_fn_0 line 417 thread 0
+----------------------------------------------------
+  __cs_nondet_worker_fn___cs_tmp_if_cond_4=FALSE (00000000)
+
+State 681 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function worker_fn_0 line 437 thread 0
+----------------------------------------------------
+  __cs_nondet_worker_fn_i=2 (00000000 00000000 00000000 00000010)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c line 440 function worker_fn_0
+  !(__cs_nondet_worker_fn_i < 2)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c line 442 function worker_fn_0
+  (signed int)__cs_pc_cs[(signed long int)1] >= 7
+
+State 693 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function worker_fn_0 line 454 thread 0
+----------------------------------------------------
+  __cs_param_barrier_wait_1_b=&__cs_nondet_main_b1 (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 699 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function worker_fn_0 line 462 thread 0
+----------------------------------------------------
+  __cs_nondet_barrier_wait_1___cs_tmp_if_cond_1=FALSE (00000000)
+
+State 708 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function worker_fn_0 line 484 thread 0
+----------------------------------------------------
+  __cs_mutex_to_lock=&__cs_nondet_main_b1.lock (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00001000)
+
+State 709 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function worker_fn_0 line 484 thread 0
+----------------------------------------------------
+  __cs_thread_index=1 (1)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c line 122 function __cs_mutex_lock
+  *__cs_mutex_to_lock != 0
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c line 123 function __cs_mutex_lock
+  *__cs_mutex_to_lock != -2
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c line 124 function __cs_mutex_lock
+  *__cs_mutex_to_lock == -1
+
+State 713 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_mutex_lock line 125 thread 0
+----------------------------------------------------
+  __cs_nondet_main_b1.lock=2 (00000000 00000000 00000000 00000010)
+
+State 716 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_mutex_lock line 126 thread 0
+----------------------------------------------------
+  __cs_message="lock acquired" (00000110 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 725 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function worker_fn_0 line 489 thread 0
+----------------------------------------------------
+  __cs_nondet_main_b1.seen=2 (00000000 00000000 00000000 00000010)
+
+State 731 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function worker_fn_0 line 497 thread 0
+----------------------------------------------------
+  __cs_nondet_barrier_wait_1___cs_tmp_if_cond_2=TRUE (00000001)
+
+State 740 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function worker_fn_0 line 504 thread 0
+----------------------------------------------------
+  __cs_cond_to_broadcast=&__cs_nondet_main_b1.sig (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00001100)
+
+State 741 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_cond_broadcast line 170 thread 0
+----------------------------------------------------
+  __cs_nondet_main_b1.sig=1 (00000000 00000000 00000000 00000001)
+
+State 744 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_cond_broadcast line 171 thread 0
+----------------------------------------------------
+  __cs_message="conditional variable broadcast" (00000111 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 755 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function worker_fn_0 line 509 thread 0
+----------------------------------------------------
+  __cs_mutex_to_unlock=&__cs_nondet_main_b1.lock (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00001000)
+
+State 756 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function worker_fn_0 line 509 thread 0
+----------------------------------------------------
+  __cs_thread_index=1 (1)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c line 131 function __cs_mutex_unlock
+  *__cs_mutex_to_unlock != 0
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c line 132 function __cs_mutex_unlock
+  *__cs_mutex_to_unlock != -2
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c line 133 function __cs_mutex_unlock
+  *__cs_mutex_to_unlock == (signed int)__cs_thread_index + 1
+
+State 760 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_mutex_unlock line 134 thread 0
+----------------------------------------------------
+  __cs_nondet_main_b1.lock=-1 (11111111 11111111 11111111 11111111)
+
+State 763 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_mutex_unlock line 135 thread 0
+----------------------------------------------------
+  __cs_message="lock released" (00001000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 767 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function worker_fn_0 line 510 thread 0
+----------------------------------------------------
+  __cs_retval_barrier_wait_1=TRUE (00000001)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c line 626 function worker_fn_0
+  (signed int)__cs_pc_cs[(signed long int)1] >= 28
+
+State 776 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function worker_fn_0 line 639 thread 0
+----------------------------------------------------
+  sig1[0l]=TRUE (00000001)
+
+State 777 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function worker_fn_0 line 639 thread 0
+----------------------------------------------------
+  sig1[0l]=TRUE (00000001)
+
+State 778 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function worker_fn_0 line 639 thread 0
+----------------------------------------------------
+  sig1[1l]=FALSE (00000000)
+
+State 779 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function worker_fn_0 line 641 thread 0
+----------------------------------------------------
+  __cs_local_worker_fn_sig=0 (00000000 00000000 00000000 00000000)
+
+State 780 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function worker_fn_0 line 644 thread 0
+----------------------------------------------------
+  __cs_nondet_worker_fn_i=0 (00000000 00000000 00000000 00000000)
+
+State 786 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function worker_fn_0 line 653 thread 0
+----------------------------------------------------
+  __cs_nondet_worker_fn___cs_tmp_if_cond_5=FALSE (00000000)
+
+State 793 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function worker_fn_0 line 675 thread 0
+----------------------------------------------------
+  __cs_local_worker_fn_sig=1 (00000000 00000000 00000000 00000001)
+
+State 794 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function worker_fn_0 line 678 thread 0
+----------------------------------------------------
+  __cs_nondet_worker_fn_i=1 (00000000 00000000 00000000 00000001)
+
+State 800 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function worker_fn_0 line 687 thread 0
+----------------------------------------------------
+  __cs_nondet_worker_fn___cs_tmp_if_cond_5=FALSE (00000000)
+
+State 807 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function worker_fn_0 line 709 thread 0
+----------------------------------------------------
+  __cs_local_worker_fn_sig=1 (00000000 00000000 00000000 00000001)
+
+State 808 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function worker_fn_0 line 712 thread 0
+----------------------------------------------------
+  __cs_nondet_worker_fn_i=2 (00000000 00000000 00000000 00000010)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c line 715 function worker_fn_0
+  !(__cs_nondet_worker_fn_i < 2)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c line 717 function worker_fn_0
+  (signed int)__cs_pc_cs[(signed long int)1] >= 34
+
+State 815 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function worker_fn_0 line 725 thread 0
+----------------------------------------------------
+  __cs_nondet_worker_fn___cs_tmp_if_cond_6=FALSE (00000000)
+
+State 822 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function worker_fn_0 line 750 thread 0
+----------------------------------------------------
+  __cs_nondet_worker_fn___cs_tmp_if_cond_7=FALSE (00000000)
+
+State 830 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function worker_fn_0 line 776 thread 0
+----------------------------------------------------
+  in[0l]=TRUE (00000001)
+
+State 831 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function worker_fn_0 line 776 thread 0
+----------------------------------------------------
+  in[0l]=TRUE (00000001)
+
+State 832 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function worker_fn_0 line 776 thread 0
+----------------------------------------------------
+  in[1l]=FALSE (00000000)
+
+State 838 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function worker_fn_0 line 784 thread 0
+----------------------------------------------------
+  __cs_param_barrier_wait_2_b=&__cs_nondet_main_b1 (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 844 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function worker_fn_0 line 792 thread 0
+----------------------------------------------------
+  __cs_nondet_barrier_wait_2___cs_tmp_if_cond_1=TRUE (00000001)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c line 797 function worker_fn_0
+  (signed int)__cs_pc_cs[(signed long int)1] >= 38
+
+State 854 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function worker_fn_0 line 814 thread 0
+----------------------------------------------------
+  __cs_mutex_to_lock=&__cs_nondet_main_b1.lock (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00001000)
+
+State 855 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function worker_fn_0 line 814 thread 0
+----------------------------------------------------
+  __cs_thread_index=1 (1)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c line 122 function __cs_mutex_lock
+  *__cs_mutex_to_lock != 0
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c line 123 function __cs_mutex_lock
+  *__cs_mutex_to_lock != -2
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c line 124 function __cs_mutex_lock
+  *__cs_mutex_to_lock == -1
+
+State 859 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_mutex_lock line 125 thread 0
+----------------------------------------------------
+  __cs_nondet_main_b1.lock=2 (00000000 00000000 00000000 00000010)
+
+State 862 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_mutex_lock line 126 thread 0
+----------------------------------------------------
+  __cs_message="lock acquired" (00000110 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 871 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function worker_fn_0 line 819 thread 0
+----------------------------------------------------
+  __cs_nondet_main_b1.seen=3 (00000000 00000000 00000000 00000011)
+
+State 877 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function worker_fn_0 line 827 thread 0
+----------------------------------------------------
+  __cs_nondet_barrier_wait_2___cs_tmp_if_cond_2=FALSE (00000000)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c line 844 function worker_fn_0
+  (signed int)__cs_pc_cs[(signed long int)1] >= 43
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c line 944 function worker_fn_0
+  (signed int)__cs_pc_cs[(signed long int)1] >= 56
+
+State 894 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function worker_fn_0 line 951 thread 0
+----------------------------------------------------
+  __cs_mutex_to_unlock=&__cs_nondet_main_b1.lock (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00001000)
+
+State 895 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function worker_fn_0 line 951 thread 0
+----------------------------------------------------
+  __cs_thread_index=1 (1)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c line 131 function __cs_mutex_unlock
+  *__cs_mutex_to_unlock != 0
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c line 132 function __cs_mutex_unlock
+  *__cs_mutex_to_unlock != -2
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c line 133 function __cs_mutex_unlock
+  *__cs_mutex_to_unlock == (signed int)__cs_thread_index + 1
+
+State 899 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_mutex_unlock line 134 thread 0
+----------------------------------------------------
+  __cs_nondet_main_b1.lock=-1 (11111111 11111111 11111111 11111111)
+
+State 902 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_mutex_unlock line 135 thread 0
+----------------------------------------------------
+  __cs_message="lock released" (00001000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 906 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function worker_fn_0 line 952 thread 0
+----------------------------------------------------
+  __cs_retval_barrier_wait_2=FALSE (00000000)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c line 956 function worker_fn_0
+  (signed int)__cs_pc_cs[(signed long int)1] >= 57
+
+State 914 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function worker_fn_0 line 969 thread 0
+----------------------------------------------------
+  sig2[0l]=FALSE (00000000)
+
+State 915 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function worker_fn_0 line 969 thread 0
+----------------------------------------------------
+  sig2[0l]=FALSE (00000000)
+
+State 916 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function worker_fn_0 line 969 thread 0
+----------------------------------------------------
+  sig2[1l]=FALSE (00000000)
+
+State 922 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function worker_fn_0 line 977 thread 0
+----------------------------------------------------
+  __cs_nondet_worker_fn___cs_tmp_if_cond_8=FALSE (00000000)
+
+State 930 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function worker_fn_0 line 1003 thread 0
+----------------------------------------------------
+  post[0l]=TRUE (00000001)
+
+State 931 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function worker_fn_0 line 1003 thread 0
+----------------------------------------------------
+  post[0l]=TRUE (00000001)
+
+State 932 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function worker_fn_0 line 1003 thread 0
+----------------------------------------------------
+  post[1l]=FALSE (00000000)
+
+State 933 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function worker_fn_0 line 1004 thread 0
+----------------------------------------------------
+  __cs_local_worker_fn_sig=0 (00000000 00000000 00000000 00000000)
+
+State 934 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function worker_fn_0 line 1007 thread 0
+----------------------------------------------------
+  __cs_nondet_worker_fn_i=0 (00000000 00000000 00000000 00000000)
+
+State 940 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function worker_fn_0 line 1016 thread 0
+----------------------------------------------------
+  __cs_nondet_worker_fn___cs_tmp_if_cond_9=FALSE (00000000)
+
+State 947 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function worker_fn_0 line 1041 thread 0
+----------------------------------------------------
+  __cs_nondet_worker_fn___cs_tmp_if_cond_10=FALSE (00000000)
+
+State 954 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function worker_fn_0 line 1063 thread 0
+----------------------------------------------------
+  __cs_local_worker_fn_sig=1 (00000000 00000000 00000000 00000001)
+
+State 955 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function worker_fn_0 line 1066 thread 0
+----------------------------------------------------
+  __cs_nondet_worker_fn_i=1 (00000000 00000000 00000000 00000001)
+
+State 961 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function worker_fn_0 line 1075 thread 0
+----------------------------------------------------
+  __cs_nondet_worker_fn___cs_tmp_if_cond_9=FALSE (00000000)
+
+State 989 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function worker_fn_0 line 1215 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 990 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function worker_fn_0 line 1215 thread 0
+----------------------------------------------------
+  __cs_thread_index=1u (00000000 00000000 00000000 00000001)
+
+State 991 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_exit line 98 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 998 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function main line 2376 thread 0
+----------------------------------------------------
+  __cs_dataraceSecondThread=TRUE (00000001)
+
+State 999 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function main line 2377 thread 0
+----------------------------------------------------
+  __cs_pc[1l]=64 (1000000)
+
+State 1000 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function main line 2381 thread 0
+----------------------------------------------------
+  __cs_tmp_t0_r1=63 (0111111)
+
+State 1002 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function main line 2384 thread 0
+----------------------------------------------------
+  __cs_pc_cs[0l]=82 (01010010)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c line 2385 function main
+  (signed int)__cs_pc_cs[(signed long int)0] >= (signed int)__cs_pc[(signed long int)0]
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c line 2386 function main
+  (signed int)__cs_pc_cs[(signed long int)0] <= 82
+
+State 1115 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_main_thread line 1529 thread 0
+----------------------------------------------------
+  __cs_dataraceNotDetected=FALSE (00000000)
+
+State 1118 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_main_thread line 1530 thread 0
+----------------------------------------------------
+  __cs_cond_to_wait_for=&__cs_nondet_main_b1.sig (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00001100)
+
+State 1119 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_main_thread line 1530 thread 0
+----------------------------------------------------
+  __cs_m=&__cs_nondet_main_b1.lock (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00001000)
+
+State 1120 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_main_thread line 1530 thread 0
+----------------------------------------------------
+  __cs_thread_index=0u (00000000 00000000 00000000 00000000)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c line 158 function __cs_cond_wait_2
+  *__cs_cond_to_wait_for == 1
+
+State 1124 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_cond_wait_2 line 159 thread 0
+----------------------------------------------------
+  __cs_mutex_to_lock=&__cs_nondet_main_b1.lock (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00001000)
+
+State 1125 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_cond_wait_2 line 159 thread 0
+----------------------------------------------------
+  __cs_thread_index=0 (0)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c line 122 function __cs_mutex_lock
+  *__cs_mutex_to_lock != 0
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c line 123 function __cs_mutex_lock
+  *__cs_mutex_to_lock != -2
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c line 124 function __cs_mutex_lock
+  *__cs_mutex_to_lock == -1
+
+State 1129 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_mutex_lock line 125 thread 0
+----------------------------------------------------
+  __cs_nondet_main_b1.lock=1 (00000000 00000000 00000000 00000001)
+
+State 1132 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_mutex_lock line 126 thread 0
+----------------------------------------------------
+  __cs_message="lock acquired" (00000110 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c line 1610 function __cs_main_thread
+  (signed int)__cs_pc_cs[(signed long int)0] >= 30
+
+State 1152 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_main_thread line 1617 thread 0
+----------------------------------------------------
+  __cs_mutex_to_unlock=&__cs_nondet_main_b1.lock (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00001000)
+
+State 1153 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_main_thread line 1617 thread 0
+----------------------------------------------------
+  __cs_thread_index=0 (0)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c line 131 function __cs_mutex_unlock
+  *__cs_mutex_to_unlock != 0
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c line 132 function __cs_mutex_unlock
+  *__cs_mutex_to_unlock != -2
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c line 133 function __cs_mutex_unlock
+  *__cs_mutex_to_unlock == (signed int)__cs_thread_index + 1
+
+State 1157 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_mutex_unlock line 134 thread 0
+----------------------------------------------------
+  __cs_nondet_main_b1.lock=-1 (11111111 11111111 11111111 11111111)
+
+State 1160 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_mutex_unlock line 135 thread 0
+----------------------------------------------------
+  __cs_message="lock released" (00001000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1164 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_main_thread line 1618 thread 0
+----------------------------------------------------
+  __cs_retval_barrier_wait_1=FALSE (00000000)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c line 1622 function __cs_main_thread
+  (signed int)__cs_pc_cs[(signed long int)0] >= 31
+
+State 1172 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_main_thread line 1635 thread 0
+----------------------------------------------------
+  sig1[1l]=FALSE (00000000)
+
+State 1173 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_main_thread line 1635 thread 0
+----------------------------------------------------
+  sig1[0l]=TRUE (00000001)
+
+State 1174 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_main_thread line 1635 thread 0
+----------------------------------------------------
+  sig1[1l]=FALSE (00000000)
+
+State 1175 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_main_thread line 1637 thread 0
+----------------------------------------------------
+  __cs_local_worker_fn_1_sig=0 (00000000 00000000 00000000 00000000)
+
+State 1176 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_main_thread line 1640 thread 0
+----------------------------------------------------
+  __cs_nondet_worker_fn_1_i=0 (00000000 00000000 00000000 00000000)
+
+State 1182 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_main_thread line 1649 thread 0
+----------------------------------------------------
+  __cs_nondet_worker_fn_1___cs_tmp_if_cond_5=FALSE (00000000)
+
+State 1189 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_main_thread line 1671 thread 0
+----------------------------------------------------
+  __cs_local_worker_fn_1_sig=1 (00000000 00000000 00000000 00000001)
+
+State 1190 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_main_thread line 1674 thread 0
+----------------------------------------------------
+  __cs_nondet_worker_fn_1_i=1 (00000000 00000000 00000000 00000001)
+
+State 1196 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_main_thread line 1683 thread 0
+----------------------------------------------------
+  __cs_nondet_worker_fn_1___cs_tmp_if_cond_5=FALSE (00000000)
+
+State 1203 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_main_thread line 1705 thread 0
+----------------------------------------------------
+  __cs_local_worker_fn_1_sig=1 (00000000 00000000 00000000 00000001)
+
+State 1204 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_main_thread line 1708 thread 0
+----------------------------------------------------
+  __cs_nondet_worker_fn_1_i=2 (00000000 00000000 00000000 00000010)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c line 1711 function __cs_main_thread
+  !(__cs_nondet_worker_fn_1_i < 2)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c line 1713 function __cs_main_thread
+  (signed int)__cs_pc_cs[(signed long int)0] >= 37
+
+State 1211 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_main_thread line 1721 thread 0
+----------------------------------------------------
+  __cs_nondet_worker_fn_1___cs_tmp_if_cond_6=FALSE (00000000)
+
+State 1218 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_main_thread line 1746 thread 0
+----------------------------------------------------
+  __cs_nondet_worker_fn_1___cs_tmp_if_cond_7=FALSE (00000000)
+
+State 1226 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_main_thread line 1772 thread 0
+----------------------------------------------------
+  in[1l]=TRUE (00000001)
+
+State 1227 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_main_thread line 1772 thread 0
+----------------------------------------------------
+  in[0l]=TRUE (00000001)
+
+State 1228 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_main_thread line 1772 thread 0
+----------------------------------------------------
+  in[1l]=TRUE (00000001)
+
+State 1234 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_main_thread line 1780 thread 0
+----------------------------------------------------
+  __cs_param_barrier_wait_2_b=&__cs_nondet_main_b1 (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1240 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_main_thread line 1788 thread 0
+----------------------------------------------------
+  __cs_nondet_barrier_wait_2___cs_tmp_if_cond_1=TRUE (00000001)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c line 1793 function __cs_main_thread
+  (signed int)__cs_pc_cs[(signed long int)0] >= 41
+
+State 1250 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_main_thread line 1810 thread 0
+----------------------------------------------------
+  __cs_mutex_to_lock=&__cs_nondet_main_b1.lock (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00001000)
+
+State 1251 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_main_thread line 1810 thread 0
+----------------------------------------------------
+  __cs_thread_index=0 (0)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c line 122 function __cs_mutex_lock
+  *__cs_mutex_to_lock != 0
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c line 123 function __cs_mutex_lock
+  *__cs_mutex_to_lock != -2
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c line 124 function __cs_mutex_lock
+  *__cs_mutex_to_lock == -1
+
+State 1255 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_mutex_lock line 125 thread 0
+----------------------------------------------------
+  __cs_nondet_main_b1.lock=1 (00000000 00000000 00000000 00000001)
+
+State 1258 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_mutex_lock line 126 thread 0
+----------------------------------------------------
+  __cs_message="lock acquired" (00000110 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1267 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_main_thread line 1815 thread 0
+----------------------------------------------------
+  __cs_nondet_main_b1.seen=4 (00000000 00000000 00000000 00000100)
+
+State 1273 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_main_thread line 1823 thread 0
+----------------------------------------------------
+  __cs_nondet_barrier_wait_2___cs_tmp_if_cond_2=FALSE (00000000)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c line 1840 function __cs_main_thread
+  (signed int)__cs_pc_cs[(signed long int)0] >= 46
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c line 1940 function __cs_main_thread
+  (signed int)__cs_pc_cs[(signed long int)0] >= 59
+
+State 1290 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_main_thread line 1947 thread 0
+----------------------------------------------------
+  __cs_mutex_to_unlock=&__cs_nondet_main_b1.lock (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00001000)
+
+State 1291 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_main_thread line 1947 thread 0
+----------------------------------------------------
+  __cs_thread_index=0 (0)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c line 131 function __cs_mutex_unlock
+  *__cs_mutex_to_unlock != 0
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c line 132 function __cs_mutex_unlock
+  *__cs_mutex_to_unlock != -2
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c line 133 function __cs_mutex_unlock
+  *__cs_mutex_to_unlock == (signed int)__cs_thread_index + 1
+
+State 1295 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_mutex_unlock line 134 thread 0
+----------------------------------------------------
+  __cs_nondet_main_b1.lock=-1 (11111111 11111111 11111111 11111111)
+
+State 1298 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_mutex_unlock line 135 thread 0
+----------------------------------------------------
+  __cs_message="lock released" (00001000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1302 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_main_thread line 1948 thread 0
+----------------------------------------------------
+  __cs_retval_barrier_wait_2=FALSE (00000000)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c line 1952 function __cs_main_thread
+  (signed int)__cs_pc_cs[(signed long int)0] >= 60
+
+State 1310 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_main_thread line 1965 thread 0
+----------------------------------------------------
+  sig2[1l]=FALSE (00000000)
+
+State 1311 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_main_thread line 1965 thread 0
+----------------------------------------------------
+  sig2[0l]=FALSE (00000000)
+
+State 1312 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_main_thread line 1965 thread 0
+----------------------------------------------------
+  sig2[1l]=FALSE (00000000)
+
+State 1318 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_main_thread line 1973 thread 0
+----------------------------------------------------
+  __cs_nondet_worker_fn_1___cs_tmp_if_cond_8=FALSE (00000000)
+
+State 1326 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_main_thread line 1999 thread 0
+----------------------------------------------------
+  post[1l]=TRUE (00000001)
+
+State 1327 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_main_thread line 1999 thread 0
+----------------------------------------------------
+  post[0l]=TRUE (00000001)
+
+State 1328 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_main_thread line 1999 thread 0
+----------------------------------------------------
+  post[1l]=TRUE (00000001)
+
+State 1329 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_main_thread line 2000 thread 0
+----------------------------------------------------
+  __cs_local_worker_fn_1_sig=0 (00000000 00000000 00000000 00000000)
+
+State 1330 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_main_thread line 2003 thread 0
+----------------------------------------------------
+  __cs_nondet_worker_fn_1_i=0 (00000000 00000000 00000000 00000000)
+
+State 1336 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_main_thread line 2012 thread 0
+----------------------------------------------------
+  __cs_nondet_worker_fn_1___cs_tmp_if_cond_9=FALSE (00000000)
+
+State 1343 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_main_thread line 2037 thread 0
+----------------------------------------------------
+  __cs_nondet_worker_fn_1___cs_tmp_if_cond_10=FALSE (00000000)
+
+State 1350 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_main_thread line 2059 thread 0
+----------------------------------------------------
+  __cs_local_worker_fn_1_sig=1 (00000000 00000000 00000000 00000001)
+
+State 1351 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_main_thread line 2062 thread 0
+----------------------------------------------------
+  __cs_nondet_worker_fn_1_i=1 (00000000 00000000 00000000 00000001)
+
+State 1357 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_main_thread line 2071 thread 0
+----------------------------------------------------
+  __cs_nondet_worker_fn_1___cs_tmp_if_cond_9=FALSE (00000000)
+
+State 1364 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_main_thread line 2096 thread 0
+----------------------------------------------------
+  __cs_nondet_worker_fn_1___cs_tmp_if_cond_10=FALSE (00000000)
+
+State 1371 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_main_thread line 2118 thread 0
+----------------------------------------------------
+  __cs_local_worker_fn_1_sig=1 (00000000 00000000 00000000 00000001)
+
+State 1372 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_main_thread line 2121 thread 0
+----------------------------------------------------
+  __cs_nondet_worker_fn_1_i=2 (00000000 00000000 00000000 00000010)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c line 2124 function __cs_main_thread
+  !(__cs_nondet_worker_fn_1_i < 2)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c line 2126 function __cs_main_thread
+  (signed int)__cs_pc_cs[(signed long int)0] >= 70
+
+State 1379 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_main_thread line 2134 thread 0
+----------------------------------------------------
+  __cs_nondet_worker_fn_1___cs_tmp_if_cond_11=FALSE (00000000)
+
+State 1381 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_main_thread line 2152 thread 0
+----------------------------------------------------
+  __cs_local_worker_fn_1_sig=0 (00000000 00000000 00000000 00000000)
+
+State 1382 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_main_thread line 2155 thread 0
+----------------------------------------------------
+  __cs_nondet_worker_fn_1_i=0 (00000000 00000000 00000000 00000000)
+
+State 1388 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_main_thread line 2161 thread 0
+----------------------------------------------------
+  __cs_local_worker_fn_1_sig=0 (00000000 00000000 00000000 00000000)
+
+State 1389 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_main_thread line 2164 thread 0
+----------------------------------------------------
+  __cs_nondet_worker_fn_1_i=1 (00000000 00000000 00000000 00000001)
+
+State 1395 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_main_thread line 2170 thread 0
+----------------------------------------------------
+  __cs_local_worker_fn_1_sig=0 (00000000 00000000 00000000 00000000)
+
+State 1396 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_main_thread line 2173 thread 0
+----------------------------------------------------
+  __cs_nondet_worker_fn_1_i=2 (00000000 00000000 00000000 00000010)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c line 2176 function __cs_main_thread
+  !(__cs_nondet_worker_fn_1_i < 2)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c line 2178 function __cs_main_thread
+  (signed int)__cs_pc_cs[(signed long int)0] >= 73
+
+State 1403 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_main_thread line 2186 thread 0
+----------------------------------------------------
+  __cs_nondet_worker_fn_1___cs_tmp_if_cond_12=FALSE (00000000)
+
+State 1409 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_main_thread line 2206 thread 0
+----------------------------------------------------
+  __cs_retval_worker_fn_1=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c line 2210 function __cs_main_thread
+  (signed int)__cs_pc_cs[(signed long int)0] >= 74
+
+State 1415 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_main_thread line 2220 thread 0
+----------------------------------------------------
+  __cs_nondet_main_i=0 (00000000 00000000 00000000 00000000)
+
+State 1422 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_main_thread line 2224 thread 0
+----------------------------------------------------
+  __cs_id=3 (00000000 00000000 00000000 00000011)
+
+State 1423 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_main_thread line 2224 thread 0
+----------------------------------------------------
+  __cs_value_ptr=((const void **)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c line 92 function __cs_join
+  __cs_pc[(signed long int)__cs_id] == __cs_thread_lines[(signed long int)__cs_id]
+
+State 1428 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_main_thread line 2227 thread 0
+----------------------------------------------------
+  __cs_nondet_main_i=1 (00000000 00000000 00000000 00000001)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c line 2230 function __cs_main_thread
+  !(__cs_nondet_main_i < 1)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c line 2232 function __cs_main_thread
+  (signed int)__cs_pc_cs[(signed long int)0] >= 77
+
+State 1435 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_main_thread line 2238 thread 0
+----------------------------------------------------
+  __cs_local_main_sig=0 (00000000 00000000 00000000 00000000)
+
+State 1436 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_main_thread line 2241 thread 0
+----------------------------------------------------
+  __cs_nondet_main_i=0 (00000000 00000000 00000000 00000000)
+
+State 1442 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_main_thread line 2250 thread 0
+----------------------------------------------------
+  __cs_nondet_main___cs_tmp_if_cond_13=FALSE (00000000)
+
+State 1449 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_main_thread line 2272 thread 0
+----------------------------------------------------
+  __cs_local_main_sig=0 (00000000 00000000 00000000 00000000)
+
+State 1450 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_main_thread line 2275 thread 0
+----------------------------------------------------
+  __cs_nondet_main_i=1 (00000000 00000000 00000000 00000001)
+
+State 1456 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_main_thread line 2284 thread 0
+----------------------------------------------------
+  __cs_nondet_main___cs_tmp_if_cond_13=FALSE (00000000)
+
+State 1463 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_main_thread line 2306 thread 0
+----------------------------------------------------
+  __cs_local_main_sig=0 (00000000 00000000 00000000 00000000)
+
+State 1464 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_main_thread line 2309 thread 0
+----------------------------------------------------
+  __cs_nondet_main_i=2 (00000000 00000000 00000000 00000010)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c line 2312 function __cs_main_thread
+  !(__cs_nondet_main_i < 2)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c line 2314 function __cs_main_thread
+  (signed int)__cs_pc_cs[(signed long int)0] >= 82
+
+State 1471 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_main_thread line 2322 thread 0
+----------------------------------------------------
+  __cs_nondet_main___cs_tmp_if_cond_14=TRUE (00000001)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c line 2327 function __cs_main_thread
+  (signed int)__cs_pc_cs[(signed long int)0] >= 82
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c line 2341 function __cs_main_thread
+  (signed int)__cs_pc_cs[(signed long int)0] >= 82
+
+State 1477 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_main_thread line 2345 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1478 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_main_thread line 2345 thread 0
+----------------------------------------------------
+  __cs_thread_index=0u (00000000 00000000 00000000 00000000)
+
+State 1479 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function __cs_exit line 98 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1485 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function main line 2391 thread 0
+----------------------------------------------------
+  __cs_dataraceContinue=FALSE (00000000)
+
+State 1487 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function main line 2393 thread 0
+----------------------------------------------------
+  __cs_dataraceSecondThread=TRUE (00000001)
+
+State 1488 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function main line 2394 thread 0
+----------------------------------------------------
+  __cs_pc[0l]=82 (1010010)
+
+State 1489 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function main line 2397 thread 0
+----------------------------------------------------
+  __cs_tmp_t1_r1=120 (1111000)
+
+Violated property:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2one_time_barrier_2t.c function main line 2412 thread 0
+  Data race failure
+  __cs_dataraceNotDetected != FALSE
+
+
+VERIFICATION FAILED
+
+real	0m0,900s
+user	0m0,868s
+sys	0m0,035s

@@ -1,0 +1,588 @@
+CBMC version 5.32.1 (cbmc-5.32.1-140-g7c8c411038-dirty) 64-bit x86_64 linux
+Parsing /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_stack_longer-1.c
+Converting
+Type-checking _csdr_stack_longer-1
+file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_stack_longer-1.c line 316 function t1_0: function '__CPROVER_set_field' is not declared
+file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_stack_longer-1.c line 316 function t1_0: function '__CPROVER_get_field' is not declared
+file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_stack_longer-1.c line 322 function t1_0: function 'assume_abort_if_not' is not declared
+file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_stack_longer-1.c line 1329 function main: function '__CPROVER_field_decl_global' is not declared
+file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_stack_longer-1.c line 1330 function main: function '__CPROVER_field_decl_local' is not declared
+Generating GOTO Program
+Adding CPROVER library (x86_64)
+Removal of function pointers and virtual functions
+Generic Property Instrumentation
+Running with 8 object bits, 56 offset bits (default)
+Starting Bounded Model Checking
+Shadow memory: cannot set_field for &__cs_nondet_t1_i
+Shadow memory: cannot get_field for &__cs_nondet_t1_i
+Shadow memory: cannot set_field for &__cs_nondet_t1_tmp
+Shadow memory: cannot get_field for &__cs_nondet_t1_tmp
+Shadow memory: cannot get_field for &__cs_nondet_t1_tmp
+**** WARNING: no body for function assume_abort_if_not
+Shadow memory: cannot set_field for &__cs_param_push_1_stack
+Shadow memory: cannot set_field for &__cs_param_push_1_x
+Shadow memory: cannot set_field for &__cs_nondet_push_1___cs_tmp_if_cond_0
+Shadow memory: cannot set_field for &__cs_retval_get_top_1
+Shadow memory: cannot set_field for &__cs_retval_push_1
+Shadow memory: cannot set_field for &__cs_nondet_t1___cs_tmp_if_cond_2
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_stack_longer-1.c line 403 function t1_0 thread 0
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot set_field for &__cs_nondet_t1_i
+Shadow memory: cannot get_field for &__cs_nondet_t1_i
+Shadow memory: cannot set_field for &__cs_nondet_t1_tmp
+Shadow memory: cannot get_field for &__cs_nondet_t1_tmp
+Shadow memory: cannot get_field for &__cs_nondet_t1_tmp
+Shadow memory: cannot set_field for &__cs_param_push_1_stack
+Shadow memory: cannot set_field for &__cs_param_push_1_x
+Shadow memory: cannot set_field for &__cs_nondet_push_1___cs_tmp_if_cond_0
+Shadow memory: cannot set_field for &__cs_retval_push_1
+Shadow memory: cannot set_field for &__cs_retval_get_top_1
+Shadow memory: cannot set_field for &__cs_retval_push_1
+Shadow memory: cannot set_field for &__cs_nondet_t1___cs_tmp_if_cond_2
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_stack_longer-1.c line 512 function t1_0 thread 0
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot set_field for &__cs_nondet_t1_i
+Shadow memory: cannot get_field for &__cs_nondet_t1_i
+Shadow memory: cannot set_field for &__cs_nondet_t1_tmp
+Shadow memory: cannot get_field for &__cs_nondet_t1_tmp
+Shadow memory: cannot get_field for &__cs_nondet_t1_tmp
+Shadow memory: cannot set_field for &__cs_param_push_1_stack
+Shadow memory: cannot set_field for &__cs_param_push_1_x
+Shadow memory: cannot set_field for &__cs_nondet_push_1___cs_tmp_if_cond_0
+Shadow memory: cannot set_field for &__cs_retval_push_1
+Shadow memory: cannot set_field for &__cs_retval_get_top_1
+Shadow memory: cannot set_field for &__cs_retval_push_1
+Shadow memory: cannot set_field for &__cs_nondet_t1___cs_tmp_if_cond_2
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_stack_longer-1.c line 621 function t1_0 thread 0
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot set_field for &__cs_nondet_t1_i
+Shadow memory: cannot get_field for &__cs_nondet_t1_i
+Shadow memory: cannot set_field for &__cs_nondet_t1_tmp
+Shadow memory: cannot get_field for &__cs_nondet_t1_tmp
+Shadow memory: cannot get_field for &__cs_nondet_t1_tmp
+Shadow memory: cannot set_field for &__cs_param_push_1_stack
+Shadow memory: cannot set_field for &__cs_param_push_1_x
+Shadow memory: cannot set_field for &__cs_nondet_push_1___cs_tmp_if_cond_0
+Shadow memory: cannot set_field for &__cs_retval_push_1
+Shadow memory: cannot set_field for &__cs_retval_get_top_1
+Shadow memory: cannot set_field for &__cs_retval_push_1
+Shadow memory: cannot set_field for &__cs_nondet_t1___cs_tmp_if_cond_2
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_stack_longer-1.c line 730 function t1_0 thread 0
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot set_field for &__cs_nondet_t1_i
+Shadow memory: cannot get_field for &__cs_nondet_t1_i
+Shadow memory: cannot set_field for &__cs_nondet_t2_i
+Shadow memory: cannot get_field for &__cs_nondet_t2_i
+Shadow memory: cannot set_field for &__cs_nondet_t2___cs_tmp_if_cond_3
+Shadow memory: cannot set_field for &__cs_param_pop_1_stack
+Shadow memory: cannot set_field for &__cs_retval_get_top_1
+Shadow memory: cannot set_field for &__cs_nondet_pop_1___cs_tmp_if_cond_1
+Shadow memory: cannot set_field for &__cs_retval_pop_1
+Shadow memory: cannot set_field for &__cs_retval_get_top_2
+Shadow memory: cannot set_field for &__cs_retval_pop_1
+Shadow memory: cannot set_field for &__cs_nondet_t2___cs_tmp_if_cond_4
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_stack_longer-1.c line 882 function t2_0 thread 0
+Shadow memory: cannot set_field for &__cs_nondet_t2_i
+Shadow memory: cannot get_field for &__cs_nondet_t2_i
+Shadow memory: cannot set_field for &__cs_nondet_t2___cs_tmp_if_cond_3
+Shadow memory: cannot set_field for &__cs_param_pop_1_stack
+Shadow memory: cannot set_field for &__cs_retval_get_top_1
+Shadow memory: cannot set_field for &__cs_nondet_pop_1___cs_tmp_if_cond_1
+Shadow memory: cannot set_field for &__cs_retval_pop_1
+Shadow memory: cannot set_field for &__cs_retval_get_top_2
+Shadow memory: cannot set_field for &__cs_retval_pop_1
+Shadow memory: cannot set_field for &__cs_nondet_t2___cs_tmp_if_cond_4
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_stack_longer-1.c line 1008 function t2_0 thread 0
+Shadow memory: cannot set_field for &__cs_nondet_t2_i
+Shadow memory: cannot get_field for &__cs_nondet_t2_i
+Shadow memory: cannot set_field for &__cs_nondet_t2___cs_tmp_if_cond_3
+Shadow memory: cannot set_field for &__cs_param_pop_1_stack
+Shadow memory: cannot set_field for &__cs_retval_get_top_1
+Shadow memory: cannot set_field for &__cs_nondet_pop_1___cs_tmp_if_cond_1
+Shadow memory: cannot set_field for &__cs_retval_pop_1
+Shadow memory: cannot set_field for &__cs_retval_get_top_2
+Shadow memory: cannot set_field for &__cs_retval_pop_1
+Shadow memory: cannot set_field for &__cs_nondet_t2___cs_tmp_if_cond_4
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_stack_longer-1.c line 1134 function t2_0 thread 0
+Shadow memory: cannot set_field for &__cs_nondet_t2_i
+Shadow memory: cannot get_field for &__cs_nondet_t2_i
+Shadow memory: cannot set_field for &__cs_nondet_t2___cs_tmp_if_cond_3
+Shadow memory: cannot set_field for &__cs_param_pop_1_stack
+Shadow memory: cannot set_field for &__cs_retval_get_top_1
+Shadow memory: cannot set_field for &__cs_nondet_pop_1___cs_tmp_if_cond_1
+Shadow memory: cannot set_field for &__cs_retval_pop_1
+Shadow memory: cannot set_field for &__cs_retval_get_top_2
+Shadow memory: cannot set_field for &__cs_retval_pop_1
+Shadow memory: cannot set_field for &__cs_nondet_t2___cs_tmp_if_cond_4
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_stack_longer-1.c line 1260 function t2_0 thread 0
+Shadow memory: cannot set_field for &__cs_nondet_t2_i
+Shadow memory: cannot get_field for &__cs_nondet_t2_i
+Shadow memory: cannot get_field for &__cs_nondet_main_id1
+Shadow memory: cannot get_field for &__cs_nondet_main_id2
+Shadow memory: cannot set_field for &__cs_nondet_t1_i
+Shadow memory: cannot get_field for &__cs_nondet_t1_i
+Shadow memory: cannot set_field for &__cs_nondet_t1_tmp
+Shadow memory: cannot get_field for &__cs_nondet_t1_tmp
+Shadow memory: cannot get_field for &__cs_nondet_t1_tmp
+Shadow memory: cannot set_field for &__cs_param_push_1_stack
+Shadow memory: cannot get_field for &__cs_param_push_1_stack
+Shadow memory: cannot set_field for &__cs_param_push_1_x
+Shadow memory: cannot get_field for &__cs_param_push_1_x
+Shadow memory: cannot get_field for &__cs_nondet_t1_tmp
+Shadow memory: cannot set_field for &__cs_nondet_push_1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_push_1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_push_1___cs_tmp_if_cond_0
+Shadow memory: cannot set_field for &__cs_retval_push_1
+Shadow memory: cannot get_field for &__cs_retval_push_1
+Shadow memory: cannot set_field for &__cs_retval_get_top_1
+Shadow memory: cannot get_field for &__cs_retval_get_top_1
+Shadow memory: cannot get_field for &__cs_param_push_1_stack
+Shadow memory: cannot get_field for &__cs_retval_get_top_1
+Shadow memory: cannot get_field for &__cs_param_push_1_x
+Shadow memory: cannot set_field for &__cs_retval_push_1
+Shadow memory: cannot get_field for &__cs_retval_push_1
+Shadow memory: cannot set_field for &__cs_nondet_t1___cs_tmp_if_cond_2
+Shadow memory: cannot get_field for &__cs_nondet_t1___cs_tmp_if_cond_2
+Shadow memory: cannot get_field for &__cs_retval_push_1
+Shadow memory: cannot get_field for &__cs_nondet_t1___cs_tmp_if_cond_2
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_stack_longer-1.c line 403 function t1_0 thread 0
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot set_field for &__cs_nondet_t1_i
+Shadow memory: cannot get_field for &__cs_nondet_t1_i
+Shadow memory: cannot set_field for &__cs_nondet_t1_tmp
+Shadow memory: cannot get_field for &__cs_nondet_t1_tmp
+Shadow memory: cannot get_field for &__cs_nondet_t1_tmp
+Shadow memory: cannot set_field for &__cs_param_push_1_stack
+Shadow memory: cannot get_field for &__cs_param_push_1_stack
+Shadow memory: cannot set_field for &__cs_param_push_1_x
+Shadow memory: cannot get_field for &__cs_param_push_1_x
+Shadow memory: cannot get_field for &__cs_nondet_t1_tmp
+Shadow memory: cannot set_field for &__cs_nondet_push_1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_push_1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_push_1___cs_tmp_if_cond_0
+Shadow memory: cannot set_field for &__cs_retval_push_1
+Shadow memory: cannot get_field for &__cs_retval_push_1
+Shadow memory: cannot set_field for &__cs_retval_get_top_1
+Shadow memory: cannot get_field for &__cs_retval_get_top_1
+Shadow memory: cannot get_field for &__cs_param_push_1_stack
+Shadow memory: cannot get_field for &__cs_retval_get_top_1
+Shadow memory: cannot get_field for &__cs_param_push_1_x
+Shadow memory: cannot set_field for &__cs_retval_push_1
+Shadow memory: cannot get_field for &__cs_retval_push_1
+Shadow memory: cannot set_field for &__cs_nondet_t1___cs_tmp_if_cond_2
+Shadow memory: cannot get_field for &__cs_nondet_t1___cs_tmp_if_cond_2
+Shadow memory: cannot get_field for &__cs_retval_push_1
+Shadow memory: cannot get_field for &__cs_nondet_t1___cs_tmp_if_cond_2
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_stack_longer-1.c line 512 function t1_0 thread 0
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot set_field for &__cs_nondet_t1_i
+Shadow memory: cannot get_field for &__cs_nondet_t1_i
+Shadow memory: cannot set_field for &__cs_nondet_t1_tmp
+Shadow memory: cannot get_field for &__cs_nondet_t1_tmp
+Shadow memory: cannot get_field for &__cs_nondet_t1_tmp
+Shadow memory: cannot set_field for &__cs_param_push_1_stack
+Shadow memory: cannot get_field for &__cs_param_push_1_stack
+Shadow memory: cannot set_field for &__cs_param_push_1_x
+Shadow memory: cannot get_field for &__cs_param_push_1_x
+Shadow memory: cannot get_field for &__cs_nondet_t1_tmp
+Shadow memory: cannot set_field for &__cs_nondet_push_1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_push_1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_push_1___cs_tmp_if_cond_0
+Shadow memory: cannot set_field for &__cs_retval_push_1
+Shadow memory: cannot get_field for &__cs_retval_push_1
+Shadow memory: cannot set_field for &__cs_retval_get_top_1
+Shadow memory: cannot get_field for &__cs_retval_get_top_1
+Shadow memory: cannot get_field for &__cs_param_push_1_stack
+Shadow memory: cannot get_field for &__cs_retval_get_top_1
+Shadow memory: cannot get_field for &__cs_param_push_1_x
+Shadow memory: cannot set_field for &__cs_retval_push_1
+Shadow memory: cannot get_field for &__cs_retval_push_1
+Shadow memory: cannot set_field for &__cs_nondet_t1___cs_tmp_if_cond_2
+Shadow memory: cannot get_field for &__cs_nondet_t1___cs_tmp_if_cond_2
+Shadow memory: cannot get_field for &__cs_retval_push_1
+Shadow memory: cannot get_field for &__cs_nondet_t1___cs_tmp_if_cond_2
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_stack_longer-1.c line 621 function t1_0 thread 0
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot set_field for &__cs_nondet_t1_i
+Shadow memory: cannot get_field for &__cs_nondet_t1_i
+Shadow memory: cannot set_field for &__cs_nondet_t1_tmp
+Shadow memory: cannot get_field for &__cs_nondet_t1_tmp
+Shadow memory: cannot get_field for &__cs_nondet_t1_tmp
+Shadow memory: cannot set_field for &__cs_param_push_1_stack
+Shadow memory: cannot get_field for &__cs_param_push_1_stack
+Shadow memory: cannot set_field for &__cs_param_push_1_x
+Shadow memory: cannot get_field for &__cs_param_push_1_x
+Shadow memory: cannot get_field for &__cs_nondet_t1_tmp
+Shadow memory: cannot set_field for &__cs_nondet_push_1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_push_1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_push_1___cs_tmp_if_cond_0
+Shadow memory: cannot set_field for &__cs_retval_push_1
+Shadow memory: cannot get_field for &__cs_retval_push_1
+Shadow memory: cannot set_field for &__cs_retval_get_top_1
+Shadow memory: cannot get_field for &__cs_retval_get_top_1
+Shadow memory: cannot get_field for &__cs_param_push_1_stack
+Shadow memory: cannot get_field for &__cs_retval_get_top_1
+Shadow memory: cannot get_field for &__cs_param_push_1_x
+Shadow memory: cannot set_field for &__cs_retval_push_1
+Shadow memory: cannot get_field for &__cs_retval_push_1
+Shadow memory: cannot set_field for &__cs_nondet_t1___cs_tmp_if_cond_2
+Shadow memory: cannot get_field for &__cs_nondet_t1___cs_tmp_if_cond_2
+Shadow memory: cannot get_field for &__cs_retval_push_1
+Shadow memory: cannot get_field for &__cs_nondet_t1___cs_tmp_if_cond_2
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_stack_longer-1.c line 730 function t1_0 thread 0
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot set_field for &__cs_nondet_t1_i
+Shadow memory: cannot get_field for &__cs_nondet_t1_i
+Shadow memory: cannot get_field for &__cs_nondet_t1_i
+Shadow memory: cannot set_field for &__cs_nondet_t2_i
+Shadow memory: cannot get_field for &__cs_nondet_t2_i
+Shadow memory: cannot set_field for &__cs_nondet_t2___cs_tmp_if_cond_3
+Shadow memory: cannot get_field for &__cs_nondet_t2___cs_tmp_if_cond_3
+Shadow memory: cannot get_field for &__cs_nondet_t2___cs_tmp_if_cond_3
+Shadow memory: cannot set_field for &__cs_param_pop_1_stack
+Shadow memory: cannot get_field for &__cs_param_pop_1_stack
+Shadow memory: cannot set_field for &__cs_retval_get_top_1
+Shadow memory: cannot get_field for &__cs_retval_get_top_1
+Shadow memory: cannot set_field for &__cs_nondet_pop_1___cs_tmp_if_cond_1
+Shadow memory: cannot get_field for &__cs_nondet_pop_1___cs_tmp_if_cond_1
+Shadow memory: cannot get_field for &__cs_retval_get_top_1
+Shadow memory: cannot get_field for &__cs_nondet_pop_1___cs_tmp_if_cond_1
+Shadow memory: cannot set_field for &__cs_retval_pop_1
+Shadow memory: cannot get_field for &__cs_retval_pop_1
+Shadow memory: cannot set_field for &__cs_retval_get_top_2
+Shadow memory: cannot get_field for &__cs_retval_get_top_2
+Shadow memory: cannot set_field for &__cs_retval_pop_1
+Shadow memory: cannot get_field for &__cs_retval_pop_1
+Shadow memory: cannot get_field for &__cs_param_pop_1_stack
+Shadow memory: cannot get_field for &__cs_retval_get_top_2
+Shadow memory: cannot set_field for &__cs_nondet_t2___cs_tmp_if_cond_4
+Shadow memory: cannot get_field for &__cs_nondet_t2___cs_tmp_if_cond_4
+Shadow memory: cannot get_field for &__cs_retval_pop_1
+Shadow memory: cannot get_field for &__cs_nondet_t2___cs_tmp_if_cond_4
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_stack_longer-1.c line 882 function t2_0 thread 0
+Shadow memory: cannot set_field for &__cs_nondet_t2_i
+Shadow memory: cannot get_field for &__cs_nondet_t2_i
+Shadow memory: cannot set_field for &__cs_nondet_t2___cs_tmp_if_cond_3
+Shadow memory: cannot get_field for &__cs_nondet_t2___cs_tmp_if_cond_3
+Shadow memory: cannot get_field for &__cs_nondet_t2___cs_tmp_if_cond_3
+Shadow memory: cannot set_field for &__cs_param_pop_1_stack
+Shadow memory: cannot get_field for &__cs_param_pop_1_stack
+Shadow memory: cannot set_field for &__cs_retval_get_top_1
+Shadow memory: cannot get_field for &__cs_retval_get_top_1
+Shadow memory: cannot set_field for &__cs_nondet_pop_1___cs_tmp_if_cond_1
+Shadow memory: cannot get_field for &__cs_nondet_pop_1___cs_tmp_if_cond_1
+Shadow memory: cannot get_field for &__cs_retval_get_top_1
+Shadow memory: cannot get_field for &__cs_nondet_pop_1___cs_tmp_if_cond_1
+Shadow memory: cannot set_field for &__cs_retval_pop_1
+Shadow memory: cannot get_field for &__cs_retval_pop_1
+Shadow memory: cannot set_field for &__cs_retval_get_top_2
+Shadow memory: cannot get_field for &__cs_retval_get_top_2
+Shadow memory: cannot set_field for &__cs_retval_pop_1
+Shadow memory: cannot get_field for &__cs_retval_pop_1
+Shadow memory: cannot get_field for &__cs_param_pop_1_stack
+Shadow memory: cannot get_field for &__cs_retval_get_top_2
+Shadow memory: cannot set_field for &__cs_nondet_t2___cs_tmp_if_cond_4
+Shadow memory: cannot get_field for &__cs_nondet_t2___cs_tmp_if_cond_4
+Shadow memory: cannot get_field for &__cs_retval_pop_1
+Shadow memory: cannot get_field for &__cs_nondet_t2___cs_tmp_if_cond_4
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_stack_longer-1.c line 1008 function t2_0 thread 0
+Shadow memory: cannot set_field for &__cs_nondet_t2_i
+Shadow memory: cannot get_field for &__cs_nondet_t2_i
+Shadow memory: cannot set_field for &__cs_nondet_t2___cs_tmp_if_cond_3
+Shadow memory: cannot get_field for &__cs_nondet_t2___cs_tmp_if_cond_3
+Shadow memory: cannot get_field for &__cs_nondet_t2___cs_tmp_if_cond_3
+Shadow memory: cannot set_field for &__cs_param_pop_1_stack
+Shadow memory: cannot get_field for &__cs_param_pop_1_stack
+Shadow memory: cannot set_field for &__cs_retval_get_top_1
+Shadow memory: cannot get_field for &__cs_retval_get_top_1
+Shadow memory: cannot set_field for &__cs_nondet_pop_1___cs_tmp_if_cond_1
+Shadow memory: cannot get_field for &__cs_nondet_pop_1___cs_tmp_if_cond_1
+Shadow memory: cannot get_field for &__cs_retval_get_top_1
+Shadow memory: cannot get_field for &__cs_nondet_pop_1___cs_tmp_if_cond_1
+Shadow memory: cannot set_field for &__cs_retval_pop_1
+Shadow memory: cannot get_field for &__cs_retval_pop_1
+Shadow memory: cannot set_field for &__cs_retval_get_top_2
+Shadow memory: cannot get_field for &__cs_retval_get_top_2
+Shadow memory: cannot set_field for &__cs_retval_pop_1
+Shadow memory: cannot get_field for &__cs_retval_pop_1
+Shadow memory: cannot get_field for &__cs_param_pop_1_stack
+Shadow memory: cannot get_field for &__cs_retval_get_top_2
+Shadow memory: cannot set_field for &__cs_nondet_t2___cs_tmp_if_cond_4
+Shadow memory: cannot get_field for &__cs_nondet_t2___cs_tmp_if_cond_4
+Shadow memory: cannot get_field for &__cs_retval_pop_1
+Shadow memory: cannot get_field for &__cs_nondet_t2___cs_tmp_if_cond_4
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_stack_longer-1.c line 1134 function t2_0 thread 0
+Shadow memory: cannot set_field for &__cs_nondet_t2_i
+Shadow memory: cannot get_field for &__cs_nondet_t2_i
+Shadow memory: cannot set_field for &__cs_nondet_t2___cs_tmp_if_cond_3
+Shadow memory: cannot get_field for &__cs_nondet_t2___cs_tmp_if_cond_3
+Shadow memory: cannot get_field for &__cs_nondet_t2___cs_tmp_if_cond_3
+Shadow memory: cannot set_field for &__cs_param_pop_1_stack
+Shadow memory: cannot get_field for &__cs_param_pop_1_stack
+Shadow memory: cannot set_field for &__cs_retval_get_top_1
+Shadow memory: cannot get_field for &__cs_retval_get_top_1
+Shadow memory: cannot set_field for &__cs_nondet_pop_1___cs_tmp_if_cond_1
+Shadow memory: cannot get_field for &__cs_nondet_pop_1___cs_tmp_if_cond_1
+Shadow memory: cannot get_field for &__cs_retval_get_top_1
+Shadow memory: cannot get_field for &__cs_nondet_pop_1___cs_tmp_if_cond_1
+Shadow memory: cannot set_field for &__cs_retval_pop_1
+Shadow memory: cannot get_field for &__cs_retval_pop_1
+Shadow memory: cannot set_field for &__cs_retval_get_top_2
+Shadow memory: cannot get_field for &__cs_retval_get_top_2
+Shadow memory: cannot set_field for &__cs_retval_pop_1
+Shadow memory: cannot get_field for &__cs_retval_pop_1
+Shadow memory: cannot get_field for &__cs_param_pop_1_stack
+Shadow memory: cannot get_field for &__cs_retval_get_top_2
+Shadow memory: cannot set_field for &__cs_nondet_t2___cs_tmp_if_cond_4
+Shadow memory: cannot get_field for &__cs_nondet_t2___cs_tmp_if_cond_4
+Shadow memory: cannot get_field for &__cs_retval_pop_1
+Shadow memory: cannot get_field for &__cs_nondet_t2___cs_tmp_if_cond_4
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_stack_longer-1.c line 1260 function t2_0 thread 0
+Shadow memory: cannot set_field for &__cs_nondet_t2_i
+Shadow memory: cannot get_field for &__cs_nondet_t2_i
+Shadow memory: cannot get_field for &__cs_nondet_t2_i
+Shadow memory: cannot get_field for &__cs_nondet_main_id1
+Shadow memory: cannot get_field for &__cs_nondet_main_id2
+Shadow memory: cannot set_field for &__cs_nondet_t1_i
+Shadow memory: cannot get_field for &__cs_nondet_t1_i
+Shadow memory: cannot set_field for &__cs_nondet_t1_tmp
+Shadow memory: cannot get_field for &__cs_nondet_t1_tmp
+Shadow memory: cannot get_field for &__cs_nondet_t1_tmp
+Shadow memory: cannot set_field for &__cs_param_push_1_stack
+Shadow memory: cannot get_field for &__cs_param_push_1_stack
+Shadow memory: cannot set_field for &__cs_param_push_1_x
+Shadow memory: cannot get_field for &__cs_param_push_1_x
+Shadow memory: cannot get_field for &__cs_nondet_t1_tmp
+Shadow memory: cannot set_field for &__cs_nondet_push_1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_push_1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_push_1___cs_tmp_if_cond_0
+Shadow memory: cannot set_field for &__cs_retval_push_1
+Shadow memory: cannot get_field for &__cs_retval_push_1
+Shadow memory: cannot set_field for &__cs_retval_get_top_1
+Shadow memory: cannot get_field for &__cs_retval_get_top_1
+Shadow memory: cannot get_field for &__cs_param_push_1_stack
+Shadow memory: cannot get_field for &__cs_retval_get_top_1
+Shadow memory: cannot get_field for &__cs_param_push_1_x
+Shadow memory: cannot set_field for &__cs_retval_push_1
+Shadow memory: cannot get_field for &__cs_retval_push_1
+Shadow memory: cannot set_field for &__cs_nondet_t1___cs_tmp_if_cond_2
+Shadow memory: cannot get_field for &__cs_nondet_t1___cs_tmp_if_cond_2
+Shadow memory: cannot get_field for &__cs_retval_push_1
+Shadow memory: cannot get_field for &__cs_nondet_t1___cs_tmp_if_cond_2
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_stack_longer-1.c line 403 function t1_0 thread 0
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot set_field for &__cs_nondet_t1_i
+Shadow memory: cannot get_field for &__cs_nondet_t1_i
+Shadow memory: cannot set_field for &__cs_nondet_t1_tmp
+Shadow memory: cannot get_field for &__cs_nondet_t1_tmp
+Shadow memory: cannot get_field for &__cs_nondet_t1_tmp
+Shadow memory: cannot set_field for &__cs_param_push_1_stack
+Shadow memory: cannot get_field for &__cs_param_push_1_stack
+Shadow memory: cannot set_field for &__cs_param_push_1_x
+Shadow memory: cannot get_field for &__cs_param_push_1_x
+Shadow memory: cannot get_field for &__cs_nondet_t1_tmp
+Shadow memory: cannot set_field for &__cs_nondet_push_1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_push_1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_push_1___cs_tmp_if_cond_0
+Shadow memory: cannot set_field for &__cs_retval_push_1
+Shadow memory: cannot get_field for &__cs_retval_push_1
+Shadow memory: cannot set_field for &__cs_retval_get_top_1
+Shadow memory: cannot get_field for &__cs_retval_get_top_1
+Shadow memory: cannot get_field for &__cs_param_push_1_stack
+Shadow memory: cannot get_field for &__cs_retval_get_top_1
+Shadow memory: cannot get_field for &__cs_param_push_1_x
+Shadow memory: cannot set_field for &__cs_retval_push_1
+Shadow memory: cannot get_field for &__cs_retval_push_1
+Shadow memory: cannot set_field for &__cs_nondet_t1___cs_tmp_if_cond_2
+Shadow memory: cannot get_field for &__cs_nondet_t1___cs_tmp_if_cond_2
+Shadow memory: cannot get_field for &__cs_retval_push_1
+Shadow memory: cannot get_field for &__cs_nondet_t1___cs_tmp_if_cond_2
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_stack_longer-1.c line 512 function t1_0 thread 0
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot set_field for &__cs_nondet_t1_i
+Shadow memory: cannot get_field for &__cs_nondet_t1_i
+Shadow memory: cannot set_field for &__cs_nondet_t1_tmp
+Shadow memory: cannot get_field for &__cs_nondet_t1_tmp
+Shadow memory: cannot get_field for &__cs_nondet_t1_tmp
+Shadow memory: cannot set_field for &__cs_param_push_1_stack
+Shadow memory: cannot get_field for &__cs_param_push_1_stack
+Shadow memory: cannot set_field for &__cs_param_push_1_x
+Shadow memory: cannot get_field for &__cs_param_push_1_x
+Shadow memory: cannot get_field for &__cs_nondet_t1_tmp
+Shadow memory: cannot set_field for &__cs_nondet_push_1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_push_1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_push_1___cs_tmp_if_cond_0
+Shadow memory: cannot set_field for &__cs_retval_push_1
+Shadow memory: cannot get_field for &__cs_retval_push_1
+Shadow memory: cannot set_field for &__cs_retval_get_top_1
+Shadow memory: cannot get_field for &__cs_retval_get_top_1
+Shadow memory: cannot get_field for &__cs_param_push_1_stack
+Shadow memory: cannot get_field for &__cs_retval_get_top_1
+Shadow memory: cannot get_field for &__cs_param_push_1_x
+Shadow memory: cannot set_field for &__cs_retval_push_1
+Shadow memory: cannot get_field for &__cs_retval_push_1
+Shadow memory: cannot set_field for &__cs_nondet_t1___cs_tmp_if_cond_2
+Shadow memory: cannot get_field for &__cs_nondet_t1___cs_tmp_if_cond_2
+Shadow memory: cannot get_field for &__cs_retval_push_1
+Shadow memory: cannot get_field for &__cs_nondet_t1___cs_tmp_if_cond_2
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_stack_longer-1.c line 621 function t1_0 thread 0
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot set_field for &__cs_nondet_t1_i
+Shadow memory: cannot get_field for &__cs_nondet_t1_i
+Shadow memory: cannot set_field for &__cs_nondet_t1_tmp
+Shadow memory: cannot get_field for &__cs_nondet_t1_tmp
+Shadow memory: cannot get_field for &__cs_nondet_t1_tmp
+Shadow memory: cannot set_field for &__cs_param_push_1_stack
+Shadow memory: cannot get_field for &__cs_param_push_1_stack
+Shadow memory: cannot set_field for &__cs_param_push_1_x
+Shadow memory: cannot get_field for &__cs_param_push_1_x
+Shadow memory: cannot get_field for &__cs_nondet_t1_tmp
+Shadow memory: cannot set_field for &__cs_nondet_push_1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_push_1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_push_1___cs_tmp_if_cond_0
+Shadow memory: cannot set_field for &__cs_retval_push_1
+Shadow memory: cannot get_field for &__cs_retval_push_1
+Shadow memory: cannot set_field for &__cs_retval_get_top_1
+Shadow memory: cannot get_field for &__cs_retval_get_top_1
+Shadow memory: cannot get_field for &__cs_param_push_1_stack
+Shadow memory: cannot get_field for &__cs_retval_get_top_1
+Shadow memory: cannot get_field for &__cs_param_push_1_x
+Shadow memory: cannot set_field for &__cs_retval_push_1
+Shadow memory: cannot get_field for &__cs_retval_push_1
+Shadow memory: cannot set_field for &__cs_nondet_t1___cs_tmp_if_cond_2
+Shadow memory: cannot get_field for &__cs_nondet_t1___cs_tmp_if_cond_2
+Shadow memory: cannot get_field for &__cs_retval_push_1
+Shadow memory: cannot get_field for &__cs_nondet_t1___cs_tmp_if_cond_2
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_stack_longer-1.c line 730 function t1_0 thread 0
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot set_field for &__cs_nondet_t1_i
+Shadow memory: cannot get_field for &__cs_nondet_t1_i
+Shadow memory: cannot get_field for &__cs_nondet_t1_i
+Shadow memory: cannot set_field for &__cs_nondet_t2_i
+Shadow memory: cannot get_field for &__cs_nondet_t2_i
+Shadow memory: cannot set_field for &__cs_nondet_t2___cs_tmp_if_cond_3
+Shadow memory: cannot get_field for &__cs_nondet_t2___cs_tmp_if_cond_3
+Shadow memory: cannot get_field for &__cs_nondet_t2___cs_tmp_if_cond_3
+Shadow memory: cannot set_field for &__cs_param_pop_1_stack
+Shadow memory: cannot get_field for &__cs_param_pop_1_stack
+Shadow memory: cannot set_field for &__cs_retval_get_top_1
+Shadow memory: cannot get_field for &__cs_retval_get_top_1
+Shadow memory: cannot set_field for &__cs_nondet_pop_1___cs_tmp_if_cond_1
+Shadow memory: cannot get_field for &__cs_nondet_pop_1___cs_tmp_if_cond_1
+Shadow memory: cannot get_field for &__cs_retval_get_top_1
+Shadow memory: cannot get_field for &__cs_nondet_pop_1___cs_tmp_if_cond_1
+Shadow memory: cannot set_field for &__cs_retval_pop_1
+Shadow memory: cannot get_field for &__cs_retval_pop_1
+Shadow memory: cannot set_field for &__cs_retval_get_top_2
+Shadow memory: cannot get_field for &__cs_retval_get_top_2
+Shadow memory: cannot set_field for &__cs_retval_pop_1
+Shadow memory: cannot get_field for &__cs_retval_pop_1
+Shadow memory: cannot get_field for &__cs_param_pop_1_stack
+Shadow memory: cannot get_field for &__cs_retval_get_top_2
+Shadow memory: cannot set_field for &__cs_nondet_t2___cs_tmp_if_cond_4
+Shadow memory: cannot get_field for &__cs_nondet_t2___cs_tmp_if_cond_4
+Shadow memory: cannot get_field for &__cs_retval_pop_1
+Shadow memory: cannot get_field for &__cs_nondet_t2___cs_tmp_if_cond_4
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_stack_longer-1.c line 882 function t2_0 thread 0
+Shadow memory: cannot set_field for &__cs_nondet_t2_i
+Shadow memory: cannot get_field for &__cs_nondet_t2_i
+Shadow memory: cannot set_field for &__cs_nondet_t2___cs_tmp_if_cond_3
+Shadow memory: cannot get_field for &__cs_nondet_t2___cs_tmp_if_cond_3
+Shadow memory: cannot get_field for &__cs_nondet_t2___cs_tmp_if_cond_3
+Shadow memory: cannot set_field for &__cs_param_pop_1_stack
+Shadow memory: cannot get_field for &__cs_param_pop_1_stack
+Shadow memory: cannot set_field for &__cs_retval_get_top_1
+Shadow memory: cannot get_field for &__cs_retval_get_top_1
+Shadow memory: cannot set_field for &__cs_nondet_pop_1___cs_tmp_if_cond_1
+Shadow memory: cannot get_field for &__cs_nondet_pop_1___cs_tmp_if_cond_1
+Shadow memory: cannot get_field for &__cs_retval_get_top_1
+Shadow memory: cannot get_field for &__cs_nondet_pop_1___cs_tmp_if_cond_1
+Shadow memory: cannot set_field for &__cs_retval_pop_1
+Shadow memory: cannot get_field for &__cs_retval_pop_1
+Shadow memory: cannot set_field for &__cs_retval_get_top_2
+Shadow memory: cannot get_field for &__cs_retval_get_top_2
+Shadow memory: cannot set_field for &__cs_retval_pop_1
+Shadow memory: cannot get_field for &__cs_retval_pop_1
+Shadow memory: cannot get_field for &__cs_param_pop_1_stack
+Shadow memory: cannot get_field for &__cs_retval_get_top_2
+Shadow memory: cannot set_field for &__cs_nondet_t2___cs_tmp_if_cond_4
+Shadow memory: cannot get_field for &__cs_nondet_t2___cs_tmp_if_cond_4
+Shadow memory: cannot get_field for &__cs_retval_pop_1
+Shadow memory: cannot get_field for &__cs_nondet_t2___cs_tmp_if_cond_4
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_stack_longer-1.c line 1008 function t2_0 thread 0
+Shadow memory: cannot set_field for &__cs_nondet_t2_i
+Shadow memory: cannot get_field for &__cs_nondet_t2_i
+Shadow memory: cannot set_field for &__cs_nondet_t2___cs_tmp_if_cond_3
+Shadow memory: cannot get_field for &__cs_nondet_t2___cs_tmp_if_cond_3
+Shadow memory: cannot get_field for &__cs_nondet_t2___cs_tmp_if_cond_3
+Shadow memory: cannot set_field for &__cs_param_pop_1_stack
+Shadow memory: cannot get_field for &__cs_param_pop_1_stack
+Shadow memory: cannot set_field for &__cs_retval_get_top_1
+Shadow memory: cannot get_field for &__cs_retval_get_top_1
+Shadow memory: cannot set_field for &__cs_nondet_pop_1___cs_tmp_if_cond_1
+Shadow memory: cannot get_field for &__cs_nondet_pop_1___cs_tmp_if_cond_1
+Shadow memory: cannot get_field for &__cs_retval_get_top_1
+Shadow memory: cannot get_field for &__cs_nondet_pop_1___cs_tmp_if_cond_1
+Shadow memory: cannot set_field for &__cs_retval_pop_1
+Shadow memory: cannot get_field for &__cs_retval_pop_1
+Shadow memory: cannot set_field for &__cs_retval_get_top_2
+Shadow memory: cannot get_field for &__cs_retval_get_top_2
+Shadow memory: cannot set_field for &__cs_retval_pop_1
+Shadow memory: cannot get_field for &__cs_retval_pop_1
+Shadow memory: cannot get_field for &__cs_param_pop_1_stack
+Shadow memory: cannot get_field for &__cs_retval_get_top_2
+Shadow memory: cannot set_field for &__cs_nondet_t2___cs_tmp_if_cond_4
+Shadow memory: cannot get_field for &__cs_nondet_t2___cs_tmp_if_cond_4
+Shadow memory: cannot get_field for &__cs_retval_pop_1
+Shadow memory: cannot get_field for &__cs_nondet_t2___cs_tmp_if_cond_4
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_stack_longer-1.c line 1134 function t2_0 thread 0
+Shadow memory: cannot set_field for &__cs_nondet_t2_i
+Shadow memory: cannot get_field for &__cs_nondet_t2_i
+Shadow memory: cannot set_field for &__cs_nondet_t2___cs_tmp_if_cond_3
+Shadow memory: cannot get_field for &__cs_nondet_t2___cs_tmp_if_cond_3
+Shadow memory: cannot get_field for &__cs_nondet_t2___cs_tmp_if_cond_3
+Shadow memory: cannot set_field for &__cs_param_pop_1_stack
+Shadow memory: cannot get_field for &__cs_param_pop_1_stack
+Shadow memory: cannot set_field for &__cs_retval_get_top_1
+Shadow memory: cannot get_field for &__cs_retval_get_top_1
+Shadow memory: cannot set_field for &__cs_nondet_pop_1___cs_tmp_if_cond_1
+Shadow memory: cannot get_field for &__cs_nondet_pop_1___cs_tmp_if_cond_1
+Shadow memory: cannot get_field for &__cs_retval_get_top_1
+Shadow memory: cannot get_field for &__cs_nondet_pop_1___cs_tmp_if_cond_1
+Shadow memory: cannot set_field for &__cs_retval_pop_1
+Shadow memory: cannot get_field for &__cs_retval_pop_1
+Shadow memory: cannot set_field for &__cs_retval_get_top_2
+Shadow memory: cannot get_field for &__cs_retval_get_top_2
+Shadow memory: cannot set_field for &__cs_retval_pop_1
+Shadow memory: cannot get_field for &__cs_retval_pop_1
+Shadow memory: cannot get_field for &__cs_param_pop_1_stack
+Shadow memory: cannot get_field for &__cs_retval_get_top_2
+Shadow memory: cannot set_field for &__cs_nondet_t2___cs_tmp_if_cond_4
+Shadow memory: cannot get_field for &__cs_nondet_t2___cs_tmp_if_cond_4
+Shadow memory: cannot get_field for &__cs_retval_pop_1
+Shadow memory: cannot get_field for &__cs_nondet_t2___cs_tmp_if_cond_4
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_stack_longer-1.c line 1260 function t2_0 thread 0
+Shadow memory: cannot set_field for &__cs_nondet_t2_i
+Shadow memory: cannot get_field for &__cs_nondet_t2_i
+Shadow memory: cannot get_field for &__cs_nondet_t2_i
+Runtime Symex: 0.37046s
+size of program expression: 15871 steps
+simple slicing removed 5 assignments
+Generated 97 VCC(s), 97 remaining after simplification
+Runtime Postprocess Equation: 0.00205727s
+Passing problem to propositional reduction
+converting SSA
+Runtime Convert SSA: 1.36018s
+Running propositional reduction
+Post-processing
+Runtime Post-process: 2.1739e-05s
+Solving with Glucose Syrup with simplifier
+1337537 variables, 6006547 clauses
+SAT checker: instance is UNSATISFIABLE
+Runtime Solver: 26.6621s
+Runtime decision procedure: 28.0227s
+VERIFICATION SUCCESSFUL
+
+real	0m28,819s
+user	0m28,604s
+sys	0m0,218s

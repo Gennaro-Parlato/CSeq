@@ -1,0 +1,510 @@
+CBMC version 5.12 (cbmc-5.11-4673-gff3adfd29-dirty) 64-bit x86_64 linux
+Parsing /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_219_time_var_mutex.c
+Converting
+Type-checking _dr_219_time_var_mutex
+file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_219_time_var_mutex.c line 317 function thr1_0: function '__CPROVER_get_field' is not declared
+file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_219_time_var_mutex.c line 328 function thr1_0: function '__CPROVER_set_field' is not declared
+file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_219_time_var_mutex.c line 472 function main: function '__CPROVER_field_decl_global' is not declared
+Generating GOTO Program
+Adding CPROVER library (x86_64)
+Removal of function pointers and virtual functions
+Generic Property Instrumentation
+Running with 8 object bits, 56 offset bits (default)
+Starting Bounded Model Checking
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_219_time_var_mutex.c line 369 function thr1_0 thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_219_time_var_mutex.c line 433 function __cs_main_thread thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_219_time_var_mutex.c line 369 function thr1_0 thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_219_time_var_mutex.c line 433 function __cs_main_thread thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_219_time_var_mutex.c line 369 function thr1_0 thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_219_time_var_mutex.c line 433 function __cs_main_thread thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_219_time_var_mutex.c line 369 function thr1_0 thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_219_time_var_mutex.c line 433 function __cs_main_thread thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+size of program expression: 2034 steps
+simple slicing removed 5 assignments
+Generated 1 VCC(s), 1 remaining after simplification
+Passing problem to propositional reduction
+converting SSA
+Running propositional reduction
+Post-processing
+Solving with Glucose Syrup with simplifier
+7975 variables, 13161 clauses
+SAT checker: instance is SATISFIABLE
+Runtime decision procedure: 0.0186552s
+Building error trace
+Counterexample:
+
+State 19 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_219_time_var_mutex.c function __CPROVER_initialize line 62 thread 0
+----------------------------------------------------
+  __cs_active_thread[0l]=1 (1)
+
+State 20 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_219_time_var_mutex.c function __CPROVER_initialize line 62 thread 0
+----------------------------------------------------
+  __cs_active_thread[1l]=0 (0)
+
+State 33 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_219_time_var_mutex.c function __CPROVER_initialize line 63 thread 0
+----------------------------------------------------
+  __cs_pc[0l]=0 (0000)
+
+State 34 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_219_time_var_mutex.c function __CPROVER_initialize line 63 thread 0
+----------------------------------------------------
+  __cs_pc[1l]=0 (0000)
+
+State 36 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_219_time_var_mutex.c function __CPROVER_initialize line 64 thread 0
+----------------------------------------------------
+  __cs_pc_cs[0l]=0 (00000)
+
+State 37 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_219_time_var_mutex.c function __CPROVER_initialize line 64 thread 0
+----------------------------------------------------
+  __cs_pc_cs[1l]=0 (00000)
+
+State 39 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_219_time_var_mutex.c function __CPROVER_initialize line 79 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 40 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_219_time_var_mutex.c function __CPROVER_initialize line 79 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 42 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_219_time_var_mutex.c function __CPROVER_initialize line 66 thread 0
+----------------------------------------------------
+  __cs_thread_lines[0l]=9 (1001)
+
+State 43 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_219_time_var_mutex.c function __CPROVER_initialize line 66 thread 0
+----------------------------------------------------
+  __cs_thread_lines[1l]=9 (1001)
+
+State 45 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_219_time_var_mutex.c function __CPROVER_initialize line 78 thread 0
+----------------------------------------------------
+  __cs_threadargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 46 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_219_time_var_mutex.c function __CPROVER_initialize line 78 thread 0
+----------------------------------------------------
+  __cs_threadargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 63 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_219_time_var_mutex.c function main line 473 thread 0
+----------------------------------------------------
+  __cs_dr_ts=6 (110)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_219_time_var_mutex.c line 474 function main
+  (signed int)__cs_dr_ts <= 7
+
+State 65 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_219_time_var_mutex.c function main line 477 thread 0
+----------------------------------------------------
+  __cs_tmp_t0_r0=2 (0010)
+
+State 66 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_219_time_var_mutex.c function main line 478 thread 0
+----------------------------------------------------
+  __cs_pc_cs[0l]=2 (00010)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_219_time_var_mutex.c line 479 function main
+  (signed int)__cs_pc_cs[(signed long int)0] > 0
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_219_time_var_mutex.c line 480 function main
+  (signed int)__cs_pc_cs[(signed long int)0] <= 9
+
+State 75 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_219_time_var_mutex.c function __cs_main_thread line 393 thread 0
+----------------------------------------------------
+  __cs_new_thread_id=&__cs_nondet_main_t (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 76 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_219_time_var_mutex.c function __cs_main_thread line 393 thread 0
+----------------------------------------------------
+  __cs_attr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 77 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_219_time_var_mutex.c function __cs_main_thread line 393 thread 0
+----------------------------------------------------
+  __cs_thread_function=thr1_0 (00000011 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 78 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_219_time_var_mutex.c function __cs_main_thread line 393 thread 0
+----------------------------------------------------
+  __cs_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 79 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_219_time_var_mutex.c function __cs_main_thread line 393 thread 0
+----------------------------------------------------
+  __cs_threadID=1 (00000000 00000000 00000000 00000001)
+
+State 81 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_219_time_var_mutex.c function __cs_create line 84 thread 0
+----------------------------------------------------
+  __cs_nondet_main_t=1 (00000000 00000000 00000000 00000001)
+
+State 82 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_219_time_var_mutex.c function __cs_create line 85 thread 0
+----------------------------------------------------
+  __cs_active_thread[1l]=1 (1)
+
+State 83 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_219_time_var_mutex.c function __cs_create line 86 thread 0
+----------------------------------------------------
+  __cs_threadargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 86 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_219_time_var_mutex.c function __cs_create line 87 thread 0
+----------------------------------------------------
+  __cs_message="thread spawned" (00000100 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 91 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_219_time_var_mutex.c function __cs_main_thread line 399 thread 0
+----------------------------------------------------
+  __cs_param_thr2_1_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 104 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_219_time_var_mutex.c function __cs_main_thread line 468 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 105 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_219_time_var_mutex.c function __cs_main_thread line 468 thread 0
+----------------------------------------------------
+  __cs_thread_index=0u (00000000 00000000 00000000 00000000)
+
+State 106 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_219_time_var_mutex.c function __cs_exit line 98 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 112 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_219_time_var_mutex.c function main line 486 thread 0
+----------------------------------------------------
+  __cs_pc[0l]=2 (0010)
+
+State 113 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_219_time_var_mutex.c function main line 488 thread 0
+----------------------------------------------------
+  __cs_tmp_t1_r0=1 (0001)
+
+State 115 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_219_time_var_mutex.c function main line 491 thread 0
+----------------------------------------------------
+  __cs_pc_cs[1l]=1 (00001)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_219_time_var_mutex.c line 492 function main
+  (signed int)__cs_pc_cs[(signed long int)1] <= 9
+
+State 120 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_219_time_var_mutex.c function main line 495 thread 0
+----------------------------------------------------
+  __cs_param_thr1_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 124 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_219_time_var_mutex.c function thr1_0 line 311 thread 0
+----------------------------------------------------
+  __cs_param___CSEQ_atomic_acquire_m=&m_inode (00000110 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 127 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_219_time_var_mutex.c function __CSEQ_atomic_acquire line 295 thread 0
+----------------------------------------------------
+  cond=1 (00000000 00000000 00000000 00000001)
+
+State 130 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_219_time_var_mutex.c function __CSEQ_atomic_acquire line 296 thread 0
+----------------------------------------------------
+  m_inode=1 (00000000 00000000 00000000 00000001)
+
+State 146 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_219_time_var_mutex.c function thr1_0 line 387 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 147 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_219_time_var_mutex.c function thr1_0 line 387 thread 0
+----------------------------------------------------
+  __cs_thread_index=1u (00000000 00000000 00000000 00000001)
+
+State 148 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_219_time_var_mutex.c function __cs_exit line 98 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 155 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_219_time_var_mutex.c function main line 500 thread 0
+----------------------------------------------------
+  __cs_pc[1l]=1 (0001)
+
+State 156 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_219_time_var_mutex.c function main line 504 thread 0
+----------------------------------------------------
+  __cs_tmp_t0_r1=2 (0010)
+
+State 158 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_219_time_var_mutex.c function main line 507 thread 0
+----------------------------------------------------
+  __cs_pc_cs[0l]=4 (00100)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_219_time_var_mutex.c line 508 function main
+  (signed int)__cs_pc_cs[(signed long int)0] >= (signed int)__cs_pc[(signed long int)0]
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_219_time_var_mutex.c line 509 function main
+  (signed int)__cs_pc_cs[(signed long int)0] <= 9
+
+State 169 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_219_time_var_mutex.c function __cs_main_thread line 402 thread 0
+----------------------------------------------------
+  __cs_param___CSEQ_atomic_acquire_m=&m_busy (00000101 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 172 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_219_time_var_mutex.c function __CSEQ_atomic_acquire line 295 thread 0
+----------------------------------------------------
+  cond=1 (00000000 00000000 00000000 00000001)
+
+State 175 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_219_time_var_mutex.c function __CSEQ_atomic_acquire line 296 thread 0
+----------------------------------------------------
+  m_busy=1 (00000000 00000000 00000000 00000001)
+
+State 183 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_219_time_var_mutex.c function __cs_main_thread line 410 thread 0
+----------------------------------------------------
+  __cs_nondet_thr2_1___cs_tmp_if_cond_2=TRUE (00000001)
+
+State 195 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_219_time_var_mutex.c function __cs_main_thread line 468 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 196 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_219_time_var_mutex.c function __cs_main_thread line 468 thread 0
+----------------------------------------------------
+  __cs_thread_index=0u (00000000 00000000 00000000 00000000)
+
+State 197 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_219_time_var_mutex.c function __cs_exit line 98 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 204 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_219_time_var_mutex.c function main line 517 thread 0
+----------------------------------------------------
+  __cs_pc[0l]=4 (0100)
+
+State 205 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_219_time_var_mutex.c function main line 520 thread 0
+----------------------------------------------------
+  __cs_tmp_t1_r1=0 (0000)
+
+State 207 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_219_time_var_mutex.c function main line 523 thread 0
+----------------------------------------------------
+  __cs_pc_cs[1l]=1 (00001)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_219_time_var_mutex.c line 524 function main
+  (signed int)__cs_pc_cs[(signed long int)1] >= (signed int)__cs_pc[(signed long int)1]
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_219_time_var_mutex.c line 525 function main
+  (signed int)__cs_pc_cs[(signed long int)1] <= 9
+
+State 213 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_219_time_var_mutex.c function main line 528 thread 0
+----------------------------------------------------
+  __cs_param_thr1_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 229 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_219_time_var_mutex.c function thr1_0 line 387 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 230 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_219_time_var_mutex.c function thr1_0 line 387 thread 0
+----------------------------------------------------
+  __cs_thread_index=1u (00000000 00000000 00000000 00000001)
+
+State 231 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_219_time_var_mutex.c function __cs_exit line 98 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 238 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_219_time_var_mutex.c function main line 533 thread 0
+----------------------------------------------------
+  __cs_pc[1l]=1 (0001)
+
+State 239 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_219_time_var_mutex.c function main line 537 thread 0
+----------------------------------------------------
+  __cs_tmp_t0_r2=0 (0000)
+
+State 241 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_219_time_var_mutex.c function main line 540 thread 0
+----------------------------------------------------
+  __cs_pc_cs[0l]=4 (00100)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_219_time_var_mutex.c line 541 function main
+  (signed int)__cs_pc_cs[(signed long int)0] >= (signed int)__cs_pc[(signed long int)0]
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_219_time_var_mutex.c line 542 function main
+  (signed int)__cs_pc_cs[(signed long int)0] <= 9
+
+State 261 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_219_time_var_mutex.c function __cs_main_thread line 468 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 262 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_219_time_var_mutex.c function __cs_main_thread line 468 thread 0
+----------------------------------------------------
+  __cs_thread_index=0u (00000000 00000000 00000000 00000000)
+
+State 263 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_219_time_var_mutex.c function __cs_exit line 98 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 270 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_219_time_var_mutex.c function main line 550 thread 0
+----------------------------------------------------
+  __cs_pc[0l]=4 (0100)
+
+State 271 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_219_time_var_mutex.c function main line 553 thread 0
+----------------------------------------------------
+  __cs_tmp_t1_r2=0 (0000)
+
+State 273 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_219_time_var_mutex.c function main line 556 thread 0
+----------------------------------------------------
+  __cs_pc_cs[1l]=1 (00001)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_219_time_var_mutex.c line 557 function main
+  (signed int)__cs_pc_cs[(signed long int)1] >= (signed int)__cs_pc[(signed long int)1]
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_219_time_var_mutex.c line 558 function main
+  (signed int)__cs_pc_cs[(signed long int)1] <= 9
+
+State 279 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_219_time_var_mutex.c function main line 561 thread 0
+----------------------------------------------------
+  __cs_param_thr1_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 295 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_219_time_var_mutex.c function thr1_0 line 387 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 296 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_219_time_var_mutex.c function thr1_0 line 387 thread 0
+----------------------------------------------------
+  __cs_thread_index=1u (00000000 00000000 00000000 00000001)
+
+State 297 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_219_time_var_mutex.c function __cs_exit line 98 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 304 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_219_time_var_mutex.c function main line 566 thread 0
+----------------------------------------------------
+  __cs_pc[1l]=1 (0001)
+
+State 305 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_219_time_var_mutex.c function main line 570 thread 0
+----------------------------------------------------
+  __cs_tmp_t0_r3=0 (0000)
+
+State 307 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_219_time_var_mutex.c function main line 573 thread 0
+----------------------------------------------------
+  __cs_pc_cs[0l]=4 (00100)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_219_time_var_mutex.c line 574 function main
+  (signed int)__cs_pc_cs[(signed long int)0] >= (signed int)__cs_pc[(signed long int)0]
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_219_time_var_mutex.c line 575 function main
+  (signed int)__cs_pc_cs[(signed long int)0] <= 9
+
+State 311 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_219_time_var_mutex.c function main line 577 thread 0
+----------------------------------------------------
+  __cs_dataraceDetectionStarted=TRUE (00000001)
+
+State 330 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_219_time_var_mutex.c function __cs_main_thread line 468 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 331 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_219_time_var_mutex.c function __cs_main_thread line 468 thread 0
+----------------------------------------------------
+  __cs_thread_index=0u (00000000 00000000 00000000 00000000)
+
+State 332 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_219_time_var_mutex.c function __cs_exit line 98 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 339 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_219_time_var_mutex.c function main line 582 thread 0
+----------------------------------------------------
+  __cs_dataraceSecondThread=TRUE (00000001)
+
+State 340 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_219_time_var_mutex.c function main line 583 thread 0
+----------------------------------------------------
+  __cs_pc[0l]=4 (0100)
+
+State 341 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_219_time_var_mutex.c function main line 586 thread 0
+----------------------------------------------------
+  __cs_tmp_t1_r3=0 (0000)
+
+State 343 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_219_time_var_mutex.c function main line 589 thread 0
+----------------------------------------------------
+  __cs_pc_cs[1l]=1 (00001)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_219_time_var_mutex.c line 590 function main
+  (signed int)__cs_pc_cs[(signed long int)1] >= (signed int)__cs_pc[(signed long int)1]
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_219_time_var_mutex.c line 591 function main
+  (signed int)__cs_pc_cs[(signed long int)1] <= 9
+
+State 349 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_219_time_var_mutex.c function main line 594 thread 0
+----------------------------------------------------
+  __cs_param_thr1_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 365 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_219_time_var_mutex.c function thr1_0 line 387 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 366 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_219_time_var_mutex.c function thr1_0 line 387 thread 0
+----------------------------------------------------
+  __cs_thread_index=1u (00000000 00000000 00000000 00000001)
+
+State 367 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_219_time_var_mutex.c function __cs_exit line 98 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 374 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_219_time_var_mutex.c function main line 598 thread 0
+----------------------------------------------------
+  __cs_dataraceSecondThread=TRUE (00000001)
+
+State 375 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_219_time_var_mutex.c function main line 599 thread 0
+----------------------------------------------------
+  __cs_pc[1l]=1 (0001)
+
+State 376 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_219_time_var_mutex.c function main line 601 thread 0
+----------------------------------------------------
+  __cs_tmp_t0_r4=1 (0001)
+
+State 378 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_219_time_var_mutex.c function main line 604 thread 0
+----------------------------------------------------
+  __cs_pc_cs[0l]=5 (00101)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_219_time_var_mutex.c line 605 function main
+  (signed int)__cs_pc_cs[(signed long int)0] >= (signed int)__cs_pc[(signed long int)0]
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_219_time_var_mutex.c line 606 function main
+  (signed int)__cs_pc_cs[(signed long int)0] <= 9
+
+State 394 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_219_time_var_mutex.c function __cs_main_thread line 420 thread 0
+----------------------------------------------------
+  __cs_dataraceNotDetected=FALSE (00000000)
+
+State 395 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_219_time_var_mutex.c function __cs_main_thread line 421 thread 0
+----------------------------------------------------
+  block=0 (00000000 00000000 00000000 00000000)
+
+State 404 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_219_time_var_mutex.c function __cs_main_thread line 468 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 405 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_219_time_var_mutex.c function __cs_main_thread line 468 thread 0
+----------------------------------------------------
+  __cs_thread_index=0u (00000000 00000000 00000000 00000000)
+
+State 406 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_219_time_var_mutex.c function __cs_exit line 98 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+Violated property:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_219_time_var_mutex.c function main line 609 thread 0
+  Data race failure
+  __cs_dataraceNotDetected != FALSE
+
+
+VERIFICATION FAILED
+
+real	0m0,138s
+user	0m0,125s
+sys	0m0,015s

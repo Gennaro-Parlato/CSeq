@@ -1,0 +1,2114 @@
+CBMC version 5.32.1 (cbmc-5.32.1-140-g7c8c411038-dirty) 64-bit x86_64 linux
+Parsing /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c
+Converting
+Type-checking _csdr_one_time_barrier_2t
+file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c line 316 function worker_fn_0: function '__CPROVER_set_field' is not declared
+file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c line 316 function worker_fn_0: function '__CPROVER_get_field' is not declared
+file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c line 1670 function main: function '__CPROVER_field_decl_global' is not declared
+Generating GOTO Program
+Adding CPROVER library (x86_64)
+Removal of function pointers and virtual functions
+Generic Property Instrumentation
+Running with 8 object bits, 56 offset bits (default)
+Starting Bounded Model Checking
+Shadow memory: cannot copy shadow memory to &__cs_nondet_main_b1.thread_count
+Shadow memory: cannot copy shadow memory to &__cs_nondet_main_b1.seen
+Shadow memory: cannot copy shadow memory to &__cs_nondet_main_b1.lock
+Shadow memory: cannot copy shadow memory to &__cs_nondet_main_b1.sig
+Shadow memory: cannot set_field for &__cs_nondet_main_i
+Shadow memory: cannot set_field for (Barrier **)((char *)__cs_nondet_main_a + (signed long int)__cs_nondet_main_i * 24l)
+Shadow memory: cannot set_field for (Barrier **)((char *)__cs_nondet_main_a + (signed long int)__cs_nondet_main_i * 24l + 8l)
+Shadow memory: cannot set_field for (signed int *)((char *)__cs_nondet_main_a + (signed long int)__cs_nondet_main_i * 24l + 16l)
+Shadow memory: cannot set_field for &__cs_nondet_main_i
+Shadow memory: cannot set_field for (Barrier **)((char *)__cs_nondet_main_a + (signed long int)__cs_nondet_main_i * 24l)
+Shadow memory: cannot set_field for (Barrier **)((char *)__cs_nondet_main_a + (signed long int)__cs_nondet_main_i * 24l + 8l)
+Shadow memory: cannot set_field for (signed int *)((char *)__cs_nondet_main_a + (signed long int)__cs_nondet_main_i * 24l + 16l)
+Shadow memory: cannot set_field for &__cs_nondet_main_i
+Shadow memory: cannot set_field for &__cs_param_barrier_init_1_b
+Shadow memory: cannot set_field for &__cs_param_barrier_init_1_thread_count
+Shadow memory: cannot set_field for (signed int *)__cs_param_barrier_init_1_b
+Shadow memory: cannot set_field for (signed int *)((char *)__cs_param_barrier_init_1_b + 4l)
+Shadow memory: cannot set_field for &__cs_nondet_main_i
+Shadow memory: cannot set_field for &__cs_nondet_main_i
+Shadow memory: cannot set_field for &__cs_param_worker_fn_1_arg
+Shadow memory: cannot set_field for &__cs_nondet_worker_fn_1_a
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot set_field for &__cs_nondet_worker_fn_1_i
+Shadow memory: cannot set_field for &__cs_nondet_worker_fn_1_i
+Shadow memory: cannot set_field for &__cs_nondet_worker_fn_1_i
+Shadow memory: cannot set_field for &__cs_param_barrier_wait_1_b
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: cannot set_field for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: cannot set_field for &__cs_nondet_barrier_wait_1___cs_tmp_if_cond_0
+Shadow memory: cannot set_field for &__cs_retval_barrier_wait_1
+Shadow memory: cannot set_field for &__cs_retval_barrier_wait_1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot set_field for &__cs_nondet_worker_fn_1_sig
+Shadow memory: cannot set_field for &__cs_nondet_worker_fn_1_i
+Shadow memory: cannot set_field for &__cs_nondet_worker_fn_1_sig
+Shadow memory: cannot set_field for &__cs_nondet_worker_fn_1_i
+Shadow memory: cannot set_field for &__cs_nondet_worker_fn_1_sig
+Shadow memory: cannot set_field for &__cs_nondet_worker_fn_1_i
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot set_field for &__cs_param_barrier_wait_2_b
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: cannot set_field for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: cannot set_field for &__cs_nondet_barrier_wait_2___cs_tmp_if_cond_0
+Shadow memory: cannot set_field for &__cs_retval_barrier_wait_2
+Shadow memory: cannot set_field for &__cs_retval_barrier_wait_2
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot set_field for &__cs_nondet_worker_fn_1_sig
+Shadow memory: cannot set_field for &__cs_nondet_worker_fn_1_i
+Shadow memory: cannot set_field for &__cs_nondet_worker_fn_1_sig
+Shadow memory: cannot set_field for &__cs_nondet_worker_fn_1_i
+Shadow memory: cannot set_field for &__cs_nondet_worker_fn_1_sig
+Shadow memory: cannot set_field for &__cs_nondet_worker_fn_1_i
+Shadow memory: cannot set_field for &__cs_nondet_worker_fn_1_sig
+Shadow memory: cannot set_field for &__cs_nondet_worker_fn_1_i
+Shadow memory: cannot set_field for &__cs_nondet_worker_fn_1_sig
+Shadow memory: cannot set_field for &__cs_nondet_worker_fn_1_i
+Shadow memory: cannot set_field for &__cs_nondet_worker_fn_1_sig
+Shadow memory: cannot set_field for &__cs_nondet_worker_fn_1_i
+Shadow memory: cannot set_field for &__cs_retval_worker_fn_1
+Shadow memory: cannot set_field for &__cs_nondet_main_i
+Shadow memory: cannot set_field for &__cs_nondet_main_i
+Shadow memory: cannot set_field for &__cs_nondet_main_sig
+Shadow memory: cannot set_field for &__cs_nondet_main_i
+Shadow memory: cannot set_field for &__cs_nondet_main_sig
+Shadow memory: cannot set_field for &__cs_nondet_main_i
+Shadow memory: cannot set_field for &__cs_nondet_main_sig
+Shadow memory: cannot set_field for &__cs_nondet_main_i
+Shadow memory: cannot set_field for &__cs_nondet_worker_fn_a
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_a
+Shadow memory: cannot get_field for &__cs_param_worker_fn_arg!0@1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot set_field for &__cs_nondet_worker_fn_i
+Shadow memory: cannot set_field for &__cs_nondet_worker_fn_i
+Shadow memory: cannot set_field for &__cs_nondet_worker_fn_i
+Shadow memory: cannot set_field for &__cs_param_barrier_wait_1_b
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: cannot set_field for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: cannot set_field for &__cs_nondet_barrier_wait_1___cs_tmp_if_cond_0
+Shadow memory: cannot set_field for &__cs_retval_barrier_wait_1
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_1_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_1_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_1_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_1_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_1_b
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_1_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_1_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_1_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_1_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_1_b
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_1_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_1_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_1_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_1_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_1_b
+Shadow memory: cannot set_field for &__cs_retval_barrier_wait_1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot set_field for &__cs_nondet_worker_fn_sig
+Shadow memory: cannot set_field for &__cs_nondet_worker_fn_i
+Shadow memory: cannot set_field for &__cs_nondet_worker_fn_sig
+Shadow memory: cannot set_field for &__cs_nondet_worker_fn_i
+Shadow memory: cannot set_field for &__cs_nondet_worker_fn_sig
+Shadow memory: cannot set_field for &__cs_nondet_worker_fn_i
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot set_field for &__cs_param_barrier_wait_2_b
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: cannot set_field for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: cannot set_field for &__cs_nondet_barrier_wait_2___cs_tmp_if_cond_0
+Shadow memory: cannot set_field for &__cs_retval_barrier_wait_2
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_2_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_2_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_2_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_2_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_2_b
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_2_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_2_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_2_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_2_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_2_b
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_2_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_2_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_2_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_2_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_2_b
+Shadow memory: cannot set_field for &__cs_retval_barrier_wait_2
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot set_field for &__cs_nondet_worker_fn_sig
+Shadow memory: cannot set_field for &__cs_nondet_worker_fn_i
+Shadow memory: cannot set_field for &__cs_nondet_worker_fn_sig
+Shadow memory: cannot set_field for &__cs_nondet_worker_fn_i
+Shadow memory: cannot set_field for &__cs_nondet_worker_fn_sig
+Shadow memory: cannot set_field for &__cs_nondet_worker_fn_i
+Shadow memory: cannot set_field for &__cs_nondet_worker_fn_sig
+Shadow memory: cannot set_field for &__cs_nondet_worker_fn_i
+Shadow memory: cannot set_field for &__cs_nondet_worker_fn_sig
+Shadow memory: cannot set_field for &__cs_nondet_worker_fn_i
+Shadow memory: cannot set_field for &__cs_nondet_worker_fn_sig
+Shadow memory: cannot set_field for &__cs_nondet_worker_fn_i
+Shadow memory: cannot set_field for &__cs_nondet_main_i
+Shadow memory: cannot get_field for &__cs_nondet_main_i
+Shadow memory: cannot set_field for (Barrier **)((char *)__cs_nondet_main_a + (signed long int)__cs_nondet_main_i * 24l)
+Shadow memory: cannot get_field for (Barrier **)((char *)__cs_nondet_main_a + (signed long int)__cs_nondet_main_i * 24l)
+Shadow memory: cannot set_field for (Barrier **)((char *)__cs_nondet_main_a + (signed long int)__cs_nondet_main_i * 24l + 8l)
+Shadow memory: cannot get_field for (Barrier **)((char *)__cs_nondet_main_a + (signed long int)__cs_nondet_main_i * 24l + 8l)
+Shadow memory: cannot set_field for (signed int *)((char *)__cs_nondet_main_a + (signed long int)__cs_nondet_main_i * 24l + 16l)
+Shadow memory: cannot get_field for (signed int *)((char *)__cs_nondet_main_a + (signed long int)__cs_nondet_main_i * 24l + 16l)
+Shadow memory: cannot get_field for &__cs_nondet_main_i
+Shadow memory: cannot set_field for &__cs_nondet_main_i
+Shadow memory: cannot get_field for &__cs_nondet_main_i
+Shadow memory: cannot set_field for (Barrier **)((char *)__cs_nondet_main_a + (signed long int)__cs_nondet_main_i * 24l)
+Shadow memory: cannot get_field for (Barrier **)((char *)__cs_nondet_main_a + (signed long int)__cs_nondet_main_i * 24l)
+Shadow memory: cannot set_field for (Barrier **)((char *)__cs_nondet_main_a + (signed long int)__cs_nondet_main_i * 24l + 8l)
+Shadow memory: cannot get_field for (Barrier **)((char *)__cs_nondet_main_a + (signed long int)__cs_nondet_main_i * 24l + 8l)
+Shadow memory: cannot set_field for (signed int *)((char *)__cs_nondet_main_a + (signed long int)__cs_nondet_main_i * 24l + 16l)
+Shadow memory: cannot get_field for (signed int *)((char *)__cs_nondet_main_a + (signed long int)__cs_nondet_main_i * 24l + 16l)
+Shadow memory: cannot get_field for &__cs_nondet_main_i
+Shadow memory: cannot set_field for &__cs_nondet_main_i
+Shadow memory: cannot get_field for &__cs_nondet_main_i
+Shadow memory: cannot get_field for &__cs_nondet_main_i
+Shadow memory: cannot set_field for &__cs_param_barrier_init_1_b
+Shadow memory: cannot get_field for &__cs_param_barrier_init_1_b
+Shadow memory: cannot set_field for &__cs_param_barrier_init_1_thread_count
+Shadow memory: cannot get_field for &__cs_param_barrier_init_1_thread_count
+Shadow memory: cannot get_field for &__cs_param_barrier_init_1_thread_count
+Shadow memory: cannot set_field for (signed int *)__cs_param_barrier_init_1_b
+Shadow memory: cannot get_field for (signed int *)__cs_param_barrier_init_1_b
+Shadow memory: cannot get_field for &__cs_param_barrier_init_1_thread_count
+Shadow memory: cannot set_field for (signed int *)((char *)__cs_param_barrier_init_1_b + 4l)
+Shadow memory: cannot get_field for (signed int *)((char *)__cs_param_barrier_init_1_b + 4l)
+Shadow memory: cannot set_field for &__cs_nondet_main_i
+Shadow memory: cannot get_field for &__cs_nondet_main_i
+Shadow memory: cannot get_field for &__cs_nondet_main_i
+Shadow memory: cannot get_field for &__cs_nondet_main_i
+Shadow memory: cannot set_field for &__cs_nondet_main_i
+Shadow memory: cannot get_field for &__cs_nondet_main_i
+Shadow memory: cannot get_field for &__cs_nondet_main_i
+Shadow memory: cannot set_field for &__cs_param_worker_fn_1_arg
+Shadow memory: cannot get_field for &__cs_param_worker_fn_1_arg
+Shadow memory: cannot set_field for &__cs_nondet_worker_fn_1_a
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_1_a
+Shadow memory: cannot get_field for &__cs_param_worker_fn_1_arg
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot set_field for &__cs_nondet_worker_fn_1_i
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_1_i
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_1_i
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_1_i
+Shadow memory: cannot set_field for &__cs_nondet_worker_fn_1_i
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_1_i
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_1_i
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_1_i
+Shadow memory: cannot set_field for &__cs_nondet_worker_fn_1_i
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_1_i
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_1_i
+Shadow memory: cannot set_field for &__cs_param_barrier_wait_1_b
+Shadow memory: cannot get_field for &__cs_param_barrier_wait_1_b
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_1_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_1_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_1_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_1_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_1_b
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: cannot set_field for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: cannot set_field for &__cs_nondet_barrier_wait_1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_barrier_wait_1___cs_tmp_if_cond_0
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_1_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_1_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_1_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_1_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_1_b
+Shadow memory: cannot get_field for &__cs_nondet_barrier_wait_1___cs_tmp_if_cond_0
+Shadow memory: cannot set_field for &__cs_retval_barrier_wait_1
+Shadow memory: cannot get_field for &__cs_retval_barrier_wait_1
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_1_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_1_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_1_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_1_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_1_b
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_1_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_1_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_1_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_1_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_1_b
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_1_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_1_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_1_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_1_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_1_b
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_1_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_1_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_1_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_1_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_1_b
+Shadow memory: cannot set_field for &__cs_retval_barrier_wait_1
+Shadow memory: cannot get_field for &__cs_retval_barrier_wait_1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot get_field for &__cs_retval_barrier_wait_1
+Shadow memory: cannot set_field for &__cs_nondet_worker_fn_1_sig
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_1_sig
+Shadow memory: cannot set_field for &__cs_nondet_worker_fn_1_i
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_1_i
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_1_i
+Shadow memory: cannot set_field for &__cs_nondet_worker_fn_1_sig
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_1_sig
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_1_i
+Shadow memory: cannot set_field for &__cs_nondet_worker_fn_1_i
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_1_i
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_1_i
+Shadow memory: cannot set_field for &__cs_nondet_worker_fn_1_sig
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_1_sig
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_1_i
+Shadow memory: cannot set_field for &__cs_nondet_worker_fn_1_i
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_1_i
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_1_i
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_1_sig
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot set_field for &__cs_param_barrier_wait_2_b
+Shadow memory: cannot get_field for &__cs_param_barrier_wait_2_b
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_2_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_2_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_2_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_2_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_2_b
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: cannot set_field for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: cannot set_field for &__cs_nondet_barrier_wait_2___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_barrier_wait_2___cs_tmp_if_cond_0
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_2_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_2_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_2_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_2_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_2_b
+Shadow memory: cannot get_field for &__cs_nondet_barrier_wait_2___cs_tmp_if_cond_0
+Shadow memory: cannot set_field for &__cs_retval_barrier_wait_2
+Shadow memory: cannot get_field for &__cs_retval_barrier_wait_2
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_2_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_2_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_2_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_2_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_2_b
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_2_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_2_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_2_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_2_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_2_b
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_2_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_2_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_2_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_2_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_2_b
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_2_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_2_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_2_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_2_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_2_b
+Shadow memory: cannot set_field for &__cs_retval_barrier_wait_2
+Shadow memory: cannot get_field for &__cs_retval_barrier_wait_2
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot get_field for &__cs_retval_barrier_wait_2
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot set_field for &__cs_nondet_worker_fn_1_sig
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_1_sig
+Shadow memory: cannot set_field for &__cs_nondet_worker_fn_1_i
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_1_i
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_1_i
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_1_i
+Shadow memory: cannot set_field for &__cs_nondet_worker_fn_1_sig
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_1_sig
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_1_i
+Shadow memory: cannot set_field for &__cs_nondet_worker_fn_1_i
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_1_i
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_1_i
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_1_i
+Shadow memory: cannot set_field for &__cs_nondet_worker_fn_1_sig
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_1_sig
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_1_i
+Shadow memory: cannot set_field for &__cs_nondet_worker_fn_1_i
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_1_i
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_1_i
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_1_sig
+Shadow memory: cannot set_field for &__cs_nondet_worker_fn_1_sig
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_1_sig
+Shadow memory: cannot set_field for &__cs_nondet_worker_fn_1_i
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_1_i
+Shadow memory: cannot set_field for &__cs_nondet_worker_fn_1_sig
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_1_sig
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_1_i
+Shadow memory: cannot set_field for &__cs_nondet_worker_fn_1_i
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_1_i
+Shadow memory: cannot set_field for &__cs_nondet_worker_fn_1_sig
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_1_sig
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_1_i
+Shadow memory: cannot set_field for &__cs_nondet_worker_fn_1_i
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_1_i
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_1_i
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_1_sig
+Shadow memory: cannot set_field for &__cs_retval_worker_fn_1
+Shadow memory: cannot get_field for &__cs_retval_worker_fn_1
+Shadow memory: cannot get_field for &__cs_retval_worker_fn_1
+Shadow memory: cannot set_field for &__cs_nondet_main_i
+Shadow memory: cannot get_field for &__cs_nondet_main_i
+Shadow memory: cannot get_field for &__cs_nondet_main_i
+Shadow memory: cannot set_field for &__cs_nondet_main_i
+Shadow memory: cannot get_field for &__cs_nondet_main_i
+Shadow memory: cannot get_field for &__cs_nondet_main_i
+Shadow memory: cannot set_field for &__cs_nondet_main_sig
+Shadow memory: cannot get_field for &__cs_nondet_main_sig
+Shadow memory: cannot set_field for &__cs_nondet_main_i
+Shadow memory: cannot get_field for &__cs_nondet_main_i
+Shadow memory: cannot get_field for &__cs_nondet_main_i
+Shadow memory: cannot set_field for &__cs_nondet_main_sig
+Shadow memory: cannot get_field for &__cs_nondet_main_sig
+Shadow memory: cannot get_field for &__cs_nondet_main_i
+Shadow memory: cannot set_field for &__cs_nondet_main_i
+Shadow memory: cannot get_field for &__cs_nondet_main_i
+Shadow memory: cannot get_field for &__cs_nondet_main_i
+Shadow memory: cannot set_field for &__cs_nondet_main_sig
+Shadow memory: cannot get_field for &__cs_nondet_main_sig
+Shadow memory: cannot get_field for &__cs_nondet_main_i
+Shadow memory: cannot set_field for &__cs_nondet_main_i
+Shadow memory: cannot get_field for &__cs_nondet_main_i
+Shadow memory: cannot get_field for &__cs_nondet_main_i
+Shadow memory: cannot get_field for &__cs_nondet_main_sig
+Shadow memory: cannot set_field for &__cs_nondet_worker_fn_a
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_a
+Shadow memory: cannot get_field for &__cs_param_worker_fn_arg!0@2
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot set_field for &__cs_nondet_worker_fn_i
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_i
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_i
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_i
+Shadow memory: cannot set_field for &__cs_nondet_worker_fn_i
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_i
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_i
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_i
+Shadow memory: cannot set_field for &__cs_nondet_worker_fn_i
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_i
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_i
+Shadow memory: cannot set_field for &__cs_param_barrier_wait_1_b
+Shadow memory: cannot get_field for &__cs_param_barrier_wait_1_b
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_1_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_1_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_1_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_1_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_1_b
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: cannot set_field for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: cannot set_field for &__cs_nondet_barrier_wait_1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_barrier_wait_1___cs_tmp_if_cond_0
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_1_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_1_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_1_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_1_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_1_b
+Shadow memory: cannot get_field for &__cs_nondet_barrier_wait_1___cs_tmp_if_cond_0
+Shadow memory: cannot set_field for &__cs_retval_barrier_wait_1
+Shadow memory: cannot get_field for &__cs_retval_barrier_wait_1
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_1_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_1_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_1_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_1_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_1_b
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_1_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_1_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_1_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_1_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_1_b
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_1_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_1_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_1_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_1_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_1_b
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_1_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_1_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_1_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_1_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_1_b
+Shadow memory: cannot set_field for &__cs_retval_barrier_wait_1
+Shadow memory: cannot get_field for &__cs_retval_barrier_wait_1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot get_field for &__cs_retval_barrier_wait_1
+Shadow memory: cannot set_field for &__cs_nondet_worker_fn_sig
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_sig
+Shadow memory: cannot set_field for &__cs_nondet_worker_fn_i
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_i
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_i
+Shadow memory: cannot set_field for &__cs_nondet_worker_fn_sig
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_sig
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_i
+Shadow memory: cannot set_field for &__cs_nondet_worker_fn_i
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_i
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_i
+Shadow memory: cannot set_field for &__cs_nondet_worker_fn_sig
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_sig
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_i
+Shadow memory: cannot set_field for &__cs_nondet_worker_fn_i
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_i
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_i
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_sig
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot set_field for &__cs_param_barrier_wait_2_b
+Shadow memory: cannot get_field for &__cs_param_barrier_wait_2_b
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_2_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_2_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_2_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_2_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_2_b
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: cannot set_field for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: cannot set_field for &__cs_nondet_barrier_wait_2___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_barrier_wait_2___cs_tmp_if_cond_0
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_2_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_2_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_2_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_2_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_2_b
+Shadow memory: cannot get_field for &__cs_nondet_barrier_wait_2___cs_tmp_if_cond_0
+Shadow memory: cannot set_field for &__cs_retval_barrier_wait_2
+Shadow memory: cannot get_field for &__cs_retval_barrier_wait_2
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_2_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_2_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_2_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_2_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_2_b
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_2_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_2_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_2_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_2_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_2_b
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_2_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_2_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_2_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_2_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_2_b
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_2_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_2_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_2_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_2_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_2_b
+Shadow memory: cannot set_field for &__cs_retval_barrier_wait_2
+Shadow memory: cannot get_field for &__cs_retval_barrier_wait_2
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot get_field for &__cs_retval_barrier_wait_2
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot set_field for &__cs_nondet_worker_fn_sig
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_sig
+Shadow memory: cannot set_field for &__cs_nondet_worker_fn_i
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_i
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_i
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_i
+Shadow memory: cannot set_field for &__cs_nondet_worker_fn_sig
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_sig
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_i
+Shadow memory: cannot set_field for &__cs_nondet_worker_fn_i
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_i
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_i
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_i
+Shadow memory: cannot set_field for &__cs_nondet_worker_fn_sig
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_sig
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_i
+Shadow memory: cannot set_field for &__cs_nondet_worker_fn_i
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_i
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_i
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_sig
+Shadow memory: cannot set_field for &__cs_nondet_worker_fn_sig
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_sig
+Shadow memory: cannot set_field for &__cs_nondet_worker_fn_i
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_i
+Shadow memory: cannot set_field for &__cs_nondet_worker_fn_sig
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_sig
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_i
+Shadow memory: cannot set_field for &__cs_nondet_worker_fn_i
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_i
+Shadow memory: cannot set_field for &__cs_nondet_worker_fn_sig
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_sig
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_i
+Shadow memory: cannot set_field for &__cs_nondet_worker_fn_i
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_i
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_i
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_sig
+Shadow memory: cannot set_field for &__cs_nondet_main_i
+Shadow memory: cannot get_field for &__cs_nondet_main_i
+Shadow memory: cannot set_field for (Barrier **)((char *)__cs_nondet_main_a + (signed long int)__cs_nondet_main_i * 24l)
+Shadow memory: cannot get_field for (Barrier **)((char *)__cs_nondet_main_a + (signed long int)__cs_nondet_main_i * 24l)
+Shadow memory: cannot set_field for (Barrier **)((char *)__cs_nondet_main_a + (signed long int)__cs_nondet_main_i * 24l + 8l)
+Shadow memory: cannot get_field for (Barrier **)((char *)__cs_nondet_main_a + (signed long int)__cs_nondet_main_i * 24l + 8l)
+Shadow memory: cannot set_field for (signed int *)((char *)__cs_nondet_main_a + (signed long int)__cs_nondet_main_i * 24l + 16l)
+Shadow memory: cannot get_field for (signed int *)((char *)__cs_nondet_main_a + (signed long int)__cs_nondet_main_i * 24l + 16l)
+Shadow memory: cannot get_field for &__cs_nondet_main_i
+Shadow memory: cannot set_field for &__cs_nondet_main_i
+Shadow memory: cannot get_field for &__cs_nondet_main_i
+Shadow memory: cannot set_field for (Barrier **)((char *)__cs_nondet_main_a + (signed long int)__cs_nondet_main_i * 24l)
+Shadow memory: cannot get_field for (Barrier **)((char *)__cs_nondet_main_a + (signed long int)__cs_nondet_main_i * 24l)
+Shadow memory: cannot set_field for (Barrier **)((char *)__cs_nondet_main_a + (signed long int)__cs_nondet_main_i * 24l + 8l)
+Shadow memory: cannot get_field for (Barrier **)((char *)__cs_nondet_main_a + (signed long int)__cs_nondet_main_i * 24l + 8l)
+Shadow memory: cannot set_field for (signed int *)((char *)__cs_nondet_main_a + (signed long int)__cs_nondet_main_i * 24l + 16l)
+Shadow memory: cannot get_field for (signed int *)((char *)__cs_nondet_main_a + (signed long int)__cs_nondet_main_i * 24l + 16l)
+Shadow memory: cannot get_field for &__cs_nondet_main_i
+Shadow memory: cannot set_field for &__cs_nondet_main_i
+Shadow memory: cannot get_field for &__cs_nondet_main_i
+Shadow memory: cannot get_field for &__cs_nondet_main_i
+Shadow memory: cannot set_field for &__cs_param_barrier_init_1_b
+Shadow memory: cannot get_field for &__cs_param_barrier_init_1_b
+Shadow memory: cannot set_field for &__cs_param_barrier_init_1_thread_count
+Shadow memory: cannot get_field for &__cs_param_barrier_init_1_thread_count
+Shadow memory: cannot get_field for &__cs_param_barrier_init_1_thread_count
+Shadow memory: cannot set_field for (signed int *)__cs_param_barrier_init_1_b
+Shadow memory: cannot get_field for (signed int *)__cs_param_barrier_init_1_b
+Shadow memory: cannot get_field for &__cs_param_barrier_init_1_thread_count
+Shadow memory: cannot set_field for (signed int *)((char *)__cs_param_barrier_init_1_b + 4l)
+Shadow memory: cannot get_field for (signed int *)((char *)__cs_param_barrier_init_1_b + 4l)
+Shadow memory: cannot set_field for &__cs_nondet_main_i
+Shadow memory: cannot get_field for &__cs_nondet_main_i
+Shadow memory: cannot get_field for &__cs_nondet_main_i
+Shadow memory: cannot get_field for &__cs_nondet_main_i
+Shadow memory: cannot set_field for &__cs_nondet_main_i
+Shadow memory: cannot get_field for &__cs_nondet_main_i
+Shadow memory: cannot get_field for &__cs_nondet_main_i
+Shadow memory: cannot set_field for &__cs_param_worker_fn_1_arg
+Shadow memory: cannot get_field for &__cs_param_worker_fn_1_arg
+Shadow memory: cannot set_field for &__cs_nondet_worker_fn_1_a
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_1_a
+Shadow memory: cannot get_field for &__cs_param_worker_fn_1_arg
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot set_field for &__cs_nondet_worker_fn_1_i
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_1_i
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_1_i
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_1_i
+Shadow memory: cannot set_field for &__cs_nondet_worker_fn_1_i
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_1_i
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_1_i
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_1_i
+Shadow memory: cannot set_field for &__cs_nondet_worker_fn_1_i
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_1_i
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_1_i
+Shadow memory: cannot set_field for &__cs_param_barrier_wait_1_b
+Shadow memory: cannot get_field for &__cs_param_barrier_wait_1_b
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_1_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_1_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_1_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_1_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_1_b
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: cannot set_field for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: cannot set_field for &__cs_nondet_barrier_wait_1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_barrier_wait_1___cs_tmp_if_cond_0
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_1_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_1_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_1_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_1_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_1_b
+Shadow memory: cannot get_field for &__cs_nondet_barrier_wait_1___cs_tmp_if_cond_0
+Shadow memory: cannot set_field for &__cs_retval_barrier_wait_1
+Shadow memory: cannot get_field for &__cs_retval_barrier_wait_1
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_1_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_1_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_1_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_1_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_1_b
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_1_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_1_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_1_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_1_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_1_b
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_1_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_1_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_1_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_1_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_1_b
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_1_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_1_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_1_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_1_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_1_b
+Shadow memory: cannot set_field for &__cs_retval_barrier_wait_1
+Shadow memory: cannot get_field for &__cs_retval_barrier_wait_1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot get_field for &__cs_retval_barrier_wait_1
+Shadow memory: cannot set_field for &__cs_nondet_worker_fn_1_sig
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_1_sig
+Shadow memory: cannot set_field for &__cs_nondet_worker_fn_1_i
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_1_i
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_1_i
+Shadow memory: cannot set_field for &__cs_nondet_worker_fn_1_sig
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_1_sig
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_1_i
+Shadow memory: cannot set_field for &__cs_nondet_worker_fn_1_i
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_1_i
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_1_i
+Shadow memory: cannot set_field for &__cs_nondet_worker_fn_1_sig
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_1_sig
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_1_i
+Shadow memory: cannot set_field for &__cs_nondet_worker_fn_1_i
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_1_i
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_1_i
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_1_sig
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot set_field for &__cs_param_barrier_wait_2_b
+Shadow memory: cannot get_field for &__cs_param_barrier_wait_2_b
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_2_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_2_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_2_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_2_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_2_b
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: cannot set_field for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: cannot set_field for &__cs_nondet_barrier_wait_2___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_barrier_wait_2___cs_tmp_if_cond_0
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_2_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_2_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_2_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_2_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_2_b
+Shadow memory: cannot get_field for &__cs_nondet_barrier_wait_2___cs_tmp_if_cond_0
+Shadow memory: cannot set_field for &__cs_retval_barrier_wait_2
+Shadow memory: cannot get_field for &__cs_retval_barrier_wait_2
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_2_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_2_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_2_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_2_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_2_b
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_2_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_2_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_2_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_2_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_2_b
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_2_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_2_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_2_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_2_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_2_b
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_2_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_2_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_2_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_2_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_2_b
+Shadow memory: cannot set_field for &__cs_retval_barrier_wait_2
+Shadow memory: cannot get_field for &__cs_retval_barrier_wait_2
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot get_field for &__cs_retval_barrier_wait_2
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot set_field for &__cs_nondet_worker_fn_1_sig
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_1_sig
+Shadow memory: cannot set_field for &__cs_nondet_worker_fn_1_i
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_1_i
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_1_i
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_1_i
+Shadow memory: cannot set_field for &__cs_nondet_worker_fn_1_sig
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_1_sig
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_1_i
+Shadow memory: cannot set_field for &__cs_nondet_worker_fn_1_i
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_1_i
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_1_i
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_1_i
+Shadow memory: cannot set_field for &__cs_nondet_worker_fn_1_sig
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_1_sig
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_1_i
+Shadow memory: cannot set_field for &__cs_nondet_worker_fn_1_i
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_1_i
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_1_i
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_1_sig
+Shadow memory: cannot set_field for &__cs_nondet_worker_fn_1_sig
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_1_sig
+Shadow memory: cannot set_field for &__cs_nondet_worker_fn_1_i
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_1_i
+Shadow memory: cannot set_field for &__cs_nondet_worker_fn_1_sig
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_1_sig
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_1_i
+Shadow memory: cannot set_field for &__cs_nondet_worker_fn_1_i
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_1_i
+Shadow memory: cannot set_field for &__cs_nondet_worker_fn_1_sig
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_1_sig
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_1_i
+Shadow memory: cannot set_field for &__cs_nondet_worker_fn_1_i
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_1_i
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_1_i
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_1_sig
+Shadow memory: cannot set_field for &__cs_retval_worker_fn_1
+Shadow memory: cannot get_field for &__cs_retval_worker_fn_1
+Shadow memory: cannot get_field for &__cs_retval_worker_fn_1
+Shadow memory: cannot set_field for &__cs_nondet_main_i
+Shadow memory: cannot get_field for &__cs_nondet_main_i
+Shadow memory: cannot get_field for &__cs_nondet_main_i
+Shadow memory: cannot set_field for &__cs_nondet_main_i
+Shadow memory: cannot get_field for &__cs_nondet_main_i
+Shadow memory: cannot get_field for &__cs_nondet_main_i
+Shadow memory: cannot set_field for &__cs_nondet_main_sig
+Shadow memory: cannot get_field for &__cs_nondet_main_sig
+Shadow memory: cannot set_field for &__cs_nondet_main_i
+Shadow memory: cannot get_field for &__cs_nondet_main_i
+Shadow memory: cannot get_field for &__cs_nondet_main_i
+Shadow memory: cannot set_field for &__cs_nondet_main_sig
+Shadow memory: cannot get_field for &__cs_nondet_main_sig
+Shadow memory: cannot get_field for &__cs_nondet_main_i
+Shadow memory: cannot set_field for &__cs_nondet_main_i
+Shadow memory: cannot get_field for &__cs_nondet_main_i
+Shadow memory: cannot get_field for &__cs_nondet_main_i
+Shadow memory: cannot set_field for &__cs_nondet_main_sig
+Shadow memory: cannot get_field for &__cs_nondet_main_sig
+Shadow memory: cannot get_field for &__cs_nondet_main_i
+Shadow memory: cannot set_field for &__cs_nondet_main_i
+Shadow memory: cannot get_field for &__cs_nondet_main_i
+Shadow memory: cannot get_field for &__cs_nondet_main_i
+Shadow memory: cannot get_field for &__cs_nondet_main_sig
+Shadow memory: cannot set_field for &__cs_nondet_worker_fn_a
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_a
+Shadow memory: cannot get_field for &__cs_param_worker_fn_arg!0@3
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot set_field for &__cs_nondet_worker_fn_i
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_i
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_i
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_i
+Shadow memory: cannot set_field for &__cs_nondet_worker_fn_i
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_i
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_i
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_i
+Shadow memory: cannot set_field for &__cs_nondet_worker_fn_i
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_i
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_i
+Shadow memory: cannot set_field for &__cs_param_barrier_wait_1_b
+Shadow memory: cannot get_field for &__cs_param_barrier_wait_1_b
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_1_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_1_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_1_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_1_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_1_b
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: cannot set_field for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: cannot set_field for &__cs_nondet_barrier_wait_1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_barrier_wait_1___cs_tmp_if_cond_0
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_1_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_1_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_1_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_1_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_1_b
+Shadow memory: cannot get_field for &__cs_nondet_barrier_wait_1___cs_tmp_if_cond_0
+Shadow memory: cannot set_field for &__cs_retval_barrier_wait_1
+Shadow memory: cannot get_field for &__cs_retval_barrier_wait_1
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_1_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_1_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_1_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_1_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_1_b
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_1_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_1_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_1_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_1_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_1_b
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_1_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_1_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_1_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_1_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_1_b
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_1_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_1_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_1_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_1_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_1_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_1_b
+Shadow memory: cannot set_field for &__cs_retval_barrier_wait_1
+Shadow memory: cannot get_field for &__cs_retval_barrier_wait_1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot get_field for &__cs_retval_barrier_wait_1
+Shadow memory: cannot set_field for &__cs_nondet_worker_fn_sig
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_sig
+Shadow memory: cannot set_field for &__cs_nondet_worker_fn_i
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_i
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_i
+Shadow memory: cannot set_field for &__cs_nondet_worker_fn_sig
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_sig
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_i
+Shadow memory: cannot set_field for &__cs_nondet_worker_fn_i
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_i
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_i
+Shadow memory: cannot set_field for &__cs_nondet_worker_fn_sig
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_sig
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_i
+Shadow memory: cannot set_field for &__cs_nondet_worker_fn_i
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_i
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_i
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_sig
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot set_field for &__cs_param_barrier_wait_2_b
+Shadow memory: cannot get_field for &__cs_param_barrier_wait_2_b
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_2_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_2_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_2_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_2_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_2_b
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: cannot set_field for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: cannot set_field for &__cs_nondet_barrier_wait_2___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_barrier_wait_2___cs_tmp_if_cond_0
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_2_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_2_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_2_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_2_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_2_b
+Shadow memory: cannot get_field for &__cs_nondet_barrier_wait_2___cs_tmp_if_cond_0
+Shadow memory: cannot set_field for &__cs_retval_barrier_wait_2
+Shadow memory: cannot get_field for &__cs_retval_barrier_wait_2
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_2_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_2_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_2_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_2_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_2_b
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_2_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_2_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_2_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_2_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_2_b
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_2_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_2_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_2_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_2_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_2_b
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)((char *)__cs_param_barrier_wait_2_b + 4l)
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_2_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_2_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_2_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_2_b
+Shadow memory: value set contains unknown for (signed int *)__cs_param_barrier_wait_2_b
+Shadow memory: cannot set_field for &__cs_retval_barrier_wait_2
+Shadow memory: cannot get_field for &__cs_retval_barrier_wait_2
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot get_field for &__cs_retval_barrier_wait_2
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot set_field for &__cs_nondet_worker_fn_sig
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_sig
+Shadow memory: cannot set_field for &__cs_nondet_worker_fn_i
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_i
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_i
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_i
+Shadow memory: cannot set_field for &__cs_nondet_worker_fn_sig
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_sig
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_i
+Shadow memory: cannot set_field for &__cs_nondet_worker_fn_i
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_i
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_i
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_i
+Shadow memory: cannot set_field for &__cs_nondet_worker_fn_sig
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_sig
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_i
+Shadow memory: cannot set_field for &__cs_nondet_worker_fn_i
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_i
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_i
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_sig
+Shadow memory: cannot set_field for &__cs_nondet_worker_fn_sig
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_sig
+Shadow memory: cannot set_field for &__cs_nondet_worker_fn_i
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_i
+Shadow memory: cannot set_field for &__cs_nondet_worker_fn_sig
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_sig
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_i
+Shadow memory: cannot set_field for &__cs_nondet_worker_fn_i
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_i
+Shadow memory: cannot set_field for &__cs_nondet_worker_fn_sig
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_sig
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_i
+Shadow memory: cannot set_field for &__cs_nondet_worker_fn_i
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_i
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_i
+Shadow memory: cannot get_field for &__cs_nondet_worker_fn_sig
+Runtime Symex: 0.691663s
+size of program expression: 23298 steps
+simple slicing removed 5 assignments
+Generated 289 VCC(s), 289 remaining after simplification
+Runtime Postprocess Equation: 0.00348094s
+Passing problem to propositional reduction
+converting SSA
+Runtime Convert SSA: 0.181792s
+Running propositional reduction
+Post-processing
+Runtime Post-process: 2.3024e-05s
+Solving with Glucose Syrup with simplifier
+132677 variables, 370147 clauses
+SAT checker: instance is SATISFIABLE
+Runtime Solver: 0.858481s
+Runtime decision procedure: 1.04108s
+Building error trace
+Counterexample:
+
+State 22 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function __CPROVER_initialize line 57 thread 0
+----------------------------------------------------
+  __cs_active_thread[0l]=0 (0)
+
+State 23 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function __CPROVER_initialize line 57 thread 0
+----------------------------------------------------
+  __cs_active_thread[1l]=0 (0)
+
+State 32 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function __CPROVER_initialize line 58 thread 0
+----------------------------------------------------
+  __cs_pc[0l]=0 (0000000)
+
+State 33 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function __CPROVER_initialize line 58 thread 0
+----------------------------------------------------
+  __cs_pc[1l]=0 (0000000)
+
+State 35 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function __CPROVER_initialize line 59 thread 0
+----------------------------------------------------
+  __cs_pc_cs[0l]=0 (00000000)
+
+State 36 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function __CPROVER_initialize line 59 thread 0
+----------------------------------------------------
+  __cs_pc_cs[1l]=0 (00000000)
+
+State 38 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function __CPROVER_initialize line 82 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 39 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function __CPROVER_initialize line 82 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 41 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function __CPROVER_initialize line 61 thread 0
+----------------------------------------------------
+  __cs_thread_lines[0l]=64 (1000000)
+
+State 42 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function __CPROVER_initialize line 61 thread 0
+----------------------------------------------------
+  __cs_thread_lines[1l]=76 (1001100)
+
+State 44 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function __CPROVER_initialize line 81 thread 0
+----------------------------------------------------
+  __cs_threadargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 45 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function __CPROVER_initialize line 81 thread 0
+----------------------------------------------------
+  __cs_threadargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 47 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function __CPROVER_initialize line 306 thread 0
+----------------------------------------------------
+  in[0l]=FALSE (00000000)
+
+State 48 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function __CPROVER_initialize line 306 thread 0
+----------------------------------------------------
+  in[1l]=FALSE (00000000)
+
+State 50 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function __CPROVER_initialize line 306 thread 0
+----------------------------------------------------
+  SM__&in__dr_write[0l]=FALSE (00000000)
+
+State 51 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function __CPROVER_initialize line 306 thread 0
+----------------------------------------------------
+  SM__&in__dr_write[1l]=FALSE (00000000)
+
+State 73 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function __CPROVER_initialize line 905 thread 0
+----------------------------------------------------
+  __cs_nondet_main_a[0l].b1=((Barrier *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 74 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function __CPROVER_initialize line 905 thread 0
+----------------------------------------------------
+  __cs_nondet_main_a[0l].b2=((Barrier *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 75 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function __CPROVER_initialize line 905 thread 0
+----------------------------------------------------
+  __cs_nondet_main_a[0l].tid=0 (00000000 00000000 00000000 00000000)
+
+State 76 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function __CPROVER_initialize line 905 thread 0
+----------------------------------------------------
+  __cs_nondet_main_a[0l].$pad3=0u (00000000 00000000 00000000 00000000)
+
+State 77 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function __CPROVER_initialize line 905 thread 0
+----------------------------------------------------
+  __cs_nondet_main_a[1l].b1=((Barrier *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 78 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function __CPROVER_initialize line 905 thread 0
+----------------------------------------------------
+  __cs_nondet_main_a[1l].b2=((Barrier *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 79 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function __CPROVER_initialize line 905 thread 0
+----------------------------------------------------
+  __cs_nondet_main_a[1l].tid=0 (00000000 00000000 00000000 00000000)
+
+State 80 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function __CPROVER_initialize line 905 thread 0
+----------------------------------------------------
+  __cs_nondet_main_a[1l].$pad3=0u (00000000 00000000 00000000 00000000)
+
+State 89 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function __CPROVER_initialize line 307 thread 0
+----------------------------------------------------
+  post[0l]=FALSE (00000000)
+
+State 90 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function __CPROVER_initialize line 307 thread 0
+----------------------------------------------------
+  post[1l]=FALSE (00000000)
+
+State 92 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function __CPROVER_initialize line 307 thread 0
+----------------------------------------------------
+  SM__&post__dr_write[0l]=FALSE (00000000)
+
+State 93 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function __CPROVER_initialize line 307 thread 0
+----------------------------------------------------
+  SM__&post__dr_write[1l]=FALSE (00000000)
+
+State 95 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function __CPROVER_initialize line 305 thread 0
+----------------------------------------------------
+  pre[0l]=FALSE (00000000)
+
+State 96 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function __CPROVER_initialize line 305 thread 0
+----------------------------------------------------
+  pre[1l]=FALSE (00000000)
+
+State 98 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function __CPROVER_initialize line 305 thread 0
+----------------------------------------------------
+  SM__&pre__dr_write[0l]=FALSE (00000000)
+
+State 99 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function __CPROVER_initialize line 305 thread 0
+----------------------------------------------------
+  SM__&pre__dr_write[1l]=FALSE (00000000)
+
+State 101 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function __CPROVER_initialize line 308 thread 0
+----------------------------------------------------
+  sig1[0l]=FALSE (00000000)
+
+State 102 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function __CPROVER_initialize line 308 thread 0
+----------------------------------------------------
+  sig1[1l]=FALSE (00000000)
+
+State 104 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function __CPROVER_initialize line 308 thread 0
+----------------------------------------------------
+  SM__&sig1__dr_write[0l]=FALSE (00000000)
+
+State 105 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function __CPROVER_initialize line 308 thread 0
+----------------------------------------------------
+  SM__&sig1__dr_write[1l]=FALSE (00000000)
+
+State 107 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function __CPROVER_initialize line 309 thread 0
+----------------------------------------------------
+  sig2[0l]=FALSE (00000000)
+
+State 108 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function __CPROVER_initialize line 309 thread 0
+----------------------------------------------------
+  sig2[1l]=FALSE (00000000)
+
+State 110 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function __CPROVER_initialize line 309 thread 0
+----------------------------------------------------
+  SM__&sig2__dr_write[0l]=FALSE (00000000)
+
+State 111 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function __CPROVER_initialize line 309 thread 0
+----------------------------------------------------
+  SM__&sig2__dr_write[1l]=FALSE (00000000)
+
+State 129 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function main line 1671 thread 0
+----------------------------------------------------
+  __cs_dr_ts=1 (001)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c line 1672 function main
+  (signed int)__cs_dr_ts <= 4
+
+State 131 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function main line 1675 thread 0
+----------------------------------------------------
+  __cs_active_thread[1l]=1 (1)
+
+State 132 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function main line 1676 thread 0
+----------------------------------------------------
+  __cs_tmp_t1_r0=4 (0000100)
+
+State 133 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function main line 1677 thread 0
+----------------------------------------------------
+  __cs_pc_cs[1l]=4 (00000100)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c line 1678 function main
+  (signed int)__cs_pc_cs[(signed long int)1] > 0
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c line 1679 function main
+  (signed int)__cs_pc_cs[(signed long int)1] <= 76
+
+State 140 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function main_thread line 901 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 141 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function main_thread line 902 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=TRUE (00000001)
+
+State 144 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function main_thread line 908 thread 0
+----------------------------------------------------
+  __cs_nondet_main_i=0 (00000000 00000000 00000000 00000000)
+
+State 147 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function main_thread line 910 thread 0
+----------------------------------------------------
+  __cs_nondet_main_a[0l].b1=&__cs_nondet_main_b1 (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 150 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function main_thread line 911 thread 0
+----------------------------------------------------
+  __cs_nondet_main_a[0l].b2=&__cs_nondet_main_b1 (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 154 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function main_thread line 912 thread 0
+----------------------------------------------------
+  __cs_nondet_main_a[0l].tid=0 (00000000 00000000 00000000 00000000)
+
+State 157 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function main_thread line 915 thread 0
+----------------------------------------------------
+  __cs_nondet_main_i=1 (00000000 00000000 00000000 00000001)
+
+State 160 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function main_thread line 917 thread 0
+----------------------------------------------------
+  __cs_nondet_main_a[1l].b1=&__cs_nondet_main_b1 (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 163 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function main_thread line 918 thread 0
+----------------------------------------------------
+  __cs_nondet_main_a[1l].b2=&__cs_nondet_main_b1 (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 167 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function main_thread line 919 thread 0
+----------------------------------------------------
+  __cs_nondet_main_a[1l].tid=1 (00000000 00000000 00000000 00000001)
+
+State 170 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function main_thread line 922 thread 0
+----------------------------------------------------
+  __cs_nondet_main_i=2 (00000000 00000000 00000000 00000010)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c line 925 function main_thread
+  (signed int)__cs_pc_cs[(signed long int)1] >= 1
+
+State 175 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function main_thread line 932 thread 0
+----------------------------------------------------
+  __cs_param_barrier_init_1_b=&__cs_nondet_main_b1 (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 178 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function main_thread line 934 thread 0
+----------------------------------------------------
+  __cs_param_barrier_init_1_thread_count=2 (00000000 00000000 00000000 00000010)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c line 937 function main_thread
+  (signed int)__cs_pc_cs[(signed long int)1] >= 1
+
+State 185 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function main_thread line 943 thread 0
+----------------------------------------------------
+  __cs_nondet_main_b1.thread_count=2 (00000000 00000000 00000000 00000010)
+
+State 188 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function main_thread line 944 thread 0
+----------------------------------------------------
+  __cs_nondet_main_b1.seen=0 (00000000 00000000 00000000 00000000)
+
+State 191 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function main_thread line 945 thread 0
+----------------------------------------------------
+  __cs_m=&__cs_nondet_main_b1.lock (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00001000)
+
+State 192 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function main_thread line 945 thread 0
+----------------------------------------------------
+  __cs_val=0 (00000000 00000000 00000000 00000000)
+
+State 193 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function __cs_mutex_init line 111 thread 0
+----------------------------------------------------
+  __cs_nondet_main_b1.lock=-1 (11111111 11111111 11111111 11111111)
+
+State 198 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function main_thread line 946 thread 0
+----------------------------------------------------
+  __cs_cond_to_init=&__cs_nondet_main_b1.sig (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00001100)
+
+State 199 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function main_thread line 946 thread 0
+----------------------------------------------------
+  __cs_attr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 200 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function __cs_cond_init line 144 thread 0
+----------------------------------------------------
+  __cs_nondet_main_b1.sig=-1 (11111111 11111111 11111111 11111111)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c line 948 function main_thread
+  (signed int)__cs_pc_cs[(signed long int)1] >= 1
+
+State 206 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function main_thread line 958 thread 0
+----------------------------------------------------
+  __cs_nondet_main_i=0 (00000000 00000000 00000000 00000000)
+
+State 211 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function main_thread line 960 thread 0
+----------------------------------------------------
+  __cs_new_thread_id=((signed int *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 212 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function main_thread line 960 thread 0
+----------------------------------------------------
+  __cs_attr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 213 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function main_thread line 960 thread 0
+----------------------------------------------------
+  __cs_thread_function=worker_fn_0 (00000011 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 214 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function main_thread line 960 thread 0
+----------------------------------------------------
+  __cs_arg=(const void *)&__cs_nondet_main_a[0l].b1 (00000100 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 215 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function main_thread line 960 thread 0
+----------------------------------------------------
+  __cs_threadID=0 (00000000 00000000 00000000 00000000)
+
+State 218 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function __cs_create line 88 thread 0
+----------------------------------------------------
+  __cs_active_thread[0l]=1 (1)
+
+State 219 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function __cs_create line 89 thread 0
+----------------------------------------------------
+  __cs_threadargs[0l]=(const void *)&__cs_nondet_main_a[0l].b1 (00000100 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 224 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function main_thread line 963 thread 0
+----------------------------------------------------
+  __cs_nondet_main_i=1 (00000000 00000000 00000000 00000001)
+
+State 226 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function main_thread line 966 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c line 967 function main_thread
+  !(__cs_nondet_main_i < 1)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c line 969 function main_thread
+  (signed int)__cs_pc_cs[(signed long int)1] >= 2
+
+State 231 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function main_thread line 979 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 232 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function main_thread line 980 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 235 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function main_thread line 981 thread 0
+----------------------------------------------------
+  __cs_param_worker_fn_1_arg=(const void *)&__cs_nondet_main_a[1l].b1 (00000100 00000000 00000000 00000000 00000000 00000000 00000000 00011000)
+
+State 237 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function main_thread line 985 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=TRUE (00000001)
+
+State 238 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function main_thread line 986 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 242 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function main_thread line 987 thread 0
+----------------------------------------------------
+  __cs_nondet_worker_fn_1_a=__cs_nondet_main_a + 1l (00000100 00000000 00000000 00000000 00000000 00000000 00000000 00011000)
+
+State 321 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function main_thread line 1666 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 322 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function main_thread line 1666 thread 0
+----------------------------------------------------
+  __cs_thread_index=1u (00000000 00000000 00000000 00000001)
+
+State 323 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function __cs_exit line 101 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 329 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function main line 1685 thread 0
+----------------------------------------------------
+  __cs_pc[1l]=4 (0000100)
+
+State 330 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function main line 1687 thread 0
+----------------------------------------------------
+  __cs_tmp_t0_r0=16 (0010000)
+
+State 332 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function main line 1690 thread 0
+----------------------------------------------------
+  __cs_pc_cs[0l]=16 (00010000)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c line 1691 function main
+  (signed int)__cs_pc_cs[(signed long int)0] <= 64
+
+State 335 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function main line 1693 thread 0
+----------------------------------------------------
+  __cs_dataraceDetectionStarted=TRUE (00000001)
+
+State 338 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function main line 1694 thread 0
+----------------------------------------------------
+  __cs_param_worker_fn_arg=(const void *)&__cs_nondet_main_a[0l].b1 (00000100 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 340 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function worker_fn_0 line 314 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 341 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function worker_fn_0 line 315 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=TRUE (00000001)
+
+State 345 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function worker_fn_0 line 316 thread 0
+----------------------------------------------------
+  __cs_nondet_worker_fn_a=__cs_nondet_main_a (00000100 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 347 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function worker_fn_0 line 320 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 348 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function worker_fn_0 line 321 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 351 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function worker_fn_0 line 322 thread 0
+----------------------------------------------------
+  pre[0l]=TRUE (00000001)
+
+State 352 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function worker_fn_0 line 322 thread 0
+----------------------------------------------------
+  pre[0l]=TRUE (00000001)
+
+State 353 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function worker_fn_0 line 322 thread 0
+----------------------------------------------------
+  pre[1l]=FALSE (00000000)
+
+State 356 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function worker_fn_0 line 325 thread 0
+----------------------------------------------------
+  __cs_nondet_worker_fn_i=0 (00000000 00000000 00000000 00000000)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c line 329 function worker_fn_0
+  (signed int)__cs_pc_cs[(signed long int)0] >= 2
+
+State 359 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function worker_fn_0 line 336 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c line 340 function worker_fn_0
+  (signed int)__cs_pc_cs[(signed long int)0] >= 3
+
+State 365 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function worker_fn_0 line 347 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 371 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function worker_fn_0 line 351 thread 0
+----------------------------------------------------
+  __cs_nondet_worker_fn_i=1 (00000000 00000000 00000000 00000001)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c line 355 function worker_fn_0
+  (signed int)__cs_pc_cs[(signed long int)0] >= 4
+
+State 374 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function worker_fn_0 line 362 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c line 366 function worker_fn_0
+  (signed int)__cs_pc_cs[(signed long int)0] >= 5
+
+State 380 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function worker_fn_0 line 373 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 386 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function worker_fn_0 line 377 thread 0
+----------------------------------------------------
+  __cs_nondet_worker_fn_i=2 (00000000 00000000 00000000 00000010)
+
+State 388 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function worker_fn_0 line 380 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c line 381 function worker_fn_0
+  !(__cs_nondet_worker_fn_i < 2)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c line 383 function worker_fn_0
+  (signed int)__cs_pc_cs[(signed long int)0] >= 7
+
+State 393 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function worker_fn_0 line 393 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 394 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function worker_fn_0 line 394 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 398 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function worker_fn_0 line 395 thread 0
+----------------------------------------------------
+  __cs_param_barrier_wait_1_b=&__cs_nondet_main_b1 (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c line 398 function worker_fn_0
+  (signed int)__cs_pc_cs[(signed long int)0] >= 8
+
+State 401 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function worker_fn_0 line 405 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 406 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function worker_fn_0 line 409 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 409 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function worker_fn_0 line 410 thread 0
+----------------------------------------------------
+  __cs_mutex_to_lock=&__cs_nondet_main_b1.lock (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00001000)
+
+State 410 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function worker_fn_0 line 410 thread 0
+----------------------------------------------------
+  __cs_thread_index=0 (0)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c line 127 function __cs_mutex_lock
+  *__cs_mutex_to_lock == -1
+
+State 414 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function __cs_mutex_lock line 128 thread 0
+----------------------------------------------------
+  __cs_nondet_main_b1.lock=1 (00000000 00000000 00000000 00000001)
+
+State 418 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function worker_fn_0 line 413 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 419 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function worker_fn_0 line 414 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 422 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function worker_fn_0 line 415 thread 0
+----------------------------------------------------
+  __cs_nondet_main_b1.seen=1 (00000000 00000000 00000000 00000001)
+
+State 424 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function worker_fn_0 line 421 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 425 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function worker_fn_0 line 422 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 430 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function worker_fn_0 line 423 thread 0
+----------------------------------------------------
+  __cs_nondet_barrier_wait_1___cs_tmp_if_cond_0=FALSE (00000000)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c line 438 function worker_fn_0
+  (signed int)__cs_pc_cs[(signed long int)0] >= 14
+
+State 439 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function worker_fn_0 line 451 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 442 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function worker_fn_0 line 452 thread 0
+----------------------------------------------------
+  __cs_cond_to_wait_for=&__cs_nondet_main_b1.sig (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00001100)
+
+State 443 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function worker_fn_0 line 452 thread 0
+----------------------------------------------------
+  __cs_m=&__cs_nondet_main_b1.lock (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00001000)
+
+State 444 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function worker_fn_0 line 452 thread 0
+----------------------------------------------------
+  __cs_thread_index=0u (00000000 00000000 00000000 00000000)
+
+State 449 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function __cs_cond_wait_1 line 156 thread 0
+----------------------------------------------------
+  __cs_mutex_to_unlock=&__cs_nondet_main_b1.lock (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00001000)
+
+State 450 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function __cs_cond_wait_1 line 156 thread 0
+----------------------------------------------------
+  __cs_thread_index=0 (0)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c line 136 function __cs_mutex_unlock
+  *__cs_mutex_to_unlock == (signed int)__cs_thread_index + 1
+
+State 454 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function __cs_mutex_unlock line 137 thread 0
+----------------------------------------------------
+  __cs_nondet_main_b1.lock=-1 (11111111 11111111 11111111 11111111)
+
+State 511 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function worker_fn_0 line 896 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 512 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function worker_fn_0 line 896 thread 0
+----------------------------------------------------
+  __cs_thread_index=0u (00000000 00000000 00000000 00000000)
+
+State 513 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function __cs_exit line 101 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 520 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function main line 1698 thread 0
+----------------------------------------------------
+  __cs_dataraceSecondThread=TRUE (00000001)
+
+State 521 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function main line 1699 thread 0
+----------------------------------------------------
+  __cs_pc[0l]=16 (0010000)
+
+State 522 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function main line 1703 thread 0
+----------------------------------------------------
+  __cs_tmp_t1_r1=12 (0001100)
+
+State 524 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function main line 1706 thread 0
+----------------------------------------------------
+  __cs_pc_cs[1l]=16 (00010000)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c line 1707 function main
+  (signed int)__cs_pc_cs[(signed long int)1] >= (signed int)__cs_pc[(signed long int)1]
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c line 1708 function main
+  (signed int)__cs_pc_cs[(signed long int)1] <= 76
+
+State 536 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function main_thread line 991 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 537 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function main_thread line 992 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=TRUE (00000001)
+
+State 548 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function main_thread line 993 thread 0
+----------------------------------------------------
+  __cs_dataraceNotDetected=FALSE (00000000)
+
+State 549 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function main_thread line 993 thread 0
+----------------------------------------------------
+  pre[3l]={ TRUE, FALSE }[3l] (?)
+
+State 550 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function main_thread line 993 thread 0
+----------------------------------------------------
+  pre[0l]=TRUE (00000001)
+
+State 551 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function main_thread line 993 thread 0
+----------------------------------------------------
+  pre[1l]=FALSE (00000000)
+
+State 557 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function main_thread line 996 thread 0
+----------------------------------------------------
+  __cs_dataraceNotDetected=FALSE (00000000)
+
+State 558 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function main_thread line 996 thread 0
+----------------------------------------------------
+  __cs_nondet_worker_fn_1_i=0 (00000000 00000000 00000000 00000000)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c line 1000 function main_thread
+  (signed int)__cs_pc_cs[(signed long int)1] >= 5
+
+State 561 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function main_thread line 1007 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c line 1011 function main_thread
+  (signed int)__cs_pc_cs[(signed long int)1] >= 6
+
+State 567 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function main_thread line 1018 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 573 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function main_thread line 1022 thread 0
+----------------------------------------------------
+  __cs_nondet_worker_fn_1_i=1 (00000000 00000000 00000000 00000001)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c line 1026 function main_thread
+  (signed int)__cs_pc_cs[(signed long int)1] >= 7
+
+State 576 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function main_thread line 1033 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c line 1037 function main_thread
+  (signed int)__cs_pc_cs[(signed long int)1] >= 8
+
+State 582 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function main_thread line 1044 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 588 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function main_thread line 1048 thread 0
+----------------------------------------------------
+  __cs_nondet_worker_fn_1_i=2 (00000000 00000000 00000000 00000010)
+
+State 590 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function main_thread line 1051 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c line 1052 function main_thread
+  !(__cs_nondet_worker_fn_1_i < 2)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c line 1054 function main_thread
+  (signed int)__cs_pc_cs[(signed long int)1] >= 10
+
+State 595 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function main_thread line 1064 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 596 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function main_thread line 1065 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 600 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function main_thread line 1066 thread 0
+----------------------------------------------------
+  __cs_param_barrier_wait_1_b=&__cs_nondet_main_b1 (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c line 1069 function main_thread
+  (signed int)__cs_pc_cs[(signed long int)1] >= 11
+
+State 603 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function main_thread line 1076 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 608 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function main_thread line 1080 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 611 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function main_thread line 1081 thread 0
+----------------------------------------------------
+  __cs_mutex_to_lock=&__cs_nondet_main_b1.lock (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00001000)
+
+State 612 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function main_thread line 1081 thread 0
+----------------------------------------------------
+  __cs_thread_index=1 (1)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c line 127 function __cs_mutex_lock
+  *__cs_mutex_to_lock == -1
+
+State 616 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function __cs_mutex_lock line 128 thread 0
+----------------------------------------------------
+  __cs_nondet_main_b1.lock=2 (00000000 00000000 00000000 00000010)
+
+State 620 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function main_thread line 1084 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 621 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function main_thread line 1085 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 624 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function main_thread line 1086 thread 0
+----------------------------------------------------
+  __cs_nondet_main_b1.seen=2 (00000000 00000000 00000000 00000010)
+
+State 626 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function main_thread line 1092 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 627 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function main_thread line 1093 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 632 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function main_thread line 1094 thread 0
+----------------------------------------------------
+  __cs_nondet_barrier_wait_1___cs_tmp_if_cond_0=TRUE (00000001)
+
+State 636 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function main_thread line 1099 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 639 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function main_thread line 1100 thread 0
+----------------------------------------------------
+  __cs_cond_to_broadcast=&__cs_nondet_main_b1.sig (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00001100)
+
+State 640 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function __cs_cond_broadcast line 173 thread 0
+----------------------------------------------------
+  __cs_nondet_main_b1.sig=1 (00000000 00000000 00000000 00000001)
+
+State 708 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function main_thread line 1666 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 709 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function main_thread line 1666 thread 0
+----------------------------------------------------
+  __cs_thread_index=1u (00000000 00000000 00000000 00000001)
+
+State 710 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function __cs_exit line 101 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 716 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function main line 1713 thread 0
+----------------------------------------------------
+  __cs_dataraceContinue=FALSE (00000000)
+
+State 718 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function main line 1715 thread 0
+----------------------------------------------------
+  __cs_dataraceSecondThread=TRUE (00000001)
+
+State 719 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function main line 1716 thread 0
+----------------------------------------------------
+  __cs_pc[1l]=16 (0010000)
+
+State 720 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function main line 1719 thread 0
+----------------------------------------------------
+  __cs_tmp_t0_r1=16 (0010000)
+
+State 722 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function main line 1736 thread 0
+----------------------------------------------------
+  __cs_tmp_t1_r2=24 (0011000)
+
+State 724 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function main line 1752 thread 0
+----------------------------------------------------
+  __cs_tmp_t0_r2=0 (0000000)
+
+Violated property:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_one_time_barrier_2t.c function main line 1763 thread 0
+  Data race failure
+  __cs_dataraceNotDetected != FALSE
+
+
+VERIFICATION FAILED
+
+real	0m1,984s
+user	0m1,938s
+sys	0m0,047s

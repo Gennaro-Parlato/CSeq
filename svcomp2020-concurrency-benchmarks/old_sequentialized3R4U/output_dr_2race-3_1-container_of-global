@@ -1,0 +1,724 @@
+CBMC version 5.12 (cbmc-5.11-4793-gd20c93aee-dirty) 64-bit x86_64 linux
+Parsing /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c
+Converting
+Type-checking _dr_2race-3_1-container_of-global
+file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c line 316 function my_callback_0: function '__CPROVER_get_field' is not declared
+file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c line 327 function my_callback_0: function '__CPROVER_set_field' is not declared
+file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c line 680 function main: function '__CPROVER_field_decl_global' is not declared
+Generating GOTO Program
+Adding CPROVER library (x86_64)
+Removal of function pointers and virtual functions
+Generic Property Instrumentation
+Running with 8 object bits, 56 offset bits (default)
+Starting Bounded Model Checking
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c line 573 function __cs_main_thread thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c line 595 function __cs_main_thread thread 0
+cannot set_field for __cs_nondet_my_callback_data
+cannot set_field for __cs_nondet_my_callback_data
+cannot set_field for __cs_nondet_my_callback_data
+cannot set_field for __cs_nondet_my_callback_data
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c line 573 function __cs_main_thread thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c line 595 function __cs_main_thread thread 0
+cannot set_field for __cs_nondet_my_callback_data
+cannot set_field for __cs_nondet_my_callback_data
+cannot set_field for __cs_nondet_my_callback_data
+cannot set_field for __cs_nondet_my_callback_data
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c line 573 function __cs_main_thread thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c line 595 function __cs_main_thread thread 0
+cannot set_field for __cs_nondet_my_callback_data
+cannot set_field for __cs_nondet_my_callback_data
+cannot set_field for __cs_nondet_my_callback_data
+cannot set_field for __cs_nondet_my_callback_data
+size of program expression: 3429 steps
+simple slicing removed 5 assignments
+Generated 1 VCC(s), 1 remaining after simplification
+Passing problem to propositional reduction
+converting SSA
+Running propositional reduction
+Post-processing
+Solving with Glucose Syrup with simplifier
+23507 variables, 65061 clauses
+SAT checker: instance is SATISFIABLE
+Runtime decision procedure: 0.0615912s
+Building error trace
+Counterexample:
+
+State 19 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c function __CPROVER_initialize line 62 thread 0
+----------------------------------------------------
+  __cs_active_thread[0l]=1 (1)
+
+State 20 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c function __CPROVER_initialize line 62 thread 0
+----------------------------------------------------
+  __cs_active_thread[1l]=0 (0)
+
+State 21 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c function __CPROVER_initialize line 62 thread 0
+----------------------------------------------------
+  __cs_active_thread[2l]=0 (0)
+
+State 55 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c function __CPROVER_initialize line 63 thread 0
+----------------------------------------------------
+  __cs_pc[0l]=0 (000)
+
+State 56 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c function __CPROVER_initialize line 63 thread 0
+----------------------------------------------------
+  __cs_pc[1l]=0 (000)
+
+State 57 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c function __CPROVER_initialize line 63 thread 0
+----------------------------------------------------
+  __cs_pc[2l]=0 (000)
+
+State 59 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c function __CPROVER_initialize line 64 thread 0
+----------------------------------------------------
+  __cs_pc_cs[0l]=0 (0000)
+
+State 60 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c function __CPROVER_initialize line 64 thread 0
+----------------------------------------------------
+  __cs_pc_cs[1l]=0 (0000)
+
+State 61 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c function __CPROVER_initialize line 64 thread 0
+----------------------------------------------------
+  __cs_pc_cs[2l]=0 (0000)
+
+State 63 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c function __CPROVER_initialize line 79 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 64 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c function __CPROVER_initialize line 79 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 65 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c function __CPROVER_initialize line 79 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[2l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 67 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c function __CPROVER_initialize line 66 thread 0
+----------------------------------------------------
+  __cs_thread_lines[0l]=7 (111)
+
+State 68 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c function __CPROVER_initialize line 66 thread 0
+----------------------------------------------------
+  __cs_thread_lines[1l]=6 (110)
+
+State 69 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c function __CPROVER_initialize line 66 thread 0
+----------------------------------------------------
+  __cs_thread_lines[2l]=6 (110)
+
+State 71 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c function __CPROVER_initialize line 78 thread 0
+----------------------------------------------------
+  __cs_threadargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 72 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c function __CPROVER_initialize line 78 thread 0
+----------------------------------------------------
+  __cs_threadargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 73 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c function __CPROVER_initialize line 78 thread 0
+----------------------------------------------------
+  __cs_threadargs[2l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 88 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c function main line 681 thread 0
+----------------------------------------------------
+  __cs_dr_ts=4 (0100)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c line 682 function main
+  (signed int)__cs_dr_ts <= 8
+
+State 90 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c function main line 685 thread 0
+----------------------------------------------------
+  __cs_tmp_t0_r0=3 (011)
+
+State 91 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c function main line 686 thread 0
+----------------------------------------------------
+  __cs_pc_cs[0l]=3 (0011)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c line 687 function main
+  (signed int)__cs_pc_cs[(signed long int)0] > 0
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c line 688 function main
+  (signed int)__cs_pc_cs[(signed long int)0] <= 7
+
+State 101 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c function __cs_main_thread line 424 thread 0
+----------------------------------------------------
+  __cs_retval_my_drv_init_1=0 (00000000 00000000 00000000 00000000)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c line 428 function __cs_main_thread
+  (signed int)__cs_pc_cs[(signed long int)0] >= 1
+
+State 103 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c function __cs_main_thread line 434 thread 0
+----------------------------------------------------
+  __cs_local_main_ret=0 (00000000 00000000 00000000 00000000)
+
+State 104 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c function __cs_main_thread line 438 thread 0
+----------------------------------------------------
+  __cs_nondet_main___cs_tmp_if_cond_2=TRUE (00000001)
+
+State 106 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c function __cs_main_thread line 446 thread 0
+----------------------------------------------------
+  __cs_param_my_drv_probe_1_data=&__cs_nondet_main_data (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 109 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c function __cs_main_thread line 447 thread 0
+----------------------------------------------------
+  __cs_m=&__cs_nondet_main_data.lock (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 110 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c function __cs_main_thread line 447 thread 0
+----------------------------------------------------
+  __cs_val=0 (00000000 00000000 00000000 00000000)
+
+State 111 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c function __cs_mutex_init line 108 thread 0
+----------------------------------------------------
+  __cs_nondet_main_data.lock=-1 (11111111 11111111 11111111 11111111)
+
+State 114 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c function __cs_main_thread line 448 thread 0
+----------------------------------------------------
+  __cs_nondet_main_data.shared.a=0 (00000000 00000000 00000000 00000000)
+
+State 115 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c function __cs_main_thread line 449 thread 0
+----------------------------------------------------
+  __cs_nondet_main_data.shared.b=0 (00000000 00000000 00000000 00000000)
+
+State 116 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c function __cs_main_thread line 452 thread 0
+----------------------------------------------------
+  __cs_param_ldv_assert_1_expression=1 (00000000 00000000 00000000 00000001)
+
+State 117 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c function __cs_main_thread line 456 thread 0
+----------------------------------------------------
+  __cs_nondet_ldv_assert_1___cs_tmp_if_cond_0=FALSE (00000000)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c line 467 function __cs_main_thread
+  (signed int)__cs_pc_cs[(signed long int)0] >= 1
+
+State 120 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c function __cs_main_thread line 474 thread 0
+----------------------------------------------------
+  __cs_param_ldv_assert_2_expression=1 (00000000 00000000 00000000 00000001)
+
+State 121 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c function __cs_main_thread line 478 thread 0
+----------------------------------------------------
+  __cs_nondet_ldv_assert_2___cs_tmp_if_cond_0=FALSE (00000000)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c line 489 function __cs_main_thread
+  (signed int)__cs_pc_cs[(signed long int)0] >= 1
+
+State 124 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c function __cs_main_thread line 495 thread 0
+----------------------------------------------------
+  __cs_local_my_drv_probe_1_res=0 (00000000 00000000 00000000 00000000)
+
+State 125 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c function __cs_main_thread line 499 thread 0
+----------------------------------------------------
+  __cs_nondet_my_drv_probe_1___cs_tmp_if_cond_1=FALSE (00000000)
+
+State 127 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c function __cs_main_thread line 506 thread 0
+----------------------------------------------------
+  my_dev=(struct device *)(&__cs_nondet_main_data.lock + 1l) (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00000100)
+
+State 130 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c function __cs_main_thread line 507 thread 0
+----------------------------------------------------
+  __cs_new_thread_id=&t1 (00000011 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 131 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c function __cs_main_thread line 507 thread 0
+----------------------------------------------------
+  __cs_attr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 132 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c function __cs_main_thread line 507 thread 0
+----------------------------------------------------
+  __cs_thread_function=my_callback_0 (00000100 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 133 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c function __cs_main_thread line 507 thread 0
+----------------------------------------------------
+  __cs_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 134 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c function __cs_main_thread line 507 thread 0
+----------------------------------------------------
+  __cs_threadID=1 (00000000 00000000 00000000 00000001)
+
+State 136 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c function __cs_create line 84 thread 0
+----------------------------------------------------
+  t1=1 (00000000 00000000 00000000 00000001)
+
+State 137 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c function __cs_create line 85 thread 0
+----------------------------------------------------
+  __cs_active_thread[1l]=1 (1)
+
+State 138 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c function __cs_create line 86 thread 0
+----------------------------------------------------
+  __cs_threadargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 141 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c function __cs_create line 87 thread 0
+----------------------------------------------------
+  __cs_message="thread spawned" (00000101 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 151 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c function __cs_main_thread line 510 thread 0
+----------------------------------------------------
+  __cs_new_thread_id=&t2 (00000110 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 152 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c function __cs_main_thread line 510 thread 0
+----------------------------------------------------
+  __cs_attr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 153 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c function __cs_main_thread line 510 thread 0
+----------------------------------------------------
+  __cs_thread_function=my_callback_1 (00000111 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 154 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c function __cs_main_thread line 510 thread 0
+----------------------------------------------------
+  __cs_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 155 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c function __cs_main_thread line 510 thread 0
+----------------------------------------------------
+  __cs_threadID=2 (00000000 00000000 00000000 00000010)
+
+State 157 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c function __cs_create line 84 thread 0
+----------------------------------------------------
+  t2=2 (00000000 00000000 00000000 00000010)
+
+State 158 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c function __cs_create line 85 thread 0
+----------------------------------------------------
+  __cs_active_thread[2l]=1 (1)
+
+State 159 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c function __cs_create line 86 thread 0
+----------------------------------------------------
+  __cs_threadargs[2l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 162 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c function __cs_create line 87 thread 0
+----------------------------------------------------
+  __cs_message="thread spawned" (00000101 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 166 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c function __cs_main_thread line 511 thread 0
+----------------------------------------------------
+  __cs_retval_my_drv_probe_1=0 (00000000 00000000 00000000 00000000)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c line 525 function __cs_main_thread
+  (signed int)__cs_pc_cs[(signed long int)0] >= 3
+
+State 169 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c function __cs_main_thread line 530 thread 0
+----------------------------------------------------
+  __cs_nondet_main_probe_ret=0 (00000000 00000000 00000000 00000000)
+
+State 170 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c function __cs_main_thread line 534 thread 0
+----------------------------------------------------
+  __cs_nondet_main___cs_tmp_if_cond_3=TRUE (00000001)
+
+State 191 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c function __cs_main_thread line 676 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 192 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c function __cs_main_thread line 676 thread 0
+----------------------------------------------------
+  __cs_thread_index=0u (00000000 00000000 00000000 00000000)
+
+State 193 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c function __cs_exit line 98 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 199 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c function main line 694 thread 0
+----------------------------------------------------
+  __cs_pc[0l]=3 (011)
+
+State 200 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c function main line 696 thread 0
+----------------------------------------------------
+  __cs_tmp_t1_r0=2 (010)
+
+State 202 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c function main line 699 thread 0
+----------------------------------------------------
+  __cs_pc_cs[1l]=2 (0010)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c line 700 function main
+  (signed int)__cs_pc_cs[(signed long int)1] <= 6
+
+State 207 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c function main line 703 thread 0
+----------------------------------------------------
+  __cs_param_my_callback_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 208 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c function my_callback_0 line 314 thread 0
+----------------------------------------------------
+  __cs_local_my_callback___mptr=((struct device *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 209 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c function my_callback_0 line 314 thread 0
+----------------------------------------------------
+  __cs_local_my_callback___mptr=(struct device *)(&__cs_nondet_main_data.lock + 1l) (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00000100)
+
+State 216 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c function my_callback_0 line 318 thread 0
+----------------------------------------------------
+  __cs_nondet_my_callback_data=&__cs_nondet_main_data (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 224 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c function my_callback_0 line 323 thread 0
+----------------------------------------------------
+  __cs_mutex_to_lock=&__cs_nondet_main_data.lock (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 225 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c function my_callback_0 line 323 thread 0
+----------------------------------------------------
+  __cs_thread_index=1 (01)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c line 122 function __cs_mutex_lock
+  *__cs_mutex_to_lock != 0
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c line 123 function __cs_mutex_lock
+  *__cs_mutex_to_lock != -2
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c line 124 function __cs_mutex_lock
+  *__cs_mutex_to_lock == -1
+
+State 229 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c function __cs_mutex_lock line 125 thread 0
+----------------------------------------------------
+  __cs_nondet_main_data.lock=2 (00000000 00000000 00000000 00000010)
+
+State 232 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c function __cs_mutex_lock line 126 thread 0
+----------------------------------------------------
+  __cs_message="lock acquired" (00001010 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 257 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c function my_callback_0 line 363 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 258 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c function my_callback_0 line 363 thread 0
+----------------------------------------------------
+  __cs_thread_index=1u (00000000 00000000 00000000 00000001)
+
+State 259 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c function __cs_exit line 98 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 266 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c function main line 708 thread 0
+----------------------------------------------------
+  __cs_pc[1l]=2 (010)
+
+State 267 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c function main line 711 thread 0
+----------------------------------------------------
+  __cs_tmp_t2_r0=1 (001)
+
+State 269 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c function main line 714 thread 0
+----------------------------------------------------
+  __cs_pc_cs[2l]=1 (0001)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c line 715 function main
+  (signed int)__cs_pc_cs[(signed long int)2] <= 6
+
+State 274 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c function main line 718 thread 0
+----------------------------------------------------
+  __cs_param_my_callback_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 275 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c function my_callback_1 line 368 thread 0
+----------------------------------------------------
+  __cs_local_my_callback___mptr=((struct device *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 276 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c function my_callback_1 line 368 thread 0
+----------------------------------------------------
+  __cs_local_my_callback___mptr=(struct device *)(&__cs_nondet_main_data.lock + 1l) (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00000100)
+
+State 283 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c function my_callback_1 line 372 thread 0
+----------------------------------------------------
+  __cs_nondet_my_callback_data=&__cs_nondet_main_data (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 308 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c function my_callback_1 line 417 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 309 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c function my_callback_1 line 417 thread 0
+----------------------------------------------------
+  __cs_thread_index=2u (00000000 00000000 00000000 00000010)
+
+State 310 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c function __cs_exit line 98 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[2l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 317 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c function main line 723 thread 0
+----------------------------------------------------
+  __cs_pc[2l]=1 (001)
+
+State 318 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c function main line 727 thread 0
+----------------------------------------------------
+  __cs_tmp_t0_r1=0 (000)
+
+State 320 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c function main line 730 thread 0
+----------------------------------------------------
+  __cs_pc_cs[0l]=3 (0011)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c line 731 function main
+  (signed int)__cs_pc_cs[(signed long int)0] >= (signed int)__cs_pc[(signed long int)0]
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c line 732 function main
+  (signed int)__cs_pc_cs[(signed long int)0] <= 7
+
+State 360 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c function __cs_main_thread line 676 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 361 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c function __cs_main_thread line 676 thread 0
+----------------------------------------------------
+  __cs_thread_index=0u (00000000 00000000 00000000 00000000)
+
+State 362 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c function __cs_exit line 98 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 369 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c function main line 740 thread 0
+----------------------------------------------------
+  __cs_pc[0l]=3 (011)
+
+State 370 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c function main line 743 thread 0
+----------------------------------------------------
+  __cs_tmp_t1_r1=4 (100)
+
+State 372 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c function main line 746 thread 0
+----------------------------------------------------
+  __cs_pc_cs[1l]=6 (0110)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c line 747 function main
+  (signed int)__cs_pc_cs[(signed long int)1] >= (signed int)__cs_pc[(signed long int)1]
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c line 748 function main
+  (signed int)__cs_pc_cs[(signed long int)1] <= 6
+
+State 376 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c function main line 750 thread 0
+----------------------------------------------------
+  __cs_dataraceDetectionStarted=TRUE (00000001)
+
+State 379 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c function main line 751 thread 0
+----------------------------------------------------
+  __cs_param_my_callback_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 380 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c function my_callback_0 line 314 thread 0
+----------------------------------------------------
+  __cs_local_my_callback___mptr=((struct device *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 381 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c function my_callback_0 line 314 thread 0
+----------------------------------------------------
+  __cs_local_my_callback___mptr=(struct device *)(&__cs_nondet_main_data.lock + 1l) (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00000100)
+
+State 399 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c function my_callback_0 line 332 thread 0
+----------------------------------------------------
+  __cs_nondet_main_data.shared.a=1 (00000000 00000000 00000000 00000001)
+
+State 400 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c function my_callback_0 line 336 thread 0
+----------------------------------------------------
+  __cs_local_my_callback___cs_temporary_0=0 (00000000 00000000 00000000 00000000)
+
+State 406 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c function my_callback_0 line 341 thread 0
+----------------------------------------------------
+  __cs_local_my_callback___cs_temporary_0=0 (00000000 00000000 00000000 00000000)
+
+State 413 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c function my_callback_0 line 350 thread 0
+----------------------------------------------------
+  __cs_nondet_main_data.shared.b=1 (00000000 00000000 00000000 00000001)
+
+State 421 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c function my_callback_0 line 355 thread 0
+----------------------------------------------------
+  __cs_mutex_to_unlock=&__cs_nondet_main_data.lock (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 422 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c function my_callback_0 line 355 thread 0
+----------------------------------------------------
+  __cs_thread_index=1 (01)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c line 131 function __cs_mutex_unlock
+  *__cs_mutex_to_unlock != 0
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c line 132 function __cs_mutex_unlock
+  *__cs_mutex_to_unlock != -2
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c line 133 function __cs_mutex_unlock
+  *__cs_mutex_to_unlock == (signed int)__cs_thread_index + 1
+
+State 426 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c function __cs_mutex_unlock line 134 thread 0
+----------------------------------------------------
+  __cs_nondet_main_data.lock=-1 (11111111 11111111 11111111 11111111)
+
+State 429 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c function __cs_mutex_unlock line 135 thread 0
+----------------------------------------------------
+  __cs_message="lock released" (00001011 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c line 359 function my_callback_0
+  (signed int)__cs_pc_cs[(signed long int)1] >= 6
+
+State 436 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c function my_callback_0 line 363 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 437 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c function my_callback_0 line 363 thread 0
+----------------------------------------------------
+  __cs_thread_index=1u (00000000 00000000 00000000 00000001)
+
+State 438 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c function __cs_exit line 98 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 445 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c function main line 755 thread 0
+----------------------------------------------------
+  __cs_dataraceSecondThread=TRUE (00000001)
+
+State 446 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c function main line 756 thread 0
+----------------------------------------------------
+  __cs_pc[1l]=6 (110)
+
+State 447 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c function main line 759 thread 0
+----------------------------------------------------
+  __cs_tmp_t2_r1=5 (101)
+
+State 449 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c function main line 762 thread 0
+----------------------------------------------------
+  __cs_pc_cs[2l]=6 (0110)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c line 763 function main
+  (signed int)__cs_pc_cs[(signed long int)2] >= (signed int)__cs_pc[(signed long int)2]
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c line 764 function main
+  (signed int)__cs_pc_cs[(signed long int)2] <= 6
+
+State 455 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c function main line 767 thread 0
+----------------------------------------------------
+  __cs_param_my_callback_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 456 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c function my_callback_1 line 368 thread 0
+----------------------------------------------------
+  __cs_local_my_callback___mptr=((struct device *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 457 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c function my_callback_1 line 368 thread 0
+----------------------------------------------------
+  __cs_local_my_callback___mptr=(struct device *)(&__cs_nondet_main_data.lock + 1l) (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00000100)
+
+State 474 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c function my_callback_1 line 376 thread 0
+----------------------------------------------------
+  __cs_dataraceNotDetected=FALSE (00000000)
+
+State 477 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c function my_callback_1 line 377 thread 0
+----------------------------------------------------
+  __cs_mutex_to_lock=&__cs_nondet_main_data.lock (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 478 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c function my_callback_1 line 377 thread 0
+----------------------------------------------------
+  __cs_thread_index=2 (10)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c line 122 function __cs_mutex_lock
+  *__cs_mutex_to_lock != 0
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c line 123 function __cs_mutex_lock
+  *__cs_mutex_to_lock != -2
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c line 124 function __cs_mutex_lock
+  *__cs_mutex_to_lock == -1
+
+State 482 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c function __cs_mutex_lock line 125 thread 0
+----------------------------------------------------
+  __cs_nondet_main_data.lock=3 (00000000 00000000 00000000 00000011)
+
+State 485 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c function __cs_mutex_lock line 126 thread 0
+----------------------------------------------------
+  __cs_message="lock acquired" (00001010 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 495 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c function my_callback_1 line 386 thread 0
+----------------------------------------------------
+  __cs_nondet_main_data.shared.a=1 (00000000 00000000 00000000 00000001)
+
+State 496 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c function my_callback_1 line 390 thread 0
+----------------------------------------------------
+  __cs_local_my_callback___cs_temporary_0=0 (00000000 00000000 00000000 00000000)
+
+State 502 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c function my_callback_1 line 395 thread 0
+----------------------------------------------------
+  __cs_local_my_callback___cs_temporary_0=1 (00000000 00000000 00000000 00000001)
+
+State 509 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c function my_callback_1 line 404 thread 0
+----------------------------------------------------
+  __cs_nondet_main_data.shared.b=2 (00000000 00000000 00000000 00000010)
+
+State 517 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c function my_callback_1 line 409 thread 0
+----------------------------------------------------
+  __cs_mutex_to_unlock=&__cs_nondet_main_data.lock (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 518 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c function my_callback_1 line 409 thread 0
+----------------------------------------------------
+  __cs_thread_index=2 (10)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c line 131 function __cs_mutex_unlock
+  *__cs_mutex_to_unlock != 0
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c line 132 function __cs_mutex_unlock
+  *__cs_mutex_to_unlock != -2
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c line 133 function __cs_mutex_unlock
+  *__cs_mutex_to_unlock == (signed int)__cs_thread_index + 1
+
+State 522 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c function __cs_mutex_unlock line 134 thread 0
+----------------------------------------------------
+  __cs_nondet_main_data.lock=-1 (11111111 11111111 11111111 11111111)
+
+State 525 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c function __cs_mutex_unlock line 135 thread 0
+----------------------------------------------------
+  __cs_message="lock released" (00001011 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c line 413 function my_callback_1
+  (signed int)__cs_pc_cs[(signed long int)2] >= 6
+
+State 532 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c function my_callback_1 line 417 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 533 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c function my_callback_1 line 417 thread 0
+----------------------------------------------------
+  __cs_thread_index=2u (00000000 00000000 00000000 00000010)
+
+State 534 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c function __cs_exit line 98 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[2l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 540 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c function main line 769 thread 0
+----------------------------------------------------
+  __cs_dataraceContinue=FALSE (00000000)
+
+State 542 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c function main line 771 thread 0
+----------------------------------------------------
+  __cs_dataraceSecondThread=TRUE (00000001)
+
+State 543 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c function main line 772 thread 0
+----------------------------------------------------
+  __cs_pc[2l]=6 (110)
+
+State 544 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c function main line 776 thread 0
+----------------------------------------------------
+  __cs_tmp_t0_r2=4 (100)
+
+State 546 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c function main line 792 thread 0
+----------------------------------------------------
+  __cs_tmp_t1_r2=1 (001)
+
+State 548 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c function main line 808 thread 0
+----------------------------------------------------
+  __cs_tmp_t2_r2=1 (001)
+
+Violated property:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2race-3_1-container_of-global.c function main line 823 thread 0
+  Data race failure
+  __cs_dataraceNotDetected != FALSE
+
+
+VERIFICATION FAILED
+
+real	0m0,216s
+user	0m0,199s
+sys	0m0,018s

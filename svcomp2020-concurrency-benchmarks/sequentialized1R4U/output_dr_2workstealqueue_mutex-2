@@ -1,0 +1,1860 @@
+CBMC version 5.12 (cbmc-5.11-4673-gff3adfd29-dirty) 64-bit x86_64 linux
+Parsing /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c
+Converting
+Type-checking _dr_2workstealqueue_mutex-2
+file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c line 497 function Stealer_0: function '__CPROVER_get_field' is not declared
+file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c line 503 function Stealer_0: function '__CPROVER_set_field' is not declared
+file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c line 1512 function __cs_main_thread: function 'reach_error' is not declared
+file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c line 7178 function main: function '__CPROVER_field_decl_global' is not declared
+Generating GOTO Program
+Adding CPROVER library (x86_64)
+Removal of function pointers and virtual functions
+Generic Property Instrumentation
+Running with 8 object bits, 56 offset bits (default)
+Starting Bounded Model Checking
+**** WARNING: no body for function reach_error
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+size of program expression: 39955 steps
+simple slicing removed 5 assignments
+Generated 1 VCC(s), 1 remaining after simplification
+Passing problem to propositional reduction
+converting SSA
+Running propositional reduction
+Post-processing
+Solving with Glucose Syrup with simplifier
+928420 variables, 3549475 clauses
+SAT checker: instance is SATISFIABLE
+Runtime decision procedure: 11.603s
+Building error trace
+Counterexample:
+
+State 99 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __CPROVER_initialize line 62 thread 0
+----------------------------------------------------
+  __cs_active_thread[0l]=1 (1)
+
+State 100 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __CPROVER_initialize line 62 thread 0
+----------------------------------------------------
+  __cs_active_thread[1l]=0 (0)
+
+State 101 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __CPROVER_initialize line 62 thread 0
+----------------------------------------------------
+  __cs_active_thread[2l]=0 (0)
+
+State 396 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __CPROVER_initialize line 1516 thread 0
+----------------------------------------------------
+  __cs_nondet_SyncPush_1_newtasks[0l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 397 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __CPROVER_initialize line 1516 thread 0
+----------------------------------------------------
+  __cs_nondet_SyncPush_1_newtasks[1l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 398 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __CPROVER_initialize line 1516 thread 0
+----------------------------------------------------
+  __cs_nondet_SyncPush_1_newtasks[2l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 399 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __CPROVER_initialize line 1516 thread 0
+----------------------------------------------------
+  __cs_nondet_SyncPush_1_newtasks[3l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 400 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __CPROVER_initialize line 1516 thread 0
+----------------------------------------------------
+  __cs_nondet_SyncPush_1_newtasks[4l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 401 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __CPROVER_initialize line 1516 thread 0
+----------------------------------------------------
+  __cs_nondet_SyncPush_1_newtasks[5l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 402 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __CPROVER_initialize line 1516 thread 0
+----------------------------------------------------
+  __cs_nondet_SyncPush_1_newtasks[6l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 403 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __CPROVER_initialize line 1516 thread 0
+----------------------------------------------------
+  __cs_nondet_SyncPush_1_newtasks[7l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 404 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __CPROVER_initialize line 1516 thread 0
+----------------------------------------------------
+  __cs_nondet_SyncPush_1_newtasks[8l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 405 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __CPROVER_initialize line 1516 thread 0
+----------------------------------------------------
+  __cs_nondet_SyncPush_1_newtasks[9l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 406 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __CPROVER_initialize line 1516 thread 0
+----------------------------------------------------
+  __cs_nondet_SyncPush_1_newtasks[10l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 407 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __CPROVER_initialize line 1516 thread 0
+----------------------------------------------------
+  __cs_nondet_SyncPush_1_newtasks[11l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 408 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __CPROVER_initialize line 1516 thread 0
+----------------------------------------------------
+  __cs_nondet_SyncPush_1_newtasks[12l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 409 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __CPROVER_initialize line 1516 thread 0
+----------------------------------------------------
+  __cs_nondet_SyncPush_1_newtasks[13l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 410 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __CPROVER_initialize line 1516 thread 0
+----------------------------------------------------
+  __cs_nondet_SyncPush_1_newtasks[14l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 411 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __CPROVER_initialize line 1516 thread 0
+----------------------------------------------------
+  __cs_nondet_SyncPush_1_newtasks[15l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 513 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __CPROVER_initialize line 2328 thread 0
+----------------------------------------------------
+  __cs_nondet_SyncPush_2_newtasks[0l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 514 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __CPROVER_initialize line 2328 thread 0
+----------------------------------------------------
+  __cs_nondet_SyncPush_2_newtasks[1l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 515 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __CPROVER_initialize line 2328 thread 0
+----------------------------------------------------
+  __cs_nondet_SyncPush_2_newtasks[2l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 516 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __CPROVER_initialize line 2328 thread 0
+----------------------------------------------------
+  __cs_nondet_SyncPush_2_newtasks[3l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 517 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __CPROVER_initialize line 2328 thread 0
+----------------------------------------------------
+  __cs_nondet_SyncPush_2_newtasks[4l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 518 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __CPROVER_initialize line 2328 thread 0
+----------------------------------------------------
+  __cs_nondet_SyncPush_2_newtasks[5l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 519 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __CPROVER_initialize line 2328 thread 0
+----------------------------------------------------
+  __cs_nondet_SyncPush_2_newtasks[6l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 520 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __CPROVER_initialize line 2328 thread 0
+----------------------------------------------------
+  __cs_nondet_SyncPush_2_newtasks[7l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 521 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __CPROVER_initialize line 2328 thread 0
+----------------------------------------------------
+  __cs_nondet_SyncPush_2_newtasks[8l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 522 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __CPROVER_initialize line 2328 thread 0
+----------------------------------------------------
+  __cs_nondet_SyncPush_2_newtasks[9l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 523 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __CPROVER_initialize line 2328 thread 0
+----------------------------------------------------
+  __cs_nondet_SyncPush_2_newtasks[10l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 524 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __CPROVER_initialize line 2328 thread 0
+----------------------------------------------------
+  __cs_nondet_SyncPush_2_newtasks[11l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 525 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __CPROVER_initialize line 2328 thread 0
+----------------------------------------------------
+  __cs_nondet_SyncPush_2_newtasks[12l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 526 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __CPROVER_initialize line 2328 thread 0
+----------------------------------------------------
+  __cs_nondet_SyncPush_2_newtasks[13l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 527 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __CPROVER_initialize line 2328 thread 0
+----------------------------------------------------
+  __cs_nondet_SyncPush_2_newtasks[14l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 528 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __CPROVER_initialize line 2328 thread 0
+----------------------------------------------------
+  __cs_nondet_SyncPush_2_newtasks[15l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 726 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __CPROVER_initialize line 3810 thread 0
+----------------------------------------------------
+  __cs_nondet_SyncPush_1_newtasks[0l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 727 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __CPROVER_initialize line 3810 thread 0
+----------------------------------------------------
+  __cs_nondet_SyncPush_1_newtasks[1l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 728 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __CPROVER_initialize line 3810 thread 0
+----------------------------------------------------
+  __cs_nondet_SyncPush_1_newtasks[2l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 729 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __CPROVER_initialize line 3810 thread 0
+----------------------------------------------------
+  __cs_nondet_SyncPush_1_newtasks[3l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 730 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __CPROVER_initialize line 3810 thread 0
+----------------------------------------------------
+  __cs_nondet_SyncPush_1_newtasks[4l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 731 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __CPROVER_initialize line 3810 thread 0
+----------------------------------------------------
+  __cs_nondet_SyncPush_1_newtasks[5l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 732 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __CPROVER_initialize line 3810 thread 0
+----------------------------------------------------
+  __cs_nondet_SyncPush_1_newtasks[6l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 733 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __CPROVER_initialize line 3810 thread 0
+----------------------------------------------------
+  __cs_nondet_SyncPush_1_newtasks[7l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 734 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __CPROVER_initialize line 3810 thread 0
+----------------------------------------------------
+  __cs_nondet_SyncPush_1_newtasks[8l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 735 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __CPROVER_initialize line 3810 thread 0
+----------------------------------------------------
+  __cs_nondet_SyncPush_1_newtasks[9l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 736 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __CPROVER_initialize line 3810 thread 0
+----------------------------------------------------
+  __cs_nondet_SyncPush_1_newtasks[10l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 737 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __CPROVER_initialize line 3810 thread 0
+----------------------------------------------------
+  __cs_nondet_SyncPush_1_newtasks[11l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 738 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __CPROVER_initialize line 3810 thread 0
+----------------------------------------------------
+  __cs_nondet_SyncPush_1_newtasks[12l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 739 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __CPROVER_initialize line 3810 thread 0
+----------------------------------------------------
+  __cs_nondet_SyncPush_1_newtasks[13l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 740 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __CPROVER_initialize line 3810 thread 0
+----------------------------------------------------
+  __cs_nondet_SyncPush_1_newtasks[14l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 741 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __CPROVER_initialize line 3810 thread 0
+----------------------------------------------------
+  __cs_nondet_SyncPush_1_newtasks[15l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 843 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __CPROVER_initialize line 4622 thread 0
+----------------------------------------------------
+  __cs_nondet_SyncPush_2_newtasks[0l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 844 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __CPROVER_initialize line 4622 thread 0
+----------------------------------------------------
+  __cs_nondet_SyncPush_2_newtasks[1l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 845 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __CPROVER_initialize line 4622 thread 0
+----------------------------------------------------
+  __cs_nondet_SyncPush_2_newtasks[2l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 846 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __CPROVER_initialize line 4622 thread 0
+----------------------------------------------------
+  __cs_nondet_SyncPush_2_newtasks[3l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 847 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __CPROVER_initialize line 4622 thread 0
+----------------------------------------------------
+  __cs_nondet_SyncPush_2_newtasks[4l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 848 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __CPROVER_initialize line 4622 thread 0
+----------------------------------------------------
+  __cs_nondet_SyncPush_2_newtasks[5l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 849 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __CPROVER_initialize line 4622 thread 0
+----------------------------------------------------
+  __cs_nondet_SyncPush_2_newtasks[6l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 850 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __CPROVER_initialize line 4622 thread 0
+----------------------------------------------------
+  __cs_nondet_SyncPush_2_newtasks[7l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 851 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __CPROVER_initialize line 4622 thread 0
+----------------------------------------------------
+  __cs_nondet_SyncPush_2_newtasks[8l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 852 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __CPROVER_initialize line 4622 thread 0
+----------------------------------------------------
+  __cs_nondet_SyncPush_2_newtasks[9l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 853 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __CPROVER_initialize line 4622 thread 0
+----------------------------------------------------
+  __cs_nondet_SyncPush_2_newtasks[10l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 854 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __CPROVER_initialize line 4622 thread 0
+----------------------------------------------------
+  __cs_nondet_SyncPush_2_newtasks[11l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 855 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __CPROVER_initialize line 4622 thread 0
+----------------------------------------------------
+  __cs_nondet_SyncPush_2_newtasks[12l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 856 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __CPROVER_initialize line 4622 thread 0
+----------------------------------------------------
+  __cs_nondet_SyncPush_2_newtasks[13l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 857 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __CPROVER_initialize line 4622 thread 0
+----------------------------------------------------
+  __cs_nondet_SyncPush_2_newtasks[14l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 858 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __CPROVER_initialize line 4622 thread 0
+----------------------------------------------------
+  __cs_nondet_SyncPush_2_newtasks[15l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 988 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __CPROVER_initialize line 63 thread 0
+----------------------------------------------------
+  __cs_pc[0l]=0 (00000000 0)
+
+State 989 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __CPROVER_initialize line 63 thread 0
+----------------------------------------------------
+  __cs_pc[1l]=0 (00000000 0)
+
+State 990 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __CPROVER_initialize line 63 thread 0
+----------------------------------------------------
+  __cs_pc[2l]=0 (00000000 0)
+
+State 992 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __CPROVER_initialize line 64 thread 0
+----------------------------------------------------
+  __cs_pc_cs[0l]=0 (00000000 00)
+
+State 993 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __CPROVER_initialize line 64 thread 0
+----------------------------------------------------
+  __cs_pc_cs[1l]=0 (00000000 00)
+
+State 994 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __CPROVER_initialize line 64 thread 0
+----------------------------------------------------
+  __cs_pc_cs[2l]=0 (00000000 00)
+
+State 996 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __CPROVER_initialize line 79 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 997 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __CPROVER_initialize line 79 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 998 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __CPROVER_initialize line 79 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[2l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1000 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __CPROVER_initialize line 66 thread 0
+----------------------------------------------------
+  __cs_thread_lines[0l]=477 (11101110 1)
+
+State 1001 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __CPROVER_initialize line 66 thread 0
+----------------------------------------------------
+  __cs_thread_lines[1l]=23 (00001011 1)
+
+State 1002 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __CPROVER_initialize line 66 thread 0
+----------------------------------------------------
+  __cs_thread_lines[2l]=23 (00001011 1)
+
+State 1004 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __CPROVER_initialize line 78 thread 0
+----------------------------------------------------
+  __cs_threadargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1005 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __CPROVER_initialize line 78 thread 0
+----------------------------------------------------
+  __cs_threadargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1006 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __CPROVER_initialize line 78 thread 0
+----------------------------------------------------
+  __cs_threadargs[2l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1008 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __CPROVER_initialize line 910 thread 0
+----------------------------------------------------
+  items[0l].field=0 (00000000 00000000 00000000 00000000)
+
+State 1009 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __CPROVER_initialize line 910 thread 0
+----------------------------------------------------
+  items[1l].field=0 (00000000 00000000 00000000 00000000)
+
+State 1010 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __CPROVER_initialize line 910 thread 0
+----------------------------------------------------
+  items[2l].field=0 (00000000 00000000 00000000 00000000)
+
+State 1011 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __CPROVER_initialize line 910 thread 0
+----------------------------------------------------
+  items[3l].field=0 (00000000 00000000 00000000 00000000)
+
+State 1020 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __CPROVER_initialize line 307 thread 0
+----------------------------------------------------
+  q.elems[0l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1021 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __CPROVER_initialize line 307 thread 0
+----------------------------------------------------
+  q.elems[1l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1022 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __CPROVER_initialize line 307 thread 0
+----------------------------------------------------
+  q.elems[2l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1023 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __CPROVER_initialize line 307 thread 0
+----------------------------------------------------
+  q.elems[3l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1024 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __CPROVER_initialize line 307 thread 0
+----------------------------------------------------
+  q.elems[4l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1025 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __CPROVER_initialize line 307 thread 0
+----------------------------------------------------
+  q.elems[5l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1026 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __CPROVER_initialize line 307 thread 0
+----------------------------------------------------
+  q.elems[6l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1027 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __CPROVER_initialize line 307 thread 0
+----------------------------------------------------
+  q.elems[7l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1028 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __CPROVER_initialize line 307 thread 0
+----------------------------------------------------
+  q.elems[8l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1029 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __CPROVER_initialize line 307 thread 0
+----------------------------------------------------
+  q.elems[9l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1030 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __CPROVER_initialize line 307 thread 0
+----------------------------------------------------
+  q.elems[10l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1031 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __CPROVER_initialize line 307 thread 0
+----------------------------------------------------
+  q.elems[11l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1032 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __CPROVER_initialize line 307 thread 0
+----------------------------------------------------
+  q.elems[12l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1033 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __CPROVER_initialize line 307 thread 0
+----------------------------------------------------
+  q.elems[13l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1034 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __CPROVER_initialize line 307 thread 0
+----------------------------------------------------
+  q.elems[14l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1035 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __CPROVER_initialize line 307 thread 0
+----------------------------------------------------
+  q.elems[15l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1042 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function main line 7179 thread 0
+----------------------------------------------------
+  __cs_dr_ts=0 (00)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c line 7180 function main
+  (signed int)__cs_dr_ts <= 2
+
+State 1044 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function main line 7183 thread 0
+----------------------------------------------------
+  __cs_tmp_t0_r0=119 (00111011 1)
+
+State 1045 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function main line 7184 thread 0
+----------------------------------------------------
+  __cs_pc_cs[0l]=119 (00011101 11)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c line 7185 function main
+  (signed int)__cs_pc_cs[(signed long int)0] > 0
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c line 7186 function main
+  (signed int)__cs_pc_cs[(signed long int)0] <= 477
+
+State 1049 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function main line 7188 thread 0
+----------------------------------------------------
+  __cs_dataraceDetectionStarted=TRUE (00000001)
+
+State 1056 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 920 thread 0
+----------------------------------------------------
+  __cs_param_Init_WorkStealQueue_1_size=2l (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000010)
+
+State 1057 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 921 thread 0
+----------------------------------------------------
+  q.MaxSize=1048576l (00000000 00000000 00000000 00000000 00000000 00010000 00000000 00000000)
+
+State 1058 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 922 thread 0
+----------------------------------------------------
+  q.InitialSize=1024l (00000000 00000000 00000000 00000000 00000000 00000000 00000100 00000000)
+
+State 1061 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 923 thread 0
+----------------------------------------------------
+  __cs_m=&q.cs (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1062 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 923 thread 0
+----------------------------------------------------
+  __cs_val=0 (00000000 00000000 00000000 00000000)
+
+State 1063 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_mutex_init line 108 thread 0
+----------------------------------------------------
+  q.cs=-1 (11111111 11111111 11111111 11111111)
+
+State 1066 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 926 thread 0
+----------------------------------------------------
+  __cs_param_writeV_1_v=&q.head (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00011000)
+
+State 1067 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 928 thread 0
+----------------------------------------------------
+  __cs_param_writeV_1_w=0l (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1068 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 932 thread 0
+----------------------------------------------------
+  __cs_param_atomic_exchange_1_obj=&q.head (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00011000)
+
+State 1069 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 934 thread 0
+----------------------------------------------------
+  __cs_param_atomic_exchange_1_v=0l (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1070 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 937 thread 0
+----------------------------------------------------
+  __cs_local_atomic_exchange_1_t=0l (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1071 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 938 thread 0
+----------------------------------------------------
+  q.head=0l (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1072 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 940 thread 0
+----------------------------------------------------
+  __cs_retval_atomic_exchange_1=0l (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c line 944 function __cs_main_thread
+  (signed int)__cs_pc_cs[(signed long int)0] >= 1
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c line 951 function __cs_main_thread
+  (signed int)__cs_pc_cs[(signed long int)0] >= 1
+
+State 1075 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 956 thread 0
+----------------------------------------------------
+  q.mask=1l (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000001)
+
+State 1076 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 959 thread 0
+----------------------------------------------------
+  __cs_param_writeV_2_v=&q.tail (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00100000)
+
+State 1077 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 961 thread 0
+----------------------------------------------------
+  __cs_param_writeV_2_w=0l (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1078 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 965 thread 0
+----------------------------------------------------
+  __cs_param_atomic_exchange_2_obj=&q.tail (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00100000)
+
+State 1079 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 967 thread 0
+----------------------------------------------------
+  __cs_param_atomic_exchange_2_v=0l (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1080 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 970 thread 0
+----------------------------------------------------
+  __cs_local_atomic_exchange_2_t=0l (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1081 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 971 thread 0
+----------------------------------------------------
+  q.tail=0l (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1082 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 973 thread 0
+----------------------------------------------------
+  __cs_retval_atomic_exchange_2=0l (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c line 977 function __cs_main_thread
+  (signed int)__cs_pc_cs[(signed long int)0] >= 1
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c line 984 function __cs_main_thread
+  (signed int)__cs_pc_cs[(signed long int)0] >= 1
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c line 990 function __cs_main_thread
+  (signed int)__cs_pc_cs[(signed long int)0] >= 1
+
+State 1086 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 995 thread 0
+----------------------------------------------------
+  __cs_nondet_main_i=0 (00000000 00000000 00000000 00000000)
+
+State 1087 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 999 thread 0
+----------------------------------------------------
+  __cs_param_Init_ObjType_1_r=items (00010011 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1088 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 1000 thread 0
+----------------------------------------------------
+  items[0l].field=0 (00000000 00000000 00000000 00000000)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c line 1002 function __cs_main_thread
+  (signed int)__cs_pc_cs[(signed long int)0] >= 1
+
+State 1090 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 1009 thread 0
+----------------------------------------------------
+  __cs_nondet_main_i=1 (00000000 00000000 00000000 00000001)
+
+State 1091 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 1013 thread 0
+----------------------------------------------------
+  __cs_param_Init_ObjType_1_r=items + 1l (00010011 00000000 00000000 00000000 00000000 00000000 00000000 00000100)
+
+State 1092 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 1014 thread 0
+----------------------------------------------------
+  items[1l].field=0 (00000000 00000000 00000000 00000000)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c line 1016 function __cs_main_thread
+  (signed int)__cs_pc_cs[(signed long int)0] >= 1
+
+State 1094 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 1023 thread 0
+----------------------------------------------------
+  __cs_nondet_main_i=2 (00000000 00000000 00000000 00000010)
+
+State 1095 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 1027 thread 0
+----------------------------------------------------
+  __cs_param_Init_ObjType_1_r=items + 2l (00010011 00000000 00000000 00000000 00000000 00000000 00000000 00001000)
+
+State 1096 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 1028 thread 0
+----------------------------------------------------
+  items[2l].field=0 (00000000 00000000 00000000 00000000)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c line 1030 function __cs_main_thread
+  (signed int)__cs_pc_cs[(signed long int)0] >= 1
+
+State 1098 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 1037 thread 0
+----------------------------------------------------
+  __cs_nondet_main_i=3 (00000000 00000000 00000000 00000011)
+
+State 1099 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 1041 thread 0
+----------------------------------------------------
+  __cs_param_Init_ObjType_1_r=items + 3l (00010011 00000000 00000000 00000000 00000000 00000000 00000000 00001100)
+
+State 1100 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 1042 thread 0
+----------------------------------------------------
+  items[3l].field=0 (00000000 00000000 00000000 00000000)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c line 1044 function __cs_main_thread
+  (signed int)__cs_pc_cs[(signed long int)0] >= 1
+
+State 1102 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 1051 thread 0
+----------------------------------------------------
+  __cs_nondet_main_i=4 (00000000 00000000 00000000 00000100)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c line 1054 function __cs_main_thread
+  (signed int)__cs_pc_cs[(signed long int)0] >= 1
+
+State 1104 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 1057 thread 0
+----------------------------------------------------
+  __cs_nondet_main_i=0 (00000000 00000000 00000000 00000000)
+
+State 1107 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 1059 thread 0
+----------------------------------------------------
+  __cs_new_thread_id=((signed int *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1108 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 1059 thread 0
+----------------------------------------------------
+  __cs_attr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1109 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 1059 thread 0
+----------------------------------------------------
+  __cs_thread_function=Stealer_0 (00110110 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1110 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 1059 thread 0
+----------------------------------------------------
+  __cs_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1111 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 1059 thread 0
+----------------------------------------------------
+  __cs_threadID=1 (00000000 00000000 00000000 00000001)
+
+State 1114 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_create line 85 thread 0
+----------------------------------------------------
+  __cs_active_thread[1l]=1 (1)
+
+State 1115 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_create line 86 thread 0
+----------------------------------------------------
+  __cs_threadargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1118 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_create line 87 thread 0
+----------------------------------------------------
+  __cs_message="thread spawned" (00110111 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1122 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 1062 thread 0
+----------------------------------------------------
+  __cs_nondet_main_i=1 (00000000 00000000 00000000 00000001)
+
+State 1129 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 1066 thread 0
+----------------------------------------------------
+  __cs_new_thread_id=((signed int *)NULL) + 4l (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000100)
+
+State 1130 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 1066 thread 0
+----------------------------------------------------
+  __cs_attr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1131 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 1066 thread 0
+----------------------------------------------------
+  __cs_thread_function=Stealer_1 (00111000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1132 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 1066 thread 0
+----------------------------------------------------
+  __cs_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1133 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 1066 thread 0
+----------------------------------------------------
+  __cs_threadID=2 (00000000 00000000 00000000 00000010)
+
+State 1135 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_create line 84 thread 0
+----------------------------------------------------
+  __cs_new_thread_id$object=2 (00000000 00000000 00000000 00000010)
+
+State 1136 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_create line 85 thread 0
+----------------------------------------------------
+  __cs_active_thread[2l]=1 (1)
+
+State 1137 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_create line 86 thread 0
+----------------------------------------------------
+  __cs_threadargs[2l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1140 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_create line 87 thread 0
+----------------------------------------------------
+  __cs_message="thread spawned" (00110111 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1144 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 1069 thread 0
+----------------------------------------------------
+  __cs_nondet_main_i=2 (00000000 00000000 00000000 00000010)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c line 1072 function __cs_main_thread
+  !(__cs_nondet_main_i < 2)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c line 1074 function __cs_main_thread
+  (signed int)__cs_pc_cs[(signed long int)0] >= 3
+
+State 1151 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 1077 thread 0
+----------------------------------------------------
+  __cs_nondet_main_i=0 (00000000 00000000 00000000 00000000)
+
+State 1156 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 1083 thread 0
+----------------------------------------------------
+  __cs_param_Push_1_elem=items (00010011 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1161 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 1089 thread 0
+----------------------------------------------------
+  __cs_param_readV_1_v=&q.tail (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00100000)
+
+State 1162 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 1091 thread 0
+----------------------------------------------------
+  __cs_local_readV_1_expected=0l (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1167 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 1097 thread 0
+----------------------------------------------------
+  __cs_param_atomic_compare_exchange_strong_1_obj=&q.tail (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00100000)
+
+State 1172 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 1101 thread 0
+----------------------------------------------------
+  __cs_param_atomic_compare_exchange_strong_1_expected=&__cs_local_readV_1_expected (00000011 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1173 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 1103 thread 0
+----------------------------------------------------
+  __cs_param_atomic_compare_exchange_strong_1_desired=0l (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1174 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 1105 thread 0
+----------------------------------------------------
+  __cs_local_atomic_compare_exchange_strong_1_ret=0 (00000000 00000000 00000000 00000000)
+
+State 1179 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 1112 thread 0
+----------------------------------------------------
+  __cs_nondet_atomic_compare_exchange_strong_1___cs_tmp_if_cond_1=TRUE (00000001)
+
+State 1181 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 1115 thread 0
+----------------------------------------------------
+  q.tail=0l (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1182 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 1116 thread 0
+----------------------------------------------------
+  __cs_local_atomic_compare_exchange_strong_1_ret=1 (00000000 00000000 00000000 00000001)
+
+State 1184 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 1125 thread 0
+----------------------------------------------------
+  __cs_retval_atomic_compare_exchange_strong_1=TRUE (00000001)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c line 1129 function __cs_main_thread
+  (signed int)__cs_pc_cs[(signed long int)0] >= 8
+
+State 1186 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 1135 thread 0
+----------------------------------------------------
+  __cs_retval_readV_1=0l (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c line 1139 function __cs_main_thread
+  (signed int)__cs_pc_cs[(signed long int)0] >= 8
+
+State 1188 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 1145 thread 0
+----------------------------------------------------
+  __cs_local_Push_1_t=0l (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1193 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 1154 thread 0
+----------------------------------------------------
+  __cs_param_readV_2_v=&q.head (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00011000)
+
+State 1194 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 1156 thread 0
+----------------------------------------------------
+  __cs_local_readV_2_expected=0l (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1199 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 1162 thread 0
+----------------------------------------------------
+  __cs_param_atomic_compare_exchange_strong_2_obj=&q.head (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00011000)
+
+State 1204 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 1166 thread 0
+----------------------------------------------------
+  __cs_param_atomic_compare_exchange_strong_2_expected=&__cs_local_readV_2_expected (00000100 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1205 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 1168 thread 0
+----------------------------------------------------
+  __cs_param_atomic_compare_exchange_strong_2_desired=0l (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1206 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 1170 thread 0
+----------------------------------------------------
+  __cs_local_atomic_compare_exchange_strong_2_ret=0 (00000000 00000000 00000000 00000000)
+
+State 1211 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 1177 thread 0
+----------------------------------------------------
+  __cs_nondet_atomic_compare_exchange_strong_2___cs_tmp_if_cond_1=TRUE (00000001)
+
+State 1213 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 1180 thread 0
+----------------------------------------------------
+  q.head=0l (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1214 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 1181 thread 0
+----------------------------------------------------
+  __cs_local_atomic_compare_exchange_strong_2_ret=1 (00000000 00000000 00000000 00000001)
+
+State 1216 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 1190 thread 0
+----------------------------------------------------
+  __cs_retval_atomic_compare_exchange_strong_2=TRUE (00000001)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c line 1194 function __cs_main_thread
+  (signed int)__cs_pc_cs[(signed long int)0] >= 12
+
+State 1218 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 1200 thread 0
+----------------------------------------------------
+  __cs_retval_readV_2=0l (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c line 1204 function __cs_main_thread
+  (signed int)__cs_pc_cs[(signed long int)0] >= 12
+
+State 1225 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 1213 thread 0
+----------------------------------------------------
+  __cs_nondet_Push_1___cs_tmp_if_cond_9=TRUE (00000001)
+
+State 1232 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 1222 thread 0
+----------------------------------------------------
+  __cs_local_Push_1_temp=0l (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1237 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 1225 thread 0
+----------------------------------------------------
+  q.elems[0l]=items (00010011 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1238 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 1225 thread 0
+----------------------------------------------------
+  q.elems[0l]=items (00010011 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1239 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 1225 thread 0
+----------------------------------------------------
+  q.elems[1l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1240 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 1225 thread 0
+----------------------------------------------------
+  q.elems[2l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1241 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 1225 thread 0
+----------------------------------------------------
+  q.elems[3l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1242 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 1225 thread 0
+----------------------------------------------------
+  q.elems[4l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1243 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 1225 thread 0
+----------------------------------------------------
+  q.elems[5l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1244 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 1225 thread 0
+----------------------------------------------------
+  q.elems[6l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1245 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 1225 thread 0
+----------------------------------------------------
+  q.elems[7l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1246 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 1225 thread 0
+----------------------------------------------------
+  q.elems[8l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1247 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 1225 thread 0
+----------------------------------------------------
+  q.elems[9l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1248 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 1225 thread 0
+----------------------------------------------------
+  q.elems[10l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1249 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 1225 thread 0
+----------------------------------------------------
+  q.elems[11l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1250 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 1225 thread 0
+----------------------------------------------------
+  q.elems[12l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1251 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 1225 thread 0
+----------------------------------------------------
+  q.elems[13l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1252 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 1225 thread 0
+----------------------------------------------------
+  q.elems[14l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1253 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 1225 thread 0
+----------------------------------------------------
+  q.elems[15l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1258 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 1230 thread 0
+----------------------------------------------------
+  __cs_param_writeV_3_v=&q.tail (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00100000)
+
+State 1259 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 1232 thread 0
+----------------------------------------------------
+  __cs_param_writeV_3_w=1l (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000001)
+
+State 1264 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 1238 thread 0
+----------------------------------------------------
+  __cs_param_atomic_exchange_3_obj=&q.tail (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00100000)
+
+State 1265 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 1240 thread 0
+----------------------------------------------------
+  __cs_param_atomic_exchange_3_v=1l (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000001)
+
+State 1270 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 1245 thread 0
+----------------------------------------------------
+  __cs_local_atomic_exchange_3_t=0l (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1271 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 1246 thread 0
+----------------------------------------------------
+  q.tail=1l (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000001)
+
+State 1272 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 1248 thread 0
+----------------------------------------------------
+  __cs_retval_atomic_exchange_3=0l (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c line 1252 function __cs_main_thread
+  (signed int)__cs_pc_cs[(signed long int)0] >= 18
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c line 1259 function __cs_main_thread
+  (signed int)__cs_pc_cs[(signed long int)0] >= 18
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c line 1883 function __cs_main_thread
+  (signed int)__cs_pc_cs[(signed long int)0] >= 70
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c line 1886 function __cs_main_thread
+  (signed int)__cs_pc_cs[(signed long int)0] >= 70
+
+State 1282 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 1895 thread 0
+----------------------------------------------------
+  __cs_param_Push_2_elem=items + 1l (00010011 00000000 00000000 00000000 00000000 00000000 00000000 00000100)
+
+State 1287 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 1901 thread 0
+----------------------------------------------------
+  __cs_param_readV_6_v=&q.tail (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00100000)
+
+State 1288 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 1903 thread 0
+----------------------------------------------------
+  __cs_local_readV_6_expected=0l (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1293 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 1909 thread 0
+----------------------------------------------------
+  __cs_param_atomic_compare_exchange_strong_6_obj=&q.tail (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00100000)
+
+State 1298 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 1913 thread 0
+----------------------------------------------------
+  __cs_param_atomic_compare_exchange_strong_6_expected=&__cs_local_readV_6_expected (00001000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1299 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 1915 thread 0
+----------------------------------------------------
+  __cs_param_atomic_compare_exchange_strong_6_desired=0l (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1300 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 1917 thread 0
+----------------------------------------------------
+  __cs_local_atomic_compare_exchange_strong_6_ret=0 (00000000 00000000 00000000 00000000)
+
+State 1305 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 1924 thread 0
+----------------------------------------------------
+  __cs_nondet_atomic_compare_exchange_strong_6___cs_tmp_if_cond_1=FALSE (00000000)
+
+State 1307 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 1932 thread 0
+----------------------------------------------------
+  __cs_local_readV_6_expected=1l (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000001)
+
+State 1308 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 1933 thread 0
+----------------------------------------------------
+  __cs_local_atomic_compare_exchange_strong_6_ret=0 (00000000 00000000 00000000 00000000)
+
+State 1309 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 1937 thread 0
+----------------------------------------------------
+  __cs_retval_atomic_compare_exchange_strong_6=FALSE (00000000)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c line 1941 function __cs_main_thread
+  (signed int)__cs_pc_cs[(signed long int)0] >= 75
+
+State 1311 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 1947 thread 0
+----------------------------------------------------
+  __cs_retval_readV_6=1l (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000001)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c line 1951 function __cs_main_thread
+  (signed int)__cs_pc_cs[(signed long int)0] >= 75
+
+State 1313 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 1957 thread 0
+----------------------------------------------------
+  __cs_local_Push_2_t=1l (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000001)
+
+State 1318 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 1966 thread 0
+----------------------------------------------------
+  __cs_param_readV_7_v=&q.head (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00011000)
+
+State 1319 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 1968 thread 0
+----------------------------------------------------
+  __cs_local_readV_7_expected=0l (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1324 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 1974 thread 0
+----------------------------------------------------
+  __cs_param_atomic_compare_exchange_strong_7_obj=&q.head (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00011000)
+
+State 1329 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 1978 thread 0
+----------------------------------------------------
+  __cs_param_atomic_compare_exchange_strong_7_expected=&__cs_local_readV_7_expected (00001001 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1330 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 1980 thread 0
+----------------------------------------------------
+  __cs_param_atomic_compare_exchange_strong_7_desired=0l (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1331 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 1982 thread 0
+----------------------------------------------------
+  __cs_local_atomic_compare_exchange_strong_7_ret=0 (00000000 00000000 00000000 00000000)
+
+State 1336 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 1989 thread 0
+----------------------------------------------------
+  __cs_nondet_atomic_compare_exchange_strong_7___cs_tmp_if_cond_1=TRUE (00000001)
+
+State 1338 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 1992 thread 0
+----------------------------------------------------
+  q.head=0l (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1339 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 1993 thread 0
+----------------------------------------------------
+  __cs_local_atomic_compare_exchange_strong_7_ret=1 (00000000 00000000 00000000 00000001)
+
+State 1341 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 2002 thread 0
+----------------------------------------------------
+  __cs_retval_atomic_compare_exchange_strong_7=TRUE (00000001)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c line 2006 function __cs_main_thread
+  (signed int)__cs_pc_cs[(signed long int)0] >= 79
+
+State 1343 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 2012 thread 0
+----------------------------------------------------
+  __cs_retval_readV_7=0l (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c line 2016 function __cs_main_thread
+  (signed int)__cs_pc_cs[(signed long int)0] >= 79
+
+State 1350 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 2025 thread 0
+----------------------------------------------------
+  __cs_nondet_Push_2___cs_tmp_if_cond_9=FALSE (00000000)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c line 2079 function __cs_main_thread
+  (signed int)__cs_pc_cs[(signed long int)0] >= 85
+
+State 1357 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 2084 thread 0
+----------------------------------------------------
+  __cs_param_SyncPush_2_elem=items + 1l (00010011 00000000 00000000 00000000 00000000 00000000 00000000 00000100)
+
+State 1364 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 2087 thread 0
+----------------------------------------------------
+  __cs_mutex_to_lock=&q.cs (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1365 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 2087 thread 0
+----------------------------------------------------
+  __cs_thread_index=0 (00)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c line 122 function __cs_mutex_lock
+  *__cs_mutex_to_lock != 0
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c line 123 function __cs_mutex_lock
+  *__cs_mutex_to_lock != -2
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c line 124 function __cs_mutex_lock
+  *__cs_mutex_to_lock == -1
+
+State 1369 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_mutex_lock line 125 thread 0
+----------------------------------------------------
+  q.cs=1 (00000000 00000000 00000000 00000001)
+
+State 1372 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_mutex_lock line 126 thread 0
+----------------------------------------------------
+  __cs_message="lock acquired" (00111001 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1380 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 2093 thread 0
+----------------------------------------------------
+  __cs_param_readV_8_v=&q.head (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00011000)
+
+State 1381 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 2095 thread 0
+----------------------------------------------------
+  __cs_local_readV_8_expected=0l (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1386 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 2101 thread 0
+----------------------------------------------------
+  __cs_param_atomic_compare_exchange_strong_8_obj=&q.head (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00011000)
+
+State 1391 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 2105 thread 0
+----------------------------------------------------
+  __cs_param_atomic_compare_exchange_strong_8_expected=&__cs_local_readV_8_expected (00001010 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1392 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 2107 thread 0
+----------------------------------------------------
+  __cs_param_atomic_compare_exchange_strong_8_desired=0l (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1393 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 2109 thread 0
+----------------------------------------------------
+  __cs_local_atomic_compare_exchange_strong_8_ret=0 (00000000 00000000 00000000 00000000)
+
+State 1398 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 2116 thread 0
+----------------------------------------------------
+  __cs_nondet_atomic_compare_exchange_strong_8___cs_tmp_if_cond_1=TRUE (00000001)
+
+State 1400 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 2119 thread 0
+----------------------------------------------------
+  q.head=0l (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1401 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 2120 thread 0
+----------------------------------------------------
+  __cs_local_atomic_compare_exchange_strong_8_ret=1 (00000000 00000000 00000000 00000001)
+
+State 1403 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 2129 thread 0
+----------------------------------------------------
+  __cs_retval_atomic_compare_exchange_strong_8=TRUE (00000001)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c line 2133 function __cs_main_thread
+  (signed int)__cs_pc_cs[(signed long int)0] >= 91
+
+State 1405 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 2139 thread 0
+----------------------------------------------------
+  __cs_retval_readV_8=0l (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c line 2143 function __cs_main_thread
+  (signed int)__cs_pc_cs[(signed long int)0] >= 91
+
+State 1407 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 2149 thread 0
+----------------------------------------------------
+  __cs_local_SyncPush_2_h=0l (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1412 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 2155 thread 0
+----------------------------------------------------
+  __cs_param_readV_9_v=&q.tail (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00100000)
+
+State 1413 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 2157 thread 0
+----------------------------------------------------
+  __cs_local_readV_9_expected=0l (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1418 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 2163 thread 0
+----------------------------------------------------
+  __cs_param_atomic_compare_exchange_strong_9_obj=&q.tail (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00100000)
+
+State 1423 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 2167 thread 0
+----------------------------------------------------
+  __cs_param_atomic_compare_exchange_strong_9_expected=&__cs_local_readV_9_expected (00001011 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1424 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 2169 thread 0
+----------------------------------------------------
+  __cs_param_atomic_compare_exchange_strong_9_desired=0l (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1425 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 2171 thread 0
+----------------------------------------------------
+  __cs_local_atomic_compare_exchange_strong_9_ret=0 (00000000 00000000 00000000 00000000)
+
+State 1430 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 2178 thread 0
+----------------------------------------------------
+  __cs_nondet_atomic_compare_exchange_strong_9___cs_tmp_if_cond_1=FALSE (00000000)
+
+State 1432 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 2186 thread 0
+----------------------------------------------------
+  __cs_local_readV_9_expected=1l (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000001)
+
+State 1433 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 2187 thread 0
+----------------------------------------------------
+  __cs_local_atomic_compare_exchange_strong_9_ret=0 (00000000 00000000 00000000 00000000)
+
+State 1434 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 2191 thread 0
+----------------------------------------------------
+  __cs_retval_atomic_compare_exchange_strong_9=FALSE (00000000)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c line 2195 function __cs_main_thread
+  (signed int)__cs_pc_cs[(signed long int)0] >= 95
+
+State 1436 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 2201 thread 0
+----------------------------------------------------
+  __cs_retval_readV_9=1l (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000001)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c line 2205 function __cs_main_thread
+  (signed int)__cs_pc_cs[(signed long int)0] >= 95
+
+State 1438 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 2211 thread 0
+----------------------------------------------------
+  __cs_local_SyncPush_2_count=1l (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000001)
+
+State 1439 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 2215 thread 0
+----------------------------------------------------
+  __cs_local_SyncPush_2___cs_temporary_0=0l (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1440 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 2216 thread 0
+----------------------------------------------------
+  __cs_local_SyncPush_2___cs_temporary_0=0l (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1446 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 2221 thread 0
+----------------------------------------------------
+  __cs_local_SyncPush_2_h=0l (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1451 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 2226 thread 0
+----------------------------------------------------
+  __cs_param_writeV_10_v=&q.head (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00011000)
+
+State 1452 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 2228 thread 0
+----------------------------------------------------
+  __cs_param_writeV_10_w=0l (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1457 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 2234 thread 0
+----------------------------------------------------
+  __cs_param_atomic_exchange_10_obj=&q.head (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00011000)
+
+State 1458 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 2236 thread 0
+----------------------------------------------------
+  __cs_param_atomic_exchange_10_v=0l (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1463 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 2241 thread 0
+----------------------------------------------------
+  __cs_local_atomic_exchange_10_t=0l (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1464 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 2242 thread 0
+----------------------------------------------------
+  q.head=0l (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1465 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 2244 thread 0
+----------------------------------------------------
+  __cs_retval_atomic_exchange_10=0l (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c line 2248 function __cs_main_thread
+  (signed int)__cs_pc_cs[(signed long int)0] >= 99
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c line 2255 function __cs_main_thread
+  (signed int)__cs_pc_cs[(signed long int)0] >= 99
+
+State 1472 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 2264 thread 0
+----------------------------------------------------
+  __cs_param_writeV_11_v=&q.tail (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00100000)
+
+State 1473 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 2266 thread 0
+----------------------------------------------------
+  __cs_param_writeV_11_w=1l (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000001)
+
+State 1478 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 2272 thread 0
+----------------------------------------------------
+  __cs_param_atomic_exchange_11_obj=&q.tail (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00100000)
+
+State 1479 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 2274 thread 0
+----------------------------------------------------
+  __cs_param_atomic_exchange_11_v=1l (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000001)
+
+State 1484 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 2279 thread 0
+----------------------------------------------------
+  __cs_local_atomic_exchange_11_t=1l (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000001)
+
+State 1485 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 2280 thread 0
+----------------------------------------------------
+  q.tail=1l (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000001)
+
+State 1486 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 2282 thread 0
+----------------------------------------------------
+  __cs_retval_atomic_exchange_11=1l (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000001)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c line 2286 function __cs_main_thread
+  (signed int)__cs_pc_cs[(signed long int)0] >= 102
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c line 2293 function __cs_main_thread
+  (signed int)__cs_pc_cs[(signed long int)0] >= 102
+
+State 1494 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 2305 thread 0
+----------------------------------------------------
+  __cs_nondet_SyncPush_2___cs_tmp_if_cond_6=TRUE (00000001)
+
+State 1501 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 2313 thread 0
+----------------------------------------------------
+  __cs_local_SyncPush_2_newsize=4l (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000100)
+
+State 1507 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 2321 thread 0
+----------------------------------------------------
+  __cs_nondet_SyncPush_2___cs_tmp_if_cond_7=FALSE (00000000)
+
+State 1509 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 2330 thread 0
+----------------------------------------------------
+  __cs_nondet_SyncPush_2_i=0l (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1516 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 2343 thread 0
+----------------------------------------------------
+  __cs_local_SyncPush_2_temp=0l (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1521 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 2346 thread 0
+----------------------------------------------------
+  __cs_nondet_SyncPush_2_newtasks[0l]=items (00010011 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1522 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 2349 thread 0
+----------------------------------------------------
+  __cs_nondet_SyncPush_2_i=1l (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000001)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c line 2411 function __cs_main_thread
+  (signed int)__cs_pc_cs[(signed long int)0] >= 114
+
+State 1526 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 2414 thread 0
+----------------------------------------------------
+  __cs_nondet_SyncPush_2_i=0l (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1532 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 2424 thread 0
+----------------------------------------------------
+  q.elems[0l]=items (00010011 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1533 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 2424 thread 0
+----------------------------------------------------
+  q.elems[0l]=items (00010011 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1534 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 2424 thread 0
+----------------------------------------------------
+  q.elems[1l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1535 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 2424 thread 0
+----------------------------------------------------
+  q.elems[2l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1536 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 2424 thread 0
+----------------------------------------------------
+  q.elems[3l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1537 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 2424 thread 0
+----------------------------------------------------
+  q.elems[4l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1538 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 2424 thread 0
+----------------------------------------------------
+  q.elems[5l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1539 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 2424 thread 0
+----------------------------------------------------
+  q.elems[6l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1540 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 2424 thread 0
+----------------------------------------------------
+  q.elems[7l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1541 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 2424 thread 0
+----------------------------------------------------
+  q.elems[8l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1542 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 2424 thread 0
+----------------------------------------------------
+  q.elems[9l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1543 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 2424 thread 0
+----------------------------------------------------
+  q.elems[10l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1544 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 2424 thread 0
+----------------------------------------------------
+  q.elems[11l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1545 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 2424 thread 0
+----------------------------------------------------
+  q.elems[12l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1546 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 2424 thread 0
+----------------------------------------------------
+  q.elems[13l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1547 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 2424 thread 0
+----------------------------------------------------
+  q.elems[14l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1548 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 2424 thread 0
+----------------------------------------------------
+  q.elems[15l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1549 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 2427 thread 0
+----------------------------------------------------
+  __cs_nondet_SyncPush_2_i=1l (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000001)
+
+State 1555 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 2437 thread 0
+----------------------------------------------------
+  q.elems[1l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1556 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 2437 thread 0
+----------------------------------------------------
+  q.elems[0l]=items (00010011 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1557 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 2437 thread 0
+----------------------------------------------------
+  q.elems[1l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1558 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 2437 thread 0
+----------------------------------------------------
+  q.elems[2l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1559 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 2437 thread 0
+----------------------------------------------------
+  q.elems[3l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1560 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 2437 thread 0
+----------------------------------------------------
+  q.elems[4l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1561 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 2437 thread 0
+----------------------------------------------------
+  q.elems[5l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1562 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 2437 thread 0
+----------------------------------------------------
+  q.elems[6l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1563 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 2437 thread 0
+----------------------------------------------------
+  q.elems[7l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1564 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 2437 thread 0
+----------------------------------------------------
+  q.elems[8l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1565 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 2437 thread 0
+----------------------------------------------------
+  q.elems[9l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1566 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 2437 thread 0
+----------------------------------------------------
+  q.elems[10l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1567 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 2437 thread 0
+----------------------------------------------------
+  q.elems[11l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1568 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 2437 thread 0
+----------------------------------------------------
+  q.elems[12l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1569 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 2437 thread 0
+----------------------------------------------------
+  q.elems[13l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1570 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 2437 thread 0
+----------------------------------------------------
+  q.elems[14l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1571 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 2437 thread 0
+----------------------------------------------------
+  q.elems[15l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1572 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 2440 thread 0
+----------------------------------------------------
+  __cs_nondet_SyncPush_2_i=2l (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000010)
+
+State 1578 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 2450 thread 0
+----------------------------------------------------
+  q.elems[2l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1579 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 2450 thread 0
+----------------------------------------------------
+  q.elems[0l]=items (00010011 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1580 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 2450 thread 0
+----------------------------------------------------
+  q.elems[1l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1581 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 2450 thread 0
+----------------------------------------------------
+  q.elems[2l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1582 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 2450 thread 0
+----------------------------------------------------
+  q.elems[3l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1583 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 2450 thread 0
+----------------------------------------------------
+  q.elems[4l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1584 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 2450 thread 0
+----------------------------------------------------
+  q.elems[5l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1585 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 2450 thread 0
+----------------------------------------------------
+  q.elems[6l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1586 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 2450 thread 0
+----------------------------------------------------
+  q.elems[7l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1587 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 2450 thread 0
+----------------------------------------------------
+  q.elems[8l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1588 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 2450 thread 0
+----------------------------------------------------
+  q.elems[9l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1589 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 2450 thread 0
+----------------------------------------------------
+  q.elems[10l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1590 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 2450 thread 0
+----------------------------------------------------
+  q.elems[11l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1591 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 2450 thread 0
+----------------------------------------------------
+  q.elems[12l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1592 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 2450 thread 0
+----------------------------------------------------
+  q.elems[13l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1593 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 2450 thread 0
+----------------------------------------------------
+  q.elems[14l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1594 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 2450 thread 0
+----------------------------------------------------
+  q.elems[15l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1595 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 2453 thread 0
+----------------------------------------------------
+  __cs_nondet_SyncPush_2_i=3l (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000011)
+
+State 1601 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 2463 thread 0
+----------------------------------------------------
+  q.elems[3l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1602 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 2463 thread 0
+----------------------------------------------------
+  q.elems[0l]=items (00010011 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1603 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 2463 thread 0
+----------------------------------------------------
+  q.elems[1l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1604 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 2463 thread 0
+----------------------------------------------------
+  q.elems[2l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1605 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 2463 thread 0
+----------------------------------------------------
+  q.elems[3l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1606 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 2463 thread 0
+----------------------------------------------------
+  q.elems[4l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1607 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 2463 thread 0
+----------------------------------------------------
+  q.elems[5l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1608 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 2463 thread 0
+----------------------------------------------------
+  q.elems[6l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1609 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 2463 thread 0
+----------------------------------------------------
+  q.elems[7l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1610 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 2463 thread 0
+----------------------------------------------------
+  q.elems[8l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1611 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 2463 thread 0
+----------------------------------------------------
+  q.elems[9l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1612 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 2463 thread 0
+----------------------------------------------------
+  q.elems[10l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1613 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 2463 thread 0
+----------------------------------------------------
+  q.elems[11l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1614 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 2463 thread 0
+----------------------------------------------------
+  q.elems[12l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1615 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 2463 thread 0
+----------------------------------------------------
+  q.elems[13l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1616 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 2463 thread 0
+----------------------------------------------------
+  q.elems[14l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1617 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 2463 thread 0
+----------------------------------------------------
+  q.elems[15l]=((Obj *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1618 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 2466 thread 0
+----------------------------------------------------
+  __cs_nondet_SyncPush_2_i=4l (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000100)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c line 2469 function __cs_main_thread
+  !(__cs_nondet_SyncPush_2_i < __cs_local_SyncPush_2_newsize)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c line 2471 function __cs_main_thread
+  (signed int)__cs_pc_cs[(signed long int)0] >= 119
+
+State 3074 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 7174 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 3075 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 7174 thread 0
+----------------------------------------------------
+  __cs_thread_index=0u (00000000 00000000 00000000 00000000)
+
+State 3076 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_exit line 98 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 3082 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function main line 7191 thread 0
+----------------------------------------------------
+  __cs_dataraceSecondThread=TRUE (00000001)
+
+State 3083 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function main line 7192 thread 0
+----------------------------------------------------
+  __cs_pc[0l]=119 (00111011 1)
+
+State 3084 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function main line 7194 thread 0
+----------------------------------------------------
+  __cs_tmp_t1_r0=0 (00000)
+
+State 3086 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function main line 7197 thread 0
+----------------------------------------------------
+  __cs_pc_cs[1l]=0 (00000000 00)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c line 7198 function main
+  (signed int)__cs_pc_cs[(signed long int)1] <= 23
+
+State 3091 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function main line 7201 thread 0
+----------------------------------------------------
+  __cs_param_Stealer_param=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 3187 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function Stealer_0 line 607 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 3188 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function Stealer_0 line 607 thread 0
+----------------------------------------------------
+  __cs_thread_index=1u (00000000 00000000 00000000 00000001)
+
+State 3189 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_exit line 98 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 3196 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function main line 7205 thread 0
+----------------------------------------------------
+  __cs_dataraceSecondThread=TRUE (00000001)
+
+State 3197 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function main line 7206 thread 0
+----------------------------------------------------
+  __cs_pc[1l]=0 (00000000 0)
+
+State 3198 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function main line 7209 thread 0
+----------------------------------------------------
+  __cs_tmp_t2_r0=0 (00000)
+
+State 3200 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function main line 7212 thread 0
+----------------------------------------------------
+  __cs_pc_cs[2l]=0 (00000000 00)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c line 7213 function main
+  (signed int)__cs_pc_cs[(signed long int)2] <= 23
+
+State 3205 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function main line 7216 thread 0
+----------------------------------------------------
+  __cs_param_Stealer_param=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 3301 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function Stealer_1 line 908 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 3302 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function Stealer_1 line 908 thread 0
+----------------------------------------------------
+  __cs_thread_index=2u (00000000 00000000 00000000 00000010)
+
+State 3303 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_exit line 98 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[2l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 3310 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function main line 7220 thread 0
+----------------------------------------------------
+  __cs_dataraceSecondThread=TRUE (00000001)
+
+State 3311 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function main line 7221 thread 0
+----------------------------------------------------
+  __cs_pc[2l]=0 (00000000 0)
+
+State 3312 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function main line 7223 thread 0
+----------------------------------------------------
+  __cs_tmp_t0_r1=6 (00000011 0)
+
+State 3314 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function main line 7226 thread 0
+----------------------------------------------------
+  __cs_pc_cs[0l]=125 (00011111 01)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c line 7227 function main
+  (signed int)__cs_pc_cs[(signed long int)0] >= (signed int)__cs_pc[(signed long int)0]
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c line 7228 function main
+  (signed int)__cs_pc_cs[(signed long int)0] <= 477
+
+State 3927 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 2481 thread 0
+----------------------------------------------------
+  __cs_dataraceNotDetected=FALSE (00000000)
+
+State 3928 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 2482 thread 0
+----------------------------------------------------
+  q.mask=3l (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000011)
+
+State 3933 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 2487 thread 0
+----------------------------------------------------
+  __cs_param_writeV_12_v=&q.head (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00011000)
+
+State 3934 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 2489 thread 0
+----------------------------------------------------
+  __cs_param_writeV_12_w=0l (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 3939 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 2495 thread 0
+----------------------------------------------------
+  __cs_param_atomic_exchange_12_obj=&q.head (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00011000)
+
+State 3940 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 2497 thread 0
+----------------------------------------------------
+  __cs_param_atomic_exchange_12_v=0l (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 3945 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 2502 thread 0
+----------------------------------------------------
+  __cs_local_atomic_exchange_12_t=0l (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 3946 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 2503 thread 0
+----------------------------------------------------
+  q.head=0l (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 3947 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 2505 thread 0
+----------------------------------------------------
+  __cs_retval_atomic_exchange_12=0l (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c line 2509 function __cs_main_thread
+  (signed int)__cs_pc_cs[(signed long int)0] >= 123
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c line 2516 function __cs_main_thread
+  (signed int)__cs_pc_cs[(signed long int)0] >= 123
+
+State 3954 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 2525 thread 0
+----------------------------------------------------
+  __cs_param_writeV_13_v=&q.tail (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00100000)
+
+State 3955 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 2527 thread 0
+----------------------------------------------------
+  __cs_param_writeV_13_w=1l (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000001)
+
+State 3960 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 2533 thread 0
+----------------------------------------------------
+  __cs_param_atomic_exchange_13_obj=&q.tail (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00100000)
+
+State 3961 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 2535 thread 0
+----------------------------------------------------
+  __cs_param_atomic_exchange_13_v=1l (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000001)
+
+State 5382 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 7174 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 5383 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_main_thread line 7174 thread 0
+----------------------------------------------------
+  __cs_thread_index=0u (00000000 00000000 00000000 00000000)
+
+State 5384 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function __cs_exit line 98 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+Violated property:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2workstealqueue_mutex-2.c function main line 7231 thread 0
+  Data race failure
+  __cs_dataraceNotDetected != FALSE
+
+
+VERIFICATION FAILED
+
+real	0m18,626s
+user	0m18,434s
+sys	0m0,200s

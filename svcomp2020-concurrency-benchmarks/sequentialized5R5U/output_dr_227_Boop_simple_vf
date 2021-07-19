@@ -1,0 +1,658 @@
+CBMC version 5.12 (cbmc-5.11-4673-gff3adfd29-dirty) 64-bit x86_64 linux
+Parsing /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c
+Converting
+Type-checking _dr_227_Boop_simple_vf
+file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c line 359 function thr2_0: function '__CPROVER_get_field' is not declared
+file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c line 369 function thr2_0: function '__CPROVER_set_field' is not declared
+file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c line 1460 function main: function '__CPROVER_field_decl_global' is not declared
+Generating GOTO Program
+Adding CPROVER library (x86_64)
+Removal of function pointers and virtual functions
+Generic Property Instrumentation
+Running with 8 object bits, 56 offset bits (default)
+Starting Bounded Model Checking
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c line 1446 function __cs_main_thread thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c line 1033 function thr1_0 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c line 1379 function thr1_0 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c line 1446 function __cs_main_thread thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c line 1033 function thr1_0 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c line 1379 function thr1_0 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c line 1446 function __cs_main_thread thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c line 1033 function thr1_0 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c line 1379 function thr1_0 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c line 1446 function __cs_main_thread thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c line 1033 function thr1_0 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c line 1379 function thr1_0 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c line 1446 function __cs_main_thread thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c line 1033 function thr1_0 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c line 1379 function thr1_0 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c line 1446 function __cs_main_thread thread 0
+size of program expression: 11649 steps
+simple slicing removed 5 assignments
+Generated 1 VCC(s), 1 remaining after simplification
+Passing problem to propositional reduction
+converting SSA
+Running propositional reduction
+Post-processing
+Solving with Glucose Syrup with simplifier
+50728 variables, 119376 clauses
+SAT checker: instance is SATISFIABLE
+Runtime decision procedure: 0.171919s
+Building error trace
+Counterexample:
+
+State 19 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c function __CPROVER_initialize line 62 thread 0
+----------------------------------------------------
+  __cs_active_thread[0l]=1 (1)
+
+State 20 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c function __CPROVER_initialize line 62 thread 0
+----------------------------------------------------
+  __cs_active_thread[1l]=0 (0)
+
+State 21 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c function __CPROVER_initialize line 62 thread 0
+----------------------------------------------------
+  __cs_active_thread[2l]=0 (0)
+
+State 22 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c function __CPROVER_initialize line 62 thread 0
+----------------------------------------------------
+  __cs_active_thread[3l]=0 (0)
+
+State 23 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c function __CPROVER_initialize line 62 thread 0
+----------------------------------------------------
+  __cs_active_thread[4l]=0 (0)
+
+State 24 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c function __CPROVER_initialize line 62 thread 0
+----------------------------------------------------
+  __cs_active_thread[5l]=0 (0)
+
+State 25 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c function __CPROVER_initialize line 62 thread 0
+----------------------------------------------------
+  __cs_active_thread[6l]=0 (0)
+
+State 33 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c function __CPROVER_initialize line 63 thread 0
+----------------------------------------------------
+  __cs_pc[0l]=0 (000000)
+
+State 34 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c function __CPROVER_initialize line 63 thread 0
+----------------------------------------------------
+  __cs_pc[1l]=0 (000000)
+
+State 35 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c function __CPROVER_initialize line 63 thread 0
+----------------------------------------------------
+  __cs_pc[2l]=0 (000000)
+
+State 36 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c function __CPROVER_initialize line 63 thread 0
+----------------------------------------------------
+  __cs_pc[3l]=0 (000000)
+
+State 37 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c function __CPROVER_initialize line 63 thread 0
+----------------------------------------------------
+  __cs_pc[4l]=0 (000000)
+
+State 38 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c function __CPROVER_initialize line 63 thread 0
+----------------------------------------------------
+  __cs_pc[5l]=0 (000000)
+
+State 39 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c function __CPROVER_initialize line 63 thread 0
+----------------------------------------------------
+  __cs_pc[6l]=0 (000000)
+
+State 41 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c function __CPROVER_initialize line 64 thread 0
+----------------------------------------------------
+  __cs_pc_cs[0l]=0 (0000000)
+
+State 42 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c function __CPROVER_initialize line 64 thread 0
+----------------------------------------------------
+  __cs_pc_cs[1l]=0 (0000000)
+
+State 43 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c function __CPROVER_initialize line 64 thread 0
+----------------------------------------------------
+  __cs_pc_cs[2l]=0 (0000000)
+
+State 44 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c function __CPROVER_initialize line 64 thread 0
+----------------------------------------------------
+  __cs_pc_cs[3l]=0 (0000000)
+
+State 45 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c function __CPROVER_initialize line 64 thread 0
+----------------------------------------------------
+  __cs_pc_cs[4l]=0 (0000000)
+
+State 46 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c function __CPROVER_initialize line 64 thread 0
+----------------------------------------------------
+  __cs_pc_cs[5l]=0 (0000000)
+
+State 47 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c function __CPROVER_initialize line 64 thread 0
+----------------------------------------------------
+  __cs_pc_cs[6l]=0 (0000000)
+
+State 49 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c function __CPROVER_initialize line 79 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 50 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c function __CPROVER_initialize line 79 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 51 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c function __CPROVER_initialize line 79 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[2l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 52 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c function __CPROVER_initialize line 79 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[3l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 53 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c function __CPROVER_initialize line 79 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[4l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 54 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c function __CPROVER_initialize line 79 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[5l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 55 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c function __CPROVER_initialize line 79 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[6l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 57 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c function __CPROVER_initialize line 66 thread 0
+----------------------------------------------------
+  __cs_thread_lines[0l]=7 (000111)
+
+State 58 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c function __CPROVER_initialize line 66 thread 0
+----------------------------------------------------
+  __cs_thread_lines[1l]=33 (100001)
+
+State 59 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c function __CPROVER_initialize line 66 thread 0
+----------------------------------------------------
+  __cs_thread_lines[2l]=10 (001010)
+
+State 60 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c function __CPROVER_initialize line 66 thread 0
+----------------------------------------------------
+  __cs_thread_lines[3l]=10 (001010)
+
+State 61 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c function __CPROVER_initialize line 66 thread 0
+----------------------------------------------------
+  __cs_thread_lines[4l]=10 (001010)
+
+State 62 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c function __CPROVER_initialize line 66 thread 0
+----------------------------------------------------
+  __cs_thread_lines[5l]=10 (001010)
+
+State 63 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c function __CPROVER_initialize line 66 thread 0
+----------------------------------------------------
+  __cs_thread_lines[6l]=10 (001010)
+
+State 65 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c function __CPROVER_initialize line 78 thread 0
+----------------------------------------------------
+  __cs_threadargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 66 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c function __CPROVER_initialize line 78 thread 0
+----------------------------------------------------
+  __cs_threadargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 67 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c function __CPROVER_initialize line 78 thread 0
+----------------------------------------------------
+  __cs_threadargs[2l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 68 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c function __CPROVER_initialize line 78 thread 0
+----------------------------------------------------
+  __cs_threadargs[3l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 69 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c function __CPROVER_initialize line 78 thread 0
+----------------------------------------------------
+  __cs_threadargs[4l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 70 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c function __CPROVER_initialize line 78 thread 0
+----------------------------------------------------
+  __cs_threadargs[5l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 71 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c function __CPROVER_initialize line 78 thread 0
+----------------------------------------------------
+  __cs_threadargs[6l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 106 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c function main line 1461 thread 0
+----------------------------------------------------
+  __cs_dr_ts=2 (000010)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c line 1462 function main
+  (signed int)__cs_dr_ts <= 34
+
+State 108 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c function main line 1465 thread 0
+----------------------------------------------------
+  __cs_tmp_t0_r0=2 (010)
+
+State 109 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c function main line 1466 thread 0
+----------------------------------------------------
+  __cs_pc_cs[0l]=2 (0000010)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c line 1467 function main
+  (signed int)__cs_pc_cs[(signed long int)0] > 0
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c line 1468 function main
+  (signed int)__cs_pc_cs[(signed long int)0] <= 7
+
+State 118 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c function __cs_main_thread line 1413 thread 0
+----------------------------------------------------
+  __cs_new_thread_id=&__cs_nondet_main_t (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 119 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c function __cs_main_thread line 1413 thread 0
+----------------------------------------------------
+  __cs_attr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 120 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c function __cs_main_thread line 1413 thread 0
+----------------------------------------------------
+  __cs_thread_function=thr1_0 (00000011 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 121 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c function __cs_main_thread line 1413 thread 0
+----------------------------------------------------
+  __cs_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 122 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c function __cs_main_thread line 1413 thread 0
+----------------------------------------------------
+  __cs_threadID=1 (00000000 00000000 00000000 00000001)
+
+State 124 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c function __cs_create line 84 thread 0
+----------------------------------------------------
+  __cs_nondet_main_t=1 (00000000 00000000 00000000 00000001)
+
+State 125 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c function __cs_create line 85 thread 0
+----------------------------------------------------
+  __cs_active_thread[1l]=1 (1)
+
+State 126 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c function __cs_create line 86 thread 0
+----------------------------------------------------
+  __cs_threadargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 129 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c function __cs_create line 87 thread 0
+----------------------------------------------------
+  __cs_message="thread spawned" (00000100 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 136 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c function __cs_main_thread line 1417 thread 0
+----------------------------------------------------
+  __cs_new_thread_id=&__cs_nondet_main_t (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 137 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c function __cs_main_thread line 1417 thread 0
+----------------------------------------------------
+  __cs_attr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 138 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c function __cs_main_thread line 1417 thread 0
+----------------------------------------------------
+  __cs_thread_function=thr2_0 (00000101 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 139 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c function __cs_main_thread line 1417 thread 0
+----------------------------------------------------
+  __cs_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 140 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c function __cs_main_thread line 1417 thread 0
+----------------------------------------------------
+  __cs_threadID=2 (00000000 00000000 00000000 00000010)
+
+State 142 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c function __cs_create line 84 thread 0
+----------------------------------------------------
+  __cs_nondet_main_t=2 (00000000 00000000 00000000 00000010)
+
+State 143 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c function __cs_create line 85 thread 0
+----------------------------------------------------
+  __cs_active_thread[2l]=1 (1)
+
+State 144 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c function __cs_create line 86 thread 0
+----------------------------------------------------
+  __cs_threadargs[2l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 147 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c function __cs_create line 87 thread 0
+----------------------------------------------------
+  __cs_message="thread spawned" (00000100 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 158 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c function __cs_main_thread line 1456 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 159 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c function __cs_main_thread line 1456 thread 0
+----------------------------------------------------
+  __cs_thread_index=0u (00000000 00000000 00000000 00000000)
+
+State 160 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c function __cs_exit line 98 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 166 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c function main line 1474 thread 0
+----------------------------------------------------
+  __cs_pc[0l]=2 (000010)
+
+State 167 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c function main line 1476 thread 0
+----------------------------------------------------
+  __cs_tmp_t1_r0=3 (000011)
+
+State 169 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c function main line 1479 thread 0
+----------------------------------------------------
+  __cs_pc_cs[1l]=3 (0000011)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c line 1480 function main
+  (signed int)__cs_pc_cs[(signed long int)1] <= 33
+
+State 174 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c function main line 1483 thread 0
+----------------------------------------------------
+  __cs_param_thr1_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 182 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c function thr1_0 line 927 thread 0
+----------------------------------------------------
+  usecount=0 (00000000 00000000 00000000 00000000)
+
+State 190 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c function thr1_0 line 936 thread 0
+----------------------------------------------------
+  locked=0 (00000000 00000000 00000000 00000000)
+
+State 198 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c function thr1_0 line 945 thread 0
+----------------------------------------------------
+  release_thr1=1 (00000000 00000000 00000000 00000001)
+
+State 249 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c function thr1_0 line 1407 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 250 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c function thr1_0 line 1407 thread 0
+----------------------------------------------------
+  __cs_thread_index=1u (00000000 00000000 00000000 00000001)
+
+State 251 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c function __cs_exit line 98 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 258 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c function main line 1488 thread 0
+----------------------------------------------------
+  __cs_pc[1l]=3 (000011)
+
+State 259 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c function main line 1491 thread 0
+----------------------------------------------------
+  __cs_tmp_t2_r0=9 (1001)
+
+State 261 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c function main line 1494 thread 0
+----------------------------------------------------
+  __cs_pc_cs[2l]=9 (0001001)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c line 1495 function main
+  (signed int)__cs_pc_cs[(signed long int)2] <= 10
+
+State 264 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c function main line 1497 thread 0
+----------------------------------------------------
+  __cs_dataraceDetectionStarted=TRUE (00000001)
+
+State 267 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c function main line 1498 thread 0
+----------------------------------------------------
+  __cs_param_thr2_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c line 363 function thr2_0
+  (signed int)__cs_pc_cs[(signed long int)2] >= 6
+
+State 286 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c function thr2_0 line 374 thread 0
+----------------------------------------------------
+  usecount=1 (00000000 00000000 00000000 00000001)
+
+State 293 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c function thr2_0 line 382 thread 0
+----------------------------------------------------
+  __cs_nondet_thr2___cs_tmp_if_cond_0=FALSE (00000000)
+
+State 302 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c function thr2_0 line 397 thread 0
+----------------------------------------------------
+  locked=1 (00000000 00000000 00000000 00000001)
+
+State 309 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c function thr2_0 line 414 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 310 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c function thr2_0 line 414 thread 0
+----------------------------------------------------
+  __cs_thread_index=2u (00000000 00000000 00000000 00000010)
+
+State 311 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c function __cs_exit line 98 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[2l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 318 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c function main line 1502 thread 0
+----------------------------------------------------
+  __cs_dataraceSecondThread=TRUE (00000001)
+
+State 319 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c function main line 1503 thread 0
+----------------------------------------------------
+  __cs_pc[2l]=9 (001001)
+
+State 320 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c function main line 1506 thread 0
+----------------------------------------------------
+  __cs_tmp_t3_r0=0 (0000)
+
+State 322 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c function main line 1521 thread 0
+----------------------------------------------------
+  __cs_tmp_t4_r0=0 (0000)
+
+State 324 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c function main line 1536 thread 0
+----------------------------------------------------
+  __cs_tmp_t5_r0=8 (1000)
+
+State 326 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c function main line 1551 thread 0
+----------------------------------------------------
+  __cs_tmp_t6_r0=1 (0001)
+
+State 328 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c function main line 1567 thread 0
+----------------------------------------------------
+  __cs_tmp_t0_r1=0 (000)
+
+State 330 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c function main line 1570 thread 0
+----------------------------------------------------
+  __cs_pc_cs[0l]=2 (0000010)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c line 1571 function main
+  (signed int)__cs_pc_cs[(signed long int)0] >= (signed int)__cs_pc[(signed long int)0]
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c line 1572 function main
+  (signed int)__cs_pc_cs[(signed long int)0] <= 7
+
+State 345 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c function __cs_main_thread line 1456 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 346 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c function __cs_main_thread line 1456 thread 0
+----------------------------------------------------
+  __cs_thread_index=0u (00000000 00000000 00000000 00000000)
+
+State 347 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c function __cs_exit line 98 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 354 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c function main line 1579 thread 0
+----------------------------------------------------
+  __cs_dataraceSecondThread=TRUE (00000001)
+
+State 355 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c function main line 1580 thread 0
+----------------------------------------------------
+  __cs_pc[0l]=2 (000010)
+
+State 356 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c function main line 1583 thread 0
+----------------------------------------------------
+  __cs_tmp_t1_r1=4 (000100)
+
+State 358 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c function main line 1586 thread 0
+----------------------------------------------------
+  __cs_pc_cs[1l]=7 (0000111)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c line 1587 function main
+  (signed int)__cs_pc_cs[(signed long int)1] >= (signed int)__cs_pc[(signed long int)1]
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c line 1588 function main
+  (signed int)__cs_pc_cs[(signed long int)1] <= 33
+
+State 364 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c function main line 1591 thread 0
+----------------------------------------------------
+  __cs_param_thr1_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 377 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c function thr1_0 line 953 thread 0
+----------------------------------------------------
+  __cs_dataraceNotDetected=FALSE (00000000)
+
+State 378 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c function thr1_0 line 954 thread 0
+----------------------------------------------------
+  __cs_nondet_thr1___cs_tmp_if_cond_3=FALSE (00000000)
+
+State 386 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c function thr1_0 line 971 thread 0
+----------------------------------------------------
+  __cs_nondet_thr1___cs_tmp_if_cond_3=FALSE (00000000)
+
+State 394 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c function thr1_0 line 988 thread 0
+----------------------------------------------------
+  __cs_nondet_thr1___cs_tmp_if_cond_3=FALSE (00000000)
+
+State 402 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c function thr1_0 line 1005 thread 0
+----------------------------------------------------
+  __cs_nondet_thr1___cs_tmp_if_cond_3=FALSE (00000000)
+
+State 450 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c function thr1_0 line 1407 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 451 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c function thr1_0 line 1407 thread 0
+----------------------------------------------------
+  __cs_thread_index=1u (00000000 00000000 00000000 00000001)
+
+State 452 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c function __cs_exit line 98 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 458 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c function main line 1593 thread 0
+----------------------------------------------------
+  __cs_dataraceContinue=FALSE (00000000)
+
+State 460 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c function main line 1595 thread 0
+----------------------------------------------------
+  __cs_dataraceSecondThread=TRUE (00000001)
+
+State 461 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c function main line 1596 thread 0
+----------------------------------------------------
+  __cs_pc[1l]=7 (000111)
+
+State 462 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c function main line 1599 thread 0
+----------------------------------------------------
+  __cs_tmp_t2_r1=1 (0001)
+
+State 464 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c function main line 1615 thread 0
+----------------------------------------------------
+  __cs_tmp_t3_r1=0 (0000)
+
+State 466 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c function main line 1631 thread 0
+----------------------------------------------------
+  __cs_tmp_t4_r1=0 (0000)
+
+State 468 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c function main line 1647 thread 0
+----------------------------------------------------
+  __cs_tmp_t5_r1=0 (0000)
+
+State 470 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c function main line 1663 thread 0
+----------------------------------------------------
+  __cs_tmp_t6_r1=10 (1010)
+
+State 472 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c function main line 1680 thread 0
+----------------------------------------------------
+  __cs_tmp_t0_r2=0 (000)
+
+State 474 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c function main line 1696 thread 0
+----------------------------------------------------
+  __cs_tmp_t1_r2=8 (001000)
+
+State 476 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c function main line 1712 thread 0
+----------------------------------------------------
+  __cs_tmp_t2_r2=0 (0000)
+
+State 478 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c function main line 1728 thread 0
+----------------------------------------------------
+  __cs_tmp_t3_r2=10 (1010)
+
+State 480 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c function main line 1744 thread 0
+----------------------------------------------------
+  __cs_tmp_t4_r2=12 (1100)
+
+State 482 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c function main line 1760 thread 0
+----------------------------------------------------
+  __cs_tmp_t5_r2=10 (1010)
+
+State 484 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c function main line 1776 thread 0
+----------------------------------------------------
+  __cs_tmp_t6_r2=10 (1010)
+
+State 486 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c function main line 1793 thread 0
+----------------------------------------------------
+  __cs_tmp_t0_r3=1 (001)
+
+State 488 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c function main line 1809 thread 0
+----------------------------------------------------
+  __cs_tmp_t1_r3=2 (000010)
+
+State 490 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c function main line 1825 thread 0
+----------------------------------------------------
+  __cs_tmp_t2_r3=1 (0001)
+
+State 492 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c function main line 1841 thread 0
+----------------------------------------------------
+  __cs_tmp_t3_r3=0 (0000)
+
+State 494 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c function main line 1857 thread 0
+----------------------------------------------------
+  __cs_tmp_t4_r3=10 (1010)
+
+State 496 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c function main line 1873 thread 0
+----------------------------------------------------
+  __cs_tmp_t5_r3=10 (1010)
+
+State 498 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c function main line 1889 thread 0
+----------------------------------------------------
+  __cs_tmp_t6_r3=12 (1100)
+
+State 500 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c function main line 1906 thread 0
+----------------------------------------------------
+  __cs_tmp_t0_r4=2 (010)
+
+State 502 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c function main line 1922 thread 0
+----------------------------------------------------
+  __cs_tmp_t1_r4=38 (100110)
+
+State 504 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c function main line 1938 thread 0
+----------------------------------------------------
+  __cs_tmp_t2_r4=1 (0001)
+
+State 506 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c function main line 1954 thread 0
+----------------------------------------------------
+  __cs_tmp_t3_r4=10 (1010)
+
+State 508 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c function main line 1970 thread 0
+----------------------------------------------------
+  __cs_tmp_t4_r4=10 (1010)
+
+State 510 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c function main line 1986 thread 0
+----------------------------------------------------
+  __cs_tmp_t5_r4=10 (1010)
+
+State 512 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c function main line 2002 thread 0
+----------------------------------------------------
+  __cs_tmp_t6_r4=12 (1100)
+
+State 514 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c function main line 2017 thread 0
+----------------------------------------------------
+  __cs_tmp_t0_r5=2 (010)
+
+Violated property:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_227_Boop_simple_vf.c function main line 2025 thread 0
+  Data race failure
+  __cs_dataraceNotDetected != FALSE
+
+
+VERIFICATION FAILED
+
+real	0m0,668s
+user	0m0,635s
+sys	0m0,037s

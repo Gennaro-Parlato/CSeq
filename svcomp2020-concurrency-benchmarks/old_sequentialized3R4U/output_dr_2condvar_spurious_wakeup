@@ -1,0 +1,29 @@
+CBMC version 5.12 (cbmc-5.11-4793-gd20c93aee-dirty) 64-bit x86_64 linux
+Parsing /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2condvar_spurious_wakeup.c
+Converting
+Type-checking _dr_2condvar_spurious_wakeup
+file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2condvar_spurious_wakeup.c line 317 function thread_0: function '__CPROVER_get_field' is not declared
+file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2condvar_spurious_wakeup.c line 363 function __cs_main_thread: function '__CPROVER_set_field' is not declared
+file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_dr_2condvar_spurious_wakeup.c line 435 function main: function '__CPROVER_field_decl_global' is not declared
+Generating GOTO Program
+Adding CPROVER library (x86_64)
+Removal of function pointers and virtual functions
+Generic Property Instrumentation
+Running with 8 object bits, 56 offset bits (default)
+Starting Bounded Model Checking
+size of program expression: 1706 steps
+simple slicing removed 5 assignments
+Generated 1 VCC(s), 1 remaining after simplification
+Passing problem to propositional reduction
+converting SSA
+Running propositional reduction
+Post-processing
+Solving with Glucose Syrup with simplifier
+7799 variables, 15517 clauses
+SAT checker: instance is UNSATISFIABLE
+Runtime decision procedure: 0.0172827s
+VERIFICATION SUCCESSFUL
+
+real	0m0,104s
+user	0m0,099s
+sys	0m0,006s

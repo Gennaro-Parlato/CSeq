@@ -1,0 +1,110 @@
+CBMC version 5.32.1 (cbmc-5.32.1-140-g7c8c411038-dirty) 64-bit x86_64 linux
+Parsing /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_23_lu-fig2.fixed.c
+Converting
+Type-checking _csdr_23_lu-fig2.fixed
+file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_23_lu-fig2.fixed.c line 310 function __CSEQ_atomic_acquire: function 'assume_abort_if_not' is not declared
+file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_23_lu-fig2.fixed.c line 311 function __CSEQ_atomic_acquire: function '__CPROVER_set_field' is not declared
+file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_23_lu-fig2.fixed.c line 311 function __CSEQ_atomic_acquire: function '__CPROVER_get_field' is not declared
+file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_23_lu-fig2.fixed.c line 472 function main: function '__CPROVER_field_decl_global' is not declared
+file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_23_lu-fig2.fixed.c line 473 function main: function '__CPROVER_field_decl_local' is not declared
+Generating GOTO Program
+Adding CPROVER library (x86_64)
+Removal of function pointers and virtual functions
+Generic Property Instrumentation
+Running with 8 object bits, 56 offset bits (default)
+Starting Bounded Model Checking
+Shadow memory: cannot set_field for &__cs_param_thr2_1_arg
+Shadow memory: cannot set_field for &__cs_param_thr2_1_arg
+Shadow memory: cannot set_field for &__cs_nondet_thr2_1_self
+Shadow memory: cannot set_field for &__cs_nondet_thr2_1_self
+**** WARNING: no body for function assume_abort_if_not
+Shadow memory: cannot set_field for &__cs_nondet___CSEQ_atomic_thr2___cs_tmp_if_cond_2
+Shadow memory: cannot set_field for &__cs_nondet___CSEQ_atomic_thr2___cs_tmp_if_cond_3
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_23_lu-fig2.fixed.c line 399 function __CSEQ_atomic_thr2 thread 0
+Shadow memory: cannot set_field for &__cs_retval_thr2_1
+Shadow memory: cannot set_field for &__cs_retval_thr2_1
+Shadow memory: cannot set_field for &__cs_nondet_thr1_PR_CreateThread__RES
+Shadow memory: cannot set_field for &__cs_nondet_thr1_PR_CreateThread__RES
+Shadow memory: cannot get_field for &__cs_nondet_thr1_PR_CreateThread__RES
+Shadow memory: cannot set_field for &__cs_nondet___CSEQ_atomic_thr1___cs_tmp_if_cond_0
+Shadow memory: cannot set_field for &__cs_param_thr2_1_arg
+Shadow memory: cannot set_field for &__cs_param_thr2_1_arg
+Shadow memory: cannot get_field for &__cs_param_thr2_1_arg
+Shadow memory: cannot set_field for &__cs_nondet_thr2_1_self
+Shadow memory: cannot set_field for &__cs_nondet_thr2_1_self
+Shadow memory: cannot get_field for &__cs_nondet_thr2_1_self
+Shadow memory: cannot get_field for &__cs_nondet_thr2_1_self
+Shadow memory: cannot set_field for &__cs_nondet___CSEQ_atomic_thr2___cs_tmp_if_cond_2
+Shadow memory: cannot get_field for &__cs_nondet___CSEQ_atomic_thr2___cs_tmp_if_cond_2
+Shadow memory: cannot get_field for &__cs_nondet___CSEQ_atomic_thr2___cs_tmp_if_cond_2
+Shadow memory: cannot set_field for &__cs_nondet___CSEQ_atomic_thr2___cs_tmp_if_cond_3
+Shadow memory: cannot get_field for &__cs_nondet___CSEQ_atomic_thr2___cs_tmp_if_cond_3
+Shadow memory: cannot get_field for &__cs_nondet___CSEQ_atomic_thr2___cs_tmp_if_cond_3
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_23_lu-fig2.fixed.c line 399 function __CSEQ_atomic_thr2 thread 0
+Shadow memory: cannot set_field for &__cs_retval_thr2_1
+Shadow memory: cannot set_field for &__cs_retval_thr2_1
+Shadow memory: cannot get_field for &__cs_retval_thr2_1
+Shadow memory: cannot get_field for &__cs_retval_thr2_1
+Shadow memory: cannot set_field for &__cs_nondet_thr1_PR_CreateThread__RES
+Shadow memory: cannot set_field for &__cs_nondet_thr1_PR_CreateThread__RES
+Shadow memory: cannot get_field for &__cs_nondet_thr1_PR_CreateThread__RES
+Shadow memory: cannot get_field for &__cs_nondet_thr1_PR_CreateThread__RES
+Shadow memory: cannot set_field for &__cs_nondet___CSEQ_atomic_thr1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet___CSEQ_atomic_thr1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet___CSEQ_atomic_thr1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_param___CSEQ_atomic_thr1_PR_CreateThread__RES!0@2
+Shadow memory: cannot set_field for &__cs_nondet___CSEQ_atomic_thr1___cs_tmp_if_cond_1
+Shadow memory: cannot get_field for &__cs_nondet___CSEQ_atomic_thr1___cs_tmp_if_cond_1
+Shadow memory: cannot get_field for &__cs_nondet___CSEQ_atomic_thr1___cs_tmp_if_cond_1
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_23_lu-fig2.fixed.c line 338 function __CSEQ_atomic_thr1 thread 0
+Shadow memory: cannot set_field for &__cs_param_thr2_1_arg
+Shadow memory: cannot set_field for &__cs_param_thr2_1_arg
+Shadow memory: cannot get_field for &__cs_param_thr2_1_arg
+Shadow memory: cannot set_field for &__cs_nondet_thr2_1_self
+Shadow memory: cannot set_field for &__cs_nondet_thr2_1_self
+Shadow memory: cannot get_field for &__cs_nondet_thr2_1_self
+Shadow memory: cannot get_field for &__cs_nondet_thr2_1_self
+Shadow memory: cannot set_field for &__cs_nondet___CSEQ_atomic_thr2___cs_tmp_if_cond_2
+Shadow memory: cannot get_field for &__cs_nondet___CSEQ_atomic_thr2___cs_tmp_if_cond_2
+Shadow memory: cannot get_field for &__cs_nondet___CSEQ_atomic_thr2___cs_tmp_if_cond_2
+Shadow memory: cannot set_field for &__cs_nondet___CSEQ_atomic_thr2___cs_tmp_if_cond_3
+Shadow memory: cannot get_field for &__cs_nondet___CSEQ_atomic_thr2___cs_tmp_if_cond_3
+Shadow memory: cannot get_field for &__cs_nondet___CSEQ_atomic_thr2___cs_tmp_if_cond_3
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_23_lu-fig2.fixed.c line 399 function __CSEQ_atomic_thr2 thread 0
+Shadow memory: cannot set_field for &__cs_retval_thr2_1
+Shadow memory: cannot set_field for &__cs_retval_thr2_1
+Shadow memory: cannot get_field for &__cs_retval_thr2_1
+Shadow memory: cannot get_field for &__cs_retval_thr2_1
+Shadow memory: cannot set_field for &__cs_nondet_thr1_PR_CreateThread__RES
+Shadow memory: cannot set_field for &__cs_nondet_thr1_PR_CreateThread__RES
+Shadow memory: cannot get_field for &__cs_nondet_thr1_PR_CreateThread__RES
+Shadow memory: cannot get_field for &__cs_nondet_thr1_PR_CreateThread__RES
+Shadow memory: cannot set_field for &__cs_nondet___CSEQ_atomic_thr1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet___CSEQ_atomic_thr1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet___CSEQ_atomic_thr1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_param___CSEQ_atomic_thr1_PR_CreateThread__RES!0@3
+Shadow memory: cannot set_field for &__cs_nondet___CSEQ_atomic_thr1___cs_tmp_if_cond_1
+Shadow memory: cannot get_field for &__cs_nondet___CSEQ_atomic_thr1___cs_tmp_if_cond_1
+Shadow memory: cannot get_field for &__cs_nondet___CSEQ_atomic_thr1___cs_tmp_if_cond_1
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_23_lu-fig2.fixed.c line 338 function __CSEQ_atomic_thr1 thread 0
+Runtime Symex: 0.0462381s
+size of program expression: 2468 steps
+simple slicing removed 5 assignments
+Generated 1 VCC(s), 1 remaining after simplification
+Runtime Postprocess Equation: 0.000112819s
+Passing problem to propositional reduction
+converting SSA
+Runtime Convert SSA: 0.00751416s
+Running propositional reduction
+Post-processing
+Runtime Post-process: 1.7574e-05s
+Solving with Glucose Syrup with simplifier
+6776 variables, 7776 clauses
+SAT checker: instance is UNSATISFIABLE
+Runtime Solver: 0.00540491s
+Runtime decision procedure: 0.0129641s
+VERIFICATION SUCCESSFUL
+
+real	0m0,128s
+user	0m0,106s
+sys	0m0,024s

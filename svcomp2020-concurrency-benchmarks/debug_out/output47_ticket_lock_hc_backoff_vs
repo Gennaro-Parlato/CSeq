@@ -1,0 +1,53 @@
+/* dr_workarounds [001] ok 0.00s */
+/* functiontracker Error while performing dr_workarounds->functiontracker:
+
+Traceback (most recent call last):
+  File "./cseq-feeder.py", line 520, in main
+    m.loadfromstring(output, cseqenv)
+  File "/home/salvatore/ShadowMemory/SM-DR-Verismart/modules/functiontracker.py", line 29, in loadfromstring
+    super(self.__class__,self).loadfromstring(string, env)
+  File "/home/salvatore/ShadowMemory/SM-DR-Verismart/core/module.py", line 416, in loadfromstring
+    self.output = self.visit(self.ast)
+  File "/home/salvatore/ShadowMemory/SM-DR-Verismart/modules/functiontracker.py", line 38, in visit
+    s = super(self.__class__,self).visit(node)
+  File "/home/salvatore/ShadowMemory/SM-DR-Verismart/core/module.py", line 578, in visit
+    a = super(Translator,self).visit(node)
+  File "/home/salvatore/.local/lib/python2.7/site-packages/pycparser/c_generator.py", line 28, in visit
+    return getattr(self, method, self.generic_visit)(node)
+  File "/home/salvatore/.local/lib/python2.7/site-packages/pycparser/c_generator.py", line 167, in visit_FileAST
+    s += self.visit(ext)
+  File "/home/salvatore/ShadowMemory/SM-DR-Verismart/modules/functiontracker.py", line 38, in visit
+    s = super(self.__class__,self).visit(node)
+  File "/home/salvatore/ShadowMemory/SM-DR-Verismart/core/module.py", line 578, in visit
+    a = super(Translator,self).visit(node)
+  File "/home/salvatore/.local/lib/python2.7/site-packages/pycparser/c_generator.py", line 28, in visit
+    return getattr(self, method, self.generic_visit)(node)
+  File "/home/salvatore/ShadowMemory/SM-DR-Verismart/modules/functiontracker.py", line 45, in visit_FuncDef
+    s = super(self.__class__, self).visit_FuncDef(n)
+  File "/home/salvatore/ShadowMemory/SM-DR-Verismart/core/module.py", line 527, in visit_FuncDef
+    funcBlock = super(Translator, self).visit_FuncDef(n)
+  File "/home/salvatore/.local/lib/python2.7/site-packages/pycparser/c_generator.py", line 156, in visit_FuncDef
+    body = self.visit(n.body)
+  File "/home/salvatore/ShadowMemory/SM-DR-Verismart/modules/functiontracker.py", line 38, in visit
+    s = super(self.__class__,self).visit(node)
+  File "/home/salvatore/ShadowMemory/SM-DR-Verismart/core/module.py", line 578, in visit
+    a = super(Translator,self).visit(node)
+  File "/home/salvatore/.local/lib/python2.7/site-packages/pycparser/c_generator.py", line 28, in visit
+    return getattr(self, method, self.generic_visit)(node)
+  File "/home/salvatore/ShadowMemory/SM-DR-Verismart/modules/functiontracker.py", line 57, in visit_Compound
+    k = self._generate_stmt(stmt)
+  File "/home/salvatore/.local/lib/python2.7/site-packages/pycparser/c_generator.py", line 351, in _generate_stmt
+    return indent + self.visit(n) + '\n'
+  File "/home/salvatore/ShadowMemory/SM-DR-Verismart/modules/functiontracker.py", line 38, in visit
+    s = super(self.__class__,self).visit(node)
+  File "/home/salvatore/ShadowMemory/SM-DR-Verismart/core/module.py", line 578, in visit
+    a = super(Translator,self).visit(node)
+  File "/home/salvatore/.local/lib/python2.7/site-packages/pycparser/c_generator.py", line 28, in visit
+    return getattr(self, method, self.generic_visit)(node)
+  File "/home/salvatore/.local/lib/python2.7/site-packages/pycparser/c_generator.py", line 233, in visit_While
+    if n.cond: s += self.visit(n.cond)
+  File "/home/salvatore/ShadowMemory/SM-DR-Verismart/modules/functiontracker.py", line 36, in visit
+    self.inputcoordstofunctions[self._mapbacklineno(self.currentInputLineNumber)] = self.currentfunctionname
+  File "/home/salvatore/ShadowMemory/SM-DR-Verismart/core/module.py", line 303, in _mapbacklineno
+    inputfile = self.cseqenv.outputtofiles[lastkey]
+KeyError: 218

@@ -1,0 +1,1174 @@
+CBMC version 5.12 (cbmc-5.11-4673-gff3adfd29-dirty) 64-bit x86_64 linux
+Parsing /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c
+Converting
+Type-checking _dr_2singleton
+file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c line 298 function thread1_0: function '__CPROVER_set_field' is not declared
+file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c line 301 function thread1_0: function '__CPROVER_get_field' is not declared
+file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c line 458 function main: function '__CPROVER_field_decl_global' is not declared
+Generating GOTO Program
+Adding CPROVER library (x86_64)
+Removal of function pointers and virtual functions
+Generic Property Instrumentation
+Running with 8 object bits, 56 offset bits (default)
+Starting Bounded Model Checking
+size of program expression: 3024 steps
+simple slicing removed 5 assignments
+Generated 1 VCC(s), 1 remaining after simplification
+Passing problem to propositional reduction
+converting SSA
+Running propositional reduction
+Post-processing
+Solving with Glucose Syrup with simplifier
+17642 variables, 31325 clauses
+SAT checker: instance is SATISFIABLE
+Runtime decision procedure: 0.0386457s
+Building error trace
+Counterexample:
+
+State 19 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function __CPROVER_initialize line 62 thread 0
+----------------------------------------------------
+  __cs_active_thread[0l]=1 (1)
+
+State 20 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function __CPROVER_initialize line 62 thread 0
+----------------------------------------------------
+  __cs_active_thread[1l]=0 (0)
+
+State 21 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function __CPROVER_initialize line 62 thread 0
+----------------------------------------------------
+  __cs_active_thread[2l]=0 (0)
+
+State 22 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function __CPROVER_initialize line 62 thread 0
+----------------------------------------------------
+  __cs_active_thread[3l]=0 (0)
+
+State 23 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function __CPROVER_initialize line 62 thread 0
+----------------------------------------------------
+  __cs_active_thread[4l]=0 (0)
+
+State 24 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function __CPROVER_initialize line 62 thread 0
+----------------------------------------------------
+  __cs_active_thread[5l]=0 (0)
+
+State 25 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function __CPROVER_initialize line 62 thread 0
+----------------------------------------------------
+  __cs_active_thread[6l]=0 (0)
+
+State 34 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function __CPROVER_initialize line 63 thread 0
+----------------------------------------------------
+  __cs_pc[0l]=0 (0000)
+
+State 35 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function __CPROVER_initialize line 63 thread 0
+----------------------------------------------------
+  __cs_pc[1l]=0 (0000)
+
+State 36 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function __CPROVER_initialize line 63 thread 0
+----------------------------------------------------
+  __cs_pc[2l]=0 (0000)
+
+State 37 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function __CPROVER_initialize line 63 thread 0
+----------------------------------------------------
+  __cs_pc[3l]=0 (0000)
+
+State 38 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function __CPROVER_initialize line 63 thread 0
+----------------------------------------------------
+  __cs_pc[4l]=0 (0000)
+
+State 39 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function __CPROVER_initialize line 63 thread 0
+----------------------------------------------------
+  __cs_pc[5l]=0 (0000)
+
+State 40 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function __CPROVER_initialize line 63 thread 0
+----------------------------------------------------
+  __cs_pc[6l]=0 (0000)
+
+State 42 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function __CPROVER_initialize line 64 thread 0
+----------------------------------------------------
+  __cs_pc_cs[0l]=0 (00000)
+
+State 43 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function __CPROVER_initialize line 64 thread 0
+----------------------------------------------------
+  __cs_pc_cs[1l]=0 (00000)
+
+State 44 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function __CPROVER_initialize line 64 thread 0
+----------------------------------------------------
+  __cs_pc_cs[2l]=0 (00000)
+
+State 45 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function __CPROVER_initialize line 64 thread 0
+----------------------------------------------------
+  __cs_pc_cs[3l]=0 (00000)
+
+State 46 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function __CPROVER_initialize line 64 thread 0
+----------------------------------------------------
+  __cs_pc_cs[4l]=0 (00000)
+
+State 47 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function __CPROVER_initialize line 64 thread 0
+----------------------------------------------------
+  __cs_pc_cs[5l]=0 (00000)
+
+State 48 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function __CPROVER_initialize line 64 thread 0
+----------------------------------------------------
+  __cs_pc_cs[6l]=0 (00000)
+
+State 50 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function __CPROVER_initialize line 79 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 51 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function __CPROVER_initialize line 79 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 52 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function __CPROVER_initialize line 79 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[2l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 53 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function __CPROVER_initialize line 79 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[3l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 54 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function __CPROVER_initialize line 79 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[4l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 55 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function __CPROVER_initialize line 79 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[5l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 56 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function __CPROVER_initialize line 79 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[6l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 58 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function __CPROVER_initialize line 66 thread 0
+----------------------------------------------------
+  __cs_thread_lines[0l]=3 (0011)
+
+State 59 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function __CPROVER_initialize line 66 thread 0
+----------------------------------------------------
+  __cs_thread_lines[1l]=1 (0001)
+
+State 60 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function __CPROVER_initialize line 66 thread 0
+----------------------------------------------------
+  __cs_thread_lines[2l]=1 (0001)
+
+State 61 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function __CPROVER_initialize line 66 thread 0
+----------------------------------------------------
+  __cs_thread_lines[3l]=1 (0001)
+
+State 62 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function __CPROVER_initialize line 66 thread 0
+----------------------------------------------------
+  __cs_thread_lines[4l]=1 (0001)
+
+State 63 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function __CPROVER_initialize line 66 thread 0
+----------------------------------------------------
+  __cs_thread_lines[5l]=1 (0001)
+
+State 64 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function __CPROVER_initialize line 66 thread 0
+----------------------------------------------------
+  __cs_thread_lines[6l]=10 (1010)
+
+State 66 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function __CPROVER_initialize line 78 thread 0
+----------------------------------------------------
+  __cs_threadargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 67 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function __CPROVER_initialize line 78 thread 0
+----------------------------------------------------
+  __cs_threadargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 68 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function __CPROVER_initialize line 78 thread 0
+----------------------------------------------------
+  __cs_threadargs[2l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 69 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function __CPROVER_initialize line 78 thread 0
+----------------------------------------------------
+  __cs_threadargs[3l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 70 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function __CPROVER_initialize line 78 thread 0
+----------------------------------------------------
+  __cs_threadargs[4l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 71 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function __CPROVER_initialize line 78 thread 0
+----------------------------------------------------
+  __cs_threadargs[5l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 72 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function __CPROVER_initialize line 78 thread 0
+----------------------------------------------------
+  __cs_threadargs[6l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 84 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function main line 459 thread 0
+----------------------------------------------------
+  __cs_dr_ts=25 (11001)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c line 460 function main
+  (signed int)__cs_dr_ts <= 27
+
+State 86 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function main line 463 thread 0
+----------------------------------------------------
+  __cs_tmp_t0_r0=1 (01)
+
+State 87 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function main line 464 thread 0
+----------------------------------------------------
+  __cs_pc_cs[0l]=1 (00001)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c line 465 function main
+  (signed int)__cs_pc_cs[(signed long int)0] > 0
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c line 466 function main
+  (signed int)__cs_pc_cs[(signed long int)0] <= 3
+
+State 96 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function __cs_main_thread line 438 thread 0
+----------------------------------------------------
+  __cs_new_thread_id=&__cs_nondet_main_t (00000101 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 97 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function __cs_main_thread line 438 thread 0
+----------------------------------------------------
+  __cs_attr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 98 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function __cs_main_thread line 438 thread 0
+----------------------------------------------------
+  __cs_thread_function=thread0_0 (00000110 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 99 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function __cs_main_thread line 438 thread 0
+----------------------------------------------------
+  __cs_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 100 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function __cs_main_thread line 438 thread 0
+----------------------------------------------------
+  __cs_threadID=6 (00000000 00000000 00000000 00000110)
+
+State 102 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function __cs_create line 84 thread 0
+----------------------------------------------------
+  __cs_nondet_main_t=6 (00000000 00000000 00000000 00000110)
+
+State 103 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function __cs_create line 85 thread 0
+----------------------------------------------------
+  __cs_active_thread[6l]=1 (1)
+
+State 104 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function __cs_create line 86 thread 0
+----------------------------------------------------
+  __cs_threadargs[6l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 107 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function __cs_create line 87 thread 0
+----------------------------------------------------
+  __cs_message="thread spawned" (00000111 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 115 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function __cs_main_thread line 454 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 116 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function __cs_main_thread line 454 thread 0
+----------------------------------------------------
+  __cs_thread_index=0u (00000000 00000000 00000000 00000000)
+
+State 117 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function __cs_exit line 98 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 123 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function main line 472 thread 0
+----------------------------------------------------
+  __cs_pc[0l]=1 (0001)
+
+State 124 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function main line 474 thread 0
+----------------------------------------------------
+  __cs_tmp_t1_r0=0 (0)
+
+State 126 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function main line 489 thread 0
+----------------------------------------------------
+  __cs_tmp_t2_r0=0 (0)
+
+State 128 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function main line 504 thread 0
+----------------------------------------------------
+  __cs_tmp_t3_r0=0 (0)
+
+State 130 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function main line 519 thread 0
+----------------------------------------------------
+  __cs_tmp_t4_r0=0 (0)
+
+State 132 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function main line 534 thread 0
+----------------------------------------------------
+  __cs_tmp_t5_r0=0 (0)
+
+State 134 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function main line 549 thread 0
+----------------------------------------------------
+  __cs_tmp_t6_r0=1 (0001)
+
+State 136 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function main line 552 thread 0
+----------------------------------------------------
+  __cs_pc_cs[6l]=1 (00001)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c line 553 function main
+  (signed int)__cs_pc_cs[(signed long int)6] <= 10
+
+State 141 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function main line 556 thread 0
+----------------------------------------------------
+  __cs_param_thread0_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 145 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function thread0_0 line 397 thread 0
+----------------------------------------------------
+  __cs_new_thread_id=&__cs_nondet_thread0_t1 (00001000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 146 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function thread0_0 line 397 thread 0
+----------------------------------------------------
+  __cs_attr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 147 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function thread0_0 line 397 thread 0
+----------------------------------------------------
+  __cs_thread_function=thread1_0 (00001001 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 148 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function thread0_0 line 397 thread 0
+----------------------------------------------------
+  __cs_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 149 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function thread0_0 line 397 thread 0
+----------------------------------------------------
+  __cs_threadID=1 (00000000 00000000 00000000 00000001)
+
+State 151 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function __cs_create line 84 thread 0
+----------------------------------------------------
+  __cs_nondet_thread0_t1=1 (00000000 00000000 00000000 00000001)
+
+State 152 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function __cs_create line 85 thread 0
+----------------------------------------------------
+  __cs_active_thread[1l]=1 (1)
+
+State 153 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function __cs_create line 86 thread 0
+----------------------------------------------------
+  __cs_threadargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 156 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function __cs_create line 87 thread 0
+----------------------------------------------------
+  __cs_message="thread spawned" (00000111 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 171 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function thread0_0 line 432 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 172 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function thread0_0 line 432 thread 0
+----------------------------------------------------
+  __cs_thread_index=6u (00000000 00000000 00000000 00000110)
+
+State 173 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function __cs_exit line 98 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[6l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 180 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function main line 561 thread 0
+----------------------------------------------------
+  __cs_pc[6l]=1 (0001)
+
+State 181 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function main line 565 thread 0
+----------------------------------------------------
+  __cs_tmp_t0_r1=0 (00)
+
+State 183 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function main line 568 thread 0
+----------------------------------------------------
+  __cs_pc_cs[0l]=1 (00001)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c line 569 function main
+  (signed int)__cs_pc_cs[(signed long int)0] >= (signed int)__cs_pc[(signed long int)0]
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c line 570 function main
+  (signed int)__cs_pc_cs[(signed long int)0] <= 3
+
+State 194 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function __cs_main_thread line 454 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 195 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function __cs_main_thread line 454 thread 0
+----------------------------------------------------
+  __cs_thread_index=0u (00000000 00000000 00000000 00000000)
+
+State 196 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function __cs_exit line 98 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 203 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function main line 578 thread 0
+----------------------------------------------------
+  __cs_pc[0l]=1 (0001)
+
+State 204 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function main line 581 thread 0
+----------------------------------------------------
+  __cs_tmp_t1_r1=1 (1)
+
+State 206 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function main line 584 thread 0
+----------------------------------------------------
+  __cs_pc_cs[1l]=1 (00001)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c line 585 function main
+  (signed int)__cs_pc_cs[(signed long int)1] >= (signed int)__cs_pc[(signed long int)1]
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c line 586 function main
+  (signed int)__cs_pc_cs[(signed long int)1] <= 1
+
+State 212 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function main line 589 thread 0
+----------------------------------------------------
+  __cs_param_thread1_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 223 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function thread1_0 line 303 thread 0
+----------------------------------------------------
+  __cs_size=1u (00000000 00000000 00000000 00000001)
+
+State 224 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function __cs_safe_malloc line 70 thread 0
+----------------------------------------------------
+  __cs_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 227 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function __cs_safe_malloc line 70 thread 0
+----------------------------------------------------
+  malloc_size=1ul (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000001)
+
+State 245 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function __cs_safe_malloc line 70 thread 0
+----------------------------------------------------
+  __cs_ptr=(const void *)&dynamic_object1 (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 249 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function thread1_0 line 303 thread 0
+----------------------------------------------------
+  v=&dynamic_object1 (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c line 307 function thread1_0
+  (signed int)__cs_pc_cs[(signed long int)1] >= 1
+
+State 253 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function thread1_0 line 311 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 254 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function thread1_0 line 311 thread 0
+----------------------------------------------------
+  __cs_thread_index=1u (00000000 00000000 00000000 00000001)
+
+State 255 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function __cs_exit line 98 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 262 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function main line 594 thread 0
+----------------------------------------------------
+  __cs_pc[1l]=1 (0001)
+
+State 263 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function main line 597 thread 0
+----------------------------------------------------
+  __cs_tmp_t2_r1=0 (0)
+
+State 265 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function main line 613 thread 0
+----------------------------------------------------
+  __cs_tmp_t3_r1=0 (0)
+
+State 267 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function main line 629 thread 0
+----------------------------------------------------
+  __cs_tmp_t4_r1=0 (0)
+
+State 269 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function main line 645 thread 0
+----------------------------------------------------
+  __cs_tmp_t5_r1=0 (0)
+
+State 271 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function main line 661 thread 0
+----------------------------------------------------
+  __cs_tmp_t6_r1=5 (0101)
+
+State 273 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function main line 664 thread 0
+----------------------------------------------------
+  __cs_pc_cs[6l]=6 (00110)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c line 665 function main
+  (signed int)__cs_pc_cs[(signed long int)6] >= (signed int)__cs_pc[(signed long int)6]
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c line 666 function main
+  (signed int)__cs_pc_cs[(signed long int)6] <= 10
+
+State 279 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function main line 669 thread 0
+----------------------------------------------------
+  __cs_param_thread0_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 284 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function thread0_0 line 400 thread 0
+----------------------------------------------------
+  __cs_id=1 (00000000 00000000 00000000 00000001)
+
+State 285 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function thread0_0 line 400 thread 0
+----------------------------------------------------
+  __cs_value_ptr=((const void **)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c line 92 function __cs_join
+  __cs_pc[(signed long int)__cs_id] == __cs_thread_lines[(signed long int)__cs_id]
+
+State 293 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function thread0_0 line 403 thread 0
+----------------------------------------------------
+  __cs_new_thread_id=&__cs_nondet_thread0_t2 (00001010 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 294 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function thread0_0 line 403 thread 0
+----------------------------------------------------
+  __cs_attr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 295 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function thread0_0 line 403 thread 0
+----------------------------------------------------
+  __cs_thread_function=thread2_0 (00001011 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 296 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function thread0_0 line 403 thread 0
+----------------------------------------------------
+  __cs_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 297 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function thread0_0 line 403 thread 0
+----------------------------------------------------
+  __cs_threadID=2 (00000000 00000000 00000000 00000010)
+
+State 299 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function __cs_create line 84 thread 0
+----------------------------------------------------
+  __cs_nondet_thread0_t2=2 (00000000 00000000 00000000 00000010)
+
+State 300 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function __cs_create line 85 thread 0
+----------------------------------------------------
+  __cs_active_thread[2l]=1 (1)
+
+State 301 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function __cs_create line 86 thread 0
+----------------------------------------------------
+  __cs_threadargs[2l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 304 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function __cs_create line 87 thread 0
+----------------------------------------------------
+  __cs_message="thread spawned" (00000111 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 311 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function thread0_0 line 406 thread 0
+----------------------------------------------------
+  __cs_new_thread_id=&__cs_nondet_thread0_t3 (00001100 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 312 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function thread0_0 line 406 thread 0
+----------------------------------------------------
+  __cs_attr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 313 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function thread0_0 line 406 thread 0
+----------------------------------------------------
+  __cs_thread_function=thread3_0 (00001101 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 314 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function thread0_0 line 406 thread 0
+----------------------------------------------------
+  __cs_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 315 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function thread0_0 line 406 thread 0
+----------------------------------------------------
+  __cs_threadID=3 (00000000 00000000 00000000 00000011)
+
+State 317 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function __cs_create line 84 thread 0
+----------------------------------------------------
+  __cs_nondet_thread0_t3=3 (00000000 00000000 00000000 00000011)
+
+State 318 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function __cs_create line 85 thread 0
+----------------------------------------------------
+  __cs_active_thread[3l]=1 (1)
+
+State 319 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function __cs_create line 86 thread 0
+----------------------------------------------------
+  __cs_threadargs[3l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 322 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function __cs_create line 87 thread 0
+----------------------------------------------------
+  __cs_message="thread spawned" (00000111 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 329 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function thread0_0 line 409 thread 0
+----------------------------------------------------
+  __cs_new_thread_id=&__cs_nondet_thread0_t4 (00001110 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 330 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function thread0_0 line 409 thread 0
+----------------------------------------------------
+  __cs_attr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 331 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function thread0_0 line 409 thread 0
+----------------------------------------------------
+  __cs_thread_function=thread2_1 (00001111 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 332 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function thread0_0 line 409 thread 0
+----------------------------------------------------
+  __cs_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 333 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function thread0_0 line 409 thread 0
+----------------------------------------------------
+  __cs_threadID=4 (00000000 00000000 00000000 00000100)
+
+State 335 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function __cs_create line 84 thread 0
+----------------------------------------------------
+  __cs_nondet_thread0_t4=4 (00000000 00000000 00000000 00000100)
+
+State 336 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function __cs_create line 85 thread 0
+----------------------------------------------------
+  __cs_active_thread[4l]=1 (1)
+
+State 337 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function __cs_create line 86 thread 0
+----------------------------------------------------
+  __cs_threadargs[4l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 340 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function __cs_create line 87 thread 0
+----------------------------------------------------
+  __cs_message="thread spawned" (00000111 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 347 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function thread0_0 line 412 thread 0
+----------------------------------------------------
+  __cs_new_thread_id=&__cs_nondet_thread0_t5 (00010000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 348 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function thread0_0 line 412 thread 0
+----------------------------------------------------
+  __cs_attr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 349 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function thread0_0 line 412 thread 0
+----------------------------------------------------
+  __cs_thread_function=thread2_2 (00010001 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 350 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function thread0_0 line 412 thread 0
+----------------------------------------------------
+  __cs_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 351 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function thread0_0 line 412 thread 0
+----------------------------------------------------
+  __cs_threadID=5 (00000000 00000000 00000000 00000101)
+
+State 353 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function __cs_create line 84 thread 0
+----------------------------------------------------
+  __cs_nondet_thread0_t5=5 (00000000 00000000 00000000 00000101)
+
+State 354 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function __cs_create line 85 thread 0
+----------------------------------------------------
+  __cs_active_thread[5l]=1 (1)
+
+State 355 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function __cs_create line 86 thread 0
+----------------------------------------------------
+  __cs_threadargs[5l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 358 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function __cs_create line 87 thread 0
+----------------------------------------------------
+  __cs_message="thread spawned" (00000111 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 368 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function thread0_0 line 432 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 369 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function thread0_0 line 432 thread 0
+----------------------------------------------------
+  __cs_thread_index=6u (00000000 00000000 00000000 00000110)
+
+State 370 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function __cs_exit line 98 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[6l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 377 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function main line 674 thread 0
+----------------------------------------------------
+  __cs_pc[6l]=6 (0110)
+
+State 378 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function main line 678 thread 0
+----------------------------------------------------
+  __cs_tmp_t0_r2=0 (00)
+
+State 380 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function main line 681 thread 0
+----------------------------------------------------
+  __cs_pc_cs[0l]=1 (00001)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c line 682 function main
+  (signed int)__cs_pc_cs[(signed long int)0] >= (signed int)__cs_pc[(signed long int)0]
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c line 683 function main
+  (signed int)__cs_pc_cs[(signed long int)0] <= 3
+
+State 391 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function __cs_main_thread line 454 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 392 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function __cs_main_thread line 454 thread 0
+----------------------------------------------------
+  __cs_thread_index=0u (00000000 00000000 00000000 00000000)
+
+State 393 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function __cs_exit line 98 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 400 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function main line 691 thread 0
+----------------------------------------------------
+  __cs_pc[0l]=1 (0001)
+
+State 401 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function main line 694 thread 0
+----------------------------------------------------
+  __cs_tmp_t1_r2=0 (0)
+
+State 403 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function main line 697 thread 0
+----------------------------------------------------
+  __cs_pc_cs[1l]=1 (00001)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c line 698 function main
+  (signed int)__cs_pc_cs[(signed long int)1] >= (signed int)__cs_pc[(signed long int)1]
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c line 699 function main
+  (signed int)__cs_pc_cs[(signed long int)1] <= 1
+
+State 409 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function main line 702 thread 0
+----------------------------------------------------
+  __cs_param_thread1_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 414 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function thread1_0 line 311 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 415 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function thread1_0 line 311 thread 0
+----------------------------------------------------
+  __cs_thread_index=1u (00000000 00000000 00000000 00000001)
+
+State 416 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function __cs_exit line 98 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 423 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function main line 707 thread 0
+----------------------------------------------------
+  __cs_pc[1l]=1 (0001)
+
+State 424 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function main line 710 thread 0
+----------------------------------------------------
+  __cs_tmp_t2_r2=1 (1)
+
+State 426 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function main line 713 thread 0
+----------------------------------------------------
+  __cs_pc_cs[2l]=1 (00001)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c line 714 function main
+  (signed int)__cs_pc_cs[(signed long int)2] >= (signed int)__cs_pc[(signed long int)2]
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c line 715 function main
+  (signed int)__cs_pc_cs[(signed long int)2] <= 1
+
+State 432 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function main line 718 thread 0
+----------------------------------------------------
+  __cs_param_thread2_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 440 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function thread2_0 line 322 thread 0
+----------------------------------------------------
+  dynamic_object1='X' (01011000)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c line 326 function thread2_0
+  (signed int)__cs_pc_cs[(signed long int)2] >= 1
+
+State 444 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function thread2_0 line 330 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 445 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function thread2_0 line 330 thread 0
+----------------------------------------------------
+  __cs_thread_index=2u (00000000 00000000 00000000 00000010)
+
+State 446 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function __cs_exit line 98 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[2l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 453 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function main line 723 thread 0
+----------------------------------------------------
+  __cs_pc[2l]=1 (0001)
+
+State 454 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function main line 726 thread 0
+----------------------------------------------------
+  __cs_tmp_t3_r2=0 (0)
+
+State 456 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function main line 729 thread 0
+----------------------------------------------------
+  __cs_pc_cs[3l]=0 (00000)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c line 730 function main
+  (signed int)__cs_pc_cs[(signed long int)3] >= (signed int)__cs_pc[(signed long int)3]
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c line 731 function main
+  (signed int)__cs_pc_cs[(signed long int)3] <= 1
+
+State 462 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function main line 734 thread 0
+----------------------------------------------------
+  __cs_param_thread3_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 467 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function thread3_0 line 387 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 468 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function thread3_0 line 387 thread 0
+----------------------------------------------------
+  __cs_thread_index=3u (00000000 00000000 00000000 00000011)
+
+State 469 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function __cs_exit line 98 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[3l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 476 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function main line 739 thread 0
+----------------------------------------------------
+  __cs_pc[3l]=0 (0000)
+
+State 477 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function main line 742 thread 0
+----------------------------------------------------
+  __cs_tmp_t4_r2=0 (0)
+
+State 479 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function main line 745 thread 0
+----------------------------------------------------
+  __cs_pc_cs[4l]=0 (00000)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c line 746 function main
+  (signed int)__cs_pc_cs[(signed long int)4] >= (signed int)__cs_pc[(signed long int)4]
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c line 747 function main
+  (signed int)__cs_pc_cs[(signed long int)4] <= 1
+
+State 485 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function main line 750 thread 0
+----------------------------------------------------
+  __cs_param_thread2_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 490 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function thread2_1 line 349 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 491 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function thread2_1 line 349 thread 0
+----------------------------------------------------
+  __cs_thread_index=4u (00000000 00000000 00000000 00000100)
+
+State 492 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function __cs_exit line 98 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[4l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 499 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function main line 755 thread 0
+----------------------------------------------------
+  __cs_pc[4l]=0 (0000)
+
+State 500 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function main line 758 thread 0
+----------------------------------------------------
+  __cs_tmp_t5_r2=0 (0)
+
+State 502 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function main line 761 thread 0
+----------------------------------------------------
+  __cs_pc_cs[5l]=0 (00000)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c line 762 function main
+  (signed int)__cs_pc_cs[(signed long int)5] >= (signed int)__cs_pc[(signed long int)5]
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c line 763 function main
+  (signed int)__cs_pc_cs[(signed long int)5] <= 1
+
+State 508 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function main line 766 thread 0
+----------------------------------------------------
+  __cs_param_thread2_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 513 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function thread2_2 line 368 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 514 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function thread2_2 line 368 thread 0
+----------------------------------------------------
+  __cs_thread_index=5u (00000000 00000000 00000000 00000101)
+
+State 515 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function __cs_exit line 98 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[5l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 522 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function main line 771 thread 0
+----------------------------------------------------
+  __cs_pc[5l]=0 (0000)
+
+State 523 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function main line 774 thread 0
+----------------------------------------------------
+  __cs_tmp_t6_r2=0 (0000)
+
+State 525 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function main line 777 thread 0
+----------------------------------------------------
+  __cs_pc_cs[6l]=6 (00110)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c line 778 function main
+  (signed int)__cs_pc_cs[(signed long int)6] >= (signed int)__cs_pc[(signed long int)6]
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c line 779 function main
+  (signed int)__cs_pc_cs[(signed long int)6] <= 10
+
+State 531 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function main line 782 thread 0
+----------------------------------------------------
+  __cs_param_thread0_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 544 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function thread0_0 line 432 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 545 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function thread0_0 line 432 thread 0
+----------------------------------------------------
+  __cs_thread_index=6u (00000000 00000000 00000000 00000110)
+
+State 546 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function __cs_exit line 98 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[6l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 553 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function main line 787 thread 0
+----------------------------------------------------
+  __cs_pc[6l]=6 (0110)
+
+State 554 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function main line 791 thread 0
+----------------------------------------------------
+  __cs_tmp_t0_r3=0 (00)
+
+State 556 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function main line 794 thread 0
+----------------------------------------------------
+  __cs_pc_cs[0l]=1 (00001)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c line 795 function main
+  (signed int)__cs_pc_cs[(signed long int)0] >= (signed int)__cs_pc[(signed long int)0]
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c line 796 function main
+  (signed int)__cs_pc_cs[(signed long int)0] <= 3
+
+State 567 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function __cs_main_thread line 454 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 568 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function __cs_main_thread line 454 thread 0
+----------------------------------------------------
+  __cs_thread_index=0u (00000000 00000000 00000000 00000000)
+
+State 569 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function __cs_exit line 98 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 576 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function main line 804 thread 0
+----------------------------------------------------
+  __cs_pc[0l]=1 (0001)
+
+State 577 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function main line 807 thread 0
+----------------------------------------------------
+  __cs_tmp_t1_r3=0 (0)
+
+State 579 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function main line 810 thread 0
+----------------------------------------------------
+  __cs_pc_cs[1l]=1 (00001)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c line 811 function main
+  (signed int)__cs_pc_cs[(signed long int)1] >= (signed int)__cs_pc[(signed long int)1]
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c line 812 function main
+  (signed int)__cs_pc_cs[(signed long int)1] <= 1
+
+State 585 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function main line 815 thread 0
+----------------------------------------------------
+  __cs_param_thread1_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 590 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function thread1_0 line 311 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 591 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function thread1_0 line 311 thread 0
+----------------------------------------------------
+  __cs_thread_index=1u (00000000 00000000 00000000 00000001)
+
+State 592 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function __cs_exit line 98 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 599 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function main line 820 thread 0
+----------------------------------------------------
+  __cs_pc[1l]=1 (0001)
+
+State 600 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function main line 823 thread 0
+----------------------------------------------------
+  __cs_tmp_t2_r3=0 (0)
+
+State 602 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function main line 826 thread 0
+----------------------------------------------------
+  __cs_pc_cs[2l]=1 (00001)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c line 827 function main
+  (signed int)__cs_pc_cs[(signed long int)2] >= (signed int)__cs_pc[(signed long int)2]
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c line 828 function main
+  (signed int)__cs_pc_cs[(signed long int)2] <= 1
+
+State 608 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function main line 831 thread 0
+----------------------------------------------------
+  __cs_param_thread2_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 613 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function thread2_0 line 330 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 614 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function thread2_0 line 330 thread 0
+----------------------------------------------------
+  __cs_thread_index=2u (00000000 00000000 00000000 00000010)
+
+State 615 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function __cs_exit line 98 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[2l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 622 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function main line 836 thread 0
+----------------------------------------------------
+  __cs_pc[2l]=1 (0001)
+
+State 623 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function main line 839 thread 0
+----------------------------------------------------
+  __cs_tmp_t3_r3=0 (0)
+
+State 625 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function main line 842 thread 0
+----------------------------------------------------
+  __cs_pc_cs[3l]=0 (00000)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c line 843 function main
+  (signed int)__cs_pc_cs[(signed long int)3] >= (signed int)__cs_pc[(signed long int)3]
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c line 844 function main
+  (signed int)__cs_pc_cs[(signed long int)3] <= 1
+
+State 631 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function main line 847 thread 0
+----------------------------------------------------
+  __cs_param_thread3_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 636 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function thread3_0 line 387 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 637 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function thread3_0 line 387 thread 0
+----------------------------------------------------
+  __cs_thread_index=3u (00000000 00000000 00000000 00000011)
+
+State 638 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function __cs_exit line 98 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[3l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 645 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function main line 852 thread 0
+----------------------------------------------------
+  __cs_pc[3l]=0 (0000)
+
+State 646 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function main line 855 thread 0
+----------------------------------------------------
+  __cs_tmp_t4_r3=0 (0)
+
+State 648 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function main line 858 thread 0
+----------------------------------------------------
+  __cs_pc_cs[4l]=0 (00000)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c line 859 function main
+  (signed int)__cs_pc_cs[(signed long int)4] >= (signed int)__cs_pc[(signed long int)4]
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c line 860 function main
+  (signed int)__cs_pc_cs[(signed long int)4] <= 1
+
+State 652 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function main line 862 thread 0
+----------------------------------------------------
+  __cs_dataraceDetectionStarted=TRUE (00000001)
+
+State 655 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function main line 863 thread 0
+----------------------------------------------------
+  __cs_param_thread2_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 662 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function thread2_1 line 349 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 663 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function thread2_1 line 349 thread 0
+----------------------------------------------------
+  __cs_thread_index=4u (00000000 00000000 00000000 00000100)
+
+State 664 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function __cs_exit line 98 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[4l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 671 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function main line 867 thread 0
+----------------------------------------------------
+  __cs_dataraceSecondThread=TRUE (00000001)
+
+State 672 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function main line 868 thread 0
+----------------------------------------------------
+  __cs_pc[4l]=0 (0000)
+
+State 673 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function main line 871 thread 0
+----------------------------------------------------
+  __cs_tmp_t5_r3=1 (1)
+
+State 675 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function main line 874 thread 0
+----------------------------------------------------
+  __cs_pc_cs[5l]=1 (00001)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c line 875 function main
+  (signed int)__cs_pc_cs[(signed long int)5] >= (signed int)__cs_pc[(signed long int)5]
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c line 876 function main
+  (signed int)__cs_pc_cs[(signed long int)5] <= 1
+
+State 681 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function main line 879 thread 0
+----------------------------------------------------
+  __cs_param_thread2_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 689 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function thread2_2 line 359 thread 0
+----------------------------------------------------
+  __cs_dataraceNotDetected=FALSE (00000000)
+
+State 690 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function thread2_2 line 360 thread 0
+----------------------------------------------------
+  dynamic_object1='X' (01011000)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c line 364 function thread2_2
+  (signed int)__cs_pc_cs[(signed long int)5] >= 1
+
+State 694 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function thread2_2 line 368 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 695 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function thread2_2 line 368 thread 0
+----------------------------------------------------
+  __cs_thread_index=5u (00000000 00000000 00000000 00000101)
+
+State 696 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function __cs_exit line 98 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[5l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 702 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function main line 881 thread 0
+----------------------------------------------------
+  __cs_dataraceContinue=FALSE (00000000)
+
+State 704 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function main line 883 thread 0
+----------------------------------------------------
+  __cs_dataraceSecondThread=TRUE (00000001)
+
+State 705 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function main line 884 thread 0
+----------------------------------------------------
+  __cs_pc[5l]=1 (0001)
+
+State 706 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function main line 887 thread 0
+----------------------------------------------------
+  __cs_tmp_t6_r3=0 (0000)
+
+State 708 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function main line 902 thread 0
+----------------------------------------------------
+  __cs_tmp_t0_r4=2 (10)
+
+Violated property:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2singleton.c function main line 910 thread 0
+  Data race failure
+  __cs_dataraceNotDetected != FALSE
+
+
+VERIFICATION FAILED
+
+real	0m0,201s
+user	0m0,182s
+sys	0m0,021s

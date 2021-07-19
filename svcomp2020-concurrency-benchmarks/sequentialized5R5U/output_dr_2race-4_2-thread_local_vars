@@ -1,0 +1,762 @@
+CBMC version 5.12 (cbmc-5.11-4673-gff3adfd29-dirty) 64-bit x86_64 linux
+Parsing /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c
+Converting
+Type-checking _dr_2race-4_2-thread_local_vars
+file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 312 function thread_ath9k_0: function '__CPROVER_set_field' is not declared
+file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 315 function thread_ath9k_0: function '__CPROVER_get_field' is not declared
+file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 4108 function main: function '__CPROVER_field_decl_global' is not declared
+Generating GOTO Program
+Adding CPROVER library (x86_64)
+Removal of function pointers and virtual functions
+Generic Property Instrumentation
+Running with 8 object bits, 56 offset bits (default)
+Starting Bounded Model Checking
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 4012 function __cs_main_thread thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 4076 function __cs_main_thread thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 2675 function thread_usb_0 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 2769 function thread_usb_0 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 2942 function thread_usb_0 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 3036 function thread_usb_0 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 3209 function thread_usb_0 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 3303 function thread_usb_0 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 3476 function thread_usb_0 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 3570 function thread_usb_0 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 3743 function thread_usb_0 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 3837 function thread_usb_0 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 3895 function thread_usb_0 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 3924 function thread_usb_0 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 4012 function __cs_main_thread thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 4076 function __cs_main_thread thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 331 function thread_ath9k_0 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 417 function thread_ath9k_0 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 503 function thread_ath9k_0 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 589 function thread_ath9k_0 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 675 function thread_ath9k_0 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 726 function thread_ath9k_0 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 782 function thread_ath9k_1 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 868 function thread_ath9k_1 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 954 function thread_ath9k_1 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 1040 function thread_ath9k_1 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 1126 function thread_ath9k_1 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 1177 function thread_ath9k_1 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 1233 function thread_ath9k_2 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 1319 function thread_ath9k_2 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 1405 function thread_ath9k_2 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 1491 function thread_ath9k_2 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 1577 function thread_ath9k_2 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 1628 function thread_ath9k_2 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 1684 function thread_ath9k_3 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 1770 function thread_ath9k_3 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 1856 function thread_ath9k_3 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 1942 function thread_ath9k_3 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 2028 function thread_ath9k_3 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 2079 function thread_ath9k_3 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 2135 function thread_ath9k_4 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 2221 function thread_ath9k_4 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 2307 function thread_ath9k_4 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 2393 function thread_ath9k_4 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 2479 function thread_ath9k_4 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 2530 function thread_ath9k_4 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 2675 function thread_usb_0 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 2769 function thread_usb_0 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 2942 function thread_usb_0 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 3036 function thread_usb_0 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 3209 function thread_usb_0 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 3303 function thread_usb_0 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 3476 function thread_usb_0 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 3570 function thread_usb_0 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 3743 function thread_usb_0 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 3837 function thread_usb_0 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 3895 function thread_usb_0 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 3924 function thread_usb_0 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 4012 function __cs_main_thread thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 4076 function __cs_main_thread thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 331 function thread_ath9k_0 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 417 function thread_ath9k_0 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 503 function thread_ath9k_0 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 589 function thread_ath9k_0 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 675 function thread_ath9k_0 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 726 function thread_ath9k_0 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 782 function thread_ath9k_1 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 868 function thread_ath9k_1 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 954 function thread_ath9k_1 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 1040 function thread_ath9k_1 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 1126 function thread_ath9k_1 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 1177 function thread_ath9k_1 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 1233 function thread_ath9k_2 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 1319 function thread_ath9k_2 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 1405 function thread_ath9k_2 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 1491 function thread_ath9k_2 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 1577 function thread_ath9k_2 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 1628 function thread_ath9k_2 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 1684 function thread_ath9k_3 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 1770 function thread_ath9k_3 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 1856 function thread_ath9k_3 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 1942 function thread_ath9k_3 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 2028 function thread_ath9k_3 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 2079 function thread_ath9k_3 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 2135 function thread_ath9k_4 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 2221 function thread_ath9k_4 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 2307 function thread_ath9k_4 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 2393 function thread_ath9k_4 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 2479 function thread_ath9k_4 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 2530 function thread_ath9k_4 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 2675 function thread_usb_0 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 2769 function thread_usb_0 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 2942 function thread_usb_0 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 3036 function thread_usb_0 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 3209 function thread_usb_0 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 3303 function thread_usb_0 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 3476 function thread_usb_0 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 3570 function thread_usb_0 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 3743 function thread_usb_0 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 3837 function thread_usb_0 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 3895 function thread_usb_0 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 3924 function thread_usb_0 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 4012 function __cs_main_thread thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 4076 function __cs_main_thread thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 331 function thread_ath9k_0 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 417 function thread_ath9k_0 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 503 function thread_ath9k_0 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 589 function thread_ath9k_0 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 675 function thread_ath9k_0 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 726 function thread_ath9k_0 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 782 function thread_ath9k_1 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 868 function thread_ath9k_1 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 954 function thread_ath9k_1 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 1040 function thread_ath9k_1 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 1126 function thread_ath9k_1 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 1177 function thread_ath9k_1 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 1233 function thread_ath9k_2 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 1319 function thread_ath9k_2 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 1405 function thread_ath9k_2 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 1491 function thread_ath9k_2 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 1577 function thread_ath9k_2 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 1628 function thread_ath9k_2 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 1684 function thread_ath9k_3 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 1770 function thread_ath9k_3 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 1856 function thread_ath9k_3 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 1942 function thread_ath9k_3 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 2028 function thread_ath9k_3 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 2079 function thread_ath9k_3 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 2135 function thread_ath9k_4 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 2221 function thread_ath9k_4 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 2307 function thread_ath9k_4 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 2393 function thread_ath9k_4 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 2479 function thread_ath9k_4 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 2530 function thread_ath9k_4 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 2675 function thread_usb_0 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 2769 function thread_usb_0 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 2942 function thread_usb_0 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 3036 function thread_usb_0 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 3209 function thread_usb_0 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 3303 function thread_usb_0 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 3476 function thread_usb_0 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 3570 function thread_usb_0 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 3743 function thread_usb_0 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 3837 function thread_usb_0 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 3895 function thread_usb_0 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 3924 function thread_usb_0 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 4012 function __cs_main_thread thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 4076 function __cs_main_thread thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 331 function thread_ath9k_0 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 417 function thread_ath9k_0 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 503 function thread_ath9k_0 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 589 function thread_ath9k_0 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 675 function thread_ath9k_0 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 726 function thread_ath9k_0 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 782 function thread_ath9k_1 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 868 function thread_ath9k_1 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 954 function thread_ath9k_1 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 1040 function thread_ath9k_1 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 1126 function thread_ath9k_1 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 1177 function thread_ath9k_1 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 1233 function thread_ath9k_2 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 1319 function thread_ath9k_2 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 1405 function thread_ath9k_2 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 1491 function thread_ath9k_2 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 1577 function thread_ath9k_2 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 1628 function thread_ath9k_2 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 1684 function thread_ath9k_3 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 1770 function thread_ath9k_3 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 1856 function thread_ath9k_3 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 1942 function thread_ath9k_3 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 2028 function thread_ath9k_3 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 2079 function thread_ath9k_3 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 2135 function thread_ath9k_4 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 2221 function thread_ath9k_4 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 2307 function thread_ath9k_4 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 2393 function thread_ath9k_4 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 2479 function thread_ath9k_4 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 2530 function thread_ath9k_4 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 2675 function thread_usb_0 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 2769 function thread_usb_0 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 2942 function thread_usb_0 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 3036 function thread_usb_0 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 3209 function thread_usb_0 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 3303 function thread_usb_0 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 3476 function thread_usb_0 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 3570 function thread_usb_0 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 3743 function thread_usb_0 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 3837 function thread_usb_0 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 3895 function thread_usb_0 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 3924 function thread_usb_0 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 4012 function __cs_main_thread thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 4076 function __cs_main_thread thread 0
+size of program expression: 46331 steps
+simple slicing removed 5 assignments
+Generated 1 VCC(s), 1 remaining after simplification
+Passing problem to propositional reduction
+converting SSA
+Running propositional reduction
+Post-processing
+Solving with Glucose Syrup with simplifier
+327577 variables, 1084056 clauses
+SAT checker: instance is SATISFIABLE
+Runtime decision procedure: 1.21499s
+Building error trace
+Counterexample:
+
+State 19 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c function __CPROVER_initialize line 62 thread 0
+----------------------------------------------------
+  __cs_active_thread[0l]=1 (1)
+
+State 20 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c function __CPROVER_initialize line 62 thread 0
+----------------------------------------------------
+  __cs_active_thread[1l]=0 (0)
+
+State 21 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c function __CPROVER_initialize line 62 thread 0
+----------------------------------------------------
+  __cs_active_thread[2l]=0 (0)
+
+State 22 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c function __CPROVER_initialize line 62 thread 0
+----------------------------------------------------
+  __cs_active_thread[3l]=0 (0)
+
+State 23 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c function __CPROVER_initialize line 62 thread 0
+----------------------------------------------------
+  __cs_active_thread[4l]=0 (0)
+
+State 24 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c function __CPROVER_initialize line 62 thread 0
+----------------------------------------------------
+  __cs_active_thread[5l]=0 (0)
+
+State 25 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c function __CPROVER_initialize line 62 thread 0
+----------------------------------------------------
+  __cs_active_thread[6l]=0 (0)
+
+State 42 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c function __CPROVER_initialize line 63 thread 0
+----------------------------------------------------
+  __cs_pc[0l]=0 (000000)
+
+State 43 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c function __CPROVER_initialize line 63 thread 0
+----------------------------------------------------
+  __cs_pc[1l]=0 (000000)
+
+State 44 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c function __CPROVER_initialize line 63 thread 0
+----------------------------------------------------
+  __cs_pc[2l]=0 (000000)
+
+State 45 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c function __CPROVER_initialize line 63 thread 0
+----------------------------------------------------
+  __cs_pc[3l]=0 (000000)
+
+State 46 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c function __CPROVER_initialize line 63 thread 0
+----------------------------------------------------
+  __cs_pc[4l]=0 (000000)
+
+State 47 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c function __CPROVER_initialize line 63 thread 0
+----------------------------------------------------
+  __cs_pc[5l]=0 (000000)
+
+State 48 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c function __CPROVER_initialize line 63 thread 0
+----------------------------------------------------
+  __cs_pc[6l]=0 (000000)
+
+State 50 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c function __CPROVER_initialize line 64 thread 0
+----------------------------------------------------
+  __cs_pc_cs[0l]=0 (0000000)
+
+State 51 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c function __CPROVER_initialize line 64 thread 0
+----------------------------------------------------
+  __cs_pc_cs[1l]=0 (0000000)
+
+State 52 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c function __CPROVER_initialize line 64 thread 0
+----------------------------------------------------
+  __cs_pc_cs[2l]=0 (0000000)
+
+State 53 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c function __CPROVER_initialize line 64 thread 0
+----------------------------------------------------
+  __cs_pc_cs[3l]=0 (0000000)
+
+State 54 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c function __CPROVER_initialize line 64 thread 0
+----------------------------------------------------
+  __cs_pc_cs[4l]=0 (0000000)
+
+State 55 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c function __CPROVER_initialize line 64 thread 0
+----------------------------------------------------
+  __cs_pc_cs[5l]=0 (0000000)
+
+State 56 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c function __CPROVER_initialize line 64 thread 0
+----------------------------------------------------
+  __cs_pc_cs[6l]=0 (0000000)
+
+State 58 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c function __CPROVER_initialize line 79 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 59 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c function __CPROVER_initialize line 79 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 60 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c function __CPROVER_initialize line 79 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[2l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 61 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c function __CPROVER_initialize line 79 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[3l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 62 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c function __CPROVER_initialize line 79 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[4l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 63 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c function __CPROVER_initialize line 79 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[5l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 64 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c function __CPROVER_initialize line 79 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[6l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 66 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c function __CPROVER_initialize line 66 thread 0
+----------------------------------------------------
+  __cs_thread_lines[0l]=8 (001000)
+
+State 67 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c function __CPROVER_initialize line 66 thread 0
+----------------------------------------------------
+  __cs_thread_lines[1l]=22 (010110)
+
+State 68 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c function __CPROVER_initialize line 66 thread 0
+----------------------------------------------------
+  __cs_thread_lines[2l]=22 (010110)
+
+State 69 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c function __CPROVER_initialize line 66 thread 0
+----------------------------------------------------
+  __cs_thread_lines[3l]=22 (010110)
+
+State 70 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c function __CPROVER_initialize line 66 thread 0
+----------------------------------------------------
+  __cs_thread_lines[4l]=22 (010110)
+
+State 71 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c function __CPROVER_initialize line 66 thread 0
+----------------------------------------------------
+  __cs_thread_lines[5l]=22 (010110)
+
+State 72 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c function __CPROVER_initialize line 66 thread 0
+----------------------------------------------------
+  __cs_thread_lines[6l]=59 (111011)
+
+State 74 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c function __CPROVER_initialize line 78 thread 0
+----------------------------------------------------
+  __cs_threadargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 75 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c function __CPROVER_initialize line 78 thread 0
+----------------------------------------------------
+  __cs_threadargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 76 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c function __CPROVER_initialize line 78 thread 0
+----------------------------------------------------
+  __cs_threadargs[2l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 77 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c function __CPROVER_initialize line 78 thread 0
+----------------------------------------------------
+  __cs_threadargs[3l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 78 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c function __CPROVER_initialize line 78 thread 0
+----------------------------------------------------
+  __cs_threadargs[4l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 79 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c function __CPROVER_initialize line 78 thread 0
+----------------------------------------------------
+  __cs_threadargs[5l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 80 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c function __CPROVER_initialize line 78 thread 0
+----------------------------------------------------
+  __cs_threadargs[6l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 313 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c function main line 4109 thread 0
+----------------------------------------------------
+  __cs_dr_ts=28 (011100)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 4110 function main
+  (signed int)__cs_dr_ts <= 34
+
+State 315 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c function main line 4113 thread 0
+----------------------------------------------------
+  __cs_tmp_t0_r0=1 (0001)
+
+State 316 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c function main line 4114 thread 0
+----------------------------------------------------
+  __cs_pc_cs[0l]=1 (0000001)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 4115 function main
+  (signed int)__cs_pc_cs[(signed long int)0] > 0
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 4116 function main
+  (signed int)__cs_pc_cs[(signed long int)0] <= 8
+
+State 325 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c function __cs_main_thread line 3954 thread 0
+----------------------------------------------------
+  __cs_m=&mutex (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 326 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c function __cs_main_thread line 3954 thread 0
+----------------------------------------------------
+  __cs_val=0 (00000000 00000000 00000000 00000000)
+
+State 327 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c function __cs_mutex_init line 108 thread 0
+----------------------------------------------------
+  mutex=-1 (11111111 11111111 11111111 11111111)
+
+State 330 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c function __cs_main_thread line 3955 thread 0
+----------------------------------------------------
+  pdev=1 (00000000 00000000 00000000 00000001)
+
+State 331 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c function __cs_main_thread line 3958 thread 0
+----------------------------------------------------
+  __cs_param_ldv_assert_1_expression=1 (00000000 00000000 00000000 00000001)
+
+State 332 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c function __cs_main_thread line 3962 thread 0
+----------------------------------------------------
+  __cs_nondet_ldv_assert_1___cs_tmp_if_cond_0=FALSE (00000000)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 3973 function __cs_main_thread
+  (signed int)__cs_pc_cs[(signed long int)0] >= 1
+
+State 337 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c function __cs_main_thread line 3981 thread 0
+----------------------------------------------------
+  __cs_nondet_module_init_1___cs_tmp_if_cond_12=FALSE (00000000)
+
+State 352 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c function __cs_main_thread line 4104 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 353 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c function __cs_main_thread line 4104 thread 0
+----------------------------------------------------
+  __cs_thread_index=0u (00000000 00000000 00000000 00000000)
+
+State 354 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c function __cs_exit line 98 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 360 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c function main line 4122 thread 0
+----------------------------------------------------
+  __cs_pc[0l]=1 (000001)
+
+State 361 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c function main line 4124 thread 0
+----------------------------------------------------
+  __cs_tmp_t1_r0=0 (00000)
+
+State 363 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c function main line 4139 thread 0
+----------------------------------------------------
+  __cs_tmp_t2_r0=0 (00000)
+
+State 365 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c function main line 4154 thread 0
+----------------------------------------------------
+  __cs_tmp_t3_r0=0 (00000)
+
+State 367 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c function main line 4169 thread 0
+----------------------------------------------------
+  __cs_tmp_t4_r0=0 (00000)
+
+State 369 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c function main line 4184 thread 0
+----------------------------------------------------
+  __cs_tmp_t5_r0=0 (00000)
+
+State 371 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c function main line 4199 thread 0
+----------------------------------------------------
+  __cs_tmp_t6_r0=6 (000110)
+
+State 373 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c function main line 4215 thread 0
+----------------------------------------------------
+  __cs_tmp_t0_r1=0 (0000)
+
+State 375 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c function main line 4218 thread 0
+----------------------------------------------------
+  __cs_pc_cs[0l]=1 (0000001)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 4219 function main
+  (signed int)__cs_pc_cs[(signed long int)0] >= (signed int)__cs_pc[(signed long int)0]
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 4220 function main
+  (signed int)__cs_pc_cs[(signed long int)0] <= 8
+
+State 395 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c function __cs_main_thread line 4104 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 396 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c function __cs_main_thread line 4104 thread 0
+----------------------------------------------------
+  __cs_thread_index=0u (00000000 00000000 00000000 00000000)
+
+State 397 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c function __cs_exit line 98 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 404 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c function main line 4228 thread 0
+----------------------------------------------------
+  __cs_pc[0l]=1 (000001)
+
+State 405 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c function main line 4231 thread 0
+----------------------------------------------------
+  __cs_tmp_t1_r1=0 (00000)
+
+State 407 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c function main line 4247 thread 0
+----------------------------------------------------
+  __cs_tmp_t2_r1=22 (10110)
+
+State 409 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c function main line 4263 thread 0
+----------------------------------------------------
+  __cs_tmp_t3_r1=0 (00000)
+
+State 411 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c function main line 4279 thread 0
+----------------------------------------------------
+  __cs_tmp_t4_r1=6 (00110)
+
+State 413 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c function main line 4295 thread 0
+----------------------------------------------------
+  __cs_tmp_t5_r1=5 (00101)
+
+State 415 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c function main line 4311 thread 0
+----------------------------------------------------
+  __cs_tmp_t6_r1=39 (100111)
+
+State 417 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c function main line 4328 thread 0
+----------------------------------------------------
+  __cs_tmp_t0_r2=0 (0000)
+
+State 419 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c function main line 4331 thread 0
+----------------------------------------------------
+  __cs_pc_cs[0l]=1 (0000001)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 4332 function main
+  (signed int)__cs_pc_cs[(signed long int)0] >= (signed int)__cs_pc[(signed long int)0]
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 4333 function main
+  (signed int)__cs_pc_cs[(signed long int)0] <= 8
+
+State 439 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c function __cs_main_thread line 4104 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 440 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c function __cs_main_thread line 4104 thread 0
+----------------------------------------------------
+  __cs_thread_index=0u (00000000 00000000 00000000 00000000)
+
+State 441 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c function __cs_exit line 98 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 448 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c function main line 4341 thread 0
+----------------------------------------------------
+  __cs_pc[0l]=1 (000001)
+
+State 449 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c function main line 4344 thread 0
+----------------------------------------------------
+  __cs_tmp_t1_r2=4 (00100)
+
+State 451 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c function main line 4360 thread 0
+----------------------------------------------------
+  __cs_tmp_t2_r2=16 (10000)
+
+State 453 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c function main line 4376 thread 0
+----------------------------------------------------
+  __cs_tmp_t3_r2=0 (00000)
+
+State 455 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c function main line 4392 thread 0
+----------------------------------------------------
+  __cs_tmp_t4_r2=13 (01101)
+
+State 457 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c function main line 4408 thread 0
+----------------------------------------------------
+  __cs_tmp_t5_r2=16 (10000)
+
+State 459 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c function main line 4424 thread 0
+----------------------------------------------------
+  __cs_tmp_t6_r2=1 (000001)
+
+State 461 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c function main line 4441 thread 0
+----------------------------------------------------
+  __cs_tmp_t0_r3=0 (0000)
+
+State 463 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c function main line 4444 thread 0
+----------------------------------------------------
+  __cs_pc_cs[0l]=1 (0000001)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 4445 function main
+  (signed int)__cs_pc_cs[(signed long int)0] >= (signed int)__cs_pc[(signed long int)0]
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 4446 function main
+  (signed int)__cs_pc_cs[(signed long int)0] <= 8
+
+State 483 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c function __cs_main_thread line 4104 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 484 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c function __cs_main_thread line 4104 thread 0
+----------------------------------------------------
+  __cs_thread_index=0u (00000000 00000000 00000000 00000000)
+
+State 485 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c function __cs_exit line 98 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 492 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c function main line 4454 thread 0
+----------------------------------------------------
+  __cs_pc[0l]=1 (000001)
+
+State 493 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c function main line 4457 thread 0
+----------------------------------------------------
+  __cs_tmp_t1_r3=0 (00000)
+
+State 495 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c function main line 4473 thread 0
+----------------------------------------------------
+  __cs_tmp_t2_r3=0 (00000)
+
+State 497 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c function main line 4489 thread 0
+----------------------------------------------------
+  __cs_tmp_t3_r3=5 (00101)
+
+State 499 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c function main line 4505 thread 0
+----------------------------------------------------
+  __cs_tmp_t4_r3=0 (00000)
+
+State 501 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c function main line 4521 thread 0
+----------------------------------------------------
+  __cs_tmp_t5_r3=6 (00110)
+
+State 503 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c function main line 4537 thread 0
+----------------------------------------------------
+  __cs_tmp_t6_r3=48 (110000)
+
+State 505 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c function main line 4554 thread 0
+----------------------------------------------------
+  __cs_tmp_t0_r4=0 (0000)
+
+State 507 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c function main line 4557 thread 0
+----------------------------------------------------
+  __cs_pc_cs[0l]=1 (0000001)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 4558 function main
+  (signed int)__cs_pc_cs[(signed long int)0] >= (signed int)__cs_pc[(signed long int)0]
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 4559 function main
+  (signed int)__cs_pc_cs[(signed long int)0] <= 8
+
+State 511 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c function main line 4561 thread 0
+----------------------------------------------------
+  __cs_dataraceDetectionStarted=TRUE (00000001)
+
+State 530 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c function __cs_main_thread line 4104 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 531 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c function __cs_main_thread line 4104 thread 0
+----------------------------------------------------
+  __cs_thread_index=0u (00000000 00000000 00000000 00000000)
+
+State 532 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c function __cs_exit line 98 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 539 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c function main line 4566 thread 0
+----------------------------------------------------
+  __cs_dataraceSecondThread=TRUE (00000001)
+
+State 540 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c function main line 4567 thread 0
+----------------------------------------------------
+  __cs_pc[0l]=1 (000001)
+
+State 541 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c function main line 4570 thread 0
+----------------------------------------------------
+  __cs_tmp_t1_r4=0 (00000)
+
+State 543 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c function main line 4586 thread 0
+----------------------------------------------------
+  __cs_tmp_t2_r4=0 (00000)
+
+State 545 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c function main line 4602 thread 0
+----------------------------------------------------
+  __cs_tmp_t3_r4=22 (10110)
+
+State 547 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c function main line 4618 thread 0
+----------------------------------------------------
+  __cs_tmp_t4_r4=10 (01010)
+
+State 549 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c function main line 4634 thread 0
+----------------------------------------------------
+  __cs_tmp_t5_r4=16 (10000)
+
+State 551 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c function main line 4650 thread 0
+----------------------------------------------------
+  __cs_tmp_t6_r4=0 (000000)
+
+State 553 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c function main line 4665 thread 0
+----------------------------------------------------
+  __cs_tmp_t0_r5=1 (0001)
+
+State 555 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c function main line 4668 thread 0
+----------------------------------------------------
+  __cs_pc_cs[0l]=2 (0000010)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 4669 function main
+  (signed int)__cs_pc_cs[(signed long int)0] >= (signed int)__cs_pc[(signed long int)0]
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c line 4670 function main
+  (signed int)__cs_pc_cs[(signed long int)0] <= 8
+
+State 568 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c function __cs_main_thread line 3997 thread 0
+----------------------------------------------------
+  __cs_dataraceNotDetected=FALSE (00000000)
+
+State 569 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c function __cs_main_thread line 3998 thread 0
+----------------------------------------------------
+  pdev=3 (00000000 00000000 00000000 00000011)
+
+State 581 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c function __cs_main_thread line 4104 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 582 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c function __cs_main_thread line 4104 thread 0
+----------------------------------------------------
+  __cs_thread_index=0u (00000000 00000000 00000000 00000000)
+
+State 583 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c function __cs_exit line 98 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+Violated property:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2race-4_2-thread_local_vars.c function main line 4673 thread 0
+  Data race failure
+  __cs_dataraceNotDetected != FALSE
+
+
+VERIFICATION FAILED
+
+real	22m52,320s
+user	22m52,133s
+sys	0m0,161s

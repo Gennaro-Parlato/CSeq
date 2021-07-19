@@ -1,0 +1,907 @@
+CBMC version 5.32.1 (cbmc-5.32.1-140-g7c8c411038-dirty) 64-bit x86_64 linux
+Parsing /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_char_generic_nvram_nvram_unlocked_ioctl_write_nvram.c
+Converting
+Type-checking _csdr_char_generic_nvram_nvram_unlocked_ioctl_write_nvram
+file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_char_generic_nvram_nvram_unlocked_ioctl_write_nvram.c line 425 function nvram_llseek: function '__CPROVER_set_field' is not declared
+file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_char_generic_nvram_nvram_unlocked_ioctl_write_nvram.c line 425 function nvram_llseek: function '__CPROVER_get_field' is not declared
+file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_char_generic_nvram_nvram_unlocked_ioctl_write_nvram.c line 1111 function nvram_init: function '__CSEQ_nondet_long' is not declared
+file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_char_generic_nvram_nvram_unlocked_ioctl_write_nvram.c line 1691 function main: function '__CPROVER_field_decl_global' is not declared
+file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_char_generic_nvram_nvram_unlocked_ioctl_write_nvram.c line 1692 function main: function '__CPROVER_field_decl_local' is not declared
+Generating GOTO Program
+Adding CPROVER library (x86_64)
+Removal of function pointers and virtual functions
+file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_char_generic_nvram_nvram_unlocked_ioctl_write_nvram.c line 1667 function main_thread: replacing function pointer by 1 possible targets
+Generic Property Instrumentation
+Running with 8 object bits, 56 offset bits (default)
+Starting Bounded Model Checking
+Shadow memory: cannot copy shadow memory to &nvram_fops.owner
+Shadow memory: cannot copy shadow memory to &nvram_fops.owner
+Shadow memory: cannot copy shadow memory to &nvram_fops.llseek
+Shadow memory: cannot copy shadow memory to &nvram_fops.llseek
+Shadow memory: cannot copy shadow memory to &nvram_fops.read
+Shadow memory: cannot copy shadow memory to &nvram_fops.read
+Shadow memory: cannot copy shadow memory to &nvram_fops.write
+Shadow memory: cannot copy shadow memory to &nvram_fops.write
+Shadow memory: cannot copy shadow memory to &nvram_fops.unlocked_ioctl
+Shadow memory: cannot copy shadow memory to &nvram_fops.unlocked_ioctl
+Shadow memory: cannot copy shadow memory to &nvram_fops.open
+Shadow memory: cannot copy shadow memory to &nvram_fops.open
+Shadow memory: cannot copy shadow memory to &nvram_mutex.init
+Shadow memory: cannot copy shadow memory to &nvram_mutex.init
+Shadow memory: cannot copy shadow memory to &nvram_mutex.locked
+Shadow memory: cannot copy shadow memory to &nvram_mutex.locked
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+**** WARNING: no body for function assume_abort_if_not
+Shadow memory: cannot set_field for &__cs_nondet_main__whoop_init_result
+Shadow memory: cannot set_field for &__cs_nondet_main__whoop_init_result
+Shadow memory: cannot set_field for &__cs_nondet_nvram_init_ret
+Shadow memory: cannot set_field for &__cs_retval_printk_1
+Shadow memory: cannot set_field for &__cs_retval_misc_register_1
+Shadow memory: cannot set_field for &__cs_nondet_nvram_init_ret
+Shadow memory: cannot set_field for &__cs_nondet_nvram_init___cs_tmp_if_cond_14
+Shadow memory: cannot set_field for &__cs_retval_nvram_get_size_1
+**** WARNING: no body for function __CSEQ_nondet_long
+Shadow memory: cannot set_field for &__cs_nondet_nvram_init___cs_tmp_if_cond_15
+Shadow memory: cannot set_field for &__cs_param_write_nvram_1_file
+Shadow memory: cannot set_field for &__cs_param_write_nvram_1_file
+Shadow memory: cannot get_field for &__cs_param_write_nvram_1_file
+Shadow memory: cannot set_field for &__cs_param_write_nvram_1_count
+Shadow memory: cannot set_field for &__cs_param_write_nvram_1_count
+Shadow memory: cannot set_field for &__cs_param_write_nvram_1_ppos
+Shadow memory: cannot set_field for &__cs_param_write_nvram_1_ppos
+Shadow memory: cannot set_field for &__cs_nondet_write_nvram_1_c
+Shadow memory: cannot set_field for &__cs_nondet_write_nvram_1_c
+Shadow memory: cannot set_field for &__cs_param_access_ok_3_arg0
+Shadow memory: cannot set_field for &__cs_param_access_ok_3_arg0
+Shadow memory: cannot set_field for &__cs_param_access_ok_3_arg2
+Shadow memory: cannot set_field for &__cs_param_access_ok_3_arg2
+Shadow memory: cannot set_field for &__cs_retval_access_ok_3
+Shadow memory: cannot set_field for &__cs_retval_access_ok_3
+Shadow memory: cannot set_field for &__cs_nondet_write_nvram_1___cs_tmp_if_cond_9
+Shadow memory: cannot set_field for &__cs_nondet_write_nvram_1___cs_tmp_if_cond_9
+Shadow memory: cannot set_field for &__cs_retval_write_nvram_1
+Shadow memory: cannot set_field for &__cs_retval_write_nvram_1
+Shadow memory: cannot set_field for &__cs_nondet_write_nvram_1___cs_tmp_if_cond_10
+Shadow memory: cannot set_field for &__cs_nondet_write_nvram_1___cs_tmp_if_cond_10
+Shadow memory: cannot set_field for &__cs_retval_write_nvram_1
+Shadow memory: cannot set_field for &__cs_retval_write_nvram_1
+Shadow memory: cannot set_field for &__cs_nondet_write_nvram_1_i
+Shadow memory: cannot set_field for &__cs_nondet_write_nvram_1_i
+Shadow memory: cannot get_field for &__cs_param_write_nvram_1_count
+Shadow memory: cannot get_field for &__cs_nondet_write_nvram_1_i
+Shadow memory: cannot set_field for &__cs_param___get_user_2_arg0
+Shadow memory: cannot set_field for &__cs_param___get_user_2_arg0
+Shadow memory: cannot get_field for &__cs_param___get_user_2_arg0
+Shadow memory: cannot get_field for &__cs_nondet_write_nvram_1_c
+Shadow memory: cannot get_field for &__cs_local_write_nvram_1_p
+Shadow memory: cannot set_field for &__cs_retval___get_user_2
+Shadow memory: cannot set_field for &__cs_retval___get_user_2
+Shadow memory: cannot get_field for &__cs_retval___get_user_2
+Shadow memory: cannot set_field for &__cs_nondet_write_nvram_1___cs_tmp_if_cond_11
+Shadow memory: cannot set_field for &__cs_nondet_write_nvram_1___cs_tmp_if_cond_11
+Shadow memory: cannot get_field for &__cs_nondet_write_nvram_1___cs_tmp_if_cond_11
+Shadow memory: cannot get_field for &__cs_retval___get_user_2
+Shadow memory: cannot get_field for &__cs_nondet_write_nvram_1___cs_tmp_if_cond_11
+Shadow memory: cannot set_field for &__cs_retval_write_nvram_1
+Shadow memory: cannot set_field for &__cs_retval_write_nvram_1
+Shadow memory: cannot get_field for &__cs_retval_write_nvram_1
+Shadow memory: cannot set_field for &__cs_param_nvram_write_byte_2_arg0
+Shadow memory: cannot set_field for &__cs_param_nvram_write_byte_2_arg0
+Shadow memory: cannot get_field for &__cs_param_nvram_write_byte_2_arg0
+Shadow memory: cannot get_field for &__cs_nondet_write_nvram_1_c
+Shadow memory: cannot set_field for &__cs_param_nvram_write_byte_2_arg1
+Shadow memory: cannot set_field for &__cs_param_nvram_write_byte_2_arg1
+Shadow memory: cannot get_field for &__cs_param_nvram_write_byte_2_arg1
+Shadow memory: cannot get_field for &__cs_nondet_write_nvram_1_i
+Shadow memory: cannot set_field for &__cs_nondet_write_nvram_1_i
+Shadow memory: cannot set_field for &__cs_nondet_write_nvram_1_i
+Shadow memory: cannot set_field for &__cs_local_write_nvram_1_p
+Shadow memory: cannot set_field for &__cs_local_write_nvram_1_p
+Shadow memory: cannot set_field for &__cs_param_write_nvram_1_count
+Shadow memory: cannot set_field for &__cs_param_write_nvram_1_count
+Shadow memory: cannot get_field for &__cs_param_write_nvram_1_count
+Shadow memory: cannot get_field for &__cs_nondet_write_nvram_1_i
+Shadow memory: cannot set_field for &__cs_param___get_user_2_arg0
+Shadow memory: cannot set_field for &__cs_param___get_user_2_arg0
+Shadow memory: cannot get_field for &__cs_param___get_user_2_arg0
+Shadow memory: cannot get_field for &__cs_nondet_write_nvram_1_c
+Shadow memory: cannot get_field for &__cs_local_write_nvram_1_p
+Shadow memory: cannot set_field for &__cs_retval___get_user_2
+Shadow memory: cannot set_field for &__cs_retval___get_user_2
+Shadow memory: cannot get_field for &__cs_retval___get_user_2
+Shadow memory: cannot set_field for &__cs_nondet_write_nvram_1___cs_tmp_if_cond_11
+Shadow memory: cannot set_field for &__cs_nondet_write_nvram_1___cs_tmp_if_cond_11
+Shadow memory: cannot get_field for &__cs_nondet_write_nvram_1___cs_tmp_if_cond_11
+Shadow memory: cannot get_field for &__cs_retval___get_user_2
+Shadow memory: cannot get_field for &__cs_nondet_write_nvram_1___cs_tmp_if_cond_11
+Shadow memory: cannot set_field for &__cs_retval_write_nvram_1
+Shadow memory: cannot set_field for &__cs_retval_write_nvram_1
+Shadow memory: cannot get_field for &__cs_retval_write_nvram_1
+Shadow memory: cannot set_field for &__cs_param_nvram_write_byte_2_arg0
+Shadow memory: cannot set_field for &__cs_param_nvram_write_byte_2_arg0
+Shadow memory: cannot get_field for &__cs_param_nvram_write_byte_2_arg0
+Shadow memory: cannot get_field for &__cs_nondet_write_nvram_1_c
+Shadow memory: cannot set_field for &__cs_param_nvram_write_byte_2_arg1
+Shadow memory: cannot set_field for &__cs_param_nvram_write_byte_2_arg1
+Shadow memory: cannot get_field for &__cs_param_nvram_write_byte_2_arg1
+Shadow memory: cannot get_field for &__cs_nondet_write_nvram_1_i
+Shadow memory: cannot set_field for &__cs_nondet_write_nvram_1_i
+Shadow memory: cannot set_field for &__cs_nondet_write_nvram_1_i
+Shadow memory: cannot set_field for &__cs_local_write_nvram_1_p
+Shadow memory: cannot set_field for &__cs_local_write_nvram_1_p
+Shadow memory: cannot set_field for &__cs_param_write_nvram_1_count
+Shadow memory: cannot set_field for &__cs_param_write_nvram_1_count
+Shadow memory: cannot get_field for &__cs_param_write_nvram_1_count
+Shadow memory: cannot get_field for &__cs_nondet_write_nvram_1_i
+Shadow memory: cannot set_field for &__cs_param___get_user_2_arg0
+Shadow memory: cannot set_field for &__cs_param___get_user_2_arg0
+Shadow memory: cannot get_field for &__cs_param___get_user_2_arg0
+Shadow memory: cannot get_field for &__cs_nondet_write_nvram_1_c
+Shadow memory: cannot get_field for &__cs_local_write_nvram_1_p
+Shadow memory: cannot set_field for &__cs_retval___get_user_2
+Shadow memory: cannot set_field for &__cs_retval___get_user_2
+Shadow memory: cannot get_field for &__cs_retval___get_user_2
+Shadow memory: cannot set_field for &__cs_nondet_write_nvram_1___cs_tmp_if_cond_11
+Shadow memory: cannot set_field for &__cs_nondet_write_nvram_1___cs_tmp_if_cond_11
+Shadow memory: cannot get_field for &__cs_nondet_write_nvram_1___cs_tmp_if_cond_11
+Shadow memory: cannot get_field for &__cs_retval___get_user_2
+Shadow memory: cannot get_field for &__cs_nondet_write_nvram_1___cs_tmp_if_cond_11
+Shadow memory: cannot set_field for &__cs_retval_write_nvram_1
+Shadow memory: cannot set_field for &__cs_retval_write_nvram_1
+Shadow memory: cannot get_field for &__cs_retval_write_nvram_1
+Shadow memory: cannot set_field for &__cs_param_nvram_write_byte_2_arg0
+Shadow memory: cannot set_field for &__cs_param_nvram_write_byte_2_arg0
+Shadow memory: cannot get_field for &__cs_param_nvram_write_byte_2_arg0
+Shadow memory: cannot get_field for &__cs_nondet_write_nvram_1_c
+Shadow memory: cannot set_field for &__cs_param_nvram_write_byte_2_arg1
+Shadow memory: cannot set_field for &__cs_param_nvram_write_byte_2_arg1
+Shadow memory: cannot get_field for &__cs_param_nvram_write_byte_2_arg1
+Shadow memory: cannot get_field for &__cs_nondet_write_nvram_1_i
+Shadow memory: cannot set_field for &__cs_nondet_write_nvram_1_i
+Shadow memory: cannot set_field for &__cs_nondet_write_nvram_1_i
+Shadow memory: cannot set_field for &__cs_local_write_nvram_1_p
+Shadow memory: cannot set_field for &__cs_local_write_nvram_1_p
+Shadow memory: cannot set_field for &__cs_param_write_nvram_1_count
+Shadow memory: cannot set_field for &__cs_param_write_nvram_1_count
+Shadow memory: cannot get_field for &__cs_param_write_nvram_1_count
+Shadow memory: cannot get_field for &__cs_nondet_write_nvram_1_i
+Shadow memory: cannot set_field for &__cs_param___get_user_2_arg0
+Shadow memory: cannot set_field for &__cs_param___get_user_2_arg0
+Shadow memory: cannot get_field for &__cs_param___get_user_2_arg0
+Shadow memory: cannot get_field for &__cs_nondet_write_nvram_1_c
+Shadow memory: cannot get_field for &__cs_local_write_nvram_1_p
+Shadow memory: cannot set_field for &__cs_retval___get_user_2
+Shadow memory: cannot set_field for &__cs_retval___get_user_2
+Shadow memory: cannot get_field for &__cs_retval___get_user_2
+Shadow memory: cannot set_field for &__cs_nondet_write_nvram_1___cs_tmp_if_cond_11
+Shadow memory: cannot set_field for &__cs_nondet_write_nvram_1___cs_tmp_if_cond_11
+Shadow memory: cannot get_field for &__cs_nondet_write_nvram_1___cs_tmp_if_cond_11
+Shadow memory: cannot get_field for &__cs_retval___get_user_2
+Shadow memory: cannot get_field for &__cs_nondet_write_nvram_1___cs_tmp_if_cond_11
+Shadow memory: cannot set_field for &__cs_retval_write_nvram_1
+Shadow memory: cannot set_field for &__cs_retval_write_nvram_1
+Shadow memory: cannot get_field for &__cs_retval_write_nvram_1
+Shadow memory: cannot set_field for &__cs_param_nvram_write_byte_2_arg0
+Shadow memory: cannot set_field for &__cs_param_nvram_write_byte_2_arg0
+Shadow memory: cannot get_field for &__cs_param_nvram_write_byte_2_arg0
+Shadow memory: cannot get_field for &__cs_nondet_write_nvram_1_c
+Shadow memory: cannot set_field for &__cs_param_nvram_write_byte_2_arg1
+Shadow memory: cannot set_field for &__cs_param_nvram_write_byte_2_arg1
+Shadow memory: cannot get_field for &__cs_param_nvram_write_byte_2_arg1
+Shadow memory: cannot get_field for &__cs_nondet_write_nvram_1_i
+Shadow memory: cannot set_field for &__cs_nondet_write_nvram_1_i
+Shadow memory: cannot set_field for &__cs_nondet_write_nvram_1_i
+Shadow memory: cannot set_field for &__cs_local_write_nvram_1_p
+Shadow memory: cannot set_field for &__cs_local_write_nvram_1_p
+Shadow memory: cannot set_field for &__cs_param_write_nvram_1_count
+Shadow memory: cannot set_field for &__cs_param_write_nvram_1_count
+Shadow memory: cannot set_field for &__cs_retval_write_nvram_1
+Shadow memory: cannot set_field for &__cs_retval_write_nvram_1
+Shadow memory: cannot get_field for &__cs_retval_write_nvram_1
+Shadow memory: cannot set_field for &__cs_param_nvram_unlocked_ioctl_1_file
+Shadow memory: cannot set_field for &__cs_param_nvram_unlocked_ioctl_1_file
+Shadow memory: cannot get_field for &__cs_param_nvram_unlocked_ioctl_1_file
+Shadow memory: cannot set_field for &__cs_param_nvram_unlocked_ioctl_1_cmd
+Shadow memory: cannot set_field for &__cs_param_nvram_unlocked_ioctl_1_cmd
+Shadow memory: cannot set_field for &__cs_param_nvram_unlocked_ioctl_1_arg
+Shadow memory: cannot set_field for &__cs_param_nvram_unlocked_ioctl_1_arg
+Shadow memory: cannot set_field for &__cs_nondet_mutex_lock_1_tid
+Shadow memory: cannot set_field for &__cs_nondet_mutex_lock_1_tid
+Shadow memory: cannot get_field for &__cs_nondet_mutex_lock_1_tid
+Shadow memory: cannot set_field for &__cs_param_nvram_ioctl_1_file
+Shadow memory: cannot set_field for &__cs_param_nvram_ioctl_1_file
+Shadow memory: cannot set_field for &__cs_param_nvram_ioctl_1_cmd
+Shadow memory: cannot set_field for &__cs_param_nvram_ioctl_1_cmd
+Shadow memory: cannot set_field for &__cs_param_nvram_ioctl_1_arg
+Shadow memory: cannot set_field for &__cs_param_nvram_ioctl_1_arg
+Shadow memory: cannot set_field for &__cs_nondet_nvram_ioctl_1___cs_switch_cond_nvram_ioctl_1
+Shadow memory: cannot set_field for &__cs_nondet_nvram_ioctl_1___cs_switch_cond_nvram_ioctl_1
+Shadow memory: cannot set_field for &__cs_nondet_nvram_ioctl_1___cs_tmp_if_cond_12
+Shadow memory: cannot set_field for &__cs_nondet_nvram_ioctl_1___cs_tmp_if_cond_12
+Shadow memory: cannot set_field for &__cs_nondet_nvram_ioctl_1___cs_tmp_if_cond_13
+Shadow memory: cannot set_field for &__cs_nondet_nvram_ioctl_1___cs_tmp_if_cond_13
+Shadow memory: cannot set_field for &__cs_retval_nvram_ioctl_1
+Shadow memory: cannot set_field for &__cs_retval_nvram_ioctl_1
+Shadow memory: cannot set_field for &__cs_retval_nvram_ioctl_1
+Shadow memory: cannot set_field for &__cs_retval_nvram_ioctl_1
+Shadow memory: cannot set_field for &__cs_nondet_nvram_unlocked_ioctl_1_ret
+Shadow memory: cannot set_field for &__cs_nondet_nvram_unlocked_ioctl_1_ret
+Shadow memory: cannot set_field for &__cs_retval_nvram_unlocked_ioctl_1
+Shadow memory: cannot set_field for &__cs_retval_nvram_unlocked_ioctl_1
+Shadow memory: cannot get_field for &__cs_retval_nvram_unlocked_ioctl_1
+Shadow memory: cannot get_field for &__cs_nondet_nvram_unlocked_ioctl_1_ret
+Shadow memory: cannot get_field for &__cs_retval_nvram_unlocked_ioctl_1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot set_field for &__cs_nondet_main__whoop_init_result
+Shadow memory: cannot set_field for &__cs_nondet_main__whoop_init_result
+Shadow memory: cannot get_field for &__cs_nondet_main__whoop_init_result
+Shadow memory: cannot set_field for &__cs_nondet_nvram_init_ret
+Shadow memory: cannot get_field for &__cs_nondet_nvram_init_ret
+Shadow memory: cannot set_field for &__cs_retval_printk_1
+Shadow memory: cannot get_field for &__cs_retval_printk_1
+Shadow memory: cannot get_field for &__cs_retval_printk_1
+Shadow memory: cannot set_field for &__cs_retval_misc_register_1
+Shadow memory: cannot get_field for &__cs_retval_misc_register_1
+Shadow memory: cannot set_field for &__cs_nondet_nvram_init_ret
+Shadow memory: cannot get_field for &__cs_nondet_nvram_init_ret
+Shadow memory: cannot get_field for &__cs_retval_misc_register_1
+Shadow memory: cannot set_field for &__cs_nondet_nvram_init___cs_tmp_if_cond_14
+Shadow memory: cannot get_field for &__cs_nondet_nvram_init___cs_tmp_if_cond_14
+Shadow memory: cannot get_field for &__cs_nondet_nvram_init_ret
+Shadow memory: cannot get_field for &__cs_nondet_nvram_init___cs_tmp_if_cond_14
+Shadow memory: cannot set_field for &__cs_retval_nvram_get_size_1
+Shadow memory: cannot get_field for &__cs_retval_nvram_get_size_1
+Shadow memory: cannot get_field for &__cs_retval_nvram_get_size_1
+Shadow memory: cannot set_field for &__cs_nondet_nvram_init___cs_tmp_if_cond_15
+Shadow memory: cannot get_field for &__cs_nondet_nvram_init___cs_tmp_if_cond_15
+Shadow memory: cannot get_field for &__cs_nondet_nvram_init___cs_tmp_if_cond_15
+Shadow memory: cannot get_field for &__cs_nondet_nvram_init_ret
+Shadow memory: cannot get_field for &__cs_nondet_main_pthread_t_write_nvram
+Shadow memory: cannot get_field for &__cs_nondet_main_pthread_t_nvram_unlocked_ioctl
+Shadow memory: cannot set_field for &__cs_param_write_nvram_1_file
+Shadow memory: cannot set_field for &__cs_param_write_nvram_1_file
+Shadow memory: cannot get_field for &__cs_param_write_nvram_1_file
+Shadow memory: cannot set_field for &__cs_param_write_nvram_1_count
+Shadow memory: cannot set_field for &__cs_param_write_nvram_1_count
+Shadow memory: cannot get_field for &__cs_param_write_nvram_1_count
+Shadow memory: cannot set_field for &__cs_param_write_nvram_1_ppos
+Shadow memory: cannot set_field for &__cs_param_write_nvram_1_ppos
+Shadow memory: cannot get_field for &__cs_param_write_nvram_1_ppos
+Shadow memory: cannot get_field for &__cs_param_write_nvram_1_buf
+Shadow memory: cannot set_field for &__cs_nondet_write_nvram_1_c
+Shadow memory: cannot set_field for &__cs_nondet_write_nvram_1_c
+Shadow memory: cannot get_field for &__cs_nondet_write_nvram_1_c
+Shadow memory: cannot set_field for &__cs_param_access_ok_3_arg0
+Shadow memory: cannot set_field for &__cs_param_access_ok_3_arg0
+Shadow memory: cannot get_field for &__cs_param_access_ok_3_arg0
+Shadow memory: cannot get_field for &__cs_param_write_nvram_1_buf
+Shadow memory: cannot set_field for &__cs_param_access_ok_3_arg2
+Shadow memory: cannot set_field for &__cs_param_access_ok_3_arg2
+Shadow memory: cannot get_field for &__cs_param_access_ok_3_arg2
+Shadow memory: cannot get_field for &__cs_param_write_nvram_1_count
+Shadow memory: cannot set_field for &__cs_retval_access_ok_3
+Shadow memory: cannot set_field for &__cs_retval_access_ok_3
+Shadow memory: cannot get_field for &__cs_retval_access_ok_3
+Shadow memory: cannot set_field for &__cs_nondet_write_nvram_1___cs_tmp_if_cond_9
+Shadow memory: cannot set_field for &__cs_nondet_write_nvram_1___cs_tmp_if_cond_9
+Shadow memory: cannot get_field for &__cs_nondet_write_nvram_1___cs_tmp_if_cond_9
+Shadow memory: cannot get_field for &__cs_retval_access_ok_3
+Shadow memory: cannot get_field for &__cs_nondet_write_nvram_1___cs_tmp_if_cond_9
+Shadow memory: cannot set_field for &__cs_retval_write_nvram_1
+Shadow memory: cannot set_field for &__cs_retval_write_nvram_1
+Shadow memory: cannot get_field for &__cs_retval_write_nvram_1
+Shadow memory: cannot set_field for &__cs_nondet_write_nvram_1___cs_tmp_if_cond_10
+Shadow memory: cannot set_field for &__cs_nondet_write_nvram_1___cs_tmp_if_cond_10
+Shadow memory: cannot get_field for &__cs_nondet_write_nvram_1___cs_tmp_if_cond_10
+Shadow memory: cannot get_field for &__cs_param_write_nvram_1_ppos
+Shadow memory: cannot get_field for &__cs_nondet_write_nvram_1___cs_tmp_if_cond_10
+Shadow memory: cannot set_field for &__cs_retval_write_nvram_1
+Shadow memory: cannot set_field for &__cs_retval_write_nvram_1
+Shadow memory: cannot get_field for &__cs_retval_write_nvram_1
+Shadow memory: cannot set_field for &__cs_nondet_write_nvram_1_i
+Shadow memory: cannot set_field for &__cs_nondet_write_nvram_1_i
+Shadow memory: cannot get_field for &__cs_nondet_write_nvram_1_i
+Shadow memory: cannot get_field for &__cs_param_write_nvram_1_ppos
+Shadow memory: cannot get_field for &__cs_param_write_nvram_1_count
+Shadow memory: cannot get_field for &__cs_nondet_write_nvram_1_i
+Shadow memory: cannot set_field for &__cs_param___get_user_2_arg0
+Shadow memory: cannot set_field for &__cs_param___get_user_2_arg0
+Shadow memory: cannot get_field for &__cs_param___get_user_2_arg0
+Shadow memory: cannot get_field for &__cs_nondet_write_nvram_1_c
+Shadow memory: cannot get_field for &__cs_local_write_nvram_1_p
+Shadow memory: cannot set_field for &__cs_retval___get_user_2
+Shadow memory: cannot set_field for &__cs_retval___get_user_2
+Shadow memory: cannot get_field for &__cs_retval___get_user_2
+Shadow memory: cannot set_field for &__cs_nondet_write_nvram_1___cs_tmp_if_cond_11
+Shadow memory: cannot set_field for &__cs_nondet_write_nvram_1___cs_tmp_if_cond_11
+Shadow memory: cannot get_field for &__cs_nondet_write_nvram_1___cs_tmp_if_cond_11
+Shadow memory: cannot get_field for &__cs_retval___get_user_2
+Shadow memory: cannot get_field for &__cs_nondet_write_nvram_1___cs_tmp_if_cond_11
+Shadow memory: cannot set_field for &__cs_retval_write_nvram_1
+Shadow memory: cannot set_field for &__cs_retval_write_nvram_1
+Shadow memory: cannot get_field for &__cs_retval_write_nvram_1
+Shadow memory: cannot set_field for &__cs_param_nvram_write_byte_2_arg0
+Shadow memory: cannot set_field for &__cs_param_nvram_write_byte_2_arg0
+Shadow memory: cannot get_field for &__cs_param_nvram_write_byte_2_arg0
+Shadow memory: cannot get_field for &__cs_nondet_write_nvram_1_c
+Shadow memory: cannot set_field for &__cs_param_nvram_write_byte_2_arg1
+Shadow memory: cannot set_field for &__cs_param_nvram_write_byte_2_arg1
+Shadow memory: cannot get_field for &__cs_param_nvram_write_byte_2_arg1
+Shadow memory: cannot get_field for &__cs_nondet_write_nvram_1_i
+Shadow memory: cannot set_field for &__cs_nondet_write_nvram_1_i
+Shadow memory: cannot set_field for &__cs_nondet_write_nvram_1_i
+Shadow memory: cannot get_field for &__cs_nondet_write_nvram_1_i
+Shadow memory: cannot set_field for &__cs_local_write_nvram_1_p
+Shadow memory: cannot set_field for &__cs_local_write_nvram_1_p
+Shadow memory: cannot get_field for &__cs_local_write_nvram_1_p
+Shadow memory: cannot set_field for &__cs_param_write_nvram_1_count
+Shadow memory: cannot set_field for &__cs_param_write_nvram_1_count
+Shadow memory: cannot get_field for &__cs_param_write_nvram_1_count
+Shadow memory: cannot get_field for &__cs_param_write_nvram_1_count
+Shadow memory: cannot get_field for &__cs_nondet_write_nvram_1_i
+Shadow memory: cannot set_field for &__cs_param___get_user_2_arg0
+Shadow memory: cannot set_field for &__cs_param___get_user_2_arg0
+Shadow memory: cannot get_field for &__cs_param___get_user_2_arg0
+Shadow memory: cannot get_field for &__cs_nondet_write_nvram_1_c
+Shadow memory: cannot get_field for &__cs_local_write_nvram_1_p
+Shadow memory: cannot set_field for &__cs_retval___get_user_2
+Shadow memory: cannot set_field for &__cs_retval___get_user_2
+Shadow memory: cannot get_field for &__cs_retval___get_user_2
+Shadow memory: cannot set_field for &__cs_nondet_write_nvram_1___cs_tmp_if_cond_11
+Shadow memory: cannot set_field for &__cs_nondet_write_nvram_1___cs_tmp_if_cond_11
+Shadow memory: cannot get_field for &__cs_nondet_write_nvram_1___cs_tmp_if_cond_11
+Shadow memory: cannot get_field for &__cs_retval___get_user_2
+Shadow memory: cannot get_field for &__cs_nondet_write_nvram_1___cs_tmp_if_cond_11
+Shadow memory: cannot set_field for &__cs_retval_write_nvram_1
+Shadow memory: cannot set_field for &__cs_retval_write_nvram_1
+Shadow memory: cannot get_field for &__cs_retval_write_nvram_1
+Shadow memory: cannot set_field for &__cs_param_nvram_write_byte_2_arg0
+Shadow memory: cannot set_field for &__cs_param_nvram_write_byte_2_arg0
+Shadow memory: cannot get_field for &__cs_param_nvram_write_byte_2_arg0
+Shadow memory: cannot get_field for &__cs_nondet_write_nvram_1_c
+Shadow memory: cannot set_field for &__cs_param_nvram_write_byte_2_arg1
+Shadow memory: cannot set_field for &__cs_param_nvram_write_byte_2_arg1
+Shadow memory: cannot get_field for &__cs_param_nvram_write_byte_2_arg1
+Shadow memory: cannot get_field for &__cs_nondet_write_nvram_1_i
+Shadow memory: cannot set_field for &__cs_nondet_write_nvram_1_i
+Shadow memory: cannot set_field for &__cs_nondet_write_nvram_1_i
+Shadow memory: cannot get_field for &__cs_nondet_write_nvram_1_i
+Shadow memory: cannot set_field for &__cs_local_write_nvram_1_p
+Shadow memory: cannot set_field for &__cs_local_write_nvram_1_p
+Shadow memory: cannot get_field for &__cs_local_write_nvram_1_p
+Shadow memory: cannot set_field for &__cs_param_write_nvram_1_count
+Shadow memory: cannot set_field for &__cs_param_write_nvram_1_count
+Shadow memory: cannot get_field for &__cs_param_write_nvram_1_count
+Shadow memory: cannot get_field for &__cs_param_write_nvram_1_count
+Shadow memory: cannot get_field for &__cs_nondet_write_nvram_1_i
+Shadow memory: cannot set_field for &__cs_param___get_user_2_arg0
+Shadow memory: cannot set_field for &__cs_param___get_user_2_arg0
+Shadow memory: cannot get_field for &__cs_param___get_user_2_arg0
+Shadow memory: cannot get_field for &__cs_nondet_write_nvram_1_c
+Shadow memory: cannot get_field for &__cs_local_write_nvram_1_p
+Shadow memory: cannot set_field for &__cs_retval___get_user_2
+Shadow memory: cannot set_field for &__cs_retval___get_user_2
+Shadow memory: cannot get_field for &__cs_retval___get_user_2
+Shadow memory: cannot set_field for &__cs_nondet_write_nvram_1___cs_tmp_if_cond_11
+Shadow memory: cannot set_field for &__cs_nondet_write_nvram_1___cs_tmp_if_cond_11
+Shadow memory: cannot get_field for &__cs_nondet_write_nvram_1___cs_tmp_if_cond_11
+Shadow memory: cannot get_field for &__cs_retval___get_user_2
+Shadow memory: cannot get_field for &__cs_nondet_write_nvram_1___cs_tmp_if_cond_11
+Shadow memory: cannot set_field for &__cs_retval_write_nvram_1
+Shadow memory: cannot set_field for &__cs_retval_write_nvram_1
+Shadow memory: cannot get_field for &__cs_retval_write_nvram_1
+Shadow memory: cannot set_field for &__cs_param_nvram_write_byte_2_arg0
+Shadow memory: cannot set_field for &__cs_param_nvram_write_byte_2_arg0
+Shadow memory: cannot get_field for &__cs_param_nvram_write_byte_2_arg0
+Shadow memory: cannot get_field for &__cs_nondet_write_nvram_1_c
+Shadow memory: cannot set_field for &__cs_param_nvram_write_byte_2_arg1
+Shadow memory: cannot set_field for &__cs_param_nvram_write_byte_2_arg1
+Shadow memory: cannot get_field for &__cs_param_nvram_write_byte_2_arg1
+Shadow memory: cannot get_field for &__cs_nondet_write_nvram_1_i
+Shadow memory: cannot set_field for &__cs_nondet_write_nvram_1_i
+Shadow memory: cannot set_field for &__cs_nondet_write_nvram_1_i
+Shadow memory: cannot get_field for &__cs_nondet_write_nvram_1_i
+Shadow memory: cannot set_field for &__cs_local_write_nvram_1_p
+Shadow memory: cannot set_field for &__cs_local_write_nvram_1_p
+Shadow memory: cannot get_field for &__cs_local_write_nvram_1_p
+Shadow memory: cannot set_field for &__cs_param_write_nvram_1_count
+Shadow memory: cannot set_field for &__cs_param_write_nvram_1_count
+Shadow memory: cannot get_field for &__cs_param_write_nvram_1_count
+Shadow memory: cannot get_field for &__cs_param_write_nvram_1_count
+Shadow memory: cannot get_field for &__cs_nondet_write_nvram_1_i
+Shadow memory: cannot set_field for &__cs_param___get_user_2_arg0
+Shadow memory: cannot set_field for &__cs_param___get_user_2_arg0
+Shadow memory: cannot get_field for &__cs_param___get_user_2_arg0
+Shadow memory: cannot get_field for &__cs_nondet_write_nvram_1_c
+Shadow memory: cannot get_field for &__cs_local_write_nvram_1_p
+Shadow memory: cannot set_field for &__cs_retval___get_user_2
+Shadow memory: cannot set_field for &__cs_retval___get_user_2
+Shadow memory: cannot get_field for &__cs_retval___get_user_2
+Shadow memory: cannot set_field for &__cs_nondet_write_nvram_1___cs_tmp_if_cond_11
+Shadow memory: cannot set_field for &__cs_nondet_write_nvram_1___cs_tmp_if_cond_11
+Shadow memory: cannot get_field for &__cs_nondet_write_nvram_1___cs_tmp_if_cond_11
+Shadow memory: cannot get_field for &__cs_retval___get_user_2
+Shadow memory: cannot get_field for &__cs_nondet_write_nvram_1___cs_tmp_if_cond_11
+Shadow memory: cannot set_field for &__cs_retval_write_nvram_1
+Shadow memory: cannot set_field for &__cs_retval_write_nvram_1
+Shadow memory: cannot get_field for &__cs_retval_write_nvram_1
+Shadow memory: cannot set_field for &__cs_param_nvram_write_byte_2_arg0
+Shadow memory: cannot set_field for &__cs_param_nvram_write_byte_2_arg0
+Shadow memory: cannot get_field for &__cs_param_nvram_write_byte_2_arg0
+Shadow memory: cannot get_field for &__cs_nondet_write_nvram_1_c
+Shadow memory: cannot set_field for &__cs_param_nvram_write_byte_2_arg1
+Shadow memory: cannot set_field for &__cs_param_nvram_write_byte_2_arg1
+Shadow memory: cannot get_field for &__cs_param_nvram_write_byte_2_arg1
+Shadow memory: cannot get_field for &__cs_nondet_write_nvram_1_i
+Shadow memory: cannot set_field for &__cs_nondet_write_nvram_1_i
+Shadow memory: cannot set_field for &__cs_nondet_write_nvram_1_i
+Shadow memory: cannot get_field for &__cs_nondet_write_nvram_1_i
+Shadow memory: cannot set_field for &__cs_local_write_nvram_1_p
+Shadow memory: cannot set_field for &__cs_local_write_nvram_1_p
+Shadow memory: cannot get_field for &__cs_local_write_nvram_1_p
+Shadow memory: cannot set_field for &__cs_param_write_nvram_1_count
+Shadow memory: cannot set_field for &__cs_param_write_nvram_1_count
+Shadow memory: cannot get_field for &__cs_param_write_nvram_1_count
+Shadow memory: cannot get_field for &__cs_param_write_nvram_1_count
+Shadow memory: cannot get_field for &__cs_nondet_write_nvram_1_i
+Shadow memory: cannot get_field for &__cs_param_write_nvram_1_ppos
+Shadow memory: cannot get_field for &__cs_nondet_write_nvram_1_i
+Shadow memory: cannot get_field for &__cs_param_write_nvram_1_ppos
+Shadow memory: cannot get_field for &__cs_nondet_write_nvram_1_i
+Shadow memory: cannot set_field for &__cs_retval_write_nvram_1
+Shadow memory: cannot set_field for &__cs_retval_write_nvram_1
+Shadow memory: cannot get_field for &__cs_retval_write_nvram_1
+Shadow memory: cannot get_field for &__cs_local_write_nvram_1_p
+Shadow memory: cannot get_field for &__cs_param_write_nvram_1_buf
+Shadow memory: cannot get_field for &__cs_retval_write_nvram_1
+Shadow memory: cannot set_field for &__cs_param_nvram_unlocked_ioctl_1_file
+Shadow memory: cannot set_field for &__cs_param_nvram_unlocked_ioctl_1_file
+Shadow memory: cannot get_field for &__cs_param_nvram_unlocked_ioctl_1_file
+Shadow memory: cannot set_field for &__cs_param_nvram_unlocked_ioctl_1_cmd
+Shadow memory: cannot set_field for &__cs_param_nvram_unlocked_ioctl_1_cmd
+Shadow memory: cannot get_field for &__cs_param_nvram_unlocked_ioctl_1_cmd
+Shadow memory: cannot set_field for &__cs_param_nvram_unlocked_ioctl_1_arg
+Shadow memory: cannot set_field for &__cs_param_nvram_unlocked_ioctl_1_arg
+Shadow memory: cannot get_field for &__cs_param_nvram_unlocked_ioctl_1_arg
+Shadow memory: cannot set_field for &__cs_nondet_mutex_lock_1_tid
+Shadow memory: cannot set_field for &__cs_nondet_mutex_lock_1_tid
+Shadow memory: cannot get_field for &__cs_nondet_mutex_lock_1_tid
+Shadow memory: cannot get_field for &__cs_nondet_mutex_lock_1_tid
+Shadow memory: cannot set_field for &__cs_param_nvram_ioctl_1_file
+Shadow memory: cannot set_field for &__cs_param_nvram_ioctl_1_file
+Shadow memory: cannot get_field for &__cs_param_nvram_ioctl_1_file
+Shadow memory: cannot get_field for &__cs_param_nvram_unlocked_ioctl_1_file
+Shadow memory: cannot set_field for &__cs_param_nvram_ioctl_1_cmd
+Shadow memory: cannot set_field for &__cs_param_nvram_ioctl_1_cmd
+Shadow memory: cannot get_field for &__cs_param_nvram_ioctl_1_cmd
+Shadow memory: cannot get_field for &__cs_param_nvram_unlocked_ioctl_1_cmd
+Shadow memory: cannot set_field for &__cs_param_nvram_ioctl_1_arg
+Shadow memory: cannot set_field for &__cs_param_nvram_ioctl_1_arg
+Shadow memory: cannot get_field for &__cs_param_nvram_ioctl_1_arg
+Shadow memory: cannot get_field for &__cs_param_nvram_unlocked_ioctl_1_arg
+Shadow memory: cannot set_field for &__cs_nondet_nvram_ioctl_1___cs_switch_cond_nvram_ioctl_1
+Shadow memory: cannot set_field for &__cs_nondet_nvram_ioctl_1___cs_switch_cond_nvram_ioctl_1
+Shadow memory: cannot get_field for &__cs_nondet_nvram_ioctl_1___cs_switch_cond_nvram_ioctl_1
+Shadow memory: cannot get_field for &__cs_param_nvram_ioctl_1_cmd
+Shadow memory: cannot set_field for &__cs_nondet_nvram_ioctl_1___cs_tmp_if_cond_12
+Shadow memory: cannot set_field for &__cs_nondet_nvram_ioctl_1___cs_tmp_if_cond_12
+Shadow memory: cannot get_field for &__cs_nondet_nvram_ioctl_1___cs_tmp_if_cond_12
+Shadow memory: cannot get_field for &__cs_nondet_nvram_ioctl_1___cs_switch_cond_nvram_ioctl_1
+Shadow memory: cannot get_field for &__cs_nondet_nvram_ioctl_1___cs_tmp_if_cond_12
+Shadow memory: cannot set_field for &__cs_nondet_nvram_ioctl_1___cs_tmp_if_cond_13
+Shadow memory: cannot set_field for &__cs_nondet_nvram_ioctl_1___cs_tmp_if_cond_13
+Shadow memory: cannot get_field for &__cs_nondet_nvram_ioctl_1___cs_tmp_if_cond_13
+Shadow memory: cannot get_field for &__cs_nondet_nvram_ioctl_1___cs_switch_cond_nvram_ioctl_1
+Shadow memory: cannot get_field for &__cs_nondet_nvram_ioctl_1___cs_tmp_if_cond_13
+Shadow memory: cannot set_field for &__cs_retval_nvram_ioctl_1
+Shadow memory: cannot set_field for &__cs_retval_nvram_ioctl_1
+Shadow memory: cannot get_field for &__cs_retval_nvram_ioctl_1
+Shadow memory: cannot set_field for &__cs_retval_nvram_ioctl_1
+Shadow memory: cannot set_field for &__cs_retval_nvram_ioctl_1
+Shadow memory: cannot get_field for &__cs_retval_nvram_ioctl_1
+Shadow memory: cannot set_field for &__cs_nondet_nvram_unlocked_ioctl_1_ret
+Shadow memory: cannot set_field for &__cs_nondet_nvram_unlocked_ioctl_1_ret
+Shadow memory: cannot get_field for &__cs_nondet_nvram_unlocked_ioctl_1_ret
+Shadow memory: cannot get_field for &__cs_retval_nvram_ioctl_1
+Shadow memory: cannot set_field for &__cs_retval_nvram_unlocked_ioctl_1
+Shadow memory: cannot set_field for &__cs_retval_nvram_unlocked_ioctl_1
+Shadow memory: cannot get_field for &__cs_retval_nvram_unlocked_ioctl_1
+Shadow memory: cannot get_field for &__cs_nondet_nvram_unlocked_ioctl_1_ret
+Shadow memory: cannot get_field for &__cs_retval_nvram_unlocked_ioctl_1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot set_field for &__cs_nondet_main__whoop_init_result
+Shadow memory: cannot set_field for &__cs_nondet_main__whoop_init_result
+Shadow memory: cannot get_field for &__cs_nondet_main__whoop_init_result
+Shadow memory: cannot set_field for &__cs_nondet_nvram_init_ret
+Shadow memory: cannot get_field for &__cs_nondet_nvram_init_ret
+Shadow memory: cannot set_field for &__cs_retval_printk_1
+Shadow memory: cannot get_field for &__cs_retval_printk_1
+Shadow memory: cannot get_field for &__cs_retval_printk_1
+Shadow memory: cannot set_field for &__cs_retval_misc_register_1
+Shadow memory: cannot get_field for &__cs_retval_misc_register_1
+Shadow memory: cannot set_field for &__cs_nondet_nvram_init_ret
+Shadow memory: cannot get_field for &__cs_nondet_nvram_init_ret
+Shadow memory: cannot get_field for &__cs_retval_misc_register_1
+Shadow memory: cannot set_field for &__cs_nondet_nvram_init___cs_tmp_if_cond_14
+Shadow memory: cannot get_field for &__cs_nondet_nvram_init___cs_tmp_if_cond_14
+Shadow memory: cannot get_field for &__cs_nondet_nvram_init_ret
+Shadow memory: cannot get_field for &__cs_nondet_nvram_init___cs_tmp_if_cond_14
+Shadow memory: cannot set_field for &__cs_retval_nvram_get_size_1
+Shadow memory: cannot get_field for &__cs_retval_nvram_get_size_1
+Shadow memory: cannot get_field for &__cs_retval_nvram_get_size_1
+Shadow memory: cannot set_field for &__cs_nondet_nvram_init___cs_tmp_if_cond_15
+Shadow memory: cannot get_field for &__cs_nondet_nvram_init___cs_tmp_if_cond_15
+Shadow memory: cannot get_field for &__cs_nondet_nvram_init___cs_tmp_if_cond_15
+Shadow memory: cannot get_field for &__cs_nondet_nvram_init_ret
+Shadow memory: cannot get_field for &__cs_nondet_main_pthread_t_write_nvram
+Shadow memory: cannot get_field for &__cs_nondet_main_pthread_t_nvram_unlocked_ioctl
+Shadow memory: cannot set_field for &__cs_param_write_nvram_1_file
+Shadow memory: cannot set_field for &__cs_param_write_nvram_1_file
+Shadow memory: cannot get_field for &__cs_param_write_nvram_1_file
+Shadow memory: cannot set_field for &__cs_param_write_nvram_1_count
+Shadow memory: cannot set_field for &__cs_param_write_nvram_1_count
+Shadow memory: cannot get_field for &__cs_param_write_nvram_1_count
+Shadow memory: cannot set_field for &__cs_param_write_nvram_1_ppos
+Shadow memory: cannot set_field for &__cs_param_write_nvram_1_ppos
+Shadow memory: cannot get_field for &__cs_param_write_nvram_1_ppos
+Shadow memory: cannot get_field for &__cs_param_write_nvram_1_buf
+Shadow memory: cannot set_field for &__cs_nondet_write_nvram_1_c
+Shadow memory: cannot set_field for &__cs_nondet_write_nvram_1_c
+Shadow memory: cannot get_field for &__cs_nondet_write_nvram_1_c
+Shadow memory: cannot set_field for &__cs_param_access_ok_3_arg0
+Shadow memory: cannot set_field for &__cs_param_access_ok_3_arg0
+Shadow memory: cannot get_field for &__cs_param_access_ok_3_arg0
+Shadow memory: cannot get_field for &__cs_param_write_nvram_1_buf
+Shadow memory: cannot set_field for &__cs_param_access_ok_3_arg2
+Shadow memory: cannot set_field for &__cs_param_access_ok_3_arg2
+Shadow memory: cannot get_field for &__cs_param_access_ok_3_arg2
+Shadow memory: cannot get_field for &__cs_param_write_nvram_1_count
+Shadow memory: cannot set_field for &__cs_retval_access_ok_3
+Shadow memory: cannot set_field for &__cs_retval_access_ok_3
+Shadow memory: cannot get_field for &__cs_retval_access_ok_3
+Shadow memory: cannot set_field for &__cs_nondet_write_nvram_1___cs_tmp_if_cond_9
+Shadow memory: cannot set_field for &__cs_nondet_write_nvram_1___cs_tmp_if_cond_9
+Shadow memory: cannot get_field for &__cs_nondet_write_nvram_1___cs_tmp_if_cond_9
+Shadow memory: cannot get_field for &__cs_retval_access_ok_3
+Shadow memory: cannot get_field for &__cs_nondet_write_nvram_1___cs_tmp_if_cond_9
+Shadow memory: cannot set_field for &__cs_retval_write_nvram_1
+Shadow memory: cannot set_field for &__cs_retval_write_nvram_1
+Shadow memory: cannot get_field for &__cs_retval_write_nvram_1
+Shadow memory: cannot set_field for &__cs_nondet_write_nvram_1___cs_tmp_if_cond_10
+Shadow memory: cannot set_field for &__cs_nondet_write_nvram_1___cs_tmp_if_cond_10
+Shadow memory: cannot get_field for &__cs_nondet_write_nvram_1___cs_tmp_if_cond_10
+Shadow memory: cannot get_field for &__cs_param_write_nvram_1_ppos
+Shadow memory: cannot get_field for &__cs_nondet_write_nvram_1___cs_tmp_if_cond_10
+Shadow memory: cannot set_field for &__cs_retval_write_nvram_1
+Shadow memory: cannot set_field for &__cs_retval_write_nvram_1
+Shadow memory: cannot get_field for &__cs_retval_write_nvram_1
+Shadow memory: cannot set_field for &__cs_nondet_write_nvram_1_i
+Shadow memory: cannot set_field for &__cs_nondet_write_nvram_1_i
+Shadow memory: cannot get_field for &__cs_nondet_write_nvram_1_i
+Shadow memory: cannot get_field for &__cs_param_write_nvram_1_ppos
+Shadow memory: cannot get_field for &__cs_param_write_nvram_1_count
+Shadow memory: cannot get_field for &__cs_nondet_write_nvram_1_i
+Shadow memory: cannot set_field for &__cs_param___get_user_2_arg0
+Shadow memory: cannot set_field for &__cs_param___get_user_2_arg0
+Shadow memory: cannot get_field for &__cs_param___get_user_2_arg0
+Shadow memory: cannot get_field for &__cs_nondet_write_nvram_1_c
+Shadow memory: cannot get_field for &__cs_local_write_nvram_1_p
+Shadow memory: cannot set_field for &__cs_retval___get_user_2
+Shadow memory: cannot set_field for &__cs_retval___get_user_2
+Shadow memory: cannot get_field for &__cs_retval___get_user_2
+Shadow memory: cannot set_field for &__cs_nondet_write_nvram_1___cs_tmp_if_cond_11
+Shadow memory: cannot set_field for &__cs_nondet_write_nvram_1___cs_tmp_if_cond_11
+Shadow memory: cannot get_field for &__cs_nondet_write_nvram_1___cs_tmp_if_cond_11
+Shadow memory: cannot get_field for &__cs_retval___get_user_2
+Shadow memory: cannot get_field for &__cs_nondet_write_nvram_1___cs_tmp_if_cond_11
+Shadow memory: cannot set_field for &__cs_retval_write_nvram_1
+Shadow memory: cannot set_field for &__cs_retval_write_nvram_1
+Shadow memory: cannot get_field for &__cs_retval_write_nvram_1
+Shadow memory: cannot set_field for &__cs_param_nvram_write_byte_2_arg0
+Shadow memory: cannot set_field for &__cs_param_nvram_write_byte_2_arg0
+Shadow memory: cannot get_field for &__cs_param_nvram_write_byte_2_arg0
+Shadow memory: cannot get_field for &__cs_nondet_write_nvram_1_c
+Shadow memory: cannot set_field for &__cs_param_nvram_write_byte_2_arg1
+Shadow memory: cannot set_field for &__cs_param_nvram_write_byte_2_arg1
+Shadow memory: cannot get_field for &__cs_param_nvram_write_byte_2_arg1
+Shadow memory: cannot get_field for &__cs_nondet_write_nvram_1_i
+Shadow memory: cannot set_field for &__cs_nondet_write_nvram_1_i
+Shadow memory: cannot set_field for &__cs_nondet_write_nvram_1_i
+Shadow memory: cannot get_field for &__cs_nondet_write_nvram_1_i
+Shadow memory: cannot set_field for &__cs_local_write_nvram_1_p
+Shadow memory: cannot set_field for &__cs_local_write_nvram_1_p
+Shadow memory: cannot get_field for &__cs_local_write_nvram_1_p
+Shadow memory: cannot set_field for &__cs_param_write_nvram_1_count
+Shadow memory: cannot set_field for &__cs_param_write_nvram_1_count
+Shadow memory: cannot get_field for &__cs_param_write_nvram_1_count
+Shadow memory: cannot get_field for &__cs_param_write_nvram_1_count
+Shadow memory: cannot get_field for &__cs_nondet_write_nvram_1_i
+Shadow memory: cannot set_field for &__cs_param___get_user_2_arg0
+Shadow memory: cannot set_field for &__cs_param___get_user_2_arg0
+Shadow memory: cannot get_field for &__cs_param___get_user_2_arg0
+Shadow memory: cannot get_field for &__cs_nondet_write_nvram_1_c
+Shadow memory: cannot get_field for &__cs_local_write_nvram_1_p
+Shadow memory: cannot set_field for &__cs_retval___get_user_2
+Shadow memory: cannot set_field for &__cs_retval___get_user_2
+Shadow memory: cannot get_field for &__cs_retval___get_user_2
+Shadow memory: cannot set_field for &__cs_nondet_write_nvram_1___cs_tmp_if_cond_11
+Shadow memory: cannot set_field for &__cs_nondet_write_nvram_1___cs_tmp_if_cond_11
+Shadow memory: cannot get_field for &__cs_nondet_write_nvram_1___cs_tmp_if_cond_11
+Shadow memory: cannot get_field for &__cs_retval___get_user_2
+Shadow memory: cannot get_field for &__cs_nondet_write_nvram_1___cs_tmp_if_cond_11
+Shadow memory: cannot set_field for &__cs_retval_write_nvram_1
+Shadow memory: cannot set_field for &__cs_retval_write_nvram_1
+Shadow memory: cannot get_field for &__cs_retval_write_nvram_1
+Shadow memory: cannot set_field for &__cs_param_nvram_write_byte_2_arg0
+Shadow memory: cannot set_field for &__cs_param_nvram_write_byte_2_arg0
+Shadow memory: cannot get_field for &__cs_param_nvram_write_byte_2_arg0
+Shadow memory: cannot get_field for &__cs_nondet_write_nvram_1_c
+Shadow memory: cannot set_field for &__cs_param_nvram_write_byte_2_arg1
+Shadow memory: cannot set_field for &__cs_param_nvram_write_byte_2_arg1
+Shadow memory: cannot get_field for &__cs_param_nvram_write_byte_2_arg1
+Shadow memory: cannot get_field for &__cs_nondet_write_nvram_1_i
+Shadow memory: cannot set_field for &__cs_nondet_write_nvram_1_i
+Shadow memory: cannot set_field for &__cs_nondet_write_nvram_1_i
+Shadow memory: cannot get_field for &__cs_nondet_write_nvram_1_i
+Shadow memory: cannot set_field for &__cs_local_write_nvram_1_p
+Shadow memory: cannot set_field for &__cs_local_write_nvram_1_p
+Shadow memory: cannot get_field for &__cs_local_write_nvram_1_p
+Shadow memory: cannot set_field for &__cs_param_write_nvram_1_count
+Shadow memory: cannot set_field for &__cs_param_write_nvram_1_count
+Shadow memory: cannot get_field for &__cs_param_write_nvram_1_count
+Shadow memory: cannot get_field for &__cs_param_write_nvram_1_count
+Shadow memory: cannot get_field for &__cs_nondet_write_nvram_1_i
+Shadow memory: cannot set_field for &__cs_param___get_user_2_arg0
+Shadow memory: cannot set_field for &__cs_param___get_user_2_arg0
+Shadow memory: cannot get_field for &__cs_param___get_user_2_arg0
+Shadow memory: cannot get_field for &__cs_nondet_write_nvram_1_c
+Shadow memory: cannot get_field for &__cs_local_write_nvram_1_p
+Shadow memory: cannot set_field for &__cs_retval___get_user_2
+Shadow memory: cannot set_field for &__cs_retval___get_user_2
+Shadow memory: cannot get_field for &__cs_retval___get_user_2
+Shadow memory: cannot set_field for &__cs_nondet_write_nvram_1___cs_tmp_if_cond_11
+Shadow memory: cannot set_field for &__cs_nondet_write_nvram_1___cs_tmp_if_cond_11
+Shadow memory: cannot get_field for &__cs_nondet_write_nvram_1___cs_tmp_if_cond_11
+Shadow memory: cannot get_field for &__cs_retval___get_user_2
+Shadow memory: cannot get_field for &__cs_nondet_write_nvram_1___cs_tmp_if_cond_11
+Shadow memory: cannot set_field for &__cs_retval_write_nvram_1
+Shadow memory: cannot set_field for &__cs_retval_write_nvram_1
+Shadow memory: cannot get_field for &__cs_retval_write_nvram_1
+Shadow memory: cannot set_field for &__cs_param_nvram_write_byte_2_arg0
+Shadow memory: cannot set_field for &__cs_param_nvram_write_byte_2_arg0
+Shadow memory: cannot get_field for &__cs_param_nvram_write_byte_2_arg0
+Shadow memory: cannot get_field for &__cs_nondet_write_nvram_1_c
+Shadow memory: cannot set_field for &__cs_param_nvram_write_byte_2_arg1
+Shadow memory: cannot set_field for &__cs_param_nvram_write_byte_2_arg1
+Shadow memory: cannot get_field for &__cs_param_nvram_write_byte_2_arg1
+Shadow memory: cannot get_field for &__cs_nondet_write_nvram_1_i
+Shadow memory: cannot set_field for &__cs_nondet_write_nvram_1_i
+Shadow memory: cannot set_field for &__cs_nondet_write_nvram_1_i
+Shadow memory: cannot get_field for &__cs_nondet_write_nvram_1_i
+Shadow memory: cannot set_field for &__cs_local_write_nvram_1_p
+Shadow memory: cannot set_field for &__cs_local_write_nvram_1_p
+Shadow memory: cannot get_field for &__cs_local_write_nvram_1_p
+Shadow memory: cannot set_field for &__cs_param_write_nvram_1_count
+Shadow memory: cannot set_field for &__cs_param_write_nvram_1_count
+Shadow memory: cannot get_field for &__cs_param_write_nvram_1_count
+Shadow memory: cannot get_field for &__cs_param_write_nvram_1_count
+Shadow memory: cannot get_field for &__cs_nondet_write_nvram_1_i
+Shadow memory: cannot set_field for &__cs_param___get_user_2_arg0
+Shadow memory: cannot set_field for &__cs_param___get_user_2_arg0
+Shadow memory: cannot get_field for &__cs_param___get_user_2_arg0
+Shadow memory: cannot get_field for &__cs_nondet_write_nvram_1_c
+Shadow memory: cannot get_field for &__cs_local_write_nvram_1_p
+Shadow memory: cannot set_field for &__cs_retval___get_user_2
+Shadow memory: cannot set_field for &__cs_retval___get_user_2
+Shadow memory: cannot get_field for &__cs_retval___get_user_2
+Shadow memory: cannot set_field for &__cs_nondet_write_nvram_1___cs_tmp_if_cond_11
+Shadow memory: cannot set_field for &__cs_nondet_write_nvram_1___cs_tmp_if_cond_11
+Shadow memory: cannot get_field for &__cs_nondet_write_nvram_1___cs_tmp_if_cond_11
+Shadow memory: cannot get_field for &__cs_retval___get_user_2
+Shadow memory: cannot get_field for &__cs_nondet_write_nvram_1___cs_tmp_if_cond_11
+Shadow memory: cannot set_field for &__cs_retval_write_nvram_1
+Shadow memory: cannot set_field for &__cs_retval_write_nvram_1
+Shadow memory: cannot get_field for &__cs_retval_write_nvram_1
+Shadow memory: cannot set_field for &__cs_param_nvram_write_byte_2_arg0
+Shadow memory: cannot set_field for &__cs_param_nvram_write_byte_2_arg0
+Shadow memory: cannot get_field for &__cs_param_nvram_write_byte_2_arg0
+Shadow memory: cannot get_field for &__cs_nondet_write_nvram_1_c
+Shadow memory: cannot set_field for &__cs_param_nvram_write_byte_2_arg1
+Shadow memory: cannot set_field for &__cs_param_nvram_write_byte_2_arg1
+Shadow memory: cannot get_field for &__cs_param_nvram_write_byte_2_arg1
+Shadow memory: cannot get_field for &__cs_nondet_write_nvram_1_i
+Shadow memory: cannot set_field for &__cs_nondet_write_nvram_1_i
+Shadow memory: cannot set_field for &__cs_nondet_write_nvram_1_i
+Shadow memory: cannot get_field for &__cs_nondet_write_nvram_1_i
+Shadow memory: cannot set_field for &__cs_local_write_nvram_1_p
+Shadow memory: cannot set_field for &__cs_local_write_nvram_1_p
+Shadow memory: cannot get_field for &__cs_local_write_nvram_1_p
+Shadow memory: cannot set_field for &__cs_param_write_nvram_1_count
+Shadow memory: cannot set_field for &__cs_param_write_nvram_1_count
+Shadow memory: cannot get_field for &__cs_param_write_nvram_1_count
+Shadow memory: cannot get_field for &__cs_param_write_nvram_1_count
+Shadow memory: cannot get_field for &__cs_nondet_write_nvram_1_i
+Shadow memory: cannot get_field for &__cs_param_write_nvram_1_ppos
+Shadow memory: cannot get_field for &__cs_nondet_write_nvram_1_i
+Shadow memory: cannot get_field for &__cs_param_write_nvram_1_ppos
+Shadow memory: cannot get_field for &__cs_nondet_write_nvram_1_i
+Shadow memory: cannot set_field for &__cs_retval_write_nvram_1
+Shadow memory: cannot set_field for &__cs_retval_write_nvram_1
+Shadow memory: cannot get_field for &__cs_retval_write_nvram_1
+Shadow memory: cannot get_field for &__cs_local_write_nvram_1_p
+Shadow memory: cannot get_field for &__cs_param_write_nvram_1_buf
+Shadow memory: cannot get_field for &__cs_retval_write_nvram_1
+Shadow memory: cannot set_field for &__cs_param_nvram_unlocked_ioctl_1_file
+Shadow memory: cannot set_field for &__cs_param_nvram_unlocked_ioctl_1_file
+Shadow memory: cannot get_field for &__cs_param_nvram_unlocked_ioctl_1_file
+Shadow memory: cannot set_field for &__cs_param_nvram_unlocked_ioctl_1_cmd
+Shadow memory: cannot set_field for &__cs_param_nvram_unlocked_ioctl_1_cmd
+Shadow memory: cannot get_field for &__cs_param_nvram_unlocked_ioctl_1_cmd
+Shadow memory: cannot set_field for &__cs_param_nvram_unlocked_ioctl_1_arg
+Shadow memory: cannot set_field for &__cs_param_nvram_unlocked_ioctl_1_arg
+Shadow memory: cannot get_field for &__cs_param_nvram_unlocked_ioctl_1_arg
+Shadow memory: cannot set_field for &__cs_nondet_mutex_lock_1_tid
+Shadow memory: cannot set_field for &__cs_nondet_mutex_lock_1_tid
+Shadow memory: cannot get_field for &__cs_nondet_mutex_lock_1_tid
+Shadow memory: cannot get_field for &__cs_nondet_mutex_lock_1_tid
+Shadow memory: cannot set_field for &__cs_param_nvram_ioctl_1_file
+Shadow memory: cannot set_field for &__cs_param_nvram_ioctl_1_file
+Shadow memory: cannot get_field for &__cs_param_nvram_ioctl_1_file
+Shadow memory: cannot get_field for &__cs_param_nvram_unlocked_ioctl_1_file
+Shadow memory: cannot set_field for &__cs_param_nvram_ioctl_1_cmd
+Shadow memory: cannot set_field for &__cs_param_nvram_ioctl_1_cmd
+Shadow memory: cannot get_field for &__cs_param_nvram_ioctl_1_cmd
+Shadow memory: cannot get_field for &__cs_param_nvram_unlocked_ioctl_1_cmd
+Shadow memory: cannot set_field for &__cs_param_nvram_ioctl_1_arg
+Shadow memory: cannot set_field for &__cs_param_nvram_ioctl_1_arg
+Shadow memory: cannot get_field for &__cs_param_nvram_ioctl_1_arg
+Shadow memory: cannot get_field for &__cs_param_nvram_unlocked_ioctl_1_arg
+Shadow memory: cannot set_field for &__cs_nondet_nvram_ioctl_1___cs_switch_cond_nvram_ioctl_1
+Shadow memory: cannot set_field for &__cs_nondet_nvram_ioctl_1___cs_switch_cond_nvram_ioctl_1
+Shadow memory: cannot get_field for &__cs_nondet_nvram_ioctl_1___cs_switch_cond_nvram_ioctl_1
+Shadow memory: cannot get_field for &__cs_param_nvram_ioctl_1_cmd
+Shadow memory: cannot set_field for &__cs_nondet_nvram_ioctl_1___cs_tmp_if_cond_12
+Shadow memory: cannot set_field for &__cs_nondet_nvram_ioctl_1___cs_tmp_if_cond_12
+Shadow memory: cannot get_field for &__cs_nondet_nvram_ioctl_1___cs_tmp_if_cond_12
+Shadow memory: cannot get_field for &__cs_nondet_nvram_ioctl_1___cs_switch_cond_nvram_ioctl_1
+Shadow memory: cannot get_field for &__cs_nondet_nvram_ioctl_1___cs_tmp_if_cond_12
+Shadow memory: cannot set_field for &__cs_nondet_nvram_ioctl_1___cs_tmp_if_cond_13
+Shadow memory: cannot set_field for &__cs_nondet_nvram_ioctl_1___cs_tmp_if_cond_13
+Shadow memory: cannot get_field for &__cs_nondet_nvram_ioctl_1___cs_tmp_if_cond_13
+Shadow memory: cannot get_field for &__cs_nondet_nvram_ioctl_1___cs_switch_cond_nvram_ioctl_1
+Shadow memory: cannot get_field for &__cs_nondet_nvram_ioctl_1___cs_tmp_if_cond_13
+Shadow memory: cannot set_field for &__cs_retval_nvram_ioctl_1
+Shadow memory: cannot set_field for &__cs_retval_nvram_ioctl_1
+Shadow memory: cannot get_field for &__cs_retval_nvram_ioctl_1
+Shadow memory: cannot set_field for &__cs_retval_nvram_ioctl_1
+Shadow memory: cannot set_field for &__cs_retval_nvram_ioctl_1
+Shadow memory: cannot get_field for &__cs_retval_nvram_ioctl_1
+Shadow memory: cannot set_field for &__cs_nondet_nvram_unlocked_ioctl_1_ret
+Shadow memory: cannot set_field for &__cs_nondet_nvram_unlocked_ioctl_1_ret
+Shadow memory: cannot get_field for &__cs_nondet_nvram_unlocked_ioctl_1_ret
+Shadow memory: cannot get_field for &__cs_retval_nvram_ioctl_1
+Shadow memory: cannot set_field for &__cs_retval_nvram_unlocked_ioctl_1
+Shadow memory: cannot set_field for &__cs_retval_nvram_unlocked_ioctl_1
+Shadow memory: cannot get_field for &__cs_retval_nvram_unlocked_ioctl_1
+Shadow memory: cannot get_field for &__cs_nondet_nvram_unlocked_ioctl_1_ret
+Shadow memory: cannot get_field for &__cs_retval_nvram_unlocked_ioctl_1
+Runtime Symex: 0.923901s
+size of program expression: 22550 steps
+simple slicing removed 5 assignments
+Generated 1 VCC(s), 1 remaining after simplification
+Runtime Postprocess Equation: 0.00349196s
+Passing problem to propositional reduction
+converting SSA
+Runtime Convert SSA: 0.13415s
+Running propositional reduction
+Post-processing
+Runtime Post-process: 0.00278123s
+Solving with Glucose Syrup with simplifier
+114537 variables, 238718 clauses
+SAT checker: instance is UNSATISFIABLE
+Runtime Solver: 0.218206s
+Runtime decision procedure: 0.352924s
+VERIFICATION SUCCESSFUL
+
+real	0m1,558s
+user	0m1,517s
+sys	0m0,046s

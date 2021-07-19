@@ -1,0 +1,34 @@
+CBMC version 5.12 (cbmc-5.11-4673-gff3adfd29-dirty) 64-bit x86_64 linux
+Parsing /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2char_pc8736x_gpio_pc8736x_gpio_configure_pc8736x_gpio_set.c
+Converting
+Type-checking _dr_2char_pc8736x_gpio_pc8736x_gpio_configure_pc8736x_gpio_set
+file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2char_pc8736x_gpio_pc8736x_gpio_configure_pc8736x_gpio_set.c line 889 function pc8736x_gpio_open: function 'iminor' is not declared
+file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2char_pc8736x_gpio_pc8736x_gpio_configure_pc8736x_gpio_set.c line 1174 function pc8736x_gpio_init: warning: conversion from 'signed int *' to 'struct device *': incompatible pointer types
+file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2char_pc8736x_gpio_pc8736x_gpio_configure_pc8736x_gpio_set.c line 1807 function whoop_wrapper_pc8736x_gpio_set_0: function '__CPROVER_get_field' is not declared
+file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2char_pc8736x_gpio_pc8736x_gpio_configure_pc8736x_gpio_set.c line 1906 function whoop_wrapper_pc8736x_gpio_set_0: function '__CPROVER_set_field' is not declared
+file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2char_pc8736x_gpio_pc8736x_gpio_configure_pc8736x_gpio_set.c line 2350 function main: function '__CPROVER_field_decl_global' is not declared
+Generating GOTO Program
+Adding CPROVER library (x86_64)
+Removal of function pointers and virtual functions
+file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2char_pc8736x_gpio_pc8736x_gpio_configure_pc8736x_gpio_set.c line 2328 function __cs_main_thread: replacing function pointer by 1 possible targets
+Generic Property Instrumentation
+Running with 8 object bits, 56 offset bits (default)
+Starting Bounded Model Checking
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+size of program expression: 5404 steps
+simple slicing removed 5 assignments
+Generated 1 VCC(s), 1 remaining after simplification
+Passing problem to propositional reduction
+converting SSA
+Running propositional reduction
+Post-processing
+Solving with Glucose Syrup with simplifier
+31633 variables, 40617 clauses
+SAT checker inconsistent: instance is UNSATISFIABLE
+Runtime decision procedure: 0.022312s
+VERIFICATION SUCCESSFUL
+
+real	0m0,223s
+user	0m0,195s
+sys	0m0,032s

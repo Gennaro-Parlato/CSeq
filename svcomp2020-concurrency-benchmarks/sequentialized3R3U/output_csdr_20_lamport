@@ -1,0 +1,605 @@
+CBMC version 5.32.1 (cbmc-5.32.1-140-g7c8c411038-dirty) 64-bit x86_64 linux
+Parsing /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_20_lamport.c
+Converting
+Type-checking _csdr_20_lamport
+file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_20_lamport.c line 302 function thr1_0: function '__CPROVER_set_field' is not declared
+file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_20_lamport.c line 302 function thr1_0: function '__CPROVER_get_field' is not declared
+file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_20_lamport.c line 1007 function main: function '__CPROVER_field_decl_global' is not declared
+Generating GOTO Program
+Adding CPROVER library (x86_64)
+Removal of function pointers and virtual functions
+Generic Property Instrumentation
+Running with 8 object bits, 56 offset bits (default)
+Starting Bounded Model Checking
+Shadow memory: cannot set_field for &__cs_param_thr2_1_arg
+Shadow memory: cannot set_field for &__cs_nondet_thr2_1___cs_tmp_if_cond_4
+Shadow memory: cannot set_field for &__cs_nondet_thr2_1___cs_tmp_if_cond_5
+Shadow memory: cannot set_field for &__cs_nondet_thr2_1___cs_tmp_if_cond_6
+Shadow memory: cannot set_field for &__cs_nondet_thr2_1___cs_tmp_if_cond_4
+Shadow memory: cannot set_field for &__cs_nondet_thr2_1___cs_tmp_if_cond_5
+Shadow memory: cannot set_field for &__cs_nondet_thr2_1___cs_tmp_if_cond_6
+Shadow memory: cannot set_field for &__cs_nondet_thr2_1___cs_tmp_if_cond_4
+Shadow memory: cannot set_field for &__cs_nondet_thr2_1___cs_tmp_if_cond_5
+Shadow memory: cannot set_field for &__cs_nondet_thr2_1___cs_tmp_if_cond_6
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_20_lamport.c line 937 function main_thread thread 0
+Shadow memory: cannot set_field for &__cs_nondet_thr2_1___cs_tmp_if_cond_7
+Shadow memory: cannot set_field for &__cs_retval_thr2_1
+Shadow memory: cannot set_field for &__cs_nondet_thr1___cs_tmp_if_cond_0
+Shadow memory: cannot set_field for &__cs_nondet_thr1___cs_tmp_if_cond_1
+Shadow memory: cannot set_field for &__cs_nondet_thr1___cs_tmp_if_cond_2
+Shadow memory: cannot set_field for &__cs_nondet_thr1___cs_tmp_if_cond_0
+Shadow memory: cannot set_field for &__cs_nondet_thr1___cs_tmp_if_cond_1
+Shadow memory: cannot set_field for &__cs_nondet_thr1___cs_tmp_if_cond_2
+Shadow memory: cannot set_field for &__cs_nondet_thr1___cs_tmp_if_cond_0
+Shadow memory: cannot set_field for &__cs_nondet_thr1___cs_tmp_if_cond_1
+Shadow memory: cannot set_field for &__cs_nondet_thr1___cs_tmp_if_cond_2
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_20_lamport.c line 584 function thr1_0 thread 0
+Shadow memory: cannot set_field for &__cs_nondet_thr1___cs_tmp_if_cond_3
+Shadow memory: cannot set_field for &__cs_param_thr2_1_arg
+Shadow memory: cannot get_field for &__cs_param_thr2_1_arg
+Shadow memory: cannot set_field for &__cs_nondet_thr2_1___cs_tmp_if_cond_4
+Shadow memory: cannot get_field for &__cs_nondet_thr2_1___cs_tmp_if_cond_4
+Shadow memory: cannot get_field for &__cs_nondet_thr2_1___cs_tmp_if_cond_4
+Shadow memory: cannot set_field for &__cs_nondet_thr2_1___cs_tmp_if_cond_5
+Shadow memory: cannot get_field for &__cs_nondet_thr2_1___cs_tmp_if_cond_5
+Shadow memory: cannot get_field for &__cs_nondet_thr2_1___cs_tmp_if_cond_5
+Shadow memory: cannot set_field for &__cs_nondet_thr2_1___cs_tmp_if_cond_6
+Shadow memory: cannot get_field for &__cs_nondet_thr2_1___cs_tmp_if_cond_6
+Shadow memory: cannot get_field for &__cs_nondet_thr2_1___cs_tmp_if_cond_6
+Shadow memory: cannot set_field for &__cs_nondet_thr2_1___cs_tmp_if_cond_4
+Shadow memory: cannot get_field for &__cs_nondet_thr2_1___cs_tmp_if_cond_4
+Shadow memory: cannot get_field for &__cs_nondet_thr2_1___cs_tmp_if_cond_4
+Shadow memory: cannot set_field for &__cs_nondet_thr2_1___cs_tmp_if_cond_5
+Shadow memory: cannot get_field for &__cs_nondet_thr2_1___cs_tmp_if_cond_5
+Shadow memory: cannot get_field for &__cs_nondet_thr2_1___cs_tmp_if_cond_5
+Shadow memory: cannot set_field for &__cs_nondet_thr2_1___cs_tmp_if_cond_6
+Shadow memory: cannot get_field for &__cs_nondet_thr2_1___cs_tmp_if_cond_6
+Shadow memory: cannot get_field for &__cs_nondet_thr2_1___cs_tmp_if_cond_6
+Shadow memory: cannot set_field for &__cs_nondet_thr2_1___cs_tmp_if_cond_4
+Shadow memory: cannot get_field for &__cs_nondet_thr2_1___cs_tmp_if_cond_4
+Shadow memory: cannot get_field for &__cs_nondet_thr2_1___cs_tmp_if_cond_4
+Shadow memory: cannot set_field for &__cs_nondet_thr2_1___cs_tmp_if_cond_5
+Shadow memory: cannot get_field for &__cs_nondet_thr2_1___cs_tmp_if_cond_5
+Shadow memory: cannot get_field for &__cs_nondet_thr2_1___cs_tmp_if_cond_5
+Shadow memory: cannot set_field for &__cs_nondet_thr2_1___cs_tmp_if_cond_6
+Shadow memory: cannot get_field for &__cs_nondet_thr2_1___cs_tmp_if_cond_6
+Shadow memory: cannot get_field for &__cs_nondet_thr2_1___cs_tmp_if_cond_6
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_20_lamport.c line 937 function main_thread thread 0
+Shadow memory: cannot set_field for &__cs_nondet_thr2_1___cs_tmp_if_cond_7
+Shadow memory: cannot get_field for &__cs_nondet_thr2_1___cs_tmp_if_cond_7
+Shadow memory: cannot get_field for &__cs_nondet_thr2_1___cs_tmp_if_cond_7
+Shadow memory: cannot set_field for &__cs_retval_thr2_1
+Shadow memory: cannot get_field for &__cs_retval_thr2_1
+Shadow memory: cannot get_field for &__cs_retval_thr2_1
+Shadow memory: cannot set_field for &__cs_nondet_thr1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_thr1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_thr1___cs_tmp_if_cond_0
+Shadow memory: cannot set_field for &__cs_nondet_thr1___cs_tmp_if_cond_1
+Shadow memory: cannot get_field for &__cs_nondet_thr1___cs_tmp_if_cond_1
+Shadow memory: cannot get_field for &__cs_nondet_thr1___cs_tmp_if_cond_1
+Shadow memory: cannot set_field for &__cs_nondet_thr1___cs_tmp_if_cond_2
+Shadow memory: cannot get_field for &__cs_nondet_thr1___cs_tmp_if_cond_2
+Shadow memory: cannot get_field for &__cs_nondet_thr1___cs_tmp_if_cond_2
+Shadow memory: cannot set_field for &__cs_nondet_thr1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_thr1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_thr1___cs_tmp_if_cond_0
+Shadow memory: cannot set_field for &__cs_nondet_thr1___cs_tmp_if_cond_1
+Shadow memory: cannot get_field for &__cs_nondet_thr1___cs_tmp_if_cond_1
+Shadow memory: cannot get_field for &__cs_nondet_thr1___cs_tmp_if_cond_1
+Shadow memory: cannot set_field for &__cs_nondet_thr1___cs_tmp_if_cond_2
+Shadow memory: cannot get_field for &__cs_nondet_thr1___cs_tmp_if_cond_2
+Shadow memory: cannot get_field for &__cs_nondet_thr1___cs_tmp_if_cond_2
+Shadow memory: cannot set_field for &__cs_nondet_thr1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_thr1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_thr1___cs_tmp_if_cond_0
+Shadow memory: cannot set_field for &__cs_nondet_thr1___cs_tmp_if_cond_1
+Shadow memory: cannot get_field for &__cs_nondet_thr1___cs_tmp_if_cond_1
+Shadow memory: cannot get_field for &__cs_nondet_thr1___cs_tmp_if_cond_1
+Shadow memory: cannot set_field for &__cs_nondet_thr1___cs_tmp_if_cond_2
+Shadow memory: cannot get_field for &__cs_nondet_thr1___cs_tmp_if_cond_2
+Shadow memory: cannot get_field for &__cs_nondet_thr1___cs_tmp_if_cond_2
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_20_lamport.c line 584 function thr1_0 thread 0
+Shadow memory: cannot set_field for &__cs_nondet_thr1___cs_tmp_if_cond_3
+Shadow memory: cannot get_field for &__cs_nondet_thr1___cs_tmp_if_cond_3
+Shadow memory: cannot get_field for &__cs_nondet_thr1___cs_tmp_if_cond_3
+Shadow memory: cannot set_field for &__cs_param_thr2_1_arg
+Shadow memory: cannot get_field for &__cs_param_thr2_1_arg
+Shadow memory: cannot set_field for &__cs_nondet_thr2_1___cs_tmp_if_cond_4
+Shadow memory: cannot get_field for &__cs_nondet_thr2_1___cs_tmp_if_cond_4
+Shadow memory: cannot get_field for &__cs_nondet_thr2_1___cs_tmp_if_cond_4
+Shadow memory: cannot set_field for &__cs_nondet_thr2_1___cs_tmp_if_cond_5
+Shadow memory: cannot get_field for &__cs_nondet_thr2_1___cs_tmp_if_cond_5
+Shadow memory: cannot get_field for &__cs_nondet_thr2_1___cs_tmp_if_cond_5
+Shadow memory: cannot set_field for &__cs_nondet_thr2_1___cs_tmp_if_cond_6
+Shadow memory: cannot get_field for &__cs_nondet_thr2_1___cs_tmp_if_cond_6
+Shadow memory: cannot get_field for &__cs_nondet_thr2_1___cs_tmp_if_cond_6
+Shadow memory: cannot set_field for &__cs_nondet_thr2_1___cs_tmp_if_cond_4
+Shadow memory: cannot get_field for &__cs_nondet_thr2_1___cs_tmp_if_cond_4
+Shadow memory: cannot get_field for &__cs_nondet_thr2_1___cs_tmp_if_cond_4
+Shadow memory: cannot set_field for &__cs_nondet_thr2_1___cs_tmp_if_cond_5
+Shadow memory: cannot get_field for &__cs_nondet_thr2_1___cs_tmp_if_cond_5
+Shadow memory: cannot get_field for &__cs_nondet_thr2_1___cs_tmp_if_cond_5
+Shadow memory: cannot set_field for &__cs_nondet_thr2_1___cs_tmp_if_cond_6
+Shadow memory: cannot get_field for &__cs_nondet_thr2_1___cs_tmp_if_cond_6
+Shadow memory: cannot get_field for &__cs_nondet_thr2_1___cs_tmp_if_cond_6
+Shadow memory: cannot set_field for &__cs_nondet_thr2_1___cs_tmp_if_cond_4
+Shadow memory: cannot get_field for &__cs_nondet_thr2_1___cs_tmp_if_cond_4
+Shadow memory: cannot get_field for &__cs_nondet_thr2_1___cs_tmp_if_cond_4
+Shadow memory: cannot set_field for &__cs_nondet_thr2_1___cs_tmp_if_cond_5
+Shadow memory: cannot get_field for &__cs_nondet_thr2_1___cs_tmp_if_cond_5
+Shadow memory: cannot get_field for &__cs_nondet_thr2_1___cs_tmp_if_cond_5
+Shadow memory: cannot set_field for &__cs_nondet_thr2_1___cs_tmp_if_cond_6
+Shadow memory: cannot get_field for &__cs_nondet_thr2_1___cs_tmp_if_cond_6
+Shadow memory: cannot get_field for &__cs_nondet_thr2_1___cs_tmp_if_cond_6
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_20_lamport.c line 937 function main_thread thread 0
+Shadow memory: cannot set_field for &__cs_nondet_thr2_1___cs_tmp_if_cond_7
+Shadow memory: cannot get_field for &__cs_nondet_thr2_1___cs_tmp_if_cond_7
+Shadow memory: cannot get_field for &__cs_nondet_thr2_1___cs_tmp_if_cond_7
+Shadow memory: cannot set_field for &__cs_retval_thr2_1
+Shadow memory: cannot get_field for &__cs_retval_thr2_1
+Shadow memory: cannot get_field for &__cs_retval_thr2_1
+Shadow memory: cannot set_field for &__cs_nondet_thr1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_thr1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_thr1___cs_tmp_if_cond_0
+Shadow memory: cannot set_field for &__cs_nondet_thr1___cs_tmp_if_cond_1
+Shadow memory: cannot get_field for &__cs_nondet_thr1___cs_tmp_if_cond_1
+Shadow memory: cannot get_field for &__cs_nondet_thr1___cs_tmp_if_cond_1
+Shadow memory: cannot set_field for &__cs_nondet_thr1___cs_tmp_if_cond_2
+Shadow memory: cannot get_field for &__cs_nondet_thr1___cs_tmp_if_cond_2
+Shadow memory: cannot get_field for &__cs_nondet_thr1___cs_tmp_if_cond_2
+Shadow memory: cannot set_field for &__cs_nondet_thr1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_thr1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_thr1___cs_tmp_if_cond_0
+Shadow memory: cannot set_field for &__cs_nondet_thr1___cs_tmp_if_cond_1
+Shadow memory: cannot get_field for &__cs_nondet_thr1___cs_tmp_if_cond_1
+Shadow memory: cannot get_field for &__cs_nondet_thr1___cs_tmp_if_cond_1
+Shadow memory: cannot set_field for &__cs_nondet_thr1___cs_tmp_if_cond_2
+Shadow memory: cannot get_field for &__cs_nondet_thr1___cs_tmp_if_cond_2
+Shadow memory: cannot get_field for &__cs_nondet_thr1___cs_tmp_if_cond_2
+Shadow memory: cannot set_field for &__cs_nondet_thr1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_thr1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_thr1___cs_tmp_if_cond_0
+Shadow memory: cannot set_field for &__cs_nondet_thr1___cs_tmp_if_cond_1
+Shadow memory: cannot get_field for &__cs_nondet_thr1___cs_tmp_if_cond_1
+Shadow memory: cannot get_field for &__cs_nondet_thr1___cs_tmp_if_cond_1
+Shadow memory: cannot set_field for &__cs_nondet_thr1___cs_tmp_if_cond_2
+Shadow memory: cannot get_field for &__cs_nondet_thr1___cs_tmp_if_cond_2
+Shadow memory: cannot get_field for &__cs_nondet_thr1___cs_tmp_if_cond_2
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_20_lamport.c line 584 function thr1_0 thread 0
+Shadow memory: cannot set_field for &__cs_nondet_thr1___cs_tmp_if_cond_3
+Shadow memory: cannot get_field for &__cs_nondet_thr1___cs_tmp_if_cond_3
+Shadow memory: cannot get_field for &__cs_nondet_thr1___cs_tmp_if_cond_3
+Runtime Symex: 0.316748s
+size of program expression: 11642 steps
+simple slicing removed 5 assignments
+Generated 1 VCC(s), 1 remaining after simplification
+Runtime Postprocess Equation: 0.00116585s
+Passing problem to propositional reduction
+converting SSA
+Runtime Convert SSA: 0.0471861s
+Running propositional reduction
+Post-processing
+Runtime Post-process: 2.3365e-05s
+Solving with Glucose Syrup with simplifier
+26834 variables, 46629 clauses
+SAT checker: instance is SATISFIABLE
+Runtime Solver: 0.0401243s
+Runtime decision procedure: 0.0876083s
+Building error trace
+Counterexample:
+
+State 24 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_20_lamport.c function __CPROVER_initialize line 57 thread 0
+----------------------------------------------------
+  __cs_active_thread[0l]=0 (0)
+
+State 25 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_20_lamport.c function __CPROVER_initialize line 57 thread 0
+----------------------------------------------------
+  __cs_active_thread[1l]=0 (0)
+
+State 34 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_20_lamport.c function __CPROVER_initialize line 58 thread 0
+----------------------------------------------------
+  __cs_pc[0l]=0 (000000)
+
+State 35 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_20_lamport.c function __CPROVER_initialize line 58 thread 0
+----------------------------------------------------
+  __cs_pc[1l]=0 (000000)
+
+State 37 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_20_lamport.c function __CPROVER_initialize line 59 thread 0
+----------------------------------------------------
+  __cs_pc_cs[0l]=0 (0000000)
+
+State 38 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_20_lamport.c function __CPROVER_initialize line 59 thread 0
+----------------------------------------------------
+  __cs_pc_cs[1l]=0 (0000000)
+
+State 40 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_20_lamport.c function __CPROVER_initialize line 82 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 41 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_20_lamport.c function __CPROVER_initialize line 82 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 43 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_20_lamport.c function __CPROVER_initialize line 61 thread 0
+----------------------------------------------------
+  __cs_thread_lines[0l]=39 (100111)
+
+State 44 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_20_lamport.c function __CPROVER_initialize line 61 thread 0
+----------------------------------------------------
+  __cs_thread_lines[1l]=43 (101011)
+
+State 46 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_20_lamport.c function __CPROVER_initialize line 81 thread 0
+----------------------------------------------------
+  __cs_threadargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 47 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_20_lamport.c function __CPROVER_initialize line 81 thread 0
+----------------------------------------------------
+  __cs_threadargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 83 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_20_lamport.c function main line 1008 thread 0
+----------------------------------------------------
+  __cs_dr_ts=3 (011)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_20_lamport.c line 1009 function main
+  (signed int)__cs_dr_ts <= 4
+
+State 85 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_20_lamport.c function main line 1012 thread 0
+----------------------------------------------------
+  __cs_active_thread[1l]=1 (1)
+
+State 86 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_20_lamport.c function main line 1013 thread 0
+----------------------------------------------------
+  __cs_tmp_t1_r0=7 (000111)
+
+State 87 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_20_lamport.c function main line 1014 thread 0
+----------------------------------------------------
+  __cs_pc_cs[1l]=7 (0000111)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_20_lamport.c line 1015 function main
+  (signed int)__cs_pc_cs[(signed long int)1] > 0
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_20_lamport.c line 1016 function main
+  (signed int)__cs_pc_cs[(signed long int)1] <= 43
+
+State 94 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_20_lamport.c function main_thread line 638 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 95 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_20_lamport.c function main_thread line 639 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=TRUE (00000001)
+
+State 98 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_20_lamport.c function main_thread line 641 thread 0
+----------------------------------------------------
+  __cs_new_thread_id=&__cs_nondet_main_t (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 99 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_20_lamport.c function main_thread line 641 thread 0
+----------------------------------------------------
+  __cs_attr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 100 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_20_lamport.c function main_thread line 641 thread 0
+----------------------------------------------------
+  __cs_thread_function=thr1_0 (00000011 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 101 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_20_lamport.c function main_thread line 641 thread 0
+----------------------------------------------------
+  __cs_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 102 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_20_lamport.c function main_thread line 641 thread 0
+----------------------------------------------------
+  __cs_threadID=0 (00000000 00000000 00000000 00000000)
+
+State 104 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_20_lamport.c function __cs_create line 87 thread 0
+----------------------------------------------------
+  __cs_nondet_main_t=0 (00000000 00000000 00000000 00000000)
+
+State 105 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_20_lamport.c function __cs_create line 88 thread 0
+----------------------------------------------------
+  __cs_active_thread[0l]=1 (1)
+
+State 106 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_20_lamport.c function __cs_create line 89 thread 0
+----------------------------------------------------
+  __cs_threadargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 110 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_20_lamport.c function main_thread line 647 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 111 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_20_lamport.c function main_thread line 648 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 114 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_20_lamport.c function main_thread line 649 thread 0
+----------------------------------------------------
+  __cs_param_thr2_1_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 116 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_20_lamport.c function main_thread line 653 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 117 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_20_lamport.c function main_thread line 654 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 120 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_20_lamport.c function main_thread line 655 thread 0
+----------------------------------------------------
+  b2=1 (00000000 00000000 00000000 00000001)
+
+State 122 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_20_lamport.c function main_thread line 658 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 123 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_20_lamport.c function main_thread line 659 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 126 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_20_lamport.c function main_thread line 660 thread 0
+----------------------------------------------------
+  x=2 (00000000 00000000 00000000 00000010)
+
+State 128 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_20_lamport.c function main_thread line 666 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 129 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_20_lamport.c function main_thread line 667 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 133 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_20_lamport.c function main_thread line 668 thread 0
+----------------------------------------------------
+  __cs_nondet_thr2_1___cs_tmp_if_cond_4=FALSE (00000000)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_20_lamport.c line 685 function main_thread
+  (signed int)__cs_pc_cs[(signed long int)1] >= 7
+
+State 180 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_20_lamport.c function main_thread line 1003 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 181 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_20_lamport.c function main_thread line 1003 thread 0
+----------------------------------------------------
+  __cs_thread_index=1u (00000000 00000000 00000000 00000001)
+
+State 182 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_20_lamport.c function __cs_exit line 101 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 188 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_20_lamport.c function main line 1022 thread 0
+----------------------------------------------------
+  __cs_pc[1l]=7 (000111)
+
+State 189 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_20_lamport.c function main line 1024 thread 0
+----------------------------------------------------
+  __cs_tmp_t0_r0=5 (000101)
+
+State 191 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_20_lamport.c function main line 1027 thread 0
+----------------------------------------------------
+  __cs_pc_cs[0l]=5 (0000101)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_20_lamport.c line 1028 function main
+  (signed int)__cs_pc_cs[(signed long int)0] <= 39
+
+State 196 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_20_lamport.c function main line 1031 thread 0
+----------------------------------------------------
+  __cs_param_thr1_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 198 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_20_lamport.c function thr1_0 line 300 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 199 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_20_lamport.c function thr1_0 line 301 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=TRUE (00000001)
+
+State 202 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_20_lamport.c function thr1_0 line 302 thread 0
+----------------------------------------------------
+  b1=1 (00000000 00000000 00000000 00000001)
+
+State 204 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_20_lamport.c function thr1_0 line 305 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 205 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_20_lamport.c function thr1_0 line 306 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 208 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_20_lamport.c function thr1_0 line 307 thread 0
+----------------------------------------------------
+  x=1 (00000000 00000000 00000000 00000001)
+
+State 210 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_20_lamport.c function thr1_0 line 313 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 211 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_20_lamport.c function thr1_0 line 314 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 215 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_20_lamport.c function thr1_0 line 315 thread 0
+----------------------------------------------------
+  __cs_nondet_thr1___cs_tmp_if_cond_0=FALSE (00000000)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_20_lamport.c line 332 function thr1_0
+  (signed int)__cs_pc_cs[(signed long int)0] >= 5
+
+State 259 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_20_lamport.c function thr1_0 line 633 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 260 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_20_lamport.c function thr1_0 line 633 thread 0
+----------------------------------------------------
+  __cs_thread_index=0u (00000000 00000000 00000000 00000000)
+
+State 261 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_20_lamport.c function __cs_exit line 101 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 268 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_20_lamport.c function main line 1036 thread 0
+----------------------------------------------------
+  __cs_pc[0l]=5 (000101)
+
+State 269 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_20_lamport.c function main line 1040 thread 0
+----------------------------------------------------
+  __cs_tmp_t1_r1=0 (000000)
+
+State 271 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_20_lamport.c function main line 1043 thread 0
+----------------------------------------------------
+  __cs_pc_cs[1l]=7 (0000111)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_20_lamport.c line 1044 function main
+  (signed int)__cs_pc_cs[(signed long int)1] >= (signed int)__cs_pc[(signed long int)1]
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_20_lamport.c line 1045 function main
+  (signed int)__cs_pc_cs[(signed long int)1] <= 43
+
+State 327 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_20_lamport.c function main_thread line 1003 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 328 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_20_lamport.c function main_thread line 1003 thread 0
+----------------------------------------------------
+  __cs_thread_index=1u (00000000 00000000 00000000 00000001)
+
+State 329 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_20_lamport.c function __cs_exit line 101 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 336 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_20_lamport.c function main line 1053 thread 0
+----------------------------------------------------
+  __cs_pc[1l]=7 (000111)
+
+State 337 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_20_lamport.c function main line 1056 thread 0
+----------------------------------------------------
+  __cs_tmp_t0_r1=1 (000001)
+
+State 339 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_20_lamport.c function main line 1059 thread 0
+----------------------------------------------------
+  __cs_pc_cs[0l]=6 (0000110)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_20_lamport.c line 1060 function main
+  (signed int)__cs_pc_cs[(signed long int)0] >= (signed int)__cs_pc[(signed long int)0]
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_20_lamport.c line 1061 function main
+  (signed int)__cs_pc_cs[(signed long int)0] <= 39
+
+State 343 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_20_lamport.c function main line 1063 thread 0
+----------------------------------------------------
+  __cs_dataraceDetectionStarted=TRUE (00000001)
+
+State 346 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_20_lamport.c function main line 1064 thread 0
+----------------------------------------------------
+  __cs_param_thr1_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 353 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_20_lamport.c function thr1_0 line 336 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=TRUE (00000001)
+
+State 354 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_20_lamport.c function thr1_0 line 337 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=TRUE (00000001)
+
+State 361 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_20_lamport.c function thr1_0 line 338 thread 0
+----------------------------------------------------
+  y=1 (00000000 00000000 00000000 00000001)
+
+State 401 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_20_lamport.c function thr1_0 line 633 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 402 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_20_lamport.c function thr1_0 line 633 thread 0
+----------------------------------------------------
+  __cs_thread_index=0u (00000000 00000000 00000000 00000000)
+
+State 403 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_20_lamport.c function __cs_exit line 101 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 410 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_20_lamport.c function main line 1068 thread 0
+----------------------------------------------------
+  __cs_dataraceSecondThread=TRUE (00000001)
+
+State 411 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_20_lamport.c function main line 1069 thread 0
+----------------------------------------------------
+  __cs_pc[0l]=6 (000110)
+
+State 412 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_20_lamport.c function main line 1073 thread 0
+----------------------------------------------------
+  __cs_tmp_t1_r2=1 (000001)
+
+State 414 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_20_lamport.c function main line 1076 thread 0
+----------------------------------------------------
+  __cs_pc_cs[1l]=8 (0001000)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_20_lamport.c line 1077 function main
+  (signed int)__cs_pc_cs[(signed long int)1] >= (signed int)__cs_pc[(signed long int)1]
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_20_lamport.c line 1078 function main
+  (signed int)__cs_pc_cs[(signed long int)1] <= 43
+
+State 428 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_20_lamport.c function main_thread line 689 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=TRUE (00000001)
+
+State 429 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_20_lamport.c function main_thread line 690 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=TRUE (00000001)
+
+State 440 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_20_lamport.c function main_thread line 691 thread 0
+----------------------------------------------------
+  __cs_dataraceNotDetected=FALSE (00000000)
+
+State 441 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_20_lamport.c function main_thread line 691 thread 0
+----------------------------------------------------
+  y=2 (00000000 00000000 00000000 00000010)
+
+State 484 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_20_lamport.c function main_thread line 1003 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 485 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_20_lamport.c function main_thread line 1003 thread 0
+----------------------------------------------------
+  __cs_thread_index=1u (00000000 00000000 00000000 00000001)
+
+State 486 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_20_lamport.c function __cs_exit line 101 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 492 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_20_lamport.c function main line 1083 thread 0
+----------------------------------------------------
+  __cs_dataraceContinue=FALSE (00000000)
+
+State 494 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_20_lamport.c function main line 1085 thread 0
+----------------------------------------------------
+  __cs_dataraceSecondThread=TRUE (00000001)
+
+State 495 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_20_lamport.c function main line 1086 thread 0
+----------------------------------------------------
+  __cs_pc[1l]=8 (001000)
+
+State 496 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_20_lamport.c function main line 1089 thread 0
+----------------------------------------------------
+  __cs_tmp_t0_r2=0 (000000)
+
+Violated property:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_20_lamport.c function main line 1100 thread 0
+  Data race failure
+  __cs_dataraceNotDetected != FALSE
+
+
+VERIFICATION FAILED
+
+real	0m0,527s
+user	0m0,508s
+sys	0m0,021s

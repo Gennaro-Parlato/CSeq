@@ -1,0 +1,654 @@
+CBMC version 5.12 (cbmc-5.11-4673-gff3adfd29-dirty) 64-bit x86_64 linux
+Parsing /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c
+Converting
+Type-checking _dr_2condvar_spurious_wakeup
+file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c line 310 function thread_0: function '__CPROVER_get_field' is not declared
+file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c line 356 function __cs_main_thread: function '__CPROVER_set_field' is not declared
+file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c line 441 function main: function '__CPROVER_field_decl_global' is not declared
+Generating GOTO Program
+Adding CPROVER library (x86_64)
+Removal of function pointers and virtual functions
+Generic Property Instrumentation
+Running with 8 object bits, 56 offset bits (default)
+Starting Bounded Model Checking
+size of program expression: 2442 steps
+simple slicing removed 5 assignments
+Generated 1 VCC(s), 1 remaining after simplification
+Passing problem to propositional reduction
+converting SSA
+Running propositional reduction
+Post-processing
+Solving with Glucose Syrup with simplifier
+16168 variables, 34291 clauses
+SAT checker: instance is SATISFIABLE
+Runtime decision procedure: 0.0365261s
+Building error trace
+Counterexample:
+
+State 19 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c function __CPROVER_initialize line 62 thread 0
+----------------------------------------------------
+  __cs_active_thread[0l]=1 (1)
+
+State 20 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c function __CPROVER_initialize line 62 thread 0
+----------------------------------------------------
+  __cs_active_thread[1l]=0 (0)
+
+State 29 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c function __CPROVER_initialize line 63 thread 0
+----------------------------------------------------
+  __cs_pc[0l]=0 (0000)
+
+State 30 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c function __CPROVER_initialize line 63 thread 0
+----------------------------------------------------
+  __cs_pc[1l]=0 (0000)
+
+State 32 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c function __CPROVER_initialize line 64 thread 0
+----------------------------------------------------
+  __cs_pc_cs[0l]=0 (00000)
+
+State 33 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c function __CPROVER_initialize line 64 thread 0
+----------------------------------------------------
+  __cs_pc_cs[1l]=0 (00000)
+
+State 35 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c function __CPROVER_initialize line 79 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 36 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c function __CPROVER_initialize line 79 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 38 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c function __CPROVER_initialize line 66 thread 0
+----------------------------------------------------
+  __cs_thread_lines[0l]=9 (1001)
+
+State 39 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c function __CPROVER_initialize line 66 thread 0
+----------------------------------------------------
+  __cs_thread_lines[1l]=6 (0110)
+
+State 41 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c function __CPROVER_initialize line 78 thread 0
+----------------------------------------------------
+  __cs_threadargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 42 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c function __CPROVER_initialize line 78 thread 0
+----------------------------------------------------
+  __cs_threadargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 54 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c function main line 442 thread 0
+----------------------------------------------------
+  __cs_dr_ts=8 (1000)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c line 443 function main
+  (signed int)__cs_dr_ts <= 9
+
+State 56 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c function main line 446 thread 0
+----------------------------------------------------
+  __cs_tmp_t0_r0=1 (0001)
+
+State 57 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c function main line 447 thread 0
+----------------------------------------------------
+  __cs_pc_cs[0l]=1 (00001)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c line 448 function main
+  (signed int)__cs_pc_cs[(signed long int)0] > 0
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c line 449 function main
+  (signed int)__cs_pc_cs[(signed long int)0] <= 9
+
+State 66 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c function __cs_main_thread line 346 thread 0
+----------------------------------------------------
+  __cs_m=&lock (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 67 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c function __cs_main_thread line 346 thread 0
+----------------------------------------------------
+  __cs_val=0 (00000000 00000000 00000000 00000000)
+
+State 68 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c function __cs_mutex_init line 108 thread 0
+----------------------------------------------------
+  lock=-1 (11111111 11111111 11111111 11111111)
+
+State 73 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c function __cs_main_thread line 347 thread 0
+----------------------------------------------------
+  __cs_cond_to_init=&cond (00000011 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 74 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c function __cs_main_thread line 347 thread 0
+----------------------------------------------------
+  __cs_attr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 75 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c function __cs_cond_init line 141 thread 0
+----------------------------------------------------
+  cond=-1 (11111111 11111111 11111111 11111111)
+
+State 80 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c function __cs_main_thread line 348 thread 0
+----------------------------------------------------
+  __cs_new_thread_id=&__cs_nondet_main_t (00000100 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 81 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c function __cs_main_thread line 348 thread 0
+----------------------------------------------------
+  __cs_attr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 82 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c function __cs_main_thread line 348 thread 0
+----------------------------------------------------
+  __cs_thread_function=thread_0 (00000101 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 83 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c function __cs_main_thread line 348 thread 0
+----------------------------------------------------
+  __cs_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 84 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c function __cs_main_thread line 348 thread 0
+----------------------------------------------------
+  __cs_threadID=1 (00000000 00000000 00000000 00000001)
+
+State 86 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c function __cs_create line 84 thread 0
+----------------------------------------------------
+  __cs_nondet_main_t=1 (00000000 00000000 00000000 00000001)
+
+State 87 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c function __cs_create line 85 thread 0
+----------------------------------------------------
+  __cs_active_thread[1l]=1 (1)
+
+State 88 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c function __cs_create line 86 thread 0
+----------------------------------------------------
+  __cs_threadargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 91 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c function __cs_create line 87 thread 0
+----------------------------------------------------
+  __cs_message="thread spawned" (00000110 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 95 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c function __cs_main_thread line 351 thread 0
+----------------------------------------------------
+  __cs_nondet_main_i=0 (00000000 00000000 00000000 00000000)
+
+State 111 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c function __cs_main_thread line 437 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 112 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c function __cs_main_thread line 437 thread 0
+----------------------------------------------------
+  __cs_thread_index=0u (00000000 00000000 00000000 00000000)
+
+State 113 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c function __cs_exit line 98 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 119 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c function main line 455 thread 0
+----------------------------------------------------
+  __cs_pc[0l]=1 (0001)
+
+State 120 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c function main line 457 thread 0
+----------------------------------------------------
+  __cs_tmp_t1_r0=1 (001)
+
+State 122 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c function main line 460 thread 0
+----------------------------------------------------
+  __cs_pc_cs[1l]=1 (00001)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c line 461 function main
+  (signed int)__cs_pc_cs[(signed long int)1] <= 6
+
+State 127 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c function main line 464 thread 0
+----------------------------------------------------
+  __cs_param_thread_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 136 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c function thread_0 line 340 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 137 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c function thread_0 line 340 thread 0
+----------------------------------------------------
+  __cs_thread_index=1u (00000000 00000000 00000000 00000001)
+
+State 138 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c function __cs_exit line 98 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 145 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c function main line 469 thread 0
+----------------------------------------------------
+  __cs_pc[1l]=1 (0001)
+
+State 146 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c function main line 473 thread 0
+----------------------------------------------------
+  __cs_tmp_t0_r1=0 (0000)
+
+State 148 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c function main line 476 thread 0
+----------------------------------------------------
+  __cs_pc_cs[0l]=1 (00001)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c line 477 function main
+  (signed int)__cs_pc_cs[(signed long int)0] >= (signed int)__cs_pc[(signed long int)0]
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c line 478 function main
+  (signed int)__cs_pc_cs[(signed long int)0] <= 9
+
+State 170 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c function __cs_main_thread line 437 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 171 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c function __cs_main_thread line 437 thread 0
+----------------------------------------------------
+  __cs_thread_index=0u (00000000 00000000 00000000 00000000)
+
+State 172 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c function __cs_exit line 98 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 179 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c function main line 486 thread 0
+----------------------------------------------------
+  __cs_pc[0l]=1 (0001)
+
+State 180 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c function main line 489 thread 0
+----------------------------------------------------
+  __cs_tmp_t1_r1=2 (010)
+
+State 182 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c function main line 492 thread 0
+----------------------------------------------------
+  __cs_pc_cs[1l]=3 (00011)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c line 493 function main
+  (signed int)__cs_pc_cs[(signed long int)1] >= (signed int)__cs_pc[(signed long int)1]
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c line 494 function main
+  (signed int)__cs_pc_cs[(signed long int)1] <= 6
+
+State 188 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c function main line 497 thread 0
+----------------------------------------------------
+  __cs_param_thread_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 193 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c function thread_0 line 296 thread 0
+----------------------------------------------------
+  __cs_mutex_to_lock=&lock (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 194 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c function thread_0 line 296 thread 0
+----------------------------------------------------
+  __cs_thread_index=1 (1)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c line 122 function __cs_mutex_lock
+  *__cs_mutex_to_lock != 0
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c line 123 function __cs_mutex_lock
+  *__cs_mutex_to_lock != -2
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c line 124 function __cs_mutex_lock
+  *__cs_mutex_to_lock == -1
+
+State 198 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c function __cs_mutex_lock line 125 thread 0
+----------------------------------------------------
+  lock=2 (00000000 00000000 00000000 00000010)
+
+State 201 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c function __cs_mutex_lock line 126 thread 0
+----------------------------------------------------
+  __cs_message="lock acquired" (00001000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 208 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c function thread_0 line 299 thread 0
+----------------------------------------------------
+  __cs_cond_to_wait_for=&cond (00000011 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 209 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c function thread_0 line 299 thread 0
+----------------------------------------------------
+  __cs_m=&lock (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 210 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c function thread_0 line 299 thread 0
+----------------------------------------------------
+  __cs_thread_index=1u (00000000 00000000 00000000 00000001)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c line 151 function __cs_cond_wait_1
+  *__cs_cond_to_wait_for != 0
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c line 152 function __cs_cond_wait_1
+  *__cs_cond_to_wait_for != -2
+
+State 215 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c function __cs_cond_wait_1 line 153 thread 0
+----------------------------------------------------
+  __cs_mutex_to_unlock=&lock (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 216 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c function __cs_cond_wait_1 line 153 thread 0
+----------------------------------------------------
+  __cs_thread_index=1 (1)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c line 131 function __cs_mutex_unlock
+  *__cs_mutex_to_unlock != 0
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c line 132 function __cs_mutex_unlock
+  *__cs_mutex_to_unlock != -2
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c line 133 function __cs_mutex_unlock
+  *__cs_mutex_to_unlock == (signed int)__cs_thread_index + 1
+
+State 220 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c function __cs_mutex_unlock line 134 thread 0
+----------------------------------------------------
+  lock=-1 (11111111 11111111 11111111 11111111)
+
+State 223 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c function __cs_mutex_unlock line 135 thread 0
+----------------------------------------------------
+  __cs_message="lock released" (00001001 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 234 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c function thread_0 line 340 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 235 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c function thread_0 line 340 thread 0
+----------------------------------------------------
+  __cs_thread_index=1u (00000000 00000000 00000000 00000001)
+
+State 236 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c function __cs_exit line 98 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 243 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c function main line 502 thread 0
+----------------------------------------------------
+  __cs_pc[1l]=3 (0011)
+
+State 244 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c function main line 506 thread 0
+----------------------------------------------------
+  __cs_tmp_t0_r2=0 (0000)
+
+State 246 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c function main line 509 thread 0
+----------------------------------------------------
+  __cs_pc_cs[0l]=1 (00001)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c line 510 function main
+  (signed int)__cs_pc_cs[(signed long int)0] >= (signed int)__cs_pc[(signed long int)0]
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c line 511 function main
+  (signed int)__cs_pc_cs[(signed long int)0] <= 9
+
+State 268 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c function __cs_main_thread line 437 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 269 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c function __cs_main_thread line 437 thread 0
+----------------------------------------------------
+  __cs_thread_index=0u (00000000 00000000 00000000 00000000)
+
+State 270 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c function __cs_exit line 98 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 277 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c function main line 519 thread 0
+----------------------------------------------------
+  __cs_pc[0l]=1 (0001)
+
+State 278 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c function main line 522 thread 0
+----------------------------------------------------
+  __cs_tmp_t1_r2=0 (000)
+
+State 280 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c function main line 525 thread 0
+----------------------------------------------------
+  __cs_pc_cs[1l]=3 (00011)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c line 526 function main
+  (signed int)__cs_pc_cs[(signed long int)1] >= (signed int)__cs_pc[(signed long int)1]
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c line 527 function main
+  (signed int)__cs_pc_cs[(signed long int)1] <= 6
+
+State 286 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c function main line 530 thread 0
+----------------------------------------------------
+  __cs_param_thread_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 295 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c function thread_0 line 340 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 296 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c function thread_0 line 340 thread 0
+----------------------------------------------------
+  __cs_thread_index=1u (00000000 00000000 00000000 00000001)
+
+State 297 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c function __cs_exit line 98 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 304 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c function main line 535 thread 0
+----------------------------------------------------
+  __cs_pc[1l]=3 (0011)
+
+State 305 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c function main line 539 thread 0
+----------------------------------------------------
+  __cs_tmp_t0_r3=0 (0000)
+
+State 307 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c function main line 542 thread 0
+----------------------------------------------------
+  __cs_pc_cs[0l]=1 (00001)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c line 543 function main
+  (signed int)__cs_pc_cs[(signed long int)0] >= (signed int)__cs_pc[(signed long int)0]
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c line 544 function main
+  (signed int)__cs_pc_cs[(signed long int)0] <= 9
+
+State 329 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c function __cs_main_thread line 437 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 330 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c function __cs_main_thread line 437 thread 0
+----------------------------------------------------
+  __cs_thread_index=0u (00000000 00000000 00000000 00000000)
+
+State 331 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c function __cs_exit line 98 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 338 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c function main line 552 thread 0
+----------------------------------------------------
+  __cs_pc[0l]=1 (0001)
+
+State 339 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c function main line 555 thread 0
+----------------------------------------------------
+  __cs_tmp_t1_r3=0 (000)
+
+State 341 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c function main line 558 thread 0
+----------------------------------------------------
+  __cs_pc_cs[1l]=3 (00011)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c line 559 function main
+  (signed int)__cs_pc_cs[(signed long int)1] >= (signed int)__cs_pc[(signed long int)1]
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c line 560 function main
+  (signed int)__cs_pc_cs[(signed long int)1] <= 6
+
+State 347 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c function main line 563 thread 0
+----------------------------------------------------
+  __cs_param_thread_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 356 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c function thread_0 line 340 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 357 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c function thread_0 line 340 thread 0
+----------------------------------------------------
+  __cs_thread_index=1u (00000000 00000000 00000000 00000001)
+
+State 358 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c function __cs_exit line 98 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 365 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c function main line 568 thread 0
+----------------------------------------------------
+  __cs_pc[1l]=3 (0011)
+
+State 366 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c function main line 572 thread 0
+----------------------------------------------------
+  __cs_tmp_t0_r4=2 (0010)
+
+State 368 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c function main line 575 thread 0
+----------------------------------------------------
+  __cs_pc_cs[0l]=3 (00011)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c line 576 function main
+  (signed int)__cs_pc_cs[(signed long int)0] >= (signed int)__cs_pc[(signed long int)0]
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c line 577 function main
+  (signed int)__cs_pc_cs[(signed long int)0] <= 9
+
+State 372 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c function main line 579 thread 0
+----------------------------------------------------
+  __cs_dataraceDetectionStarted=TRUE (00000001)
+
+State 383 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c function __cs_main_thread line 361 thread 0
+----------------------------------------------------
+  x=0 (00000000 00000000 00000000 00000000)
+
+State 384 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c function __cs_main_thread line 364 thread 0
+----------------------------------------------------
+  __cs_nondet_main_i=1 (00000000 00000000 00000000 00000001)
+
+State 392 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c function __cs_main_thread line 374 thread 0
+----------------------------------------------------
+  x=1 (00000000 00000000 00000000 00000001)
+
+State 393 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c function __cs_main_thread line 377 thread 0
+----------------------------------------------------
+  __cs_nondet_main_i=2 (00000000 00000000 00000000 00000010)
+
+State 407 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c function __cs_main_thread line 437 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 408 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c function __cs_main_thread line 437 thread 0
+----------------------------------------------------
+  __cs_thread_index=0u (00000000 00000000 00000000 00000000)
+
+State 409 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c function __cs_exit line 98 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 416 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c function main line 584 thread 0
+----------------------------------------------------
+  __cs_dataraceSecondThread=TRUE (00000001)
+
+State 417 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c function main line 585 thread 0
+----------------------------------------------------
+  __cs_pc[0l]=3 (0011)
+
+State 418 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c function main line 588 thread 0
+----------------------------------------------------
+  __cs_tmp_t1_r4=0 (000)
+
+State 420 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c function main line 591 thread 0
+----------------------------------------------------
+  __cs_pc_cs[1l]=3 (00011)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c line 592 function main
+  (signed int)__cs_pc_cs[(signed long int)1] >= (signed int)__cs_pc[(signed long int)1]
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c line 593 function main
+  (signed int)__cs_pc_cs[(signed long int)1] <= 6
+
+State 426 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c function main line 596 thread 0
+----------------------------------------------------
+  __cs_param_thread_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 435 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c function thread_0 line 340 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 436 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c function thread_0 line 340 thread 0
+----------------------------------------------------
+  __cs_thread_index=1u (00000000 00000000 00000000 00000001)
+
+State 437 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c function __cs_exit line 98 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 444 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c function main line 600 thread 0
+----------------------------------------------------
+  __cs_dataraceSecondThread=TRUE (00000001)
+
+State 445 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c function main line 601 thread 0
+----------------------------------------------------
+  __cs_pc[1l]=3 (0011)
+
+State 446 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c function main line 603 thread 0
+----------------------------------------------------
+  __cs_tmp_t0_r5=3 (0011)
+
+State 448 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c function main line 606 thread 0
+----------------------------------------------------
+  __cs_pc_cs[0l]=6 (00110)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c line 607 function main
+  (signed int)__cs_pc_cs[(signed long int)0] >= (signed int)__cs_pc[(signed long int)0]
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c line 608 function main
+  (signed int)__cs_pc_cs[(signed long int)0] <= 9
+
+State 465 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c function __cs_main_thread line 386 thread 0
+----------------------------------------------------
+  __cs_dataraceNotDetected=FALSE (00000000)
+
+State 466 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c function __cs_main_thread line 387 thread 0
+----------------------------------------------------
+  x=2 (00000000 00000000 00000000 00000010)
+
+State 467 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c function __cs_main_thread line 390 thread 0
+----------------------------------------------------
+  __cs_nondet_main_i=3 (00000000 00000000 00000000 00000011)
+
+State 475 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c function __cs_main_thread line 400 thread 0
+----------------------------------------------------
+  x=3 (00000000 00000000 00000000 00000011)
+
+State 476 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c function __cs_main_thread line 403 thread 0
+----------------------------------------------------
+  __cs_nondet_main_i=4 (00000000 00000000 00000000 00000100)
+
+State 484 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c function __cs_main_thread line 413 thread 0
+----------------------------------------------------
+  x=4 (00000000 00000000 00000000 00000100)
+
+State 485 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c function __cs_main_thread line 416 thread 0
+----------------------------------------------------
+  __cs_nondet_main_i=5 (00000000 00000000 00000000 00000101)
+
+State 491 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c function __cs_main_thread line 437 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 492 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c function __cs_main_thread line 437 thread 0
+----------------------------------------------------
+  __cs_thread_index=0u (00000000 00000000 00000000 00000000)
+
+State 493 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c function __cs_exit line 98 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+Violated property:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized5R5U/_dr_2condvar_spurious_wakeup.c function main line 611 thread 0
+  Data race failure
+  __cs_dataraceNotDetected != FALSE
+
+
+VERIFICATION FAILED
+
+real	0m0,154s
+user	0m0,145s
+sys	0m0,011s

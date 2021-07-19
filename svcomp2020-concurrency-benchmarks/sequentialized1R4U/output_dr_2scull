@@ -1,0 +1,25 @@
+CBMC version 5.12 (cbmc-5.11-4673-gff3adfd29-dirty) 64-bit x86_64 linux
+Parsing /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2scull.c
+Converting
+Type-checking _dr_2scull
+file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2scull.c line 326 function loader_0: function '__CPROVER_get_field' is not declared
+file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2scull.c line 332 function loader_0: function '__CPROVER_set_field' is not declared
+file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2scull.c line 1232 function main: function '__CPROVER_field_decl_global' is not declared
+Generating GOTO Program
+Adding CPROVER library (x86_64)
+Removal of function pointers and virtual functions
+Generic Property Instrumentation
+Running with 8 object bits, 56 offset bits (default)
+Starting Bounded Model Checking
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2scull.c line 591 function thread1_0 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2scull.c line 791 function thread1_0 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2scull.c line 956 function thread2_0 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized1R4U/_dr_2scull.c line 1156 function thread2_0 thread 0
+size of program expression: 2470 steps
+simple slicing removed 0 assignments
+Generated 1 VCC(s), 0 remaining after simplification
+VERIFICATION SUCCESSFUL
+
+real	0m0,124s
+user	0m0,106s
+sys	0m0,022s

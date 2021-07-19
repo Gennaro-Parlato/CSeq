@@ -1,0 +1,1090 @@
+CBMC version 5.12 (cbmc-5.11-4673-gff3adfd29-dirty) 64-bit x86_64 linux
+Parsing /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c
+Converting
+Type-checking _dr_2bounded_buffer
+file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c line 332 function producer_routine_0: function '__CPROVER_get_field' is not declared
+file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c line 524 function producer_routine_0: function '__CPROVER_set_field' is not declared
+file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c line 4502 function main: function '__CPROVER_field_decl_global' is not declared
+Generating GOTO Program
+Adding CPROVER library (x86_64)
+Removal of function pointers and virtual functions
+Generic Property Instrumentation
+Running with 8 object bits, 56 offset bits (default)
+Starting Bounded Model Checking
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c line 2295 function consumer_routine_0 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c line 2607 function consumer_routine_0 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c line 2919 function consumer_routine_0 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c line 3258 function consumer_routine_1 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c line 3570 function consumer_routine_1 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c line 3882 function consumer_routine_1 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c line 2295 function consumer_routine_0 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c line 2607 function consumer_routine_0 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c line 2919 function consumer_routine_0 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c line 3258 function consumer_routine_1 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c line 3570 function consumer_routine_1 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c line 3882 function consumer_routine_1 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c line 2295 function consumer_routine_0 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c line 2607 function consumer_routine_0 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c line 2919 function consumer_routine_0 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c line 3258 function consumer_routine_1 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c line 3570 function consumer_routine_1 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c line 3882 function consumer_routine_1 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c line 2295 function consumer_routine_0 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c line 2607 function consumer_routine_0 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c line 2919 function consumer_routine_0 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c line 3258 function consumer_routine_1 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c line 3570 function consumer_routine_1 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c line 3882 function consumer_routine_1 thread 0
+size of program expression: 55968 steps
+simple slicing removed 5 assignments
+Generated 301 VCC(s), 246 remaining after simplification
+Passing problem to propositional reduction
+converting SSA
+Running propositional reduction
+Post-processing
+Solving with Glucose Syrup with simplifier
+3551370 variables, 13634471 clauses
+SAT checker: instance is SATISFIABLE
+Runtime decision procedure: 48.2472s
+Building error trace
+Counterexample:
+
+State 19 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function __CPROVER_initialize line 62 thread 0
+----------------------------------------------------
+  __cs_active_thread[0l]=1 (1)
+
+State 20 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function __CPROVER_initialize line 62 thread 0
+----------------------------------------------------
+  __cs_active_thread[1l]=0 (0)
+
+State 21 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function __CPROVER_initialize line 62 thread 0
+----------------------------------------------------
+  __cs_active_thread[2l]=0 (0)
+
+State 22 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function __CPROVER_initialize line 62 thread 0
+----------------------------------------------------
+  __cs_active_thread[3l]=0 (0)
+
+State 23 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function __CPROVER_initialize line 62 thread 0
+----------------------------------------------------
+  __cs_active_thread[4l]=0 (0)
+
+State 59 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function __CPROVER_initialize line 3995 thread 0
+----------------------------------------------------
+  __cs_nondet_main_consumers[0l].pid=0 (00000000 00000000 00000000 00000000)
+
+State 60 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function __CPROVER_initialize line 3995 thread 0
+----------------------------------------------------
+  __cs_nondet_main_consumers[0l].id=0 (00000000 00000000 00000000 00000000)
+
+State 61 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function __CPROVER_initialize line 3995 thread 0
+----------------------------------------------------
+  __cs_nondet_main_consumers[0l].bbuf=((bounded_buf_t *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 62 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function __CPROVER_initialize line 3995 thread 0
+----------------------------------------------------
+  __cs_nondet_main_consumers[1l].pid=0 (00000000 00000000 00000000 00000000)
+
+State 63 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function __CPROVER_initialize line 3995 thread 0
+----------------------------------------------------
+  __cs_nondet_main_consumers[1l].id=0 (00000000 00000000 00000000 00000000)
+
+State 64 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function __CPROVER_initialize line 3995 thread 0
+----------------------------------------------------
+  __cs_nondet_main_consumers[1l].bbuf=((bounded_buf_t *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 67 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function __CPROVER_initialize line 3994 thread 0
+----------------------------------------------------
+  __cs_nondet_main_producers[0l].pid=0 (00000000 00000000 00000000 00000000)
+
+State 68 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function __CPROVER_initialize line 3994 thread 0
+----------------------------------------------------
+  __cs_nondet_main_producers[0l].id=0 (00000000 00000000 00000000 00000000)
+
+State 69 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function __CPROVER_initialize line 3994 thread 0
+----------------------------------------------------
+  __cs_nondet_main_producers[0l].bbuf=((bounded_buf_t *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 70 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function __CPROVER_initialize line 3994 thread 0
+----------------------------------------------------
+  __cs_nondet_main_producers[1l].pid=0 (00000000 00000000 00000000 00000000)
+
+State 71 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function __CPROVER_initialize line 3994 thread 0
+----------------------------------------------------
+  __cs_nondet_main_producers[1l].id=0 (00000000 00000000 00000000 00000000)
+
+State 72 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function __CPROVER_initialize line 3994 thread 0
+----------------------------------------------------
+  __cs_nondet_main_producers[1l].bbuf=((bounded_buf_t *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 76 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function __CPROVER_initialize line 63 thread 0
+----------------------------------------------------
+  __cs_pc[0l]=0 (0000000)
+
+State 77 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function __CPROVER_initialize line 63 thread 0
+----------------------------------------------------
+  __cs_pc[1l]=0 (0000000)
+
+State 78 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function __CPROVER_initialize line 63 thread 0
+----------------------------------------------------
+  __cs_pc[2l]=0 (0000000)
+
+State 79 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function __CPROVER_initialize line 63 thread 0
+----------------------------------------------------
+  __cs_pc[3l]=0 (0000000)
+
+State 80 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function __CPROVER_initialize line 63 thread 0
+----------------------------------------------------
+  __cs_pc[4l]=0 (0000000)
+
+State 82 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function __CPROVER_initialize line 64 thread 0
+----------------------------------------------------
+  __cs_pc_cs[0l]=0 (00000000)
+
+State 83 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function __CPROVER_initialize line 64 thread 0
+----------------------------------------------------
+  __cs_pc_cs[1l]=0 (00000000)
+
+State 84 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function __CPROVER_initialize line 64 thread 0
+----------------------------------------------------
+  __cs_pc_cs[2l]=0 (00000000)
+
+State 85 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function __CPROVER_initialize line 64 thread 0
+----------------------------------------------------
+  __cs_pc_cs[3l]=0 (00000000)
+
+State 86 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function __CPROVER_initialize line 64 thread 0
+----------------------------------------------------
+  __cs_pc_cs[4l]=0 (00000000)
+
+State 88 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function __CPROVER_initialize line 79 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 89 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function __CPROVER_initialize line 79 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 90 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function __CPROVER_initialize line 79 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[2l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 91 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function __CPROVER_initialize line 79 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[3l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 92 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function __CPROVER_initialize line 79 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[4l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 94 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function __CPROVER_initialize line 66 thread 0
+----------------------------------------------------
+  __cs_thread_lines[0l]=45 (0101101)
+
+State 95 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function __CPROVER_initialize line 66 thread 0
+----------------------------------------------------
+  __cs_thread_lines[1l]=71 (1000111)
+
+State 96 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function __CPROVER_initialize line 66 thread 0
+----------------------------------------------------
+  __cs_thread_lines[2l]=71 (1000111)
+
+State 97 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function __CPROVER_initialize line 66 thread 0
+----------------------------------------------------
+  __cs_thread_lines[3l]=83 (1010011)
+
+State 98 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function __CPROVER_initialize line 66 thread 0
+----------------------------------------------------
+  __cs_thread_lines[4l]=83 (1010011)
+
+State 100 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function __CPROVER_initialize line 78 thread 0
+----------------------------------------------------
+  __cs_threadargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 101 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function __CPROVER_initialize line 78 thread 0
+----------------------------------------------------
+  __cs_threadargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 102 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function __CPROVER_initialize line 78 thread 0
+----------------------------------------------------
+  __cs_threadargs[2l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 103 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function __CPROVER_initialize line 78 thread 0
+----------------------------------------------------
+  __cs_threadargs[3l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 104 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function __CPROVER_initialize line 78 thread 0
+----------------------------------------------------
+  __cs_threadargs[4l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 329 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function main line 4503 thread 0
+----------------------------------------------------
+  __cs_dr_ts=5 (00101)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c line 4504 function main
+  (signed int)__cs_dr_ts <= 19
+
+State 331 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function main line 4507 thread 0
+----------------------------------------------------
+  __cs_tmp_t0_r0=3 (000011)
+
+State 332 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function main line 4508 thread 0
+----------------------------------------------------
+  __cs_pc_cs[0l]=3 (00000011)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c line 4509 function main
+  (signed int)__cs_pc_cs[(signed long int)0] > 0
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c line 4510 function main
+  (signed int)__cs_pc_cs[(signed long int)0] <= 45
+
+State 339 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function __cs_main_thread line 4001 thread 0
+----------------------------------------------------
+  __cs_param_bounded_buf_init_1_bbuf=&__cs_nondet_main_buffer (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 340 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function __cs_main_thread line 4003 thread 0
+----------------------------------------------------
+  __cs_param_bounded_buf_init_1_sz=3ul (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000011)
+
+State 341 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function __cs_main_thread line 4005 thread 0
+----------------------------------------------------
+  __cs_local_bounded_buf_init_1_status=0 (00000000 00000000 00000000 00000000)
+
+State 342 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function __cs_main_thread line 4009 thread 0
+----------------------------------------------------
+  __cs_nondet_bounded_buf_init_1___cs_tmp_if_cond_0=FALSE (00000000)
+
+State 344 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function __cs_main_thread line 4017 thread 0
+----------------------------------------------------
+  __cs_nondet_main_buffer.valid=11329274 (00000000 10101100 11011110 11111010)
+
+State 347 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function __cs_main_thread line 4018 thread 0
+----------------------------------------------------
+  __cs_m=&__cs_nondet_main_buffer.mutex (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00000100)
+
+State 348 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function __cs_main_thread line 4018 thread 0
+----------------------------------------------------
+  __cs_val=0 (00000000 00000000 00000000 00000000)
+
+State 349 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function __cs_mutex_init line 108 thread 0
+----------------------------------------------------
+  __cs_nondet_main_buffer.mutex=-1 (11111111 11111111 11111111 11111111)
+
+State 352 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function __cs_main_thread line 4018 thread 0
+----------------------------------------------------
+  __cs_local_bounded_buf_init_1_status=0 (00000000 00000000 00000000 00000000)
+
+State 353 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function __cs_main_thread line 4022 thread 0
+----------------------------------------------------
+  __cs_nondet_bounded_buf_init_1___cs_tmp_if_cond_1=FALSE (00000000)
+
+State 357 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function __cs_main_thread line 4030 thread 0
+----------------------------------------------------
+  __cs_cond_to_init=&__cs_nondet_main_buffer.not_full (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00001000)
+
+State 358 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function __cs_main_thread line 4030 thread 0
+----------------------------------------------------
+  __cs_attr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 359 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function __cs_cond_init line 141 thread 0
+----------------------------------------------------
+  __cs_nondet_main_buffer.not_full=-1 (11111111 11111111 11111111 11111111)
+
+State 362 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function __cs_main_thread line 4030 thread 0
+----------------------------------------------------
+  __cs_local_bounded_buf_init_1_status=0 (00000000 00000000 00000000 00000000)
+
+State 363 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function __cs_main_thread line 4034 thread 0
+----------------------------------------------------
+  __cs_nondet_bounded_buf_init_1___cs_tmp_if_cond_2=FALSE (00000000)
+
+State 367 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function __cs_main_thread line 4043 thread 0
+----------------------------------------------------
+  __cs_cond_to_init=&__cs_nondet_main_buffer.not_empty (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00001100)
+
+State 368 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function __cs_main_thread line 4043 thread 0
+----------------------------------------------------
+  __cs_attr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 369 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function __cs_cond_init line 141 thread 0
+----------------------------------------------------
+  __cs_nondet_main_buffer.not_empty=-1 (11111111 11111111 11111111 11111111)
+
+State 372 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function __cs_main_thread line 4043 thread 0
+----------------------------------------------------
+  __cs_local_bounded_buf_init_1_status=0 (00000000 00000000 00000000 00000000)
+
+State 373 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function __cs_main_thread line 4047 thread 0
+----------------------------------------------------
+  __cs_nondet_bounded_buf_init_1___cs_tmp_if_cond_3=FALSE (00000000)
+
+State 375 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function __cs_main_thread line 4057 thread 0
+----------------------------------------------------
+  __cs_nondet_main_buffer.item_num=0ul (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 376 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function __cs_main_thread line 4058 thread 0
+----------------------------------------------------
+  __cs_nondet_main_buffer.max_size=3ul (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000011)
+
+State 377 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function __cs_main_thread line 4059 thread 0
+----------------------------------------------------
+  __cs_nondet_main_buffer.head=0ul (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 378 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function __cs_main_thread line 4060 thread 0
+----------------------------------------------------
+  __cs_nondet_main_buffer.rear=0ul (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 382 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function __cs_main_thread line 4061 thread 0
+----------------------------------------------------
+  nmemb=3ul (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000011)
+
+State 383 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function __cs_main_thread line 4061 thread 0
+----------------------------------------------------
+  size=8ul (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00001000)
+
+State 390 file <builtin-library-calloc> function calloc line 21 thread 0
+----------------------------------------------------
+  dynamic_object1[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 391 file <builtin-library-calloc> function calloc line 21 thread 0
+----------------------------------------------------
+  dynamic_object1[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 392 file <builtin-library-calloc> function calloc line 21 thread 0
+----------------------------------------------------
+  dynamic_object1[2l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 408 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function __cs_main_thread line 4061 thread 0
+----------------------------------------------------
+  __cs_nondet_main_buffer.buf=dynamic_object1 (00000011 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 409 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function __cs_main_thread line 4065 thread 0
+----------------------------------------------------
+  __cs_nondet_bounded_buf_init_1___cs_tmp_if_cond_4=FALSE (00000000)
+
+State 411 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function __cs_main_thread line 4076 thread 0
+----------------------------------------------------
+  __cs_nondet_main_buffer.head=0ul (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 412 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function __cs_main_thread line 4077 thread 0
+----------------------------------------------------
+  __cs_nondet_main_buffer.rear=0ul (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 413 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function __cs_main_thread line 4078 thread 0
+----------------------------------------------------
+  __cs_nondet_main_buffer.p_wait=0ul (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 414 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function __cs_main_thread line 4079 thread 0
+----------------------------------------------------
+  __cs_nondet_main_buffer.c_wait=0ul (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 415 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function __cs_main_thread line 4080 thread 0
+----------------------------------------------------
+  __cs_retval_bounded_buf_init_1=0 (00000000 00000000 00000000 00000000)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c line 4084 function __cs_main_thread
+  (signed int)__cs_pc_cs[(signed long int)0] >= 1
+
+State 417 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function __cs_main_thread line 4090 thread 0
+----------------------------------------------------
+  __cs_nondet_main_i=0 (00000000 00000000 00000000 00000000)
+
+State 418 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function __cs_main_thread line 4092 thread 0
+----------------------------------------------------
+  __cs_nondet_main_producers[0l].id=0 (00000000 00000000 00000000 00000000)
+
+State 419 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function __cs_main_thread line 4093 thread 0
+----------------------------------------------------
+  __cs_nondet_main_producers[0l].bbuf=&__cs_nondet_main_buffer (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 422 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function __cs_main_thread line 4094 thread 0
+----------------------------------------------------
+  __cs_new_thread_id=&__cs_nondet_main_producers[0l].pid (00001010 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 423 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function __cs_main_thread line 4094 thread 0
+----------------------------------------------------
+  __cs_attr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 424 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function __cs_main_thread line 4094 thread 0
+----------------------------------------------------
+  __cs_thread_function=producer_routine_0 (00001011 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 425 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function __cs_main_thread line 4094 thread 0
+----------------------------------------------------
+  __cs_arg=(const void *)&__cs_nondet_main_producers[0l].pid (00001010 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 426 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function __cs_main_thread line 4094 thread 0
+----------------------------------------------------
+  __cs_threadID=1 (00000000 00000000 00000000 00000001)
+
+State 428 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function __cs_create line 84 thread 0
+----------------------------------------------------
+  __cs_nondet_main_producers[0l].pid=1 (00000000 00000000 00000000 00000001)
+
+State 429 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function __cs_create line 85 thread 0
+----------------------------------------------------
+  __cs_active_thread[1l]=1 (1)
+
+State 430 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function __cs_create line 86 thread 0
+----------------------------------------------------
+  __cs_threadargs[1l]=(const void *)&__cs_nondet_main_producers[0l].pid (00001010 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 433 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function __cs_create line 87 thread 0
+----------------------------------------------------
+  __cs_message="thread spawned" (00001100 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 437 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function __cs_main_thread line 4097 thread 0
+----------------------------------------------------
+  __cs_nondet_main_i=1 (00000000 00000000 00000000 00000001)
+
+State 438 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function __cs_main_thread line 4099 thread 0
+----------------------------------------------------
+  __cs_nondet_main_producers[1l].id=1 (00000000 00000000 00000000 00000001)
+
+State 439 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function __cs_main_thread line 4100 thread 0
+----------------------------------------------------
+  __cs_nondet_main_producers[1l].bbuf=&__cs_nondet_main_buffer (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 443 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function __cs_main_thread line 4103 thread 0
+----------------------------------------------------
+  __cs_new_thread_id=&__cs_nondet_main_producers[1l].pid (00001010 00000000 00000000 00000000 00000000 00000000 00000000 00010000)
+
+State 444 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function __cs_main_thread line 4103 thread 0
+----------------------------------------------------
+  __cs_attr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 445 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function __cs_main_thread line 4103 thread 0
+----------------------------------------------------
+  __cs_thread_function=producer_routine_1 (00001101 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 446 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function __cs_main_thread line 4103 thread 0
+----------------------------------------------------
+  __cs_arg=(const void *)&__cs_nondet_main_producers[1l].pid (00001010 00000000 00000000 00000000 00000000 00000000 00000000 00010000)
+
+State 447 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function __cs_main_thread line 4103 thread 0
+----------------------------------------------------
+  __cs_threadID=2 (00000000 00000000 00000000 00000010)
+
+State 449 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function __cs_create line 84 thread 0
+----------------------------------------------------
+  byte_extract_little_endian(__cs_nondet_main_producers, POINTER_OFFSET(__cs_new_thread_id), signed int)=2 (00000000 00000000 00000000 00000010)
+
+State 450 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function __cs_create line 84 thread 0
+----------------------------------------------------
+  __cs_nondet_main_producers[0l].pid=1 (00000000 00000000 00000000 00000001)
+
+State 451 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function __cs_create line 84 thread 0
+----------------------------------------------------
+  __cs_nondet_main_producers[0l].id=0 (00000000 00000000 00000000 00000000)
+
+State 452 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function __cs_create line 84 thread 0
+----------------------------------------------------
+  __cs_nondet_main_producers[0l].bbuf=&__cs_nondet_main_buffer (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 453 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function __cs_create line 84 thread 0
+----------------------------------------------------
+  __cs_nondet_main_producers[1l].pid=2 (00000000 00000000 00000000 00000010)
+
+State 454 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function __cs_create line 84 thread 0
+----------------------------------------------------
+  __cs_nondet_main_producers[1l].id=1 (00000000 00000000 00000000 00000001)
+
+State 455 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function __cs_create line 84 thread 0
+----------------------------------------------------
+  __cs_nondet_main_producers[1l].bbuf=&__cs_nondet_main_buffer (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 456 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function __cs_create line 85 thread 0
+----------------------------------------------------
+  __cs_active_thread[2l]=1 (1)
+
+State 457 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function __cs_create line 86 thread 0
+----------------------------------------------------
+  __cs_threadargs[2l]=(const void *)&__cs_nondet_main_producers[1l].pid (00001010 00000000 00000000 00000000 00000000 00000000 00000000 00010000)
+
+State 460 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function __cs_create line 87 thread 0
+----------------------------------------------------
+  __cs_message="thread spawned" (00001100 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 464 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function __cs_main_thread line 4106 thread 0
+----------------------------------------------------
+  __cs_nondet_main_i=2 (00000000 00000000 00000000 00000010)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c line 4109 function __cs_main_thread
+  !(__cs_nondet_main_i < 2)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c line 4111 function __cs_main_thread
+  (signed int)__cs_pc_cs[(signed long int)0] >= 3
+
+State 468 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function __cs_main_thread line 4114 thread 0
+----------------------------------------------------
+  __cs_nondet_main_i=0 (00000000 00000000 00000000 00000000)
+
+State 469 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function __cs_main_thread line 4116 thread 0
+----------------------------------------------------
+  __cs_nondet_main_consumers[0l].id=0 (00000000 00000000 00000000 00000000)
+
+State 470 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function __cs_main_thread line 4117 thread 0
+----------------------------------------------------
+  __cs_nondet_main_consumers[0l].bbuf=&__cs_nondet_main_buffer (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 519 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function __cs_main_thread line 4498 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 520 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function __cs_main_thread line 4498 thread 0
+----------------------------------------------------
+  __cs_thread_index=0u (00000000 00000000 00000000 00000000)
+
+State 521 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function __cs_exit line 98 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 527 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function main line 4516 thread 0
+----------------------------------------------------
+  __cs_pc[0l]=3 (0000011)
+
+State 528 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function main line 4518 thread 0
+----------------------------------------------------
+  __cs_tmp_t1_r0=1 (0000001)
+
+State 530 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function main line 4521 thread 0
+----------------------------------------------------
+  __cs_pc_cs[1l]=1 (00000001)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c line 4522 function main
+  (signed int)__cs_pc_cs[(signed long int)1] <= 71
+
+State 535 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function main line 4525 thread 0
+----------------------------------------------------
+  __cs_param_producer_routine_arg=(const void *)&__cs_nondet_main_producers[0l].pid (00001010 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 537 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function producer_routine_0 line 317 thread 0
+----------------------------------------------------
+  __cs_local_producer_routine_thread=__cs_nondet_main_producers (00001010 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 538 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function producer_routine_0 line 322 thread 0
+----------------------------------------------------
+  __cs_local_producer_routine_status=0 (00000000 00000000 00000000 00000000)
+
+State 539 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function producer_routine_0 line 323 thread 0
+----------------------------------------------------
+  __cs_nondet_producer_routine_i=0 (00000000 00000000 00000000 00000000)
+
+State 540 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function producer_routine_0 line 325 thread 0
+----------------------------------------------------
+  __cs_nondet_producer_routine_ch=0 (00000000 00000000 00000000 00000000)
+
+State 541 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function producer_routine_0 line 326 thread 0
+----------------------------------------------------
+  __cs_nondet_producer_routine_temp=0 (00000000 00000000 00000000 00000000)
+
+State 638 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function producer_routine_0 line 1187 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 639 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function producer_routine_0 line 1187 thread 0
+----------------------------------------------------
+  __cs_thread_index=1u (00000000 00000000 00000000 00000001)
+
+State 640 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function __cs_exit line 98 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 647 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function main line 4530 thread 0
+----------------------------------------------------
+  __cs_pc[1l]=1 (0000001)
+
+State 648 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function main line 4533 thread 0
+----------------------------------------------------
+  __cs_tmp_t2_r0=28 (0011100)
+
+State 650 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function main line 4536 thread 0
+----------------------------------------------------
+  __cs_pc_cs[2l]=28 (00011100)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c line 4537 function main
+  (signed int)__cs_pc_cs[(signed long int)2] <= 71
+
+State 655 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function main line 4540 thread 0
+----------------------------------------------------
+  __cs_param_producer_routine_arg=(const void *)&__cs_nondet_main_producers[1l].pid (00001010 00000000 00000000 00000000 00000000 00000000 00000000 00010000)
+
+State 657 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function producer_routine_1 line 1193 thread 0
+----------------------------------------------------
+  __cs_local_producer_routine_thread=__cs_nondet_main_producers + 1l (00001010 00000000 00000000 00000000 00000000 00000000 00000000 00010000)
+
+State 658 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function producer_routine_1 line 1198 thread 0
+----------------------------------------------------
+  __cs_local_producer_routine_status=0 (00000000 00000000 00000000 00000000)
+
+State 659 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function producer_routine_1 line 1199 thread 0
+----------------------------------------------------
+  __cs_nondet_producer_routine_i=0 (00000000 00000000 00000000 00000000)
+
+State 660 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function producer_routine_1 line 1201 thread 0
+----------------------------------------------------
+  __cs_nondet_producer_routine_ch=0 (00000000 00000000 00000000 00000000)
+
+State 661 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function producer_routine_1 line 1202 thread 0
+----------------------------------------------------
+  __cs_nondet_producer_routine_temp=0 (00000000 00000000 00000000 00000000)
+
+State 668 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function producer_routine_1 line 1210 thread 0
+----------------------------------------------------
+  __cs_param_bounded_buf_put_1_bbuf=&__cs_nondet_main_buffer (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 670 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function producer_routine_1 line 1214 thread 0
+----------------------------------------------------
+  __cs_param_bounded_buf_put_1_item=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 671 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function producer_routine_1 line 1216 thread 0
+----------------------------------------------------
+  __cs_local_bounded_buf_put_1_status=0 (00000000 00000000 00000000 00000000)
+
+State 672 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function producer_routine_1 line 1218 thread 0
+----------------------------------------------------
+  __cs_local_bounded_buf_put_1_status1=0 (00000000 00000000 00000000 00000000)
+
+State 673 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function producer_routine_1 line 1220 thread 0
+----------------------------------------------------
+  __cs_local_bounded_buf_put_1_status2=0 (00000000 00000000 00000000 00000000)
+
+State 683 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function producer_routine_1 line 1228 thread 0
+----------------------------------------------------
+  __cs_nondet_bounded_buf_put_1___cs_tmp_if_cond_9=FALSE (00000000)
+
+State 693 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function producer_routine_1 line 1240 thread 0
+----------------------------------------------------
+  __cs_mutex_to_lock=&__cs_nondet_main_buffer.mutex (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00000100)
+
+State 694 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function producer_routine_1 line 1240 thread 0
+----------------------------------------------------
+  __cs_thread_index=2 (010)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c line 122 function __cs_mutex_lock
+  *__cs_mutex_to_lock != 0
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c line 123 function __cs_mutex_lock
+  *__cs_mutex_to_lock != -2
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c line 124 function __cs_mutex_lock
+  *__cs_mutex_to_lock == -1
+
+State 698 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function __cs_mutex_lock line 125 thread 0
+----------------------------------------------------
+  __cs_nondet_main_buffer.mutex=3 (00000000 00000000 00000000 00000011)
+
+State 701 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function __cs_mutex_lock line 126 thread 0
+----------------------------------------------------
+  __cs_message="lock acquired" (00010001 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 705 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function producer_routine_1 line 1240 thread 0
+----------------------------------------------------
+  __cs_local_bounded_buf_put_1_status=0 (00000000 00000000 00000000 00000000)
+
+State 706 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function producer_routine_1 line 1246 thread 0
+----------------------------------------------------
+  __cs_nondet_bounded_buf_put_1___cs_tmp_if_cond_10=FALSE (00000000)
+
+State 714 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function producer_routine_1 line 1261 thread 0
+----------------------------------------------------
+  __cs_nondet_bounded_buf_put_1___cs_tmp_if_cond_11=FALSE (00000000)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c line 1389 function producer_routine_1
+  (signed int)__cs_pc_cs[(signed long int)2] >= 18
+
+State 717 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function producer_routine_1 line 1394 thread 0
+----------------------------------------------------
+  __cs_nondet_bounded_buf_put_1___cs_tmp_if_cond_13=TRUE (00000001)
+
+State 727 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function producer_routine_1 line 1405 thread 0
+----------------------------------------------------
+  dynamic_object1[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 728 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function producer_routine_1 line 1405 thread 0
+----------------------------------------------------
+  dynamic_object1[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 729 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function producer_routine_1 line 1405 thread 0
+----------------------------------------------------
+  dynamic_object1[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 730 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function producer_routine_1 line 1405 thread 0
+----------------------------------------------------
+  dynamic_object1[2l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 731 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function producer_routine_1 line 1409 thread 0
+----------------------------------------------------
+  __cs_local_bounded_buf_put_1___cs_temporary_0=0 (00000000 00000000 00000000 00000000)
+
+State 738 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function producer_routine_1 line 1414 thread 0
+----------------------------------------------------
+  __cs_local_bounded_buf_put_1___cs_temporary_0=0 (00000000 00000000 00000000 00000000)
+
+State 750 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function producer_routine_1 line 1423 thread 0
+----------------------------------------------------
+  __cs_nondet_main_buffer.rear=1ul (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000001)
+
+State 757 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function producer_routine_1 line 1431 thread 0
+----------------------------------------------------
+  __cs_nondet_bounded_buf_put_1___cs_tmp_if_cond_14=FALSE (00000000)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c line 1442 function producer_routine_1
+  (signed int)__cs_pc_cs[(signed long int)2] >= 23
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c line 1445 function producer_routine_1
+  (signed int)__cs_pc_cs[(signed long int)2] >= 23
+
+State 769 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function producer_routine_1 line 1453 thread 0
+----------------------------------------------------
+  __cs_mutex_to_unlock=&__cs_nondet_main_buffer.mutex (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00000100)
+
+State 770 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function producer_routine_1 line 1453 thread 0
+----------------------------------------------------
+  __cs_thread_index=2 (010)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c line 131 function __cs_mutex_unlock
+  *__cs_mutex_to_unlock != 0
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c line 132 function __cs_mutex_unlock
+  *__cs_mutex_to_unlock != -2
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c line 133 function __cs_mutex_unlock
+  *__cs_mutex_to_unlock == (signed int)__cs_thread_index + 1
+
+State 774 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function __cs_mutex_unlock line 134 thread 0
+----------------------------------------------------
+  __cs_nondet_main_buffer.mutex=-1 (11111111 11111111 11111111 11111111)
+
+State 777 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function __cs_mutex_unlock line 135 thread 0
+----------------------------------------------------
+  __cs_message="lock released" (00010010 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 781 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function producer_routine_1 line 1453 thread 0
+----------------------------------------------------
+  __cs_local_bounded_buf_put_1_status2=0 (00000000 00000000 00000000 00000000)
+
+State 782 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function producer_routine_1 line 1454 thread 0
+----------------------------------------------------
+  __cs_retval_bounded_buf_put_1=0 (00000000 00000000 00000000 00000000)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c line 1458 function producer_routine_1
+  (signed int)__cs_pc_cs[(signed long int)2] >= 24
+
+State 784 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function producer_routine_1 line 1463 thread 0
+----------------------------------------------------
+  __cs_local_producer_routine_status=0 (00000000 00000000 00000000 00000000)
+
+State 785 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function producer_routine_1 line 1467 thread 0
+----------------------------------------------------
+  __cs_nondet_producer_routine___cs_tmp_if_cond_26=FALSE (00000000)
+
+State 789 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function producer_routine_1 line 1479 thread 0
+----------------------------------------------------
+  stream=((struct _IO_FILE *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 794 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function producer_routine_1 line 1482 thread 0
+----------------------------------------------------
+  __cs_nondet_producer_routine_i=1 (00000000 00000000 00000000 00000001)
+
+State 795 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function producer_routine_1 line 1484 thread 0
+----------------------------------------------------
+  __cs_nondet_producer_routine_ch=0 (00000000 00000000 00000000 00000000)
+
+State 796 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function producer_routine_1 line 1485 thread 0
+----------------------------------------------------
+  __cs_nondet_producer_routine_temp=0 (00000000 00000000 00000000 00000000)
+
+State 803 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function producer_routine_1 line 1493 thread 0
+----------------------------------------------------
+  __cs_param_bounded_buf_put_1_bbuf=&__cs_nondet_main_buffer (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 805 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function producer_routine_1 line 1497 thread 0
+----------------------------------------------------
+  __cs_param_bounded_buf_put_1_item=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 806 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function producer_routine_1 line 1499 thread 0
+----------------------------------------------------
+  __cs_local_bounded_buf_put_1_status=0 (00000000 00000000 00000000 00000000)
+
+State 807 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function producer_routine_1 line 1501 thread 0
+----------------------------------------------------
+  __cs_local_bounded_buf_put_1_status1=0 (00000000 00000000 00000000 00000000)
+
+State 808 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function producer_routine_1 line 1503 thread 0
+----------------------------------------------------
+  __cs_local_bounded_buf_put_1_status2=0 (00000000 00000000 00000000 00000000)
+
+State 818 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function producer_routine_1 line 1511 thread 0
+----------------------------------------------------
+  __cs_nondet_bounded_buf_put_1___cs_tmp_if_cond_9=FALSE (00000000)
+
+State 828 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function producer_routine_1 line 1523 thread 0
+----------------------------------------------------
+  __cs_mutex_to_lock=&__cs_nondet_main_buffer.mutex (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00000100)
+
+State 829 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function producer_routine_1 line 1523 thread 0
+----------------------------------------------------
+  __cs_thread_index=2 (010)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c line 122 function __cs_mutex_lock
+  *__cs_mutex_to_lock != 0
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c line 123 function __cs_mutex_lock
+  *__cs_mutex_to_lock != -2
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c line 124 function __cs_mutex_lock
+  *__cs_mutex_to_lock == -1
+
+State 833 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function __cs_mutex_lock line 125 thread 0
+----------------------------------------------------
+  __cs_nondet_main_buffer.mutex=3 (00000000 00000000 00000000 00000011)
+
+State 836 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function __cs_mutex_lock line 126 thread 0
+----------------------------------------------------
+  __cs_message="lock acquired" (00010001 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 840 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function producer_routine_1 line 1523 thread 0
+----------------------------------------------------
+  __cs_local_bounded_buf_put_1_status=0 (00000000 00000000 00000000 00000000)
+
+State 841 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function producer_routine_1 line 1529 thread 0
+----------------------------------------------------
+  __cs_nondet_bounded_buf_put_1___cs_tmp_if_cond_10=FALSE (00000000)
+
+State 904 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function producer_routine_1 line 2063 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 905 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function producer_routine_1 line 2063 thread 0
+----------------------------------------------------
+  __cs_thread_index=2u (00000000 00000000 00000000 00000010)
+
+State 906 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function __cs_exit line 98 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[2l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 913 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function main line 4545 thread 0
+----------------------------------------------------
+  __cs_pc[2l]=28 (0011100)
+
+State 914 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function main line 4548 thread 0
+----------------------------------------------------
+  __cs_tmp_t3_r0=31 (0011111)
+
+State 916 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function main line 4563 thread 0
+----------------------------------------------------
+  __cs_tmp_t4_r0=91 (1011011)
+
+State 918 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function main line 4579 thread 0
+----------------------------------------------------
+  __cs_tmp_t0_r1=0 (000000)
+
+State 920 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function main line 4582 thread 0
+----------------------------------------------------
+  __cs_pc_cs[0l]=3 (00000011)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c line 4583 function main
+  (signed int)__cs_pc_cs[(signed long int)0] >= (signed int)__cs_pc[(signed long int)0]
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c line 4584 function main
+  (signed int)__cs_pc_cs[(signed long int)0] <= 45
+
+State 924 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function main line 4586 thread 0
+----------------------------------------------------
+  __cs_dataraceDetectionStarted=TRUE (00000001)
+
+State 978 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function __cs_main_thread line 4498 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 979 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function __cs_main_thread line 4498 thread 0
+----------------------------------------------------
+  __cs_thread_index=0u (00000000 00000000 00000000 00000000)
+
+State 980 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function __cs_exit line 98 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 987 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function main line 4591 thread 0
+----------------------------------------------------
+  __cs_dataraceSecondThread=TRUE (00000001)
+
+State 988 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function main line 4592 thread 0
+----------------------------------------------------
+  __cs_pc[0l]=3 (0000011)
+
+State 989 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function main line 4595 thread 0
+----------------------------------------------------
+  __cs_tmp_t1_r1=1 (0000001)
+
+State 991 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function main line 4598 thread 0
+----------------------------------------------------
+  __cs_pc_cs[1l]=2 (00000010)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c line 4599 function main
+  (signed int)__cs_pc_cs[(signed long int)1] >= (signed int)__cs_pc[(signed long int)1]
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c line 4600 function main
+  (signed int)__cs_pc_cs[(signed long int)1] <= 71
+
+State 997 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function main line 4603 thread 0
+----------------------------------------------------
+  __cs_param_producer_routine_arg=(const void *)&__cs_nondet_main_producers[0l].pid (00001010 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1005 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function producer_routine_0 line 333 thread 0
+----------------------------------------------------
+  __cs_dataraceNotDetected=FALSE (00000000)
+
+State 1006 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function producer_routine_0 line 334 thread 0
+----------------------------------------------------
+  __cs_param_bounded_buf_put_1_bbuf=&__cs_nondet_main_buffer (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1102 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function producer_routine_0 line 1187 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1103 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function producer_routine_0 line 1187 thread 0
+----------------------------------------------------
+  __cs_thread_index=1u (00000000 00000000 00000000 00000001)
+
+State 1104 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function __cs_exit line 98 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1111 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function main line 4607 thread 0
+----------------------------------------------------
+  __cs_dataraceSecondThread=TRUE (00000001)
+
+State 1112 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function main line 4608 thread 0
+----------------------------------------------------
+  __cs_pc[1l]=2 (0000010)
+
+State 1113 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function main line 4611 thread 0
+----------------------------------------------------
+  __cs_tmp_t2_r1=0 (0000000)
+
+State 1115 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function main line 4614 thread 0
+----------------------------------------------------
+  __cs_pc_cs[2l]=28 (00011100)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c line 4615 function main
+  (signed int)__cs_pc_cs[(signed long int)2] >= (signed int)__cs_pc[(signed long int)2]
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c line 4616 function main
+  (signed int)__cs_pc_cs[(signed long int)2] <= 71
+
+State 1121 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function main line 4619 thread 0
+----------------------------------------------------
+  __cs_param_producer_routine_arg=(const void *)&__cs_nondet_main_producers[1l].pid (00001010 00000000 00000000 00000000 00000000 00000000 00000000 00010000)
+
+State 1219 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function producer_routine_1 line 2063 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1220 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function producer_routine_1 line 2063 thread 0
+----------------------------------------------------
+  __cs_thread_index=2u (00000000 00000000 00000000 00000010)
+
+State 1221 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function __cs_exit line 98 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[2l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1228 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function main line 4623 thread 0
+----------------------------------------------------
+  __cs_dataraceSecondThread=TRUE (00000001)
+
+State 1229 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function main line 4624 thread 0
+----------------------------------------------------
+  __cs_pc[2l]=28 (0011100)
+
+State 1230 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function main line 4627 thread 0
+----------------------------------------------------
+  __cs_tmp_t3_r1=12 (0001100)
+
+State 1232 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function main line 4643 thread 0
+----------------------------------------------------
+  __cs_tmp_t4_r1=40 (0101000)
+
+State 1234 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function main line 4660 thread 0
+----------------------------------------------------
+  __cs_tmp_t0_r2=0 (000000)
+
+State 1236 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function main line 4676 thread 0
+----------------------------------------------------
+  __cs_tmp_t1_r2=2 (0000010)
+
+State 1238 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function main line 4692 thread 0
+----------------------------------------------------
+  __cs_tmp_t2_r2=4 (0000100)
+
+State 1240 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function main line 4708 thread 0
+----------------------------------------------------
+  __cs_tmp_t3_r2=1 (0000001)
+
+State 1242 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function main line 4724 thread 0
+----------------------------------------------------
+  __cs_tmp_t4_r2=56 (0111000)
+
+State 1244 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function main line 4741 thread 0
+----------------------------------------------------
+  __cs_tmp_t0_r3=59 (111011)
+
+State 1246 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function main line 4757 thread 0
+----------------------------------------------------
+  __cs_tmp_t1_r3=1 (0000001)
+
+State 1248 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function main line 4773 thread 0
+----------------------------------------------------
+  __cs_tmp_t2_r3=124 (1111100)
+
+State 1250 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function main line 4789 thread 0
+----------------------------------------------------
+  __cs_tmp_t3_r3=28 (0011100)
+
+State 1252 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function main line 4805 thread 0
+----------------------------------------------------
+  __cs_tmp_t4_r3=64 (1000000)
+
+State 1254 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function main line 4820 thread 0
+----------------------------------------------------
+  __cs_tmp_t0_r4=3 (000011)
+
+Violated property:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized4R3U/_dr_2bounded_buffer.c function main line 4828 thread 0
+  Data race failure
+  __cs_dataraceNotDetected != FALSE
+
+
+VERIFICATION FAILED
+
+real	0m54,451s
+user	0m53,912s
+sys	0m0,544s

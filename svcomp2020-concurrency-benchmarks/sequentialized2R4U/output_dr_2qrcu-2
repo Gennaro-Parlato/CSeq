@@ -1,0 +1,774 @@
+CBMC version 5.12 (cbmc-5.11-4791-gdad55707b-dirty) 64-bit x86_64 linux
+Parsing /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c
+Converting
+Type-checking _dr_2qrcu-2
+file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c line 381 function qrcu_reader1_0: function '__CPROVER_get_field' is not declared
+file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c line 564 function qrcu_reader1_0: function '__CPROVER_set_field' is not declared
+file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c line 1074 function main: function '__CPROVER_field_decl_global' is not declared
+Generating GOTO Program
+Adding CPROVER library (x86_64)
+Removal of function pointers and virtual functions
+Generic Property Instrumentation
+Running with 8 object bits, 56 offset bits (default)
+Starting Bounded Model Checking
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c line 556 function qrcu_reader1_0 thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c line 771 function qrcu_reader2_0 thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c line 345 function __CSEQ_atomic_check_progress1 thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c line 368 function __CSEQ_atomic_check_progress2 thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c line 556 function qrcu_reader1_0 thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c line 771 function qrcu_reader2_0 thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c line 345 function __CSEQ_atomic_check_progress1 thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c line 368 function __CSEQ_atomic_check_progress2 thread 0
+size of program expression: 5332 steps
+simple slicing removed 5 assignments
+Generated 1 VCC(s), 1 remaining after simplification
+Passing problem to propositional reduction
+converting SSA
+Running propositional reduction
+Post-processing
+Solving with Glucose Syrup with simplifier
+21517 variables, 52232 clauses
+SAT checker: instance is SATISFIABLE
+Runtime decision procedure: 0.0681543s
+Building error trace
+Counterexample:
+
+State 24 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function __CPROVER_initialize line 62 thread 0
+----------------------------------------------------
+  __cs_active_thread[0l]=1 (1)
+
+State 25 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function __CPROVER_initialize line 62 thread 0
+----------------------------------------------------
+  __cs_active_thread[1l]=0 (0)
+
+State 26 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function __CPROVER_initialize line 62 thread 0
+----------------------------------------------------
+  __cs_active_thread[2l]=0 (0)
+
+State 27 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function __CPROVER_initialize line 62 thread 0
+----------------------------------------------------
+  __cs_active_thread[3l]=0 (0)
+
+State 38 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function __CPROVER_initialize line 63 thread 0
+----------------------------------------------------
+  __cs_pc[0l]=0 (00000)
+
+State 39 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function __CPROVER_initialize line 63 thread 0
+----------------------------------------------------
+  __cs_pc[1l]=0 (00000)
+
+State 40 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function __CPROVER_initialize line 63 thread 0
+----------------------------------------------------
+  __cs_pc[2l]=0 (00000)
+
+State 41 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function __CPROVER_initialize line 63 thread 0
+----------------------------------------------------
+  __cs_pc[3l]=0 (00000)
+
+State 43 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function __CPROVER_initialize line 64 thread 0
+----------------------------------------------------
+  __cs_pc_cs[0l]=0 (000000)
+
+State 44 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function __CPROVER_initialize line 64 thread 0
+----------------------------------------------------
+  __cs_pc_cs[1l]=0 (000000)
+
+State 45 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function __CPROVER_initialize line 64 thread 0
+----------------------------------------------------
+  __cs_pc_cs[2l]=0 (000000)
+
+State 46 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function __CPROVER_initialize line 64 thread 0
+----------------------------------------------------
+  __cs_pc_cs[3l]=0 (000000)
+
+State 48 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function __CPROVER_initialize line 79 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 49 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function __CPROVER_initialize line 79 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 50 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function __CPROVER_initialize line 79 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[2l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 51 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function __CPROVER_initialize line 79 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[3l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 53 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function __CPROVER_initialize line 66 thread 0
+----------------------------------------------------
+  __cs_thread_lines[0l]=7 (00111)
+
+State 54 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function __CPROVER_initialize line 66 thread 0
+----------------------------------------------------
+  __cs_thread_lines[1l]=16 (10000)
+
+State 55 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function __CPROVER_initialize line 66 thread 0
+----------------------------------------------------
+  __cs_thread_lines[2l]=16 (10000)
+
+State 56 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function __CPROVER_initialize line 66 thread 0
+----------------------------------------------------
+  __cs_thread_lines[3l]=24 (11000)
+
+State 58 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function __CPROVER_initialize line 78 thread 0
+----------------------------------------------------
+  __cs_threadargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 59 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function __CPROVER_initialize line 78 thread 0
+----------------------------------------------------
+  __cs_threadargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 60 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function __CPROVER_initialize line 78 thread 0
+----------------------------------------------------
+  __cs_threadargs[2l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 61 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function __CPROVER_initialize line 78 thread 0
+----------------------------------------------------
+  __cs_threadargs[3l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 109 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function main line 1075 thread 0
+----------------------------------------------------
+  __cs_dr_ts=3 (011)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c line 1076 function main
+  (signed int)__cs_dr_ts <= 7
+
+State 111 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function main line 1079 thread 0
+----------------------------------------------------
+  __cs_tmp_t0_r0=3 (011)
+
+State 112 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function main line 1080 thread 0
+----------------------------------------------------
+  __cs_pc_cs[0l]=3 (000011)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c line 1081 function main
+  (signed int)__cs_pc_cs[(signed long int)0] > 0
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c line 1082 function main
+  (signed int)__cs_pc_cs[(signed long int)0] <= 7
+
+State 124 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function __cs_main_thread line 1043 thread 0
+----------------------------------------------------
+  __cs_m=&mutex (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 125 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function __cs_main_thread line 1043 thread 0
+----------------------------------------------------
+  __cs_val=0 (00000000 00000000 00000000 00000000)
+
+State 126 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function __cs_mutex_init line 108 thread 0
+----------------------------------------------------
+  mutex=-1 (11111111 11111111 11111111 11111111)
+
+State 131 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function __cs_main_thread line 1044 thread 0
+----------------------------------------------------
+  __cs_new_thread_id=&__cs_nondet_main_t1 (00000011 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 132 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function __cs_main_thread line 1044 thread 0
+----------------------------------------------------
+  __cs_attr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 133 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function __cs_main_thread line 1044 thread 0
+----------------------------------------------------
+  __cs_thread_function=qrcu_reader1_0 (00000100 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 134 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function __cs_main_thread line 1044 thread 0
+----------------------------------------------------
+  __cs_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 135 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function __cs_main_thread line 1044 thread 0
+----------------------------------------------------
+  __cs_threadID=1 (00000000 00000000 00000000 00000001)
+
+State 137 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function __cs_create line 84 thread 0
+----------------------------------------------------
+  __cs_nondet_main_t1=1 (00000000 00000000 00000000 00000001)
+
+State 138 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function __cs_create line 85 thread 0
+----------------------------------------------------
+  __cs_active_thread[1l]=1 (1)
+
+State 139 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function __cs_create line 86 thread 0
+----------------------------------------------------
+  __cs_threadargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 142 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function __cs_create line 87 thread 0
+----------------------------------------------------
+  __cs_message="thread spawned" (00000101 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 152 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function __cs_main_thread line 1047 thread 0
+----------------------------------------------------
+  __cs_new_thread_id=&__cs_nondet_main_t2 (00000110 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 153 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function __cs_main_thread line 1047 thread 0
+----------------------------------------------------
+  __cs_attr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 154 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function __cs_main_thread line 1047 thread 0
+----------------------------------------------------
+  __cs_thread_function=qrcu_reader2_0 (00000111 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 155 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function __cs_main_thread line 1047 thread 0
+----------------------------------------------------
+  __cs_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 156 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function __cs_main_thread line 1047 thread 0
+----------------------------------------------------
+  __cs_threadID=2 (00000000 00000000 00000000 00000010)
+
+State 158 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function __cs_create line 84 thread 0
+----------------------------------------------------
+  __cs_nondet_main_t2=2 (00000000 00000000 00000000 00000010)
+
+State 159 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function __cs_create line 85 thread 0
+----------------------------------------------------
+  __cs_active_thread[2l]=1 (1)
+
+State 160 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function __cs_create line 86 thread 0
+----------------------------------------------------
+  __cs_threadargs[2l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 163 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function __cs_create line 87 thread 0
+----------------------------------------------------
+  __cs_message="thread spawned" (00000101 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 173 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function __cs_main_thread line 1050 thread 0
+----------------------------------------------------
+  __cs_new_thread_id=&__cs_nondet_main_t3 (00001000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 174 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function __cs_main_thread line 1050 thread 0
+----------------------------------------------------
+  __cs_attr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 175 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function __cs_main_thread line 1050 thread 0
+----------------------------------------------------
+  __cs_thread_function=qrcu_updater_0 (00001001 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 176 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function __cs_main_thread line 1050 thread 0
+----------------------------------------------------
+  __cs_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 177 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function __cs_main_thread line 1050 thread 0
+----------------------------------------------------
+  __cs_threadID=3 (00000000 00000000 00000000 00000011)
+
+State 179 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function __cs_create line 84 thread 0
+----------------------------------------------------
+  __cs_nondet_main_t3=3 (00000000 00000000 00000000 00000011)
+
+State 180 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function __cs_create line 85 thread 0
+----------------------------------------------------
+  __cs_active_thread[3l]=1 (1)
+
+State 181 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function __cs_create line 86 thread 0
+----------------------------------------------------
+  __cs_threadargs[3l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 184 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function __cs_create line 87 thread 0
+----------------------------------------------------
+  __cs_message="thread spawned" (00000101 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 206 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function __cs_main_thread line 1070 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 207 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function __cs_main_thread line 1070 thread 0
+----------------------------------------------------
+  __cs_thread_index=0u (00000000 00000000 00000000 00000000)
+
+State 208 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function __cs_exit line 98 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 214 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function main line 1088 thread 0
+----------------------------------------------------
+  __cs_pc[0l]=3 (00011)
+
+State 215 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function main line 1090 thread 0
+----------------------------------------------------
+  __cs_tmp_t1_r0=13 (01101)
+
+State 217 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function main line 1093 thread 0
+----------------------------------------------------
+  __cs_pc_cs[1l]=13 (001101)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c line 1094 function main
+  (signed int)__cs_pc_cs[(signed long int)1] <= 16
+
+State 222 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function main line 1097 thread 0
+----------------------------------------------------
+  __cs_param_qrcu_reader1_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 229 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function qrcu_reader1_0 line 383 thread 0
+----------------------------------------------------
+  __cs_nondet_qrcu_reader1_myidx=0 (00000000 00000000 00000000 00000000)
+
+State 232 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function qrcu_reader1_0 line 387 thread 0
+----------------------------------------------------
+  __cs_nondet_qrcu_reader1___cs_tmp_if_cond_5=TRUE (00000001)
+
+State 240 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function qrcu_reader1_0 line 392 thread 0
+----------------------------------------------------
+  __cs_param___CSEQ_atomic_use1_myidx=0 (00000000 00000000 00000000 00000000)
+
+State 243 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function __CSEQ_atomic_use1 line 301 thread 0
+----------------------------------------------------
+  cond=1 (00000000 00000000 00000000 00000001)
+
+State 246 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function __CSEQ_atomic_use1 line 302 thread 0
+----------------------------------------------------
+  ctr1=2 (00000000 00000000 00000000 00000010)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c line 558 function qrcu_reader1_0
+  (signed int)__cs_pc_cs[(signed long int)1] >= 13
+
+State 267 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function qrcu_reader1_0 line 589 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 268 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function qrcu_reader1_0 line 589 thread 0
+----------------------------------------------------
+  __cs_thread_index=1u (00000000 00000000 00000000 00000001)
+
+State 269 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function __cs_exit line 98 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 276 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function main line 1102 thread 0
+----------------------------------------------------
+  __cs_pc[1l]=13 (01101)
+
+State 277 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function main line 1105 thread 0
+----------------------------------------------------
+  __cs_tmp_t2_r0=6 (00110)
+
+State 279 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function main line 1108 thread 0
+----------------------------------------------------
+  __cs_pc_cs[2l]=6 (000110)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c line 1109 function main
+  (signed int)__cs_pc_cs[(signed long int)2] <= 16
+
+State 284 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function main line 1112 thread 0
+----------------------------------------------------
+  __cs_param_qrcu_reader2_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 291 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function qrcu_reader2_0 line 598 thread 0
+----------------------------------------------------
+  __cs_nondet_qrcu_reader2_myidx=0 (00000000 00000000 00000000 00000000)
+
+State 294 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function qrcu_reader2_0 line 602 thread 0
+----------------------------------------------------
+  __cs_nondet_qrcu_reader2___cs_tmp_if_cond_7=FALSE (00000000)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c line 613 function qrcu_reader2_0
+  (signed int)__cs_pc_cs[(signed long int)2] >= 2
+
+State 299 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function qrcu_reader2_0 line 617 thread 0
+----------------------------------------------------
+  __cs_nondet_qrcu_reader2___cs_tmp_if_cond_8=FALSE (00000000)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c line 628 function qrcu_reader2_0
+  (signed int)__cs_pc_cs[(signed long int)2] >= 3
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c line 630 function qrcu_reader2_0
+  (signed int)__cs_pc_cs[(signed long int)2] >= 3
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c line 633 function qrcu_reader2_0
+  (signed int)__cs_pc_cs[(signed long int)2] >= 3
+
+State 309 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function qrcu_reader2_0 line 642 thread 0
+----------------------------------------------------
+  __cs_nondet_qrcu_reader2_myidx=0 (00000000 00000000 00000000 00000000)
+
+State 312 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function qrcu_reader2_0 line 646 thread 0
+----------------------------------------------------
+  __cs_nondet_qrcu_reader2___cs_tmp_if_cond_7=FALSE (00000000)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c line 657 function qrcu_reader2_0
+  (signed int)__cs_pc_cs[(signed long int)2] >= 5
+
+State 317 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function qrcu_reader2_0 line 661 thread 0
+----------------------------------------------------
+  __cs_nondet_qrcu_reader2___cs_tmp_if_cond_8=FALSE (00000000)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c line 672 function qrcu_reader2_0
+  (signed int)__cs_pc_cs[(signed long int)2] >= 6
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c line 674 function qrcu_reader2_0
+  (signed int)__cs_pc_cs[(signed long int)2] >= 6
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c line 677 function qrcu_reader2_0
+  (signed int)__cs_pc_cs[(signed long int)2] >= 6
+
+State 366 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function qrcu_reader2_0 line 804 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 367 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function qrcu_reader2_0 line 804 thread 0
+----------------------------------------------------
+  __cs_thread_index=2u (00000000 00000000 00000000 00000010)
+
+State 368 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function __cs_exit line 98 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[2l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 375 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function main line 1117 thread 0
+----------------------------------------------------
+  __cs_pc[2l]=6 (00110)
+
+State 376 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function main line 1120 thread 0
+----------------------------------------------------
+  __cs_tmp_t3_r0=13 (01101)
+
+State 378 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function main line 1123 thread 0
+----------------------------------------------------
+  __cs_pc_cs[3l]=13 (001101)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c line 1124 function main
+  (signed int)__cs_pc_cs[(signed long int)3] <= 24
+
+State 381 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function main line 1126 thread 0
+----------------------------------------------------
+  __cs_dataraceDetectionStarted=TRUE (00000001)
+
+State 384 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function main line 1127 thread 0
+----------------------------------------------------
+  __cs_param_qrcu_updater_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 389 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function qrcu_updater_0 line 811 thread 0
+----------------------------------------------------
+  __cs_local_qrcu_updater_readerstart1=0 (00000000 00000000 00000000 00000000)
+
+State 390 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function qrcu_updater_0 line 813 thread 0
+----------------------------------------------------
+  __cs_local_qrcu_updater_readerstart2=0 (00000000 00000000 00000000 00000000)
+
+State 397 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function qrcu_updater_0 line 817 thread 0
+----------------------------------------------------
+  __cs_param___CSEQ_atomic_take_snapshot_readerstart1=0 (00000000 00000000 00000000 00000000)
+
+State 398 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function qrcu_updater_0 line 817 thread 0
+----------------------------------------------------
+  __cs_param___CSEQ_atomic_take_snapshot_readerstart2=0 (00000000 00000000 00000000 00000000)
+
+State 399 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function __CSEQ_atomic_take_snapshot line 327 thread 0
+----------------------------------------------------
+  __cs_param___CSEQ_atomic_take_snapshot_readerstart1=0 (00000000 00000000 00000000 00000000)
+
+State 400 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function __CSEQ_atomic_take_snapshot line 328 thread 0
+----------------------------------------------------
+  __cs_param___CSEQ_atomic_take_snapshot_readerstart2=0 (00000000 00000000 00000000 00000000)
+
+State 404 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function qrcu_updater_0 line 821 thread 0
+----------------------------------------------------
+  __cs_nondet_qrcu_updater___cs_tmp_if_cond_9=TRUE (00000001)
+
+State 411 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function qrcu_updater_0 line 828 thread 0
+----------------------------------------------------
+  __cs_nondet_qrcu_updater_sum=2 (00000000 00000000 00000000 00000010)
+
+State 412 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function qrcu_updater_0 line 832 thread 0
+----------------------------------------------------
+  __cs_local_qrcu_updater___cs_temporary_0=0 (00000000 00000000 00000000 00000000)
+
+State 413 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function qrcu_updater_0 line 833 thread 0
+----------------------------------------------------
+  __cs_local_qrcu_updater___cs_temporary_0=2 (00000000 00000000 00000000 00000010)
+
+State 419 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function qrcu_updater_0 line 838 thread 0
+----------------------------------------------------
+  __cs_nondet_qrcu_updater_sum=2 (00000000 00000000 00000000 00000010)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c line 859 function qrcu_updater_0
+  (signed int)__cs_pc_cs[(signed long int)3] >= 6
+
+State 422 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function qrcu_updater_0 line 866 thread 0
+----------------------------------------------------
+  __cs_nondet_qrcu_updater___cs_tmp_if_cond_10=FALSE (00000000)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c line 917 function qrcu_updater_0
+  (signed int)__cs_pc_cs[(signed long int)3] >= 10
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c line 919 function qrcu_updater_0
+  (signed int)__cs_pc_cs[(signed long int)3] >= 10
+
+State 426 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function qrcu_updater_0 line 924 thread 0
+----------------------------------------------------
+  __cs_nondet_qrcu_updater___cs_tmp_if_cond_12=TRUE (00000001)
+
+State 434 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function qrcu_updater_0 line 929 thread 0
+----------------------------------------------------
+  __cs_mutex_to_lock=&mutex (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 435 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function qrcu_updater_0 line 929 thread 0
+----------------------------------------------------
+  __cs_thread_index=3 (11)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c line 122 function __cs_mutex_lock
+  *__cs_mutex_to_lock != 0
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c line 123 function __cs_mutex_lock
+  *__cs_mutex_to_lock != -2
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c line 124 function __cs_mutex_lock
+  *__cs_mutex_to_lock == -1
+
+State 439 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function __cs_mutex_lock line 125 thread 0
+----------------------------------------------------
+  mutex=4 (00000000 00000000 00000000 00000100)
+
+State 442 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function __cs_mutex_lock line 126 thread 0
+----------------------------------------------------
+  __cs_message="lock acquired" (00001011 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 451 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function qrcu_updater_0 line 937 thread 0
+----------------------------------------------------
+  __cs_nondet_qrcu_updater___cs_tmp_if_cond_13=TRUE (00000001)
+
+State 458 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function qrcu_updater_0 line 944 thread 0
+----------------------------------------------------
+  ctr2=1 (00000000 00000000 00000000 00000001)
+
+State 511 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function qrcu_updater_0 line 1035 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 512 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function qrcu_updater_0 line 1035 thread 0
+----------------------------------------------------
+  __cs_thread_index=3u (00000000 00000000 00000000 00000011)
+
+State 513 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function __cs_exit line 98 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[3l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 520 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function main line 1131 thread 0
+----------------------------------------------------
+  __cs_dataraceSecondThread=TRUE (00000001)
+
+State 521 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function main line 1132 thread 0
+----------------------------------------------------
+  __cs_pc[3l]=13 (01101)
+
+State 522 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function main line 1136 thread 0
+----------------------------------------------------
+  __cs_tmp_t0_r1=0 (000)
+
+State 524 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function main line 1139 thread 0
+----------------------------------------------------
+  __cs_pc_cs[0l]=3 (000011)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c line 1140 function main
+  (signed int)__cs_pc_cs[(signed long int)0] >= (signed int)__cs_pc[(signed long int)0]
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c line 1141 function main
+  (signed int)__cs_pc_cs[(signed long int)0] <= 7
+
+State 563 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function __cs_main_thread line 1070 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 564 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function __cs_main_thread line 1070 thread 0
+----------------------------------------------------
+  __cs_thread_index=0u (00000000 00000000 00000000 00000000)
+
+State 565 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function __cs_exit line 98 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 572 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function main line 1148 thread 0
+----------------------------------------------------
+  __cs_dataraceSecondThread=TRUE (00000001)
+
+State 573 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function main line 1149 thread 0
+----------------------------------------------------
+  __cs_pc[0l]=3 (00011)
+
+State 574 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function main line 1152 thread 0
+----------------------------------------------------
+  __cs_tmp_t1_r1=3 (00011)
+
+State 576 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function main line 1155 thread 0
+----------------------------------------------------
+  __cs_pc_cs[1l]=16 (010000)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c line 1156 function main
+  (signed int)__cs_pc_cs[(signed long int)1] >= (signed int)__cs_pc[(signed long int)1]
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c line 1157 function main
+  (signed int)__cs_pc_cs[(signed long int)1] <= 16
+
+State 582 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function main line 1160 thread 0
+----------------------------------------------------
+  __cs_param_qrcu_reader1_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 660 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function qrcu_reader1_0 line 569 thread 0
+----------------------------------------------------
+  readerprogress1=1 (00000000 00000000 00000000 00000001)
+
+State 667 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function qrcu_reader1_0 line 578 thread 0
+----------------------------------------------------
+  readerprogress1=2 (00000000 00000000 00000000 00000010)
+
+State 674 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function qrcu_reader1_0 line 581 thread 0
+----------------------------------------------------
+  __cs_param___CSEQ_atomic_use_done_myidx=0 (00000000 00000000 00000000 00000000)
+
+State 675 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function __CSEQ_atomic_use_done line 314 thread 0
+----------------------------------------------------
+  __cs_nondet___CSEQ_atomic_use_done___cs_tmp_if_cond_0=TRUE (00000001)
+
+State 677 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function __CSEQ_atomic_use_done line 317 thread 0
+----------------------------------------------------
+  ctr1=1 (00000000 00000000 00000000 00000001)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c line 585 function qrcu_reader1_0
+  (signed int)__cs_pc_cs[(signed long int)1] >= 16
+
+State 683 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function qrcu_reader1_0 line 589 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 684 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function qrcu_reader1_0 line 589 thread 0
+----------------------------------------------------
+  __cs_thread_index=1u (00000000 00000000 00000000 00000001)
+
+State 685 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function __cs_exit line 98 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 692 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function main line 1164 thread 0
+----------------------------------------------------
+  __cs_dataraceSecondThread=TRUE (00000001)
+
+State 693 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function main line 1165 thread 0
+----------------------------------------------------
+  __cs_pc[1l]=16 (10000)
+
+State 694 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function main line 1168 thread 0
+----------------------------------------------------
+  __cs_tmp_t2_r1=1 (00001)
+
+State 696 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function main line 1171 thread 0
+----------------------------------------------------
+  __cs_pc_cs[2l]=7 (000111)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c line 1172 function main
+  (signed int)__cs_pc_cs[(signed long int)2] >= (signed int)__cs_pc[(signed long int)2]
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c line 1173 function main
+  (signed int)__cs_pc_cs[(signed long int)2] <= 16
+
+State 702 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function main line 1176 thread 0
+----------------------------------------------------
+  __cs_param_qrcu_reader2_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 744 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function qrcu_reader2_0 line 685 thread 0
+----------------------------------------------------
+  __cs_dataraceNotDetected=FALSE (00000000)
+
+State 745 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function qrcu_reader2_0 line 686 thread 0
+----------------------------------------------------
+  __cs_nondet_qrcu_reader2_myidx=0 (00000000 00000000 00000000 00000000)
+
+State 748 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function qrcu_reader2_0 line 690 thread 0
+----------------------------------------------------
+  __cs_nondet_qrcu_reader2___cs_tmp_if_cond_7=TRUE (00000001)
+
+State 790 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function qrcu_reader2_0 line 804 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 791 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function qrcu_reader2_0 line 804 thread 0
+----------------------------------------------------
+  __cs_thread_index=2u (00000000 00000000 00000000 00000010)
+
+State 792 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function __cs_exit line 98 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[2l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 799 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function main line 1180 thread 0
+----------------------------------------------------
+  __cs_dataraceSecondThread=TRUE (00000001)
+
+State 800 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function main line 1181 thread 0
+----------------------------------------------------
+  __cs_pc[2l]=7 (00111)
+
+State 801 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function main line 1184 thread 0
+----------------------------------------------------
+  __cs_tmp_t3_r1=6 (00110)
+
+Violated property:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized2R4U/_dr_2qrcu-2.c function main line 1199 thread 0
+  Data race failure
+  __cs_dataraceNotDetected != FALSE
+
+
+VERIFICATION FAILED
+
+real	0m0,342s
+user	0m0,330s
+sys	0m0,014s

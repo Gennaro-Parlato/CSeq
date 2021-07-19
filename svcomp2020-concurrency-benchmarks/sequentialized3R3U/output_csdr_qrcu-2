@@ -1,0 +1,1423 @@
+CBMC version 5.32.1 (cbmc-5.32.1-140-g7c8c411038-dirty) 64-bit x86_64 linux
+Parsing /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c
+Converting
+Type-checking _csdr_qrcu-2
+file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c line 299 function __CSEQ_atomic_use1: function '__CPROVER_get_field' is not declared
+file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c line 299 function __CSEQ_atomic_use1: function 'assume_abort_if_not' is not declared
+file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c line 300 function __CSEQ_atomic_use1: function '__CPROVER_set_field' is not declared
+file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c line 982 function main: function '__CPROVER_field_decl_global' is not declared
+Generating GOTO Program
+Adding CPROVER library (x86_64)
+Removal of function pointers and virtual functions
+Generic Property Instrumentation
+Running with 8 object bits, 56 offset bits (default)
+Starting Bounded Model Checking
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_reader1_myidx
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_reader1_myidx
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_reader1_myidx
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_reader1___cs_tmp_if_cond_5
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_reader1___cs_tmp_if_cond_5
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_reader1___cs_tmp_if_cond_5
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_reader1___cs_tmp_if_cond_5
+**** WARNING: no body for function assume_abort_if_not
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_reader1___cs_tmp_if_cond_6
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_reader1___cs_tmp_if_cond_6
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_reader1___cs_tmp_if_cond_6
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_reader1___cs_tmp_if_cond_6
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_reader1_myidx
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_reader1_myidx
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_reader1___cs_tmp_if_cond_5
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_reader1___cs_tmp_if_cond_5
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_reader1___cs_tmp_if_cond_6
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_reader1___cs_tmp_if_cond_6
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_reader1_myidx
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_reader1_myidx
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_reader1___cs_tmp_if_cond_5
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_reader1___cs_tmp_if_cond_5
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_reader1___cs_tmp_if_cond_6
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_reader1___cs_tmp_if_cond_6
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c line 516 function qrcu_reader1_0 thread 0
+Shadow memory: cannot set_field for &__cs_nondet___CSEQ_atomic_use_done___cs_tmp_if_cond_0
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_reader2_myidx
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_reader2_myidx
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_reader2_myidx
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_reader2___cs_tmp_if_cond_7
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_reader2___cs_tmp_if_cond_7
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_reader2___cs_tmp_if_cond_7
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_reader2___cs_tmp_if_cond_7
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_reader2___cs_tmp_if_cond_8
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_reader2___cs_tmp_if_cond_8
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_reader2___cs_tmp_if_cond_8
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_reader2___cs_tmp_if_cond_8
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_reader2_myidx
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_reader2_myidx
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_reader2___cs_tmp_if_cond_7
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_reader2___cs_tmp_if_cond_7
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_reader2___cs_tmp_if_cond_8
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_reader2___cs_tmp_if_cond_8
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_reader2_myidx
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_reader2_myidx
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_reader2___cs_tmp_if_cond_7
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_reader2___cs_tmp_if_cond_7
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_reader2___cs_tmp_if_cond_8
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_reader2___cs_tmp_if_cond_8
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c line 686 function qrcu_reader2_0 thread 0
+Shadow memory: cannot set_field for &__cs_nondet___CSEQ_atomic_use_done___cs_tmp_if_cond_0
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_updater_readerstart1
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_updater_readerstart1
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_updater_readerstart1
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_updater_readerstart2
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_updater_readerstart2
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_updater_readerstart2
+Shadow memory: cannot set_field for &__cs_param___CSEQ_atomic_take_snapshot_readerstart1!0@1
+Shadow memory: cannot set_field for &__cs_param___CSEQ_atomic_take_snapshot_readerstart2!0@1
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_updater___cs_tmp_if_cond_9
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_updater___cs_tmp_if_cond_9
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_updater_sum
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_updater_sum
+Shadow memory: cannot set_field for &__cs_local_qrcu_updater___cs_temporary_0
+Shadow memory: cannot set_field for &__cs_local_qrcu_updater___cs_temporary_0
+Shadow memory: cannot set_field for &__cs_local_qrcu_updater___cs_temporary_0
+Shadow memory: cannot set_field for &__cs_local_qrcu_updater___cs_temporary_0
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_updater_sum
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_updater_sum
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_updater_sum
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_updater_sum
+Shadow memory: cannot set_field for &__cs_local_qrcu_updater___cs_temporary_1
+Shadow memory: cannot set_field for &__cs_local_qrcu_updater___cs_temporary_1
+Shadow memory: cannot set_field for &__cs_local_qrcu_updater___cs_temporary_1
+Shadow memory: cannot set_field for &__cs_local_qrcu_updater___cs_temporary_1
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_updater_sum
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_updater_sum
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_updater___cs_tmp_if_cond_10
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_updater___cs_tmp_if_cond_10
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_updater___cs_tmp_if_cond_11
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_updater___cs_tmp_if_cond_11
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_updater_sum
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_updater_sum
+Shadow memory: cannot set_field for &__cs_local_qrcu_updater___cs_temporary_2
+Shadow memory: cannot set_field for &__cs_local_qrcu_updater___cs_temporary_2
+Shadow memory: cannot set_field for &__cs_local_qrcu_updater___cs_temporary_2
+Shadow memory: cannot set_field for &__cs_local_qrcu_updater___cs_temporary_2
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_updater_sum
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_updater_sum
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_updater_sum
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_updater_sum
+Shadow memory: cannot set_field for &__cs_local_qrcu_updater___cs_temporary_3
+Shadow memory: cannot set_field for &__cs_local_qrcu_updater___cs_temporary_3
+Shadow memory: cannot set_field for &__cs_local_qrcu_updater___cs_temporary_3
+Shadow memory: cannot set_field for &__cs_local_qrcu_updater___cs_temporary_3
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_updater_sum
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_updater_sum
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_updater___cs_tmp_if_cond_12
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_updater___cs_tmp_if_cond_12
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_updater___cs_tmp_if_cond_13
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_updater___cs_tmp_if_cond_13
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_updater___cs_tmp_if_cond_14
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_updater___cs_tmp_if_cond_14
+Shadow memory: cannot set_field for &__cs_nondet___CSEQ_atomic_check_progress1___cs_tmp_if_cond_1
+Shadow memory: cannot set_field for &__cs_nondet___CSEQ_atomic_check_progress1___cs_tmp_if_cond_2
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c line 343 function __CSEQ_atomic_check_progress1 thread 0
+Shadow memory: cannot set_field for &__cs_nondet___CSEQ_atomic_check_progress2___cs_tmp_if_cond_3
+Shadow memory: cannot set_field for &__cs_nondet___CSEQ_atomic_check_progress2___cs_tmp_if_cond_4
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c line 366 function __CSEQ_atomic_check_progress2 thread 0
+Shadow memory: cannot get_field for &__cs_nondet_main_t1
+Shadow memory: cannot get_field for &__cs_nondet_main_t2
+Shadow memory: cannot get_field for &__cs_nondet_main_t3
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_reader1_myidx
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_reader1_myidx
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_reader1_myidx
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_reader1___cs_tmp_if_cond_5
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_reader1___cs_tmp_if_cond_5
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_reader1___cs_tmp_if_cond_5
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_reader1___cs_tmp_if_cond_5
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_reader1_myidx
+Shadow memory: cannot get_field for &__cs_param___CSEQ_atomic_use1_myidx!0@7
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_reader1___cs_tmp_if_cond_6
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_reader1___cs_tmp_if_cond_6
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_reader1___cs_tmp_if_cond_6
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_reader1___cs_tmp_if_cond_6
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_reader1_myidx
+Shadow memory: cannot get_field for &__cs_param___CSEQ_atomic_use2_myidx!0@7
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_reader1_myidx
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_reader1_myidx
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_reader1_myidx
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_reader1___cs_tmp_if_cond_5
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_reader1___cs_tmp_if_cond_5
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_reader1___cs_tmp_if_cond_5
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_reader1___cs_tmp_if_cond_5
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_reader1_myidx
+Shadow memory: cannot get_field for &__cs_param___CSEQ_atomic_use1_myidx!0@8
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_reader1___cs_tmp_if_cond_6
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_reader1___cs_tmp_if_cond_6
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_reader1___cs_tmp_if_cond_6
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_reader1___cs_tmp_if_cond_6
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_reader1_myidx
+Shadow memory: cannot get_field for &__cs_param___CSEQ_atomic_use2_myidx!0@8
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_reader1_myidx
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_reader1_myidx
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_reader1_myidx
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_reader1___cs_tmp_if_cond_5
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_reader1___cs_tmp_if_cond_5
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_reader1___cs_tmp_if_cond_5
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_reader1___cs_tmp_if_cond_5
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_reader1_myidx
+Shadow memory: cannot get_field for &__cs_param___CSEQ_atomic_use1_myidx!0@9
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_reader1___cs_tmp_if_cond_6
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_reader1___cs_tmp_if_cond_6
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_reader1___cs_tmp_if_cond_6
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_reader1___cs_tmp_if_cond_6
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_reader1_myidx
+Shadow memory: cannot get_field for &__cs_param___CSEQ_atomic_use2_myidx!0@9
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c line 516 function qrcu_reader1_0 thread 0
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_reader1_myidx
+Shadow memory: cannot set_field for &__cs_nondet___CSEQ_atomic_use_done___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet___CSEQ_atomic_use_done___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_param___CSEQ_atomic_use_done_myidx!0@3
+Shadow memory: cannot get_field for &__cs_nondet___CSEQ_atomic_use_done___cs_tmp_if_cond_0
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_reader2_myidx
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_reader2_myidx
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_reader2_myidx
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_reader2___cs_tmp_if_cond_7
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_reader2___cs_tmp_if_cond_7
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_reader2___cs_tmp_if_cond_7
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_reader2___cs_tmp_if_cond_7
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_reader2_myidx
+Shadow memory: cannot get_field for &__cs_param___CSEQ_atomic_use1_myidx!0@10
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_reader2___cs_tmp_if_cond_8
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_reader2___cs_tmp_if_cond_8
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_reader2___cs_tmp_if_cond_8
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_reader2___cs_tmp_if_cond_8
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_reader2_myidx
+Shadow memory: cannot get_field for &__cs_param___CSEQ_atomic_use2_myidx!0@10
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_reader2_myidx
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_reader2_myidx
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_reader2_myidx
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_reader2___cs_tmp_if_cond_7
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_reader2___cs_tmp_if_cond_7
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_reader2___cs_tmp_if_cond_7
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_reader2___cs_tmp_if_cond_7
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_reader2_myidx
+Shadow memory: cannot get_field for &__cs_param___CSEQ_atomic_use1_myidx!0@11
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_reader2___cs_tmp_if_cond_8
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_reader2___cs_tmp_if_cond_8
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_reader2___cs_tmp_if_cond_8
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_reader2___cs_tmp_if_cond_8
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_reader2_myidx
+Shadow memory: cannot get_field for &__cs_param___CSEQ_atomic_use2_myidx!0@11
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_reader2_myidx
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_reader2_myidx
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_reader2_myidx
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_reader2___cs_tmp_if_cond_7
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_reader2___cs_tmp_if_cond_7
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_reader2___cs_tmp_if_cond_7
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_reader2___cs_tmp_if_cond_7
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_reader2_myidx
+Shadow memory: cannot get_field for &__cs_param___CSEQ_atomic_use1_myidx!0@12
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_reader2___cs_tmp_if_cond_8
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_reader2___cs_tmp_if_cond_8
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_reader2___cs_tmp_if_cond_8
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_reader2___cs_tmp_if_cond_8
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_reader2_myidx
+Shadow memory: cannot get_field for &__cs_param___CSEQ_atomic_use2_myidx!0@12
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c line 686 function qrcu_reader2_0 thread 0
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_reader2_myidx
+Shadow memory: cannot set_field for &__cs_nondet___CSEQ_atomic_use_done___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet___CSEQ_atomic_use_done___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_param___CSEQ_atomic_use_done_myidx!0@4
+Shadow memory: cannot get_field for &__cs_nondet___CSEQ_atomic_use_done___cs_tmp_if_cond_0
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_updater_readerstart1
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_updater_readerstart1
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_updater_readerstart1
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_updater_readerstart2
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_updater_readerstart2
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_updater_readerstart2
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_updater_readerstart1
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_updater_readerstart2
+Shadow memory: cannot set_field for &__cs_param___CSEQ_atomic_take_snapshot_readerstart1!0@2
+Shadow memory: cannot get_field for &__cs_param___CSEQ_atomic_take_snapshot_readerstart1!0@2
+Shadow memory: cannot set_field for &__cs_param___CSEQ_atomic_take_snapshot_readerstart2!0@2
+Shadow memory: cannot get_field for &__cs_param___CSEQ_atomic_take_snapshot_readerstart2!0@2
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_updater___cs_tmp_if_cond_9
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_updater___cs_tmp_if_cond_9
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_updater___cs_tmp_if_cond_9
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_updater___cs_tmp_if_cond_9
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_updater_sum
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_updater_sum
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_updater_sum
+Shadow memory: cannot set_field for &__cs_local_qrcu_updater___cs_temporary_0
+Shadow memory: cannot set_field for &__cs_local_qrcu_updater___cs_temporary_0
+Shadow memory: cannot get_field for &__cs_local_qrcu_updater___cs_temporary_0
+Shadow memory: cannot set_field for &__cs_local_qrcu_updater___cs_temporary_0
+Shadow memory: cannot set_field for &__cs_local_qrcu_updater___cs_temporary_0
+Shadow memory: cannot get_field for &__cs_local_qrcu_updater___cs_temporary_0
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_updater_sum
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_updater_sum
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_updater_sum
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_updater_sum
+Shadow memory: cannot get_field for &__cs_local_qrcu_updater___cs_temporary_0
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_updater_sum
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_updater_sum
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_updater_sum
+Shadow memory: cannot set_field for &__cs_local_qrcu_updater___cs_temporary_1
+Shadow memory: cannot set_field for &__cs_local_qrcu_updater___cs_temporary_1
+Shadow memory: cannot get_field for &__cs_local_qrcu_updater___cs_temporary_1
+Shadow memory: cannot set_field for &__cs_local_qrcu_updater___cs_temporary_1
+Shadow memory: cannot set_field for &__cs_local_qrcu_updater___cs_temporary_1
+Shadow memory: cannot get_field for &__cs_local_qrcu_updater___cs_temporary_1
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_updater_sum
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_updater_sum
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_updater_sum
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_updater_sum
+Shadow memory: cannot get_field for &__cs_local_qrcu_updater___cs_temporary_1
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_updater___cs_tmp_if_cond_10
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_updater___cs_tmp_if_cond_10
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_updater___cs_tmp_if_cond_10
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_updater_sum
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_updater___cs_tmp_if_cond_10
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_updater___cs_tmp_if_cond_11
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_updater___cs_tmp_if_cond_11
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_updater___cs_tmp_if_cond_11
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_updater___cs_tmp_if_cond_11
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_updater_sum
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_updater_sum
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_updater_sum
+Shadow memory: cannot set_field for &__cs_local_qrcu_updater___cs_temporary_2
+Shadow memory: cannot set_field for &__cs_local_qrcu_updater___cs_temporary_2
+Shadow memory: cannot get_field for &__cs_local_qrcu_updater___cs_temporary_2
+Shadow memory: cannot set_field for &__cs_local_qrcu_updater___cs_temporary_2
+Shadow memory: cannot set_field for &__cs_local_qrcu_updater___cs_temporary_2
+Shadow memory: cannot get_field for &__cs_local_qrcu_updater___cs_temporary_2
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_updater_sum
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_updater_sum
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_updater_sum
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_updater_sum
+Shadow memory: cannot get_field for &__cs_local_qrcu_updater___cs_temporary_2
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_updater_sum
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_updater_sum
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_updater_sum
+Shadow memory: cannot set_field for &__cs_local_qrcu_updater___cs_temporary_3
+Shadow memory: cannot set_field for &__cs_local_qrcu_updater___cs_temporary_3
+Shadow memory: cannot get_field for &__cs_local_qrcu_updater___cs_temporary_3
+Shadow memory: cannot set_field for &__cs_local_qrcu_updater___cs_temporary_3
+Shadow memory: cannot set_field for &__cs_local_qrcu_updater___cs_temporary_3
+Shadow memory: cannot get_field for &__cs_local_qrcu_updater___cs_temporary_3
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_updater_sum
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_updater_sum
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_updater_sum
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_updater_sum
+Shadow memory: cannot get_field for &__cs_local_qrcu_updater___cs_temporary_3
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_updater___cs_tmp_if_cond_12
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_updater___cs_tmp_if_cond_12
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_updater___cs_tmp_if_cond_12
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_updater_sum
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_updater___cs_tmp_if_cond_12
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_updater___cs_tmp_if_cond_13
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_updater___cs_tmp_if_cond_13
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_updater___cs_tmp_if_cond_13
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_updater___cs_tmp_if_cond_13
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_updater___cs_tmp_if_cond_14
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_updater___cs_tmp_if_cond_14
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_updater___cs_tmp_if_cond_14
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_updater___cs_tmp_if_cond_14
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_updater_readerstart1
+Shadow memory: cannot set_field for &__cs_nondet___CSEQ_atomic_check_progress1___cs_tmp_if_cond_1
+Shadow memory: cannot get_field for &__cs_nondet___CSEQ_atomic_check_progress1___cs_tmp_if_cond_1
+Shadow memory: cannot get_field for &__cs_nondet___CSEQ_atomic_check_progress1___cs_tmp_if_cond_1
+Shadow memory: cannot get_field for &__cs_param___CSEQ_atomic_check_progress1_readerstart1!0@2
+Shadow memory: cannot set_field for &__cs_nondet___CSEQ_atomic_check_progress1___cs_tmp_if_cond_2
+Shadow memory: cannot get_field for &__cs_nondet___CSEQ_atomic_check_progress1___cs_tmp_if_cond_2
+Shadow memory: cannot get_field for &__cs_nondet___CSEQ_atomic_check_progress1___cs_tmp_if_cond_2
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c line 343 function __CSEQ_atomic_check_progress1 thread 0
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_updater_readerstart2
+Shadow memory: cannot set_field for &__cs_nondet___CSEQ_atomic_check_progress2___cs_tmp_if_cond_3
+Shadow memory: cannot get_field for &__cs_nondet___CSEQ_atomic_check_progress2___cs_tmp_if_cond_3
+Shadow memory: cannot get_field for &__cs_nondet___CSEQ_atomic_check_progress2___cs_tmp_if_cond_3
+Shadow memory: cannot get_field for &__cs_param___CSEQ_atomic_check_progress2_readerstart2!0@2
+Shadow memory: cannot set_field for &__cs_nondet___CSEQ_atomic_check_progress2___cs_tmp_if_cond_4
+Shadow memory: cannot get_field for &__cs_nondet___CSEQ_atomic_check_progress2___cs_tmp_if_cond_4
+Shadow memory: cannot get_field for &__cs_nondet___CSEQ_atomic_check_progress2___cs_tmp_if_cond_4
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c line 366 function __CSEQ_atomic_check_progress2 thread 0
+Shadow memory: cannot get_field for &__cs_nondet_main_t1
+Shadow memory: cannot get_field for &__cs_nondet_main_t2
+Shadow memory: cannot get_field for &__cs_nondet_main_t3
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_reader1_myidx
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_reader1_myidx
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_reader1_myidx
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_reader1___cs_tmp_if_cond_5
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_reader1___cs_tmp_if_cond_5
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_reader1___cs_tmp_if_cond_5
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_reader1___cs_tmp_if_cond_5
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_reader1_myidx
+Shadow memory: cannot get_field for &__cs_param___CSEQ_atomic_use1_myidx!0@13
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_reader1___cs_tmp_if_cond_6
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_reader1___cs_tmp_if_cond_6
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_reader1___cs_tmp_if_cond_6
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_reader1___cs_tmp_if_cond_6
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_reader1_myidx
+Shadow memory: cannot get_field for &__cs_param___CSEQ_atomic_use2_myidx!0@13
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_reader1_myidx
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_reader1_myidx
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_reader1_myidx
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_reader1___cs_tmp_if_cond_5
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_reader1___cs_tmp_if_cond_5
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_reader1___cs_tmp_if_cond_5
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_reader1___cs_tmp_if_cond_5
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_reader1_myidx
+Shadow memory: cannot get_field for &__cs_param___CSEQ_atomic_use1_myidx!0@14
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_reader1___cs_tmp_if_cond_6
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_reader1___cs_tmp_if_cond_6
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_reader1___cs_tmp_if_cond_6
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_reader1___cs_tmp_if_cond_6
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_reader1_myidx
+Shadow memory: cannot get_field for &__cs_param___CSEQ_atomic_use2_myidx!0@14
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_reader1_myidx
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_reader1_myidx
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_reader1_myidx
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_reader1___cs_tmp_if_cond_5
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_reader1___cs_tmp_if_cond_5
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_reader1___cs_tmp_if_cond_5
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_reader1___cs_tmp_if_cond_5
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_reader1_myidx
+Shadow memory: cannot get_field for &__cs_param___CSEQ_atomic_use1_myidx!0@15
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_reader1___cs_tmp_if_cond_6
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_reader1___cs_tmp_if_cond_6
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_reader1___cs_tmp_if_cond_6
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_reader1___cs_tmp_if_cond_6
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_reader1_myidx
+Shadow memory: cannot get_field for &__cs_param___CSEQ_atomic_use2_myidx!0@15
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c line 516 function qrcu_reader1_0 thread 0
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_reader1_myidx
+Shadow memory: cannot set_field for &__cs_nondet___CSEQ_atomic_use_done___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet___CSEQ_atomic_use_done___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_param___CSEQ_atomic_use_done_myidx!0@5
+Shadow memory: cannot get_field for &__cs_nondet___CSEQ_atomic_use_done___cs_tmp_if_cond_0
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_reader2_myidx
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_reader2_myidx
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_reader2_myidx
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_reader2___cs_tmp_if_cond_7
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_reader2___cs_tmp_if_cond_7
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_reader2___cs_tmp_if_cond_7
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_reader2___cs_tmp_if_cond_7
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_reader2_myidx
+Shadow memory: cannot get_field for &__cs_param___CSEQ_atomic_use1_myidx!0@16
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_reader2___cs_tmp_if_cond_8
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_reader2___cs_tmp_if_cond_8
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_reader2___cs_tmp_if_cond_8
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_reader2___cs_tmp_if_cond_8
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_reader2_myidx
+Shadow memory: cannot get_field for &__cs_param___CSEQ_atomic_use2_myidx!0@16
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_reader2_myidx
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_reader2_myidx
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_reader2_myidx
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_reader2___cs_tmp_if_cond_7
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_reader2___cs_tmp_if_cond_7
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_reader2___cs_tmp_if_cond_7
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_reader2___cs_tmp_if_cond_7
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_reader2_myidx
+Shadow memory: cannot get_field for &__cs_param___CSEQ_atomic_use1_myidx!0@17
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_reader2___cs_tmp_if_cond_8
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_reader2___cs_tmp_if_cond_8
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_reader2___cs_tmp_if_cond_8
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_reader2___cs_tmp_if_cond_8
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_reader2_myidx
+Shadow memory: cannot get_field for &__cs_param___CSEQ_atomic_use2_myidx!0@17
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_reader2_myidx
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_reader2_myidx
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_reader2_myidx
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_reader2___cs_tmp_if_cond_7
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_reader2___cs_tmp_if_cond_7
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_reader2___cs_tmp_if_cond_7
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_reader2___cs_tmp_if_cond_7
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_reader2_myidx
+Shadow memory: cannot get_field for &__cs_param___CSEQ_atomic_use1_myidx!0@18
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_reader2___cs_tmp_if_cond_8
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_reader2___cs_tmp_if_cond_8
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_reader2___cs_tmp_if_cond_8
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_reader2___cs_tmp_if_cond_8
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_reader2_myidx
+Shadow memory: cannot get_field for &__cs_param___CSEQ_atomic_use2_myidx!0@18
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c line 686 function qrcu_reader2_0 thread 0
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_reader2_myidx
+Shadow memory: cannot set_field for &__cs_nondet___CSEQ_atomic_use_done___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet___CSEQ_atomic_use_done___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_param___CSEQ_atomic_use_done_myidx!0@6
+Shadow memory: cannot get_field for &__cs_nondet___CSEQ_atomic_use_done___cs_tmp_if_cond_0
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_updater_readerstart1
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_updater_readerstart1
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_updater_readerstart1
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_updater_readerstart2
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_updater_readerstart2
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_updater_readerstart2
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_updater_readerstart1
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_updater_readerstart2
+Shadow memory: cannot set_field for &__cs_param___CSEQ_atomic_take_snapshot_readerstart1!0@3
+Shadow memory: cannot get_field for &__cs_param___CSEQ_atomic_take_snapshot_readerstart1!0@3
+Shadow memory: cannot set_field for &__cs_param___CSEQ_atomic_take_snapshot_readerstart2!0@3
+Shadow memory: cannot get_field for &__cs_param___CSEQ_atomic_take_snapshot_readerstart2!0@3
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_updater___cs_tmp_if_cond_9
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_updater___cs_tmp_if_cond_9
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_updater___cs_tmp_if_cond_9
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_updater___cs_tmp_if_cond_9
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_updater_sum
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_updater_sum
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_updater_sum
+Shadow memory: cannot set_field for &__cs_local_qrcu_updater___cs_temporary_0
+Shadow memory: cannot set_field for &__cs_local_qrcu_updater___cs_temporary_0
+Shadow memory: cannot get_field for &__cs_local_qrcu_updater___cs_temporary_0
+Shadow memory: cannot set_field for &__cs_local_qrcu_updater___cs_temporary_0
+Shadow memory: cannot set_field for &__cs_local_qrcu_updater___cs_temporary_0
+Shadow memory: cannot get_field for &__cs_local_qrcu_updater___cs_temporary_0
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_updater_sum
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_updater_sum
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_updater_sum
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_updater_sum
+Shadow memory: cannot get_field for &__cs_local_qrcu_updater___cs_temporary_0
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_updater_sum
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_updater_sum
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_updater_sum
+Shadow memory: cannot set_field for &__cs_local_qrcu_updater___cs_temporary_1
+Shadow memory: cannot set_field for &__cs_local_qrcu_updater___cs_temporary_1
+Shadow memory: cannot get_field for &__cs_local_qrcu_updater___cs_temporary_1
+Shadow memory: cannot set_field for &__cs_local_qrcu_updater___cs_temporary_1
+Shadow memory: cannot set_field for &__cs_local_qrcu_updater___cs_temporary_1
+Shadow memory: cannot get_field for &__cs_local_qrcu_updater___cs_temporary_1
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_updater_sum
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_updater_sum
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_updater_sum
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_updater_sum
+Shadow memory: cannot get_field for &__cs_local_qrcu_updater___cs_temporary_1
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_updater___cs_tmp_if_cond_10
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_updater___cs_tmp_if_cond_10
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_updater___cs_tmp_if_cond_10
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_updater_sum
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_updater___cs_tmp_if_cond_10
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_updater___cs_tmp_if_cond_11
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_updater___cs_tmp_if_cond_11
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_updater___cs_tmp_if_cond_11
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_updater___cs_tmp_if_cond_11
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_updater_sum
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_updater_sum
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_updater_sum
+Shadow memory: cannot set_field for &__cs_local_qrcu_updater___cs_temporary_2
+Shadow memory: cannot set_field for &__cs_local_qrcu_updater___cs_temporary_2
+Shadow memory: cannot get_field for &__cs_local_qrcu_updater___cs_temporary_2
+Shadow memory: cannot set_field for &__cs_local_qrcu_updater___cs_temporary_2
+Shadow memory: cannot set_field for &__cs_local_qrcu_updater___cs_temporary_2
+Shadow memory: cannot get_field for &__cs_local_qrcu_updater___cs_temporary_2
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_updater_sum
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_updater_sum
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_updater_sum
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_updater_sum
+Shadow memory: cannot get_field for &__cs_local_qrcu_updater___cs_temporary_2
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_updater_sum
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_updater_sum
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_updater_sum
+Shadow memory: cannot set_field for &__cs_local_qrcu_updater___cs_temporary_3
+Shadow memory: cannot set_field for &__cs_local_qrcu_updater___cs_temporary_3
+Shadow memory: cannot get_field for &__cs_local_qrcu_updater___cs_temporary_3
+Shadow memory: cannot set_field for &__cs_local_qrcu_updater___cs_temporary_3
+Shadow memory: cannot set_field for &__cs_local_qrcu_updater___cs_temporary_3
+Shadow memory: cannot get_field for &__cs_local_qrcu_updater___cs_temporary_3
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_updater_sum
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_updater_sum
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_updater_sum
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_updater_sum
+Shadow memory: cannot get_field for &__cs_local_qrcu_updater___cs_temporary_3
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_updater___cs_tmp_if_cond_12
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_updater___cs_tmp_if_cond_12
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_updater___cs_tmp_if_cond_12
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_updater_sum
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_updater___cs_tmp_if_cond_12
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_updater___cs_tmp_if_cond_13
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_updater___cs_tmp_if_cond_13
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_updater___cs_tmp_if_cond_13
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_updater___cs_tmp_if_cond_13
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_updater___cs_tmp_if_cond_14
+Shadow memory: cannot set_field for &__cs_nondet_qrcu_updater___cs_tmp_if_cond_14
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_updater___cs_tmp_if_cond_14
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_updater___cs_tmp_if_cond_14
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_updater_readerstart1
+Shadow memory: cannot set_field for &__cs_nondet___CSEQ_atomic_check_progress1___cs_tmp_if_cond_1
+Shadow memory: cannot get_field for &__cs_nondet___CSEQ_atomic_check_progress1___cs_tmp_if_cond_1
+Shadow memory: cannot get_field for &__cs_nondet___CSEQ_atomic_check_progress1___cs_tmp_if_cond_1
+Shadow memory: cannot get_field for &__cs_param___CSEQ_atomic_check_progress1_readerstart1!0@3
+Shadow memory: cannot set_field for &__cs_nondet___CSEQ_atomic_check_progress1___cs_tmp_if_cond_2
+Shadow memory: cannot get_field for &__cs_nondet___CSEQ_atomic_check_progress1___cs_tmp_if_cond_2
+Shadow memory: cannot get_field for &__cs_nondet___CSEQ_atomic_check_progress1___cs_tmp_if_cond_2
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c line 343 function __CSEQ_atomic_check_progress1 thread 0
+Shadow memory: cannot get_field for &__cs_nondet_qrcu_updater_readerstart2
+Shadow memory: cannot set_field for &__cs_nondet___CSEQ_atomic_check_progress2___cs_tmp_if_cond_3
+Shadow memory: cannot get_field for &__cs_nondet___CSEQ_atomic_check_progress2___cs_tmp_if_cond_3
+Shadow memory: cannot get_field for &__cs_nondet___CSEQ_atomic_check_progress2___cs_tmp_if_cond_3
+Shadow memory: cannot get_field for &__cs_param___CSEQ_atomic_check_progress2_readerstart2!0@3
+Shadow memory: cannot set_field for &__cs_nondet___CSEQ_atomic_check_progress2___cs_tmp_if_cond_4
+Shadow memory: cannot get_field for &__cs_nondet___CSEQ_atomic_check_progress2___cs_tmp_if_cond_4
+Shadow memory: cannot get_field for &__cs_nondet___CSEQ_atomic_check_progress2___cs_tmp_if_cond_4
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c line 366 function __CSEQ_atomic_check_progress2 thread 0
+Runtime Symex: 0.458959s
+size of program expression: 17750 steps
+simple slicing removed 5 assignments
+Generated 22 VCC(s), 22 remaining after simplification
+Runtime Postprocess Equation: 0.00237286s
+Passing problem to propositional reduction
+converting SSA
+Runtime Convert SSA: 0.0827564s
+Running propositional reduction
+Post-processing
+Runtime Post-process: 2.6371e-05s
+Solving with Glucose Syrup with simplifier
+58387 variables, 101522 clauses
+SAT checker: instance is SATISFIABLE
+Runtime Solver: 0.0923503s
+Runtime decision procedure: 0.175607s
+Building error trace
+Counterexample:
+
+State 27 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function __CPROVER_initialize line 57 thread 0
+----------------------------------------------------
+  __cs_active_thread[0l]=0 (0)
+
+State 28 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function __CPROVER_initialize line 57 thread 0
+----------------------------------------------------
+  __cs_active_thread[1l]=0 (0)
+
+State 29 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function __CPROVER_initialize line 57 thread 0
+----------------------------------------------------
+  __cs_active_thread[2l]=0 (0)
+
+State 30 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function __CPROVER_initialize line 57 thread 0
+----------------------------------------------------
+  __cs_active_thread[3l]=0 (0)
+
+State 39 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function __CPROVER_initialize line 58 thread 0
+----------------------------------------------------
+  __cs_pc[0l]=0 (00000)
+
+State 40 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function __CPROVER_initialize line 58 thread 0
+----------------------------------------------------
+  __cs_pc[1l]=0 (00000)
+
+State 41 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function __CPROVER_initialize line 58 thread 0
+----------------------------------------------------
+  __cs_pc[2l]=0 (00000)
+
+State 42 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function __CPROVER_initialize line 58 thread 0
+----------------------------------------------------
+  __cs_pc[3l]=0 (00000)
+
+State 44 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function __CPROVER_initialize line 59 thread 0
+----------------------------------------------------
+  __cs_pc_cs[0l]=0 (000000)
+
+State 45 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function __CPROVER_initialize line 59 thread 0
+----------------------------------------------------
+  __cs_pc_cs[1l]=0 (000000)
+
+State 46 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function __CPROVER_initialize line 59 thread 0
+----------------------------------------------------
+  __cs_pc_cs[2l]=0 (000000)
+
+State 47 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function __CPROVER_initialize line 59 thread 0
+----------------------------------------------------
+  __cs_pc_cs[3l]=0 (000000)
+
+State 49 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function __CPROVER_initialize line 82 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 50 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function __CPROVER_initialize line 82 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 51 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function __CPROVER_initialize line 82 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[2l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 52 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function __CPROVER_initialize line 82 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[3l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 54 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function __CPROVER_initialize line 61 thread 0
+----------------------------------------------------
+  __cs_thread_lines[0l]=13 (01101)
+
+State 55 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function __CPROVER_initialize line 61 thread 0
+----------------------------------------------------
+  __cs_thread_lines[1l]=13 (01101)
+
+State 56 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function __CPROVER_initialize line 61 thread 0
+----------------------------------------------------
+  __cs_thread_lines[2l]=24 (11000)
+
+State 57 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function __CPROVER_initialize line 61 thread 0
+----------------------------------------------------
+  __cs_thread_lines[3l]=7 (00111)
+
+State 59 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function __CPROVER_initialize line 81 thread 0
+----------------------------------------------------
+  __cs_threadargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 60 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function __CPROVER_initialize line 81 thread 0
+----------------------------------------------------
+  __cs_threadargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 61 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function __CPROVER_initialize line 81 thread 0
+----------------------------------------------------
+  __cs_threadargs[2l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 62 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function __CPROVER_initialize line 81 thread 0
+----------------------------------------------------
+  __cs_threadargs[3l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 116 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function main line 984 thread 0
+----------------------------------------------------
+  __cs_dr_ts=6 (0110)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c line 985 function main
+  (signed int)__cs_dr_ts <= 10
+
+State 118 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function main line 988 thread 0
+----------------------------------------------------
+  __cs_active_thread[3l]=1 (1)
+
+State 119 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function main line 989 thread 0
+----------------------------------------------------
+  __cs_tmp_t3_r0=3 (011)
+
+State 120 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function main line 990 thread 0
+----------------------------------------------------
+  __cs_pc_cs[3l]=3 (000011)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c line 991 function main
+  (signed int)__cs_pc_cs[(signed long int)3] > 0
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c line 992 function main
+  (signed int)__cs_pc_cs[(signed long int)3] <= 7
+
+State 127 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function main_thread line 943 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 128 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function main_thread line 944 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=TRUE (00000001)
+
+State 131 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function main_thread line 948 thread 0
+----------------------------------------------------
+  __cs_m=&mutex (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 132 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function main_thread line 948 thread 0
+----------------------------------------------------
+  __cs_val=0 (00000000 00000000 00000000 00000000)
+
+State 133 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function __cs_mutex_init line 111 thread 0
+----------------------------------------------------
+  mutex=-1 (11111111 11111111 11111111 11111111)
+
+State 138 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function main_thread line 949 thread 0
+----------------------------------------------------
+  __cs_new_thread_id=&__cs_nondet_main_t1 (00000011 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 139 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function main_thread line 949 thread 0
+----------------------------------------------------
+  __cs_attr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 140 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function main_thread line 949 thread 0
+----------------------------------------------------
+  __cs_thread_function=qrcu_reader1_0 (00000100 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 141 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function main_thread line 949 thread 0
+----------------------------------------------------
+  __cs_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 142 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function main_thread line 949 thread 0
+----------------------------------------------------
+  __cs_threadID=0 (00000000 00000000 00000000 00000000)
+
+State 144 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function __cs_create line 87 thread 0
+----------------------------------------------------
+  __cs_nondet_main_t1=0 (00000000 00000000 00000000 00000000)
+
+State 145 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function __cs_create line 88 thread 0
+----------------------------------------------------
+  __cs_active_thread[0l]=1 (1)
+
+State 146 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function __cs_create line 89 thread 0
+----------------------------------------------------
+  __cs_threadargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 152 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function main_thread line 952 thread 0
+----------------------------------------------------
+  __cs_new_thread_id=&__cs_nondet_main_t2 (00000101 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 153 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function main_thread line 952 thread 0
+----------------------------------------------------
+  __cs_attr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 154 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function main_thread line 952 thread 0
+----------------------------------------------------
+  __cs_thread_function=qrcu_reader2_0 (00000110 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 155 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function main_thread line 952 thread 0
+----------------------------------------------------
+  __cs_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 156 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function main_thread line 952 thread 0
+----------------------------------------------------
+  __cs_threadID=1 (00000000 00000000 00000000 00000001)
+
+State 158 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function __cs_create line 87 thread 0
+----------------------------------------------------
+  __cs_nondet_main_t2=1 (00000000 00000000 00000000 00000001)
+
+State 159 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function __cs_create line 88 thread 0
+----------------------------------------------------
+  __cs_active_thread[1l]=1 (1)
+
+State 160 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function __cs_create line 89 thread 0
+----------------------------------------------------
+  __cs_threadargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 166 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function main_thread line 955 thread 0
+----------------------------------------------------
+  __cs_new_thread_id=&__cs_nondet_main_t3 (00000111 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 167 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function main_thread line 955 thread 0
+----------------------------------------------------
+  __cs_attr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 168 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function main_thread line 955 thread 0
+----------------------------------------------------
+  __cs_thread_function=qrcu_updater_0 (00001000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 169 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function main_thread line 955 thread 0
+----------------------------------------------------
+  __cs_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 170 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function main_thread line 955 thread 0
+----------------------------------------------------
+  __cs_threadID=2 (00000000 00000000 00000000 00000010)
+
+State 172 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function __cs_create line 87 thread 0
+----------------------------------------------------
+  __cs_nondet_main_t3=2 (00000000 00000000 00000000 00000010)
+
+State 173 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function __cs_create line 88 thread 0
+----------------------------------------------------
+  __cs_active_thread[2l]=1 (1)
+
+State 174 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function __cs_create line 89 thread 0
+----------------------------------------------------
+  __cs_threadargs[2l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 183 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function main_thread line 978 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 184 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function main_thread line 978 thread 0
+----------------------------------------------------
+  __cs_thread_index=3u (00000000 00000000 00000000 00000011)
+
+State 185 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function __cs_exit line 101 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[3l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 191 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function main line 998 thread 0
+----------------------------------------------------
+  __cs_pc[3l]=3 (00011)
+
+State 192 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function main line 1000 thread 0
+----------------------------------------------------
+  __cs_tmp_t0_r0=6 (0110)
+
+State 194 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function main line 1003 thread 0
+----------------------------------------------------
+  __cs_pc_cs[0l]=6 (000110)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c line 1004 function main
+  (signed int)__cs_pc_cs[(signed long int)0] <= 13
+
+State 199 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function main line 1007 thread 0
+----------------------------------------------------
+  __cs_param_qrcu_reader1_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 201 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function qrcu_reader1_0 line 379 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 202 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function qrcu_reader1_0 line 380 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=TRUE (00000001)
+
+State 207 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function qrcu_reader1_0 line 381 thread 0
+----------------------------------------------------
+  __cs_nondet_qrcu_reader1_myidx=0 (00000000 00000000 00000000 00000000)
+
+State 213 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function qrcu_reader1_0 line 385 thread 0
+----------------------------------------------------
+  __cs_nondet_qrcu_reader1___cs_tmp_if_cond_5=FALSE (00000000)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c line 397 function qrcu_reader1_0
+  (signed int)__cs_pc_cs[(signed long int)0] >= 2
+
+State 222 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function qrcu_reader1_0 line 401 thread 0
+----------------------------------------------------
+  __cs_nondet_qrcu_reader1___cs_tmp_if_cond_6=FALSE (00000000)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c line 413 function qrcu_reader1_0
+  (signed int)__cs_pc_cs[(signed long int)0] >= 3
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c line 415 function qrcu_reader1_0
+  (signed int)__cs_pc_cs[(signed long int)0] >= 3
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c line 418 function qrcu_reader1_0
+  (signed int)__cs_pc_cs[(signed long int)0] >= 3
+
+State 229 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function qrcu_reader1_0 line 425 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 230 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function qrcu_reader1_0 line 426 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 235 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function qrcu_reader1_0 line 427 thread 0
+----------------------------------------------------
+  __cs_nondet_qrcu_reader1_myidx=0 (00000000 00000000 00000000 00000000)
+
+State 241 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function qrcu_reader1_0 line 431 thread 0
+----------------------------------------------------
+  __cs_nondet_qrcu_reader1___cs_tmp_if_cond_5=FALSE (00000000)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c line 443 function qrcu_reader1_0
+  (signed int)__cs_pc_cs[(signed long int)0] >= 5
+
+State 250 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function qrcu_reader1_0 line 447 thread 0
+----------------------------------------------------
+  __cs_nondet_qrcu_reader1___cs_tmp_if_cond_6=FALSE (00000000)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c line 459 function qrcu_reader1_0
+  (signed int)__cs_pc_cs[(signed long int)0] >= 6
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c line 461 function qrcu_reader1_0
+  (signed int)__cs_pc_cs[(signed long int)0] >= 6
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c line 464 function qrcu_reader1_0
+  (signed int)__cs_pc_cs[(signed long int)0] >= 6
+
+State 266 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function qrcu_reader1_0 line 542 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 267 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function qrcu_reader1_0 line 542 thread 0
+----------------------------------------------------
+  __cs_thread_index=0u (00000000 00000000 00000000 00000000)
+
+State 268 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function __cs_exit line 101 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 275 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function main line 1012 thread 0
+----------------------------------------------------
+  __cs_pc[0l]=6 (00110)
+
+State 276 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function main line 1015 thread 0
+----------------------------------------------------
+  __cs_tmp_t1_r0=1 (0001)
+
+State 278 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function main line 1018 thread 0
+----------------------------------------------------
+  __cs_pc_cs[1l]=1 (000001)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c line 1019 function main
+  (signed int)__cs_pc_cs[(signed long int)1] <= 13
+
+State 283 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function main line 1022 thread 0
+----------------------------------------------------
+  __cs_param_qrcu_reader2_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 285 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function qrcu_reader2_0 line 549 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=TRUE (00000001)
+
+State 286 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function qrcu_reader2_0 line 550 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=TRUE (00000001)
+
+State 291 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function qrcu_reader2_0 line 551 thread 0
+----------------------------------------------------
+  __cs_nondet_qrcu_reader2_myidx=0 (00000000 00000000 00000000 00000000)
+
+State 297 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function qrcu_reader2_0 line 555 thread 0
+----------------------------------------------------
+  __cs_nondet_qrcu_reader2___cs_tmp_if_cond_7=TRUE (00000001)
+
+State 317 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function qrcu_reader2_0 line 712 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 318 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function qrcu_reader2_0 line 712 thread 0
+----------------------------------------------------
+  __cs_thread_index=1u (00000000 00000000 00000000 00000001)
+
+State 319 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function __cs_exit line 101 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 326 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function main line 1027 thread 0
+----------------------------------------------------
+  __cs_pc[1l]=1 (00001)
+
+State 327 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function main line 1030 thread 0
+----------------------------------------------------
+  __cs_tmp_t2_r0=2 (00010)
+
+State 329 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function main line 1033 thread 0
+----------------------------------------------------
+  __cs_pc_cs[2l]=2 (000010)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c line 1034 function main
+  (signed int)__cs_pc_cs[(signed long int)2] <= 24
+
+State 334 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function main line 1037 thread 0
+----------------------------------------------------
+  __cs_param_qrcu_updater_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 336 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function qrcu_updater_0 line 719 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 337 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function qrcu_updater_0 line 720 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=TRUE (00000001)
+
+State 341 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function qrcu_updater_0 line 721 thread 0
+----------------------------------------------------
+  __cs_nondet_qrcu_updater_readerstart1=0 (00000000 00000000 00000000 00000000)
+
+State 345 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function qrcu_updater_0 line 723 thread 0
+----------------------------------------------------
+  __cs_nondet_qrcu_updater_readerstart2=0 (00000000 00000000 00000000 00000000)
+
+State 347 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function qrcu_updater_0 line 727 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 352 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function qrcu_updater_0 line 728 thread 0
+----------------------------------------------------
+  __cs_param___CSEQ_atomic_take_snapshot_readerstart1=0 (00000000 00000000 00000000 00000000)
+
+State 353 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function qrcu_updater_0 line 728 thread 0
+----------------------------------------------------
+  __cs_param___CSEQ_atomic_take_snapshot_readerstart2=0 (00000000 00000000 00000000 00000000)
+
+State 357 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function __CSEQ_atomic_take_snapshot line 325 thread 0
+----------------------------------------------------
+  __cs_param___CSEQ_atomic_take_snapshot_readerstart1=0 (00000000 00000000 00000000 00000000)
+
+State 361 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function __CSEQ_atomic_take_snapshot line 326 thread 0
+----------------------------------------------------
+  __cs_param___CSEQ_atomic_take_snapshot_readerstart2=0 (00000000 00000000 00000000 00000000)
+
+State 368 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function qrcu_updater_0 line 732 thread 0
+----------------------------------------------------
+  __cs_nondet_qrcu_updater___cs_tmp_if_cond_9=TRUE (00000001)
+
+State 398 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function qrcu_updater_0 line 938 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 399 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function qrcu_updater_0 line 938 thread 0
+----------------------------------------------------
+  __cs_thread_index=2u (00000000 00000000 00000000 00000010)
+
+State 400 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function __cs_exit line 101 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[2l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 407 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function main line 1042 thread 0
+----------------------------------------------------
+  __cs_pc[2l]=2 (00010)
+
+State 408 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function main line 1046 thread 0
+----------------------------------------------------
+  __cs_tmp_t3_r1=0 (000)
+
+State 410 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function main line 1049 thread 0
+----------------------------------------------------
+  __cs_pc_cs[3l]=3 (000011)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c line 1050 function main
+  (signed int)__cs_pc_cs[(signed long int)3] >= (signed int)__cs_pc[(signed long int)3]
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c line 1051 function main
+  (signed int)__cs_pc_cs[(signed long int)3] <= 7
+
+State 425 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function main_thread line 978 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 426 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function main_thread line 978 thread 0
+----------------------------------------------------
+  __cs_thread_index=3u (00000000 00000000 00000000 00000011)
+
+State 427 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function __cs_exit line 101 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[3l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 434 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function main line 1059 thread 0
+----------------------------------------------------
+  __cs_pc[3l]=3 (00011)
+
+State 435 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function main line 1062 thread 0
+----------------------------------------------------
+  __cs_tmp_t0_r1=5 (0101)
+
+State 437 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function main line 1065 thread 0
+----------------------------------------------------
+  __cs_pc_cs[0l]=11 (001011)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c line 1066 function main
+  (signed int)__cs_pc_cs[(signed long int)0] >= (signed int)__cs_pc[(signed long int)0]
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c line 1067 function main
+  (signed int)__cs_pc_cs[(signed long int)0] <= 13
+
+State 443 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function main line 1070 thread 0
+----------------------------------------------------
+  __cs_param_qrcu_reader1_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 453 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function qrcu_reader1_0 line 471 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 454 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function qrcu_reader1_0 line 472 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=TRUE (00000001)
+
+State 459 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function qrcu_reader1_0 line 473 thread 0
+----------------------------------------------------
+  __cs_nondet_qrcu_reader1_myidx=0 (00000000 00000000 00000000 00000000)
+
+State 465 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function qrcu_reader1_0 line 477 thread 0
+----------------------------------------------------
+  __cs_nondet_qrcu_reader1___cs_tmp_if_cond_5=TRUE (00000001)
+
+State 469 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function qrcu_reader1_0 line 482 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 473 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function qrcu_reader1_0 line 483 thread 0
+----------------------------------------------------
+  __cs_param___CSEQ_atomic_use1_myidx=0 (00000000 00000000 00000000 00000000)
+
+State 484 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function __CSEQ_atomic_use1 line 300 thread 0
+----------------------------------------------------
+  ctr1=2 (00000000 00000000 00000000 00000010)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c line 518 function qrcu_reader1_0
+  (signed int)__cs_pc_cs[(signed long int)0] >= 10
+
+State 489 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function qrcu_reader1_0 line 523 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=TRUE (00000001)
+
+State 490 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function qrcu_reader1_0 line 524 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 494 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function qrcu_reader1_0 line 525 thread 0
+----------------------------------------------------
+  readerprogress1=1 (00000000 00000000 00000000 00000001)
+
+State 499 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function qrcu_reader1_0 line 542 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 500 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function qrcu_reader1_0 line 542 thread 0
+----------------------------------------------------
+  __cs_thread_index=0u (00000000 00000000 00000000 00000000)
+
+State 501 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function __cs_exit line 101 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 508 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function main line 1075 thread 0
+----------------------------------------------------
+  __cs_pc[0l]=11 (01011)
+
+State 509 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function main line 1078 thread 0
+----------------------------------------------------
+  __cs_tmp_t1_r1=9 (1001)
+
+State 511 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function main line 1081 thread 0
+----------------------------------------------------
+  __cs_pc_cs[1l]=10 (001010)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c line 1082 function main
+  (signed int)__cs_pc_cs[(signed long int)1] >= (signed int)__cs_pc[(signed long int)1]
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c line 1083 function main
+  (signed int)__cs_pc_cs[(signed long int)1] <= 13
+
+State 515 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function main line 1085 thread 0
+----------------------------------------------------
+  __cs_dataraceDetectionStarted=TRUE (00000001)
+
+State 518 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function main line 1086 thread 0
+----------------------------------------------------
+  __cs_param_qrcu_reader2_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 521 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function qrcu_reader2_0 line 560 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=TRUE (00000001)
+
+State 525 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function qrcu_reader2_0 line 561 thread 0
+----------------------------------------------------
+  __cs_param___CSEQ_atomic_use1_myidx=0 (00000000 00000000 00000000 00000000)
+
+State 540 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function __CSEQ_atomic_use1 line 300 thread 0
+----------------------------------------------------
+  ctr1=3 (00000000 00000000 00000000 00000011)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c line 688 function qrcu_reader2_0
+  (signed int)__cs_pc_cs[(signed long int)1] >= 10
+
+State 549 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function qrcu_reader2_0 line 712 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 550 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function qrcu_reader2_0 line 712 thread 0
+----------------------------------------------------
+  __cs_thread_index=1u (00000000 00000000 00000000 00000001)
+
+State 551 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function __cs_exit line 101 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 558 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function main line 1090 thread 0
+----------------------------------------------------
+  __cs_dataraceSecondThread=TRUE (00000001)
+
+State 559 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function main line 1091 thread 0
+----------------------------------------------------
+  __cs_pc[1l]=10 (01010)
+
+State 560 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function main line 1094 thread 0
+----------------------------------------------------
+  __cs_tmp_t2_r1=12 (01100)
+
+State 562 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function main line 1097 thread 0
+----------------------------------------------------
+  __cs_pc_cs[2l]=14 (001110)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c line 1098 function main
+  (signed int)__cs_pc_cs[(signed long int)2] >= (signed int)__cs_pc[(signed long int)2]
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c line 1099 function main
+  (signed int)__cs_pc_cs[(signed long int)2] <= 24
+
+State 568 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function main line 1102 thread 0
+----------------------------------------------------
+  __cs_param_qrcu_updater_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 572 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function qrcu_updater_0 line 737 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 573 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function qrcu_updater_0 line 738 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=TRUE (00000001)
+
+State 585 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function qrcu_updater_0 line 739 thread 0
+----------------------------------------------------
+  __cs_dataraceNotDetected=TRUE (00000001)
+
+State 595 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function qrcu_updater_0 line 739 thread 0
+----------------------------------------------------
+  __cs_dataraceNotDetected=FALSE (00000000)
+
+State 596 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function qrcu_updater_0 line 739 thread 0
+----------------------------------------------------
+  __cs_nondet_qrcu_updater_sum=3 (00000000 00000000 00000000 00000011)
+
+State 603 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function qrcu_updater_0 line 743 thread 0
+----------------------------------------------------
+  __cs_dataraceNotDetected=FALSE (00000000)
+
+State 604 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function qrcu_updater_0 line 743 thread 0
+----------------------------------------------------
+  __cs_local_qrcu_updater___cs_temporary_0=0 (00000000 00000000 00000000 00000000)
+
+State 611 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function qrcu_updater_0 line 744 thread 0
+----------------------------------------------------
+  __cs_dataraceNotDetected=FALSE (00000000)
+
+State 616 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function qrcu_updater_0 line 744 thread 0
+----------------------------------------------------
+  __cs_dataraceNotDetected=FALSE (00000000)
+
+State 617 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function qrcu_updater_0 line 744 thread 0
+----------------------------------------------------
+  __cs_local_qrcu_updater___cs_temporary_0=3 (00000000 00000000 00000000 00000011)
+
+State 619 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function qrcu_updater_0 line 747 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 620 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function qrcu_updater_0 line 748 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 626 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function qrcu_updater_0 line 749 thread 0
+----------------------------------------------------
+  __cs_nondet_qrcu_updater_sum=3 (00000000 00000000 00000000 00000011)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c line 770 function qrcu_updater_0
+  (signed int)__cs_pc_cs[(signed long int)2] >= 6
+
+State 633 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function qrcu_updater_0 line 777 thread 0
+----------------------------------------------------
+  __cs_nondet_qrcu_updater___cs_tmp_if_cond_10=FALSE (00000000)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c line 828 function qrcu_updater_0
+  (signed int)__cs_pc_cs[(signed long int)2] >= 10
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c line 830 function qrcu_updater_0
+  (signed int)__cs_pc_cs[(signed long int)2] >= 10
+
+State 642 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function qrcu_updater_0 line 835 thread 0
+----------------------------------------------------
+  __cs_nondet_qrcu_updater___cs_tmp_if_cond_12=TRUE (00000001)
+
+State 648 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function qrcu_updater_0 line 840 thread 0
+----------------------------------------------------
+  __cs_mutex_to_lock=&mutex (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 649 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function qrcu_updater_0 line 840 thread 0
+----------------------------------------------------
+  __cs_thread_index=2 (10)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c line 127 function __cs_mutex_lock
+  *__cs_mutex_to_lock == -1
+
+State 653 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function __cs_mutex_lock line 128 thread 0
+----------------------------------------------------
+  mutex=3 (00000000 00000000 00000000 00000011)
+
+State 657 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function qrcu_updater_0 line 846 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 658 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function qrcu_updater_0 line 847 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 663 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function qrcu_updater_0 line 848 thread 0
+----------------------------------------------------
+  __cs_nondet_qrcu_updater___cs_tmp_if_cond_13=TRUE (00000001)
+
+State 667 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function qrcu_updater_0 line 853 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 668 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function qrcu_updater_0 line 854 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 672 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function qrcu_updater_0 line 855 thread 0
+----------------------------------------------------
+  ctr2=1 (00000000 00000000 00000000 00000001)
+
+State 674 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function qrcu_updater_0 line 858 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=TRUE (00000001)
+
+State 675 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function qrcu_updater_0 line 859 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 679 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function qrcu_updater_0 line 860 thread 0
+----------------------------------------------------
+  idx=1 (00000000 00000000 00000000 00000001)
+
+State 693 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function qrcu_updater_0 line 938 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 694 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function qrcu_updater_0 line 938 thread 0
+----------------------------------------------------
+  __cs_thread_index=2u (00000000 00000000 00000000 00000010)
+
+State 695 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function __cs_exit line 101 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[2l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 701 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function main line 1104 thread 0
+----------------------------------------------------
+  __cs_dataraceContinue=FALSE (00000000)
+
+State 703 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function main line 1106 thread 0
+----------------------------------------------------
+  __cs_dataraceSecondThread=TRUE (00000001)
+
+State 704 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function main line 1107 thread 0
+----------------------------------------------------
+  __cs_pc[2l]=14 (01110)
+
+State 705 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function main line 1111 thread 0
+----------------------------------------------------
+  __cs_tmp_t3_r2=4 (100)
+
+State 707 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function main line 1127 thread 0
+----------------------------------------------------
+  __cs_tmp_t0_r2=0 (0000)
+
+State 709 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function main line 1143 thread 0
+----------------------------------------------------
+  __cs_tmp_t1_r2=0 (0000)
+
+State 711 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function main line 1159 thread 0
+----------------------------------------------------
+  __cs_tmp_t2_r2=0 (00000)
+
+Violated property:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_qrcu-2.c function main line 1170 thread 0
+  Data race failure
+  __cs_dataraceNotDetected != FALSE
+
+
+VERIFICATION FAILED
+
+real	0m0,815s
+user	0m0,776s
+sys	0m0,043s

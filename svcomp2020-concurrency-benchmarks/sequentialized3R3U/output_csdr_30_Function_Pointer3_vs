@@ -1,0 +1,1153 @@
+CBMC version 5.32.1 (cbmc-5.32.1-140-g7c8c411038-dirty) 64-bit x86_64 linux
+Parsing /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c
+Converting
+Type-checking _csdr_30_Function_Pointer3_vs
+file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c line 295 function __CSEQ_atomic_acquire: function '__CPROVER_get_field' is not declared
+file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c line 295 function __CSEQ_atomic_acquire: function 'assume_abort_if_not' is not declared
+file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c line 296 function __CSEQ_atomic_acquire: function '__CPROVER_set_field' is not declared
+file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c line 568 function main: function '__CPROVER_field_decl_global' is not declared
+Generating GOTO Program
+Adding CPROVER library (x86_64)
+Removal of function pointers and virtual functions
+file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c line 340 function thr2_0: replacing function pointer by 2 possible targets
+file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c line 379 function thr2_1: replacing function pointer by 2 possible targets
+file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c line 418 function thr2_2: replacing function pointer by 2 possible targets
+Generic Property Instrumentation
+Running with 8 object bits, 56 offset bits (default)
+Starting Bounded Model Checking
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c line 554 function main_thread thread 0
+Shadow memory: cannot set_field for &__cs_nondet_thr2___cs_tmp_if_cond_0
+Shadow memory: cannot set_field for &__cs_nondet_thr2___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_thr2___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_thr2___cs_tmp_if_cond_0
+Shadow memory: cannot set_field for &__cs_nondet_thr2_pf
+Shadow memory: cannot set_field for &__cs_nondet_thr2_pf
+Shadow memory: cannot get_field for &__cs_nondet_thr2_pf
+Shadow memory: cannot get_field for f1
+Shadow memory: cannot set_field for &__cs_nondet_thr2_pf
+Shadow memory: cannot set_field for &__cs_nondet_thr2_pf
+Shadow memory: cannot get_field for &__cs_nondet_thr2_pf
+Shadow memory: cannot get_field for f2
+**** WARNING: no body for function assume_abort_if_not
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c line 340 function thr2_0 thread 0
+Shadow memory: cannot set_field for &__cs_nondet_thr2___cs_tmp_if_cond_0
+Shadow memory: cannot set_field for &__cs_nondet_thr2___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_thr2___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_thr2___cs_tmp_if_cond_0
+Shadow memory: cannot set_field for &__cs_nondet_thr2_pf
+Shadow memory: cannot set_field for &__cs_nondet_thr2_pf
+Shadow memory: cannot get_field for &__cs_nondet_thr2_pf
+Shadow memory: cannot get_field for f1
+Shadow memory: cannot set_field for &__cs_nondet_thr2_pf
+Shadow memory: cannot set_field for &__cs_nondet_thr2_pf
+Shadow memory: cannot get_field for &__cs_nondet_thr2_pf
+Shadow memory: cannot get_field for f2
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c line 379 function thr2_1 thread 0
+Shadow memory: cannot set_field for &__cs_nondet_thr2___cs_tmp_if_cond_0
+Shadow memory: cannot set_field for &__cs_nondet_thr2___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_thr2___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_thr2___cs_tmp_if_cond_0
+Shadow memory: cannot set_field for &__cs_nondet_thr2_pf
+Shadow memory: cannot set_field for &__cs_nondet_thr2_pf
+Shadow memory: cannot get_field for &__cs_nondet_thr2_pf
+Shadow memory: cannot get_field for f1
+Shadow memory: cannot set_field for &__cs_nondet_thr2_pf
+Shadow memory: cannot set_field for &__cs_nondet_thr2_pf
+Shadow memory: cannot get_field for &__cs_nondet_thr2_pf
+Shadow memory: cannot get_field for f2
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c line 418 function thr2_2 thread 0
+Shadow memory: cannot set_field for &__cs_nondet_thr1___cs_tmp_if_cond_1
+Shadow memory: cannot set_field for &__cs_nondet_thr1___cs_tmp_if_cond_1
+Shadow memory: cannot set_field for &__cs_nondet_thr1___cs_tmp_if_cond_1
+Shadow memory: cannot set_field for &__cs_nondet_thr1___cs_tmp_if_cond_1
+Shadow memory: cannot set_field for &__cs_nondet_thr1___cs_tmp_if_cond_1
+Shadow memory: cannot set_field for &__cs_nondet_thr1___cs_tmp_if_cond_1
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c line 513 function thr1_0 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c line 554 function main_thread thread 0
+Shadow memory: cannot set_field for &__cs_nondet_thr2___cs_tmp_if_cond_0
+Shadow memory: cannot set_field for &__cs_nondet_thr2___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_thr2___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_thr2___cs_tmp_if_cond_0
+Shadow memory: cannot set_field for &__cs_nondet_thr2_pf
+Shadow memory: cannot set_field for &__cs_nondet_thr2_pf
+Shadow memory: cannot get_field for &__cs_nondet_thr2_pf
+Shadow memory: cannot get_field for f1
+Shadow memory: cannot set_field for &__cs_nondet_thr2_pf
+Shadow memory: cannot set_field for &__cs_nondet_thr2_pf
+Shadow memory: cannot get_field for &__cs_nondet_thr2_pf
+Shadow memory: cannot get_field for f2
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c line 340 function thr2_0 thread 0
+Shadow memory: cannot get_field for &__cs_param_f2_x!0@4
+Shadow memory: cannot get_field for &__cs_param_f2_y!0@4
+Shadow memory: cannot get_field for &__cs_param_f1_a!0@4
+Shadow memory: cannot get_field for &__cs_param_f1_b!0@4
+Shadow memory: cannot set_field for &__cs_nondet_thr2___cs_tmp_if_cond_0
+Shadow memory: cannot set_field for &__cs_nondet_thr2___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_thr2___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_thr2___cs_tmp_if_cond_0
+Shadow memory: cannot set_field for &__cs_nondet_thr2_pf
+Shadow memory: cannot set_field for &__cs_nondet_thr2_pf
+Shadow memory: cannot get_field for &__cs_nondet_thr2_pf
+Shadow memory: cannot get_field for f1
+Shadow memory: cannot set_field for &__cs_nondet_thr2_pf
+Shadow memory: cannot set_field for &__cs_nondet_thr2_pf
+Shadow memory: cannot get_field for &__cs_nondet_thr2_pf
+Shadow memory: cannot get_field for f2
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c line 379 function thr2_1 thread 0
+Shadow memory: cannot get_field for &__cs_param_f2_x!0@5
+Shadow memory: cannot get_field for &__cs_param_f2_y!0@5
+Shadow memory: cannot get_field for &__cs_param_f1_a!0@5
+Shadow memory: cannot get_field for &__cs_param_f1_b!0@5
+Shadow memory: cannot set_field for &__cs_nondet_thr2___cs_tmp_if_cond_0
+Shadow memory: cannot set_field for &__cs_nondet_thr2___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_thr2___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_thr2___cs_tmp_if_cond_0
+Shadow memory: cannot set_field for &__cs_nondet_thr2_pf
+Shadow memory: cannot set_field for &__cs_nondet_thr2_pf
+Shadow memory: cannot get_field for &__cs_nondet_thr2_pf
+Shadow memory: cannot get_field for f1
+Shadow memory: cannot set_field for &__cs_nondet_thr2_pf
+Shadow memory: cannot set_field for &__cs_nondet_thr2_pf
+Shadow memory: cannot get_field for &__cs_nondet_thr2_pf
+Shadow memory: cannot get_field for f2
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c line 418 function thr2_2 thread 0
+Shadow memory: cannot get_field for &__cs_param_f2_x!0@6
+Shadow memory: cannot get_field for &__cs_param_f2_y!0@6
+Shadow memory: cannot get_field for &__cs_param_f1_a!0@6
+Shadow memory: cannot get_field for &__cs_param_f1_b!0@6
+Shadow memory: cannot set_field for &__cs_nondet_thr1___cs_tmp_if_cond_1
+Shadow memory: cannot set_field for &__cs_nondet_thr1___cs_tmp_if_cond_1
+Shadow memory: cannot get_field for &__cs_nondet_thr1___cs_tmp_if_cond_1
+Shadow memory: cannot get_field for &__cs_nondet_thr1___cs_tmp_if_cond_1
+Shadow memory: cannot set_field for &__cs_nondet_thr1___cs_tmp_if_cond_1
+Shadow memory: cannot set_field for &__cs_nondet_thr1___cs_tmp_if_cond_1
+Shadow memory: cannot get_field for &__cs_nondet_thr1___cs_tmp_if_cond_1
+Shadow memory: cannot get_field for &__cs_nondet_thr1___cs_tmp_if_cond_1
+Shadow memory: cannot set_field for &__cs_nondet_thr1___cs_tmp_if_cond_1
+Shadow memory: cannot set_field for &__cs_nondet_thr1___cs_tmp_if_cond_1
+Shadow memory: cannot get_field for &__cs_nondet_thr1___cs_tmp_if_cond_1
+Shadow memory: cannot get_field for &__cs_nondet_thr1___cs_tmp_if_cond_1
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c line 513 function thr1_0 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c line 554 function main_thread thread 0
+Shadow memory: cannot set_field for &__cs_nondet_thr2___cs_tmp_if_cond_0
+Shadow memory: cannot set_field for &__cs_nondet_thr2___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_thr2___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_thr2___cs_tmp_if_cond_0
+Shadow memory: cannot set_field for &__cs_nondet_thr2_pf
+Shadow memory: cannot set_field for &__cs_nondet_thr2_pf
+Shadow memory: cannot get_field for &__cs_nondet_thr2_pf
+Shadow memory: cannot get_field for f1
+Shadow memory: cannot set_field for &__cs_nondet_thr2_pf
+Shadow memory: cannot set_field for &__cs_nondet_thr2_pf
+Shadow memory: cannot get_field for &__cs_nondet_thr2_pf
+Shadow memory: cannot get_field for f2
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c line 340 function thr2_0 thread 0
+Shadow memory: cannot get_field for &__cs_param_f2_x!0@7
+Shadow memory: cannot get_field for &__cs_param_f2_y!0@7
+Shadow memory: cannot get_field for &__cs_param_f1_a!0@7
+Shadow memory: cannot get_field for &__cs_param_f1_b!0@7
+Shadow memory: cannot set_field for &__cs_nondet_thr2___cs_tmp_if_cond_0
+Shadow memory: cannot set_field for &__cs_nondet_thr2___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_thr2___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_thr2___cs_tmp_if_cond_0
+Shadow memory: cannot set_field for &__cs_nondet_thr2_pf
+Shadow memory: cannot set_field for &__cs_nondet_thr2_pf
+Shadow memory: cannot get_field for &__cs_nondet_thr2_pf
+Shadow memory: cannot get_field for f1
+Shadow memory: cannot set_field for &__cs_nondet_thr2_pf
+Shadow memory: cannot set_field for &__cs_nondet_thr2_pf
+Shadow memory: cannot get_field for &__cs_nondet_thr2_pf
+Shadow memory: cannot get_field for f2
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c line 379 function thr2_1 thread 0
+Shadow memory: cannot get_field for &__cs_param_f2_x!0@8
+Shadow memory: cannot get_field for &__cs_param_f2_y!0@8
+Shadow memory: cannot get_field for &__cs_param_f1_a!0@8
+Shadow memory: cannot get_field for &__cs_param_f1_b!0@8
+Shadow memory: cannot set_field for &__cs_nondet_thr2___cs_tmp_if_cond_0
+Shadow memory: cannot set_field for &__cs_nondet_thr2___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_thr2___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_thr2___cs_tmp_if_cond_0
+Shadow memory: cannot set_field for &__cs_nondet_thr2_pf
+Shadow memory: cannot set_field for &__cs_nondet_thr2_pf
+Shadow memory: cannot get_field for &__cs_nondet_thr2_pf
+Shadow memory: cannot get_field for f1
+Shadow memory: cannot set_field for &__cs_nondet_thr2_pf
+Shadow memory: cannot set_field for &__cs_nondet_thr2_pf
+Shadow memory: cannot get_field for &__cs_nondet_thr2_pf
+Shadow memory: cannot get_field for f2
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c line 418 function thr2_2 thread 0
+Shadow memory: cannot get_field for &__cs_param_f2_x!0@9
+Shadow memory: cannot get_field for &__cs_param_f2_y!0@9
+Shadow memory: cannot get_field for &__cs_param_f1_a!0@9
+Shadow memory: cannot get_field for &__cs_param_f1_b!0@9
+Shadow memory: cannot set_field for &__cs_nondet_thr1___cs_tmp_if_cond_1
+Shadow memory: cannot set_field for &__cs_nondet_thr1___cs_tmp_if_cond_1
+Shadow memory: cannot get_field for &__cs_nondet_thr1___cs_tmp_if_cond_1
+Shadow memory: cannot get_field for &__cs_nondet_thr1___cs_tmp_if_cond_1
+Shadow memory: cannot set_field for &__cs_nondet_thr1___cs_tmp_if_cond_1
+Shadow memory: cannot set_field for &__cs_nondet_thr1___cs_tmp_if_cond_1
+Shadow memory: cannot get_field for &__cs_nondet_thr1___cs_tmp_if_cond_1
+Shadow memory: cannot get_field for &__cs_nondet_thr1___cs_tmp_if_cond_1
+Shadow memory: cannot set_field for &__cs_nondet_thr1___cs_tmp_if_cond_1
+Shadow memory: cannot set_field for &__cs_nondet_thr1___cs_tmp_if_cond_1
+Shadow memory: cannot get_field for &__cs_nondet_thr1___cs_tmp_if_cond_1
+Shadow memory: cannot get_field for &__cs_nondet_thr1___cs_tmp_if_cond_1
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c line 513 function thr1_0 thread 0
+Runtime Symex: 0.10564s
+size of program expression: 5817 steps
+simple slicing removed 5 assignments
+Generated 1 VCC(s), 1 remaining after simplification
+Runtime Postprocess Equation: 0.000268865s
+Passing problem to propositional reduction
+converting SSA
+Runtime Convert SSA: 0.0189461s
+Running propositional reduction
+Post-processing
+Runtime Post-process: 2.1711e-05s
+Solving with Glucose Syrup with simplifier
+16382 variables, 19693 clauses
+SAT checker: instance is SATISFIABLE
+Runtime Solver: 0.0126816s
+Runtime decision procedure: 0.0317135s
+Building error trace
+Counterexample:
+
+State 22 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function __CPROVER_initialize line 57 thread 0
+----------------------------------------------------
+  __cs_active_thread[0l]=0 (0)
+
+State 23 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function __CPROVER_initialize line 57 thread 0
+----------------------------------------------------
+  __cs_active_thread[1l]=0 (0)
+
+State 24 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function __CPROVER_initialize line 57 thread 0
+----------------------------------------------------
+  __cs_active_thread[2l]=0 (0)
+
+State 25 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function __CPROVER_initialize line 57 thread 0
+----------------------------------------------------
+  __cs_active_thread[3l]=0 (0)
+
+State 26 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function __CPROVER_initialize line 57 thread 0
+----------------------------------------------------
+  __cs_active_thread[4l]=0 (0)
+
+State 35 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function __CPROVER_initialize line 58 thread 0
+----------------------------------------------------
+  __cs_pc[0l]=0 (0000)
+
+State 36 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function __CPROVER_initialize line 58 thread 0
+----------------------------------------------------
+  __cs_pc[1l]=0 (0000)
+
+State 37 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function __CPROVER_initialize line 58 thread 0
+----------------------------------------------------
+  __cs_pc[2l]=0 (0000)
+
+State 38 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function __CPROVER_initialize line 58 thread 0
+----------------------------------------------------
+  __cs_pc[3l]=0 (0000)
+
+State 39 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function __CPROVER_initialize line 58 thread 0
+----------------------------------------------------
+  __cs_pc[4l]=0 (0000)
+
+State 41 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function __CPROVER_initialize line 59 thread 0
+----------------------------------------------------
+  __cs_pc_cs[0l]=0 (00000)
+
+State 42 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function __CPROVER_initialize line 59 thread 0
+----------------------------------------------------
+  __cs_pc_cs[1l]=0 (00000)
+
+State 43 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function __CPROVER_initialize line 59 thread 0
+----------------------------------------------------
+  __cs_pc_cs[2l]=0 (00000)
+
+State 44 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function __CPROVER_initialize line 59 thread 0
+----------------------------------------------------
+  __cs_pc_cs[3l]=0 (00000)
+
+State 45 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function __CPROVER_initialize line 59 thread 0
+----------------------------------------------------
+  __cs_pc_cs[4l]=0 (00000)
+
+State 47 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function __CPROVER_initialize line 82 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 48 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function __CPROVER_initialize line 82 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 49 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function __CPROVER_initialize line 82 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[2l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 50 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function __CPROVER_initialize line 82 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[3l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 51 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function __CPROVER_initialize line 82 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[4l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 53 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function __CPROVER_initialize line 61 thread 0
+----------------------------------------------------
+  __cs_thread_lines[0l]=4 (0100)
+
+State 54 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function __CPROVER_initialize line 61 thread 0
+----------------------------------------------------
+  __cs_thread_lines[1l]=4 (0100)
+
+State 55 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function __CPROVER_initialize line 61 thread 0
+----------------------------------------------------
+  __cs_thread_lines[2l]=4 (0100)
+
+State 56 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function __CPROVER_initialize line 61 thread 0
+----------------------------------------------------
+  __cs_thread_lines[3l]=8 (1000)
+
+State 57 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function __CPROVER_initialize line 61 thread 0
+----------------------------------------------------
+  __cs_thread_lines[4l]=5 (0101)
+
+State 59 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function __CPROVER_initialize line 81 thread 0
+----------------------------------------------------
+  __cs_threadargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 60 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function __CPROVER_initialize line 81 thread 0
+----------------------------------------------------
+  __cs_threadargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 61 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function __CPROVER_initialize line 81 thread 0
+----------------------------------------------------
+  __cs_threadargs[2l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 62 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function __CPROVER_initialize line 81 thread 0
+----------------------------------------------------
+  __cs_threadargs[3l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 63 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function __CPROVER_initialize line 81 thread 0
+----------------------------------------------------
+  __cs_threadargs[4l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 85 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function main line 570 thread 0
+----------------------------------------------------
+  __cs_dr_ts=12 (1100)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c line 571 function main
+  (signed int)__cs_dr_ts <= 13
+
+State 87 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function main line 574 thread 0
+----------------------------------------------------
+  __cs_active_thread[4l]=1 (1)
+
+State 88 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function main line 575 thread 0
+----------------------------------------------------
+  __cs_tmp_t4_r0=4 (100)
+
+State 89 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function main line 576 thread 0
+----------------------------------------------------
+  __cs_pc_cs[4l]=4 (00100)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c line 577 function main
+  (signed int)__cs_pc_cs[(signed long int)4] > 0
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c line 578 function main
+  (signed int)__cs_pc_cs[(signed long int)4] <= 5
+
+State 96 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function main_thread line 530 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 97 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function main_thread line 531 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=TRUE (00000001)
+
+State 100 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function main_thread line 533 thread 0
+----------------------------------------------------
+  __cs_new_thread_id=&__cs_nondet_main_t (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 101 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function main_thread line 533 thread 0
+----------------------------------------------------
+  __cs_attr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 102 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function main_thread line 533 thread 0
+----------------------------------------------------
+  __cs_thread_function=thr1_0 (00000011 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 103 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function main_thread line 533 thread 0
+----------------------------------------------------
+  __cs_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 104 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function main_thread line 533 thread 0
+----------------------------------------------------
+  __cs_threadID=3 (00000000 00000000 00000000 00000011)
+
+State 106 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function __cs_create line 87 thread 0
+----------------------------------------------------
+  __cs_nondet_main_t=3 (00000000 00000000 00000000 00000011)
+
+State 107 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function __cs_create line 88 thread 0
+----------------------------------------------------
+  __cs_active_thread[3l]=1 (1)
+
+State 108 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function __cs_create line 89 thread 0
+----------------------------------------------------
+  __cs_threadargs[3l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 114 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function main_thread line 537 thread 0
+----------------------------------------------------
+  __cs_new_thread_id=&__cs_nondet_main_t (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 115 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function main_thread line 537 thread 0
+----------------------------------------------------
+  __cs_attr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 116 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function main_thread line 537 thread 0
+----------------------------------------------------
+  __cs_thread_function=thr2_0 (00000100 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 117 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function main_thread line 537 thread 0
+----------------------------------------------------
+  __cs_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 118 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function main_thread line 537 thread 0
+----------------------------------------------------
+  __cs_threadID=0 (00000000 00000000 00000000 00000000)
+
+State 120 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function __cs_create line 87 thread 0
+----------------------------------------------------
+  __cs_nondet_main_t=0 (00000000 00000000 00000000 00000000)
+
+State 121 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function __cs_create line 88 thread 0
+----------------------------------------------------
+  __cs_active_thread[0l]=1 (1)
+
+State 122 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function __cs_create line 89 thread 0
+----------------------------------------------------
+  __cs_threadargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 128 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function main_thread line 543 thread 0
+----------------------------------------------------
+  __cs_new_thread_id=&__cs_nondet_main_t (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 129 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function main_thread line 543 thread 0
+----------------------------------------------------
+  __cs_attr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 130 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function main_thread line 543 thread 0
+----------------------------------------------------
+  __cs_thread_function=thr2_1 (00000101 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 131 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function main_thread line 543 thread 0
+----------------------------------------------------
+  __cs_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 132 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function main_thread line 543 thread 0
+----------------------------------------------------
+  __cs_threadID=1 (00000000 00000000 00000000 00000001)
+
+State 134 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function __cs_create line 87 thread 0
+----------------------------------------------------
+  __cs_nondet_main_t=1 (00000000 00000000 00000000 00000001)
+
+State 135 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function __cs_create line 88 thread 0
+----------------------------------------------------
+  __cs_active_thread[1l]=1 (1)
+
+State 136 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function __cs_create line 89 thread 0
+----------------------------------------------------
+  __cs_threadargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 142 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function main_thread line 549 thread 0
+----------------------------------------------------
+  __cs_new_thread_id=&__cs_nondet_main_t (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 143 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function main_thread line 549 thread 0
+----------------------------------------------------
+  __cs_attr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 144 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function main_thread line 549 thread 0
+----------------------------------------------------
+  __cs_thread_function=thr2_2 (00000110 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 145 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function main_thread line 549 thread 0
+----------------------------------------------------
+  __cs_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 146 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function main_thread line 549 thread 0
+----------------------------------------------------
+  __cs_threadID=2 (00000000 00000000 00000000 00000010)
+
+State 148 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function __cs_create line 87 thread 0
+----------------------------------------------------
+  __cs_nondet_main_t=2 (00000000 00000000 00000000 00000010)
+
+State 149 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function __cs_create line 88 thread 0
+----------------------------------------------------
+  __cs_active_thread[2l]=1 (1)
+
+State 150 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function __cs_create line 89 thread 0
+----------------------------------------------------
+  __cs_threadargs[2l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 156 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function main_thread line 564 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 157 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function main_thread line 564 thread 0
+----------------------------------------------------
+  __cs_thread_index=4u (00000000 00000000 00000000 00000100)
+
+State 158 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function __cs_exit line 101 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[4l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 164 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function main line 584 thread 0
+----------------------------------------------------
+  __cs_pc[4l]=4 (0100)
+
+State 165 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function main line 586 thread 0
+----------------------------------------------------
+  __cs_tmp_t0_r0=1 (001)
+
+State 167 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function main line 589 thread 0
+----------------------------------------------------
+  __cs_pc_cs[0l]=1 (00001)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c line 590 function main
+  (signed int)__cs_pc_cs[(signed long int)0] <= 4
+
+State 172 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function main line 593 thread 0
+----------------------------------------------------
+  __cs_param_thr2_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 174 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function thr2_0 line 318 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=TRUE (00000001)
+
+State 175 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function thr2_0 line 319 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=TRUE (00000001)
+
+State 181 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function thr2_0 line 323 thread 0
+----------------------------------------------------
+  __cs_nondet_thr2___cs_tmp_if_cond_0=FALSE (00000000)
+
+State 188 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function thr2_0 line 330 thread 0
+----------------------------------------------------
+  __cs_nondet_thr2_pf=f2 (00001000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 194 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function thr2_0 line 351 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 195 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function thr2_0 line 351 thread 0
+----------------------------------------------------
+  __cs_thread_index=0u (00000000 00000000 00000000 00000000)
+
+State 196 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function __cs_exit line 101 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 203 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function main line 598 thread 0
+----------------------------------------------------
+  __cs_pc[0l]=1 (0001)
+
+State 204 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function main line 601 thread 0
+----------------------------------------------------
+  __cs_tmp_t1_r0=2 (010)
+
+State 206 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function main line 604 thread 0
+----------------------------------------------------
+  __cs_pc_cs[1l]=2 (00010)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c line 605 function main
+  (signed int)__cs_pc_cs[(signed long int)1] <= 4
+
+State 211 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function main line 608 thread 0
+----------------------------------------------------
+  __cs_param_thr2_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 213 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function thr2_1 line 357 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 214 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function thr2_1 line 358 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=TRUE (00000001)
+
+State 220 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function thr2_1 line 362 thread 0
+----------------------------------------------------
+  __cs_nondet_thr2___cs_tmp_if_cond_0=TRUE (00000001)
+
+State 227 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function thr2_1 line 365 thread 0
+----------------------------------------------------
+  __cs_nondet_thr2_pf=f1 (00000111 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 238 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function __CSEQ_atomic_acquire line 296 thread 0
+----------------------------------------------------
+  mutex=1 (00000000 00000000 00000000 00000001)
+
+State 244 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function thr2_1 line 390 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 245 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function thr2_1 line 390 thread 0
+----------------------------------------------------
+  __cs_thread_index=1u (00000000 00000000 00000000 00000001)
+
+State 246 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function __cs_exit line 101 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 253 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function main line 613 thread 0
+----------------------------------------------------
+  __cs_pc[1l]=2 (0010)
+
+State 254 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function main line 616 thread 0
+----------------------------------------------------
+  __cs_tmp_t2_r0=0 (000)
+
+State 256 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function main line 619 thread 0
+----------------------------------------------------
+  __cs_pc_cs[2l]=0 (00000)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c line 620 function main
+  (signed int)__cs_pc_cs[(signed long int)2] <= 4
+
+State 261 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function main line 623 thread 0
+----------------------------------------------------
+  __cs_param_thr2_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 268 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function thr2_2 line 429 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 269 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function thr2_2 line 429 thread 0
+----------------------------------------------------
+  __cs_thread_index=2u (00000000 00000000 00000000 00000010)
+
+State 270 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function __cs_exit line 101 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[2l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 277 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function main line 628 thread 0
+----------------------------------------------------
+  __cs_pc[2l]=0 (0000)
+
+State 278 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function main line 631 thread 0
+----------------------------------------------------
+  __cs_tmp_t3_r0=7 (0111)
+
+State 280 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function main line 634 thread 0
+----------------------------------------------------
+  __cs_pc_cs[3l]=7 (00111)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c line 635 function main
+  (signed int)__cs_pc_cs[(signed long int)3] <= 8
+
+State 285 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function main line 638 thread 0
+----------------------------------------------------
+  __cs_param_thr1_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 287 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function thr1_0 line 436 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 288 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function thr1_0 line 437 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=TRUE (00000001)
+
+State 290 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function thr1_0 line 443 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 291 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function thr1_0 line 444 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 296 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function thr1_0 line 445 thread 0
+----------------------------------------------------
+  __cs_nondet_thr1___cs_tmp_if_cond_1=FALSE (00000000)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c line 453 function thr1_0
+  (signed int)__cs_pc_cs[(signed long int)3] >= 3
+
+State 301 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function thr1_0 line 468 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 302 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function thr1_0 line 469 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 307 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function thr1_0 line 470 thread 0
+----------------------------------------------------
+  __cs_nondet_thr1___cs_tmp_if_cond_1=FALSE (00000000)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c line 478 function thr1_0
+  (signed int)__cs_pc_cs[(signed long int)3] >= 5
+
+State 312 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function thr1_0 line 493 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 313 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function thr1_0 line 494 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 318 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function thr1_0 line 495 thread 0
+----------------------------------------------------
+  __cs_nondet_thr1___cs_tmp_if_cond_1=FALSE (00000000)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c line 503 function thr1_0
+  (signed int)__cs_pc_cs[(signed long int)3] >= 7
+
+State 325 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function thr1_0 line 525 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 326 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function thr1_0 line 525 thread 0
+----------------------------------------------------
+  __cs_thread_index=3u (00000000 00000000 00000000 00000011)
+
+State 327 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function __cs_exit line 101 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[3l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 334 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function main line 643 thread 0
+----------------------------------------------------
+  __cs_pc[3l]=7 (0111)
+
+State 335 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function main line 647 thread 0
+----------------------------------------------------
+  __cs_tmp_t4_r1=0 (000)
+
+State 337 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function main line 650 thread 0
+----------------------------------------------------
+  __cs_pc_cs[4l]=4 (00100)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c line 651 function main
+  (signed int)__cs_pc_cs[(signed long int)4] >= (signed int)__cs_pc[(signed long int)4]
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c line 652 function main
+  (signed int)__cs_pc_cs[(signed long int)4] <= 5
+
+State 350 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function main_thread line 564 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 351 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function main_thread line 564 thread 0
+----------------------------------------------------
+  __cs_thread_index=4u (00000000 00000000 00000000 00000100)
+
+State 352 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function __cs_exit line 101 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[4l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 359 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function main line 660 thread 0
+----------------------------------------------------
+  __cs_pc[4l]=4 (0100)
+
+State 360 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function main line 663 thread 0
+----------------------------------------------------
+  __cs_tmp_t0_r1=0 (000)
+
+State 362 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function main line 666 thread 0
+----------------------------------------------------
+  __cs_pc_cs[0l]=1 (00001)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c line 667 function main
+  (signed int)__cs_pc_cs[(signed long int)0] >= (signed int)__cs_pc[(signed long int)0]
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c line 668 function main
+  (signed int)__cs_pc_cs[(signed long int)0] <= 4
+
+State 368 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function main line 671 thread 0
+----------------------------------------------------
+  __cs_param_thr2_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 375 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function thr2_0 line 351 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 376 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function thr2_0 line 351 thread 0
+----------------------------------------------------
+  __cs_thread_index=0u (00000000 00000000 00000000 00000000)
+
+State 377 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function __cs_exit line 101 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 384 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function main line 676 thread 0
+----------------------------------------------------
+  __cs_pc[0l]=1 (0001)
+
+State 385 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function main line 679 thread 0
+----------------------------------------------------
+  __cs_tmp_t1_r1=0 (000)
+
+State 387 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function main line 682 thread 0
+----------------------------------------------------
+  __cs_pc_cs[1l]=2 (00010)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c line 683 function main
+  (signed int)__cs_pc_cs[(signed long int)1] >= (signed int)__cs_pc[(signed long int)1]
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c line 684 function main
+  (signed int)__cs_pc_cs[(signed long int)1] <= 4
+
+State 393 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function main line 687 thread 0
+----------------------------------------------------
+  __cs_param_thr2_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 400 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function thr2_1 line 390 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 401 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function thr2_1 line 390 thread 0
+----------------------------------------------------
+  __cs_thread_index=1u (00000000 00000000 00000000 00000001)
+
+State 402 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function __cs_exit line 101 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 409 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function main line 692 thread 0
+----------------------------------------------------
+  __cs_pc[1l]=2 (0010)
+
+State 410 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function main line 695 thread 0
+----------------------------------------------------
+  __cs_tmp_t2_r1=2 (010)
+
+State 412 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function main line 698 thread 0
+----------------------------------------------------
+  __cs_pc_cs[2l]=2 (00010)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c line 699 function main
+  (signed int)__cs_pc_cs[(signed long int)2] >= (signed int)__cs_pc[(signed long int)2]
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c line 700 function main
+  (signed int)__cs_pc_cs[(signed long int)2] <= 4
+
+State 418 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function main line 703 thread 0
+----------------------------------------------------
+  __cs_param_thr2_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 420 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function thr2_2 line 396 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 421 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function thr2_2 line 397 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=TRUE (00000001)
+
+State 427 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function thr2_2 line 401 thread 0
+----------------------------------------------------
+  __cs_nondet_thr2___cs_tmp_if_cond_0=TRUE (00000001)
+
+State 434 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function thr2_2 line 404 thread 0
+----------------------------------------------------
+  __cs_nondet_thr2_pf=f1 (00000111 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 445 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function __CSEQ_atomic_acquire line 296 thread 0
+----------------------------------------------------
+  mutex=1 (00000000 00000000 00000000 00000001)
+
+State 451 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function thr2_2 line 429 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 452 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function thr2_2 line 429 thread 0
+----------------------------------------------------
+  __cs_thread_index=2u (00000000 00000000 00000000 00000010)
+
+State 453 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function __cs_exit line 101 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[2l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 460 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function main line 708 thread 0
+----------------------------------------------------
+  __cs_pc[2l]=2 (0010)
+
+State 461 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function main line 711 thread 0
+----------------------------------------------------
+  __cs_tmp_t3_r1=0 (0000)
+
+State 463 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function main line 714 thread 0
+----------------------------------------------------
+  __cs_pc_cs[3l]=7 (00111)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c line 715 function main
+  (signed int)__cs_pc_cs[(signed long int)3] >= (signed int)__cs_pc[(signed long int)3]
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c line 716 function main
+  (signed int)__cs_pc_cs[(signed long int)3] <= 8
+
+State 469 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function main line 719 thread 0
+----------------------------------------------------
+  __cs_param_thr1_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 483 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function thr1_0 line 525 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 484 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function thr1_0 line 525 thread 0
+----------------------------------------------------
+  __cs_thread_index=3u (00000000 00000000 00000000 00000011)
+
+State 485 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function __cs_exit line 101 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[3l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 492 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function main line 724 thread 0
+----------------------------------------------------
+  __cs_pc[3l]=7 (0111)
+
+State 493 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function main line 728 thread 0
+----------------------------------------------------
+  __cs_tmp_t4_r2=0 (000)
+
+State 495 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function main line 731 thread 0
+----------------------------------------------------
+  __cs_pc_cs[4l]=4 (00100)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c line 732 function main
+  (signed int)__cs_pc_cs[(signed long int)4] >= (signed int)__cs_pc[(signed long int)4]
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c line 733 function main
+  (signed int)__cs_pc_cs[(signed long int)4] <= 5
+
+State 508 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function main_thread line 564 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 509 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function main_thread line 564 thread 0
+----------------------------------------------------
+  __cs_thread_index=4u (00000000 00000000 00000000 00000100)
+
+State 510 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function __cs_exit line 101 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[4l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 517 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function main line 741 thread 0
+----------------------------------------------------
+  __cs_pc[4l]=4 (0100)
+
+State 518 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function main line 744 thread 0
+----------------------------------------------------
+  __cs_tmp_t0_r2=0 (000)
+
+State 520 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function main line 747 thread 0
+----------------------------------------------------
+  __cs_pc_cs[0l]=1 (00001)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c line 748 function main
+  (signed int)__cs_pc_cs[(signed long int)0] >= (signed int)__cs_pc[(signed long int)0]
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c line 749 function main
+  (signed int)__cs_pc_cs[(signed long int)0] <= 4
+
+State 526 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function main line 752 thread 0
+----------------------------------------------------
+  __cs_param_thr2_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 533 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function thr2_0 line 351 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 534 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function thr2_0 line 351 thread 0
+----------------------------------------------------
+  __cs_thread_index=0u (00000000 00000000 00000000 00000000)
+
+State 535 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function __cs_exit line 101 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 542 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function main line 757 thread 0
+----------------------------------------------------
+  __cs_pc[0l]=1 (0001)
+
+State 543 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function main line 760 thread 0
+----------------------------------------------------
+  __cs_tmp_t1_r2=1 (001)
+
+State 545 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function main line 763 thread 0
+----------------------------------------------------
+  __cs_pc_cs[1l]=3 (00011)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c line 764 function main
+  (signed int)__cs_pc_cs[(signed long int)1] >= (signed int)__cs_pc[(signed long int)1]
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c line 765 function main
+  (signed int)__cs_pc_cs[(signed long int)1] <= 4
+
+State 549 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function main line 767 thread 0
+----------------------------------------------------
+  __cs_dataraceDetectionStarted=TRUE (00000001)
+
+State 552 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function main line 768 thread 0
+----------------------------------------------------
+  __cs_param_thr2_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 556 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function thr2_1 line 377 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=TRUE (00000001)
+
+State 557 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function thr2_1 line 378 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=TRUE (00000001)
+
+State 573 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function thr2_1 line 379 thread 0
+----------------------------------------------------
+  __cs_param_f1_a=4 (00000000 00000000 00000000 00000100)
+
+State 574 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function thr2_1 line 379 thread 0
+----------------------------------------------------
+  __cs_param_f1_b=3 (00000000 00000000 00000000 00000011)
+
+State 580 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function thr2_1 line 379 thread 0
+----------------------------------------------------
+  res=8 (00000000 00000000 00000000 00001000)
+
+State 584 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function thr2_1 line 390 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 585 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function thr2_1 line 390 thread 0
+----------------------------------------------------
+  __cs_thread_index=1u (00000000 00000000 00000000 00000001)
+
+State 586 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function __cs_exit line 101 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 593 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function main line 772 thread 0
+----------------------------------------------------
+  __cs_dataraceSecondThread=TRUE (00000001)
+
+State 594 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function main line 773 thread 0
+----------------------------------------------------
+  __cs_pc[1l]=3 (0011)
+
+State 595 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function main line 776 thread 0
+----------------------------------------------------
+  __cs_tmp_t2_r2=1 (001)
+
+State 597 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function main line 779 thread 0
+----------------------------------------------------
+  __cs_pc_cs[2l]=3 (00011)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c line 780 function main
+  (signed int)__cs_pc_cs[(signed long int)2] >= (signed int)__cs_pc[(signed long int)2]
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c line 781 function main
+  (signed int)__cs_pc_cs[(signed long int)2] <= 4
+
+State 603 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function main line 784 thread 0
+----------------------------------------------------
+  __cs_param_thr2_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 607 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function thr2_2 line 416 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=TRUE (00000001)
+
+State 608 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function thr2_2 line 417 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=TRUE (00000001)
+
+State 620 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function thr2_2 line 418 thread 0
+----------------------------------------------------
+  __cs_dataraceNotDetected=FALSE (00000000)
+
+State 625 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function thr2_2 line 418 thread 0
+----------------------------------------------------
+  __cs_param_f1_a=4 (00000000 00000000 00000000 00000100)
+
+State 626 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function thr2_2 line 418 thread 0
+----------------------------------------------------
+  __cs_param_f1_b=3 (00000000 00000000 00000000 00000011)
+
+State 631 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function f1 line 306 thread 0
+----------------------------------------------------
+  __cs_dataraceNotDetected=FALSE (00000000)
+
+State 636 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function f1 line 306 thread 0
+----------------------------------------------------
+  __cs_dataraceNotDetected=FALSE (00000000)
+
+State 640 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function thr2_2 line 418 thread 0
+----------------------------------------------------
+  res=8 (00000000 00000000 00000000 00001000)
+
+State 644 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function thr2_2 line 429 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 645 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function thr2_2 line 429 thread 0
+----------------------------------------------------
+  __cs_thread_index=2u (00000000 00000000 00000000 00000010)
+
+State 646 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function __cs_exit line 101 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[2l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 652 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function main line 786 thread 0
+----------------------------------------------------
+  __cs_dataraceContinue=FALSE (00000000)
+
+State 654 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function main line 788 thread 0
+----------------------------------------------------
+  __cs_dataraceSecondThread=TRUE (00000001)
+
+State 655 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function main line 789 thread 0
+----------------------------------------------------
+  __cs_pc[2l]=3 (0011)
+
+State 656 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function main line 792 thread 0
+----------------------------------------------------
+  __cs_tmp_t3_r2=0 (0000)
+
+Violated property:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R3U/_csdr_30_Function_Pointer3_vs.c function main line 803 thread 0
+  Data race failure
+  __cs_dataraceNotDetected != FALSE
+
+
+VERIFICATION FAILED
+
+real	0m0,229s
+user	0m0,194s
+sys	0m0,037s

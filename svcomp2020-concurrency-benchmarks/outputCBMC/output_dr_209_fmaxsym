@@ -1,0 +1,659 @@
+CBMC version 5.12 (cbmc-5.11-4673-gff3adfd29-dirty) 64-bit x86_64 linux
+Parsing /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c
+Converting
+Type-checking _dr_209_fmaxsym
+file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c line 367 function __CSEQ_atomic_acquire: function 'assume_abort_if_not' is not declared
+file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c line 397 function thr1_0: function '__CPROVER_get_field' is not declared
+file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c line 417 function thr1_0: function '__CPROVER_set_field' is not declared
+file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c line 1099 function main: function '__CPROVER_field_decl_global' is not declared
+Generating GOTO Program
+Adding CPROVER library (x86_64)
+Removal of function pointers and virtual functions
+Generic Property Instrumentation
+Running with 8 object bits, 56 offset bits (default)
+Starting Bounded Model Checking
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c line 1085 function __cs_main_thread thread 0
+**** WARNING: no body for function assume_abort_if_not
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c line 442 function thr1_0 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c line 507 function thr1_0 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c line 572 function thr1_0 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c line 671 function thr1_1 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c line 736 function thr1_1 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c line 801 function thr1_1 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c line 900 function thr1_2 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c line 965 function thr1_2 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c line 1030 function thr1_2 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c line 1085 function __cs_main_thread thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c line 442 function thr1_0 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c line 507 function thr1_0 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c line 572 function thr1_0 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c line 671 function thr1_1 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c line 736 function thr1_1 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c line 801 function thr1_1 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c line 900 function thr1_2 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c line 965 function thr1_2 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c line 1030 function thr1_2 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c line 1085 function __cs_main_thread thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c line 442 function thr1_0 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c line 507 function thr1_0 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c line 572 function thr1_0 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c line 671 function thr1_1 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c line 736 function thr1_1 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c line 801 function thr1_1 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c line 900 function thr1_2 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c line 965 function thr1_2 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c line 1030 function thr1_2 thread 0
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c line 1085 function __cs_main_thread thread 0
+size of program expression: 4795 steps
+simple slicing removed 5 assignments
+Generated 1 VCC(s), 1 remaining after simplification
+Passing problem to propositional reduction
+converting SSA
+Running propositional reduction
+Post-processing
+Solving with Glucose Syrup with simplifier
+42323 variables, 140715 clauses
+SAT checker: instance is SATISFIABLE
+Runtime decision procedure: 0.225743s
+Building error trace
+Counterexample:
+
+State 19 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c function __CPROVER_initialize line 57 thread 0
+----------------------------------------------------
+  __cs_active_thread[0l]=1 (1)
+
+State 20 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c function __CPROVER_initialize line 57 thread 0
+----------------------------------------------------
+  __cs_active_thread[1l]=0 (0)
+
+State 21 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c function __CPROVER_initialize line 57 thread 0
+----------------------------------------------------
+  __cs_active_thread[2l]=0 (0)
+
+State 22 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c function __CPROVER_initialize line 57 thread 0
+----------------------------------------------------
+  __cs_active_thread[3l]=0 (0)
+
+State 30 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c function __CPROVER_initialize line 58 thread 0
+----------------------------------------------------
+  __cs_pc[0l]=0 (00000)
+
+State 31 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c function __CPROVER_initialize line 58 thread 0
+----------------------------------------------------
+  __cs_pc[1l]=0 (00000)
+
+State 32 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c function __CPROVER_initialize line 58 thread 0
+----------------------------------------------------
+  __cs_pc[2l]=0 (00000)
+
+State 33 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c function __CPROVER_initialize line 58 thread 0
+----------------------------------------------------
+  __cs_pc[3l]=0 (00000)
+
+State 35 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c function __CPROVER_initialize line 59 thread 0
+----------------------------------------------------
+  __cs_pc_cs[0l]=0 (000000)
+
+State 36 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c function __CPROVER_initialize line 59 thread 0
+----------------------------------------------------
+  __cs_pc_cs[1l]=0 (000000)
+
+State 37 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c function __CPROVER_initialize line 59 thread 0
+----------------------------------------------------
+  __cs_pc_cs[2l]=0 (000000)
+
+State 38 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c function __CPROVER_initialize line 59 thread 0
+----------------------------------------------------
+  __cs_pc_cs[3l]=0 (000000)
+
+State 40 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c function __CPROVER_initialize line 74 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 41 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c function __CPROVER_initialize line 74 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 42 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c function __CPROVER_initialize line 74 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[2l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 43 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c function __CPROVER_initialize line 74 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[3l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 45 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c function __CPROVER_initialize line 61 thread 0
+----------------------------------------------------
+  __cs_thread_lines[0l]=4 (00100)
+
+State 46 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c function __CPROVER_initialize line 61 thread 0
+----------------------------------------------------
+  __cs_thread_lines[1l]=20 (10100)
+
+State 47 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c function __CPROVER_initialize line 61 thread 0
+----------------------------------------------------
+  __cs_thread_lines[2l]=20 (10100)
+
+State 48 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c function __CPROVER_initialize line 61 thread 0
+----------------------------------------------------
+  __cs_thread_lines[3l]=20 (10100)
+
+State 50 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c function __CPROVER_initialize line 73 thread 0
+----------------------------------------------------
+  __cs_threadargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 51 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c function __CPROVER_initialize line 73 thread 0
+----------------------------------------------------
+  __cs_threadargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 52 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c function __CPROVER_initialize line 73 thread 0
+----------------------------------------------------
+  __cs_threadargs[2l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 53 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c function __CPROVER_initialize line 73 thread 0
+----------------------------------------------------
+  __cs_threadargs[3l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 59 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c function __CPROVER_initialize line 375 thread 0
+----------------------------------------------------
+  storage[0l]=0 (00000000 00000000 00000000 00000000)
+
+State 60 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c function __CPROVER_initialize line 375 thread 0
+----------------------------------------------------
+  storage[1l]=0 (00000000 00000000 00000000 00000000)
+
+State 61 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c function __CPROVER_initialize line 375 thread 0
+----------------------------------------------------
+  storage[2l]=0 (00000000 00000000 00000000 00000000)
+
+State 62 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c function __CPROVER_initialize line 375 thread 0
+----------------------------------------------------
+  storage[3l]=0 (00000000 00000000 00000000 00000000)
+
+State 63 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c function __CPROVER_initialize line 375 thread 0
+----------------------------------------------------
+  storage[4l]=0 (00000000 00000000 00000000 00000000)
+
+State 64 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c function __CPROVER_initialize line 375 thread 0
+----------------------------------------------------
+  storage[5l]=0 (00000000 00000000 00000000 00000000)
+
+State 100 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c function main line 1100 thread 0
+----------------------------------------------------
+  __cs_dr_ts=5 (0101)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c line 1101 function main
+  (signed int)__cs_dr_ts <= 11
+
+State 102 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c function main line 1104 thread 0
+----------------------------------------------------
+  __cs_tmp_t0_r0=3 (011)
+
+State 103 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c function main line 1105 thread 0
+----------------------------------------------------
+  __cs_pc_cs[0l]=3 (000011)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c line 1106 function main
+  (signed int)__cs_pc_cs[(signed long int)0] > 0
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c line 1107 function main
+  (signed int)__cs_pc_cs[(signed long int)0] <= 4
+
+State 112 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c function __cs_main_thread line 1068 thread 0
+----------------------------------------------------
+  __cs_new_thread_id=&__cs_nondet_main_t (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 113 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c function __cs_main_thread line 1068 thread 0
+----------------------------------------------------
+  __cs_attr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 114 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c function __cs_main_thread line 1068 thread 0
+----------------------------------------------------
+  __cs_thread_function=thr1_0 (00000011 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 115 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c function __cs_main_thread line 1068 thread 0
+----------------------------------------------------
+  __cs_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 116 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c function __cs_main_thread line 1068 thread 0
+----------------------------------------------------
+  __cs_threadID=1 (00000000 00000000 00000000 00000001)
+
+State 118 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c function __cs_create line 79 thread 0
+----------------------------------------------------
+  __cs_nondet_main_t=1 (00000000 00000000 00000000 00000001)
+
+State 119 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c function __cs_create line 80 thread 0
+----------------------------------------------------
+  __cs_active_thread[1l]=1 (1)
+
+State 120 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c function __cs_create line 81 thread 0
+----------------------------------------------------
+  __cs_threadargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 123 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c function __cs_create line 82 thread 0
+----------------------------------------------------
+  __cs_message="thread spawned" (00000100 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 130 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c function __cs_main_thread line 1074 thread 0
+----------------------------------------------------
+  __cs_new_thread_id=&__cs_nondet_main_t (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 131 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c function __cs_main_thread line 1074 thread 0
+----------------------------------------------------
+  __cs_attr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 132 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c function __cs_main_thread line 1074 thread 0
+----------------------------------------------------
+  __cs_thread_function=thr1_1 (00000101 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 133 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c function __cs_main_thread line 1074 thread 0
+----------------------------------------------------
+  __cs_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 134 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c function __cs_main_thread line 1074 thread 0
+----------------------------------------------------
+  __cs_threadID=2 (00000000 00000000 00000000 00000010)
+
+State 136 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c function __cs_create line 79 thread 0
+----------------------------------------------------
+  __cs_nondet_main_t=2 (00000000 00000000 00000000 00000010)
+
+State 137 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c function __cs_create line 80 thread 0
+----------------------------------------------------
+  __cs_active_thread[2l]=1 (1)
+
+State 138 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c function __cs_create line 81 thread 0
+----------------------------------------------------
+  __cs_threadargs[2l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 141 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c function __cs_create line 82 thread 0
+----------------------------------------------------
+  __cs_message="thread spawned" (00000100 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 148 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c function __cs_main_thread line 1080 thread 0
+----------------------------------------------------
+  __cs_new_thread_id=&__cs_nondet_main_t (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 149 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c function __cs_main_thread line 1080 thread 0
+----------------------------------------------------
+  __cs_attr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 150 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c function __cs_main_thread line 1080 thread 0
+----------------------------------------------------
+  __cs_thread_function=thr1_2 (00000110 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 151 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c function __cs_main_thread line 1080 thread 0
+----------------------------------------------------
+  __cs_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 152 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c function __cs_main_thread line 1080 thread 0
+----------------------------------------------------
+  __cs_threadID=3 (00000000 00000000 00000000 00000011)
+
+State 154 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c function __cs_create line 79 thread 0
+----------------------------------------------------
+  __cs_nondet_main_t=3 (00000000 00000000 00000000 00000011)
+
+State 155 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c function __cs_create line 80 thread 0
+----------------------------------------------------
+  __cs_active_thread[3l]=1 (1)
+
+State 156 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c function __cs_create line 81 thread 0
+----------------------------------------------------
+  __cs_threadargs[3l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 159 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c function __cs_create line 82 thread 0
+----------------------------------------------------
+  __cs_message="thread spawned" (00000100 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 166 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c function __cs_main_thread line 1095 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 167 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c function __cs_main_thread line 1095 thread 0
+----------------------------------------------------
+  __cs_thread_index=0u (00000000 00000000 00000000 00000000)
+
+State 168 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c function __cs_exit line 93 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 174 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c function main line 1113 thread 0
+----------------------------------------------------
+  __cs_pc[0l]=3 (00011)
+
+State 175 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c function main line 1115 thread 0
+----------------------------------------------------
+  __cs_tmp_t1_r0=4 (00100)
+
+State 177 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c function main line 1118 thread 0
+----------------------------------------------------
+  __cs_pc_cs[1l]=4 (000100)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c line 1119 function main
+  (signed int)__cs_pc_cs[(signed long int)1] <= 20
+
+State 182 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c function main line 1122 thread 0
+----------------------------------------------------
+  __cs_param_thr1_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 184 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c function thr1_0 line 380 thread 0
+----------------------------------------------------
+  __cs_local_thr1_offset=-1606622721 (10100000 00111100 11100001 11111111)
+
+State 188 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c function thr1_0 line 384 thread 0
+----------------------------------------------------
+  __cs_param_findMax_1_offset=-1606622721 (10100000 00111100 11100001 11111111)
+
+State 189 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c function thr1_0 line 387 thread 0
+----------------------------------------------------
+  __cs_nondet_findMax_1_i=-1606622721 (10100000 00111100 11100001 11111111)
+
+State 197 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c function thr1_0 line 399 thread 0
+----------------------------------------------------
+  __cs_nondet_findMax_1_e=134742016 (00001000 00001000 00000000 00000000)
+
+State 204 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c function __CSEQ_atomic_acquire line 368 thread 0
+----------------------------------------------------
+  m=1 (00000000 00000000 00000000 00000001)
+
+State 212 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c function thr1_0 line 411 thread 0
+----------------------------------------------------
+  __cs_nondet_findMax_1___cs_tmp_if_cond_0=TRUE (00000001)
+
+State 241 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c function thr1_0 line 603 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 242 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c function thr1_0 line 603 thread 0
+----------------------------------------------------
+  __cs_thread_index=1u (00000000 00000000 00000000 00000001)
+
+State 243 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c function __cs_exit line 93 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 250 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c function main line 1127 thread 0
+----------------------------------------------------
+  __cs_pc[1l]=4 (00100)
+
+State 251 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c function main line 1130 thread 0
+----------------------------------------------------
+  __cs_tmp_t2_r0=3 (00011)
+
+State 253 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c function main line 1133 thread 0
+----------------------------------------------------
+  __cs_pc_cs[2l]=3 (000011)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c line 1134 function main
+  (signed int)__cs_pc_cs[(signed long int)2] <= 20
+
+State 258 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c function main line 1137 thread 0
+----------------------------------------------------
+  __cs_param_thr1_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 260 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c function thr1_1 line 609 thread 0
+----------------------------------------------------
+  __cs_local_thr1_offset=2073330463 (01111011 10010100 10000011 00011111)
+
+State 264 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c function thr1_1 line 613 thread 0
+----------------------------------------------------
+  __cs_param_findMax_1_offset=2073330463 (01111011 10010100 10000011 00011111)
+
+State 265 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c function thr1_1 line 616 thread 0
+----------------------------------------------------
+  __cs_nondet_findMax_1_i=2073330463 (01111011 10010100 10000011 00011111)
+
+State 273 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c function thr1_1 line 628 thread 0
+----------------------------------------------------
+  __cs_nondet_findMax_1_e=134742016 (00001000 00001000 00000000 00000000)
+
+State 280 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c function __CSEQ_atomic_acquire line 368 thread 0
+----------------------------------------------------
+  m=1 (00000000 00000000 00000000 00000001)
+
+State 310 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c function thr1_1 line 832 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 311 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c function thr1_1 line 832 thread 0
+----------------------------------------------------
+  __cs_thread_index=2u (00000000 00000000 00000000 00000010)
+
+State 312 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c function __cs_exit line 93 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[2l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 319 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c function main line 1142 thread 0
+----------------------------------------------------
+  __cs_pc[2l]=3 (00011)
+
+State 320 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c function main line 1145 thread 0
+----------------------------------------------------
+  __cs_tmp_t3_r0=3 (00011)
+
+State 322 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c function main line 1148 thread 0
+----------------------------------------------------
+  __cs_pc_cs[3l]=3 (000011)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c line 1149 function main
+  (signed int)__cs_pc_cs[(signed long int)3] <= 20
+
+State 327 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c function main line 1152 thread 0
+----------------------------------------------------
+  __cs_param_thr1_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 329 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c function thr1_2 line 838 thread 0
+----------------------------------------------------
+  __cs_local_thr1_offset=6834551 (00000000 01101000 01001001 01110111)
+
+State 333 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c function thr1_2 line 842 thread 0
+----------------------------------------------------
+  __cs_param_findMax_1_offset=6834551 (00000000 01101000 01001001 01110111)
+
+State 334 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c function thr1_2 line 845 thread 0
+----------------------------------------------------
+  __cs_nondet_findMax_1_i=6834551 (00000000 01101000 01001001 01110111)
+
+State 342 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c function thr1_2 line 857 thread 0
+----------------------------------------------------
+  __cs_nondet_findMax_1_e=0 (00000000 00000000 00000000 00000000)
+
+State 349 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c function __CSEQ_atomic_acquire line 368 thread 0
+----------------------------------------------------
+  m=1 (00000000 00000000 00000000 00000001)
+
+State 379 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c function thr1_2 line 1061 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 380 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c function thr1_2 line 1061 thread 0
+----------------------------------------------------
+  __cs_thread_index=3u (00000000 00000000 00000000 00000011)
+
+State 381 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c function __cs_exit line 93 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[3l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 388 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c function main line 1157 thread 0
+----------------------------------------------------
+  __cs_pc[3l]=3 (00011)
+
+State 389 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c function main line 1161 thread 0
+----------------------------------------------------
+  __cs_tmp_t0_r1=3 (011)
+
+State 391 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c function main line 1164 thread 0
+----------------------------------------------------
+  __cs_pc_cs[0l]=3 (000011)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c line 1165 function main
+  (signed int)__cs_pc_cs[(signed long int)0] >= (signed int)__cs_pc[(signed long int)0]
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c line 1166 function main
+  (signed int)__cs_pc_cs[(signed long int)0] <= 4
+
+State 403 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c function __cs_main_thread line 1095 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 404 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c function __cs_main_thread line 1095 thread 0
+----------------------------------------------------
+  __cs_thread_index=0u (00000000 00000000 00000000 00000000)
+
+State 405 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c function __cs_exit line 93 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 412 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c function main line 1174 thread 0
+----------------------------------------------------
+  __cs_pc[0l]=3 (00011)
+
+State 413 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c function main line 1177 thread 0
+----------------------------------------------------
+  __cs_tmp_t1_r1=4 (00100)
+
+State 415 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c function main line 1180 thread 0
+----------------------------------------------------
+  __cs_pc_cs[1l]=4 (000100)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c line 1181 function main
+  (signed int)__cs_pc_cs[(signed long int)1] >= (signed int)__cs_pc[(signed long int)1]
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c line 1182 function main
+  (signed int)__cs_pc_cs[(signed long int)1] <= 20
+
+State 419 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c function main line 1184 thread 0
+----------------------------------------------------
+  __cs_dataraceDetectionStarted=TRUE (00000001)
+
+State 422 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c function main line 1185 thread 0
+----------------------------------------------------
+  __cs_param_thr1_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 456 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c function thr1_0 line 603 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 457 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c function thr1_0 line 603 thread 0
+----------------------------------------------------
+  __cs_thread_index=1u (00000000 00000000 00000000 00000001)
+
+State 458 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c function __cs_exit line 93 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 465 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c function main line 1189 thread 0
+----------------------------------------------------
+  __cs_dataraceSecondThread=TRUE (00000001)
+
+State 466 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c function main line 1190 thread 0
+----------------------------------------------------
+  __cs_pc[1l]=4 (00100)
+
+State 467 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c function main line 1193 thread 0
+----------------------------------------------------
+  __cs_tmp_t2_r1=5 (00101)
+
+State 469 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c function main line 1196 thread 0
+----------------------------------------------------
+  __cs_pc_cs[2l]=5 (000101)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c line 1197 function main
+  (signed int)__cs_pc_cs[(signed long int)2] >= (signed int)__cs_pc[(signed long int)2]
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c line 1198 function main
+  (signed int)__cs_pc_cs[(signed long int)2] <= 20
+
+State 475 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c function main line 1201 thread 0
+----------------------------------------------------
+  __cs_param_thr1_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 485 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c function thr1_1 line 639 thread 0
+----------------------------------------------------
+  __cs_dataraceNotDetected=FALSE (00000000)
+
+State 486 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c function thr1_1 line 640 thread 0
+----------------------------------------------------
+  __cs_nondet_findMax_1___cs_tmp_if_cond_0=TRUE (00000001)
+
+State 495 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c function thr1_1 line 651 thread 0
+----------------------------------------------------
+  max=134742016 (00001000 00001000 00000000 00000000)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c line 653 function thr1_1
+  (signed int)__cs_pc_cs[(signed long int)2] >= 5
+
+State 521 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c function thr1_1 line 832 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 522 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c function thr1_1 line 832 thread 0
+----------------------------------------------------
+  __cs_thread_index=2u (00000000 00000000 00000000 00000010)
+
+State 523 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c function __cs_exit line 93 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[2l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 529 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c function main line 1203 thread 0
+----------------------------------------------------
+  __cs_dataraceContinue=FALSE (00000000)
+
+State 531 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c function main line 1205 thread 0
+----------------------------------------------------
+  __cs_dataraceSecondThread=TRUE (00000001)
+
+State 532 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c function main line 1206 thread 0
+----------------------------------------------------
+  __cs_pc[2l]=5 (00101)
+
+State 533 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c function main line 1209 thread 0
+----------------------------------------------------
+  __cs_tmp_t3_r1=4 (00100)
+
+State 535 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c function main line 1226 thread 0
+----------------------------------------------------
+  __cs_tmp_t0_r2=3 (011)
+
+State 537 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c function main line 1242 thread 0
+----------------------------------------------------
+  __cs_tmp_t1_r2=4 (00100)
+
+State 539 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c function main line 1258 thread 0
+----------------------------------------------------
+  __cs_tmp_t2_r2=5 (00101)
+
+State 541 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c function main line 1274 thread 0
+----------------------------------------------------
+  __cs_tmp_t3_r2=7 (00111)
+
+State 543 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c function main line 1289 thread 0
+----------------------------------------------------
+  __cs_tmp_t0_r3=1 (001)
+
+Violated property:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized/_dr_209_fmaxsym.c function main line 1297 thread 0
+  Data race failure
+  __cs_dataraceNotDetected != FALSE
+
+
+VERIFICATION FAILED
+
+real	0m0,448s
+user	0m0,404s
+sys	0m0,047s
