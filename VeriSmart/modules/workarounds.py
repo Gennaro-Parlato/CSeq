@@ -32,6 +32,9 @@ VERSION = 'workaround-0.1-2016.11.13'
 
         - split declaration of local variables + init value to two separate statements:
             int x = value; --> int x; x = value;
+            
+          (there are few exceptions such as for example when the variable is declared const)
+
 
         - remove  if(!1) { .. }  and  if(0) { .. }
 
@@ -74,6 +77,7 @@ import inspect, os, sys, getopt, time
 import pycparser.c_parser, pycparser.c_ast, pycparser.c_generator
 import core.common, core.module, core.parser, core.utils
 
+#from pycparser import c_ast
 
 class workarounds(core.module.Translator):
     __threadLocals = []
@@ -145,6 +149,7 @@ class workarounds(core.module.Translator):
         # no_type is used when a Decl is part of a DeclList, where the type is
         # explicitly only for the first delaration in a list.
         #
+
         s = n.name if no_type else self._generate_decl(n)
 
         if n.bitsize: s += ' : ' + self.visit(n.bitsize)
@@ -176,6 +181,9 @@ class workarounds(core.module.Translator):
             elif isinstance(n.init, pycparser.c_ast.ExprList):
                 initType = 1
                 assignmentStmt = ' = (' + self.visit(n.init) + ')'
+            elif (n.quals and 'const' in n.quals):
+                initType = 1
+                assignmentStmt = ' = ' + self.visit(n.init)  
             else:
                 initType = 0
                 assignmentStmt = ' = ' + self.visit(n.init)
@@ -412,3 +420,13 @@ class workarounds(core.module.Translator):
 
     def loadfromstring(self, string, env, fill_only_fields=None):
         super(workarounds, self).loadfromstring(string, env, fill_only_fields=['threadName', 'varType', 'varID', 'varArity', 'varSize'])
+
+
+#    def visit_Assignment(self, n):
+#        n.show()
+#        rval_str = self._parenthesize_if(
+#                            n.rvalue,
+#                            lambda n: isinstance(n, c_ast.Assignment))
+#        print( '%s %s %s' % (self.visit(n.lvalue), n.op, rval_str) )
+#        sys.exit(0)
+

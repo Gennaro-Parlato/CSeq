@@ -21,6 +21,8 @@ void *thread2(void *arg)
   int x;
   data = x ? data+2 : foo(0);
   foo(x) ? data+2 : foo(x)+2;
+  foo(data)? data : foo(data);
+  x = data ? x : data;
 }
 
 

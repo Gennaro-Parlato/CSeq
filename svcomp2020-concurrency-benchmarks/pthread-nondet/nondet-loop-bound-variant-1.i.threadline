@@ -1,0 +1,10 @@
+Parse error (:214:35: before: ;) while performing workarounds->functiontracker:
+
+[1m              pthread_t t2;
+              x = 0;
+              n = __VERIFIER_nondet_uint();
+              assume_abort_if_not((n >= (10 / 2)) && (n <= 10));
+              pthread_create(&t1, 0, thr1, 0);
+ >            for (int i; i = 0; i < n; i++)
+                                      ~~~^
+[0m

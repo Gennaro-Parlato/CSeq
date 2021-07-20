@@ -64,7 +64,7 @@ class preinstrumenter(core.module.Translator):
         backend = self.getInputParamValue('backend')
         if backend == 'klee' and 'malloc' in core.common.changeID:
             core.common.changeID['malloc'] = 'malloc'  # use normal malloc
-        super(self.__class__, self).loadfromstring(string, env, fill_only_fields=['funcName'])
+        super(preinstrumenter, self).loadfromstring(string, env, fill_only_fields=['funcName'])
 
     '''
     def visit_Assignment(self, n):
@@ -187,3 +187,8 @@ class preinstrumenter(core.module.Translator):
             return core.common.changeID[s[:s.rfind(' ')]]
         else:
             return s
+
+# service routine
+
+    def getErrorLabel(self):
+        return self.__errorlabel

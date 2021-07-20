@@ -1,0 +1,2021 @@
+CBMC version 5.32.1 (cbmc-5.32.1-140-g7c8c411038-dirty) 64-bit x86_64 linux
+Parsing /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c
+Converting
+Type-checking _csdr_09_fmaxsym
+file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c line 308 function __CSEQ_atomic_acquire: function 'assume_abort_if_not' is not declared
+file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c line 309 function __CSEQ_atomic_acquire: function '__CPROVER_set_field' is not declared
+file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c line 309 function __CSEQ_atomic_acquire: function '__CPROVER_get_field' is not declared
+file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c line 1533 function main: function '__CPROVER_field_decl_global' is not declared
+file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c line 1534 function main: function '__CPROVER_field_decl_local' is not declared
+Generating GOTO Program
+Adding CPROVER library (x86_64)
+Removal of function pointers and virtual functions
+Generic Property Instrumentation
+Running with 8 object bits, 56 offset bits (default)
+Starting Bounded Model Checking
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c line 1519 function main_thread thread 0
+Shadow memory: cannot set_field for &__cs_nondet_thr1_offset
+Shadow memory: cannot set_field for &__cs_nondet_thr1_offset
+Shadow memory: cannot get_field for &__cs_nondet_thr1_offset
+Shadow memory: cannot get_field for &__cs_nondet_thr1_offset
+Shadow memory: cannot get_field for &__cs_nondet_thr1_offset
+Shadow memory: cannot get_field for &__cs_nondet_thr1_offset
+**** WARNING: no body for function assume_abort_if_not
+Shadow memory: cannot set_field for &__cs_param_findMax_1_offset
+Shadow memory: cannot set_field for &__cs_param_findMax_1_offset
+Shadow memory: cannot get_field for &__cs_param_findMax_1_offset
+Shadow memory: cannot get_field for &__cs_nondet_thr1_offset
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot get_field for &__cs_param_findMax_1_offset
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot get_field for &__cs_param_findMax_1_offset
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c line 383 function thr1_0 thread 0
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c line 447 function thr1_0 thread 0
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c line 511 function thr1_0 thread 0
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c line 575 function thr1_0 thread 0
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot set_field for &__cs_nondet_thr1_offset
+Shadow memory: cannot set_field for &__cs_nondet_thr1_offset
+Shadow memory: cannot get_field for &__cs_nondet_thr1_offset
+Shadow memory: cannot get_field for &__cs_nondet_thr1_offset
+Shadow memory: cannot get_field for &__cs_nondet_thr1_offset
+Shadow memory: cannot get_field for &__cs_nondet_thr1_offset
+Shadow memory: cannot set_field for &__cs_param_findMax_1_offset
+Shadow memory: cannot set_field for &__cs_param_findMax_1_offset
+Shadow memory: cannot get_field for &__cs_param_findMax_1_offset
+Shadow memory: cannot get_field for &__cs_nondet_thr1_offset
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot get_field for &__cs_param_findMax_1_offset
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot get_field for &__cs_param_findMax_1_offset
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c line 676 function thr1_1 thread 0
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c line 740 function thr1_1 thread 0
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c line 804 function thr1_1 thread 0
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c line 868 function thr1_1 thread 0
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot set_field for &__cs_nondet_thr1_offset
+Shadow memory: cannot set_field for &__cs_nondet_thr1_offset
+Shadow memory: cannot get_field for &__cs_nondet_thr1_offset
+Shadow memory: cannot get_field for &__cs_nondet_thr1_offset
+Shadow memory: cannot get_field for &__cs_nondet_thr1_offset
+Shadow memory: cannot get_field for &__cs_nondet_thr1_offset
+Shadow memory: cannot set_field for &__cs_param_findMax_1_offset
+Shadow memory: cannot set_field for &__cs_param_findMax_1_offset
+Shadow memory: cannot get_field for &__cs_param_findMax_1_offset
+Shadow memory: cannot get_field for &__cs_nondet_thr1_offset
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot get_field for &__cs_param_findMax_1_offset
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot get_field for &__cs_param_findMax_1_offset
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c line 969 function thr1_2 thread 0
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c line 1033 function thr1_2 thread 0
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c line 1097 function thr1_2 thread 0
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c line 1161 function thr1_2 thread 0
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot set_field for &__cs_nondet_thr1_offset
+Shadow memory: cannot set_field for &__cs_nondet_thr1_offset
+Shadow memory: cannot get_field for &__cs_nondet_thr1_offset
+Shadow memory: cannot get_field for &__cs_nondet_thr1_offset
+Shadow memory: cannot get_field for &__cs_nondet_thr1_offset
+Shadow memory: cannot get_field for &__cs_nondet_thr1_offset
+Shadow memory: cannot set_field for &__cs_param_findMax_1_offset
+Shadow memory: cannot set_field for &__cs_param_findMax_1_offset
+Shadow memory: cannot get_field for &__cs_param_findMax_1_offset
+Shadow memory: cannot get_field for &__cs_nondet_thr1_offset
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot get_field for &__cs_param_findMax_1_offset
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot get_field for &__cs_param_findMax_1_offset
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c line 1262 function thr1_3 thread 0
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c line 1326 function thr1_3 thread 0
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c line 1390 function thr1_3 thread 0
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c line 1454 function thr1_3 thread 0
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_i
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c line 1519 function main_thread thread 0
+Shadow memory: cannot set_field for &__cs_nondet_thr1_offset
+Shadow memory: cannot set_field for &__cs_nondet_thr1_offset
+Shadow memory: cannot get_field for &__cs_nondet_thr1_offset
+Shadow memory: cannot get_field for &__cs_nondet_thr1_offset
+Shadow memory: cannot get_field for &__cs_nondet_thr1_offset
+Shadow memory: cannot get_field for &__cs_nondet_thr1_offset
+Shadow memory: cannot set_field for &__cs_param_findMax_1_offset
+Shadow memory: cannot set_field for &__cs_param_findMax_1_offset
+Shadow memory: cannot get_field for &__cs_param_findMax_1_offset
+Shadow memory: cannot get_field for &__cs_nondet_thr1_offset
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot get_field for &__cs_param_findMax_1_offset
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot get_field for &__cs_param_findMax_1_offset
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c line 383 function thr1_0 thread 0
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot get_field for &__cs_param_findMax_1_offset
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c line 447 function thr1_0 thread 0
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot get_field for &__cs_param_findMax_1_offset
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c line 511 function thr1_0 thread 0
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot get_field for &__cs_param_findMax_1_offset
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c line 575 function thr1_0 thread 0
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot get_field for &__cs_param_findMax_1_offset
+Shadow memory: cannot set_field for &__cs_nondet_thr1_offset
+Shadow memory: cannot set_field for &__cs_nondet_thr1_offset
+Shadow memory: cannot get_field for &__cs_nondet_thr1_offset
+Shadow memory: cannot get_field for &__cs_nondet_thr1_offset
+Shadow memory: cannot get_field for &__cs_nondet_thr1_offset
+Shadow memory: cannot get_field for &__cs_nondet_thr1_offset
+Shadow memory: cannot set_field for &__cs_param_findMax_1_offset
+Shadow memory: cannot set_field for &__cs_param_findMax_1_offset
+Shadow memory: cannot get_field for &__cs_param_findMax_1_offset
+Shadow memory: cannot get_field for &__cs_nondet_thr1_offset
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot get_field for &__cs_param_findMax_1_offset
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot get_field for &__cs_param_findMax_1_offset
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c line 676 function thr1_1 thread 0
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot get_field for &__cs_param_findMax_1_offset
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c line 740 function thr1_1 thread 0
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot get_field for &__cs_param_findMax_1_offset
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c line 804 function thr1_1 thread 0
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot get_field for &__cs_param_findMax_1_offset
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c line 868 function thr1_1 thread 0
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot get_field for &__cs_param_findMax_1_offset
+Shadow memory: cannot set_field for &__cs_nondet_thr1_offset
+Shadow memory: cannot set_field for &__cs_nondet_thr1_offset
+Shadow memory: cannot get_field for &__cs_nondet_thr1_offset
+Shadow memory: cannot get_field for &__cs_nondet_thr1_offset
+Shadow memory: cannot get_field for &__cs_nondet_thr1_offset
+Shadow memory: cannot get_field for &__cs_nondet_thr1_offset
+Shadow memory: cannot set_field for &__cs_param_findMax_1_offset
+Shadow memory: cannot set_field for &__cs_param_findMax_1_offset
+Shadow memory: cannot get_field for &__cs_param_findMax_1_offset
+Shadow memory: cannot get_field for &__cs_nondet_thr1_offset
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot get_field for &__cs_param_findMax_1_offset
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot get_field for &__cs_param_findMax_1_offset
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c line 969 function thr1_2 thread 0
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot get_field for &__cs_param_findMax_1_offset
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c line 1033 function thr1_2 thread 0
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot get_field for &__cs_param_findMax_1_offset
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c line 1097 function thr1_2 thread 0
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot get_field for &__cs_param_findMax_1_offset
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c line 1161 function thr1_2 thread 0
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot get_field for &__cs_param_findMax_1_offset
+Shadow memory: cannot set_field for &__cs_nondet_thr1_offset
+Shadow memory: cannot set_field for &__cs_nondet_thr1_offset
+Shadow memory: cannot get_field for &__cs_nondet_thr1_offset
+Shadow memory: cannot get_field for &__cs_nondet_thr1_offset
+Shadow memory: cannot get_field for &__cs_nondet_thr1_offset
+Shadow memory: cannot get_field for &__cs_nondet_thr1_offset
+Shadow memory: cannot set_field for &__cs_param_findMax_1_offset
+Shadow memory: cannot set_field for &__cs_param_findMax_1_offset
+Shadow memory: cannot get_field for &__cs_param_findMax_1_offset
+Shadow memory: cannot get_field for &__cs_nondet_thr1_offset
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot get_field for &__cs_param_findMax_1_offset
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot get_field for &__cs_param_findMax_1_offset
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c line 1262 function thr1_3 thread 0
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot get_field for &__cs_param_findMax_1_offset
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c line 1326 function thr1_3 thread 0
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot get_field for &__cs_param_findMax_1_offset
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c line 1390 function thr1_3 thread 0
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot get_field for &__cs_param_findMax_1_offset
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c line 1454 function thr1_3 thread 0
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot get_field for &__cs_param_findMax_1_offset
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c line 1519 function main_thread thread 0
+Shadow memory: cannot set_field for &__cs_nondet_thr1_offset
+Shadow memory: cannot set_field for &__cs_nondet_thr1_offset
+Shadow memory: cannot get_field for &__cs_nondet_thr1_offset
+Shadow memory: cannot get_field for &__cs_nondet_thr1_offset
+Shadow memory: cannot get_field for &__cs_nondet_thr1_offset
+Shadow memory: cannot get_field for &__cs_nondet_thr1_offset
+Shadow memory: cannot set_field for &__cs_param_findMax_1_offset
+Shadow memory: cannot set_field for &__cs_param_findMax_1_offset
+Shadow memory: cannot get_field for &__cs_param_findMax_1_offset
+Shadow memory: cannot get_field for &__cs_nondet_thr1_offset
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot get_field for &__cs_param_findMax_1_offset
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot get_field for &__cs_param_findMax_1_offset
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c line 383 function thr1_0 thread 0
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot get_field for &__cs_param_findMax_1_offset
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c line 447 function thr1_0 thread 0
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot get_field for &__cs_param_findMax_1_offset
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c line 511 function thr1_0 thread 0
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot get_field for &__cs_param_findMax_1_offset
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c line 575 function thr1_0 thread 0
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot get_field for &__cs_param_findMax_1_offset
+Shadow memory: cannot set_field for &__cs_nondet_thr1_offset
+Shadow memory: cannot set_field for &__cs_nondet_thr1_offset
+Shadow memory: cannot get_field for &__cs_nondet_thr1_offset
+Shadow memory: cannot get_field for &__cs_nondet_thr1_offset
+Shadow memory: cannot get_field for &__cs_nondet_thr1_offset
+Shadow memory: cannot get_field for &__cs_nondet_thr1_offset
+Shadow memory: cannot set_field for &__cs_param_findMax_1_offset
+Shadow memory: cannot set_field for &__cs_param_findMax_1_offset
+Shadow memory: cannot get_field for &__cs_param_findMax_1_offset
+Shadow memory: cannot get_field for &__cs_nondet_thr1_offset
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot get_field for &__cs_param_findMax_1_offset
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot get_field for &__cs_param_findMax_1_offset
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c line 676 function thr1_1 thread 0
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot get_field for &__cs_param_findMax_1_offset
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c line 740 function thr1_1 thread 0
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot get_field for &__cs_param_findMax_1_offset
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c line 804 function thr1_1 thread 0
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot get_field for &__cs_param_findMax_1_offset
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c line 868 function thr1_1 thread 0
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot get_field for &__cs_param_findMax_1_offset
+Shadow memory: cannot set_field for &__cs_nondet_thr1_offset
+Shadow memory: cannot set_field for &__cs_nondet_thr1_offset
+Shadow memory: cannot get_field for &__cs_nondet_thr1_offset
+Shadow memory: cannot get_field for &__cs_nondet_thr1_offset
+Shadow memory: cannot get_field for &__cs_nondet_thr1_offset
+Shadow memory: cannot get_field for &__cs_nondet_thr1_offset
+Shadow memory: cannot set_field for &__cs_param_findMax_1_offset
+Shadow memory: cannot set_field for &__cs_param_findMax_1_offset
+Shadow memory: cannot get_field for &__cs_param_findMax_1_offset
+Shadow memory: cannot get_field for &__cs_nondet_thr1_offset
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot get_field for &__cs_param_findMax_1_offset
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot get_field for &__cs_param_findMax_1_offset
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c line 969 function thr1_2 thread 0
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot get_field for &__cs_param_findMax_1_offset
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c line 1033 function thr1_2 thread 0
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot get_field for &__cs_param_findMax_1_offset
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c line 1097 function thr1_2 thread 0
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot get_field for &__cs_param_findMax_1_offset
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c line 1161 function thr1_2 thread 0
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot get_field for &__cs_param_findMax_1_offset
+Shadow memory: cannot set_field for &__cs_nondet_thr1_offset
+Shadow memory: cannot set_field for &__cs_nondet_thr1_offset
+Shadow memory: cannot get_field for &__cs_nondet_thr1_offset
+Shadow memory: cannot get_field for &__cs_nondet_thr1_offset
+Shadow memory: cannot get_field for &__cs_nondet_thr1_offset
+Shadow memory: cannot get_field for &__cs_nondet_thr1_offset
+Shadow memory: cannot set_field for &__cs_param_findMax_1_offset
+Shadow memory: cannot set_field for &__cs_param_findMax_1_offset
+Shadow memory: cannot get_field for &__cs_param_findMax_1_offset
+Shadow memory: cannot get_field for &__cs_nondet_thr1_offset
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot get_field for &__cs_param_findMax_1_offset
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot get_field for &__cs_param_findMax_1_offset
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c line 1262 function thr1_3 thread 0
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot get_field for &__cs_param_findMax_1_offset
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c line 1326 function thr1_3 thread 0
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot get_field for &__cs_param_findMax_1_offset
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c line 1390 function thr1_3 thread 0
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot get_field for &__cs_param_findMax_1_offset
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_e
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1___cs_tmp_if_cond_1
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c line 1454 function thr1_3 thread 0
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot set_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot get_field for &__cs_nondet_findMax_1_i
+Shadow memory: cannot get_field for &__cs_param_findMax_1_offset
+Runtime Symex: 0.733199s
+size of program expression: 31896 steps
+simple slicing removed 5 assignments
+Generated 1 VCC(s), 1 remaining after simplification
+Runtime Postprocess Equation: 0.00526248s
+Passing problem to propositional reduction
+converting SSA
+Runtime Convert SSA: 0.23594s
+Running propositional reduction
+Post-processing
+Runtime Post-process: 2.7128e-05s
+Solving with Glucose Syrup with simplifier
+173752 variables, 480541 clauses
+SAT checker: instance is SATISFIABLE
+Runtime Solver: 1.15616s
+Runtime decision procedure: 1.39287s
+Building error trace
+Counterexample:
+
+State 22 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function __CPROVER_initialize line 57 thread 0
+----------------------------------------------------
+  __cs_active_thread[0l]=0 (0)
+
+State 23 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function __CPROVER_initialize line 57 thread 0
+----------------------------------------------------
+  __cs_active_thread[1l]=0 (0)
+
+State 24 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function __CPROVER_initialize line 57 thread 0
+----------------------------------------------------
+  __cs_active_thread[2l]=0 (0)
+
+State 25 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function __CPROVER_initialize line 57 thread 0
+----------------------------------------------------
+  __cs_active_thread[3l]=0 (0)
+
+State 26 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function __CPROVER_initialize line 57 thread 0
+----------------------------------------------------
+  __cs_active_thread[4l]=0 (0)
+
+State 35 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function __CPROVER_initialize line 58 thread 0
+----------------------------------------------------
+  __cs_pc[0l]=0 (00000)
+
+State 36 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function __CPROVER_initialize line 58 thread 0
+----------------------------------------------------
+  __cs_pc[1l]=0 (00000)
+
+State 37 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function __CPROVER_initialize line 58 thread 0
+----------------------------------------------------
+  __cs_pc[2l]=0 (00000)
+
+State 38 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function __CPROVER_initialize line 58 thread 0
+----------------------------------------------------
+  __cs_pc[3l]=0 (00000)
+
+State 39 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function __CPROVER_initialize line 58 thread 0
+----------------------------------------------------
+  __cs_pc[4l]=0 (00000)
+
+State 41 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function __CPROVER_initialize line 59 thread 0
+----------------------------------------------------
+  __cs_pc_cs[0l]=0 (000000)
+
+State 42 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function __CPROVER_initialize line 59 thread 0
+----------------------------------------------------
+  __cs_pc_cs[1l]=0 (000000)
+
+State 43 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function __CPROVER_initialize line 59 thread 0
+----------------------------------------------------
+  __cs_pc_cs[2l]=0 (000000)
+
+State 44 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function __CPROVER_initialize line 59 thread 0
+----------------------------------------------------
+  __cs_pc_cs[3l]=0 (000000)
+
+State 45 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function __CPROVER_initialize line 59 thread 0
+----------------------------------------------------
+  __cs_pc_cs[4l]=0 (000000)
+
+State 47 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function __CPROVER_initialize line 82 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 48 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function __CPROVER_initialize line 82 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 49 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function __CPROVER_initialize line 82 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[2l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 50 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function __CPROVER_initialize line 82 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[3l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 51 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function __CPROVER_initialize line 82 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[4l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 53 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function __CPROVER_initialize line 61 thread 0
+----------------------------------------------------
+  __cs_thread_lines[0l]=30 (11110)
+
+State 54 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function __CPROVER_initialize line 61 thread 0
+----------------------------------------------------
+  __cs_thread_lines[1l]=30 (11110)
+
+State 55 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function __CPROVER_initialize line 61 thread 0
+----------------------------------------------------
+  __cs_thread_lines[2l]=30 (11110)
+
+State 56 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function __CPROVER_initialize line 61 thread 0
+----------------------------------------------------
+  __cs_thread_lines[3l]=30 (11110)
+
+State 57 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function __CPROVER_initialize line 61 thread 0
+----------------------------------------------------
+  __cs_thread_lines[4l]=5 (00101)
+
+State 59 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function __CPROVER_initialize line 81 thread 0
+----------------------------------------------------
+  __cs_threadargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 60 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function __CPROVER_initialize line 81 thread 0
+----------------------------------------------------
+  __cs_threadargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 61 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function __CPROVER_initialize line 81 thread 0
+----------------------------------------------------
+  __cs_threadargs[2l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 62 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function __CPROVER_initialize line 81 thread 0
+----------------------------------------------------
+  __cs_threadargs[3l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 63 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function __CPROVER_initialize line 81 thread 0
+----------------------------------------------------
+  __cs_threadargs[4l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 72 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function __CPROVER_initialize line 316 thread 0
+----------------------------------------------------
+  storage[0l]=0 (00000000 00000000 00000000 00000000)
+
+State 73 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function __CPROVER_initialize line 316 thread 0
+----------------------------------------------------
+  storage[1l]=0 (00000000 00000000 00000000 00000000)
+
+State 74 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function __CPROVER_initialize line 316 thread 0
+----------------------------------------------------
+  storage[2l]=0 (00000000 00000000 00000000 00000000)
+
+State 75 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function __CPROVER_initialize line 316 thread 0
+----------------------------------------------------
+  storage[3l]=0 (00000000 00000000 00000000 00000000)
+
+State 76 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function __CPROVER_initialize line 316 thread 0
+----------------------------------------------------
+  storage[4l]=0 (00000000 00000000 00000000 00000000)
+
+State 77 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function __CPROVER_initialize line 316 thread 0
+----------------------------------------------------
+  storage[5l]=0 (00000000 00000000 00000000 00000000)
+
+State 79 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function __CPROVER_initialize line 316 thread 0
+----------------------------------------------------
+  SM__&storage__dr_write[0l]=0 (00000000 00000000 00000000 00000000)
+
+State 80 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function __CPROVER_initialize line 316 thread 0
+----------------------------------------------------
+  SM__&storage__dr_write[1l]=0 (00000000 00000000 00000000 00000000)
+
+State 81 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function __CPROVER_initialize line 316 thread 0
+----------------------------------------------------
+  SM__&storage__dr_write[2l]=0 (00000000 00000000 00000000 00000000)
+
+State 82 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function __CPROVER_initialize line 316 thread 0
+----------------------------------------------------
+  SM__&storage__dr_write[3l]=0 (00000000 00000000 00000000 00000000)
+
+State 83 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function __CPROVER_initialize line 316 thread 0
+----------------------------------------------------
+  SM__&storage__dr_write[4l]=0 (00000000 00000000 00000000 00000000)
+
+State 84 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function __CPROVER_initialize line 316 thread 0
+----------------------------------------------------
+  SM__&storage__dr_write[5l]=0 (00000000 00000000 00000000 00000000)
+
+State 86 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function __CPROVER_initialize line 316 thread 0
+----------------------------------------------------
+  SM__&storage__dr_write_noatomic[0l]=0 (00000000 00000000 00000000 00000000)
+
+State 87 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function __CPROVER_initialize line 316 thread 0
+----------------------------------------------------
+  SM__&storage__dr_write_noatomic[1l]=0 (00000000 00000000 00000000 00000000)
+
+State 88 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function __CPROVER_initialize line 316 thread 0
+----------------------------------------------------
+  SM__&storage__dr_write_noatomic[2l]=0 (00000000 00000000 00000000 00000000)
+
+State 89 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function __CPROVER_initialize line 316 thread 0
+----------------------------------------------------
+  SM__&storage__dr_write_noatomic[3l]=0 (00000000 00000000 00000000 00000000)
+
+State 90 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function __CPROVER_initialize line 316 thread 0
+----------------------------------------------------
+  SM__&storage__dr_write_noatomic[4l]=0 (00000000 00000000 00000000 00000000)
+
+State 91 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function __CPROVER_initialize line 316 thread 0
+----------------------------------------------------
+  SM__&storage__dr_write_noatomic[5l]=0 (00000000 00000000 00000000 00000000)
+
+State 147 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function main line 1537 thread 0
+----------------------------------------------------
+  __cs_dr_ts=8 (1000)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c line 1538 function main
+  (signed int)__cs_dr_ts <= 13
+
+State 149 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function main line 1541 thread 0
+----------------------------------------------------
+  __cs_active_thread[4l]=1 (1)
+
+State 150 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function main line 1542 thread 0
+----------------------------------------------------
+  __cs_tmp_t4_r0=3 (011)
+
+State 151 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function main line 1543 thread 0
+----------------------------------------------------
+  __cs_pc_cs[4l]=3 (000011)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c line 1544 function main
+  (signed int)__cs_pc_cs[(signed long int)4] > 0
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c line 1545 function main
+  (signed int)__cs_pc_cs[(signed long int)4] <= 5
+
+State 158 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function main_thread line 1492 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 159 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function main_thread line 1493 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=TRUE (00000001)
+
+State 162 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function main_thread line 1496 thread 0
+----------------------------------------------------
+  __cs_new_thread_id=&__cs_nondet_main_t (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 163 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function main_thread line 1496 thread 0
+----------------------------------------------------
+  __cs_attr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 164 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function main_thread line 1496 thread 0
+----------------------------------------------------
+  __cs_thread_function=thr1_0 (00000011 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 165 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function main_thread line 1496 thread 0
+----------------------------------------------------
+  __cs_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 166 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function main_thread line 1496 thread 0
+----------------------------------------------------
+  __cs_threadID=0 (00000000 00000000 00000000 00000000)
+
+State 168 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function __cs_create line 87 thread 0
+----------------------------------------------------
+  __cs_nondet_main_t=0 (00000000 00000000 00000000 00000000)
+
+State 169 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function __cs_create line 88 thread 0
+----------------------------------------------------
+  __cs_active_thread[0l]=1 (1)
+
+State 170 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function __cs_create line 89 thread 0
+----------------------------------------------------
+  __cs_threadargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 176 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function main_thread line 1502 thread 0
+----------------------------------------------------
+  __cs_new_thread_id=&__cs_nondet_main_t (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 177 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function main_thread line 1502 thread 0
+----------------------------------------------------
+  __cs_attr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 178 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function main_thread line 1502 thread 0
+----------------------------------------------------
+  __cs_thread_function=thr1_1 (00000100 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 179 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function main_thread line 1502 thread 0
+----------------------------------------------------
+  __cs_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 180 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function main_thread line 1502 thread 0
+----------------------------------------------------
+  __cs_threadID=1 (00000000 00000000 00000000 00000001)
+
+State 182 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function __cs_create line 87 thread 0
+----------------------------------------------------
+  __cs_nondet_main_t=1 (00000000 00000000 00000000 00000001)
+
+State 183 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function __cs_create line 88 thread 0
+----------------------------------------------------
+  __cs_active_thread[1l]=1 (1)
+
+State 184 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function __cs_create line 89 thread 0
+----------------------------------------------------
+  __cs_threadargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 190 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function main_thread line 1508 thread 0
+----------------------------------------------------
+  __cs_new_thread_id=&__cs_nondet_main_t (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 191 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function main_thread line 1508 thread 0
+----------------------------------------------------
+  __cs_attr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 192 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function main_thread line 1508 thread 0
+----------------------------------------------------
+  __cs_thread_function=thr1_2 (00000101 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 193 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function main_thread line 1508 thread 0
+----------------------------------------------------
+  __cs_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 194 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function main_thread line 1508 thread 0
+----------------------------------------------------
+  __cs_threadID=2 (00000000 00000000 00000000 00000010)
+
+State 196 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function __cs_create line 87 thread 0
+----------------------------------------------------
+  __cs_nondet_main_t=2 (00000000 00000000 00000000 00000010)
+
+State 197 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function __cs_create line 88 thread 0
+----------------------------------------------------
+  __cs_active_thread[2l]=1 (1)
+
+State 198 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function __cs_create line 89 thread 0
+----------------------------------------------------
+  __cs_threadargs[2l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 205 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function main_thread line 1529 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 206 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function main_thread line 1529 thread 0
+----------------------------------------------------
+  __cs_thread_index=4u (00000000 00000000 00000000 00000100)
+
+State 207 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function __cs_exit line 101 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[4l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 213 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function main line 1551 thread 0
+----------------------------------------------------
+  __cs_pc[4l]=3 (00011)
+
+State 214 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function main line 1553 thread 0
+----------------------------------------------------
+  __cs_tmp_t0_r0=0 (00000)
+
+State 216 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function main line 1556 thread 0
+----------------------------------------------------
+  __cs_pc_cs[0l]=0 (000000)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c line 1557 function main
+  (signed int)__cs_pc_cs[(signed long int)0] <= 30
+
+State 221 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function main line 1560 thread 0
+----------------------------------------------------
+  __cs_param_thr1_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 259 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function thr1_0 line 608 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 260 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function thr1_0 line 608 thread 0
+----------------------------------------------------
+  __cs_thread_index=0u (00000000 00000000 00000000 00000000)
+
+State 261 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function __cs_exit line 101 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 268 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function main line 1565 thread 0
+----------------------------------------------------
+  __cs_pc[0l]=0 (00000)
+
+State 269 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function main line 1568 thread 0
+----------------------------------------------------
+  __cs_tmp_t1_r0=0 (00000)
+
+State 271 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function main line 1571 thread 0
+----------------------------------------------------
+  __cs_pc_cs[1l]=0 (000000)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c line 1572 function main
+  (signed int)__cs_pc_cs[(signed long int)1] <= 30
+
+State 276 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function main line 1575 thread 0
+----------------------------------------------------
+  __cs_param_thr1_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 314 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function thr1_1 line 901 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 315 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function thr1_1 line 901 thread 0
+----------------------------------------------------
+  __cs_thread_index=1u (00000000 00000000 00000000 00000001)
+
+State 316 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function __cs_exit line 101 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 323 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function main line 1580 thread 0
+----------------------------------------------------
+  __cs_pc[1l]=0 (00000)
+
+State 324 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function main line 1583 thread 0
+----------------------------------------------------
+  __cs_tmp_t2_r0=8 (01000)
+
+State 326 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function main line 1586 thread 0
+----------------------------------------------------
+  __cs_pc_cs[2l]=8 (001000)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c line 1587 function main
+  (signed int)__cs_pc_cs[(signed long int)2] <= 30
+
+State 331 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function main line 1590 thread 0
+----------------------------------------------------
+  __cs_param_thr1_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 333 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function thr1_2 line 907 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 334 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function thr1_2 line 908 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=TRUE (00000001)
+
+State 338 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function thr1_2 line 909 thread 0
+----------------------------------------------------
+  __cs_nondet_thr1_offset=-1 (11111111 11111111 11111111 11111111)
+
+State 349 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function thr1_2 line 913 thread 0
+----------------------------------------------------
+  __cs_param_findMax_1_offset=-1 (11111111 11111111 11111111 11111111)
+
+State 354 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function thr1_2 line 916 thread 0
+----------------------------------------------------
+  __cs_nondet_findMax_1_i=-1 (11111111 11111111 11111111 11111111)
+
+State 359 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function thr1_2 line 926 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 360 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function thr1_2 line 927 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 366 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function thr1_2 line 928 thread 0
+----------------------------------------------------
+  __cs_nondet_findMax_1_e=-1006050324 (11000100 00001000 11100011 11101100)
+
+State 375 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function __CSEQ_atomic_acquire line 309 thread 0
+----------------------------------------------------
+  m=1 (00000000 00000000 00000000 00000001)
+
+State 378 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function thr1_2 line 938 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 379 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function thr1_2 line 939 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 384 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function thr1_2 line 940 thread 0
+----------------------------------------------------
+  __cs_nondet_findMax_1___cs_tmp_if_cond_0=TRUE (00000001)
+
+State 388 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function thr1_2 line 945 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 389 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function thr1_2 line 946 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 394 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function thr1_2 line 947 thread 0
+----------------------------------------------------
+  max=-1006050324 (11000100 00001000 11100011 11101100)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c line 949 function thr1_2
+  (signed int)__cs_pc_cs[(signed long int)2] >= 5
+
+State 404 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function __CSEQ_atomic_release line 314 thread 0
+----------------------------------------------------
+  m=0 (00000000 00000000 00000000 00000000)
+
+State 407 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function thr1_2 line 962 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 408 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function thr1_2 line 963 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 413 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function thr1_2 line 964 thread 0
+----------------------------------------------------
+  __cs_nondet_findMax_1___cs_tmp_if_cond_1=FALSE (00000000)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c line 972 function thr1_2
+  (signed int)__cs_pc_cs[(signed long int)2] >= 8
+
+State 420 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function thr1_2 line 980 thread 0
+----------------------------------------------------
+  __cs_nondet_findMax_1_i=0 (00000000 00000000 00000000 00000000)
+
+State 452 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function thr1_2 line 1194 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 453 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function thr1_2 line 1194 thread 0
+----------------------------------------------------
+  __cs_thread_index=2u (00000000 00000000 00000000 00000010)
+
+State 454 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function __cs_exit line 101 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[2l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 461 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function main line 1595 thread 0
+----------------------------------------------------
+  __cs_pc[2l]=8 (01000)
+
+State 462 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function main line 1598 thread 0
+----------------------------------------------------
+  __cs_tmp_t3_r0=3 (00011)
+
+State 464 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function main line 1614 thread 0
+----------------------------------------------------
+  __cs_tmp_t4_r1=0 (000)
+
+State 466 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function main line 1617 thread 0
+----------------------------------------------------
+  __cs_pc_cs[4l]=3 (000011)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c line 1618 function main
+  (signed int)__cs_pc_cs[(signed long int)4] >= (signed int)__cs_pc[(signed long int)4]
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c line 1619 function main
+  (signed int)__cs_pc_cs[(signed long int)4] <= 5
+
+State 479 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function main_thread line 1529 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 480 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function main_thread line 1529 thread 0
+----------------------------------------------------
+  __cs_thread_index=4u (00000000 00000000 00000000 00000100)
+
+State 481 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function __cs_exit line 101 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[4l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 488 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function main line 1627 thread 0
+----------------------------------------------------
+  __cs_pc[4l]=3 (00011)
+
+State 489 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function main line 1630 thread 0
+----------------------------------------------------
+  __cs_tmp_t0_r1=8 (01000)
+
+State 491 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function main line 1633 thread 0
+----------------------------------------------------
+  __cs_pc_cs[0l]=8 (001000)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c line 1634 function main
+  (signed int)__cs_pc_cs[(signed long int)0] >= (signed int)__cs_pc[(signed long int)0]
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c line 1635 function main
+  (signed int)__cs_pc_cs[(signed long int)0] <= 30
+
+State 497 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function main line 1638 thread 0
+----------------------------------------------------
+  __cs_param_thr1_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 499 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function thr1_0 line 321 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 500 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function thr1_0 line 322 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=TRUE (00000001)
+
+State 504 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function thr1_0 line 323 thread 0
+----------------------------------------------------
+  __cs_nondet_thr1_offset=1005456254 (00111011 11101110 00001011 01111110)
+
+State 521 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function thr1_0 line 327 thread 0
+----------------------------------------------------
+  __cs_param_findMax_1_offset=1005456254 (00111011 11101110 00001011 01111110)
+
+State 526 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function thr1_0 line 330 thread 0
+----------------------------------------------------
+  __cs_nondet_findMax_1_i=1005456254 (00111011 11101110 00001011 01111110)
+
+State 531 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function thr1_0 line 340 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 532 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function thr1_0 line 341 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 538 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function thr1_0 line 342 thread 0
+----------------------------------------------------
+  __cs_nondet_findMax_1_e=-836476157 (11001110 00100100 01100011 00000011)
+
+State 547 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function __CSEQ_atomic_acquire line 309 thread 0
+----------------------------------------------------
+  m=1 (00000000 00000000 00000000 00000001)
+
+State 550 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function thr1_0 line 352 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 551 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function thr1_0 line 353 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 556 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function thr1_0 line 354 thread 0
+----------------------------------------------------
+  __cs_nondet_findMax_1___cs_tmp_if_cond_0=TRUE (00000001)
+
+State 560 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function thr1_0 line 359 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 561 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function thr1_0 line 360 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 566 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function thr1_0 line 361 thread 0
+----------------------------------------------------
+  max=-836476157 (11001110 00100100 01100011 00000011)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c line 363 function thr1_0
+  (signed int)__cs_pc_cs[(signed long int)0] >= 5
+
+State 576 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function __CSEQ_atomic_release line 314 thread 0
+----------------------------------------------------
+  m=0 (00000000 00000000 00000000 00000000)
+
+State 579 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function thr1_0 line 376 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 580 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function thr1_0 line 377 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 585 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function thr1_0 line 378 thread 0
+----------------------------------------------------
+  __cs_nondet_findMax_1___cs_tmp_if_cond_1=FALSE (00000000)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c line 386 function thr1_0
+  (signed int)__cs_pc_cs[(signed long int)0] >= 8
+
+State 592 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function thr1_0 line 394 thread 0
+----------------------------------------------------
+  __cs_nondet_findMax_1_i=1005456255 (00111011 11101110 00001011 01111111)
+
+State 624 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function thr1_0 line 608 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 625 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function thr1_0 line 608 thread 0
+----------------------------------------------------
+  __cs_thread_index=0u (00000000 00000000 00000000 00000000)
+
+State 626 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function __cs_exit line 101 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 633 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function main line 1643 thread 0
+----------------------------------------------------
+  __cs_pc[0l]=8 (01000)
+
+State 634 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function main line 1646 thread 0
+----------------------------------------------------
+  __cs_tmp_t1_r1=30 (11110)
+
+State 636 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function main line 1649 thread 0
+----------------------------------------------------
+  __cs_pc_cs[1l]=30 (011110)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c line 1650 function main
+  (signed int)__cs_pc_cs[(signed long int)1] >= (signed int)__cs_pc[(signed long int)1]
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c line 1651 function main
+  (signed int)__cs_pc_cs[(signed long int)1] <= 30
+
+State 642 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function main line 1654 thread 0
+----------------------------------------------------
+  __cs_param_thr1_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 644 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function thr1_1 line 614 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 645 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function thr1_1 line 615 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=TRUE (00000001)
+
+State 649 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function thr1_1 line 616 thread 0
+----------------------------------------------------
+  __cs_nondet_thr1_offset=2147483647 (01111111 11111111 11111111 11111111)
+
+State 660 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function thr1_1 line 620 thread 0
+----------------------------------------------------
+  __cs_param_findMax_1_offset=2147483647 (01111111 11111111 11111111 11111111)
+
+State 665 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function thr1_1 line 623 thread 0
+----------------------------------------------------
+  __cs_nondet_findMax_1_i=2147483647 (01111111 11111111 11111111 11111111)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c line 885 function thr1_1
+  (signed int)__cs_pc_cs[(signed long int)1] >= 30
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c line 889 function thr1_1
+  (signed int)__cs_pc_cs[(signed long int)1] >= 30
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c line 897 function thr1_1
+  (signed int)__cs_pc_cs[(signed long int)1] >= 30
+
+State 675 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function thr1_1 line 901 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 676 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function thr1_1 line 901 thread 0
+----------------------------------------------------
+  __cs_thread_index=1u (00000000 00000000 00000000 00000001)
+
+State 677 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function __cs_exit line 101 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 684 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function main line 1659 thread 0
+----------------------------------------------------
+  __cs_pc[1l]=30 (11110)
+
+State 685 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function main line 1662 thread 0
+----------------------------------------------------
+  __cs_tmp_t2_r1=5 (00101)
+
+State 687 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function main line 1665 thread 0
+----------------------------------------------------
+  __cs_pc_cs[2l]=13 (001101)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c line 1666 function main
+  (signed int)__cs_pc_cs[(signed long int)2] >= (signed int)__cs_pc[(signed long int)2]
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c line 1667 function main
+  (signed int)__cs_pc_cs[(signed long int)2] <= 30
+
+State 691 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function main line 1669 thread 0
+----------------------------------------------------
+  __cs_dataraceDetectionStarted=TRUE (00000001)
+
+State 694 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function main line 1670 thread 0
+----------------------------------------------------
+  __cs_param_thr1_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 705 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function thr1_2 line 990 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 706 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function thr1_2 line 991 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=TRUE (00000001)
+
+State 712 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function thr1_2 line 992 thread 0
+----------------------------------------------------
+  __cs_nondet_findMax_1_e=0 (00000000 00000000 00000000 00000000)
+
+State 721 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function __CSEQ_atomic_acquire line 309 thread 0
+----------------------------------------------------
+  m=1 (00000000 00000000 00000000 00000001)
+
+State 724 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function thr1_2 line 1002 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 725 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function thr1_2 line 1003 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 730 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function thr1_2 line 1004 thread 0
+----------------------------------------------------
+  __cs_nondet_findMax_1___cs_tmp_if_cond_0=TRUE (00000001)
+
+State 734 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function thr1_2 line 1009 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 735 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function thr1_2 line 1010 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 740 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function thr1_2 line 1011 thread 0
+----------------------------------------------------
+  max=0 (00000000 00000000 00000000 00000000)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c line 1013 function thr1_2
+  (signed int)__cs_pc_cs[(signed long int)2] >= 12
+
+State 750 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function __CSEQ_atomic_release line 314 thread 0
+----------------------------------------------------
+  m=0 (00000000 00000000 00000000 00000000)
+
+State 774 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function thr1_2 line 1194 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 775 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function thr1_2 line 1194 thread 0
+----------------------------------------------------
+  __cs_thread_index=2u (00000000 00000000 00000000 00000010)
+
+State 776 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function __cs_exit line 101 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[2l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 783 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function main line 1674 thread 0
+----------------------------------------------------
+  __cs_dataraceSecondThread=TRUE (00000001)
+
+State 784 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function main line 1675 thread 0
+----------------------------------------------------
+  __cs_pc[2l]=13 (01101)
+
+State 785 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function main line 1678 thread 0
+----------------------------------------------------
+  __cs_tmp_t3_r1=25 (11001)
+
+State 787 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function main line 1695 thread 0
+----------------------------------------------------
+  __cs_tmp_t4_r2=0 (000)
+
+State 789 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function main line 1698 thread 0
+----------------------------------------------------
+  __cs_pc_cs[4l]=3 (000011)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c line 1699 function main
+  (signed int)__cs_pc_cs[(signed long int)4] >= (signed int)__cs_pc[(signed long int)4]
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c line 1700 function main
+  (signed int)__cs_pc_cs[(signed long int)4] <= 5
+
+State 802 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function main_thread line 1529 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 803 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function main_thread line 1529 thread 0
+----------------------------------------------------
+  __cs_thread_index=4u (00000000 00000000 00000000 00000100)
+
+State 804 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function __cs_exit line 101 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[4l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 811 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function main line 1707 thread 0
+----------------------------------------------------
+  __cs_dataraceSecondThread=TRUE (00000001)
+
+State 812 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function main line 1708 thread 0
+----------------------------------------------------
+  __cs_pc[4l]=3 (00011)
+
+State 813 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function main line 1711 thread 0
+----------------------------------------------------
+  __cs_tmp_t0_r2=1 (00001)
+
+State 815 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function main line 1714 thread 0
+----------------------------------------------------
+  __cs_pc_cs[0l]=9 (001001)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c line 1715 function main
+  (signed int)__cs_pc_cs[(signed long int)0] >= (signed int)__cs_pc[(signed long int)0]
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c line 1716 function main
+  (signed int)__cs_pc_cs[(signed long int)0] <= 30
+
+State 821 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function main line 1719 thread 0
+----------------------------------------------------
+  __cs_param_thr1_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 832 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function thr1_0 line 404 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=TRUE (00000001)
+
+State 833 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function thr1_0 line 405 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=TRUE (00000001)
+
+State 845 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function thr1_0 line 406 thread 0
+----------------------------------------------------
+  __cs_dataraceNotDetected=TRUE (00000001)
+
+State 855 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function thr1_0 line 406 thread 0
+----------------------------------------------------
+  __cs_dataraceNotDetected=TRUE (00000001)
+
+State 865 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function thr1_0 line 406 thread 0
+----------------------------------------------------
+  __cs_dataraceNotDetected=FALSE (00000000)
+
+State 866 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function thr1_0 line 406 thread 0
+----------------------------------------------------
+  __cs_nondet_findMax_1_e=-1910217981 (10001110 00100100 01100011 00000011)
+
+State 894 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function thr1_0 line 608 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 895 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function thr1_0 line 608 thread 0
+----------------------------------------------------
+  __cs_thread_index=0u (00000000 00000000 00000000 00000000)
+
+State 896 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function __cs_exit line 101 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 902 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function main line 1721 thread 0
+----------------------------------------------------
+  __cs_dataraceContinue=FALSE (00000000)
+
+State 904 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function main line 1723 thread 0
+----------------------------------------------------
+  __cs_dataraceSecondThread=TRUE (00000001)
+
+State 905 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function main line 1724 thread 0
+----------------------------------------------------
+  __cs_pc[0l]=9 (01001)
+
+State 906 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function main line 1727 thread 0
+----------------------------------------------------
+  __cs_tmp_t1_r2=12 (01100)
+
+State 908 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function main line 1743 thread 0
+----------------------------------------------------
+  __cs_tmp_t2_r2=23 (10111)
+
+State 910 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function main line 1759 thread 0
+----------------------------------------------------
+  __cs_tmp_t3_r2=3 (00011)
+
+Violated property:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_09_fmaxsym.c function main line 1770 thread 0
+  Data race failure
+  __cs_dataraceNotDetected != FALSE
+
+
+VERIFICATION FAILED
+
+real	0m2,450s
+user	0m2,381s
+sys	0m0,073s

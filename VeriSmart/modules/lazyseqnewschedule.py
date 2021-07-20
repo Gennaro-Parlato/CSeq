@@ -125,15 +125,17 @@ class lazyseqnewschedule(core.module.Translator):
 	def additionalDefs(self):
             return ''
 
-	def initFlags(self):
+	def initFlags(self,count):
             return
  
 	def loadfromstring(self, string, env):
 		if self.getInputParamValue('deadlock') is not None:
 			self._deadlockcheck = True
 
+        
 		threads = int(self.getInputParamValue('threads'))
-		rounds = int(self.getInputParamValue('rounds'))
+		#print(threads)
+		rounds = env.rounds  #int(self.getInputParamValue('rounds'))
 		backend = self.getInputParamValue('backend')
 
 		if self.getInputParamValue("preanalysis") is not None:
@@ -383,6 +385,9 @@ class lazyseqnewschedule(core.module.Translator):
 		   self.__struct_stack.pop()
 		return s
 
+	def additionalCode(self,threadIndex):
+		return ''
+
 
 	def visit_Compound(self, n):
 		compoundList = ["{\n"]
@@ -392,12 +397,12 @@ class lazyseqnewschedule(core.module.Translator):
 		if n.block_items:
 			for stmt in n.block_items:
 
-				self.initFlags()
+				self.initFlags(self.__stmtCount)
 				# Case 1: last statement in a thread (must correspond to last label)
 				if type(stmt) == pycparser.c_ast.FuncCall and stmt.name.name == core.common.changeID['pthread_exit']: ##if type(stmt) == pycparser.c_ast.FuncCall and self._parenthesize_unless_simple(stmt.name) == core.common.changeID['pthread_exit']:
 					self.__stmtCount += 1
 					self.__maxInCompound = self.__stmtCount
-					code = '$F ' + self.visit(stmt) + ';\n'
+					code = '@#@F ' + self.visit(stmt) + ';\n'
 					compoundList.append(code)
 
 				# Case 2: labels
@@ -414,7 +419,8 @@ class lazyseqnewschedule(core.module.Translator):
 						self.__stmtCount += 1
 						self.__maxInCompound = self.__stmtCount
 						threadIndex = self.Parser.threadOccurenceIndex[self.__currentThread]
-						code = '$I1$I2$I3' + self.visit(stmt.stmt) + ';\n'
+						s = self.visit(stmt.stmt)
+						code = '@#@I1' + self.additionalCode(threadIndex) + '@#@I2' + s +  ';\n'
 					elif (not self.__visit_funcReference and (
 						(type(stmt) == pycparser.c_ast.FuncCall and stmt.name.name == '__CSEQ_atomic_begin') or
 						(not self.__atomic and
@@ -431,13 +437,14 @@ class lazyseqnewschedule(core.module.Translator):
 						self.__maxInCompound = self.__stmtCount
 #@@@@		code = self.visit(stmt)
 						threadIndex = self.Parser.threadOccurenceIndex[self.__currentThread]
-						code = '$I1$I2$I3' + self.visit(stmt.stmt) + ';\n'
+						s = self.visit(stmt.stmt)
+						code = '@#@I1' + self.additionalCode(threadIndex) + '@#@I2' + s + ';\n'
 					else:
 						code = self.visit(stmt.stmt) + ';\n'
 
 					guard = ''
 					if not self.__atomic:
-						guard = '$G'
+						guard = '@#@G'
 					code = self._make_indent() + stmt.name + ': ' + guard + code + '\n'
 					compoundList.append(code)
 
@@ -459,7 +466,8 @@ class lazyseqnewschedule(core.module.Translator):
 						self.__stmtCount += 1
 						self.__maxInCompound = self.__stmtCount
 						threadIndex = self.Parser.threadOccurenceIndex[self.__currentThread]
-						code = '$I1$I2$I3' + self.visit(stmt) + ';\n'
+						s =  self.visit(stmt)
+						code = '@#@I1' + self.additionalCode(threadIndex)+ '@#@I2' + s + ';\n'
 					elif (not self.__visit_funcReference and (
 						(type(stmt) == pycparser.c_ast.FuncCall and stmt.name.name == '__CSEQ_atomic_begin') or
 						(not self.__atomic and
@@ -475,7 +483,9 @@ class lazyseqnewschedule(core.module.Translator):
 						self.__stmtCount += 1
 						self.__maxInCompound = self.__stmtCount
 						threadIndex = self.Parser.threadOccurenceIndex[self.__currentThread]
-						code = '$I1$I2$I3' + self.visit(stmt) + ';\n'
+						s = self.visit(stmt)
+						code = '@#@I1' + self.additionalCode(threadIndex) + '@#@I2' + s + ';\n'
+	
 					else:
 						code = self.visit(stmt) + ";\n"
 					compoundList.append(code)
@@ -485,6 +495,7 @@ class lazyseqnewschedule(core.module.Translator):
 		compoundList[len(compoundList)-1] = compoundList[len(compoundList)-1] + '\n}'
 		listToStr = ''.join(stmt for stmt in compoundList)
 		return listToStr
+
 
 	def visit_FuncDef(self, n):
 		if (n.decl.name.startswith('__CSEQ_atomic_') or
@@ -594,17 +605,17 @@ class lazyseqnewschedule(core.module.Translator):
 				#threadIndex = self.Parser.threadIndex[self.__currentThread] if self.__currentThread in self.Parser.threadIndex else 0
 				# GUARD(%s,%s)
 				if not self.__visit_funcReference:
-					# elseHeader = '$G' + str(ifEnd+1) + ' '
-					elseHeader = '$G '
+					# elseHeader = '@G' + str(ifEnd+1) + ' '
+					elseHeader = '@#@G '
 					# if self.__decomposepc:
 						## elseHeader = '__CSEQ_assume( __cs_pc_cs_%s >= %s );' % (threadIndex, str(ifEnd+1))
-						# elseHeader = '__CSEQ_rawline($G__cs_pc_cs_%s >= $$);\n' % (threadIndex)
+						# elseHeader = '__CSEQ_rawline(@G__cs_pc_cs_%s >= $$);\n' % (threadIndex)
 					# elif self.__one_pc_cs:
 						## elseHeader = '__CSEQ_assume( __cs_pc_cs >= %s );' % (str(ifEnd+1))
-						# elseHeader = '__CSEQ_rawline($G__cs_pc_cs_ >= $$);\n'
+						# elseHeader = '__CSEQ_rawline(@G__cs_pc_cs_ >= $$);\n'
 					# else:
 						## elseHeader = '__CSEQ_assume( __cs_pc_cs[%s] >= %s );' % (threadIndex, str(ifEnd+1))
-						# elseHeader = '__CSEQ_rawline($G__cs_pc_cs_[%s] >= $$);\n' % (threadIndex)
+						# elseHeader = '__CSEQ_rawline(@G__cs_pc_cs_[%s] >= $$);\n' % (threadIndex)
 						## elseHeader = (guard.replace('$$',str(self.__stmtCount+1))
 
 			else:
@@ -622,17 +633,17 @@ class lazyseqnewschedule(core.module.Translator):
 			#threadIndex = self.Parser.threadIndex[self.__currentThread] if self.__currentThread in self.Parser.threadIndex else 0
 			# GUARD(%s,%s)
 			if not self.__visit_funcReference:
-				# footer = '$G' + str(nextLabelID) + ' '
-				footer = '$G' + ' '
+				# footer = '@G' + str(nextLabelID) + ' '
+				footer = '@#@G' + ' '
 				#if self.__decomposepc:
 					## footer = '__CSEQ_assume( __cs_pc_cs_%s >= %s );' % (threadIndex, nextLabelID)
-					#footer = '__CSEQ_rawline($G__cs_pc_cs_%s >= $$);\n' % (threadIndex)
+					#footer = '__CSEQ_rawline(@G__cs_pc_cs_%s >= $$);\n' % (threadIndex)
 				#elif self.__one_pc_cs:
 					## footer = '__CSEQ_assume( __cs_pc_cs >= %s );' % (nextLabelID)
-					#footer = '__CSEQ_rawline($G__cs_pc_cs_ >= $$);\n'
+					#footer = '__CSEQ_rawline(@G__cs_pc_cs_ >= $$);\n'
 				#else:
 					## footer = '__CSEQ_assume( __cs_pc_cs[%s] >= %s );' % (threadIndex, nextLabelID)
-					#footer = '__CSEQ_rawline($G__cs_pc_cs_[%s] >= $$);\n' % (threadIndex)
+					#footer = '__CSEQ_rawline(@G__cs_pc_cs_[%s] >= $$);\n' % (threadIndex)
 
 		else:
 			footer = ''
@@ -704,15 +715,16 @@ class lazyseqnewschedule(core.module.Translator):
 	def frefVisit(self,n):
 		return self._parenthesize_unless_simple(n.name)
 
-	def addRetFuncCall(self,fname,tindex=None):
+	def addRetFuncCall(self,fname,args,tindex=None):
 		pass
 
 	def visit_FuncCall(self, n):
-		
 		fref = self.frefVisit(n)
 
 		args = self.visit(n.args)
-
+		#print("FREF: " + fref)
+		#print("ARGS: " + args)
+		#n.show()
 		if fref == '__CSEQ_atomic_begin':
 			if not self.__visit_funcReference:
 				self.__atomic = True
@@ -761,7 +773,7 @@ class lazyseqnewschedule(core.module.Translator):
 			# 17 March 2021
 			#threadIndex = self.Parser.threadIndex[self.__currentThread] if self.__currentThread in self.Parser.threadIndex else 0
 			threadIndex = self.Parser.threadOccurenceIndex[self.__currentThread] if self.__currentThread in self.Parser.threadOccurenceIndex else 0
-			self.addRetFuncCall(fref,threadIndex)
+			self.addRetFuncCall(fref,args,threadIndex)
 			return fref + '(' + args + ', %s)' % threadIndex
 
 		'''
@@ -783,7 +795,7 @@ class lazyseqnewschedule(core.module.Translator):
 				fref.startswith('__cs_cond_wait_')):
 			#threadIndex = self.Parser.threadIndex[self.__currentThread] if self.__currentThread in self.Parser.threadIndex else 0
 			threadIndex= self.Parser.threadOccurenceIndex[self.__currentThread] if self.__currentThread in self.Parser.threadOccurenceIndex else 0 # 17 March 2021
-			self.addRetFuncCall(fref,threadIndex)
+			self.addRetFuncCall(fref,args,threadIndex)
 			return fref + '(' + args + ', %s)' % threadIndex
 
 		#S: fake implementation of pthread_key_create
@@ -796,8 +808,13 @@ class lazyseqnewschedule(core.module.Translator):
 			args = args[:args.rfind(',')]
 			#print (fref + '(' + args + ')')
 
-		self.addRetFuncCall(fref)
-
+#		if fref == core.common.changeID['pthread_create']: # TODO re-write AST-based (see other modules)
+#			self.addRetFuncCall(fref,args, self.Parser.threadOccurenceIndex[fName])
+#		else:
+		self.addRetFuncCall(fref,args)
+		#ret = fref + '(' + args + ')'
+		#print("GMT: " + str(self.getGlobalMemoryTest() ))
+		#print(ret)
 		return fref + '(' + args + ')'
 
 	########################################################################################
@@ -1284,7 +1301,7 @@ class lazyseqnewschedule(core.module.Translator):
 		main += "          unsigned int __cs_tmp_t%s_r0 %s;\n" % (self.Parser.threadOccurenceIndex['main'], self.__extra_nondet)
 		main += "          __cs_pc_cs[%s] = __cs_tmp_t%s_r0;\n" % (self.Parser.threadOccurenceIndex['main'], self.Parser.threadOccurenceIndex['main'])
 		main += "          __CSEQ_assume(__cs_pc_cs[%s] > 0);\n" % self.Parser.threadOccurenceIndex['main']
-		main += "          __CSEQ_assume(__cs_pc_cs[%s] <= %s);\n" % (self.Parser.threadOccurenceIndex['main'], "$ML" + str(self.Parser.threadOccurenceIndex['main']))
+		main += "          __CSEQ_assume(__cs_pc_cs[%s] <= %s);\n" % (self.Parser.threadOccurenceIndex['main'], "@#@ML" + str(self.Parser.threadOccurenceIndex['main']))
 		main += "          main_thread();\n"
 		main += "          __cs_pc[%s] = __cs_pc_cs[%s];\n" % (self.Parser.threadOccurenceIndex['main'], self.Parser.threadOccurenceIndex['main'])
 		main += "\n"
@@ -1297,7 +1314,7 @@ class lazyseqnewschedule(core.module.Translator):
 				main += "         unsigned int __cs_tmp_t%s_r0 %s;\n" % (i, self.__extra_nondet)
 				main += "         if (__cs_active_thread[%s]) {\n" % (i)
 				main += "             __cs_pc_cs[%s] = __cs_tmp_t%s_r0;\n" % (i, i)
-				main += "             __CSEQ_assume(__cs_pc_cs[%s] <= %s);\n" % (i, "$ML" + str(self.Parser.threadOccurenceIndex[t]))
+				main += "             __CSEQ_assume(__cs_pc_cs[%s] <= %s);\n" % (i, "@#@ML" + str(self.Parser.threadOccurenceIndex[t]))
 				main += "             %s(__cs_threadargs[%s]);\n" % (t, i)
 				main += "             __cs_pc[%s] = __cs_pc_cs[%s];\n" % (i, i)
 				main += "         }\n\n"
@@ -1316,7 +1333,7 @@ class lazyseqnewschedule(core.module.Translator):
 			else:
 				main += "             __cs_pc_cs[%s] = __cs_pc[%s] + __cs_tmp_t%s_r%s;\n" % (self.Parser.threadOccurenceIndex['main'], self.Parser.threadOccurenceIndex['main'], self.Parser.threadOccurenceIndex['main'], round)
 			main += "             __CSEQ_assume(__cs_pc_cs[%s] >= __cs_pc[%s]);\n" % (self.Parser.threadOccurenceIndex['main'], self.Parser.threadOccurenceIndex['main'])
-			main += "             __CSEQ_assume(__cs_pc_cs[%s] <= %s);\n" % (self.Parser.threadOccurenceIndex['main'], "$ML" + str(self.Parser.threadOccurenceIndex['main']))
+			main += "             __CSEQ_assume(__cs_pc_cs[%s] <= %s);\n" % (self.Parser.threadOccurenceIndex['main'], "@#@ML" + str(self.Parser.threadOccurenceIndex['main']))
 			main += "             main_thread();\n"
 			main += "             __cs_pc[%s] = __cs_pc_cs[%s];\n" % (self.Parser.threadOccurenceIndex['main'], self.Parser.threadOccurenceIndex['main'])
 			main += "          }\n\n"
@@ -1334,7 +1351,7 @@ class lazyseqnewschedule(core.module.Translator):
 					else:
 						main += "             __cs_pc_cs[%s] = __cs_pc[%s] + __cs_tmp_t%s_r%s;\n" % (i, i, i, round)
 					main += "             __CSEQ_assume(__cs_pc_cs[%s] >= __cs_pc[%s]);\n" % (i, i)
-					main += "             __CSEQ_assume(__cs_pc_cs[%s] <= %s);\n" % (i, "$ML" + str(self.Parser.threadOccurenceIndex[t]))
+					main += "             __CSEQ_assume(__cs_pc_cs[%s] <= %s);\n" % (i, "@#@ML" + str(self.Parser.threadOccurenceIndex[t]))
 					main += "             %s(__cs_threadargs[%s]);\n" % (t, i)
 					main += "             __cs_pc[%s] = __cs_pc_cs[%s];\n" % (i, i)
 					main += "         }\n\n"
@@ -1354,7 +1371,7 @@ class lazyseqnewschedule(core.module.Translator):
 		else:
 			main += "             __cs_pc_cs[%s] = __cs_pc[%s] + __cs_tmp_t%s_r%s;\n" % (self.Parser.threadOccurenceIndex['main'], self.Parser.threadOccurenceIndex['main'], self.Parser.threadOccurenceIndex['main'], ROUNDS)
 		main += "             __CSEQ_assume(__cs_pc_cs[%s] >= __cs_pc[%s]);\n" % (self.Parser.threadOccurenceIndex['main'], self.Parser.threadOccurenceIndex['main'])
-		main += "             __CSEQ_assume(__cs_pc_cs[%s] <= %s);\n" % (self.Parser.threadOccurenceIndex['main'], "$ML" + str(self.Parser.threadOccurenceIndex['main']))
+		main += "             __CSEQ_assume(__cs_pc_cs[%s] <= %s);\n" % (self.Parser.threadOccurenceIndex['main'], "@#@ML" + str(self.Parser.threadOccurenceIndex['main']))
 		main += "             main_thread();\n"
 		main += "           }\n"
 		main += "    return 0;\n"
@@ -1386,7 +1403,7 @@ class lazyseqnewschedule(core.module.Translator):
 		main += "          unsigned int __cs_tmp_t0_r0 %s;\n" % self.__extra_nondet
 		main += "          __CSEQ_assume(__cs_tmp_t0_r0 > 0);\n"
 		main += "          __cs_pc_cs[0] = __cs_tmp_t0_r0;\n"
-		main += "          __CSEQ_assume(__cs_pc_cs[0] <= %s);\n" % "$MLM"
+		main += "          __CSEQ_assume(__cs_pc_cs[0] <= %s);\n" % "@#@MLM"
 		main += "          main_thread();\n"
 		main += "          __cs_last_thread = 0;\n"
 		main += "          __cs_pc[0] = __cs_pc_cs[0];\n"
@@ -1402,7 +1419,7 @@ class lazyseqnewschedule(core.module.Translator):
 				self._bitwidth['main','__cs_run_t%s_r0' % (i)] = 1     # Register to bitwidth parameter
 				main += "         if (__cs_run_t%s_r0) {\n" % (i)
 				main += "             __cs_pc_cs[%s] = __cs_tmp_t%s_r0;\n" % (i, i)
-				main += "             __CSEQ_assume(__cs_pc_cs[%s] <= %s);\n" % (i, "$ML" + str(self.Parser.threadOccurenceIndex[t]))
+				main += "             __CSEQ_assume(__cs_pc_cs[%s] <= %s);\n" % (i, "@#@ML" + str(self.Parser.threadOccurenceIndex[t]))
 				main += "             %s(__cs_threadargs[%s]);\n" % (t, i)
 				main += "             __cs_last_thread = %s;\n" % (i)
 				main += "             __cs_pc[%s] = __cs_pc_cs[%s];\n" % (i, i)
@@ -1425,7 +1442,7 @@ class lazyseqnewschedule(core.module.Translator):
 			else:
 				main += "             __cs_pc_cs[0] = __cs_pc[0] + __cs_tmp_t0_r%s;\n" % (round)
 			main += "             __CSEQ_assume(__cs_pc_cs[0] >= __cs_pc[0]);\n"
-			main += "             __CSEQ_assume(__cs_pc_cs[0] <= %s);\n" % "$MLM"
+			main += "             __CSEQ_assume(__cs_pc_cs[0] <= %s);\n" % "@#@MLM"
 			main += "             main_thread();\n"
 			main += "             __cs_last_thread = 0;\n"
 			main += "             __cs_pc[0] = __cs_pc_cs[0];\n"
@@ -1447,7 +1464,7 @@ class lazyseqnewschedule(core.module.Translator):
 					else:
 						main += "             __cs_pc_cs[%s] = __cs_pc[%s] + __cs_tmp_t%s_r%s;\n" % (i, i, i, round)
 					main += "             __CSEQ_assume(__cs_pc_cs[%s] >= __cs_pc[%s]);\n" % (i, i)
-					main += "             __CSEQ_assume(__cs_pc_cs[%s] <= %s);\n" % (i,"$ML" + str(self.Parser.threadOccurenceIndex[t]))
+					main += "             __CSEQ_assume(__cs_pc_cs[%s] <= %s);\n" % (i,"@#@ML" + str(self.Parser.threadOccurenceIndex[t]))
 					main += "             %s(__cs_threadargs[%s]);\n" % (t, i)
 					main += "             __cs_last_thread = %s;\n" % (i)
 					main += "             __cs_pc[%s] = __cs_pc_cs[%s];\n" % (i, i)
@@ -1468,7 +1485,7 @@ class lazyseqnewschedule(core.module.Translator):
 		else:
 			main += "             __cs_pc_cs[0] = __cs_pc[0] + __cs_tmp_t0_r%s;\n" % (ROUNDS)
 		main += "             __CSEQ_assume(__cs_pc_cs[0] >= __cs_pc[0]);\n"
-		main += "             __CSEQ_assume(__cs_pc_cs[0] <= %s);\n" % "$MLM"
+		main += "             __CSEQ_assume(__cs_pc_cs[0] <= %s);\n" % "@#@MLM"
 		main += "             main_thread();\n"
 		main += "           }\n"
 		main += "    return 0;\n"
@@ -1710,7 +1727,9 @@ class lazyseqnewschedule(core.module.Translator):
 		old_gmt = self.__globalMemoryTest 
 		self.__globalMemoryTest = True
 
-		if self.__atomic: return False  # if between atomic_begin() and atomic_end() calls no context switchs needed..
+		if self.__atomic: 
+			self.__globalMemoryTest = old_gmt
+			return False  # if between atomic_begin() and atomic_end() calls no context switchs needed..
 
 		oldStmtCount = self.__stmtCount             # backup counters
 		oldMaxInCompound = self.__maxInCompound
@@ -1752,6 +1771,9 @@ class lazyseqnewschedule(core.module.Translator):
 	def getThreadName(self):
 		return self.__threadName
 
+	def getCurrentThreadIndex(self):
+		return  self.Parser.threadOccurenceIndex[self.__currentThread]
+
 	def getExtra_nondet(self):
 		return self.__extra_nondet
 
@@ -1767,3 +1789,8 @@ class lazyseqnewschedule(core.module.Translator):
 	def getGuessCsOnly(self):
 		return self.__guess_cs_only
 	
+# predicate methods
+	def isThread(self,name):
+		return (name == 'main' or name in self.Parser.threadName)
+	def isAtomic(self):
+		return self.__atomic

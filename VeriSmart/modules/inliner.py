@@ -132,8 +132,12 @@ class inliner(core.module.Translator):
         if self.getInputParamValue('atomicparameter') is not None:
             self.atomicparameter = True
 
-        if 'unwind' in env.paramvalues:
-            self.recursivebound = int(env.paramvalues['unwind'])
+        #if 'unwind' in env.paramvalues:
+        #    self.recursivebound = int(env.paramvalues['unwind'])
+        #if 'u' in env.paramvalues:
+        #    self.recursivebound = int(env.paramvalues['u'])    
+        self.recursivebound = env.unwind
+        #print(self.recursivebound)
 
         if self.getInputParamValue('nondet-static') is not None:
             self.__nondet_static = True
@@ -544,7 +548,16 @@ class inliner(core.module.Translator):
         if n.bitsize:
             s += ' : ' + self.visit(n.bitsize)
         # S: added to handle declaration of constant variables or struct def with no variables declared, no transformation is required.
-        if "const" in s.split() or n.name == None:
+        spl = s.split()
+        if "const" in spl or n.name == None:
+            #print(spl)
+            if "static" not in spl:
+                if (isinstance(n, c_ast.Decl) and  # it is a declaration
+                     self.currentFunction[-1] != '' and  # Not a global declaration
+                     self.indent_level > 0 and  # This is needed to rule out function decls
+                     not s.startswith('static ') and  # This may not usefull
+                     not self.__parsingStruct):  # and not part of a struct or union
+                   s = "static " + s
             if n.init:
                 processInit = True
                 if isinstance(n.init, c_ast.InitList):

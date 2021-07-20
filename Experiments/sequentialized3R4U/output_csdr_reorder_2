@@ -1,0 +1,1150 @@
+CBMC version 5.32.1 (cbmc-5.32.1-140-g7c8c411038-dirty) 64-bit x86_64 linux
+Parsing /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c
+Converting
+Type-checking _csdr_reorder_2
+file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c line 330 function main_thread: function '__CPROVER_set_field' is not declared
+file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c line 330 function main_thread: function '__CPROVER_get_field' is not declared
+file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c line 1021 function main: function '__CPROVER_field_decl_global' is not declared
+file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c line 1022 function main: function '__CPROVER_field_decl_local' is not declared
+Generating GOTO Program
+Adding CPROVER library (x86_64)
+Removal of function pointers and virtual functions
+Generic Property Instrumentation
+Running with 8 object bits, 56 offset bits (default)
+Starting Bounded Model Checking
+Shadow memory: cannot set_field for &__cs_nondet_main___cs_tmp_if_cond_0
+Shadow memory: cannot set_field for &__cs_nondet_main___cs_tmp_if_cond_1
+aborting path on assume(false) at file <builtin-library-exit> line 7 function exit thread 0
+**** WARNING: no body for function __isoc99_sscanf
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+aborting path on assume(false) at file <builtin-library-exit> line 7 function exit thread 0
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c line 913 function checkThread_0 thread 0
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c line 944 function checkThread_1 thread 0
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c line 975 function checkThread_2 thread 0
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+aborting path on assume(false) at file <builtin-library-exit> line 7 function exit thread 0
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c line 913 function checkThread_0 thread 0
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c line 944 function checkThread_1 thread 0
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c line 975 function checkThread_2 thread 0
+Runtime Symex: 1.20162s
+size of program expression: 42477 steps
+simple slicing removed 5 assignments
+Generated 1 VCC(s), 1 remaining after simplification
+Runtime Postprocess Equation: 0.0072991s
+Passing problem to propositional reduction
+converting SSA
+Runtime Convert SSA: 0.202049s
+Running propositional reduction
+Post-processing
+Runtime Post-process: 2.5183e-05s
+Solving with Glucose Syrup with simplifier
+60834 variables, 136735 clauses
+SAT checker: instance is SATISFIABLE
+Runtime Solver: 0.0932467s
+Runtime decision procedure: 0.29627s
+Building error trace
+Counterexample:
+
+State 22 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function __CPROVER_initialize line 57 thread 0
+----------------------------------------------------
+  __cs_active_thread[0l]=0 (0)
+
+State 23 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function __CPROVER_initialize line 57 thread 0
+----------------------------------------------------
+  __cs_active_thread[1l]=0 (0)
+
+State 24 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function __CPROVER_initialize line 57 thread 0
+----------------------------------------------------
+  __cs_active_thread[2l]=0 (0)
+
+State 25 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function __CPROVER_initialize line 57 thread 0
+----------------------------------------------------
+  __cs_active_thread[3l]=0 (0)
+
+State 26 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function __CPROVER_initialize line 57 thread 0
+----------------------------------------------------
+  __cs_active_thread[4l]=0 (0)
+
+State 27 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function __CPROVER_initialize line 57 thread 0
+----------------------------------------------------
+  __cs_active_thread[5l]=0 (0)
+
+State 28 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function __CPROVER_initialize line 57 thread 0
+----------------------------------------------------
+  __cs_active_thread[6l]=0 (0)
+
+State 29 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function __CPROVER_initialize line 57 thread 0
+----------------------------------------------------
+  __cs_active_thread[7l]=0 (0)
+
+State 30 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function __CPROVER_initialize line 57 thread 0
+----------------------------------------------------
+  __cs_active_thread[8l]=0 (0)
+
+State 39 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function __CPROVER_initialize line 58 thread 0
+----------------------------------------------------
+  __cs_pc[0l]=0 (000000)
+
+State 40 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function __CPROVER_initialize line 58 thread 0
+----------------------------------------------------
+  __cs_pc[1l]=0 (000000)
+
+State 41 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function __CPROVER_initialize line 58 thread 0
+----------------------------------------------------
+  __cs_pc[2l]=0 (000000)
+
+State 42 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function __CPROVER_initialize line 58 thread 0
+----------------------------------------------------
+  __cs_pc[3l]=0 (000000)
+
+State 43 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function __CPROVER_initialize line 58 thread 0
+----------------------------------------------------
+  __cs_pc[4l]=0 (000000)
+
+State 44 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function __CPROVER_initialize line 58 thread 0
+----------------------------------------------------
+  __cs_pc[5l]=0 (000000)
+
+State 45 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function __CPROVER_initialize line 58 thread 0
+----------------------------------------------------
+  __cs_pc[6l]=0 (000000)
+
+State 46 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function __CPROVER_initialize line 58 thread 0
+----------------------------------------------------
+  __cs_pc[7l]=0 (000000)
+
+State 47 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function __CPROVER_initialize line 58 thread 0
+----------------------------------------------------
+  __cs_pc[8l]=0 (000000)
+
+State 49 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function __CPROVER_initialize line 59 thread 0
+----------------------------------------------------
+  __cs_pc_cs[0l]=0 (0000000)
+
+State 50 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function __CPROVER_initialize line 59 thread 0
+----------------------------------------------------
+  __cs_pc_cs[1l]=0 (0000000)
+
+State 51 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function __CPROVER_initialize line 59 thread 0
+----------------------------------------------------
+  __cs_pc_cs[2l]=0 (0000000)
+
+State 52 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function __CPROVER_initialize line 59 thread 0
+----------------------------------------------------
+  __cs_pc_cs[3l]=0 (0000000)
+
+State 53 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function __CPROVER_initialize line 59 thread 0
+----------------------------------------------------
+  __cs_pc_cs[4l]=0 (0000000)
+
+State 54 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function __CPROVER_initialize line 59 thread 0
+----------------------------------------------------
+  __cs_pc_cs[5l]=0 (0000000)
+
+State 55 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function __CPROVER_initialize line 59 thread 0
+----------------------------------------------------
+  __cs_pc_cs[6l]=0 (0000000)
+
+State 56 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function __CPROVER_initialize line 59 thread 0
+----------------------------------------------------
+  __cs_pc_cs[7l]=0 (0000000)
+
+State 57 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function __CPROVER_initialize line 59 thread 0
+----------------------------------------------------
+  __cs_pc_cs[8l]=0 (0000000)
+
+State 59 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function __CPROVER_initialize line 82 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 60 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function __CPROVER_initialize line 82 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 61 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function __CPROVER_initialize line 82 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[2l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 62 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function __CPROVER_initialize line 82 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[3l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 63 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function __CPROVER_initialize line 82 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[4l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 64 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function __CPROVER_initialize line 82 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[5l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 65 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function __CPROVER_initialize line 82 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[6l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 66 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function __CPROVER_initialize line 82 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[7l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 67 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function __CPROVER_initialize line 82 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[8l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 69 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function __CPROVER_initialize line 61 thread 0
+----------------------------------------------------
+  __cs_thread_lines[0l]=35 (100011)
+
+State 70 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function __CPROVER_initialize line 61 thread 0
+----------------------------------------------------
+  __cs_thread_lines[1l]=2 (000010)
+
+State 71 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function __CPROVER_initialize line 61 thread 0
+----------------------------------------------------
+  __cs_thread_lines[2l]=2 (000010)
+
+State 72 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function __CPROVER_initialize line 61 thread 0
+----------------------------------------------------
+  __cs_thread_lines[3l]=2 (000010)
+
+State 73 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function __CPROVER_initialize line 61 thread 0
+----------------------------------------------------
+  __cs_thread_lines[4l]=2 (000010)
+
+State 74 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function __CPROVER_initialize line 61 thread 0
+----------------------------------------------------
+  __cs_thread_lines[5l]=3 (000011)
+
+State 75 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function __CPROVER_initialize line 61 thread 0
+----------------------------------------------------
+  __cs_thread_lines[6l]=3 (000011)
+
+State 76 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function __CPROVER_initialize line 61 thread 0
+----------------------------------------------------
+  __cs_thread_lines[7l]=3 (000011)
+
+State 77 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function __CPROVER_initialize line 61 thread 0
+----------------------------------------------------
+  __cs_thread_lines[8l]=3 (000011)
+
+State 79 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function __CPROVER_initialize line 81 thread 0
+----------------------------------------------------
+  __cs_threadargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 80 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function __CPROVER_initialize line 81 thread 0
+----------------------------------------------------
+  __cs_threadargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 81 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function __CPROVER_initialize line 81 thread 0
+----------------------------------------------------
+  __cs_threadargs[2l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 82 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function __CPROVER_initialize line 81 thread 0
+----------------------------------------------------
+  __cs_threadargs[3l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 83 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function __CPROVER_initialize line 81 thread 0
+----------------------------------------------------
+  __cs_threadargs[4l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 84 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function __CPROVER_initialize line 81 thread 0
+----------------------------------------------------
+  __cs_threadargs[5l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 85 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function __CPROVER_initialize line 81 thread 0
+----------------------------------------------------
+  __cs_threadargs[6l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 86 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function __CPROVER_initialize line 81 thread 0
+----------------------------------------------------
+  __cs_threadargs[7l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 87 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function __CPROVER_initialize line 81 thread 0
+----------------------------------------------------
+  __cs_threadargs[8l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 129 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main line 1023 thread 0
+----------------------------------------------------
+  __cs_dr_ts=10 (01010)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c line 1024 function main
+  (signed int)__cs_dr_ts <= 25
+
+State 131 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main line 1027 thread 0
+----------------------------------------------------
+  __cs_active_thread[0l]=1 (1)
+
+State 132 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main line 1028 thread 0
+----------------------------------------------------
+  __cs_tmp_t0_r0=3 (000011)
+
+State 133 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main line 1029 thread 0
+----------------------------------------------------
+  __cs_pc_cs[0l]=3 (0000011)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c line 1030 function main
+  (signed int)__cs_pc_cs[(signed long int)0] > 0
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c line 1031 function main
+  (signed int)__cs_pc_cs[(signed long int)0] <= 35
+
+State 139 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main_thread line 320 thread 0
+----------------------------------------------------
+  __cs_param_main_argc=1 (00000000 00000000 00000000 00000001)
+
+State 140 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main_thread line 321 thread 0
+----------------------------------------------------
+  __cs_param_main_argv=((char **)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 142 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main_thread line 323 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 143 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main_thread line 324 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=TRUE (00000001)
+
+State 147 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main_thread line 330 thread 0
+----------------------------------------------------
+  __cs_nondet_main___cs_tmp_if_cond_0=FALSE (00000000)
+
+State 152 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main_thread line 356 thread 0
+----------------------------------------------------
+  __cs_nondet_main_i=0 (00000000 00000000 00000000 00000000)
+
+State 163 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main_thread line 367 thread 0
+----------------------------------------------------
+  __cs_new_thread_id=((signed int *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 164 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main_thread line 367 thread 0
+----------------------------------------------------
+  __cs_attr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 165 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main_thread line 367 thread 0
+----------------------------------------------------
+  __cs_thread_function=setThread_0 (00011110 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 166 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main_thread line 367 thread 0
+----------------------------------------------------
+  __cs_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 167 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main_thread line 367 thread 0
+----------------------------------------------------
+  __cs_threadID=1 (00000000 00000000 00000000 00000001)
+
+State 170 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function __cs_create line 88 thread 0
+----------------------------------------------------
+  __cs_active_thread[1l]=1 (1)
+
+State 171 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function __cs_create line 89 thread 0
+----------------------------------------------------
+  __cs_threadargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 174 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main_thread line 367 thread 0
+----------------------------------------------------
+  __cs_nondet_main_err=0 (00000000 00000000 00000000 00000000)
+
+State 175 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main_thread line 367 thread 0
+----------------------------------------------------
+  __cs_nondet_main___cs_tmp_if_cond_2=FALSE (00000000)
+
+State 180 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main_thread line 376 thread 0
+----------------------------------------------------
+  __cs_nondet_main_i=1 (00000000 00000000 00000000 00000001)
+
+State 185 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main_thread line 391 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=TRUE (00000001)
+
+State 186 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main_thread line 392 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 195 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main_thread line 393 thread 0
+----------------------------------------------------
+  __cs_new_thread_id=((signed int *)NULL) + 4l (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000100)
+
+State 196 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main_thread line 393 thread 0
+----------------------------------------------------
+  __cs_attr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 197 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main_thread line 393 thread 0
+----------------------------------------------------
+  __cs_thread_function=setThread_1 (00011111 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 198 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main_thread line 393 thread 0
+----------------------------------------------------
+  __cs_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 199 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main_thread line 393 thread 0
+----------------------------------------------------
+  __cs_threadID=2 (00000000 00000000 00000000 00000010)
+
+State 201 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function __cs_create line 87 thread 0
+----------------------------------------------------
+  __cs_new_thread_id$object=2 (00000000 00000000 00000000 00000010)
+
+State 202 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function __cs_create line 88 thread 0
+----------------------------------------------------
+  __cs_active_thread[2l]=1 (1)
+
+State 203 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function __cs_create line 89 thread 0
+----------------------------------------------------
+  __cs_threadargs[2l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 206 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main_thread line 393 thread 0
+----------------------------------------------------
+  __cs_nondet_main_err=0 (00000000 00000000 00000000 00000000)
+
+State 207 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main_thread line 393 thread 0
+----------------------------------------------------
+  __cs_nondet_main___cs_tmp_if_cond_2=FALSE (00000000)
+
+State 212 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main_thread line 402 thread 0
+----------------------------------------------------
+  __cs_nondet_main_i=2 (00000000 00000000 00000000 00000010)
+
+State 247 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main_thread line 813 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 248 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main_thread line 813 thread 0
+----------------------------------------------------
+  __cs_thread_index=0u (00000000 00000000 00000000 00000000)
+
+State 249 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function __cs_exit line 101 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 255 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main line 1037 thread 0
+----------------------------------------------------
+  __cs_pc[0l]=3 (000011)
+
+State 256 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main line 1028 thread 0
+----------------------------------------------------
+  __cs_tmp_t0_r0=2 (000010)
+
+State 258 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main line 1042 thread 0
+----------------------------------------------------
+  __cs_pc_cs[0l]=2 (0000010)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c line 1043 function main
+  (signed int)__cs_pc_cs[(signed long int)0] <= 2
+
+State 263 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main line 1046 thread 0
+----------------------------------------------------
+  __cs_param_setThread_param=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 268 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function setThread_0 line 833 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 269 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function setThread_0 line 833 thread 0
+----------------------------------------------------
+  __cs_thread_index=1u (00000000 00000000 00000000 00000001)
+
+State 270 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function __cs_exit line 101 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 277 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main line 1051 thread 0
+----------------------------------------------------
+  __cs_pc[0l]=2 (000010)
+
+State 278 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main line 1054 thread 0
+----------------------------------------------------
+  __cs_tmp_t1_r0=2 (10)
+
+State 280 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main line 1057 thread 0
+----------------------------------------------------
+  __cs_pc_cs[1l]=2 (0000010)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c line 1058 function main
+  (signed int)__cs_pc_cs[(signed long int)1] <= 2
+
+State 285 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main line 1061 thread 0
+----------------------------------------------------
+  __cs_param_setThread_param=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 290 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function setThread_1 line 853 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 291 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function setThread_1 line 853 thread 0
+----------------------------------------------------
+  __cs_thread_index=2u (00000000 00000000 00000000 00000010)
+
+State 292 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function __cs_exit line 101 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[2l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 299 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main line 1066 thread 0
+----------------------------------------------------
+  __cs_pc[1l]=2 (000010)
+
+State 300 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main line 1069 thread 0
+----------------------------------------------------
+  __cs_tmp_t2_r0=0 (00)
+
+State 302 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main line 1072 thread 0
+----------------------------------------------------
+  __cs_pc_cs[2l]=0 (0000000)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c line 1073 function main
+  (signed int)__cs_pc_cs[(signed long int)2] <= 2
+
+State 307 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main line 1076 thread 0
+----------------------------------------------------
+  __cs_param_setThread_param=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 312 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function setThread_2 line 873 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 313 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function setThread_2 line 873 thread 0
+----------------------------------------------------
+  __cs_thread_index=3u (00000000 00000000 00000000 00000011)
+
+State 314 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function __cs_exit line 101 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[3l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 321 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main line 1081 thread 0
+----------------------------------------------------
+  __cs_pc[2l]=0 (000000)
+
+State 322 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main line 1084 thread 0
+----------------------------------------------------
+  __cs_tmp_t3_r0=1 (01)
+
+State 324 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main line 1099 thread 0
+----------------------------------------------------
+  __cs_tmp_t4_r0=0 (00)
+
+State 326 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main line 1114 thread 0
+----------------------------------------------------
+  __cs_tmp_t5_r0=2 (10)
+
+State 328 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main line 1129 thread 0
+----------------------------------------------------
+  __cs_tmp_t6_r0=2 (10)
+
+State 330 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main line 1144 thread 0
+----------------------------------------------------
+  __cs_tmp_t7_r0=2 (10)
+
+State 332 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main line 1160 thread 0
+----------------------------------------------------
+  __cs_tmp_t0_r1=0 (000000)
+
+State 334 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main line 1163 thread 0
+----------------------------------------------------
+  __cs_pc_cs[0l]=2 (0000010)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c line 1164 function main
+  (signed int)__cs_pc_cs[(signed long int)0] >= (signed int)__cs_pc[(signed long int)0]
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c line 1165 function main
+  (signed int)__cs_pc_cs[(signed long int)0] <= 35
+
+State 340 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main_thread line 320 thread 0
+----------------------------------------------------
+  __cs_param_main_argc=0 (00000000 00000000 00000000 00000000)
+
+State 341 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main_thread line 321 thread 0
+----------------------------------------------------
+  __cs_param_main_argv=&__cs_param_main_argv$object + 2251799813685247l (00101001 00111111 11111111 11111111 11111111 11111111 11111111 11111000)
+
+State 379 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main_thread line 813 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 380 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main_thread line 813 thread 0
+----------------------------------------------------
+  __cs_thread_index=0u (00000000 00000000 00000000 00000000)
+
+State 381 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function __cs_exit line 101 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 388 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main line 1173 thread 0
+----------------------------------------------------
+  __cs_pc[0l]=2 (000010)
+
+State 389 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main line 1160 thread 0
+----------------------------------------------------
+  __cs_tmp_t0_r1=0 (000000)
+
+State 391 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main line 1179 thread 0
+----------------------------------------------------
+  __cs_pc_cs[0l]=2 (0000010)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c line 1180 function main
+  (signed int)__cs_pc_cs[(signed long int)0] >= (signed int)__cs_pc[(signed long int)0]
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c line 1181 function main
+  (signed int)__cs_pc_cs[(signed long int)0] <= 2
+
+State 395 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main line 1183 thread 0
+----------------------------------------------------
+  __cs_dataraceDetectionStarted=TRUE (00000001)
+
+State 398 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main line 1184 thread 0
+----------------------------------------------------
+  __cs_param_setThread_param=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 403 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function setThread_0 line 833 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 404 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function setThread_0 line 833 thread 0
+----------------------------------------------------
+  __cs_thread_index=1u (00000000 00000000 00000000 00000001)
+
+State 405 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function __cs_exit line 101 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 412 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main line 1188 thread 0
+----------------------------------------------------
+  __cs_dataraceSecondThread=TRUE (00000001)
+
+State 413 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main line 1189 thread 0
+----------------------------------------------------
+  __cs_pc[0l]=2 (000010)
+
+State 414 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main line 1192 thread 0
+----------------------------------------------------
+  __cs_tmp_t1_r1=0 (00)
+
+State 416 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main line 1195 thread 0
+----------------------------------------------------
+  __cs_pc_cs[1l]=2 (0000010)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c line 1196 function main
+  (signed int)__cs_pc_cs[(signed long int)1] >= (signed int)__cs_pc[(signed long int)1]
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c line 1197 function main
+  (signed int)__cs_pc_cs[(signed long int)1] <= 2
+
+State 422 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main line 1200 thread 0
+----------------------------------------------------
+  __cs_param_setThread_param=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 427 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function setThread_1 line 853 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 428 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function setThread_1 line 853 thread 0
+----------------------------------------------------
+  __cs_thread_index=2u (00000000 00000000 00000000 00000010)
+
+State 429 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function __cs_exit line 101 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[2l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 436 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main line 1204 thread 0
+----------------------------------------------------
+  __cs_dataraceSecondThread=TRUE (00000001)
+
+State 437 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main line 1205 thread 0
+----------------------------------------------------
+  __cs_pc[1l]=2 (000010)
+
+State 438 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main line 1208 thread 0
+----------------------------------------------------
+  __cs_tmp_t2_r1=0 (00)
+
+State 440 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main line 1211 thread 0
+----------------------------------------------------
+  __cs_pc_cs[2l]=0 (0000000)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c line 1212 function main
+  (signed int)__cs_pc_cs[(signed long int)2] >= (signed int)__cs_pc[(signed long int)2]
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c line 1213 function main
+  (signed int)__cs_pc_cs[(signed long int)2] <= 2
+
+State 446 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main line 1216 thread 0
+----------------------------------------------------
+  __cs_param_setThread_param=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 451 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function setThread_2 line 873 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 452 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function setThread_2 line 873 thread 0
+----------------------------------------------------
+  __cs_thread_index=3u (00000000 00000000 00000000 00000011)
+
+State 453 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function __cs_exit line 101 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[3l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 460 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main line 1220 thread 0
+----------------------------------------------------
+  __cs_dataraceSecondThread=TRUE (00000001)
+
+State 461 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main line 1221 thread 0
+----------------------------------------------------
+  __cs_pc[2l]=0 (000000)
+
+State 462 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main line 1224 thread 0
+----------------------------------------------------
+  __cs_tmp_t3_r1=0 (00)
+
+State 464 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main line 1240 thread 0
+----------------------------------------------------
+  __cs_tmp_t4_r1=0 (00)
+
+State 466 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main line 1256 thread 0
+----------------------------------------------------
+  __cs_tmp_t5_r1=3 (11)
+
+State 468 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main line 1272 thread 0
+----------------------------------------------------
+  __cs_tmp_t6_r1=3 (11)
+
+State 470 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main line 1288 thread 0
+----------------------------------------------------
+  __cs_tmp_t7_r1=0 (00)
+
+State 472 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main line 1305 thread 0
+----------------------------------------------------
+  __cs_tmp_t0_r2=24 (011000)
+
+State 474 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main line 1308 thread 0
+----------------------------------------------------
+  __cs_pc_cs[0l]=26 (0011010)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c line 1309 function main
+  (signed int)__cs_pc_cs[(signed long int)0] >= (signed int)__cs_pc[(signed long int)0]
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c line 1310 function main
+  (signed int)__cs_pc_cs[(signed long int)0] <= 35
+
+State 480 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main_thread line 320 thread 0
+----------------------------------------------------
+  __cs_param_main_argc=0 (00000000 00000000 00000000 00000000)
+
+State 481 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main_thread line 321 thread 0
+----------------------------------------------------
+  __cs_param_main_argv=INVALID (00000001 00111111 11111111 11111111 11111111 11111111 11111111 11110000)
+
+State 485 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main_thread line 391 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 486 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main_thread line 392 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=TRUE (00000001)
+
+State 497 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main_thread line 393 thread 0
+----------------------------------------------------
+  __cs_dataraceNotDetected=FALSE (00000000)
+
+State 503 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main_thread line 393 thread 0
+----------------------------------------------------
+  __cs_dataraceNotDetected=FALSE (00000000)
+
+State 508 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main_thread line 393 thread 0
+----------------------------------------------------
+  __cs_dataraceNotDetected=FALSE (00000000)
+
+State 513 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main_thread line 393 thread 0
+----------------------------------------------------
+  __cs_dataraceNotDetected=FALSE (00000000)
+
+State 516 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main_thread line 393 thread 0
+----------------------------------------------------
+  __cs_new_thread_id=((signed int *)NULL) + 8l (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00001000)
+
+State 517 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main_thread line 393 thread 0
+----------------------------------------------------
+  __cs_attr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 518 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main_thread line 393 thread 0
+----------------------------------------------------
+  __cs_thread_function=setThread_1 (00011111 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 519 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main_thread line 393 thread 0
+----------------------------------------------------
+  __cs_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 520 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main_thread line 393 thread 0
+----------------------------------------------------
+  __cs_threadID=2 (00000000 00000000 00000000 00000010)
+
+State 522 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function __cs_create line 87 thread 0
+----------------------------------------------------
+  __cs_new_thread_id$object=2 (00000000 00000000 00000000 00000010)
+
+State 523 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function __cs_create line 88 thread 0
+----------------------------------------------------
+  __cs_active_thread[2l]=1 (1)
+
+State 524 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function __cs_create line 89 thread 0
+----------------------------------------------------
+  __cs_threadargs[2l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 527 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main_thread line 393 thread 0
+----------------------------------------------------
+  __cs_nondet_main_err=0 (00000000 00000000 00000000 00000000)
+
+State 528 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main_thread line 393 thread 0
+----------------------------------------------------
+  __cs_nondet_main___cs_tmp_if_cond_2=FALSE (00000000)
+
+State 533 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main_thread line 394 thread 0
+----------------------------------------------------
+  __cs_dataraceNotDetected=FALSE (00000000)
+
+State 540 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main_thread line 402 thread 0
+----------------------------------------------------
+  __cs_dataraceNotDetected=FALSE (00000000)
+
+State 541 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main_thread line 402 thread 0
+----------------------------------------------------
+  __cs_nondet_main_i=3 (00000000 00000000 00000000 00000011)
+
+State 547 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main_thread line 405 thread 0
+----------------------------------------------------
+  __cs_dataraceNotDetected=FALSE (00000000)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c line 460 function main_thread
+  (signed int)__cs_pc_cs[(signed long int)0] >= 8
+
+State 556 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main_thread line 463 thread 0
+----------------------------------------------------
+  __cs_dataraceNotDetected=FALSE (00000000)
+
+State 557 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main_thread line 463 thread 0
+----------------------------------------------------
+  __cs_nondet_main_i=0 (00000000 00000000 00000000 00000000)
+
+State 563 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main_thread line 466 thread 0
+----------------------------------------------------
+  __cs_dataraceNotDetected=FALSE (00000000)
+
+State 566 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main_thread line 478 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 567 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main_thread line 479 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 576 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main_thread line 480 thread 0
+----------------------------------------------------
+  __cs_new_thread_id=((signed int *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 577 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main_thread line 480 thread 0
+----------------------------------------------------
+  __cs_attr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 578 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main_thread line 480 thread 0
+----------------------------------------------------
+  __cs_thread_function=checkThread_0 (00100010 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 579 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main_thread line 480 thread 0
+----------------------------------------------------
+  __cs_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 580 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main_thread line 480 thread 0
+----------------------------------------------------
+  __cs_threadID=5 (00000000 00000000 00000000 00000101)
+
+State 582 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function __cs_create line 87 thread 0
+----------------------------------------------------
+  __cs_new_thread_id$object=5 (00000000 00000000 00000000 00000101)
+
+State 583 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function __cs_create line 88 thread 0
+----------------------------------------------------
+  __cs_active_thread[5l]=1 (1)
+
+State 584 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function __cs_create line 89 thread 0
+----------------------------------------------------
+  __cs_threadargs[5l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 587 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main_thread line 480 thread 0
+----------------------------------------------------
+  __cs_nondet_main_err=0 (00000000 00000000 00000000 00000000)
+
+State 588 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main_thread line 481 thread 0
+----------------------------------------------------
+  __cs_nondet_main___cs_tmp_if_cond_3=FALSE (00000000)
+
+State 593 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main_thread line 490 thread 0
+----------------------------------------------------
+  __cs_nondet_main_i=1 (00000000 00000000 00000000 00000001)
+
+State 598 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main_thread line 505 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 599 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main_thread line 506 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 608 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main_thread line 507 thread 0
+----------------------------------------------------
+  __cs_new_thread_id=((signed int *)NULL) + 4l (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000100)
+
+State 609 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main_thread line 507 thread 0
+----------------------------------------------------
+  __cs_attr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 610 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main_thread line 507 thread 0
+----------------------------------------------------
+  __cs_thread_function=checkThread_1 (00100011 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 611 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main_thread line 507 thread 0
+----------------------------------------------------
+  __cs_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 612 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main_thread line 507 thread 0
+----------------------------------------------------
+  __cs_threadID=6 (00000000 00000000 00000000 00000110)
+
+State 614 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function __cs_create line 87 thread 0
+----------------------------------------------------
+  __cs_new_thread_id$object=6 (00000000 00000000 00000000 00000110)
+
+State 615 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function __cs_create line 88 thread 0
+----------------------------------------------------
+  __cs_active_thread[6l]=1 (1)
+
+State 616 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function __cs_create line 89 thread 0
+----------------------------------------------------
+  __cs_threadargs[6l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 619 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main_thread line 507 thread 0
+----------------------------------------------------
+  __cs_nondet_main_err=0 (00000000 00000000 00000000 00000000)
+
+State 620 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main_thread line 508 thread 0
+----------------------------------------------------
+  __cs_nondet_main___cs_tmp_if_cond_3=FALSE (00000000)
+
+State 625 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main_thread line 517 thread 0
+----------------------------------------------------
+  __cs_nondet_main_i=2 (00000000 00000000 00000000 00000010)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c line 577 function main_thread
+  (signed int)__cs_pc_cs[(signed long int)0] >= 17
+
+State 633 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main_thread line 580 thread 0
+----------------------------------------------------
+  __cs_nondet_main_i=0 (00000000 00000000 00000000 00000000)
+
+State 638 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main_thread line 595 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 639 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main_thread line 596 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 649 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main_thread line 597 thread 0
+----------------------------------------------------
+  __cs_id=14 (00000000 00000000 00000000 00001110)
+
+State 650 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main_thread line 597 thread 0
+----------------------------------------------------
+  __cs_value_ptr=((va_list)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c line 95 function __cs_join
+  __cs_pc[(signed long int)__cs_id] == __cs_thread_lines[(signed long int)__cs_id]
+
+State 655 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main_thread line 597 thread 0
+----------------------------------------------------
+  __cs_nondet_main_err=0 (00000000 00000000 00000000 00000000)
+
+State 656 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main_thread line 597 thread 0
+----------------------------------------------------
+  __cs_nondet_main___cs_tmp_if_cond_4=FALSE (00000000)
+
+State 661 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main_thread line 606 thread 0
+----------------------------------------------------
+  __cs_nondet_main_i=1 (00000000 00000000 00000000 00000001)
+
+State 666 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main_thread line 621 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 667 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main_thread line 622 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 677 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main_thread line 623 thread 0
+----------------------------------------------------
+  __cs_id=1 (00000000 00000000 00000000 00000001)
+
+State 678 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main_thread line 623 thread 0
+----------------------------------------------------
+  __cs_value_ptr=((va_list)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c line 95 function __cs_join
+  __cs_pc[(signed long int)__cs_id] == __cs_thread_lines[(signed long int)__cs_id]
+
+State 683 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main_thread line 623 thread 0
+----------------------------------------------------
+  __cs_nondet_main_err=0 (00000000 00000000 00000000 00000000)
+
+State 684 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main_thread line 623 thread 0
+----------------------------------------------------
+  __cs_nondet_main___cs_tmp_if_cond_4=FALSE (00000000)
+
+State 689 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main_thread line 632 thread 0
+----------------------------------------------------
+  __cs_nondet_main_i=2 (00000000 00000000 00000000 00000010)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c line 690 function main_thread
+  (signed int)__cs_pc_cs[(signed long int)0] >= 26
+
+State 697 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main_thread line 693 thread 0
+----------------------------------------------------
+  __cs_nondet_main_i=0 (00000000 00000000 00000000 00000000)
+
+State 709 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main_thread line 813 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 710 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main_thread line 813 thread 0
+----------------------------------------------------
+  __cs_thread_index=0u (00000000 00000000 00000000 00000000)
+
+State 711 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function __cs_exit line 101 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 717 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main line 1315 thread 0
+----------------------------------------------------
+  __cs_dataraceContinue=FALSE (00000000)
+
+State 719 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main line 1317 thread 0
+----------------------------------------------------
+  __cs_dataraceSecondThread=TRUE (00000001)
+
+State 720 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main line 1318 thread 0
+----------------------------------------------------
+  __cs_pc[0l]=26 (011010)
+
+State 721 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main line 1305 thread 0
+----------------------------------------------------
+  __cs_tmp_t0_r2=0 (000000)
+
+State 723 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main line 1337 thread 0
+----------------------------------------------------
+  __cs_tmp_t1_r2=0 (00)
+
+State 725 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main line 1353 thread 0
+----------------------------------------------------
+  __cs_tmp_t2_r2=0 (00)
+
+State 727 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main line 1369 thread 0
+----------------------------------------------------
+  __cs_tmp_t3_r2=0 (00)
+
+State 729 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main line 1385 thread 0
+----------------------------------------------------
+  __cs_tmp_t4_r2=0 (00)
+
+State 731 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main line 1401 thread 0
+----------------------------------------------------
+  __cs_tmp_t5_r2=0 (00)
+
+State 733 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main line 1417 thread 0
+----------------------------------------------------
+  __cs_tmp_t6_r2=0 (00)
+
+State 735 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main line 1433 thread 0
+----------------------------------------------------
+  __cs_tmp_t7_r2=0 (00)
+
+Violated property:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_reorder_2.c function main line 1444 thread 0
+  Data race failure
+  __cs_dataraceNotDetected != FALSE
+
+
+VERIFICATION FAILED
+
+real	0m1,873s
+user	0m1,828s
+sys	0m0,049s

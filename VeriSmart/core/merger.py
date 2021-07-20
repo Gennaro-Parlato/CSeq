@@ -152,6 +152,8 @@ struct device {
             line = re.sub(r'__thread _Bool (.*) = 0', r'_Bool __cs_thread_local_\1[THREADS+1] ', line)
             line = re.sub(r'_Thread_local _Bool (.*) = 0', r'_Bool __cs_thread_local_\1[THREADS+1] ', line)
 
+            #line = re.sub(r'__const', r'const', line)	
+
             # fix for void; line
             line = re.sub(r'^void;', '', line)
 
@@ -203,7 +205,7 @@ struct device {
             includestring += ' -I' + ' -I'.join(env.includepath.split(':'))
 
         # Pre-process away GNU C extensions.
-        macros = "-D'__attribute__(x)=' -D'__extension__(x)=' -D'__volatile__=' -D'__asm__=' -D'__attribute(x)=' "
+        macros = "-D'__attribute__(x)=' -D'__extension__(x)=' -D'__volatile__=' -D'__asm__=' -D'__attribute(x)=' -D'__extension__=' -D'__const=const' -D'__restrict=' -D'__inline=' "
 
         #cmdline = 'cpp -Iinclude -E -C ' + filename + ' > ' + filename + '.1' + '.c'
         #cmdline = 'gcc -Iinclude -P -E - '  # hyphen at the end forces input from stdin

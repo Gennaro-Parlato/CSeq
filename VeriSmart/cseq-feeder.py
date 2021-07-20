@@ -41,14 +41,14 @@ import core.utils
 
 import cProfile, pstats
 
-prefixes = {}
-prefixes["lazy"] = "_cs_"
-prefixes["sm_tso"] = "_tso_"
-prefixes["por"] = "_por_"
-prefixes["datarace"] = "_dr_"
-prefixes["dr_swarm"] = "_drswr_"
-prefixes["por_swarm"] = "_porswr_"
-prefixes["swarm"] = "_swr_"
+#prefixes = {}
+#prefixes["lazy"] = "_cs_"
+#prefixes["sm_tso"] = "_tso_"
+#prefixes["por"] = "_por_"
+#prefixes["datarace"] = "_dr_"
+#prefixes["dr_swarm"] = "_drswr_"
+#prefixes["por_swarm"] = "_porswr_"
+#prefixes["swarm"] = "_swr_"
 
 
 class cseqenv:
@@ -78,7 +78,7 @@ class cseqenv:
     cex = False
     cex_dir = ""
     witness = ""
-    seq_only = False
+    #seq_only = False
     instances_only = False
     backend = "cbmc"
     depth = 0  # backend depth bound (if supported by backend, default: no bound)
@@ -286,6 +286,7 @@ def usage(cmd, errormsg, showhelp=True, detail=False, isSwarm=False):
         print("   --timeout<X>                      timeout for each verification process (default: 3600)")
         print("   --cex                             enable counterexample generation (if supported by backend)")
         print("   --cex-dir<X>                      counterexample output directory (default: FILE-counterexample)")
+        print("   --seq                             generate only the sequentialized program (no backend analysis)")
         print("")
         print("CBMC-specific options (requires -b cbmc):")
         print("   --stop-on-fail                    stop when the first error is found")
@@ -533,7 +534,7 @@ def main():
         shortargs = "hHvDLC:SdI:i:c:r:su:w:f:U:YT:M:l:p:b:a:d:W"
         longargs = ["help", "detailedhelp", "version", "debug", "list-configs", "chain=", "showsymbols",
                     "detail", "include=", "input=", "config-file=", "rounds=", "softunwindbound", "unwind=",
-                    "unwind-while=", "unwind-for=", "--soft-unwind-max=",
+                    "unwind-while=", "unwind-for=", "soft-unwind-max=", "seq",
 
                     # Verismart
                     "vs", "contextswitch", "suffix=", "config-only", "cores=", "timelimit=", "memorylimit=",
@@ -641,6 +642,8 @@ def main():
         elif o in ("--instances-limit"):
             cseqenv.instances_limit = int(a)
         elif o in ("--instances-only"):
+            cseqenv.instances_only = True
+        elif o in ("--seq"):
             cseqenv.instances_only = True
 
         elif o in ("--exit-on-error"):

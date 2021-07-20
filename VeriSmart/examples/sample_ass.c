@@ -5,6 +5,8 @@ extern void __VERIFIER_error() __attribute__ ((__noreturn__));
 
 pthread_mutex_t  m;
 int data = 0;
+int g[3];
+int *p;
 
 int foo(int x) {
     return x+5;
@@ -19,16 +21,19 @@ void *thread1(void *arg)
 void *thread2(void *arg)
 {
   int *x, a[3][4];
-  int i=1;
-//  *x =  1;
+//  int i=1;
+//  p =  malloc(sizeof(int));
+//  i = data;
+  *x = data;
 //  data = foo(3)+7;
 //  a[1][1]= 7+x;
 //  *(a+3) = x; 
 //  sizeof (int);
 //  data, x++, a[0][2];
 //  *x = (int) 3.14;
-  data += 3;
-  data = a[i][0] * data;
+//  g[0] += 3;
+//  p[0] = 1;
+//  data = a[i][0] * data;
 }
 
 

@@ -25,9 +25,13 @@ int foo(int x){
    return x+1;
 }
 
+_Bool y;
+
 void *thread3(void *arg)
 {
   int x;
+
+  y = __VERIFIER_nondet_int();
 
   pthread_mutex_lock(&m);
   if (data >= 3){

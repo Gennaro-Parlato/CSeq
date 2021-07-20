@@ -1,0 +1,75 @@
+CBMC version 5.32.1 (cbmc-5.32.1-140-g7c8c411038-dirty) 64-bit x86_64 linux
+Parsing /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_time_var_mutex.c
+Converting
+Type-checking _csdr_time_var_mutex
+file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_time_var_mutex.c line 322 function allocator_0: function '__CPROVER_set_field' is not declared
+file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_time_var_mutex.c line 322 function allocator_0: function '__CPROVER_get_field' is not declared
+file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_time_var_mutex.c line 436 function main_thread: function 'assume_abort_if_not' is not declared
+file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_time_var_mutex.c line 468 function main: function '__CPROVER_field_decl_global' is not declared
+file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_time_var_mutex.c line 469 function main: function '__CPROVER_field_decl_local' is not declared
+Generating GOTO Program
+Adding CPROVER library (x86_64)
+Removal of function pointers and virtual functions
+Generic Property Instrumentation
+Running with 8 object bits, 56 offset bits (default)
+Starting Bounded Model Checking
+**** WARNING: no body for function assume_abort_if_not
+Shadow memory: cannot set_field for &__cs_nondet_allocator___cs_tmp_if_cond_0
+Shadow memory: cannot set_field for &__cs_nondet_allocator___cs_tmp_if_cond_1
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_time_var_mutex.c line 361 function allocator_0 thread 0
+Shadow memory: cannot set_field for &__cs_nondet_de_allocator___cs_tmp_if_cond_2
+Shadow memory: cannot set_field for &__cs_nondet_de_allocator___cs_tmp_if_cond_3
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_time_var_mutex.c line 410 function de_allocator_0 thread 0
+Shadow memory: cannot get_field for &__cs_nondet_main_t1
+Shadow memory: cannot get_field for &__cs_nondet_main_t2
+Shadow memory: cannot set_field for &__cs_nondet_allocator___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_allocator___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_allocator___cs_tmp_if_cond_0
+Shadow memory: cannot set_field for &__cs_nondet_allocator___cs_tmp_if_cond_1
+Shadow memory: cannot get_field for &__cs_nondet_allocator___cs_tmp_if_cond_1
+Shadow memory: cannot get_field for &__cs_nondet_allocator___cs_tmp_if_cond_1
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_time_var_mutex.c line 361 function allocator_0 thread 0
+Shadow memory: cannot set_field for &__cs_nondet_de_allocator___cs_tmp_if_cond_2
+Shadow memory: cannot get_field for &__cs_nondet_de_allocator___cs_tmp_if_cond_2
+Shadow memory: cannot get_field for &__cs_nondet_de_allocator___cs_tmp_if_cond_2
+Shadow memory: cannot set_field for &__cs_nondet_de_allocator___cs_tmp_if_cond_3
+Shadow memory: cannot get_field for &__cs_nondet_de_allocator___cs_tmp_if_cond_3
+Shadow memory: cannot get_field for &__cs_nondet_de_allocator___cs_tmp_if_cond_3
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_time_var_mutex.c line 410 function de_allocator_0 thread 0
+Shadow memory: cannot get_field for &__cs_nondet_main_t1
+Shadow memory: cannot get_field for &__cs_nondet_main_t2
+Shadow memory: cannot set_field for &__cs_nondet_allocator___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_allocator___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_allocator___cs_tmp_if_cond_0
+Shadow memory: cannot set_field for &__cs_nondet_allocator___cs_tmp_if_cond_1
+Shadow memory: cannot get_field for &__cs_nondet_allocator___cs_tmp_if_cond_1
+Shadow memory: cannot get_field for &__cs_nondet_allocator___cs_tmp_if_cond_1
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_time_var_mutex.c line 361 function allocator_0 thread 0
+Shadow memory: cannot set_field for &__cs_nondet_de_allocator___cs_tmp_if_cond_2
+Shadow memory: cannot get_field for &__cs_nondet_de_allocator___cs_tmp_if_cond_2
+Shadow memory: cannot get_field for &__cs_nondet_de_allocator___cs_tmp_if_cond_2
+Shadow memory: cannot set_field for &__cs_nondet_de_allocator___cs_tmp_if_cond_3
+Shadow memory: cannot get_field for &__cs_nondet_de_allocator___cs_tmp_if_cond_3
+Shadow memory: cannot get_field for &__cs_nondet_de_allocator___cs_tmp_if_cond_3
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_time_var_mutex.c line 410 function de_allocator_0 thread 0
+Runtime Symex: 0.0490384s
+size of program expression: 2625 steps
+simple slicing removed 5 assignments
+Generated 55 VCC(s), 55 remaining after simplification
+Runtime Postprocess Equation: 0.000101736s
+Passing problem to propositional reduction
+converting SSA
+Runtime Convert SSA: 0.0118128s
+Running propositional reduction
+Post-processing
+Runtime Post-process: 1.6525e-05s
+Solving with Glucose Syrup with simplifier
+9719 variables, 20592 clauses
+SAT checker: instance is UNSATISFIABLE
+Runtime Solver: 0.0235901s
+Runtime decision procedure: 0.0355123s
+VERIFICATION SUCCESSFUL
+
+real	0m0,157s
+user	0m0,138s
+sys	0m0,021s
