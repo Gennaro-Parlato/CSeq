@@ -132,8 +132,10 @@ class lazyseqnewschedule(core.module.Translator):
 		if self.getInputParamValue('deadlock') is not None:
 			self._deadlockcheck = True
 
+        
 		threads = int(self.getInputParamValue('threads'))
-		rounds = int(self.getInputParamValue('rounds'))
+		#print(threads)
+		rounds = env.rounds  #int(self.getInputParamValue('rounds'))
 		backend = self.getInputParamValue('backend')
 
 		if self.getInputParamValue("preanalysis") is not None:

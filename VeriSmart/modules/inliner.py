@@ -132,8 +132,12 @@ class inliner(core.module.Translator):
         if self.getInputParamValue('atomicparameter') is not None:
             self.atomicparameter = True
 
-        if 'unwind' in env.paramvalues:
-            self.recursivebound = int(env.paramvalues['unwind'])
+        #if 'unwind' in env.paramvalues:
+        #    self.recursivebound = int(env.paramvalues['unwind'])
+        #if 'u' in env.paramvalues:
+        #    self.recursivebound = int(env.paramvalues['u'])    
+        self.recursivebound = env.unwind
+        #print(self.recursivebound)
 
         if self.getInputParamValue('nondet-static') is not None:
             self.__nondet_static = True

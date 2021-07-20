@@ -90,7 +90,8 @@ class unroller(core.module.Translator):
     def loadfromstring(self, string, env, fill_only_fields=None):
         # Set-up unrolling parameters:
         # --unwind has the priority over all others
-        self.unwind = int(env.paramvalues['unwind'])
+        self.unwind = env.unwind  #int(env.paramvalues['unwind'])
+        #print(self.unwind)
 
         if not self.unwind: self.unwind = 1  # Default value
 
