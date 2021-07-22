@@ -285,7 +285,6 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 			return self.__WSE
 
 		ret = ''   # noACC is default
-		wse = n.name
 		self.__optional2 = True
 		
 #		if (n.name == '__cs_param_read_nvram_buf'):
@@ -297,11 +296,12 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 # old condition: 
 # not self.isThread(n.name) and not self.__isArray and not self._isConst(self.getCurrentThread(),n.name) ):
 #			print(self._isVar(self.getCurrentThread(),n.name))
+			#print(n.name)
 			if self.__stats != Stats.noACC: 
 				if self.isAtomic():
-					ret += '( __cs_dataraceActiveVP2 && __cs_dataraceSecondThread  && (__cs_dataraceNotDetected = __cs_dataraceNotDetected && ! __CPROVER_get_field(&%s,"dr_write_noatomic")))' %  wse
+					ret += '( __cs_dataraceActiveVP2 && __cs_dataraceSecondThread  && (__cs_dataraceNotDetected = __cs_dataraceNotDetected && ! __CPROVER_get_field(&%s,"dr_write_noatomic")))' %  n.name
 				else: 
-					ret += '( __cs_dataraceActiveVP2 && __cs_dataraceSecondThread  && (__cs_dataraceNotDetected = __cs_dataraceNotDetected && ! __CPROVER_get_field(&%s,"dr_write")))' %  wse
+					ret += '( __cs_dataraceActiveVP2 && __cs_dataraceSecondThread  && (__cs_dataraceNotDetected = __cs_dataraceNotDetected && ! __CPROVER_get_field(&%s,"dr_write")))' %  n.name
 				self.__VP2required = True
 				self.__optional2 = False
 
@@ -310,14 +310,16 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
                            #self.__visitingLHS = False
 		self.__optional1 = True   # no subexpressions 
 		super(dr_lazyseqnewschedule, self).visit_ID(n)
-		self.__WSE = wse
+		self.__WSE = n.name
                 
 		if self.__stats == Stats.TOP:
-			ret =  wse if ret == '' else '%s, %s' % (ret, wse)
+			ret =  n.name if ret == '' else '%s, %s' % (ret, n.name)
 
 		if self.__isArray:
 			self.__arrayName = n.name
 				
+		#print("#############")
+		#print(n.name)
 		#print("visit_ID ret: " + ret)
 		#print("Optional1: " + str(self.__optional1))
 		#print("Optional2: " + str(self.__optional2))
@@ -373,12 +375,14 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 
                 #self.__access = old_access
 
-
                 self.__stats = Stats.ACC 
 
                 rvalue = self.visit(n.rvalue)
                 #print("RVALUE: " + rvalue)
                 #n.rvalue.show()
+                #print("ALL " )
+                #n.show()
+                #print(rvalue) 
 
                 if not self.__optional2:
                    if ret != '':
@@ -897,6 +901,7 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 		return self.__codeContainsAtomic
 
 	def _isVar(self,f,v):
-		return ( v in self.Parser.varNames[f]) # or v in self.Parser.varNames[''])
+		#print( self.Parser.varNames)
+		return ( v in self.Parser.varNames[f] or v in self.Parser.varNames[''])
 		
 	#	self.Parser.varNames)
