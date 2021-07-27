@@ -93,7 +93,7 @@ class lazyseqnewschedule(core.module.Translator):
 
 	__inReference = False            # True iff within & scope
 	expList = []     #assigned with  the list of the expressions of an ExprList node
-	
+	__enableDR = False
 
 	def init(self):
 		self.addInputParam('rounds', 'round-robin schedules', 'r', '1', False)
@@ -129,6 +129,8 @@ class lazyseqnewschedule(core.module.Translator):
             return
  
 	def loadfromstring(self, string, env):
+		self.__enableDR = env.enableDR
+		
 		if self.getInputParamValue('deadlock') is not None:
 			self._deadlockcheck = True
 
@@ -450,7 +452,8 @@ class lazyseqnewschedule(core.module.Translator):
 
 				# Case 3: all the rest....
 				elif (type(stmt) not in (pycparser.c_ast.Compound, pycparser.c_ast.Goto, pycparser.c_ast.Decl)
-					and not (self.__currentThread=='main' and self.__firstThreadCreate == False) or (self.__currentThread=='main' and self.__stmtCount == -1)) :
+					and not (self.__currentThread=='main' and not self.__enableDR and self.__firstThreadCreate == False) # and not running with datarace --dr => False
+					or (self.__currentThread=='main' and self.__stmtCount == -1)) :
 
 					# --1-- Simulate a visit to the stmt block to see whether it makes any use of pointers or shared memory.
 					globalAccess = self.__globalAccess(stmt)
