@@ -87,7 +87,7 @@ class varnames(core.module.Translator):
 		
 		if self.__noShadow or not self.__enableDR:
 			self.nondetprefix = self.prefix
-		super(self.__class__, self).loadfromstring(string, env, fill_only_fields=['varNames', 'funcName'])
+		super(varnames, self).loadfromstring(string, env, fill_only_fields=['varNames', 'funcName'])
 		self.setOutputParam('varnamesmap', self.varmap)
 		#print str(self.newIDs).replace(', ','\n')
 
@@ -117,7 +117,7 @@ class varnames(core.module.Translator):
 
 	def visit_FuncDef(self, n):
 		self.__visitFuncDef += 1
-		s = super(self.__class__, self).visit_FuncDef(n)
+		s = super(varnames, self).visit_FuncDef(n)
 		self.__visitFuncDef -= 1
 		return s
 
@@ -135,33 +135,33 @@ class varnames(core.module.Translator):
 
 	def visit_Struct(self, n):
 		self.__visitStructUnionEnum += 1
-		s = super(self.__class__, self).visit_Struct(n)
+		s = super(varnames, self).visit_Struct(n)
 		self.__visitStructUnionEnum -= 1
 		return s
 
 	def visit_Union(self, n):
 		self.__visitStructUnionEnum += 1
-		s = super(self.__class__, self).visit_Union(n)
+		s = super(varnames, self).visit_Union(n)
 		self.__visitStructUnionEnum -= 1
 		return s
 
 	def visit_Enum(self, n):
 		self.__visitStructUnionEnum += 1
-		s = super(self.__class__, self).visit_Enum(n)
+		s = super(varnames, self).visit_Enum(n)
 		self.__visitStructUnionEnum -= 1
 		return s
 
 
 	def visit_Typedef(self, n):
 		self.__visitStructUnionEnum += 1
-		s = super(self.__class__, self).visit_Typedef(n)
+		s = super(varnames, self).visit_Typedef(n)
 		self.__visitStructUnionEnum -= 1
 		return s
 
 
 	def visit_FuncDef(self, n):
 		self.__currentFunction = n.decl.name
-		f =  super(self.__class__, self).visit_FuncDef(n)
+		f =  super(varnames, self).visit_FuncDef(n)
 		self.__currentFunction = ''
 		return f
 
@@ -192,16 +192,15 @@ class varnames(core.module.Translator):
 				if self.__debug: print("     stack: " +  str(self.stack) + '   prev:' + str(self.stack[len(self.stack)-2]))
 
 				#prefix = self.newIDs[self.__currentFunction, super(self.__class__, self).visit_ID(n)]
-				prefix = self.newIDs[self.__currentFunction, super(self.__class__, self).visit_ID(n)][-1][0]
+				prefix = self.newIDs[self.__currentFunction, super(varnames, self).visit_ID(n)][-1][0]
 
-				self.varmap[prefix+super(self.__class__, self).visit_ID(n)] = super(self.__class__, self).visit_ID(n)
+				self.varmap[prefix+super(varnames, self).visit_ID(n)] = super(varnames, self).visit_ID(n)
 				#self.warn('%s -> %s' % (prefix+super(self.__class__, self).visit_ID(n), super(self.__class__, self).visit_ID(n)))
 		#print n.name
-		newID = prefix + super(self.__class__, self).visit_ID(n)    
+		newID = prefix + super(varnames, self).visit_ID(n)    
 		#print self.newIDs
 
 		return newID
-		#return prefix + super(self.__class__, self).visit_ID(n)
 
 
 	def _generate_type(self, n, modifiers=[], emit_declname = True):
@@ -302,7 +301,7 @@ class varnames(core.module.Translator):
 
 		def visit_Compound(self, n):
 			self.__visitingCompound += 1
-			s = super(self.__class__, self).visit_Compound(n)
+			s = super(varnames, self).visit_Compound(n)
 			for key in self.newIDs:   #S: remove pairs that have been added in this compound
 				stack = self.newIDs[key] 
 				if stack and stack[-1][1] == self.__visitingCompound: 
