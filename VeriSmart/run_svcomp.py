@@ -3,6 +3,7 @@ import argparse
 # ---------------- Configs ----------------------------------------------------
 import re
 import subprocess
+from time import time
 
 pthread = {
     'relative_path': 'pthread',
@@ -178,9 +179,13 @@ pthread_nondet = {
     'files': ['nondet-array-1.c', 'nondet-array-2.c', 'nondet-loop-bound-1.c', 'nondet-loop-bound-2.c',
               'nondet-loop-bound-variant-1.c', 'nondet-loop-bound-variant-2.c']
 }
+# categories = [
+#    pthread, pthread_atomic, pthread_ext, pthread_wmm, pthread_lit, ldv_races, pthread_complex, pthread_driver_races,
+#    pthread_c_dac, pthread_divine, pthread_nondet
+# ]
+
 categories = [
-    pthread, pthread_atomic, pthread_ext, pthread_wmm, pthread_lit, ldv_races, pthread_complex, pthread_driver_races,
-    pthread_c_dac, pthread_divine, pthread_nondet
+    pthread
 ]
 # -----------------------------------------------------------------------------
 # ------------------------------Command line params setup----------------------
@@ -214,11 +219,13 @@ if __name__ == '__main__':
             filepath = base_file_path + '/' + category['relative_path'] + '/' + f
             print('./lazycseq.py -i %s --unwind %d --rounds %d --seq --debug' % (
                 filepath, unwind_bound, rounds_bound) + dr_str)
+            start_time = time()
             p = subprocess.Popen(
                 ['./lazycseq.py -i %s --unwind %d --rounds %d --seq --debug ' % (
                     filepath, unwind_bound, rounds_bound) + dr_str],
                 stdout=subprocess.PIPE, shell=True)
             output = p.stdout.read()
+            end_time = time()
             if category['relative_path'] not in results:
                 results[category['relative_path']] = dict()
             if f not in results[category['relative_path']]:
@@ -238,6 +245,7 @@ if __name__ == '__main__':
                 results[category['relative_path']][f]['seq_length'] = length
             else:
                 results[category['relative_path']][f]['seq_result'] = 'SEQ ERROR'
+            results[category['relative_path']][f]['seq_time'] = end_time - start_time
 
     for category in categories:
         for f in category['files']:
@@ -247,14 +255,16 @@ if __name__ == '__main__':
             prefix += '_'
             filepath = base_file_path + '/' + category['relative_path'] + '/' + prefix + f
 
-            print('time  timeout 10 -k %d ./cbmc-SM %s --unwind %d --no-unwinding-assertions --stop-on-fail' % (
+            print('timeout 10 -k %d ./cbmc-SM %s --unwind %d --no-unwinding-assertions --stop-on-fail' % (
                 timeout, filepath, unwind_bound))
+            start_time = time()
             p = subprocess.Popen(
                 ['timeout -k 10 %d ./cbmc-SM %s --unwind %d --no-unwinding-assertions --stop-on-fail' % (
                     timeout, filepath, unwind_bound)],
                 stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
             output = p.stdout.read()
-
+            end_time = time()
+            time_taken = end_time - start_time
             if 'VERIFICATION FAILED' in output.decode():
                 results[category['relative_path']][f]['cbmc_result'] = 'P'
             elif 'VERIFICATION SUCCESSFUL' in output.decode():
@@ -268,22 +278,29 @@ if __name__ == '__main__':
                 try:
                     vars_amount = re.findall('(.+) variables,', output.decode())[0]
                     clauses_amount = re.findall('variables, (.+) clauses\n', output.decode())[0]
-                    solver_time = re.findall('Runtime Solver: (.+)\n', output.decode())[0]
+                    solver_time = re.findall('Runtime Solver: (.+)s\n', output.decode())[0]
                     results[category['relative_path']][f]['variables'] = vars_amount
                     results[category['relative_path']][f]['clauses'] = clauses_amount
                     results[category['relative_path']][f]['solver_time'] = solver_time
                 except:
                     pass
+            results[category['relative_path']][f]['total_time'] = time_taken + results[category['relative_path']][f][
+                'seq_time']
 
-    output = ["file, seq-length, variables, clauses, SAT-solver time, result"]
+    output = ["file,result,Total Time, seq-length, variables, clauses, SAT-solver time "]
     for category in categories:
-        output.append(category['relative_path'])
         for f in category['files']:
             try:
-                line = f + ','
+                line = category['relative_path'] + '/' + f + ','
                 if 'seq_length' in results[category['relative_path']][f]:
                     line += results[category['relative_path']][f]['seq_length']
                 line += ','
+                if results[category['relative_path']][f]['seq_result'] == 'SEQ ERROR':
+                    line += 'SEQ ERROR'
+                else:
+                    line += results[category['relative_path']][f]['cbmc_result']
+                line += ','
+                line += str(results[category['relative_path']][f]['total_time']) + ','
                 if 'variables' in results[category['relative_path']][f]:
                     line += results[category['relative_path']][f]['variables']
                 line += ','
@@ -292,11 +309,6 @@ if __name__ == '__main__':
                 line += ','
                 if 'solver_time' in results[category['relative_path']][f]:
                     line += results[category['relative_path']][f]['solver_time']
-                line += ','
-                if results[category['relative_path']][f]['seq_result'] == 'SEQ ERROR':
-                    line += 'SEQ ERROR'
-                else:
-                    line += results[category['relative_path']][f]['cbmc_result']
                 output.append(line)
             except Exception as e:
                 print(e)
