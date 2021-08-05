@@ -159,6 +159,7 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
             #n.show()
             for expr in n.exprs:
                 self.__stats = Stats.TOP
+                self.__optional2 = True
             #    s = self.visit(expr)
             #    print("element: " + s)
                 #print(self.__WSE)
@@ -346,7 +347,6 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
                 #self.__visitingLHS = True
                 #old_access = self.__access
                 #self.__access = False
-
                 lvalue = self.visit(n.lvalue)
                 #print("Visited left-handside")
                 
@@ -380,6 +380,7 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 
                 self.__stats = Stats.ACC 
 
+                self.__optional2 = True
                 rvalue = self.visit(n.rvalue)
                 #print("RVALUE: " + rvalue)
                 #n.rvalue.show()
@@ -427,6 +428,7 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 			self.__stats = Stats.noACC
 			#self.__visitingLHS = True
 			#self.__access = False
+		self.__optional2 = True
 		operand = self._parenthesize_unless_simple(n.expr)
 
 #		ret = '%s%s' % (n.op, operand)
@@ -500,10 +502,11 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 				#print(ret)
 				#return ret
 
-			if old_stats == Stats.TOP: 
+			if (old_stats == Stats.TOP) : 
 				if ret != '':
 					ret += ','
 				ret += self.__WSE
+				#print("TOP:" + ret)
 
 		#self.__visitingLHS =old_visitingLHS  #only used for inc/dec
 		#self.__access = old_access #only used for inc/dec
@@ -528,11 +531,13 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 		old_stats = self.__stats
 
 		self.__stats = Stats.ACC
+		self.__optional2 = True
 		iftrue = self._visit_expr(n.iftrue)
 		wseT = self.__WSE
 		opt2T = self.__optional2
 
 		self.__stats = Stats.ACC
+		self.__optional2 = True
 		iffalse = self._visit_expr(n.iffalse)
 		wseF = self.__WSE
 		opt2F = self.__optional2
@@ -540,6 +545,7 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 		self.__stats = Stats.TOP
 		if opt2T and opt2F:
 			self.__stats = Stats.ACC
+		self.__optional2 = True
 		cond = self._visit_expr(n.cond)
 		wseC = self.__WSE
 		opt2C = self.__optional2
@@ -589,11 +595,13 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 		old_stats = self.__stats
 
 		self.__stats = Stats.ACC
+		self.__optional2 = True
 		lval_str = self._parenthesize_if(n.left, lambda d: not self._is_simple_node(d))
 		wse = self.__WSE
 		optL = self.__optional2
 
 		self.__stats = Stats.ACC
+		self.__optional2 = True
 		rval_str = self._parenthesize_if(n.right, lambda d: not self._is_simple_node(d))
 		#print("RET: " + rval_str)
 		#n.right.show()
@@ -632,6 +640,7 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 
 		self.__visitingStructL = True
 		self.__stats = Stats.noACC
+		self.__optional2 = True
 		sref = self._parenthesize_unless_simple(n.name)
 		opt1 = self.__optional2
 		self.__visitingStructL = old_visitingStruct
@@ -640,6 +649,7 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 
 		old_visitingStruct = self.__visitingStructR
 		self.__visitingStructR = True
+		self.__optional2 = True
 		self.visit(n.field)
 		self.__WSE = wse + n.type + self.__WSE
 		opt2 = self.__optional2
@@ -689,6 +699,7 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
            s = '(' + self._generate_type(n.to_type) + ')'
            if self.__stats == Stats.PRE or self.__stats == Stats.TOP: 
               self.__stats = Stats.ACC     # ACC and noACC stay unchanged
+           self.__optional2 = True
            ret = self._parenthesize_unless_simple(n.expr)
            self.__WSE = s + ' ' + self.__WSE
            if old_stats == Stats.TOP:
@@ -731,6 +742,8 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 	def visit_Typename(self, n):
 		name = super(dr_lazyseqnewschedule,self).visit_Typename(n)
 		self.__WSE = name
+		self.__optional2 = True
+		self.__optional1 = True
 		return name
 
 #	def visit_Compound(self,n):
