@@ -511,8 +511,8 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 
 		self.__stats = old_stats
 
-		print(self.__optional2)
-		print(self.__optional1)
+		#print(self.__optional2)
+		#print(self.__optional1)
 		return ret
 
 
