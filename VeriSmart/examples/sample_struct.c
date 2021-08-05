@@ -16,7 +16,8 @@ void *thread1(void *arg)
 }
 
 typedef struct { char nome[3]; 
-		 int x,y,z; } luogo;
+		 int x,y,z; 
+                 int *p;} luogo;
 
 luogo g = {{0,0,0}, 1, 2, 3};
 
@@ -24,11 +25,12 @@ pthread_mutex_t mut = { { 0, 0, 0, 0, 0, { { 0, 0 } } } };
 
 void *thread2(void *arg)
 {
-  luogo l, *p;
-  l.x = 10;
-  p = (luogo *) malloc(sizeof(luogo));
-  p->x = 100;  
-  g.x = l.y;
+  luogo l, *p, *q;
+//  l.x = 10;
+  q = &l;
+//  p = (luogo *) malloc(sizeof(luogo));
+//  p->x = 100;  
+  p->p = &q->y;
   
 }
 

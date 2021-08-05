@@ -47,7 +47,8 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 #	__access = False  # set to True to denote that the LHS of an assignment is meaningful for data race detection
 	__funcID = False  # set to True iff we are visiting the id of a function  in a function call
 
-	__visitingStruct = False # True iff we are visiting a structure name
+	__visitingStructL = False # True iff we are visiting a structure name
+	__visitingStructR = False # True iff we are visiting a structure field
 
 	__VP1required = False  # True iff current visible point is the last one of this context
 
@@ -318,6 +319,8 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 		if self.__isArray:
 			self.__arrayName = n.name
 				
+		if self.__visitingStructR:
+			self.__optional2 = False
 		#print("#############")
 		#print(n.name)
 		#print("visit_ID ret: " + ret)
@@ -475,7 +478,7 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 						ret += '( __cs_dataraceActiveVP2 && __cs_dataraceSecondThread  && (__cs_dataraceNotDetected = __cs_dataraceNotDetected && ! __CPROVER_get_field(%s,"dr_write")))' % wse
 					self.__VP2required = True
 
-				if self.__visitingStruct:  #these parentheses are required to force priority in the c expression (* x).y
+				if self.__visitingStructL:  #these parentheses are required to force priority in the c expression (* x).y
 					self.__WSE = '(%s)' % self.__WSE  
 
 #				if old_stats == Stats.TOP: 
@@ -625,20 +628,23 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 			return super(dr_lazyseqnewschedule, self).visit_StructRef(n)
 
 		old_stats = self.__stats
-		old_visitingStruct = self.__visitingStruct
+		old_visitingStruct = self.__visitingStructL
 
-		self.__visitingStruct = True
+		self.__visitingStructL = True
 		self.__stats = Stats.noACC
 		sref = self._parenthesize_unless_simple(n.name)
 		opt1 = self.__optional2
-		self.__visitingStruct = old_visitingStruct
+		self.__visitingStructL = old_visitingStruct
 
 		wse = self.__WSE 
 
-
+		old_visitingStruct = self.__visitingStructR
+		self.__visitingStructR = True
 		self.visit(n.field)
 		self.__WSE = wse + n.type + self.__WSE
 		opt2 = self.__optional2
+		self.__visitingStructR = old_visitingStruct
+
 		
 		ret =''
 		if not self.__optional2:
