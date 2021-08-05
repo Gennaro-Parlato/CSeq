@@ -197,8 +197,8 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 		self.__optional1 = self.__optional2
 
 #		if (fname == 'assume_abort_if_not' and not (self.getGlobalMemoryTest() or not self.__enableDRcode)):
-#			n.show()
-#			print("WSE: " + self.__WSE)
+#		n.show()
+#		print("WSE: " + self.__WSE)
 
 #	def visit_FuncCall(self, n):
 #            fref = self._parenthesize_unless_simple(n.name)
@@ -489,6 +489,8 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 					ret = operand
 				if n.op == 'sizeof': 
 					self.__WSE = "%s ( %s )" % (n.op,wse)
+					self.__optional2 = True
+
 				#self.__optional1 = self.__optional2
 				#print(self.__WSE)
 				#n.show()
@@ -509,6 +511,8 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 
 		self.__stats = old_stats
 
+		print(self.__optional2)
+		print(self.__optional1)
 		return ret
 
 
@@ -588,6 +592,8 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 
 		self.__stats = Stats.ACC
 		rval_str = self._parenthesize_if(n.right, lambda d: not self._is_simple_node(d))
+		#print("RET: " + rval_str)
+		#n.right.show()
 		self.__WSE = '(%s %s %s)' % (wse, n.op, self.__WSE)
 		optR = self.__optional2
 
@@ -602,7 +608,6 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 				ret += '%s %s %s' % (wse, n.op, rval_str)  #TOP for the left-hand side
 			else:
 				ret += rval_str	
-
 		if old_stats == Stats.TOP:
 			if ret != '':
 				ret += ','
@@ -630,8 +635,6 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 
 		wse = self.__WSE 
 
-#		print("RET: " + ret)
-		#print("WSE: " + self.__WSE)
 
 		self.visit(n.field)
 		self.__WSE = wse + n.type + self.__WSE
@@ -661,6 +664,9 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 
 		self.__optional1 = self.__optional2
 		self.__stats = old_stats
+		#print("RET: " + ret)
+		#print("WSE: " + self.__WSE)
+		#n.show() 
 
 		return ret
 

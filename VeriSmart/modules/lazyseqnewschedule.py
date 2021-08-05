@@ -726,8 +726,9 @@ class lazyseqnewschedule(core.module.Translator):
 
 		args = self.visit(n.args)
 		#print("FREF: " + fref)
-		#print("ARGS: " + args)
-		#n.show()
+		#if fref == '__cs_safe_malloc': 
+		#	print("ARGS: " + args)
+		#	n.show()
 		if fref == '__CSEQ_atomic_begin':
 			if not self.__visit_funcReference:
 				self.__atomic = True
