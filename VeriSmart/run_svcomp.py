@@ -179,14 +179,14 @@ pthread_nondet = {
     'files': ['nondet-array-1.c', 'nondet-array-2.c', 'nondet-loop-bound-1.c', 'nondet-loop-bound-2.c',
               'nondet-loop-bound-variant-1.c', 'nondet-loop-bound-variant-2.c']
 }
-# categories = [
-#    pthread, pthread_atomic, pthread_ext, pthread_wmm, pthread_lit, ldv_races, pthread_complex, pthread_driver_races,
-#    pthread_c_dac, pthread_divine, pthread_nondet
-# ]
-
 categories = [
-    pthread
+    pthread, pthread_atomic, pthread_ext, pthread_wmm, pthread_lit, ldv_races, pthread_complex, pthread_driver_races,
+    pthread_c_dac, pthread_divine, pthread_nondet
 ]
+
+#categories = [
+#    pthread
+#]
 # -----------------------------------------------------------------------------
 # ------------------------------Command line params setup----------------------
 
@@ -197,7 +197,7 @@ parser.add_argument('--unwind', default=3, type=int,
 parser.add_argument('--rounds', default=3, type=int,
                     help='Rounds for round-robin')
 parser.add_argument('--timeout', default=1200, type=int, help='Timeout for cbmc in seconds')
-parser.add_argument('--dr', action=argparse.BooleanOptionalAction, default=False,
+parser.add_argument('--dr', action='store_true', default=False,
                     help='Run with data race detection, defaults to false')
 
 args = parser.parse_args()
