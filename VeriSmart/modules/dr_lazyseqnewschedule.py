@@ -280,7 +280,7 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 		#print(self.getGlobalMemoryTest())
 		if self.getGlobalMemoryTest() or not self.__enableDRcode: 
 			return super(dr_lazyseqnewschedule, self).visit_ID(n)
-		if self.__funcID:
+		if self.__funcID or n.name.startswith("__cs") :
 			self.__WSE = super(dr_lazyseqnewschedule, self).visit_ID(n)
 			self.__optional1 = True
 			self.__optional2 = True
@@ -361,20 +361,21 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
                 #if self.__access:
                 if ret != '':
                     ret += ','
-                p1 = '( __cs_dataraceActiveVP1 && __cs_dataraceDetectionStarted && !__cs_dataraceSecondThread && __CPROVER_set_field(&%s,"dr_write",1) ), ' % lwse
-                if self.codeContainsAtomic() and not self.isAtomic(): 
-                    p1 += '( __cs_dataraceActiveVP1 && __cs_dataraceDetectionStarted && !__cs_dataraceSecondThread && __CPROVER_set_field(&%s,"dr_write_noatomic",1) ), ' % lwse
+                if not lwse.startswith('__cs'): 
+                     p1 = '( __cs_dataraceActiveVP1 && __cs_dataraceDetectionStarted && !__cs_dataraceSecondThread && __CPROVER_set_field(&%s,"dr_write",1) ), ' % lwse
+                     if self.codeContainsAtomic() and not self.isAtomic(): 
+                         p1 += '( __cs_dataraceActiveVP1 && __cs_dataraceDetectionStarted && !__cs_dataraceSecondThread && __CPROVER_set_field(&%s,"dr_write_noatomic",1) ), ' % lwse
 #                if self.isAtomic(): 
 #                      p1 += '( __cs_dataraceActiveVP1 && __cs_dataraceDetectionStarted && !__cs_dataraceSecondThread && !__cs_atomicDR && (__cs_atomicDR = 1)), '
-                self.__VP1required = True 
+                     self.__VP1required = True 
  
-                if self.isAtomic():
-                      p2 = '( __cs_dataraceActiveVP2 && __cs_dataraceSecondThread  && (__cs_dataraceNotDetected = __cs_dataraceNotDetected && ! __CPROVER_get_field(&%s,"dr_write_noatomic")))' % lwse
-                else:
-                      p2 = '( __cs_dataraceActiveVP2 && __cs_dataraceSecondThread  && (__cs_dataraceNotDetected = __cs_dataraceNotDetected && ! __CPROVER_get_field(&%s,"dr_write")))' % lwse
-                self.__VP2required = True
+                     if self.isAtomic():
+                           p2 = '( __cs_dataraceActiveVP2 && __cs_dataraceSecondThread  && (__cs_dataraceNotDetected = __cs_dataraceNotDetected && ! __CPROVER_get_field(&%s,"dr_write_noatomic")))' % lwse
+                     else:
+                           p2 = '( __cs_dataraceActiveVP2 && __cs_dataraceSecondThread  && (__cs_dataraceNotDetected = __cs_dataraceNotDetected && ! __CPROVER_get_field(&%s,"dr_write")))' % lwse
+                     self.__VP2required = True
 
-                ret += p1 + p2
+                     ret += p1 + p2
 
                 #self.__access = old_access
 
