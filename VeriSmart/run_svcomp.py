@@ -131,7 +131,7 @@ ldv_races = {
 }
 
 pthread_complex = {
-    'relative_path': 'pthread-driver-races',
+    'relative_path': 'pthread-complex',
     'files': ['bounded_buffer.c	', 'elimination_backoff_stack.c	', 'safestack_relacy.c',
               'workstealqueue_mutex-1.c', 'workstealqueue_mutex-2.c	']
 }
@@ -287,18 +287,18 @@ if __name__ == '__main__':
             results[category['relative_path']][f]['total_time'] = time_taken + results[category['relative_path']][f][
                 'seq_time']
 
-    output = ["file,result,Total Time, seq-length, variables, clauses, SAT-solver time "]
+    output = ["file,result,seq-length,Total Time, variables, clauses, SAT-solver time "]
     for category in categories:
         for f in category['files']:
             try:
                 line = category['relative_path'] + '/' + f + ','
-                if 'seq_length' in results[category['relative_path']][f]:
-                    line += results[category['relative_path']][f]['seq_length']
-                line += ','
                 if results[category['relative_path']][f]['seq_result'] == 'SEQ ERROR':
                     line += 'SEQ ERROR'
                 else:
                     line += results[category['relative_path']][f]['cbmc_result']
+                line += ','
+                if 'seq_length' in results[category['relative_path']][f]:
+                    line += results[category['relative_path']][f]['seq_length']
                 line += ','
                 line += str(results[category['relative_path']][f]['total_time']) + ','
                 if 'variables' in results[category['relative_path']][f]:
