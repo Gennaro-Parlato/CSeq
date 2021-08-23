@@ -180,12 +180,12 @@ pthread_nondet = {
               'nondet-loop-bound-variant-1.c', 'nondet-loop-bound-variant-2.c']
 }
 categories = [
-    pthread, pthread_atomic, pthread_ext, pthread_wmm, pthread_lit, ldv_races, pthread_complex, pthread_driver_races,
-    pthread_c_dac, pthread_divine, pthread_nondet
+   pthread, pthread_atomic, pthread_ext, pthread_wmm, pthread_lit, ldv_races, pthread_complex, pthread_driver_races,
+   pthread_c_dac, pthread_divine, pthread_nondet
 ]
 
 #categories = [
-#    pthread
+#    pthread_complex
 #]
 # -----------------------------------------------------------------------------
 # ------------------------------Command line params setup----------------------
@@ -196,7 +196,7 @@ parser.add_argument('--unwind', default=3, type=int,
                     help='How many iterations loops should be unwound for')
 parser.add_argument('--rounds', default=3, type=int,
                     help='Rounds for round-robin')
-parser.add_argument('--timeout', default=1200, type=int, help='Timeout for cbmc in seconds')
+parser.add_argument('--timeout', default=3600, type=int, help='Timeout for cbmc in seconds')
 parser.add_argument('--dr', action='store_true', default=False,
                     help='Run with data race detection, defaults to false')
 
@@ -255,11 +255,11 @@ if __name__ == '__main__':
             prefix += '_'
             filepath = base_file_path + '/' + category['relative_path'] + '/' + prefix + f
 
-            print('timeout 10 -k %d ./cbmc-SM %s --unwind %d --no-unwinding-assertions --stop-on-fail' % (
+            print('timeout 10 -k %d ./cbmc %s --unwind %d --no-unwinding-assertions --stop-on-fail' % (
                 timeout, filepath, unwind_bound))
             start_time = time()
             p = subprocess.Popen(
-                ['timeout -k 10 %d ./cbmc-SM %s --unwind %d --no-unwinding-assertions --stop-on-fail' % (
+                ['timeout -k 10 %d ./cbmc %s --unwind %d --no-unwinding-assertions --stop-on-fail' % (
                     timeout, filepath, unwind_bound)],
                 stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
             output = p.stdout.read()
