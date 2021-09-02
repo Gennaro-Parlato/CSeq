@@ -1,10 +1,11 @@
-/* link utility for GNU.
-   Copyright (C) 2001-2019 Free Software Foundation, Inc.
+/* Emulate link on platforms that lack it, namely native Windows platforms.
 
-   This program is free software: you can redistribute it and/or modify
+   Copyright (C) 2009-2019 Free Software Foundation, Inc.
+
+   This program is free software; you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
-   the Free Software Foundation, either version 3 of the License, or
-   (at your option) any later version.
+   the Free Software Foundation; either version 3, or (at your option)
+   any later version.
 
    This program is distributed in the hope that it will be useful,
    but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -12,82 +13,203 @@
    GNU General Public License for more details.
 
    You should have received a copy of the GNU General Public License
-   along with this program.  If not, see <https://www.gnu.org/licenses/>.  */
-
-/* Written by Michael Stone */
-
-/* Implementation overview:
-
-   Simply call the system 'link' function */
+   along with this program; if not, see <https://www.gnu.org/licenses/>.  */
 
 #include <config.h>
-#include <stdio.h>
-#include <sys/types.h>
 
-#include "system.h"
-#include "die.h"
-#include "error.h"
-#include "long-options.h"
-#include "quote.h"
+#include <unistd.h>
 
-/* The official name of this program (e.g., no 'g' prefix).  */
-#define PROGRAM_NAME "link"
+#include <errno.h>
+#include <stdlib.h>
+#include <string.h>
+#include <sys/stat.h>
 
-#define AUTHORS proper_name ("Michael Stone")
+#if !HAVE_LINK
+# if defined _WIN32 && ! defined __CYGWIN__
 
-void
-usage (int status)
+#  define WIN32_LEAN_AND_MEAN
+#  include <windows.h>
+
+/* Avoid warnings from gcc -Wcast-function-type.  */
+#  define GetProcAddress \
+    (void *) GetProcAddress
+
+/* CreateHardLink was introduced only in Windows 2000.  */
+typedef BOOL (WINAPI * CreateHardLinkFuncType) (LPCTSTR lpFileName,
+                                                LPCTSTR lpExistingFileName,
+                                                LPSECURITY_ATTRIBUTES lpSecurityAttributes);
+static CreateHardLinkFuncType CreateHardLinkFunc = NULL;
+static BOOL initialized = FALSE;
+
+static void
+initialize (void)
 {
-  if (status != EXIT_SUCCESS)
-    emit_try_help ();
-  else
+  HMODULE kernel32 = GetModuleHandle ("kernel32.dll");
+  if (kernel32 != NULL)
     {
-      printf (_("\
-Usage: %s FILE1 FILE2\n\
-  or:  %s OPTION\n"), program_name, program_name);
-      fputs (_("Call the link function to create a link named FILE2\
- to an existing FILE1.\n\n"),
-             stdout);
-      fputs (HELP_OPTION_DESCRIPTION, stdout);
-      fputs (VERSION_OPTION_DESCRIPTION, stdout);
-      emit_ancillary_info (PROGRAM_NAME);
+      CreateHardLinkFunc =
+        (CreateHardLinkFuncType) GetProcAddress (kernel32, "CreateHardLinkA");
     }
-  exit (status);
+  initialized = TRUE;
 }
 
 int
-main (int argc, char **argv)
+link (const char *file1, const char *file2)
 {
-  initialize_main (&argc, &argv);
-  set_program_name (argv[0]);
-  setlocale (LC_ALL, "");
-  bindtextdomain (PACKAGE, LOCALEDIR);
-  textdomain (PACKAGE);
-
-  atexit (close_stdout);
-
-  parse_gnu_standard_options_only (argc, argv, PROGRAM_NAME, PACKAGE_NAME,
-                                   Version, true, usage, AUTHORS,
-                                   (char const *) NULL);
-
-  if (argc < optind + 2)
+  char *dir;
+  size_t len1 = strlen (file1);
+  size_t len2 = strlen (file2);
+  if (!initialized)
+    initialize ();
+  if (CreateHardLinkFunc == NULL)
     {
-      if (argc < optind + 1)
-        error (0, 0, _("missing operand"));
+      /* System does not support hard links.  */
+      errno = EPERM;
+      return -1;
+    }
+  /* Reject trailing slashes on non-directories; mingw does not
+     support hard-linking directories.  */
+  if ((len1 && (file1[len1 - 1] == '/' || file1[len1 - 1] == '\\'))
+      || (len2 && (file2[len2 - 1] == '/' || file2[len2 - 1] == '\\')))
+    {
+      struct stat st;
+      if (stat (file1, &st) == 0 && S_ISDIR (st.st_mode))
+        errno = EPERM;
       else
-        error (0, 0, _("missing operand after %s"), quote (argv[optind]));
-      usage (EXIT_FAILURE);
+        errno = ENOTDIR;
+      return -1;
     }
-
-  if (optind + 2 < argc)
+  /* CreateHardLink("b/.","a",NULL) creates file "b", so we must check
+     that dirname(file2) exists.  */
+  dir = strdup (file2);
+  if (!dir)
+    return -1;
+  {
+    struct stat st;
+    char *p = strchr (dir, '\0');
+    while (dir < p && (*--p != '/' && *p != '\\'));
+    *p = '\0';
+    if (p != dir && stat (dir, &st) == -1)
+      {
+        int saved_errno = errno;
+        free (dir);
+        errno = saved_errno;
+        return -1;
+      }
+    free (dir);
+  }
+  /* Now create the link.  */
+  if (CreateHardLinkFunc (file2, file1, NULL) == 0)
     {
-      error (0, 0, _("extra operand %s"), quote (argv[optind + 2]));
-      usage (EXIT_FAILURE);
+      /* It is not documented which errors CreateHardLink() can produce.
+       * The following conversions are based on tests on a Windows XP SP2
+       * system. */
+      DWORD err = GetLastError ();
+      switch (err)
+        {
+        case ERROR_ACCESS_DENIED:
+          errno = EACCES;
+          break;
+
+        case ERROR_INVALID_FUNCTION:    /* fs does not support hard links */
+          errno = EPERM;
+          break;
+
+        case ERROR_NOT_SAME_DEVICE:
+          errno = EXDEV;
+          break;
+
+        case ERROR_PATH_NOT_FOUND:
+        case ERROR_FILE_NOT_FOUND:
+          errno = ENOENT;
+          break;
+
+        case ERROR_INVALID_PARAMETER:
+          errno = ENAMETOOLONG;
+          break;
+
+        case ERROR_TOO_MANY_LINKS:
+          errno = EMLINK;
+          break;
+
+        case ERROR_ALREADY_EXISTS:
+          errno = EEXIST;
+          break;
+
+        default:
+          errno = EIO;
+        }
+      return -1;
     }
 
-  if (link (argv[optind], argv[optind + 1]) != 0)
-    die (EXIT_FAILURE, errno, _("cannot create link %s to %s"),
-         quoteaf_n (0, argv[optind + 1]), quoteaf_n (1, argv[optind]));
-
-  return EXIT_SUCCESS;
+  return 0;
 }
+
+# else /* !Windows */
+
+#  error "This platform lacks a link function, and Gnulib doesn't provide a replacement. This is a bug in Gnulib."
+
+# endif /* !Windows */
+#else /* HAVE_LINK */
+
+# undef link
+
+/* Create a hard link from FILE1 to FILE2, working around platform bugs.  */
+int
+rpl_link (char const *file1, char const *file2)
+{
+  size_t len1;
+  size_t len2;
+  struct stat st;
+
+  /* Don't allow IRIX to dereference dangling file2 symlink.  */
+  if (!lstat (file2, &st))
+    {
+      errno = EEXIST;
+      return -1;
+    }
+
+  /* Reject trailing slashes on non-directories.  */
+  len1 = strlen (file1);
+  len2 = strlen (file2);
+  if ((len1 && file1[len1 - 1] == '/')
+      || (len2 && file2[len2 - 1] == '/'))
+    {
+      /* Let link() decide whether hard-linking directories is legal.
+         If stat() fails, then link() should fail for the same reason
+         (although on Solaris 9, link("file/","oops") mistakenly
+         succeeds); if stat() succeeds, require a directory.  */
+      if (stat (file1, &st))
+        return -1;
+      if (!S_ISDIR (st.st_mode))
+        {
+          errno = ENOTDIR;
+          return -1;
+        }
+    }
+  else
+    {
+      /* Fix Cygwin 1.5.x bug where link("a","b/.") creates file "b".  */
+      char *dir = strdup (file2);
+      char *p;
+      if (!dir)
+        return -1;
+      /* We already know file2 does not end in slash.  Strip off the
+         basename, then check that the dirname exists.  */
+      p = strrchr (dir, '/');
+      if (p)
+        {
+          *p = '\0';
+          if (stat (dir, &st) == -1)
+            {
+              int saved_errno = errno;
+              free (dir);
+              errno = saved_errno;
+              return -1;
+            }
+        }
+      free (dir);
+    }
+  return link (file1, file2);
+}
+#endif /* HAVE_LINK */
