@@ -1,9 +1,10 @@
-/* unlink utility for GNU.
-   Copyright (C) 2001-2019 Free Software Foundation, Inc.
+/* Work around unlink bugs.
+
+   Copyright (C) 2009-2019 Free Software Foundation, Inc.
 
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
-   the Free Software Foundation, either version 3 of the License, or
+   the Free Software Foundation; either version 3 of the License, or
    (at your option) any later version.
 
    This program is distributed in the hope that it will be useful,
@@ -14,75 +15,83 @@
    You should have received a copy of the GNU General Public License
    along with this program.  If not, see <https://www.gnu.org/licenses/>.  */
 
-/* Written by Michael Stone */
-
-/* Implementation overview:
-
-   Simply call the system 'unlink' function */
-
 #include <config.h>
-#include <stdio.h>
-#include <sys/types.h>
 
-#include "system.h"
-#include "die.h"
-#include "error.h"
-#include "long-options.h"
-#include "quote.h"
+#include <unistd.h>
 
-/* The official name of this program (e.g., no 'g' prefix).  */
-#define PROGRAM_NAME "unlink"
+#include <errno.h>
+#include <stdlib.h>
+#include <string.h>
+#include <sys/stat.h>
 
-#define AUTHORS proper_name ("Michael Stone")
+#include "dosname.h"
 
-void
-usage (int status)
-{
-  if (status != EXIT_SUCCESS)
-    emit_try_help ();
-  else
-    {
-      printf (_("\
-Usage: %s FILE\n\
-  or:  %s OPTION\n"), program_name, program_name);
-      fputs (_("Call the unlink function to remove the specified FILE.\n\n"),
-             stdout);
-      fputs (HELP_OPTION_DESCRIPTION, stdout);
-      fputs (VERSION_OPTION_DESCRIPTION, stdout);
-      emit_ancillary_info (PROGRAM_NAME);
-    }
-  exit (status);
-}
+#undef unlink
+
+/* Remove file NAME.
+   Return 0 if successful, -1 if not.  */
 
 int
-main (int argc, char **argv)
+rpl_unlink (char const *name)
 {
-  initialize_main (&argc, &argv);
-  set_program_name (argv[0]);
-  setlocale (LC_ALL, "");
-  bindtextdomain (PACKAGE, LOCALEDIR);
-  textdomain (PACKAGE);
-
-  atexit (close_stdout);
-
-  parse_gnu_standard_options_only (argc, argv, PROGRAM_NAME, PACKAGE_NAME,
-                                   Version, true, usage, AUTHORS,
-                                   (char const *) NULL);
-
-  if (argc < optind + 1)
+  /* Work around Solaris 9 bug where unlink("file/") succeeds.  */
+  size_t len = strlen (name);
+  int result = 0;
+  if (len && ISSLASH (name[len - 1]))
     {
-      error (0, 0, _("missing operand"));
-      usage (EXIT_FAILURE);
+      /* We can't unlink(2) something if it doesn't exist.  If it does
+         exist, then it resolved to a directory, due to the trailing
+         slash, and POSIX requires that the unlink attempt to remove
+         that directory (which would leave the symlink dangling).
+         Unfortunately, Solaris 9 is one of the platforms where the
+         root user can unlink directories, and we don't want to
+         cripple this behavior on real directories, even if it is
+         seldom needed (at any rate, it's nicer to let coreutils'
+         unlink(1) give the correct errno for non-root users).  But we
+         don't know whether name was an actual directory, or a symlink
+         to a directory; and due to the bug of ignoring trailing
+         slash, Solaris 9 would end up successfully unlinking the
+         symlink instead of the directory.  Technically, we could use
+         realpath to find the canonical directory name to attempt
+         deletion on.  But that is a lot of work for a corner case; so
+         we instead just use an lstat on the shortened name, and
+         reject symlinks with trailing slashes.  The root user of
+         unlink(1) will just have to live with the rule that they
+         can't delete a directory via a symlink.  */
+      struct stat st;
+      result = lstat (name, &st);
+      if (result == 0)
+        {
+          /* Trailing NUL will overwrite the trailing slash.  */
+          char *short_name = malloc (len);
+          if (!short_name)
+            {
+              errno = EPERM;
+              return -1;
+            }
+          memcpy (short_name, name, len);
+          while (len && ISSLASH (short_name[len - 1]))
+            short_name[--len] = '\0';
+          if (len && (lstat (short_name, &st) || S_ISLNK (st.st_mode)))
+            {
+              free (short_name);
+              errno = EPERM;
+              return -1;
+            }
+          free (short_name);
+        }
     }
-
-  if (optind + 1 < argc)
+  if (!result)
     {
-      error (0, 0, _("extra operand %s"), quote (argv[optind + 1]));
-      usage (EXIT_FAILURE);
+#if UNLINK_PARENT_BUG
+      if (len >= 2 && name[len - 1] == '.' && name[len - 2] == '.'
+          && (len == 2 || ISSLASH (name[len - 3])))
+        {
+          errno = EISDIR; /* could also use EPERM */
+          return -1;
+        }
+#endif
+      result = unlink (name);
     }
-
-  if (unlink (argv[optind]) != 0)
-    die (EXIT_FAILURE, errno, _("cannot unlink %s"), quoteaf (argv[optind]));
-
-  return EXIT_SUCCESS;
+  return result;
 }
