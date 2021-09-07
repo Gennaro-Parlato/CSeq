@@ -81,7 +81,7 @@
 
 #include <stdbool.h>
 #include <stdlib.h>
-#include "version.h"
+//#include "version.h"
 
 /* Exit statuses for programs like 'env' that exec other programs.  */
 enum
