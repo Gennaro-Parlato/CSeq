@@ -51,7 +51,7 @@
 # define HAVE_MAJOR
 #endif
 #if MAJOR_IN_SYSMACROS
-# include <sys/sysmacros.h>
+//# include <sys/sysmacros.h>
 # define HAVE_MAJOR
 #endif
 #ifdef major			/* Might be defined in sys/types.h.  */
@@ -81,7 +81,7 @@
 
 #include <stdbool.h>
 #include <stdlib.h>
-#include "version.h"
+//#include "version.h"
 
 /* Exit statuses for programs like 'env' that exec other programs.  */
 enum

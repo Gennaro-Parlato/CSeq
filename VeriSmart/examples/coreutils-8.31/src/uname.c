@@ -1,10 +1,9 @@
-/* uname -- print system information
-
-   Copyright (C) 1989-2019 Free Software Foundation, Inc.
+/* uname replacement.
+   Copyright (C) 2009-2019 Free Software Foundation, Inc.
 
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
-   the Free Software Foundation, either version 3 of the License, or
+   the Free Software Foundation; either version 3 of the License, or
    (at your option) any later version.
 
    This program is distributed in the hope that it will be useful,
@@ -15,362 +14,255 @@
    You should have received a copy of the GNU General Public License
    along with this program.  If not, see <https://www.gnu.org/licenses/>.  */
 
-/* Written by David MacKenzie <djm@gnu.ai.mit.edu> */
-
 #include <config.h>
-#include <stdio.h>
-#include <sys/types.h>
+
+/* Specification.  */
 #include <sys/utsname.h>
-#include <getopt.h>
 
-#if HAVE_SYSINFO && HAVE_SYS_SYSTEMINFO_H
-# include <sys/systeminfo.h>
+/* This file provides an implementation only for the native Windows API.  */
+#if defined _WIN32 && ! defined __CYGWIN__
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <unistd.h>
+#include <windows.h>
+
+/* Mingw headers don't have all the platform codes.  */
+#ifndef VER_PLATFORM_WIN32_CE
+# define VER_PLATFORM_WIN32_CE 3
 #endif
 
-#if HAVE_SYS_SYSCTL_H
-# if HAVE_SYS_PARAM_H
-#  include <sys/param.h> /* needed for OpenBSD 3.0 */
-# endif
-# include <sys/sysctl.h>
-# ifdef HW_MODEL
-#  ifdef HW_MACHINE_ARCH
-/* E.g., FreeBSD 4.5, NetBSD 1.5.2 */
-#   define UNAME_HARDWARE_PLATFORM HW_MODEL
-#   define UNAME_PROCESSOR HW_MACHINE_ARCH
-#  else
-/* E.g., OpenBSD 3.0 */
-#   define UNAME_PROCESSOR HW_MODEL
-#  endif
-# endif
+/* Some headers don't have all the processor architecture codes.  */
+#ifndef PROCESSOR_ARCHITECTURE_AMD64
+# define PROCESSOR_ARCHITECTURE_AMD64 9
+#endif
+#ifndef PROCESSOR_ARCHITECTURE_IA32_ON_WIN64
+# define PROCESSOR_ARCHITECTURE_IA32_ON_WIN64 10
 #endif
 
-#ifdef __APPLE__
-# include <mach/machine.h>
-# include <mach-o/arch.h>
+/* Mingw headers don't have the latest processor codes.  */
+#ifndef PROCESSOR_AMD_X8664
+# define PROCESSOR_AMD_X8664 8664
 #endif
-
-#include "system.h"
-#include "die.h"
-#include "error.h"
-#include "quote.h"
-#include "uname.h"
-
-/* The official name of this program (e.g., no 'g' prefix).  */
-#define PROGRAM_NAME (uname_mode == UNAME_UNAME ? "uname" : "arch")
-
-#define AUTHORS proper_name ("David MacKenzie")
-#define ARCH_AUTHORS "David MacKenzie", "Karel Zak"
-
-/* Values that are bitwise or'd into 'toprint'. */
-/* Kernel name. */
-#define PRINT_KERNEL_NAME 1
-
-/* Node name on a communications network. */
-#define PRINT_NODENAME 2
-
-/* Kernel release. */
-#define PRINT_KERNEL_RELEASE 4
-
-/* Kernel version. */
-#define PRINT_KERNEL_VERSION 8
-
-/* Machine hardware name. */
-#define PRINT_MACHINE 16
-
-/* Processor type. */
-#define PRINT_PROCESSOR 32
-
-/* Hardware platform.  */
-#define PRINT_HARDWARE_PLATFORM 64
-
-/* Operating system.  */
-#define PRINT_OPERATING_SYSTEM 128
-
-static struct option const uname_long_options[] =
-{
-  {"all", no_argument, NULL, 'a'},
-  {"kernel-name", no_argument, NULL, 's'},
-  {"sysname", no_argument, NULL, 's'},	/* Obsolescent.  */
-  {"nodename", no_argument, NULL, 'n'},
-  {"kernel-release", no_argument, NULL, 'r'},
-  {"release", no_argument, NULL, 'r'},  /* Obsolescent.  */
-  {"kernel-version", no_argument, NULL, 'v'},
-  {"machine", no_argument, NULL, 'm'},
-  {"processor", no_argument, NULL, 'p'},
-  {"hardware-platform", no_argument, NULL, 'i'},
-  {"operating-system", no_argument, NULL, 'o'},
-  {GETOPT_HELP_OPTION_DECL},
-  {GETOPT_VERSION_OPTION_DECL},
-  {NULL, 0, NULL, 0}
-};
-
-static struct option const arch_long_options[] =
-{
-  {GETOPT_HELP_OPTION_DECL},
-  {GETOPT_VERSION_OPTION_DECL},
-  {NULL, 0, NULL, 0}
-};
-
-void
-usage (int status)
-{
-  if (status != EXIT_SUCCESS)
-    emit_try_help ();
-  else
-    {
-      printf (_("Usage: %s [OPTION]...\n"), program_name);
-
-      if (uname_mode == UNAME_UNAME)
-        {
-          fputs (_("\
-Print certain system information.  With no OPTION, same as -s.\n\
-\n\
-  -a, --all                print all information, in the following order,\n\
-                             except omit -p and -i if unknown:\n\
-  -s, --kernel-name        print the kernel name\n\
-  -n, --nodename           print the network node hostname\n\
-  -r, --kernel-release     print the kernel release\n\
-"), stdout);
-          fputs (_("\
-  -v, --kernel-version     print the kernel version\n\
-  -m, --machine            print the machine hardware name\n\
-  -p, --processor          print the processor type (non-portable)\n\
-  -i, --hardware-platform  print the hardware platform (non-portable)\n\
-  -o, --operating-system   print the operating system\n\
-"), stdout);
-        }
-      else
-        {
-          fputs (_("\
-Print machine architecture.\n\
-\n\
-"), stdout);
-        }
-
-      fputs (HELP_OPTION_DESCRIPTION, stdout);
-      fputs (VERSION_OPTION_DESCRIPTION, stdout);
-      emit_ancillary_info (PROGRAM_NAME);
-    }
-  exit (status);
-}
-
-/* Print ELEMENT, preceded by a space if something has already been
-   printed.  */
-
-static void
-print_element (char const *element)
-{
-  static bool printed;
-  if (printed)
-    putchar (' ');
-  printed = true;
-  fputs (element, stdout);
-}
-
-
-/* Set all the option flags according to the switches specified.
-   Return the mask indicating which elements to print.  */
-
-static int
-decode_switches (int argc, char **argv)
-{
-  int c;
-  unsigned int toprint = 0;
-
-  if (uname_mode == UNAME_ARCH)
-    {
-      while ((c = getopt_long (argc, argv, "",
-                               arch_long_options, NULL)) != -1)
-        {
-          switch (c)
-            {
-            case_GETOPT_HELP_CHAR;
-
-            case_GETOPT_VERSION_CHAR (PROGRAM_NAME, ARCH_AUTHORS);
-
-            default:
-              usage (EXIT_FAILURE);
-            }
-        }
-      toprint = PRINT_MACHINE;
-    }
-  else
-    {
-      while ((c = getopt_long (argc, argv, "asnrvmpio",
-                               uname_long_options, NULL)) != -1)
-        {
-          switch (c)
-            {
-            case 'a':
-              toprint = UINT_MAX;
-              break;
-
-            case 's':
-              toprint |= PRINT_KERNEL_NAME;
-              break;
-
-            case 'n':
-              toprint |= PRINT_NODENAME;
-              break;
-
-            case 'r':
-              toprint |= PRINT_KERNEL_RELEASE;
-              break;
-
-            case 'v':
-              toprint |= PRINT_KERNEL_VERSION;
-              break;
-
-            case 'm':
-              toprint |= PRINT_MACHINE;
-              break;
-
-            case 'p':
-              toprint |= PRINT_PROCESSOR;
-              break;
-
-            case 'i':
-              toprint |= PRINT_HARDWARE_PLATFORM;
-              break;
-
-            case 'o':
-              toprint |= PRINT_OPERATING_SYSTEM;
-              break;
-
-            case_GETOPT_HELP_CHAR;
-
-            case_GETOPT_VERSION_CHAR (PROGRAM_NAME, AUTHORS);
-
-            default:
-              usage (EXIT_FAILURE);
-            }
-        }
-    }
-
-  if (argc != optind)
-    {
-      error (0, 0, _("extra operand %s"), quote (argv[optind]));
-      usage (EXIT_FAILURE);
-    }
-
-  return toprint;
-}
 
 int
-main (int argc, char **argv)
+uname (struct utsname *buf)
 {
-  static char const unknown[] = "unknown";
+  OSVERSIONINFO version;
+  OSVERSIONINFOEX versionex;
+  BOOL have_versionex; /* indicates whether versionex is filled */
+  const char *super_version;
 
-  /* Mask indicating which elements to print. */
-  unsigned int toprint = 0;
-
-  initialize_main (&argc, &argv);
-  set_program_name (argv[0]);
-  setlocale (LC_ALL, "");
-  bindtextdomain (PACKAGE, LOCALEDIR);
-  textdomain (PACKAGE);
-
-  atexit (close_stdout);
-
-  toprint = decode_switches (argc, argv);
-
-  if (toprint == 0)
-    toprint = PRINT_KERNEL_NAME;
-
-  if (toprint
-       & (PRINT_KERNEL_NAME | PRINT_NODENAME | PRINT_KERNEL_RELEASE
-          | PRINT_KERNEL_VERSION | PRINT_MACHINE))
+  /* Preparation: Fill version and, if possible, also versionex.
+     But try to call GetVersionEx only once in the common case.  */
+  versionex.dwOSVersionInfoSize = sizeof (OSVERSIONINFOEX);
+  have_versionex = GetVersionEx ((OSVERSIONINFO *) &versionex);
+  if (have_versionex)
     {
-      struct utsname name;
-
-      if (uname (&name) == -1)
-        die (EXIT_FAILURE, errno, _("cannot get system name"));
-
-      if (toprint & PRINT_KERNEL_NAME)
-        print_element (name.sysname);
-      if (toprint & PRINT_NODENAME)
-        print_element (name.nodename);
-      if (toprint & PRINT_KERNEL_RELEASE)
-        print_element (name.release);
-      if (toprint & PRINT_KERNEL_VERSION)
-        print_element (name.version);
-      if (toprint & PRINT_MACHINE)
-        print_element (name.machine);
+      /* We know that OSVERSIONINFO is a subset of OSVERSIONINFOEX.  */
+      memcpy (&version, &versionex, sizeof (OSVERSIONINFO));
+    }
+  else
+    {
+      version.dwOSVersionInfoSize = sizeof (OSVERSIONINFO);
+      if (!GetVersionEx (&version))
+        abort ();
     }
 
-  if (toprint & PRINT_PROCESSOR)
+  /* Fill in nodename.  */
+  if (gethostname (buf->nodename, sizeof (buf->nodename)) < 0)
+    strcpy (buf->nodename, "localhost");
+
+  /* Determine major-major Windows version.  */
+  if (version.dwPlatformId == VER_PLATFORM_WIN32_NT)
     {
-      char const *element = unknown;
-#if HAVE_SYSINFO && defined SI_ARCHITECTURE
-      {
-        static char processor[257];
-        if (0 <= sysinfo (SI_ARCHITECTURE, processor, sizeof processor))
-          element = processor;
-      }
-#endif
-#ifdef UNAME_PROCESSOR
-      if (element == unknown)
+      /* Windows NT or newer.  */
+      super_version = "NT";
+    }
+  else if (version.dwPlatformId == VER_PLATFORM_WIN32_CE)
+    {
+      /* Windows CE or Embedded CE.  */
+      super_version = "CE";
+    }
+  else if (version.dwPlatformId == VER_PLATFORM_WIN32_WINDOWS)
+    {
+      /* Windows 95/98/ME.  */
+      switch (version.dwMinorVersion)
         {
-          static char processor[257];
-          size_t s = sizeof processor;
-          static int mib[] = { CTL_HW, UNAME_PROCESSOR };
-          if (sysctl (mib, 2, processor, &s, 0, 0) >= 0)
-            element = processor;
-
-# ifdef __APPLE__
-          /* This kludge works around a bug in Mac OS X.  */
-          if (element == unknown)
-            {
-              cpu_type_t cputype;
-              size_t cs = sizeof cputype;
-              NXArchInfo const *ai;
-              if (sysctlbyname ("hw.cputype", &cputype, &cs, NULL, 0) == 0
-                  && (ai = NXGetArchInfoFromCpuType (cputype,
-                                                     CPU_SUBTYPE_MULTIPLE))
-                  != NULL)
-                element = ai->name;
-
-              /* Hack "safely" around the ppc vs. powerpc return value. */
-              if (cputype == CPU_TYPE_POWERPC
-                  && STRNCMP_LIT (element, "ppc") == 0)
-                element = "powerpc";
-            }
-# endif
+        case 0:
+          super_version = "95";
+          break;
+        case 10:
+          super_version = "98";
+          break;
+        case 90:
+          super_version = "ME";
+          break;
+        default:
+          super_version = "";
+          break;
         }
-#endif
-      if (! (toprint == UINT_MAX && element == unknown))
-        print_element (element);
     }
+  else
+    super_version = "";
 
-  if (toprint & PRINT_HARDWARE_PLATFORM)
+  /* Fill in sysname.  */
+#ifdef __MINGW32__
+  /* Returns a string compatible with the MSYS uname.exe program,
+     so that no further changes are needed to GNU config.guess.
+     For example,
+       $ ./uname.exe -s      => MINGW32_NT-5.1
+   */
+  sprintf (buf->sysname, "MINGW32_%s-%u.%u", super_version,
+           (unsigned int) version.dwMajorVersion,
+           (unsigned int) version.dwMinorVersion);
+#else
+  sprintf (buf->sysname, "Windows%s", super_version);
+#endif
+
+  /* Fill in release, version.  */
+  /* The MSYS uname.exe programs uses strings from a modified Cygwin runtime:
+       $ ./uname.exe -r      => 1.0.11(0.46/3/2)
+       $ ./uname.exe -v      => 2008-08-25 23:40
+     There is no point in imitating this behaviour.  */
+  if (version.dwPlatformId == VER_PLATFORM_WIN32_NT)
     {
-      char const *element = unknown;
-#if HAVE_SYSINFO && defined SI_PLATFORM
-      {
-        static char hardware_platform[257];
-        if (0 <= sysinfo (SI_PLATFORM,
-                          hardware_platform, sizeof hardware_platform))
-          element = hardware_platform;
-      }
-#endif
-#ifdef UNAME_HARDWARE_PLATFORM
-      if (element == unknown)
+      /* Windows NT or newer.  */
+      struct windows_version
         {
-          static char hardware_platform[257];
-          size_t s = sizeof hardware_platform;
-          static int mib[] = { CTL_HW, UNAME_HARDWARE_PLATFORM };
-          if (sysctl (mib, 2, hardware_platform, &s, 0, 0) >= 0)
-            element = hardware_platform;
-        }
-#endif
-      if (! (toprint == UINT_MAX && element == unknown))
-        print_element (element);
+          int major;
+          int minor;
+          unsigned int server_offset;
+          const char *name;
+        };
+
+      /* Storing the workstation and server version names in a single
+         stream does not waste memory when they are the same.  These
+         macros abstract the representation.  VERSION1 is used if
+         version.wProductType does not matter, VERSION2 if it does.  */
+      #define VERSION1(major, minor, name) \
+        { major, minor, 0, name }
+      #define VERSION2(major, minor, workstation, server) \
+        { major, minor, sizeof workstation, workstation "\0" server }
+      static const struct windows_version versions[] =
+        {
+          VERSION2 (3, -1, "Windows NT Workstation", "Windows NT Server"),
+          VERSION2 (4, -1, "Windows NT Workstation", "Windows NT Server"),
+          VERSION1 (5, 0, "Windows 2000"),
+          VERSION1 (5, 1, "Windows XP"),
+          VERSION1 (5, 2, "Windows Server 2003"),
+          VERSION2 (6, 0, "Windows Vista", "Windows Server 2008"),
+          VERSION2 (6, 1, "Windows 7", "Windows Server 2008 R2"),
+          VERSION2 (-1, -1, "Windows", "Windows Server")
+        };
+      const char *base;
+      const struct windows_version *v = versions;
+
+      /* Find a version that matches ours.  The last element is a
+         wildcard that always ends the loop.  */
+      while ((v->major != version.dwMajorVersion && v->major != -1)
+             || (v->minor != version.dwMinorVersion && v->minor != -1))
+        v++;
+
+      if (have_versionex && versionex.wProductType != VER_NT_WORKSTATION)
+        base = v->name + v->server_offset;
+      else
+        base = v->name;
+      if (v->major == -1 || v->minor == -1)
+        sprintf (buf->release, "%s %u.%u",
+                 base,
+                 (unsigned int) version.dwMajorVersion,
+                 (unsigned int) version.dwMinorVersion);
+      else
+        strcpy (buf->release, base);
     }
+  else if (version.dwPlatformId == VER_PLATFORM_WIN32_CE)
+    {
+      /* Windows CE or Embedded CE.  */
+      sprintf (buf->release, "Windows CE %u.%u",
+               (unsigned int) version.dwMajorVersion,
+               (unsigned int) version.dwMinorVersion);
+    }
+  else
+    {
+      /* Windows 95/98/ME.  */
+      sprintf (buf->release, "Windows %s", super_version);
+    }
+  strcpy (buf->version, version.szCSDVersion);
 
-  if (toprint & PRINT_OPERATING_SYSTEM)
-    print_element (HOST_OPERATING_SYSTEM);
+  /* Fill in machine.  */
+  {
+    SYSTEM_INFO info;
 
-  putchar ('\n');
+    GetSystemInfo (&info);
+    /* Check for Windows NT or CE, since the info.wProcessorLevel is
+       garbage on Windows 95. */
+    if (version.dwPlatformId == VER_PLATFORM_WIN32_NT
+        || version.dwPlatformId == VER_PLATFORM_WIN32_CE)
+      {
+        /* Windows NT or newer, or Windows CE or Embedded CE.  */
+        switch (info.wProcessorArchitecture)
+          {
+          case PROCESSOR_ARCHITECTURE_AMD64:
+            strcpy (buf->machine, "x86_64");
+            break;
+          case PROCESSOR_ARCHITECTURE_IA64:
+            strcpy (buf->machine, "ia64");
+            break;
+          case PROCESSOR_ARCHITECTURE_INTEL:
+            strcpy (buf->machine, "i386");
+            if (info.wProcessorLevel >= 3)
+              buf->machine[1] =
+                '0' + (info.wProcessorLevel <= 6 ? info.wProcessorLevel : 6);
+            break;
+          case PROCESSOR_ARCHITECTURE_IA32_ON_WIN64:
+            strcpy (buf->machine, "i686");
+            break;
+          case PROCESSOR_ARCHITECTURE_MIPS:
+            strcpy (buf->machine, "mips");
+            break;
+          case PROCESSOR_ARCHITECTURE_ALPHA:
+          case PROCESSOR_ARCHITECTURE_ALPHA64:
+            strcpy (buf->machine, "alpha");
+            break;
+          case PROCESSOR_ARCHITECTURE_PPC:
+            strcpy (buf->machine, "powerpc");
+            break;
+          case PROCESSOR_ARCHITECTURE_SHX:
+            strcpy (buf->machine, "sh");
+            break;
+          case PROCESSOR_ARCHITECTURE_ARM:
+            strcpy (buf->machine, "arm");
+            break;
+          default:
+            strcpy (buf->machine, "unknown");
+            break;
+          }
+      }
+    else
+      {
+        /* Windows 95/98/ME.  */
+        switch (info.dwProcessorType)
+          {
+          case PROCESSOR_AMD_X8664:
+            strcpy (buf->machine, "x86_64");
+            break;
+          case PROCESSOR_INTEL_IA64:
+            strcpy (buf->machine, "ia64");
+            break;
+          default:
+            if (info.dwProcessorType % 100 == 86)
+              sprintf (buf->machine, "i%u",
+                       (unsigned int) info.dwProcessorType);
+            else
+              strcpy (buf->machine, "unknown");
+            break;
+          }
+      }
+  }
 
-  return EXIT_SUCCESS;
+  return 0;
 }
+
+#endif
