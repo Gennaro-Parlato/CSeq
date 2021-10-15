@@ -177,3 +177,4 @@ void *__cs_getspecific(__cs_key_t key){return (void *)0;}
 int __cs__setspecific(__cs_key_t key, const void *value){return 0;}
 int __cs_key_create(__cs_key_t *key) {return 0;}
 
+void assume_abort_if_not(int cond) { __CPROVER_assume(cond); }
