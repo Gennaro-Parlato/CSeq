@@ -295,6 +295,11 @@ unsigned char nondet_uchar();
                                         {
                                                 return 0;
                                         }
+
+                                        void abort() {
+                                           __CPROVER_assume(0);
+                                        }
+
                                         _Bool __cs_dataraceDetectionStarted = (0);
                                         _Bool __cs_dataraceSecondThread = (0);
                                         _Bool __cs_dataraceNotDetected = (1);

@@ -1,4 +1,4 @@
-sourcedir=/home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/
+sourcedir=/home/salvatore/ExperimentsOctober26/sv-benchmarks-concurrency2020/
 result=${sourcedir}results${1}R${2}U.out
 seqdir=${sourcedir}sequentialized${1}R${2}U/
 outdir=${sourcedir}output/

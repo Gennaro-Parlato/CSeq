@@ -295,12 +295,18 @@ unsigned char nondet_uchar();
                                         {
                                                 return 0;
                                         }
+
+                                        void assume_abort_if_not(int cond){
+                                           __CPROVER_assume(cond);
+                                        }
+
                                         _Bool __cs_dataraceDetectionStarted = (0);
                                         _Bool __cs_dataraceSecondThread = (0);
                                         _Bool __cs_dataraceNotDetected = (1);
                                         _Bool __cs_dataraceContinue = (1);
                                         _Bool __cs_dataraceActiveVP1 = (0);
                                         _Bool __cs_dataraceActiveVP2 = (0);
+
                                         int m = (0);
                                         void __CSEQ_atomic_acquire()
                                         {

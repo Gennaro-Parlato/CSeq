@@ -665,6 +665,7 @@ def main():
             cseqenv.paramvalues["time"] = int(a)
         elif o in ("--cex"):
             cseqenv.cex = True
+            cseqenv.paramvalues[o[2:]] = True
         elif o in ("--cex-dir"):
             cseqenv.cex_dir = a
 
