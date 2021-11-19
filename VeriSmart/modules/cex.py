@@ -83,6 +83,12 @@ class cex(core.module.BasicModule):
         self.addInputParam('coordstofunctions', 'map from input coords to function ids', '', default=None, optional=True)
 
 
+    def setInstanceInfo(self, swarmdirname, filename, confignumber, configintervals):
+         self.__swarmdirname = swarmdirname
+         self.__filename = filename
+         self.__confignumber = confignumber
+         self.__intervals = configintervals
+
     def loadfromstring(self, string, env):
         self.env = env
         self.backend = self.getInputParamValue('backend')
@@ -109,11 +115,16 @@ class cex(core.module.BasicModule):
         for x in self.outputtofiles: print ("%s -> %s" % (x, self.outputtofiles[x]))
         sys.exit(1)
         '''
-        if self.getInputParamValue('cex') is None:
-            self.output = self._shortanswer(string)
-        else:
-            self.output = self._translateCPROVERcex(string)
-            self.output += self._shortanswer(string)
+        if self.getInputParamValue('cex') is True and verificationFAIL[self.backend] in string:
+            errorTrace = self._translateCPROVERcex(string)
+            #print(self._translateCPROVERcex(string[0])) 
+            errorTraceFilename = self.getInputParamValue('seqFilename') + '.trace'
+            core.utils.saveFile(errorTraceFilename, errorTrace)
+            if not env.isSwarm:
+                 print(errorTrace.replace("\nVERIFICATION FAILED\n\n",""))
+
+        self.output = string
+        
 
 
     def _showfullmapback(self):
@@ -179,7 +190,7 @@ class cex(core.module.BasicModule):
 
         # scan the backend's output to check the outcome of the verification
         if self.backend == 'framac':
-            for line in reversed(input.splitlines()):
+            for line in reversed(input[0].splitlines()):
                 if verificationOK[self.backend] in line:
                     if '{0}' in line:
                         outcome = 'SAFE'
@@ -187,7 +198,7 @@ class cex(core.module.BasicModule):
                         outcome = 'UNKNOWN'
                     break
         else:
-            for line in input.splitlines():
+            for line in reversed(input[0].splitlines()):
                 if verificationFAIL[self.backend] in line:
                     outcome = 'UNSAFE'
                     break
@@ -199,6 +210,7 @@ class cex(core.module.BasicModule):
 
         if outcome == '' and self.code == -9: outcome = 'TIMEOUT' # backend timeout
         elif outcome == '': outcome = 'UNKNOWN'
+
 
         #
         if outcome == 'UNKNOWN': result = core.utils.colors.YELLOW + outcome + core.utils.colors.NO
@@ -521,56 +533,5 @@ class cex(core.module.BasicModule):
             A = '  file %s line %s' % (fileout,lineout)
 
         return (A,B,C)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 

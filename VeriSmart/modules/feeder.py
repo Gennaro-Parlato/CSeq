@@ -337,6 +337,7 @@ class feeder(core.module.BasicModule):
 
 		self.setOutputParam('exitcode', code)
 		self.setOutputParam('memsize', memsize)
+		self.setOutputParam('seqFilename', seqfile)
 
 		if env.debug:
 			if ('warning').encode() in err:
@@ -353,5 +354,5 @@ class feeder(core.module.BasicModule):
 			core.utils.saveFile(logfile, out)   # klee outputs errors to stdout, all other backends to stderr
 			core.utils.saveFile(seqfile + '.' + backend + '.log', out)   # klee outputs errors to stdout, all other backends to stderr
 			# core.utils.saveFile(seqfile + '.' + backend + '.err', err)   # klee outputs errors to stdout, all other backends to stderr
-			self.output = (out, memsize)
+			self.output = out
 

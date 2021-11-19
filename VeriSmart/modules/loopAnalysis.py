@@ -380,14 +380,14 @@ class loopAnalysis(core.module.Translator):
 			except KeyboardInterrupt as e:
 				print("Chain interrupted by user")
 				sys.exit(1)
-
 		if env.instances_only:
 			if not env.isSwarm:
 				print("Sequentialization successfully completed.")
 			return True
-		cbmcresult = output[0]
-		memsize = output[1]
-		processedResult = self.processResult(cbmcresult, env.backend)
+		verifierResult = output
+		memsize = self.getInputParamValue('memsize')
+
+		processedResult = self.processResult(verifierResult, env.backend)
 		#print("processedResult: " + processedResult)
 		analysistime = time.time() - analysistime
 		if processedResult == "TRUE":
@@ -399,6 +399,7 @@ class loopAnalysis(core.module.Translator):
 			if env.isSwarm:
 				self.printFoundBug(confignumber.replace(
 					"s", ""), memsize, analysistime)
+			#controesempio è in errorTrace se cex settatai, salvare in file per swarm e stampare a video per noSwarm
 			return False
 
 		else:
