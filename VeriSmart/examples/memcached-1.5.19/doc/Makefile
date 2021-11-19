@@ -152,13 +152,13 @@ MANS = $(man_MANS)
 am__tagged_files = $(HEADERS) $(SOURCES) $(TAGS_FILES) $(LISP)
 am__DIST_COMMON = $(srcdir)/Makefile.in
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
-ACLOCAL = ${SHELL} /home/dormando/d/p/danga/git/memcached/missing aclocal-1.15
+ACLOCAL = ${SHELL} /home/salvatore/github/CSeq/VeriSmart/examples/memcached-1.5.19/missing aclocal-1.15
 AMTAR = $${TAR-tar}
 AM_DEFAULT_VERBOSITY = 1
-AUTOCONF = ${SHELL} /home/dormando/d/p/danga/git/memcached/missing autoconf
-AUTOHEADER = ${SHELL} /home/dormando/d/p/danga/git/memcached/missing autoheader
-AUTOMAKE = ${SHELL} /home/dormando/d/p/danga/git/memcached/missing automake-1.15
-AWK = gawk
+AUTOCONF = ${SHELL} /home/salvatore/github/CSeq/VeriSmart/examples/memcached-1.5.19/missing autoconf
+AUTOHEADER = ${SHELL} /home/salvatore/github/CSeq/VeriSmart/examples/memcached-1.5.19/missing autoheader
+AUTOMAKE = ${SHELL} /home/salvatore/github/CSeq/VeriSmart/examples/memcached-1.5.19/missing automake-1.15
+AWK = mawk
 CC = gcc
 CCDEPMODE = depmode=gcc3
 CFLAGS = -g -O2 -pthread -pthread -Wall -Werror -pedantic -Wmissing-prototypes -Wmissing-declarations -Wredundant-decls
@@ -185,7 +185,7 @@ LDFLAGS =
 LIBOBJS = 
 LIBS = -levent 
 LTLIBOBJS = 
-MAKEINFO = ${SHELL} /home/dormando/d/p/danga/git/memcached/missing makeinfo
+MAKEINFO = ${SHELL} /home/salvatore/github/CSeq/VeriSmart/examples/memcached-1.5.19/missing makeinfo
 MKDIR_P = /bin/mkdir -p
 OBJEXT = o
 PACKAGE = memcached
@@ -205,10 +205,10 @@ STRIP =
 VERSION = 1.5.19
 XML2RFC = no
 XSLTPROC = no
-abs_builddir = /home/dormando/d/p/danga/git/memcached/doc
-abs_srcdir = /home/dormando/d/p/danga/git/memcached/doc
-abs_top_builddir = /home/dormando/d/p/danga/git/memcached
-abs_top_srcdir = /home/dormando/d/p/danga/git/memcached
+abs_builddir = /home/salvatore/github/CSeq/VeriSmart/examples/memcached-1.5.19/doc
+abs_srcdir = /home/salvatore/github/CSeq/VeriSmart/examples/memcached-1.5.19/doc
+abs_top_builddir = /home/salvatore/github/CSeq/VeriSmart/examples/memcached-1.5.19
+abs_top_srcdir = /home/salvatore/github/CSeq/VeriSmart/examples/memcached-1.5.19
 ac_ct_CC = gcc
 am__include = include
 am__leading_dot = .
@@ -235,7 +235,7 @@ host_vendor = pc
 htmldir = ${docdir}
 includedir = ${prefix}/include
 infodir = ${datarootdir}/info
-install_sh = ${SHELL} /home/dormando/d/p/danga/git/memcached/install-sh
+install_sh = ${SHELL} /home/salvatore/github/CSeq/VeriSmart/examples/memcached-1.5.19/install-sh
 libdir = ${exec_prefix}/lib
 libexecdir = ${exec_prefix}/libexec
 localedir = ${datarootdir}/locale
@@ -500,10 +500,10 @@ uninstall-man: uninstall-man1
 
 
 protocol-binary.txt: protocol-binary.full
-	no -c /home/dormando/d/p/danga/git/memcached/doc protocol-binary.full $@
+	no -c /home/salvatore/github/CSeq/VeriSmart/examples/memcached-1.5.19/doc protocol-binary.full $@
 
 protocol-binary-range.txt: protocol-binary-range.full
-	no -c /home/dormando/d/p/danga/git/memcached/doc protocol-binary-range.full $@
+	no -c /home/salvatore/github/CSeq/VeriSmart/examples/memcached-1.5.19/doc protocol-binary-range.full $@
 
 protocol-binary.full: protocol-binary.xml xml2rfc/rfc2629-noinc.xsl
 	no --nonet xml2rfc/rfc2629-noinc.xsl protocol-binary.xml > $@
