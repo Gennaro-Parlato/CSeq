@@ -805,6 +805,7 @@ def main():
             if "inputtooutput" in dir(m):  # linemapping only works on Translator (C-to-C) modules
                 cseqenv.maps.append(m.outputtoinput)
                 cseqenv.lastlinenoinlastmodule = m.output.count("\n")
+                #core.utils.saveFile("%s/__mapO2I___%s.c" % (cseqenv.debugpath, m.getname()), str(m.outputtoinput))
 
             if cseqenv.debug and str(m.getname()) != "loopAnalysis":
                 fileno = "0" + str(cseqenv.transforms + 1).zfill(2)
@@ -822,8 +823,7 @@ def main():
 
             if cseqenv.debug and "markedoutput" in dir(m):  # current module is a Translator
                 core.utils.saveFile("%s/_%s_marked__%s.c" % (cseqenv.debugpath, fileno, m.getname()), m.markedoutput)
-                #core.utils.saveFile("%s/_%s_linemap__%s.c" % (cseqenv.debugpath, fileno, m.getname()),
-                #                    m.getlinenumbertable())
+                #core.utils.saveFile("%s/_%s_linemap__%s.c" % (cseqenv.debugpath, fileno, m.getname()), m.getlinenumbertable())
 
         except ParseError as e:
             print("Parse error (%s) while performing %s->%s:\n" % (str(e),

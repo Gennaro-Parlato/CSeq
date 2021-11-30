@@ -139,9 +139,9 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 		s = ''
 
 		if self.__VP1required:
-			s += '__cs_dataraceActiveVP1 = ( @#@L1 == (__cs_pc_cs[%s]-1) ) ; \n' % threadIndex
+			s += '__cs_dataraceActiveVP1 = ( @£@L1 == (__cs_pc_cs[%s]-1) ) ; \n' % threadIndex
 		if self.__VP2required:
-			s += '__cs_dataraceActiveVP2 = ( @#@L2 == __cs_pc[%s] ) ; \n' % threadIndex   #DR
+			s += '__cs_dataraceActiveVP2 = ( @£@L2 == __cs_pc[%s] ) ; \n' % threadIndex   #DR
 		return s
 
 #end routines for visit_Compound
@@ -796,7 +796,7 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 		main +="          unsigned int __cs_tmp_t%s_r0 %s;\n" % (self.Parser.threadOccurenceIndex['main'], self.getExtra_nondet())
 		main +="          __cs_pc_cs[%s] = __cs_tmp_t%s_r0;\n" % (self.Parser.threadOccurenceIndex['main'], self.Parser.threadOccurenceIndex['main'])
 		main +="          __CSEQ_assume(__cs_pc_cs[%s] > 0);\n" % self.Parser.threadOccurenceIndex['main']
-		main +="          __CSEQ_assume(__cs_pc_cs[%s] <= %s);\n" % (self.Parser.threadOccurenceIndex['main'], "@#@ML" + str(self.Parser.threadOccurenceIndex['main']))
+		main +="          __CSEQ_assume(__cs_pc_cs[%s] <= %s);\n" % (self.Parser.threadOccurenceIndex['main'], "@£@ML" + str(self.Parser.threadOccurenceIndex['main']))
 		main +="          if(__cs_dr_ts == 0) __cs_dataraceDetectionStarted=1;\n"
 		main +="          main_thread();\n"
 		main +="          if(__cs_dataraceDetectionStarted) __cs_dataraceSecondThread=1;\n"  #DR
@@ -814,7 +814,7 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 				main +="         unsigned int __cs_tmp_t%s_r0 %s;\n" % (i, self.getExtra_nondet())
 				main +="         if (__cs_dataraceContinue & __cs_active_thread[%s]) {\n" % (i)           #DR
 				main +="             __cs_pc_cs[%s] = __cs_tmp_t%s_r0;\n" % (i, i)
-				main +="             __CSEQ_assume(__cs_pc_cs[%s] <= %s);\n" % (i, "@#@ML" + str(self.Parser.threadOccurenceIndex[t]))
+				main +="             __CSEQ_assume(__cs_pc_cs[%s] <= %s);\n" % (i, "@£@ML" + str(self.Parser.threadOccurenceIndex[t]))
 				#main +="             __cs_noportest=0;\n"   #POR
 				if ts <= maxts :   #DR
 					  main +="             if(__cs_dr_ts == %s) __cs_dataraceDetectionStarted=1;\n" % ts #DR
@@ -844,7 +844,7 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 			else:
 				main +="             __cs_pc_cs[%s] = __cs_pc[%s] + __cs_tmp_t%s_r%s;\n" % (self.Parser.threadOccurenceIndex['main'], self.Parser.threadOccurenceIndex['main'], self.Parser.threadOccurenceIndex['main'], round)
 			main +="             __CSEQ_assume(__cs_pc_cs[%s] >= __cs_pc[%s]);\n" % (self.Parser.threadOccurenceIndex['main'], self.Parser.threadOccurenceIndex['main'])
-			main +="             __CSEQ_assume(__cs_pc_cs[%s] <= %s);\n" % (self.Parser.threadOccurenceIndex['main'], "@#@ML" + str(self.Parser.threadOccurenceIndex['main']))
+			main +="             __CSEQ_assume(__cs_pc_cs[%s] <= %s);\n" % (self.Parser.threadOccurenceIndex['main'], "@£@ML" + str(self.Parser.threadOccurenceIndex['main']))
 			if ts <= maxts :   #DR
 				main +="             if(__cs_dr_ts == %s) __cs_dataraceDetectionStarted=1;\n" % ts  #DR
 			main +="             main_thread();\n"
@@ -874,7 +874,7 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 					else:
 						main +="             __cs_pc_cs[%s] = __cs_pc[%s] + __cs_tmp_t%s_r%s;\n" % (i, i, i, round)
 					main +="             __CSEQ_assume(__cs_pc_cs[%s] >= __cs_pc[%s]);\n" % (i, i)
-					main +="             __CSEQ_assume(__cs_pc_cs[%s] <= %s);\n" % (i, '@#@ML' + str(self.Parser.threadOccurenceIndex[t]))
+					main +="             __CSEQ_assume(__cs_pc_cs[%s] <= %s);\n" % (i, '@£@ML' + str(self.Parser.threadOccurenceIndex[t]))
 					#main +="             __cs_noportest=0;\n"  #POR
 					if ts <= maxts :   #DR
 						 main +="             if(__cs_dr_ts == %s) __cs_dataraceDetectionStarted=1;\n" %  ts #DR

@@ -179,22 +179,22 @@ class loopAnalysis(core.module.Translator):
 		iList = 0
 		cRange = range(list[iList][0], list[iList][1] + 1)
 		while (i < len(seqCode) and not done):
-			if seqCode[i:i+3] == '@#@':
+			if seqCode[i:i+3] == '@£@':
 				if seqCode[i + 3] == 'I':
 					# Stop stripping at m
 					m = i
 					stringToStrip = seqCode[j:i]
-					while(seqCode[m-5 : m] != "@#@I2"):
+					while(seqCode[m-5 : m] != "@£@I2"):
 						stringToStrip += seqCode[m]
 						m += 1
 
 					# First statement of thread
 					if count == 0:
 						for sub in (
-							("@#@I1",'__CSEQ_rawline("IF(%s,%s,t%s_%s)");' % (self.__threadIndex[tName], count, tName, count + 1)),
-							("@#@L1", str(count)),
-							("@#@L2", str(count)),
-							("@#@I2", '')):
+							("@£@I1",'__CSEQ_rawline("IF(%s,%s,t%s_%s)");' % (self.__threadIndex[tName], count, tName, count + 1)),
+							("@£@L1", str(count)),
+							("@£@L2", str(count)),
+							("@£@I2", '')):
     							stringToStrip = stringToStrip.replace(*sub)
 						output.append(stringToStrip)
 						count += 1
@@ -202,10 +202,10 @@ class loopAnalysis(core.module.Translator):
 					
 					elif ICount in cRange:
 						for sub in (
-							("@#@I1", '__CSEQ_rawline("t%s_%s:");\n __CSEQ_rawline("IF(%s,%s,t%s_%s)");' % (tName, count, self.__threadIndex[tName], count, tName, count + 1)),
-							("@#@L1", str(count)),
-							("@#@L2", str(count)),
-							("@#@I2", '')):
+							("@£@I1", '__CSEQ_rawline("t%s_%s:"); __CSEQ_rawline("IF(%s,%s,t%s_%s)");' % (tName, count, self.__threadIndex[tName], count, tName, count + 1)),
+							("@£@L1", str(count)),
+							("@£@L2", str(count)),
+							("@£@I2", '')):
     							stringToStrip = stringToStrip.replace(*sub)
 						output.append(stringToStrip)
 						count += 1
@@ -224,7 +224,7 @@ class loopAnalysis(core.module.Translator):
 
 				# Guard label
 				elif seqCode[i + 3] == 'G':
-					s = seqCode[j:i] + '__CSEQ_assume( __cs_pc_cs[%s] >= %s );\n' % (
+					s = seqCode[j:i] + '__CSEQ_assume( __cs_pc_cs[%s] >= %s );' % (
 						self.__threadIndex[tName], count)
 					output.append(s)
 					i += 4
@@ -247,7 +247,7 @@ class loopAnalysis(core.module.Translator):
 		i = 0
 		#Implementare per quando ci sono piu di 9 thread
 		while i < len(mainDriver):
-			if mainDriver[i:i+3] == '@#@':
+			if mainDriver[i:i+3] == '@£@':
 				numthread = mainDriver[i+5]
 				#print("numthread: " + numthread)
 				tname = self.__threadName[int(numthread)]
@@ -367,11 +367,12 @@ class loopAnalysis(core.module.Translator):
 				if "inputtooutput" in dir(m):
 					env.maps.append(m.outputtoinput)
 					env.lastlinenoinlastmodule = m.output.count("\n")
+					#core.utils.saveFile("log/__mapO2I___%s.c" % (m.getname()), str(m.outputtoinput))
 
 				if not env.isSwarm and env.debug:
 					fileno = "0" + str(env.transforms + 1).zfill(2)
-					#core.utils.saveFile("%s/_%s_input___%s.c" % (env.debugpath, fileno, m.getname()), m.input)
-					#core.utils.saveFile("%s/_%s_output__%s.c" % (env.debugpath, fileno, m.getname()), m.output)
+					#core.utils.saveFile("log/_%s_input___%s.c" % (fileno, m.getname()), m.input)
+					#core.utils.saveFile("log/_%s_output__%s.c" % (fileno, m.getname()), m.output)
 					print("[%s] ok %0.2fs */" % (fileno, int(time.time()) - int(timeBefore)))
 					sys.stdout.flush()	
 
@@ -399,7 +400,7 @@ class loopAnalysis(core.module.Translator):
 			if env.isSwarm:
 				self.printFoundBug(confignumber.replace(
 					"s", ""), memsize, analysistime)
-			#controesempio è in errorTrace se cex settatai, salvare in file per swarm e stampare a video per noSwarm
+			#controesempio è in errorTrace se cex settata, salvare in file per swarm e stampare a video per noSwarm
 			return False
 
 		else:
