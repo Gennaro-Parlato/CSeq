@@ -246,11 +246,12 @@ class cex(core.module.BasicModule):
         lines = cex.split('\n')
         k = cex[:cex.find('Counterexample:')].count('\n')+1+1
         separator = "----------------------------------------------------"
+        newSeparator = "- - - - - - - - - - - - - - - - - - - - - - - - - - "
 
         while k<len(lines):
             # case 1: another transition to fetch
             if lines[k].startswith('State ') and lines[k+1] == separator:
-                A,B,C = lines[k],lines[k+1],lines[k+2]
+                A,B,C = lines[k],newSeparator,lines[k+2]
 
                 # the part below the separator might be
                 # more than one line long..
@@ -270,9 +271,12 @@ class cex(core.module.BasicModule):
                     translatedcex += '\n'
             # case 2: final transation with property violation
             elif lines[k].startswith('Violated property'):
-                Y,Z,W = self._mapCPROVERendstate(lines[k+1],lines[k+2],lines[k+3])
+                if self.env.enableDR: 
+                    translatedcex += 'Violated property:\n%s\n' % (lines[k+2])
+                else: 
+                    Y,Z,W = self._mapCPROVERendstate(lines[k+1],lines[k+2],lines[k+3])
+                    translatedcex += 'Violated property:\n%s\n%s\n%s\n' % (Y,Z,W)
 
-                translatedcex += 'Violated property:\n%s\n%s\n%s\n' % (Y,Z,W)
                 translatedcex += '\nVERIFICATION FAILED'
 
             k+=1
@@ -334,8 +338,13 @@ class cex(core.module.BasicModule):
             rvalue = line3[len(lvalue)+1:]
 
             # double-check parsing correctness
-            if 'function' in keys: Aout = "State %s file %s line %s function %s thread %s" % (keys['State'],keys['file'],keys['line'],keys['function'],keys['thread'])
-            else: Aout = "State %s file %s line %s thread %s" % (keys['State'],keys['file'],keys['line'],keys['thread'])
+            if self.env.enableDR:
+                 if 'function' in keys: Aout = "State %s file %s function %s line %s thread %s" % (keys['State'],keys['file'],keys['function'],keys['line'],keys['thread'])
+                 else: Aout = "State %s file %s line %s thread %s" % (keys['State'],keys['file'],keys['line'],keys['thread'])
+            else:
+                 if 'function' in keys: Aout = "State %s file %s line %s function %s thread %s" % (keys['State'],keys['file'],keys['line'],keys['function'],keys['thread'])
+                 else: Aout = "State %s file %s line %s thread %s" % (keys['State'],keys['file'],keys['line'],keys['thread'])
+
             Cout = "  %s=%s" % (lvalue,rvalue)
 
             if A != Aout or C != Cout:
