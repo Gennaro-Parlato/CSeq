@@ -338,12 +338,11 @@ class cex(core.module.BasicModule):
             rvalue = line3[len(lvalue)+1:]
 
             # double-check parsing correctness
-            if self.env.enableDR:
-                 if 'function' in keys: Aout = "State %s file %s function %s line %s thread %s" % (keys['State'],keys['file'],keys['function'],keys['line'],keys['thread'])
-                 else: Aout = "State %s file %s line %s thread %s" % (keys['State'],keys['file'],keys['line'],keys['thread'])
-            else:
-                 if 'function' in keys: Aout = "State %s file %s line %s function %s thread %s" % (keys['State'],keys['file'],keys['line'],keys['function'],keys['thread'])
-                 else: Aout = "State %s file %s line %s thread %s" % (keys['State'],keys['file'],keys['line'],keys['thread'])
+            if 'function' in keys: Aout = "State %s file %s function %s line %s thread %s" % (keys['State'],keys['file'],keys['function'],keys['line'],keys['thread'])
+            else: Aout = "State %s file %s line %s thread %s" % (keys['State'],keys['file'],keys['line'],keys['thread'])
+                 # The following works with older versions of cbmc (function and line info have been switched) 
+                 #if 'function' in keys: Aout = "State %s file %s line %s function %s thread %s" % (keys['State'],keys['file'],keys['line'],keys['function'],keys['thread'])
+                 #else: Aout = "State %s file %s line %s thread %s" % (keys['State'],keys['file'],keys['line'],keys['thread'])
 
             Cout = "  %s=%s" % (lvalue,rvalue)
 
@@ -394,6 +393,7 @@ class cex(core.module.BasicModule):
             threadindexout = ''
             fileout = ''
             if 'line' in keys: lineout,fileout = self.sbizz(int(keys['line']))
+
             Aout = "State %s file %s line %s thread %s" % (stateout,fileout,lineout,self.__lastthreadID)
             Cout = '  pthread_cond_signal(%s)' % (rvalue[:rvalue.find(' (')])
             return Aout,"- - - - - - - - - - - - - - - - - - - - - - - - - - ",Cout
