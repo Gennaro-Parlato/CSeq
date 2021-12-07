@@ -95,7 +95,8 @@ class switchtransformer(core.module.Translator):
         breakLabel = '<case-break-of-switch-%s_%s>' % (self.__currentFunction, self.__currentSwitchCount)
         self.__currentSwitchExprALL.pop()
         self.__currentSwitchVar.pop()
-        self.__currentSwitchCount -= 1
+        #S: the currentSwitchCount does not have to be decremented, this ensures that each translated switch uses  its own labels
+        #self.__currentSwitchCount -= 1
         s = s.replace(breakLabel, 'goto %s;' % switchEndLabel)
         s = s.replace(switchEndLabel, switchEndLabelFinal)
         return header + s
