@@ -33,7 +33,7 @@ VERSION = 'workaround-0.1-2016.11.13'
         - split declaration of local variables + init value to two separate statements:
             int x = value; --> int x; x = value;
             
-          (there are few exceptions such as for example when the variable is declared const)
+          (there are few exceptions see in the code, serach for initType)
 
 
         - remove  if(!1) { .. }  and  if(0) { .. }
@@ -181,9 +181,10 @@ class workarounds(core.module.Translator):
             elif isinstance(n.init, pycparser.c_ast.ExprList):
                 initType = 1
                 assignmentStmt = ' = (' + self.visit(n.init) + ')'
-            elif (n.quals and 'const' in n.quals):
-                initType = 1
-                assignmentStmt = ' = ' + self.visit(n.init)  
+#S: const vars now are threated as the others in this transformation
+#            elif (n.quals and 'const' in n.quals):
+#                initType = 1
+#                assignmentStmt = ' = ' + self.visit(n.init)  
             else:
                 initType = 0
                 assignmentStmt = ' = ' + self.visit(n.init)

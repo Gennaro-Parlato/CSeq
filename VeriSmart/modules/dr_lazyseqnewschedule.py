@@ -57,11 +57,13 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 
 	__isArray = False                # used to flag that we are below an ArrayRef node
 	__arrayName = ''            # contains the array name when on visiting array ref (going-up)
+	__arrayNamesList = []       # contains the list of pointer names that replaced arrays in the translation
 	__const = {}                # variables that are declared const
 	__const[''] = []            # init const vars for global scope
 
 	__codeContainsAtomic = False #set to True if code contains blocks that are executed atomically
 	__codeContainsAtomicCheck = True #this is set to False as soon as __codeContainsAtomic is determined
+       
 	
 #	__initializer = False #set to True when parsing initialization expression in declarations (this is needed to ensure that 
 
@@ -121,6 +123,7 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 		self.__wwDatarace = env.wwDatarace
 		self.__noShadow = env.no_shadow
 		#self.__enableDRlocals = env.local
+		self.__arrayNamesList = env.arrayNamesList
 		super(dr_lazyseqnewschedule, self).loadfromstring(string, env)
 
 # routines for visit_Compound
@@ -222,6 +225,9 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
                 arrref = self._parenthesize_unless_simple(n.name)
                 wse = self.__WSE 
                 self.__isArray = old_isArray #POR
+                #print("arrref: " + arrref)
+                #print(n.name)
+                #print("wse: " + wse)
 
                 if not self.__optional2:
                    ret =  arrref 
@@ -294,11 +300,11 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 			
 		
 		#if (self._isGlobal(self.getCurrentThread(), n.name) or self._isPointer(self.getCurrentThread(), n.name)) and not self.__isArray and not self._isConst(self.getCurrentThread(),n.name):
-		if ( self._isVar(self.getCurrentThread(),n.name)): 
+		if ( self._isVar(self.getCurrentThread(),n.name) and n.name not in self.__arrayNamesList): 
 # old condition: 
 # not self.isThread(n.name) and not self.__isArray and not self._isConst(self.getCurrentThread(),n.name) ):
 #			print(self._isVar(self.getCurrentThread(),n.name))
-			#print(n.name)
+			print(n.name)
 			if self.__stats != Stats.noACC: 
 				if self.isAtomic():
 					ret += '( __cs_dataraceActiveVP2 && __cs_dataraceSecondThread  && (__cs_dataraceNotDetected = __cs_dataraceNotDetected && ! __CPROVER_get_field(&%s,"dr_write_noatomic")))' %  n.name
@@ -319,7 +325,10 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 
 		if self.__isArray:
 			self.__arrayName = n.name
-				
+			#print(n.name)
+			#print("ret: " + ret)
+			#print("isPointer? " + str(self._isPointer(self.getCurrentThread(), n.name)))
+
 		if self.__visitingStructR:
 			self.__optional2 = False
 		#print("#############")

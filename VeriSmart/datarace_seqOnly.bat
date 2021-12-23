@@ -1,7 +1,8 @@
-sourcedir=/home/salvatore/ExperimentsOctober26/sv-benchmarks-concurrency2020/
-result=${sourcedir}results${1}R${2}U.out
-seqdir=${sourcedir}sequentialized${1}R${2}U/
-outdir=${sourcedir}output/
+sourcedir=/home/salvatore/github/CSeq/svcomp2020-concurrency-benchmarks/
+basedir=/home/salvatore/github/CSeq/Experiments/Dec2021/
+result=${basedir}results${1}R${2}U.out
+seqdir=${basedir}sequentialized${1}R${2}U/
+outdir=${basedir}output/
 
 if [ -f $result ]; then
     rm $result

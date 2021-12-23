@@ -158,6 +158,7 @@ class cseqenv:
     inlineInfix = '$$$$'  # S: placeholder to insert counter value in function inlining, see varname.py and inliner.py
     paths = False
     no_shadow = False
+    arrayNamesList = []  #here are annotated the names of the pointers that correspond to array names in the input program
 
 
 def parseChainCommand(s):

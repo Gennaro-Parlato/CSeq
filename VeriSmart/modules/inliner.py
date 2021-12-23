@@ -118,6 +118,7 @@ class inliner(core.module.Translator):
     inlineInfix = ''  # S: added to copy inlineInfix from env passed in loadfromstring
 
     currFuncPtrParamMap = {}  # keeps the value in the current call of the function parameters of type function pointer
+    __arrayNamesList = []  # list of pinters that replace local arrays
 
     # we remove such parameters and inline the corresponding functions
     def init(self):
@@ -147,6 +148,10 @@ class inliner(core.module.Translator):
         self.inlineInfix = env.inlineInfix  # S
 
         super(self.__class__, self).loadfromstring(string, env)
+
+        env.arrayNamesList = self.__arrayNamesList
+        #print( env.arrayNamesList)
+
 
     ''' Check whether or not the input source code has been fully inlined,
         i.e. whether every function defined in the original source code has been inlined,
@@ -533,7 +538,6 @@ class inliner(core.module.Translator):
 
         s = n.name if no_type else self._generate_decl(n)
         # S: added to handle var renaming in each inlining of functions
-
         s = self.updateName(s)
         name = self.updateName(str(n.name))
 
@@ -566,6 +570,8 @@ class inliner(core.module.Translator):
                     s += '= (' + self.visit(n.init) + ')'
                 else:
                     s += '= ' + self.visit(n.init)
+            else: 
+                s = s.replace("const ", "")  #S: initialized const local vars are threated as other local vars (i.e., the initializer is assigned after a non initialized decl since static vars require a constant expression as an initializers, and often const local vars are assigned with non-constant experssions)  
             return s
         # S: end addition
 
@@ -630,6 +636,9 @@ class inliner(core.module.Translator):
             #                    s += initialStmt
             #
             elif self.__isArray(self.currentFunction[-1], n.name):
+                #S: update list of pointers that replace former arrays (used later in the translation)
+                self.__arrayNamesList.append(name)      
+                
                 # There are two cases:
                 # 1. this array has a constant expression of compound literal
                 # 2. anything else
@@ -908,13 +917,12 @@ class inliner(core.module.Translator):
                         ##print "    type    %s" % self.Parser.varTypeUnExpanded[fref,p]
                         ##print "    param   %s\n" % self.currentFunctionParams[-1][i]
 
-                        # S: then branch added to handle constant params properly
-                        if 'const' in self.Parser.varTypeUnExpanded[fref, p]:
-                            fInput += 'static %s %s = %s; ' % (
-                            self.Parser.varTypeUnExpanded[fref, p], pname, self.currentFunctionParams[-1][i])
-                        else:
-                            fInput += 'static %s %s; %s = %s; ' % (
-                            self.Parser.varTypeUnExpanded[fref, p], pname, pname, self.currentFunctionParams[-1][i])
+                        # S: following three lines added to handle constant params properly
+                        type = self.Parser.varTypeUnExpanded[fref, p]
+                        if type.startswith("const "):
+                           type = type.replace("const ","",1) 
+                        fInput += 'static %s %s; %s = %s; ' % (
+                        type, pname, pname, self.currentFunctionParams[-1][i])
                         i += 1
                     elif not self.__isPointerToFunction(fref, p) and self.__isArray(fref, p):
                         varSize = ''

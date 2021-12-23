@@ -1,4 +1,4 @@
-sourcedir=/home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/
+sourcedir=/home/salvatore/github/CSeq/Experiments/Dec2021/
 result=${sourcedir}resultscbmc${1}R${2}U.out
 seqdir=${sourcedir}sequentialized${1}R${2}U/
 
