@@ -1,0 +1,1467 @@
+CBMC version 5.45.0 (cbmc-5.45.0-179-gd48dc284f7) 64-bit x86_64 linux
+Parsing /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c
+Converting
+Type-checking _csdr_06_ticket
+file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c line 325 function thr1_0: function '__CPROVER_set_field' is not declared
+file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c line 325 function thr1_0: function '__CPROVER_get_field' is not declared
+file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c line 1097 function main: function '__CPROVER_field_decl_global' is not declared
+file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c line 1098 function main: function '__CPROVER_field_decl_local' is not declared
+Generating GOTO Program
+Adding CPROVER library (x86_64)
+Removal of function pointers and virtual functions
+Generic Property Instrumentation
+Running with 8 object bits, 56 offset bits (default)
+Starting Bounded Model Checking
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c line 1083 function main_thread thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c line 1083 function main_thread thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c line 1083 function main_thread thread 0
+Runtime Symex: 0.323553s
+size of program expression: 13793 steps
+simple slicing removed 5 assignments
+Generated 1 VCC(s), 1 remaining after simplification
+Runtime Postprocess Equation: 0.00156355s
+Passing problem to propositional reduction
+converting SSA
+Runtime Convert SSA: 0.0645719s
+Running propositional reduction
+Post-processing
+Runtime Post-process: 2.4458e-05s
+Solving with Glucose Syrup with simplifier
+45139 variables, 85012 clauses
+SAT checker: instance is SATISFIABLE
+Runtime Solver: 0.0505942s
+Runtime decision procedure: 0.115519s
+Building error trace
+Counterexample:
+
+State 21 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function __CPROVER_initialize line 57 thread 0
+----------------------------------------------------
+  __cs_active_thread[0l]=0 (0)
+
+State 22 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function __CPROVER_initialize line 57 thread 0
+----------------------------------------------------
+  __cs_active_thread[1l]=0 (0)
+
+State 23 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function __CPROVER_initialize line 57 thread 0
+----------------------------------------------------
+  __cs_active_thread[2l]=0 (0)
+
+State 24 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function __CPROVER_initialize line 57 thread 0
+----------------------------------------------------
+  __cs_active_thread[3l]=0 (0)
+
+State 25 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function __CPROVER_initialize line 57 thread 0
+----------------------------------------------------
+  __cs_active_thread[4l]=0 (0)
+
+State 34 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function __CPROVER_initialize line 58 thread 0
+----------------------------------------------------
+  __cs_pc[0l]=0 (0000)
+
+State 35 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function __CPROVER_initialize line 58 thread 0
+----------------------------------------------------
+  __cs_pc[1l]=0 (0000)
+
+State 36 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function __CPROVER_initialize line 58 thread 0
+----------------------------------------------------
+  __cs_pc[2l]=0 (0000)
+
+State 37 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function __CPROVER_initialize line 58 thread 0
+----------------------------------------------------
+  __cs_pc[3l]=0 (0000)
+
+State 38 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function __CPROVER_initialize line 58 thread 0
+----------------------------------------------------
+  __cs_pc[4l]=0 (0000)
+
+State 40 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function __CPROVER_initialize line 59 thread 0
+----------------------------------------------------
+  __cs_pc_cs[0l]=0 (00000)
+
+State 41 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function __CPROVER_initialize line 59 thread 0
+----------------------------------------------------
+  __cs_pc_cs[1l]=0 (00000)
+
+State 42 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function __CPROVER_initialize line 59 thread 0
+----------------------------------------------------
+  __cs_pc_cs[2l]=0 (00000)
+
+State 43 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function __CPROVER_initialize line 59 thread 0
+----------------------------------------------------
+  __cs_pc_cs[3l]=0 (00000)
+
+State 44 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function __CPROVER_initialize line 59 thread 0
+----------------------------------------------------
+  __cs_pc_cs[4l]=0 (00000)
+
+State 46 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function __CPROVER_initialize line 82 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 47 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function __CPROVER_initialize line 82 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 48 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function __CPROVER_initialize line 82 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[2l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 49 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function __CPROVER_initialize line 82 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[3l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 50 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function __CPROVER_initialize line 82 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[4l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 52 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function __CPROVER_initialize line 61 thread 0
+----------------------------------------------------
+  __cs_thread_lines[0l]=11 (1011)
+
+State 53 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function __CPROVER_initialize line 61 thread 0
+----------------------------------------------------
+  __cs_thread_lines[1l]=11 (1011)
+
+State 54 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function __CPROVER_initialize line 61 thread 0
+----------------------------------------------------
+  __cs_thread_lines[2l]=11 (1011)
+
+State 55 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function __CPROVER_initialize line 61 thread 0
+----------------------------------------------------
+  __cs_thread_lines[3l]=11 (1011)
+
+State 56 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function __CPROVER_initialize line 61 thread 0
+----------------------------------------------------
+  __cs_thread_lines[4l]=6 (0110)
+
+State 58 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function __CPROVER_initialize line 81 thread 0
+----------------------------------------------------
+  __cs_threadargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 59 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function __CPROVER_initialize line 81 thread 0
+----------------------------------------------------
+  __cs_threadargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 60 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function __CPROVER_initialize line 81 thread 0
+----------------------------------------------------
+  __cs_threadargs[2l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 61 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function __CPROVER_initialize line 81 thread 0
+----------------------------------------------------
+  __cs_threadargs[3l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 62 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function __CPROVER_initialize line 81 thread 0
+----------------------------------------------------
+  __cs_threadargs[4l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 202 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function main line 1101 thread 0
+----------------------------------------------------
+  __cs_dr_ts=9 (1001)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c line 1102 function main
+  (signed int)__cs_dr_ts <= 13
+
+State 204 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function main line 1105 thread 0
+----------------------------------------------------
+  __cs_active_thread[4l]=1 (1)
+
+State 205 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function main line 1106 thread 0
+----------------------------------------------------
+  __cs_tmp_t4_r0=5 (101)
+
+State 206 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function main line 1107 thread 0
+----------------------------------------------------
+  __cs_pc_cs[4l]=5 (00101)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c line 1108 function main
+  (signed int)__cs_pc_cs[(signed long int)4] > 0
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c line 1109 function main
+  (signed int)__cs_pc_cs[(signed long int)4] <= 6
+
+State 213 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function main_thread line 1054 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 214 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function main_thread line 1055 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=TRUE (00000001)
+
+State 218 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function main_thread line 1060 thread 0
+----------------------------------------------------
+  __cs_new_thread_id=&__dr_nondet_main_t (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 219 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function main_thread line 1060 thread 0
+----------------------------------------------------
+  __cs_attr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 220 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function main_thread line 1060 thread 0
+----------------------------------------------------
+  __cs_thread_function=thr1_0 (00000011 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 221 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function main_thread line 1060 thread 0
+----------------------------------------------------
+  __cs_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 222 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function main_thread line 1060 thread 0
+----------------------------------------------------
+  __cs_threadID=0 (00000000 00000000 00000000 00000000)
+
+State 224 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function __cs_create line 87 thread 0
+----------------------------------------------------
+  __dr_nondet_main_t=0 (00000000 00000000 00000000 00000000)
+
+State 225 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function __cs_create line 88 thread 0
+----------------------------------------------------
+  __cs_active_thread[0l]=1 (1)
+
+State 226 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function __cs_create line 89 thread 0
+----------------------------------------------------
+  __cs_threadargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 231 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function main_thread line 1066 thread 0
+----------------------------------------------------
+  __cs_new_thread_id=&__dr_nondet_main_t (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 232 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function main_thread line 1066 thread 0
+----------------------------------------------------
+  __cs_attr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 233 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function main_thread line 1066 thread 0
+----------------------------------------------------
+  __cs_thread_function=thr1_1 (00000100 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 234 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function main_thread line 1066 thread 0
+----------------------------------------------------
+  __cs_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 235 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function main_thread line 1066 thread 0
+----------------------------------------------------
+  __cs_threadID=1 (00000000 00000000 00000000 00000001)
+
+State 237 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function __cs_create line 87 thread 0
+----------------------------------------------------
+  __dr_nondet_main_t=1 (00000000 00000000 00000000 00000001)
+
+State 238 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function __cs_create line 88 thread 0
+----------------------------------------------------
+  __cs_active_thread[1l]=1 (1)
+
+State 239 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function __cs_create line 89 thread 0
+----------------------------------------------------
+  __cs_threadargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 244 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function main_thread line 1072 thread 0
+----------------------------------------------------
+  __cs_new_thread_id=&__dr_nondet_main_t (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 245 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function main_thread line 1072 thread 0
+----------------------------------------------------
+  __cs_attr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 246 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function main_thread line 1072 thread 0
+----------------------------------------------------
+  __cs_thread_function=thr1_2 (00000101 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 247 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function main_thread line 1072 thread 0
+----------------------------------------------------
+  __cs_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 248 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function main_thread line 1072 thread 0
+----------------------------------------------------
+  __cs_threadID=2 (00000000 00000000 00000000 00000010)
+
+State 250 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function __cs_create line 87 thread 0
+----------------------------------------------------
+  __dr_nondet_main_t=2 (00000000 00000000 00000000 00000010)
+
+State 251 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function __cs_create line 88 thread 0
+----------------------------------------------------
+  __cs_active_thread[2l]=1 (1)
+
+State 252 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function __cs_create line 89 thread 0
+----------------------------------------------------
+  __cs_threadargs[2l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 257 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function main_thread line 1078 thread 0
+----------------------------------------------------
+  __cs_new_thread_id=&__dr_nondet_main_t (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 258 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function main_thread line 1078 thread 0
+----------------------------------------------------
+  __cs_attr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 259 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function main_thread line 1078 thread 0
+----------------------------------------------------
+  __cs_thread_function=thr1_3 (00000110 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 260 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function main_thread line 1078 thread 0
+----------------------------------------------------
+  __cs_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 261 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function main_thread line 1078 thread 0
+----------------------------------------------------
+  __cs_threadID=3 (00000000 00000000 00000000 00000011)
+
+State 263 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function __cs_create line 87 thread 0
+----------------------------------------------------
+  __dr_nondet_main_t=3 (00000000 00000000 00000000 00000011)
+
+State 264 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function __cs_create line 88 thread 0
+----------------------------------------------------
+  __cs_active_thread[3l]=1 (1)
+
+State 265 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function __cs_create line 89 thread 0
+----------------------------------------------------
+  __cs_threadargs[3l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 270 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function main_thread line 1093 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 271 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function main_thread line 1093 thread 0
+----------------------------------------------------
+  __cs_thread_index=4u (00000000 00000000 00000000 00000100)
+
+State 272 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function __cs_exit line 101 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[4l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 276 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function main line 1115 thread 0
+----------------------------------------------------
+  __cs_pc[4l]=5 (0101)
+
+State 277 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function main line 1117 thread 0
+----------------------------------------------------
+  __cs_tmp_t0_r0=0 (0000)
+
+State 279 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function main line 1120 thread 0
+----------------------------------------------------
+  __cs_pc_cs[0l]=0 (00000)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c line 1121 function main
+  (signed int)__cs_pc_cs[(signed long int)0] <= 11
+
+State 284 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function main line 1124 thread 0
+----------------------------------------------------
+  SM__&__dr_param_thr1_arg!0@1__dr_write=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 285 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function main line 1124 thread 0
+----------------------------------------------------
+  SM__&__dr_param_thr1_arg!0@1__dr_write_noatomic=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 286 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function main line 1124 thread 0
+----------------------------------------------------
+  __dr_param_thr1_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 302 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function thr1_0 line 494 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 303 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function thr1_0 line 494 thread 0
+----------------------------------------------------
+  __cs_thread_index=0u (00000000 00000000 00000000 00000000)
+
+State 304 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function __cs_exit line 101 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 309 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function main line 1129 thread 0
+----------------------------------------------------
+  __cs_pc[0l]=0 (0000)
+
+State 310 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function main line 1132 thread 0
+----------------------------------------------------
+  __cs_tmp_t1_r0=0 (0000)
+
+State 312 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function main line 1135 thread 0
+----------------------------------------------------
+  __cs_pc_cs[1l]=0 (00000)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c line 1136 function main
+  (signed int)__cs_pc_cs[(signed long int)1] <= 11
+
+State 317 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function main line 1139 thread 0
+----------------------------------------------------
+  SM__&__dr_param_thr1_arg!0@1__dr_write$0=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 318 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function main line 1139 thread 0
+----------------------------------------------------
+  SM__&__dr_param_thr1_arg!0@1__dr_write_noatomic$0=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 319 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function main line 1139 thread 0
+----------------------------------------------------
+  __dr_param_thr1_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 335 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function thr1_1 line 679 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 336 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function thr1_1 line 679 thread 0
+----------------------------------------------------
+  __cs_thread_index=1u (00000000 00000000 00000000 00000001)
+
+State 337 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function __cs_exit line 101 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 342 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function main line 1144 thread 0
+----------------------------------------------------
+  __cs_pc[1l]=0 (0000)
+
+State 343 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function main line 1147 thread 0
+----------------------------------------------------
+  __cs_tmp_t2_r0=0 (0000)
+
+State 345 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function main line 1150 thread 0
+----------------------------------------------------
+  __cs_pc_cs[2l]=0 (00000)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c line 1151 function main
+  (signed int)__cs_pc_cs[(signed long int)2] <= 11
+
+State 350 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function main line 1154 thread 0
+----------------------------------------------------
+  SM__&__dr_param_thr1_arg!0@1__dr_write$1=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 351 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function main line 1154 thread 0
+----------------------------------------------------
+  SM__&__dr_param_thr1_arg!0@1__dr_write_noatomic$1=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 352 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function main line 1154 thread 0
+----------------------------------------------------
+  __dr_param_thr1_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 368 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function thr1_2 line 864 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 369 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function thr1_2 line 864 thread 0
+----------------------------------------------------
+  __cs_thread_index=2u (00000000 00000000 00000000 00000010)
+
+State 370 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function __cs_exit line 101 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[2l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 375 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function main line 1159 thread 0
+----------------------------------------------------
+  __cs_pc[2l]=0 (0000)
+
+State 376 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function main line 1162 thread 0
+----------------------------------------------------
+  __cs_tmp_t3_r0=0 (0000)
+
+State 378 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function main line 1165 thread 0
+----------------------------------------------------
+  __cs_pc_cs[3l]=0 (00000)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c line 1166 function main
+  (signed int)__cs_pc_cs[(signed long int)3] <= 11
+
+State 383 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function main line 1169 thread 0
+----------------------------------------------------
+  SM__&__dr_param_thr1_arg!0@1__dr_write$2=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 384 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function main line 1169 thread 0
+----------------------------------------------------
+  SM__&__dr_param_thr1_arg!0@1__dr_write_noatomic$2=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 385 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function main line 1169 thread 0
+----------------------------------------------------
+  __dr_param_thr1_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 401 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function thr1_3 line 1049 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 402 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function thr1_3 line 1049 thread 0
+----------------------------------------------------
+  __cs_thread_index=3u (00000000 00000000 00000000 00000011)
+
+State 403 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function __cs_exit line 101 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[3l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 408 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function main line 1174 thread 0
+----------------------------------------------------
+  __cs_pc[3l]=0 (0000)
+
+State 409 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function main line 1178 thread 0
+----------------------------------------------------
+  __cs_tmp_t4_r1=0 (000)
+
+State 411 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function main line 1181 thread 0
+----------------------------------------------------
+  __cs_pc_cs[4l]=5 (00101)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c line 1182 function main
+  (signed int)__cs_pc_cs[(signed long int)4] >= (signed int)__cs_pc[(signed long int)4]
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c line 1183 function main
+  (signed int)__cs_pc_cs[(signed long int)4] <= 6
+
+State 425 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function main_thread line 1093 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 426 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function main_thread line 1093 thread 0
+----------------------------------------------------
+  __cs_thread_index=4u (00000000 00000000 00000000 00000100)
+
+State 427 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function __cs_exit line 101 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[4l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 432 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function main line 1191 thread 0
+----------------------------------------------------
+  __cs_pc[4l]=5 (0101)
+
+State 433 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function main line 1194 thread 0
+----------------------------------------------------
+  __cs_tmp_t0_r1=11 (1011)
+
+State 435 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function main line 1197 thread 0
+----------------------------------------------------
+  __cs_pc_cs[0l]=11 (01011)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c line 1198 function main
+  (signed int)__cs_pc_cs[(signed long int)0] >= (signed int)__cs_pc[(signed long int)0]
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c line 1199 function main
+  (signed int)__cs_pc_cs[(signed long int)0] <= 11
+
+State 441 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function main line 1202 thread 0
+----------------------------------------------------
+  SM__&__dr_param_thr1_arg!0@2__dr_write=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 442 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function main line 1202 thread 0
+----------------------------------------------------
+  SM__&__dr_param_thr1_arg!0@2__dr_write_noatomic=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 443 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function main line 1202 thread 0
+----------------------------------------------------
+  __dr_param_thr1_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 445 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function thr1_0 line 318 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 446 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function thr1_0 line 319 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=TRUE (00000001)
+
+State 451 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function thr1_0 line 325 thread 0
+----------------------------------------------------
+  __dr_nondet_fetch_and_increment__next_ticket_1___cs_tmp_if_cond_0=FALSE (00000000)
+
+State 457 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function thr1_0 line 332 thread 0
+----------------------------------------------------
+  __dr_nondet_fetch_and_increment__next_ticket_1_value=0u (00000000 00000000 00000000 00000000)
+
+State 461 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function thr1_0 line 333 thread 0
+----------------------------------------------------
+  next_ticket=1u (00000000 00000000 00000000 00000001)
+
+State 463 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function thr1_0 line 337 thread 0
+----------------------------------------------------
+  __cs_retval_fetch_and_increment__next_ticket_1=0u (00000000 00000000 00000000 00000000)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c line 341 function thr1_0
+  (signed int)__cs_pc_cs[(signed long int)0] >= 1
+
+State 468 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function thr1_0 line 346 thread 0
+----------------------------------------------------
+  __dr_nondet_acquire_lock_1_my_ticket=0u (00000000 00000000 00000000 00000000)
+
+State 473 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function thr1_0 line 350 thread 0
+----------------------------------------------------
+  __dr_nondet_acquire_lock_1___cs_tmp_if_cond_1=FALSE (00000000)
+
+State 477 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function thr1_0 line 363 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 478 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function thr1_0 line 364 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 484 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function thr1_0 line 365 thread 0
+----------------------------------------------------
+  __dr_nondet_acquire_lock_1___cs_tmp_if_cond_2=TRUE (00000001)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c line 429 function thr1_0
+  (signed int)__cs_pc_cs[(signed long int)0] >= 6
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c line 433 function thr1_0
+  (signed int)__cs_pc_cs[(signed long int)0] >= 6
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c line 438 function thr1_0
+  (signed int)__cs_pc_cs[(signed long int)0] >= 6
+
+State 492 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function thr1_0 line 445 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 493 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function thr1_0 line 446 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 497 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function thr1_0 line 447 thread 0
+----------------------------------------------------
+  c=1 (00000000 00000000 00000000 00000001)
+
+State 499 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function thr1_0 line 454 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 500 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function thr1_0 line 455 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 505 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function thr1_0 line 456 thread 0
+----------------------------------------------------
+  __dr_nondet_thr1___cs_tmp_if_cond_3=FALSE (00000000)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c line 464 function thr1_0
+  (signed int)__cs_pc_cs[(signed long int)0] >= 9
+
+State 510 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function thr1_0 line 472 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 511 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function thr1_0 line 473 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 515 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function thr1_0 line 474 thread 0
+----------------------------------------------------
+  c=0 (00000000 00000000 00000000 00000000)
+
+State 517 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function thr1_0 line 478 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=TRUE (00000001)
+
+State 518 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function thr1_0 line 479 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 522 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function thr1_0 line 480 thread 0
+----------------------------------------------------
+  now_serving=1u (00000000 00000000 00000000 00000001)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c line 482 function thr1_0
+  (signed int)__cs_pc_cs[(signed long int)0] >= 11
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c line 490 function thr1_0
+  (signed int)__cs_pc_cs[(signed long int)0] >= 11
+
+State 527 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function thr1_0 line 494 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 528 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function thr1_0 line 494 thread 0
+----------------------------------------------------
+  __cs_thread_index=0u (00000000 00000000 00000000 00000000)
+
+State 529 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function __cs_exit line 101 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 534 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function main line 1207 thread 0
+----------------------------------------------------
+  __cs_pc[0l]=11 (1011)
+
+State 535 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function main line 1210 thread 0
+----------------------------------------------------
+  __cs_tmp_t1_r1=11 (1011)
+
+State 537 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function main line 1213 thread 0
+----------------------------------------------------
+  __cs_pc_cs[1l]=11 (01011)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c line 1214 function main
+  (signed int)__cs_pc_cs[(signed long int)1] >= (signed int)__cs_pc[(signed long int)1]
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c line 1215 function main
+  (signed int)__cs_pc_cs[(signed long int)1] <= 11
+
+State 543 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function main line 1218 thread 0
+----------------------------------------------------
+  SM__&__dr_param_thr1_arg!0@2__dr_write$0=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 544 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function main line 1218 thread 0
+----------------------------------------------------
+  SM__&__dr_param_thr1_arg!0@2__dr_write_noatomic$0=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 545 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function main line 1218 thread 0
+----------------------------------------------------
+  __dr_param_thr1_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 547 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function thr1_1 line 503 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 548 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function thr1_1 line 504 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=TRUE (00000001)
+
+State 553 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function thr1_1 line 510 thread 0
+----------------------------------------------------
+  __dr_nondet_fetch_and_increment__next_ticket_1___cs_tmp_if_cond_0=FALSE (00000000)
+
+State 559 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function thr1_1 line 517 thread 0
+----------------------------------------------------
+  __dr_nondet_fetch_and_increment__next_ticket_1_value=1u (00000000 00000000 00000000 00000001)
+
+State 563 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function thr1_1 line 518 thread 0
+----------------------------------------------------
+  next_ticket=2u (00000000 00000000 00000000 00000010)
+
+State 565 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function thr1_1 line 522 thread 0
+----------------------------------------------------
+  __cs_retval_fetch_and_increment__next_ticket_1=1u (00000000 00000000 00000000 00000001)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c line 526 function thr1_1
+  (signed int)__cs_pc_cs[(signed long int)1] >= 1
+
+State 570 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function thr1_1 line 531 thread 0
+----------------------------------------------------
+  __dr_nondet_acquire_lock_1_my_ticket=1u (00000000 00000000 00000000 00000001)
+
+State 575 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function thr1_1 line 535 thread 0
+----------------------------------------------------
+  __dr_nondet_acquire_lock_1___cs_tmp_if_cond_1=FALSE (00000000)
+
+State 579 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function thr1_1 line 548 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 580 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function thr1_1 line 549 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 586 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function thr1_1 line 550 thread 0
+----------------------------------------------------
+  __dr_nondet_acquire_lock_1___cs_tmp_if_cond_2=TRUE (00000001)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c line 614 function thr1_1
+  (signed int)__cs_pc_cs[(signed long int)1] >= 6
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c line 618 function thr1_1
+  (signed int)__cs_pc_cs[(signed long int)1] >= 6
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c line 623 function thr1_1
+  (signed int)__cs_pc_cs[(signed long int)1] >= 6
+
+State 594 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function thr1_1 line 630 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 595 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function thr1_1 line 631 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 599 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function thr1_1 line 632 thread 0
+----------------------------------------------------
+  c=1 (00000000 00000000 00000000 00000001)
+
+State 601 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function thr1_1 line 639 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 602 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function thr1_1 line 640 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 607 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function thr1_1 line 641 thread 0
+----------------------------------------------------
+  __dr_nondet_thr1___cs_tmp_if_cond_3=FALSE (00000000)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c line 649 function thr1_1
+  (signed int)__cs_pc_cs[(signed long int)1] >= 9
+
+State 612 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function thr1_1 line 657 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 613 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function thr1_1 line 658 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 617 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function thr1_1 line 659 thread 0
+----------------------------------------------------
+  c=0 (00000000 00000000 00000000 00000000)
+
+State 619 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function thr1_1 line 663 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=TRUE (00000001)
+
+State 620 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function thr1_1 line 664 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 624 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function thr1_1 line 665 thread 0
+----------------------------------------------------
+  now_serving=2u (00000000 00000000 00000000 00000010)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c line 667 function thr1_1
+  (signed int)__cs_pc_cs[(signed long int)1] >= 11
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c line 675 function thr1_1
+  (signed int)__cs_pc_cs[(signed long int)1] >= 11
+
+State 629 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function thr1_1 line 679 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 630 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function thr1_1 line 679 thread 0
+----------------------------------------------------
+  __cs_thread_index=1u (00000000 00000000 00000000 00000001)
+
+State 631 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function __cs_exit line 101 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 636 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function main line 1223 thread 0
+----------------------------------------------------
+  __cs_pc[1l]=11 (1011)
+
+State 637 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function main line 1226 thread 0
+----------------------------------------------------
+  __cs_tmp_t2_r1=0 (0000)
+
+State 639 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function main line 1229 thread 0
+----------------------------------------------------
+  __cs_pc_cs[2l]=0 (00000)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c line 1230 function main
+  (signed int)__cs_pc_cs[(signed long int)2] >= (signed int)__cs_pc[(signed long int)2]
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c line 1231 function main
+  (signed int)__cs_pc_cs[(signed long int)2] <= 11
+
+State 645 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function main line 1234 thread 0
+----------------------------------------------------
+  SM__&__dr_param_thr1_arg!0@2__dr_write$1=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 646 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function main line 1234 thread 0
+----------------------------------------------------
+  SM__&__dr_param_thr1_arg!0@2__dr_write_noatomic$1=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 647 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function main line 1234 thread 0
+----------------------------------------------------
+  __dr_param_thr1_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 663 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function thr1_2 line 864 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 664 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function thr1_2 line 864 thread 0
+----------------------------------------------------
+  __cs_thread_index=2u (00000000 00000000 00000000 00000010)
+
+State 665 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function __cs_exit line 101 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[2l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 670 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function main line 1239 thread 0
+----------------------------------------------------
+  __cs_pc[2l]=0 (0000)
+
+State 671 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function main line 1242 thread 0
+----------------------------------------------------
+  __cs_tmp_t3_r1=11 (1011)
+
+State 673 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function main line 1245 thread 0
+----------------------------------------------------
+  __cs_pc_cs[3l]=11 (01011)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c line 1246 function main
+  (signed int)__cs_pc_cs[(signed long int)3] >= (signed int)__cs_pc[(signed long int)3]
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c line 1247 function main
+  (signed int)__cs_pc_cs[(signed long int)3] <= 11
+
+State 677 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function main line 1249 thread 0
+----------------------------------------------------
+  __cs_dataraceDetectionStarted=TRUE (00000001)
+
+State 680 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function main line 1250 thread 0
+----------------------------------------------------
+  SM__&__dr_param_thr1_arg!0@2__dr_write$2=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 681 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function main line 1250 thread 0
+----------------------------------------------------
+  SM__&__dr_param_thr1_arg!0@2__dr_write_noatomic$2=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 682 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function main line 1250 thread 0
+----------------------------------------------------
+  __dr_param_thr1_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 684 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function thr1_3 line 873 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 685 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function thr1_3 line 874 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=TRUE (00000001)
+
+State 690 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function thr1_3 line 880 thread 0
+----------------------------------------------------
+  __dr_nondet_fetch_and_increment__next_ticket_1___cs_tmp_if_cond_0=FALSE (00000000)
+
+State 696 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function thr1_3 line 887 thread 0
+----------------------------------------------------
+  __dr_nondet_fetch_and_increment__next_ticket_1_value=2u (00000000 00000000 00000000 00000010)
+
+State 700 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function thr1_3 line 888 thread 0
+----------------------------------------------------
+  next_ticket=0u (00000000 00000000 00000000 00000000)
+
+State 702 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function thr1_3 line 892 thread 0
+----------------------------------------------------
+  __cs_retval_fetch_and_increment__next_ticket_1=2u (00000000 00000000 00000000 00000010)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c line 896 function thr1_3
+  (signed int)__cs_pc_cs[(signed long int)3] >= 1
+
+State 707 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function thr1_3 line 901 thread 0
+----------------------------------------------------
+  __dr_nondet_acquire_lock_1_my_ticket=2u (00000000 00000000 00000000 00000010)
+
+State 712 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function thr1_3 line 905 thread 0
+----------------------------------------------------
+  __dr_nondet_acquire_lock_1___cs_tmp_if_cond_1=FALSE (00000000)
+
+State 716 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function thr1_3 line 918 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 717 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function thr1_3 line 919 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 723 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function thr1_3 line 920 thread 0
+----------------------------------------------------
+  __dr_nondet_acquire_lock_1___cs_tmp_if_cond_2=TRUE (00000001)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c line 984 function thr1_3
+  (signed int)__cs_pc_cs[(signed long int)3] >= 6
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c line 988 function thr1_3
+  (signed int)__cs_pc_cs[(signed long int)3] >= 6
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c line 993 function thr1_3
+  (signed int)__cs_pc_cs[(signed long int)3] >= 6
+
+State 731 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function thr1_3 line 1000 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 732 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function thr1_3 line 1001 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 736 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function thr1_3 line 1002 thread 0
+----------------------------------------------------
+  c=1 (00000000 00000000 00000000 00000001)
+
+State 738 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function thr1_3 line 1009 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 739 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function thr1_3 line 1010 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 744 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function thr1_3 line 1011 thread 0
+----------------------------------------------------
+  __dr_nondet_thr1___cs_tmp_if_cond_3=FALSE (00000000)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c line 1019 function thr1_3
+  (signed int)__cs_pc_cs[(signed long int)3] >= 9
+
+State 749 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function thr1_3 line 1027 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 750 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function thr1_3 line 1028 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 754 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function thr1_3 line 1029 thread 0
+----------------------------------------------------
+  c=0 (00000000 00000000 00000000 00000000)
+
+State 756 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function thr1_3 line 1033 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=TRUE (00000001)
+
+State 757 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function thr1_3 line 1034 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 761 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function thr1_3 line 1035 thread 0
+----------------------------------------------------
+  SM__&now_serving__dr_write=16843009u (00000001 00000001 00000001 00000001)
+
+State 765 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function thr1_3 line 1035 thread 0
+----------------------------------------------------
+  SM__&now_serving__dr_write_noatomic=16843009u (00000001 00000001 00000001 00000001)
+
+State 767 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function thr1_3 line 1035 thread 0
+----------------------------------------------------
+  now_serving=3u (00000000 00000000 00000000 00000011)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c line 1037 function thr1_3
+  (signed int)__cs_pc_cs[(signed long int)3] >= 11
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c line 1045 function thr1_3
+  (signed int)__cs_pc_cs[(signed long int)3] >= 11
+
+State 772 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function thr1_3 line 1049 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 773 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function thr1_3 line 1049 thread 0
+----------------------------------------------------
+  __cs_thread_index=3u (00000000 00000000 00000000 00000011)
+
+State 774 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function __cs_exit line 101 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[3l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 779 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function main line 1254 thread 0
+----------------------------------------------------
+  __cs_dataraceSecondThread=TRUE (00000001)
+
+State 780 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function main line 1255 thread 0
+----------------------------------------------------
+  __cs_pc[3l]=11 (1011)
+
+State 781 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function main line 1259 thread 0
+----------------------------------------------------
+  __cs_tmp_t4_r2=0 (000)
+
+State 783 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function main line 1262 thread 0
+----------------------------------------------------
+  __cs_pc_cs[4l]=5 (00101)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c line 1263 function main
+  (signed int)__cs_pc_cs[(signed long int)4] >= (signed int)__cs_pc[(signed long int)4]
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c line 1264 function main
+  (signed int)__cs_pc_cs[(signed long int)4] <= 6
+
+State 797 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function main_thread line 1093 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 798 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function main_thread line 1093 thread 0
+----------------------------------------------------
+  __cs_thread_index=4u (00000000 00000000 00000000 00000100)
+
+State 799 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function __cs_exit line 101 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[4l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 804 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function main line 1271 thread 0
+----------------------------------------------------
+  __cs_dataraceSecondThread=TRUE (00000001)
+
+State 805 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function main line 1272 thread 0
+----------------------------------------------------
+  __cs_pc[4l]=5 (0101)
+
+State 806 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function main line 1275 thread 0
+----------------------------------------------------
+  __cs_tmp_t0_r2=0 (0000)
+
+State 808 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function main line 1278 thread 0
+----------------------------------------------------
+  __cs_pc_cs[0l]=11 (01011)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c line 1279 function main
+  (signed int)__cs_pc_cs[(signed long int)0] >= (signed int)__cs_pc[(signed long int)0]
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c line 1280 function main
+  (signed int)__cs_pc_cs[(signed long int)0] <= 11
+
+State 814 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function main line 1283 thread 0
+----------------------------------------------------
+  SM__&__dr_param_thr1_arg!0@3__dr_write=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 815 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function main line 1283 thread 0
+----------------------------------------------------
+  SM__&__dr_param_thr1_arg!0@3__dr_write_noatomic=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 816 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function main line 1283 thread 0
+----------------------------------------------------
+  __dr_param_thr1_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 832 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function thr1_0 line 494 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 833 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function thr1_0 line 494 thread 0
+----------------------------------------------------
+  __cs_thread_index=0u (00000000 00000000 00000000 00000000)
+
+State 834 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function __cs_exit line 101 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 839 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function main line 1287 thread 0
+----------------------------------------------------
+  __cs_dataraceSecondThread=TRUE (00000001)
+
+State 840 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function main line 1288 thread 0
+----------------------------------------------------
+  __cs_pc[0l]=11 (1011)
+
+State 841 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function main line 1291 thread 0
+----------------------------------------------------
+  __cs_tmp_t1_r2=0 (0000)
+
+State 843 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function main line 1294 thread 0
+----------------------------------------------------
+  __cs_pc_cs[1l]=11 (01011)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c line 1295 function main
+  (signed int)__cs_pc_cs[(signed long int)1] >= (signed int)__cs_pc[(signed long int)1]
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c line 1296 function main
+  (signed int)__cs_pc_cs[(signed long int)1] <= 11
+
+State 849 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function main line 1299 thread 0
+----------------------------------------------------
+  SM__&__dr_param_thr1_arg!0@3__dr_write$0=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 850 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function main line 1299 thread 0
+----------------------------------------------------
+  SM__&__dr_param_thr1_arg!0@3__dr_write_noatomic$0=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 851 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function main line 1299 thread 0
+----------------------------------------------------
+  __dr_param_thr1_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 867 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function thr1_1 line 679 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 868 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function thr1_1 line 679 thread 0
+----------------------------------------------------
+  __cs_thread_index=1u (00000000 00000000 00000000 00000001)
+
+State 869 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function __cs_exit line 101 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 874 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function main line 1303 thread 0
+----------------------------------------------------
+  __cs_dataraceSecondThread=TRUE (00000001)
+
+State 875 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function main line 1304 thread 0
+----------------------------------------------------
+  __cs_pc[1l]=11 (1011)
+
+State 876 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function main line 1307 thread 0
+----------------------------------------------------
+  __cs_tmp_t2_r2=4 (0100)
+
+State 878 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function main line 1310 thread 0
+----------------------------------------------------
+  __cs_pc_cs[2l]=4 (00100)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c line 1311 function main
+  (signed int)__cs_pc_cs[(signed long int)2] >= (signed int)__cs_pc[(signed long int)2]
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c line 1312 function main
+  (signed int)__cs_pc_cs[(signed long int)2] <= 11
+
+State 884 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function main line 1315 thread 0
+----------------------------------------------------
+  SM__&__dr_param_thr1_arg!0@3__dr_write$1=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 885 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function main line 1315 thread 0
+----------------------------------------------------
+  SM__&__dr_param_thr1_arg!0@3__dr_write_noatomic$1=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 886 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function main line 1315 thread 0
+----------------------------------------------------
+  __dr_param_thr1_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 888 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function thr1_2 line 688 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 889 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function thr1_2 line 689 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=TRUE (00000001)
+
+State 896 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function thr1_2 line 695 thread 0
+----------------------------------------------------
+  return_value___CPROVER_get_field=0 (00000000 00000000 00000000 00000000)
+
+State 897 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function thr1_2 line 695 thread 0
+----------------------------------------------------
+  tmp_if_expr=TRUE (1)
+
+State 899 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function thr1_2 line 695 thread 0
+----------------------------------------------------
+  __cs_dataraceNotDetected=TRUE (00000001)
+
+State 905 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function thr1_2 line 695 thread 0
+----------------------------------------------------
+  return_value___CPROVER_get_field$0=0 (00000000 00000000 00000000 00000000)
+
+State 906 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function thr1_2 line 695 thread 0
+----------------------------------------------------
+  tmp_if_expr$0=TRUE (1)
+
+State 908 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function thr1_2 line 695 thread 0
+----------------------------------------------------
+  __cs_dataraceNotDetected=TRUE (00000001)
+
+State 914 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function thr1_2 line 695 thread 0
+----------------------------------------------------
+  return_value___CPROVER_get_field$1=1 (00000000 00000000 00000000 00000001)
+
+State 915 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function thr1_2 line 695 thread 0
+----------------------------------------------------
+  tmp_if_expr$1=FALSE (0)
+
+State 917 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function thr1_2 line 695 thread 0
+----------------------------------------------------
+  __cs_dataraceNotDetected=FALSE (00000000)
+
+State 918 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function thr1_2 line 695 thread 0
+----------------------------------------------------
+  __dr_nondet_fetch_and_increment__next_ticket_1___cs_tmp_if_cond_0=FALSE (00000000)
+
+State 922 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function thr1_2 line 696 thread 0
+----------------------------------------------------
+  tmp_if_expr$7=FALSE (0)
+
+State 923 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function thr1_2 line 696 thread 0
+----------------------------------------------------
+  __cs_dataraceNotDetected=FALSE (00000000)
+
+State 929 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function thr1_2 line 702 thread 0
+----------------------------------------------------
+  tmp_if_expr$3=FALSE (0)
+
+State 930 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function thr1_2 line 702 thread 0
+----------------------------------------------------
+  __cs_dataraceNotDetected=FALSE (00000000)
+
+State 934 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function thr1_2 line 702 thread 0
+----------------------------------------------------
+  tmp_if_expr$4=FALSE (0)
+
+State 935 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function thr1_2 line 702 thread 0
+----------------------------------------------------
+  __cs_dataraceNotDetected=FALSE (00000000)
+
+State 936 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function thr1_2 line 702 thread 0
+----------------------------------------------------
+  __dr_nondet_fetch_and_increment__next_ticket_1_value=0u (00000000 00000000 00000000 00000000)
+
+State 941 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function thr1_2 line 703 thread 0
+----------------------------------------------------
+  tmp_if_expr$5=FALSE (0)
+
+State 942 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function thr1_2 line 703 thread 0
+----------------------------------------------------
+  __cs_dataraceNotDetected=FALSE (00000000)
+
+State 946 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function thr1_2 line 703 thread 0
+----------------------------------------------------
+  tmp_if_expr$6=FALSE (0)
+
+State 947 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function thr1_2 line 703 thread 0
+----------------------------------------------------
+  __cs_dataraceNotDetected=FALSE (00000000)
+
+State 948 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function thr1_2 line 703 thread 0
+----------------------------------------------------
+  next_ticket=1u (00000000 00000000 00000000 00000001)
+
+State 952 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function thr1_2 line 707 thread 0
+----------------------------------------------------
+  tmp_if_expr$8=FALSE (0)
+
+State 953 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function thr1_2 line 707 thread 0
+----------------------------------------------------
+  __cs_dataraceNotDetected=FALSE (00000000)
+
+State 954 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function thr1_2 line 707 thread 0
+----------------------------------------------------
+  __cs_retval_fetch_and_increment__next_ticket_1=0u (00000000 00000000 00000000 00000000)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c line 711 function thr1_2
+  (signed int)__cs_pc_cs[(signed long int)2] >= 1
+
+State 961 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function thr1_2 line 716 thread 0
+----------------------------------------------------
+  tmp_if_expr$9=FALSE (0)
+
+State 962 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function thr1_2 line 716 thread 0
+----------------------------------------------------
+  __cs_dataraceNotDetected=FALSE (00000000)
+
+State 963 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function thr1_2 line 716 thread 0
+----------------------------------------------------
+  __dr_nondet_acquire_lock_1_my_ticket=0u (00000000 00000000 00000000 00000000)
+
+State 969 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function thr1_2 line 720 thread 0
+----------------------------------------------------
+  tmp_if_expr$10=FALSE (0)
+
+State 970 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function thr1_2 line 720 thread 0
+----------------------------------------------------
+  __cs_dataraceNotDetected=FALSE (00000000)
+
+State 974 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function thr1_2 line 720 thread 0
+----------------------------------------------------
+  tmp_if_expr$11=FALSE (0)
+
+State 975 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function thr1_2 line 720 thread 0
+----------------------------------------------------
+  __cs_dataraceNotDetected=FALSE (00000000)
+
+State 976 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function thr1_2 line 720 thread 0
+----------------------------------------------------
+  __dr_nondet_acquire_lock_1___cs_tmp_if_cond_1=FALSE (00000000)
+
+State 980 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function thr1_2 line 721 thread 0
+----------------------------------------------------
+  tmp_if_expr$28=FALSE (0)
+
+State 981 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function thr1_2 line 721 thread 0
+----------------------------------------------------
+  __cs_dataraceNotDetected=FALSE (00000000)
+
+State 984 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function thr1_2 line 733 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 985 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function thr1_2 line 734 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 991 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function thr1_2 line 735 thread 0
+----------------------------------------------------
+  __dr_nondet_acquire_lock_1___cs_tmp_if_cond_2=FALSE (00000000)
+
+State 995 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function thr1_2 line 750 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 996 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function thr1_2 line 751 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 1002 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function thr1_2 line 752 thread 0
+----------------------------------------------------
+  __dr_nondet_acquire_lock_1___cs_tmp_if_cond_2=FALSE (00000000)
+
+State 1006 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function thr1_2 line 767 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=TRUE (00000001)
+
+State 1007 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function thr1_2 line 768 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 1013 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function thr1_2 line 769 thread 0
+----------------------------------------------------
+  __dr_nondet_acquire_lock_1___cs_tmp_if_cond_2=FALSE (00000000)
+
+State 1027 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function thr1_2 line 864 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1028 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function thr1_2 line 864 thread 0
+----------------------------------------------------
+  __cs_thread_index=2u (00000000 00000000 00000000 00000010)
+
+State 1029 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function __cs_exit line 101 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[2l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1033 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function main line 1317 thread 0
+----------------------------------------------------
+  __cs_dataraceContinue=FALSE (00000000)
+
+State 1035 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function main line 1319 thread 0
+----------------------------------------------------
+  __cs_dataraceSecondThread=TRUE (00000001)
+
+State 1036 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function main line 1320 thread 0
+----------------------------------------------------
+  __cs_pc[2l]=4 (0100)
+
+State 1037 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function main line 1323 thread 0
+----------------------------------------------------
+  __cs_tmp_t3_r2=0 (0000)
+
+Violated property:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_06_ticket.c function main line 1334 thread 0
+  Data race failure
+  __cs_dataraceNotDetected != FALSE
+
+
+VERIFICATION FAILED
+
+real	0m0,593s
+user	0m0,576s
+sys	0m0,020s

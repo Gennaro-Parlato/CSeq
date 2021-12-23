@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+<key attr.name="programFile" attr.type="string" for="graph" id="programfile"/>
+<key attr.name="programHash" attr.type="string" for="graph" id="programhash"/>
+<key attr.name="specification" attr.type="string" for="graph" id="specification"/>
+<key attr.name="architecture" attr.type="string" for="graph" id="architecture"/>
+<key attr.name="producer" attr.type="string" for="graph" id="producer"/>
+<key attr.name="creationTime" attr.type="string" for="graph" id="creationtime"/>
+<key attr.name="inputWitnessHash" attr.type="string" for="graph" id="inputwitnesshash"/>
+<key attr.name="witness-type" attr.type="string" for="graph" id="witness-type"/>
+
+<key attr.name="isViolationNode" attr.type="boolean" for="node" id="violation"><default>false</default></key>
+<key attr.name="isEntryNode" attr.type="boolean" for="node" id="entry"><default>false</default></key>
+<key attr.name="isSinkNode" attr.type="boolean" for="node" id="sink"><default>false</default></key>
+<key attr.name="violatedProperty" attr.type="string" for="node" id="violatedProperty"/>
+
+<key attr.name="threadId" attr.type="string" for="edge" id="threadId"/>
+<key attr.name="createThread" attr.type="string" for="edge" id="createThread"/>
+<key attr.name="sourcecodeLanguage" attr.type="string" for="graph" id="sourcecodelang"/>
+<key attr.name="startline" attr.type="int" for="edge" id="startline"/>
+<key attr.name="endline" attr.type="int" for="edge" id="endline"/>
+<key attr.name="startoffset" attr.type="int" for="edge" id="startoffset"/>
+<key attr.name="endoffset" attr.type="int" for="edge" id="endoffset"/>
+<key attr.name="control" attr.type="string" for="edge" id="control"/>
+<key attr.name="enterFunction" attr.type="string" for="edge" id="enterFunction"/>
+<key attr.name="returnFromFunction" attr.type="string" for="edge" id="returnFrom"/>
+
+<graph edgedefault="directed">
+<data key="witness-type">violation_witness</data>
+<data key="sourcecodelang">C</data>
+<data key="producer">CSeq</data>
+<data key="specification">CHECK( init(main()), LTL(G ! call(__VERIFIER_error())) )</data>
+<data key="programfile">/home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/ldv-races/race-2_1-container_of.i</data>
+<data key="programhash">9799546ff259a0d0d6068de60792a7100d6b79be9e4a5b8390903c5cb162248d</data>
+<data key="creationtime">2020-02-04T12:18:49</data>
+<data key="architecture">32bit</data>
+
+<node id="START"><data key="entry">true</data></node>
+<node id="SINK"><data key="sink">true</data></node>
+
+<node id="S1"/>
+<edge source="START" target="S1">
+<data key="threadId">0</data>
+<data key="startline">1735</data>
+<data key="endline">1735</data>
+<data key="enterFunction">main</data>
+</edge>
+
+<edge source="S1" target="STOP"/>
+<node id="STOP"><data key="violation">true</data></node>
+</graph>
+</graphml>

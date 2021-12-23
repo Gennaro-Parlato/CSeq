@@ -1,0 +1,39 @@
+/* workarounds
+[001] ok 0.00s */
+/* functiontracker
+[002] ok 0.00s */
+/* dr_preinstrumenter
+[003] ok 1.00s */
+/* constants
+[004] ok 0.00s */
+/* spinlock
+[005] ok 0.00s */
+/* switchtransformer
+[006] ok 0.00s */
+/* dowhileconverter
+[007] ok 0.00s */
+/* conditionextractor
+[008] ok 0.00s */
+/* dr_varnames
+[009] ok 0.00s */
+/* inliner
+[010] ok 0.00s */
+/* unroller
+[011] ok 0.00s */
+/* duplicator
+[012] ok 0.00s */
+/* condwaitconverter
+[013] ok 0.00s */
+/* dr_lazyseqnewschedule
+Error while performing condwaitconverter->dr_lazyseqnewschedule:
+
+Traceback (most recent call last):
+  File "./cseq-feeder.py", line 801, in main
+    m.loadfromstring(output, cseqenv)
+  File "/home/salvatore/github/CSeq/VeriSmart/modules/dr_lazyseqnewschedule.py", line 124, in loadfromstring
+    super(dr_lazyseqnewschedule, self).loadfromstring(string, env)
+  File "/home/salvatore/github/CSeq/VeriSmart/modules/lazyseqnewschedule.py", line 201, in loadfromstring
+    self.output += self.createMainRoundRobin(rounds)    #name changed form __createMainRoundRobin since this would not ovverride
+  File "/home/salvatore/github/CSeq/VeriSmart/modules/dr_lazyseqnewschedule.py", line 778, in createMainRoundRobin
+    threadsize = self.getLines()[self.getThreadName()[t]]
+IndexError: list index out of range

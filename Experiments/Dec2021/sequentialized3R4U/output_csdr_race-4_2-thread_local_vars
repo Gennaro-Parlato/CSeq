@@ -1,0 +1,1306 @@
+CBMC version 5.45.0 (cbmc-5.45.0-179-gd48dc284f7) 64-bit x86_64 linux
+Parsing /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c
+Converting
+Type-checking _csdr_race-4_2-thread_local_vars
+file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c line 322 function thread_ath9k_0: function '__CPROVER_set_field' is not declared
+file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c line 322 function thread_ath9k_0: function '__CPROVER_get_field' is not declared
+file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c line 3026 function main: function '__CPROVER_field_decl_global' is not declared
+file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c line 3027 function main: function '__CPROVER_field_decl_local' is not declared
+Generating GOTO Program
+Adding CPROVER library (x86_64)
+Removal of function pointers and virtual functions
+Generic Property Instrumentation
+Running with 8 object bits, 56 offset bits (default)
+Starting Bounded Model Checking
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c line 2882 function main_thread thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c line 1884 function thread_usb_0 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c line 1972 function thread_usb_0 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c line 2140 function thread_usb_0 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c line 2228 function thread_usb_0 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c line 2396 function thread_usb_0 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c line 2484 function thread_usb_0 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c line 2652 function thread_usb_0 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c line 2740 function thread_usb_0 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c line 2799 function thread_usb_0 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c line 2882 function main_thread thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c line 660 function thread_ath9k_0 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c line 1023 function thread_ath9k_1 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c line 1386 function thread_ath9k_2 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c line 1749 function thread_ath9k_3 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c line 1884 function thread_usb_0 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c line 1972 function thread_usb_0 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c line 2140 function thread_usb_0 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c line 2228 function thread_usb_0 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c line 2396 function thread_usb_0 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c line 2484 function thread_usb_0 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c line 2652 function thread_usb_0 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c line 2740 function thread_usb_0 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c line 2799 function thread_usb_0 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c line 2882 function main_thread thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c line 660 function thread_ath9k_0 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c line 1023 function thread_ath9k_1 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c line 1386 function thread_ath9k_2 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c line 1749 function thread_ath9k_3 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c line 1884 function thread_usb_0 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c line 1972 function thread_usb_0 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c line 2140 function thread_usb_0 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c line 2228 function thread_usb_0 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c line 2396 function thread_usb_0 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c line 2484 function thread_usb_0 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c line 2652 function thread_usb_0 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c line 2740 function thread_usb_0 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c line 2799 function thread_usb_0 thread 0
+Runtime Symex: 307.132s
+size of program expression: 69746 steps
+simple slicing removed 5 assignments
+Generated 147 VCC(s), 147 remaining after simplification
+Runtime Postprocess Equation: 0.0139062s
+Passing problem to propositional reduction
+converting SSA
+Runtime Convert SSA: 0.413132s
+Running propositional reduction
+Post-processing
+Runtime Post-process: 4.1329e-05s
+Solving with Glucose Syrup with simplifier
+179433 variables, 510113 clauses
+SAT checker: instance is SATISFIABLE
+Runtime Solver: 1.4485s
+Runtime decision procedure: 1.86353s
+Building error trace
+Counterexample:
+
+State 21 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function __CPROVER_initialize line 57 thread 0
+----------------------------------------------------
+  __cs_active_thread[0l]=0 (0)
+
+State 22 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function __CPROVER_initialize line 57 thread 0
+----------------------------------------------------
+  __cs_active_thread[1l]=0 (0)
+
+State 23 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function __CPROVER_initialize line 57 thread 0
+----------------------------------------------------
+  __cs_active_thread[2l]=0 (0)
+
+State 24 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function __CPROVER_initialize line 57 thread 0
+----------------------------------------------------
+  __cs_active_thread[3l]=0 (0)
+
+State 25 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function __CPROVER_initialize line 57 thread 0
+----------------------------------------------------
+  __cs_active_thread[4l]=0 (0)
+
+State 26 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function __CPROVER_initialize line 57 thread 0
+----------------------------------------------------
+  __cs_active_thread[5l]=0 (0)
+
+State 35 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function __CPROVER_initialize line 58 thread 0
+----------------------------------------------------
+  __cs_pc[0l]=0 (000000)
+
+State 36 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function __CPROVER_initialize line 58 thread 0
+----------------------------------------------------
+  __cs_pc[1l]=0 (000000)
+
+State 37 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function __CPROVER_initialize line 58 thread 0
+----------------------------------------------------
+  __cs_pc[2l]=0 (000000)
+
+State 38 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function __CPROVER_initialize line 58 thread 0
+----------------------------------------------------
+  __cs_pc[3l]=0 (000000)
+
+State 39 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function __CPROVER_initialize line 58 thread 0
+----------------------------------------------------
+  __cs_pc[4l]=0 (000000)
+
+State 40 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function __CPROVER_initialize line 58 thread 0
+----------------------------------------------------
+  __cs_pc[5l]=0 (000000)
+
+State 42 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function __CPROVER_initialize line 59 thread 0
+----------------------------------------------------
+  __cs_pc_cs[0l]=0 (0000000)
+
+State 43 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function __CPROVER_initialize line 59 thread 0
+----------------------------------------------------
+  __cs_pc_cs[1l]=0 (0000000)
+
+State 44 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function __CPROVER_initialize line 59 thread 0
+----------------------------------------------------
+  __cs_pc_cs[2l]=0 (0000000)
+
+State 45 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function __CPROVER_initialize line 59 thread 0
+----------------------------------------------------
+  __cs_pc_cs[3l]=0 (0000000)
+
+State 46 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function __CPROVER_initialize line 59 thread 0
+----------------------------------------------------
+  __cs_pc_cs[4l]=0 (0000000)
+
+State 47 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function __CPROVER_initialize line 59 thread 0
+----------------------------------------------------
+  __cs_pc_cs[5l]=0 (0000000)
+
+State 49 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function __CPROVER_initialize line 82 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 50 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function __CPROVER_initialize line 82 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 51 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function __CPROVER_initialize line 82 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[2l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 52 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function __CPROVER_initialize line 82 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[3l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 53 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function __CPROVER_initialize line 82 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[4l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 54 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function __CPROVER_initialize line 82 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[5l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 56 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function __CPROVER_initialize line 61 thread 0
+----------------------------------------------------
+  __cs_thread_lines[0l]=22 (010110)
+
+State 57 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function __CPROVER_initialize line 61 thread 0
+----------------------------------------------------
+  __cs_thread_lines[1l]=22 (010110)
+
+State 58 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function __CPROVER_initialize line 61 thread 0
+----------------------------------------------------
+  __cs_thread_lines[2l]=22 (010110)
+
+State 59 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function __CPROVER_initialize line 61 thread 0
+----------------------------------------------------
+  __cs_thread_lines[3l]=22 (010110)
+
+State 60 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function __CPROVER_initialize line 61 thread 0
+----------------------------------------------------
+  __cs_thread_lines[4l]=57 (111001)
+
+State 61 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function __CPROVER_initialize line 61 thread 0
+----------------------------------------------------
+  __cs_thread_lines[5l]=15 (001111)
+
+State 63 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function __CPROVER_initialize line 81 thread 0
+----------------------------------------------------
+  __cs_threadargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 64 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function __CPROVER_initialize line 81 thread 0
+----------------------------------------------------
+  __cs_threadargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 65 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function __CPROVER_initialize line 81 thread 0
+----------------------------------------------------
+  __cs_threadargs[2l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 66 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function __CPROVER_initialize line 81 thread 0
+----------------------------------------------------
+  __cs_threadargs[3l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 67 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function __CPROVER_initialize line 81 thread 0
+----------------------------------------------------
+  __cs_threadargs[4l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 68 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function __CPROVER_initialize line 81 thread 0
+----------------------------------------------------
+  __cs_threadargs[5l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 414 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function main line 3028 thread 0
+----------------------------------------------------
+  __cs_dr_ts=16 (10000)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c line 3029 function main
+  (signed int)__cs_dr_ts <= 16
+
+State 416 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function main line 3032 thread 0
+----------------------------------------------------
+  __cs_active_thread[5l]=1 (1)
+
+State 417 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function main line 3033 thread 0
+----------------------------------------------------
+  __cs_tmp_t5_r0=10 (1010)
+
+State 418 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function main line 3034 thread 0
+----------------------------------------------------
+  __cs_pc_cs[5l]=10 (0001010)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c line 3035 function main
+  (signed int)__cs_pc_cs[(signed long int)5] > 0
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c line 3036 function main
+  (signed int)__cs_pc_cs[(signed long int)5] <= 15
+
+State 425 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function main_thread line 2852 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 426 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function main_thread line 2853 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=TRUE (00000001)
+
+State 430 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function main_thread line 2861 thread 0
+----------------------------------------------------
+  __cs_m=&mutex (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 431 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function main_thread line 2861 thread 0
+----------------------------------------------------
+  __cs_val=0 (00000000 00000000 00000000 00000000)
+
+State 432 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function __cs_mutex_init line 111 thread 0
+----------------------------------------------------
+  mutex=-1 (11111111 11111111 11111111 11111111)
+
+State 435 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function main_thread line 2864 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 436 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function main_thread line 2865 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 439 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function main_thread line 2866 thread 0
+----------------------------------------------------
+  pdev=1 (00000000 00000000 00000000 00000001)
+
+State 441 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function main_thread line 2871 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 442 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function main_thread line 2872 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 446 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function main_thread line 2873 thread 0
+----------------------------------------------------
+  __dr_param_ldv_assert_1_expression=1 (00000000 00000000 00000000 00000001)
+
+State 450 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function main_thread line 2877 thread 0
+----------------------------------------------------
+  __dr_nondet_ldv_assert_1___cs_tmp_if_cond_0=FALSE (00000000)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c line 2884 function main_thread
+  (signed int)__cs_pc_cs[(signed long int)5] >= 5
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c line 2891 function main_thread
+  (signed int)__cs_pc_cs[(signed long int)5] >= 5
+
+State 458 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function main_thread line 2899 thread 0
+----------------------------------------------------
+  return_value_nondet_int=-2147483648 (10000000 00000000 00000000 00000000)
+
+State 459 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function main_thread line 2899 thread 0
+----------------------------------------------------
+  __dr_nondet_module_init_1___cs_tmp_if_cond_12=TRUE (00000001)
+
+State 465 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function main_thread line 2904 thread 0
+----------------------------------------------------
+  __cs_new_thread_id=&t1 (00000011 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 466 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function main_thread line 2904 thread 0
+----------------------------------------------------
+  __cs_attr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 467 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function main_thread line 2904 thread 0
+----------------------------------------------------
+  __cs_thread_function=thread_usb_0 (00000100 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 468 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function main_thread line 2904 thread 0
+----------------------------------------------------
+  __cs_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 469 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function main_thread line 2904 thread 0
+----------------------------------------------------
+  __cs_threadID=4 (00000000 00000000 00000000 00000100)
+
+State 471 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function __cs_create line 87 thread 0
+----------------------------------------------------
+  t1=4 (00000000 00000000 00000000 00000100)
+
+State 472 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function __cs_create line 88 thread 0
+----------------------------------------------------
+  __cs_active_thread[4l]=1 (1)
+
+State 473 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function __cs_create line 89 thread 0
+----------------------------------------------------
+  __cs_threadargs[4l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 475 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function main_thread line 2905 thread 0
+----------------------------------------------------
+  __cs_retval_module_init_1=0 (00000000 00000000 00000000 00000000)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c line 2952 function main_thread
+  (signed int)__cs_pc_cs[(signed long int)5] >= 10
+
+State 480 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function main_thread line 2957 thread 0
+----------------------------------------------------
+  __dr_nondet_main___cs_tmp_if_cond_13=FALSE (00000000)
+
+State 491 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function main_thread line 3022 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 492 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function main_thread line 3022 thread 0
+----------------------------------------------------
+  __cs_thread_index=5u (00000000 00000000 00000000 00000101)
+
+State 493 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function __cs_exit line 101 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[5l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 497 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function main line 3042 thread 0
+----------------------------------------------------
+  __cs_pc[5l]=10 (001010)
+
+State 498 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function main line 3044 thread 0
+----------------------------------------------------
+  __cs_tmp_t0_r0=0 (00000)
+
+State 500 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function main line 3059 thread 0
+----------------------------------------------------
+  __cs_tmp_t1_r0=0 (00000)
+
+State 502 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function main line 3074 thread 0
+----------------------------------------------------
+  __cs_tmp_t2_r0=0 (00000)
+
+State 504 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function main line 3089 thread 0
+----------------------------------------------------
+  __cs_tmp_t3_r0=0 (00000)
+
+State 506 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function main line 3104 thread 0
+----------------------------------------------------
+  __cs_tmp_t4_r0=33 (100001)
+
+State 508 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function main line 3107 thread 0
+----------------------------------------------------
+  __cs_pc_cs[4l]=33 (0100001)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c line 3108 function main
+  (signed int)__cs_pc_cs[(signed long int)4] <= 57
+
+State 513 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function main line 3111 thread 0
+----------------------------------------------------
+  SM__&__dr_param_thread_usb_arg!0@1__dr_write=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 514 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function main line 3111 thread 0
+----------------------------------------------------
+  __dr_param_thread_usb_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 516 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function thread_usb_0 line 1769 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 517 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function thread_usb_0 line 1770 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=TRUE (00000001)
+
+State 520 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function thread_usb_0 line 1771 thread 0
+----------------------------------------------------
+  ldv_usb_state=0 (00000000 00000000 00000000 00000000)
+
+State 523 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function thread_usb_0 line 1777 thread 0
+----------------------------------------------------
+  __dr_nondet_thread_usb___cs_switch_cond_thread_usb_2=1 (00000000 00000000 00000000 00000001)
+
+State 527 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function thread_usb_0 line 1781 thread 0
+----------------------------------------------------
+  __dr_nondet_thread_usb___cs_tmp_if_cond_5=FALSE (00000000)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c line 1904 function thread_usb_0
+  (signed int)__cs_pc_cs[(signed long int)4] >= 7
+
+State 534 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function thread_usb_0 line 1909 thread 0
+----------------------------------------------------
+  __dr_nondet_thread_usb___cs_tmp_if_cond_8=TRUE (00000001)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c line 1913 function thread_usb_0
+  (signed int)__cs_pc_cs[(signed long int)4] >= 7
+
+State 539 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function thread_usb_0 line 1921 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 540 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function thread_usb_0 line 1922 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 544 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function thread_usb_0 line 1923 thread 0
+----------------------------------------------------
+  __dr_nondet_thread_usb___cs_tmp_if_cond_9=FALSE (00000000)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c line 1987 function thread_usb_0
+  (signed int)__cs_pc_cs[(signed long int)4] >= 13
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c line 2024 function thread_usb_0
+  (signed int)__cs_pc_cs[(signed long int)4] >= 14
+
+State 552 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function thread_usb_0 line 2033 thread 0
+----------------------------------------------------
+  __dr_nondet_thread_usb___cs_switch_cond_thread_usb_2=0 (00000000 00000000 00000000 00000000)
+
+State 556 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function thread_usb_0 line 2037 thread 0
+----------------------------------------------------
+  __dr_nondet_thread_usb___cs_tmp_if_cond_5=TRUE (00000001)
+
+State 560 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function thread_usb_0 line 2045 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 561 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function thread_usb_0 line 2046 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 565 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function thread_usb_0 line 2047 thread 0
+----------------------------------------------------
+  __dr_nondet_thread_usb___cs_tmp_if_cond_6=TRUE (00000001)
+
+State 571 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function thread_usb_0 line 2058 thread 0
+----------------------------------------------------
+  return_value_nondet_int$0=2 (00000000 00000000 00000000 00000010)
+
+State 572 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function thread_usb_0 line 2058 thread 0
+----------------------------------------------------
+  __dr_nondet_ieee80211_register_hw_1___cs_tmp_if_cond_3=TRUE (00000001)
+
+State 578 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function thread_usb_0 line 2063 thread 0
+----------------------------------------------------
+  __cs_new_thread_id=&t2 (00000110 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 579 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function thread_usb_0 line 2063 thread 0
+----------------------------------------------------
+  __cs_attr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 580 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function thread_usb_0 line 2063 thread 0
+----------------------------------------------------
+  __cs_thread_function=thread_ath9k_1 (00001001 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 581 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function thread_usb_0 line 2063 thread 0
+----------------------------------------------------
+  __cs_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 582 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function thread_usb_0 line 2063 thread 0
+----------------------------------------------------
+  __cs_threadID=1 (00000000 00000000 00000000 00000001)
+
+State 584 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function __cs_create line 87 thread 0
+----------------------------------------------------
+  t2=1 (00000000 00000000 00000000 00000001)
+
+State 585 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function __cs_create line 88 thread 0
+----------------------------------------------------
+  __cs_active_thread[1l]=1 (1)
+
+State 586 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function __cs_create line 89 thread 0
+----------------------------------------------------
+  __cs_threadargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 588 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function thread_usb_0 line 2064 thread 0
+----------------------------------------------------
+  __cs_retval_ieee80211_register_hw_1=0 (00000000 00000000 00000000 00000000)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c line 2074 function thread_usb_0
+  (signed int)__cs_pc_cs[(signed long int)4] >= 16
+
+State 593 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function thread_usb_0 line 2079 thread 0
+----------------------------------------------------
+  __dr_nondet_ath_ahb_probe_1_error=0 (00000000 00000000 00000000 00000000)
+
+State 597 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function thread_usb_0 line 2083 thread 0
+----------------------------------------------------
+  __dr_nondet_ath_ahb_probe_1___cs_tmp_if_cond_4=FALSE (00000000)
+
+State 600 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function thread_usb_0 line 2090 thread 0
+----------------------------------------------------
+  __cs_retval_ath_ahb_probe_1=0 (00000000 00000000 00000000 00000000)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c line 2099 function thread_usb_0
+  (signed int)__cs_pc_cs[(signed long int)4] >= 16
+
+State 605 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function thread_usb_0 line 2104 thread 0
+----------------------------------------------------
+  __dr_nondet_thread_usb_probe_ret=0 (00000000 00000000 00000000 00000000)
+
+State 609 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function thread_usb_0 line 2108 thread 0
+----------------------------------------------------
+  __dr_nondet_thread_usb___cs_tmp_if_cond_7=FALSE (00000000)
+
+State 613 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function thread_usb_0 line 2117 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 614 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function thread_usb_0 line 2118 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 617 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function thread_usb_0 line 2119 thread 0
+----------------------------------------------------
+  ldv_usb_state=1 (00000000 00000000 00000000 00000001)
+
+State 619 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function thread_usb_0 line 2122 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 620 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function thread_usb_0 line 2123 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 623 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function thread_usb_0 line 2124 thread 0
+----------------------------------------------------
+  pdev=7 (00000000 00000000 00000000 00000111)
+
+State 625 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function thread_usb_0 line 2129 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 626 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function thread_usb_0 line 2130 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 630 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function thread_usb_0 line 2131 thread 0
+----------------------------------------------------
+  __dr_param_ldv_assert_1_expression=1 (00000000 00000000 00000000 00000001)
+
+State 634 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function thread_usb_0 line 2135 thread 0
+----------------------------------------------------
+  __dr_nondet_ldv_assert_1___cs_tmp_if_cond_0=FALSE (00000000)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c line 2142 function thread_usb_0
+  (signed int)__cs_pc_cs[(signed long int)4] >= 20
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c line 2149 function thread_usb_0
+  (signed int)__cs_pc_cs[(signed long int)4] >= 20
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c line 2155 function thread_usb_0
+  (signed int)__cs_pc_cs[(signed long int)4] >= 20
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c line 2280 function thread_usb_0
+  (signed int)__cs_pc_cs[(signed long int)4] >= 27
+
+State 644 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function thread_usb_0 line 2289 thread 0
+----------------------------------------------------
+  __dr_nondet_thread_usb___cs_switch_cond_thread_usb_2=1 (00000000 00000000 00000000 00000001)
+
+State 648 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function thread_usb_0 line 2293 thread 0
+----------------------------------------------------
+  __dr_nondet_thread_usb___cs_tmp_if_cond_5=FALSE (00000000)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c line 2416 function thread_usb_0
+  (signed int)__cs_pc_cs[(signed long int)4] >= 33
+
+State 655 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function thread_usb_0 line 2421 thread 0
+----------------------------------------------------
+  __dr_nondet_thread_usb___cs_tmp_if_cond_8=TRUE (00000001)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c line 2425 function thread_usb_0
+  (signed int)__cs_pc_cs[(signed long int)4] >= 33
+
+State 687 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function thread_usb_0 line 2847 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 688 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function thread_usb_0 line 2847 thread 0
+----------------------------------------------------
+  __cs_thread_index=4u (00000000 00000000 00000000 00000100)
+
+State 689 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function __cs_exit line 101 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[4l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 694 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function main line 3116 thread 0
+----------------------------------------------------
+  __cs_pc[4l]=33 (100001)
+
+State 695 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function main line 3120 thread 0
+----------------------------------------------------
+  __cs_tmp_t5_r1=0 (0000)
+
+State 697 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function main line 3123 thread 0
+----------------------------------------------------
+  __cs_pc_cs[5l]=10 (0001010)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c line 3124 function main
+  (signed int)__cs_pc_cs[(signed long int)5] >= (signed int)__cs_pc[(signed long int)5]
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c line 3125 function main
+  (signed int)__cs_pc_cs[(signed long int)5] <= 15
+
+State 722 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function main_thread line 3022 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 723 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function main_thread line 3022 thread 0
+----------------------------------------------------
+  __cs_thread_index=5u (00000000 00000000 00000000 00000101)
+
+State 724 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function __cs_exit line 101 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[5l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 729 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function main line 3133 thread 0
+----------------------------------------------------
+  __cs_pc[5l]=10 (001010)
+
+State 730 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function main line 3136 thread 0
+----------------------------------------------------
+  __cs_tmp_t0_r1=4 (00100)
+
+State 732 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function main line 3152 thread 0
+----------------------------------------------------
+  __cs_tmp_t1_r1=22 (10110)
+
+State 734 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function main line 3155 thread 0
+----------------------------------------------------
+  __cs_pc_cs[1l]=22 (0010110)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c line 3156 function main
+  (signed int)__cs_pc_cs[(signed long int)1] >= (signed int)__cs_pc[(signed long int)1]
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c line 3157 function main
+  (signed int)__cs_pc_cs[(signed long int)1] <= 22
+
+State 740 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function main line 3160 thread 0
+----------------------------------------------------
+  SM__&__dr_param_thread_ath9k_arg!0@1__dr_write$0=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 741 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function main line 3160 thread 0
+----------------------------------------------------
+  __dr_param_thread_ath9k_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 743 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function thread_ath9k_1 line 680 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 744 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function thread_ath9k_1 line 681 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=TRUE (00000001)
+
+State 747 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function thread_ath9k_1 line 685 thread 0
+----------------------------------------------------
+  __dr_nondet_thread_ath9k___cs_switch_cond_thread_ath9k_1=0 (00000000 00000000 00000000 00000000)
+
+State 751 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function thread_ath9k_1 line 689 thread 0
+----------------------------------------------------
+  __dr_nondet_thread_ath9k___cs_tmp_if_cond_1=FALSE (00000000)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c line 742 function thread_ath9k_1
+  (signed int)__cs_pc_cs[(signed long int)1] >= 6
+
+State 758 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function thread_ath9k_1 line 747 thread 0
+----------------------------------------------------
+  __dr_nondet_thread_ath9k___cs_tmp_if_cond_2=FALSE (00000000)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c line 761 function thread_ath9k_1
+  (signed int)__cs_pc_cs[(signed long int)1] >= 6
+
+State 764 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function thread_ath9k_1 line 770 thread 0
+----------------------------------------------------
+  __dr_nondet_thread_ath9k___cs_switch_cond_thread_ath9k_1=2 (00000000 00000000 00000000 00000010)
+
+State 768 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function thread_ath9k_1 line 774 thread 0
+----------------------------------------------------
+  __dr_nondet_thread_ath9k___cs_tmp_if_cond_1=FALSE (00000000)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c line 827 function thread_ath9k_1
+  (signed int)__cs_pc_cs[(signed long int)1] >= 11
+
+State 775 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function thread_ath9k_1 line 832 thread 0
+----------------------------------------------------
+  __dr_nondet_thread_ath9k___cs_tmp_if_cond_2=TRUE (00000001)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c line 836 function thread_ath9k_1
+  (signed int)__cs_pc_cs[(signed long int)1] >= 11
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c line 1029 function thread_ath9k_1
+  (signed int)__cs_pc_cs[(signed long int)1] >= 22
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c line 1033 function thread_ath9k_1
+  (signed int)__cs_pc_cs[(signed long int)1] >= 22
+
+State 784 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function thread_ath9k_1 line 1037 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 785 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function thread_ath9k_1 line 1037 thread 0
+----------------------------------------------------
+  __cs_thread_index=1u (00000000 00000000 00000000 00000001)
+
+State 786 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function __cs_exit line 101 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 791 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function main line 3165 thread 0
+----------------------------------------------------
+  __cs_pc[1l]=22 (010110)
+
+State 792 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function main line 3168 thread 0
+----------------------------------------------------
+  __cs_tmp_t2_r1=2 (00010)
+
+State 794 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function main line 3184 thread 0
+----------------------------------------------------
+  __cs_tmp_t3_r1=1 (00001)
+
+State 796 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function main line 3200 thread 0
+----------------------------------------------------
+  __cs_tmp_t4_r1=10 (001010)
+
+State 798 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function main line 3203 thread 0
+----------------------------------------------------
+  __cs_pc_cs[4l]=43 (0101011)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c line 3204 function main
+  (signed int)__cs_pc_cs[(signed long int)4] >= (signed int)__cs_pc[(signed long int)4]
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c line 3205 function main
+  (signed int)__cs_pc_cs[(signed long int)4] <= 57
+
+State 804 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function main line 3208 thread 0
+----------------------------------------------------
+  SM__&__dr_param_thread_usb_arg!0@2__dr_write=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 805 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function main line 3208 thread 0
+----------------------------------------------------
+  __dr_param_thread_usb_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 840 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function thread_usb_0 line 2433 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 841 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function thread_usb_0 line 2434 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=TRUE (00000001)
+
+State 845 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function thread_usb_0 line 2435 thread 0
+----------------------------------------------------
+  __dr_nondet_thread_usb___cs_tmp_if_cond_9=TRUE (00000001)
+
+State 849 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function thread_usb_0 line 2443 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 853 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function thread_usb_0 line 2444 thread 0
+----------------------------------------------------
+  __cs_id=1 (00000000 00000000 00000000 00000001)
+
+State 854 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function thread_usb_0 line 2444 thread 0
+----------------------------------------------------
+  __cs_value_ptr=&__dr_nondet_ieee80211_deregister_hw_1_status (00001100 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c line 95 function __cs_join
+  __cs_pc[(signed long int)__cs_id] == __cs_thread_lines[(signed long int)__cs_id]
+
+State 856 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function __cs_join line 96 thread 0
+----------------------------------------------------
+  __dr_nondet_ieee80211_deregister_hw_1_status=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c line 2448 function thread_usb_0
+  (signed int)__cs_pc_cs[(signed long int)4] >= 35
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c line 2454 function thread_usb_0
+  (signed int)__cs_pc_cs[(signed long int)4] >= 35
+
+State 861 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function thread_usb_0 line 2461 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 862 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function thread_usb_0 line 2462 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 865 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function thread_usb_0 line 2463 thread 0
+----------------------------------------------------
+  ldv_usb_state=0 (00000000 00000000 00000000 00000000)
+
+State 867 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function thread_usb_0 line 2466 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 868 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function thread_usb_0 line 2467 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 871 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function thread_usb_0 line 2468 thread 0
+----------------------------------------------------
+  pdev=8 (00000000 00000000 00000000 00001000)
+
+State 873 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function thread_usb_0 line 2473 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 874 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function thread_usb_0 line 2474 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 878 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function thread_usb_0 line 2475 thread 0
+----------------------------------------------------
+  __dr_param_ldv_assert_2_expression=1 (00000000 00000000 00000000 00000001)
+
+State 882 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function thread_usb_0 line 2479 thread 0
+----------------------------------------------------
+  __dr_nondet_ldv_assert_2___cs_tmp_if_cond_0=FALSE (00000000)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c line 2486 function thread_usb_0
+  (signed int)__cs_pc_cs[(signed long int)4] >= 39
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c line 2493 function thread_usb_0
+  (signed int)__cs_pc_cs[(signed long int)4] >= 39
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c line 2499 function thread_usb_0
+  (signed int)__cs_pc_cs[(signed long int)4] >= 39
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c line 2536 function thread_usb_0
+  (signed int)__cs_pc_cs[(signed long int)4] >= 40
+
+State 892 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function thread_usb_0 line 2545 thread 0
+----------------------------------------------------
+  __dr_nondet_thread_usb___cs_switch_cond_thread_usb_2=0 (00000000 00000000 00000000 00000000)
+
+State 896 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function thread_usb_0 line 2549 thread 0
+----------------------------------------------------
+  __dr_nondet_thread_usb___cs_tmp_if_cond_5=TRUE (00000001)
+
+State 900 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function thread_usb_0 line 2557 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 901 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function thread_usb_0 line 2558 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 905 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function thread_usb_0 line 2559 thread 0
+----------------------------------------------------
+  __dr_nondet_thread_usb___cs_tmp_if_cond_6=TRUE (00000001)
+
+State 911 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function thread_usb_0 line 2570 thread 0
+----------------------------------------------------
+  return_value_nondet_int$2=1073741824 (01000000 00000000 00000000 00000000)
+
+State 912 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function thread_usb_0 line 2570 thread 0
+----------------------------------------------------
+  __dr_nondet_ieee80211_register_hw_1___cs_tmp_if_cond_3=TRUE (00000001)
+
+State 918 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function thread_usb_0 line 2575 thread 0
+----------------------------------------------------
+  __cs_new_thread_id=&t2 (00000110 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 919 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function thread_usb_0 line 2575 thread 0
+----------------------------------------------------
+  __cs_attr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 920 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function thread_usb_0 line 2575 thread 0
+----------------------------------------------------
+  __cs_thread_function=thread_ath9k_3 (00001101 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 921 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function thread_usb_0 line 2575 thread 0
+----------------------------------------------------
+  __cs_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 922 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function thread_usb_0 line 2575 thread 0
+----------------------------------------------------
+  __cs_threadID=3 (00000000 00000000 00000000 00000011)
+
+State 924 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function __cs_create line 87 thread 0
+----------------------------------------------------
+  t2=3 (00000000 00000000 00000000 00000011)
+
+State 925 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function __cs_create line 88 thread 0
+----------------------------------------------------
+  __cs_active_thread[3l]=1 (1)
+
+State 926 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function __cs_create line 89 thread 0
+----------------------------------------------------
+  __cs_threadargs[3l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 928 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function thread_usb_0 line 2576 thread 0
+----------------------------------------------------
+  __cs_retval_ieee80211_register_hw_1=0 (00000000 00000000 00000000 00000000)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c line 2586 function thread_usb_0
+  (signed int)__cs_pc_cs[(signed long int)4] >= 42
+
+State 933 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function thread_usb_0 line 2591 thread 0
+----------------------------------------------------
+  __dr_nondet_ath_ahb_probe_1_error=0 (00000000 00000000 00000000 00000000)
+
+State 937 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function thread_usb_0 line 2595 thread 0
+----------------------------------------------------
+  __dr_nondet_ath_ahb_probe_1___cs_tmp_if_cond_4=FALSE (00000000)
+
+State 940 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function thread_usb_0 line 2602 thread 0
+----------------------------------------------------
+  __cs_retval_ath_ahb_probe_1=0 (00000000 00000000 00000000 00000000)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c line 2611 function thread_usb_0
+  (signed int)__cs_pc_cs[(signed long int)4] >= 42
+
+State 945 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function thread_usb_0 line 2616 thread 0
+----------------------------------------------------
+  __dr_nondet_thread_usb_probe_ret=0 (00000000 00000000 00000000 00000000)
+
+State 949 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function thread_usb_0 line 2620 thread 0
+----------------------------------------------------
+  __dr_nondet_thread_usb___cs_tmp_if_cond_7=FALSE (00000000)
+
+State 953 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function thread_usb_0 line 2629 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=TRUE (00000001)
+
+State 954 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function thread_usb_0 line 2630 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 957 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function thread_usb_0 line 2631 thread 0
+----------------------------------------------------
+  ldv_usb_state=1 (00000000 00000000 00000000 00000001)
+
+State 976 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function thread_usb_0 line 2847 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 977 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function thread_usb_0 line 2847 thread 0
+----------------------------------------------------
+  __cs_thread_index=4u (00000000 00000000 00000000 00000100)
+
+State 978 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function __cs_exit line 101 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[4l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 983 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function main line 3213 thread 0
+----------------------------------------------------
+  __cs_pc[4l]=43 (101011)
+
+State 984 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function main line 3217 thread 0
+----------------------------------------------------
+  __cs_tmp_t5_r2=0 (0000)
+
+State 986 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function main line 3220 thread 0
+----------------------------------------------------
+  __cs_pc_cs[5l]=10 (0001010)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c line 3221 function main
+  (signed int)__cs_pc_cs[(signed long int)5] >= (signed int)__cs_pc[(signed long int)5]
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c line 3222 function main
+  (signed int)__cs_pc_cs[(signed long int)5] <= 15
+
+State 1011 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function main_thread line 3022 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1012 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function main_thread line 3022 thread 0
+----------------------------------------------------
+  __cs_thread_index=5u (00000000 00000000 00000000 00000101)
+
+State 1013 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function __cs_exit line 101 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[5l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1018 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function main line 3230 thread 0
+----------------------------------------------------
+  __cs_pc[5l]=10 (001010)
+
+State 1019 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function main line 3233 thread 0
+----------------------------------------------------
+  __cs_tmp_t0_r2=5 (00101)
+
+State 1021 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function main line 3249 thread 0
+----------------------------------------------------
+  __cs_tmp_t1_r2=0 (00000)
+
+State 1023 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function main line 3252 thread 0
+----------------------------------------------------
+  __cs_pc_cs[1l]=22 (0010110)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c line 3253 function main
+  (signed int)__cs_pc_cs[(signed long int)1] >= (signed int)__cs_pc[(signed long int)1]
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c line 3254 function main
+  (signed int)__cs_pc_cs[(signed long int)1] <= 22
+
+State 1029 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function main line 3257 thread 0
+----------------------------------------------------
+  SM__&__dr_param_thread_ath9k_arg!0@2__dr_write$0=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1030 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function main line 3257 thread 0
+----------------------------------------------------
+  __dr_param_thread_ath9k_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1060 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function thread_ath9k_1 line 1037 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1061 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function thread_ath9k_1 line 1037 thread 0
+----------------------------------------------------
+  __cs_thread_index=1u (00000000 00000000 00000000 00000001)
+
+State 1062 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function __cs_exit line 101 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1067 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function main line 3262 thread 0
+----------------------------------------------------
+  __cs_pc[1l]=22 (010110)
+
+State 1068 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function main line 3265 thread 0
+----------------------------------------------------
+  __cs_tmp_t2_r2=7 (00111)
+
+State 1070 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function main line 3281 thread 0
+----------------------------------------------------
+  __cs_tmp_t3_r2=3 (00011)
+
+State 1072 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function main line 3284 thread 0
+----------------------------------------------------
+  __cs_pc_cs[3l]=3 (0000011)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c line 3285 function main
+  (signed int)__cs_pc_cs[(signed long int)3] >= (signed int)__cs_pc[(signed long int)3]
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c line 3286 function main
+  (signed int)__cs_pc_cs[(signed long int)3] <= 22
+
+State 1076 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function main line 3288 thread 0
+----------------------------------------------------
+  __cs_dataraceDetectionStarted=TRUE (00000001)
+
+State 1079 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function main line 3289 thread 0
+----------------------------------------------------
+  SM__&__dr_param_thread_ath9k_arg!0@2__dr_write$2=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1080 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function main line 3289 thread 0
+----------------------------------------------------
+  __dr_param_thread_ath9k_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1082 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function thread_ath9k_3 line 1406 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 1083 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function thread_ath9k_3 line 1407 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=TRUE (00000001)
+
+State 1086 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function thread_ath9k_3 line 1411 thread 0
+----------------------------------------------------
+  __dr_nondet_thread_ath9k___cs_switch_cond_thread_ath9k_1=1 (00000000 00000000 00000000 00000001)
+
+State 1090 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function thread_ath9k_3 line 1415 thread 0
+----------------------------------------------------
+  __dr_nondet_thread_ath9k___cs_tmp_if_cond_1=TRUE (00000001)
+
+State 1096 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function thread_ath9k_3 line 1421 thread 0
+----------------------------------------------------
+  __cs_mutex_to_lock=&mutex (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1097 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function thread_ath9k_3 line 1421 thread 0
+----------------------------------------------------
+  __cs_thread_index=3 (011)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c line 127 function __cs_mutex_lock
+  *__cs_mutex_to_lock == -1
+
+State 1101 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function __cs_mutex_lock line 128 thread 0
+----------------------------------------------------
+  mutex=4 (00000000 00000000 00000000 00000100)
+
+State 1104 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function thread_ath9k_3 line 1424 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=TRUE (00000001)
+
+State 1105 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function thread_ath9k_3 line 1425 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 1109 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function thread_ath9k_3 line 1426 thread 0
+----------------------------------------------------
+  SM__&pdev__dr_write=16843009 (00000001 00000001 00000001 00000001)
+
+State 1111 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function thread_ath9k_3 line 1426 thread 0
+----------------------------------------------------
+  pdev=6 (00000000 00000000 00000000 00000110)
+
+State 1138 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function thread_ath9k_3 line 1763 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1139 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function thread_ath9k_3 line 1763 thread 0
+----------------------------------------------------
+  __cs_thread_index=3u (00000000 00000000 00000000 00000011)
+
+State 1140 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function __cs_exit line 101 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[3l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1145 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function main line 3293 thread 0
+----------------------------------------------------
+  __cs_dataraceSecondThread=TRUE (00000001)
+
+State 1146 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function main line 3294 thread 0
+----------------------------------------------------
+  __cs_pc[3l]=3 (000011)
+
+State 1147 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function main line 3297 thread 0
+----------------------------------------------------
+  __cs_tmp_t4_r2=10 (001010)
+
+State 1149 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function main line 3300 thread 0
+----------------------------------------------------
+  __cs_pc_cs[4l]=53 (0110101)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c line 3301 function main
+  (signed int)__cs_pc_cs[(signed long int)4] >= (signed int)__cs_pc[(signed long int)4]
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c line 3302 function main
+  (signed int)__cs_pc_cs[(signed long int)4] <= 57
+
+State 1154 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function main line 3303 thread 0
+----------------------------------------------------
+  SM__&__dr_param_thread_usb_arg!0@3__dr_write=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1155 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function main line 3303 thread 0
+----------------------------------------------------
+  __dr_param_thread_usb_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1200 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function thread_usb_0 line 2634 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 1201 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function thread_usb_0 line 2635 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=TRUE (00000001)
+
+State 1208 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function thread_usb_0 line 2636 thread 0
+----------------------------------------------------
+  return_value___CPROVER_get_field$148=1 (00000000 00000000 00000000 00000001)
+
+State 1209 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function thread_usb_0 line 2636 thread 0
+----------------------------------------------------
+  tmp_if_expr$148=FALSE (0)
+
+State 1211 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function thread_usb_0 line 2636 thread 0
+----------------------------------------------------
+  __cs_dataraceNotDetected=FALSE (00000000)
+
+State 1212 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function thread_usb_0 line 2636 thread 0
+----------------------------------------------------
+  pdev=7 (00000000 00000000 00000000 00000111)
+
+State 1214 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function thread_usb_0 line 2641 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 1215 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function thread_usb_0 line 2642 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 1219 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function thread_usb_0 line 2643 thread 0
+----------------------------------------------------
+  __dr_param_ldv_assert_1_expression=1 (00000000 00000000 00000000 00000001)
+
+State 1223 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function thread_usb_0 line 2647 thread 0
+----------------------------------------------------
+  __dr_nondet_ldv_assert_1___cs_tmp_if_cond_0=FALSE (00000000)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c line 2654 function thread_usb_0
+  (signed int)__cs_pc_cs[(signed long int)4] >= 46
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c line 2661 function thread_usb_0
+  (signed int)__cs_pc_cs[(signed long int)4] >= 46
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c line 2667 function thread_usb_0
+  (signed int)__cs_pc_cs[(signed long int)4] >= 46
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c line 2792 function thread_usb_0
+  (signed int)__cs_pc_cs[(signed long int)4] >= 53
+
+State 1238 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function thread_usb_0 line 2847 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1239 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function thread_usb_0 line 2847 thread 0
+----------------------------------------------------
+  __cs_thread_index=4u (00000000 00000000 00000000 00000100)
+
+State 1240 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function __cs_exit line 101 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[4l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1244 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function main line 3305 thread 0
+----------------------------------------------------
+  __cs_dataraceContinue=FALSE (00000000)
+
+State 1245 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function main line 3306 thread 0
+----------------------------------------------------
+  __cs_pc[4l]=53 (110101)
+
+Violated property:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_race-4_2-thread_local_vars.c function main line 3308 thread 0
+  Data race failure
+  __cs_dataraceNotDetected != FALSE
+
+
+VERIFICATION FAILED
+
+real	5m9,644s
+user	5m9,549s
+sys	0m0,090s

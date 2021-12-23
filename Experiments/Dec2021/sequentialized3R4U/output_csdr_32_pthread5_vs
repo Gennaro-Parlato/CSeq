@@ -1,0 +1,974 @@
+CBMC version 5.45.0 (cbmc-5.45.0-179-gd48dc284f7) 64-bit x86_64 linux
+Parsing /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c
+Converting
+Type-checking _csdr_32_pthread5_vs
+file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c line 315 function __CSEQ_atomic_acquire: function '__CPROVER_get_field' is not declared
+file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c line 316 function __CSEQ_atomic_acquire: function '__CPROVER_set_field' is not declared
+file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c line 903 function main: function '__CPROVER_field_decl_global' is not declared
+file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c line 904 function main: function '__CPROVER_field_decl_local' is not declared
+Generating GOTO Program
+Adding CPROVER library (x86_64)
+Removal of function pointers and virtual functions
+Generic Property Instrumentation
+Running with 8 object bits, 56 offset bits (default)
+Starting Bounded Model Checking
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c line 889 function main_thread thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c line 387 function thr3_0 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c line 475 function thr3_1 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c line 563 function thr3_2 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c line 651 function thr3_3 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c line 805 function thr2_0 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c line 889 function main_thread thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c line 387 function thr3_0 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c line 475 function thr3_1 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c line 563 function thr3_2 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c line 651 function thr3_3 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c line 805 function thr2_0 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c line 889 function main_thread thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c line 387 function thr3_0 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c line 475 function thr3_1 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c line 563 function thr3_2 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c line 651 function thr3_3 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c line 805 function thr2_0 thread 0
+Runtime Symex: 0.303312s
+size of program expression: 14991 steps
+simple slicing removed 5 assignments
+Generated 1 VCC(s), 1 remaining after simplification
+Runtime Postprocess Equation: 0.00176285s
+Passing problem to propositional reduction
+converting SSA
+Runtime Convert SSA: 0.060966s
+Running propositional reduction
+Post-processing
+Runtime Post-process: 3.2555e-05s
+Solving with Glucose Syrup with simplifier
+39122 variables, 53507 clauses
+SAT checker: instance is SATISFIABLE
+Runtime Solver: 0.041382s
+Runtime decision procedure: 0.102741s
+Building error trace
+Counterexample:
+
+State 21 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function __CPROVER_initialize line 57 thread 0
+----------------------------------------------------
+  __cs_active_thread[0l]=0 (0)
+
+State 22 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function __CPROVER_initialize line 57 thread 0
+----------------------------------------------------
+  __cs_active_thread[1l]=0 (0)
+
+State 23 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function __CPROVER_initialize line 57 thread 0
+----------------------------------------------------
+  __cs_active_thread[2l]=0 (0)
+
+State 24 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function __CPROVER_initialize line 57 thread 0
+----------------------------------------------------
+  __cs_active_thread[3l]=0 (0)
+
+State 25 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function __CPROVER_initialize line 57 thread 0
+----------------------------------------------------
+  __cs_active_thread[4l]=0 (0)
+
+State 26 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function __CPROVER_initialize line 57 thread 0
+----------------------------------------------------
+  __cs_active_thread[5l]=0 (0)
+
+State 27 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function __CPROVER_initialize line 57 thread 0
+----------------------------------------------------
+  __cs_active_thread[6l]=0 (0)
+
+State 36 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function __CPROVER_initialize line 58 thread 0
+----------------------------------------------------
+  __cs_pc[0l]=0 (00000)
+
+State 37 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function __CPROVER_initialize line 58 thread 0
+----------------------------------------------------
+  __cs_pc[1l]=0 (00000)
+
+State 38 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function __CPROVER_initialize line 58 thread 0
+----------------------------------------------------
+  __cs_pc[2l]=0 (00000)
+
+State 39 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function __CPROVER_initialize line 58 thread 0
+----------------------------------------------------
+  __cs_pc[3l]=0 (00000)
+
+State 40 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function __CPROVER_initialize line 58 thread 0
+----------------------------------------------------
+  __cs_pc[4l]=0 (00000)
+
+State 41 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function __CPROVER_initialize line 58 thread 0
+----------------------------------------------------
+  __cs_pc[5l]=0 (00000)
+
+State 42 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function __CPROVER_initialize line 58 thread 0
+----------------------------------------------------
+  __cs_pc[6l]=0 (00000)
+
+State 44 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function __CPROVER_initialize line 59 thread 0
+----------------------------------------------------
+  __cs_pc_cs[0l]=0 (000000)
+
+State 45 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function __CPROVER_initialize line 59 thread 0
+----------------------------------------------------
+  __cs_pc_cs[1l]=0 (000000)
+
+State 46 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function __CPROVER_initialize line 59 thread 0
+----------------------------------------------------
+  __cs_pc_cs[2l]=0 (000000)
+
+State 47 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function __CPROVER_initialize line 59 thread 0
+----------------------------------------------------
+  __cs_pc_cs[3l]=0 (000000)
+
+State 48 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function __CPROVER_initialize line 59 thread 0
+----------------------------------------------------
+  __cs_pc_cs[4l]=0 (000000)
+
+State 49 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function __CPROVER_initialize line 59 thread 0
+----------------------------------------------------
+  __cs_pc_cs[5l]=0 (000000)
+
+State 50 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function __CPROVER_initialize line 59 thread 0
+----------------------------------------------------
+  __cs_pc_cs[6l]=0 (000000)
+
+State 52 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function __CPROVER_initialize line 82 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 53 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function __CPROVER_initialize line 82 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 54 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function __CPROVER_initialize line 82 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[2l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 55 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function __CPROVER_initialize line 82 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[3l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 56 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function __CPROVER_initialize line 82 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[4l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 57 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function __CPROVER_initialize line 82 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[5l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 58 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function __CPROVER_initialize line 82 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[6l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 60 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function __CPROVER_initialize line 61 thread 0
+----------------------------------------------------
+  __cs_thread_lines[0l]=11 (01011)
+
+State 61 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function __CPROVER_initialize line 61 thread 0
+----------------------------------------------------
+  __cs_thread_lines[1l]=11 (01011)
+
+State 62 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function __CPROVER_initialize line 61 thread 0
+----------------------------------------------------
+  __cs_thread_lines[2l]=11 (01011)
+
+State 63 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function __CPROVER_initialize line 61 thread 0
+----------------------------------------------------
+  __cs_thread_lines[3l]=11 (01011)
+
+State 64 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function __CPROVER_initialize line 61 thread 0
+----------------------------------------------------
+  __cs_thread_lines[4l]=17 (10001)
+
+State 65 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function __CPROVER_initialize line 61 thread 0
+----------------------------------------------------
+  __cs_thread_lines[5l]=4 (00100)
+
+State 66 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function __CPROVER_initialize line 61 thread 0
+----------------------------------------------------
+  __cs_thread_lines[6l]=8 (01000)
+
+State 68 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function __CPROVER_initialize line 81 thread 0
+----------------------------------------------------
+  __cs_threadargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 69 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function __CPROVER_initialize line 81 thread 0
+----------------------------------------------------
+  __cs_threadargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 70 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function __CPROVER_initialize line 81 thread 0
+----------------------------------------------------
+  __cs_threadargs[2l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 71 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function __CPROVER_initialize line 81 thread 0
+----------------------------------------------------
+  __cs_threadargs[3l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 72 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function __CPROVER_initialize line 81 thread 0
+----------------------------------------------------
+  __cs_threadargs[4l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 73 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function __CPROVER_initialize line 81 thread 0
+----------------------------------------------------
+  __cs_threadargs[5l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 74 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function __CPROVER_initialize line 81 thread 0
+----------------------------------------------------
+  __cs_threadargs[6l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 148 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function main line 907 thread 0
+----------------------------------------------------
+  __cs_dr_ts=16 (10000)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c line 908 function main
+  (signed int)__cs_dr_ts <= 19
+
+State 150 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function main line 911 thread 0
+----------------------------------------------------
+  __cs_active_thread[6l]=1 (1)
+
+State 151 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function main line 912 thread 0
+----------------------------------------------------
+  __cs_tmp_t6_r0=2 (0010)
+
+State 152 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function main line 913 thread 0
+----------------------------------------------------
+  __cs_pc_cs[6l]=2 (000010)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c line 914 function main
+  (signed int)__cs_pc_cs[(signed long int)6] > 0
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c line 915 function main
+  (signed int)__cs_pc_cs[(signed long int)6] <= 8
+
+State 159 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function main_thread line 854 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 160 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function main_thread line 855 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=TRUE (00000001)
+
+State 164 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function main_thread line 859 thread 0
+----------------------------------------------------
+  __cs_new_thread_id=&__dr_nondet_main_t (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 165 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function main_thread line 859 thread 0
+----------------------------------------------------
+  __cs_attr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 166 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function main_thread line 859 thread 0
+----------------------------------------------------
+  __cs_thread_function=thr1_0 (00000011 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 167 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function main_thread line 859 thread 0
+----------------------------------------------------
+  __cs_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 168 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function main_thread line 859 thread 0
+----------------------------------------------------
+  __cs_threadID=5 (00000000 00000000 00000000 00000101)
+
+State 170 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function __cs_create line 87 thread 0
+----------------------------------------------------
+  __dr_nondet_main_t=5 (00000000 00000000 00000000 00000101)
+
+State 171 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function __cs_create line 88 thread 0
+----------------------------------------------------
+  __cs_active_thread[5l]=1 (1)
+
+State 172 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function __cs_create line 89 thread 0
+----------------------------------------------------
+  __cs_threadargs[5l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 182 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function main_thread line 899 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 183 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function main_thread line 899 thread 0
+----------------------------------------------------
+  __cs_thread_index=6u (00000000 00000000 00000000 00000110)
+
+State 184 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function __cs_exit line 101 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[6l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 188 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function main line 921 thread 0
+----------------------------------------------------
+  __cs_pc[6l]=2 (00010)
+
+State 189 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function main line 923 thread 0
+----------------------------------------------------
+  __cs_tmp_t0_r0=5 (0101)
+
+State 191 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function main line 938 thread 0
+----------------------------------------------------
+  __cs_tmp_t1_r0=3 (0011)
+
+State 193 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function main line 953 thread 0
+----------------------------------------------------
+  __cs_tmp_t2_r0=11 (1011)
+
+State 195 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function main line 968 thread 0
+----------------------------------------------------
+  __cs_tmp_t3_r0=11 (1011)
+
+State 197 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function main line 983 thread 0
+----------------------------------------------------
+  __cs_tmp_t4_r0=16 (10000)
+
+State 199 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function main line 998 thread 0
+----------------------------------------------------
+  __cs_tmp_t5_r0=2 (010)
+
+State 201 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function main line 1001 thread 0
+----------------------------------------------------
+  __cs_pc_cs[5l]=2 (000010)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c line 1002 function main
+  (signed int)__cs_pc_cs[(signed long int)5] <= 4
+
+State 206 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function main line 1005 thread 0
+----------------------------------------------------
+  SM__&__dr_param_thr1_arg!0@1__dr_write_noatomic=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 207 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function main line 1005 thread 0
+----------------------------------------------------
+  SM__&__dr_param_thr1_arg!0@1__dr_write=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 208 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function main line 1005 thread 0
+----------------------------------------------------
+  __dr_param_thr1_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 210 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function thr1_0 line 826 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 211 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function thr1_0 line 827 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=TRUE (00000001)
+
+State 217 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function __CSEQ_atomic_acquire line 315 thread 0
+----------------------------------------------------
+  SM__&cond!0@25__dr_write_noatomic=0 (00000000 00000000 00000000 00000000)
+
+State 218 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function __CSEQ_atomic_acquire line 315 thread 0
+----------------------------------------------------
+  SM__&cond!0@25__dr_write=0 (00000000 00000000 00000000 00000000)
+
+State 219 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function __CSEQ_atomic_acquire line 315 thread 0
+----------------------------------------------------
+  cond=1 (00000000 00000000 00000000 00000001)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c line 300 function assume_abort_if_not
+  cond != 0
+
+State 224 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function __CSEQ_atomic_acquire line 316 thread 0
+----------------------------------------------------
+  mutex=1 (00000000 00000000 00000000 00000001)
+
+State 227 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function thr1_0 line 831 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=TRUE (00000001)
+
+State 228 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function thr1_0 line 832 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 232 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function thr1_0 line 833 thread 0
+----------------------------------------------------
+  g0=1 (00000000 00000000 00000000 00000001)
+
+State 236 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function thr1_0 line 833 thread 0
+----------------------------------------------------
+  g1=1 (00000000 00000000 00000000 00000001)
+
+State 241 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function thr1_0 line 849 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 242 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function thr1_0 line 849 thread 0
+----------------------------------------------------
+  __cs_thread_index=5u (00000000 00000000 00000000 00000101)
+
+State 243 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function __cs_exit line 101 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[5l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 248 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function main line 1010 thread 0
+----------------------------------------------------
+  __cs_pc[5l]=2 (00010)
+
+State 249 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function main line 1014 thread 0
+----------------------------------------------------
+  __cs_tmp_t6_r1=0 (0000)
+
+State 251 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function main line 1017 thread 0
+----------------------------------------------------
+  __cs_pc_cs[6l]=2 (000010)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c line 1018 function main
+  (signed int)__cs_pc_cs[(signed long int)6] >= (signed int)__cs_pc[(signed long int)6]
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c line 1019 function main
+  (signed int)__cs_pc_cs[(signed long int)6] <= 8
+
+State 267 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function main_thread line 899 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 268 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function main_thread line 899 thread 0
+----------------------------------------------------
+  __cs_thread_index=6u (00000000 00000000 00000000 00000110)
+
+State 269 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function __cs_exit line 101 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[6l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 274 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function main line 1027 thread 0
+----------------------------------------------------
+  __cs_pc[6l]=2 (00010)
+
+State 275 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function main line 1030 thread 0
+----------------------------------------------------
+  __cs_tmp_t0_r1=5 (0101)
+
+State 277 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function main line 1046 thread 0
+----------------------------------------------------
+  __cs_tmp_t1_r1=10 (1010)
+
+State 279 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function main line 1062 thread 0
+----------------------------------------------------
+  __cs_tmp_t2_r1=0 (0000)
+
+State 281 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function main line 1078 thread 0
+----------------------------------------------------
+  __cs_tmp_t3_r1=0 (0000)
+
+State 283 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function main line 1094 thread 0
+----------------------------------------------------
+  __cs_tmp_t4_r1=0 (00000)
+
+State 285 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function main line 1110 thread 0
+----------------------------------------------------
+  __cs_tmp_t5_r1=1 (001)
+
+State 287 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function main line 1113 thread 0
+----------------------------------------------------
+  __cs_pc_cs[5l]=3 (000011)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c line 1114 function main
+  (signed int)__cs_pc_cs[(signed long int)5] >= (signed int)__cs_pc[(signed long int)5]
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c line 1115 function main
+  (signed int)__cs_pc_cs[(signed long int)5] <= 4
+
+State 293 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function main line 1118 thread 0
+----------------------------------------------------
+  SM__&__dr_param_thr1_arg!0@2__dr_write_noatomic=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 294 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function main line 1118 thread 0
+----------------------------------------------------
+  SM__&__dr_param_thr1_arg!0@2__dr_write=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 295 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function main line 1118 thread 0
+----------------------------------------------------
+  __dr_param_thr1_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 304 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function __CSEQ_atomic_release line 320 thread 0
+----------------------------------------------------
+  SM__&cond!0@52__dr_write_noatomic=0 (00000000 00000000 00000000 00000000)
+
+State 305 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function __CSEQ_atomic_release line 320 thread 0
+----------------------------------------------------
+  SM__&cond!0@52__dr_write=0 (00000000 00000000 00000000 00000000)
+
+State 306 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function __CSEQ_atomic_release line 320 thread 0
+----------------------------------------------------
+  cond=1 (00000000 00000000 00000000 00000001)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c line 300 function assume_abort_if_not
+  cond != 0
+
+State 311 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function __CSEQ_atomic_release line 321 thread 0
+----------------------------------------------------
+  mutex=0 (00000000 00000000 00000000 00000000)
+
+State 316 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function thr1_0 line 849 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 317 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function thr1_0 line 849 thread 0
+----------------------------------------------------
+  __cs_thread_index=5u (00000000 00000000 00000000 00000101)
+
+State 318 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function __cs_exit line 101 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[5l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 323 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function main line 1123 thread 0
+----------------------------------------------------
+  __cs_pc[5l]=3 (00011)
+
+State 324 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function main line 1127 thread 0
+----------------------------------------------------
+  __cs_tmp_t6_r2=3 (0011)
+
+State 326 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function main line 1130 thread 0
+----------------------------------------------------
+  __cs_pc_cs[6l]=5 (000101)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c line 1131 function main
+  (signed int)__cs_pc_cs[(signed long int)6] >= (signed int)__cs_pc[(signed long int)6]
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c line 1132 function main
+  (signed int)__cs_pc_cs[(signed long int)6] <= 8
+
+State 337 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function main_thread line 862 thread 0
+----------------------------------------------------
+  __cs_new_thread_id=&__dr_nondet_main_t (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 338 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function main_thread line 862 thread 0
+----------------------------------------------------
+  __cs_attr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 339 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function main_thread line 862 thread 0
+----------------------------------------------------
+  __cs_thread_function=thr2_0 (00000100 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 340 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function main_thread line 862 thread 0
+----------------------------------------------------
+  __cs_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 341 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function main_thread line 862 thread 0
+----------------------------------------------------
+  __cs_threadID=4 (00000000 00000000 00000000 00000100)
+
+State 343 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function __cs_create line 87 thread 0
+----------------------------------------------------
+  __dr_nondet_main_t=4 (00000000 00000000 00000000 00000100)
+
+State 344 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function __cs_create line 88 thread 0
+----------------------------------------------------
+  __cs_active_thread[4l]=1 (1)
+
+State 345 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function __cs_create line 89 thread 0
+----------------------------------------------------
+  __cs_threadargs[4l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 350 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function main_thread line 866 thread 0
+----------------------------------------------------
+  __cs_new_thread_id=&__dr_nondet_main_t (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 351 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function main_thread line 866 thread 0
+----------------------------------------------------
+  __cs_attr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 352 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function main_thread line 866 thread 0
+----------------------------------------------------
+  __cs_thread_function=thr3_0 (00000101 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 353 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function main_thread line 866 thread 0
+----------------------------------------------------
+  __cs_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 354 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function main_thread line 866 thread 0
+----------------------------------------------------
+  __cs_threadID=0 (00000000 00000000 00000000 00000000)
+
+State 356 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function __cs_create line 87 thread 0
+----------------------------------------------------
+  __dr_nondet_main_t=0 (00000000 00000000 00000000 00000000)
+
+State 357 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function __cs_create line 88 thread 0
+----------------------------------------------------
+  __cs_active_thread[0l]=1 (1)
+
+State 358 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function __cs_create line 89 thread 0
+----------------------------------------------------
+  __cs_threadargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 363 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function main_thread line 872 thread 0
+----------------------------------------------------
+  __cs_new_thread_id=&__dr_nondet_main_t (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 364 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function main_thread line 872 thread 0
+----------------------------------------------------
+  __cs_attr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 365 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function main_thread line 872 thread 0
+----------------------------------------------------
+  __cs_thread_function=thr3_1 (00000110 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 366 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function main_thread line 872 thread 0
+----------------------------------------------------
+  __cs_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 367 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function main_thread line 872 thread 0
+----------------------------------------------------
+  __cs_threadID=1 (00000000 00000000 00000000 00000001)
+
+State 369 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function __cs_create line 87 thread 0
+----------------------------------------------------
+  __dr_nondet_main_t=1 (00000000 00000000 00000000 00000001)
+
+State 370 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function __cs_create line 88 thread 0
+----------------------------------------------------
+  __cs_active_thread[1l]=1 (1)
+
+State 371 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function __cs_create line 89 thread 0
+----------------------------------------------------
+  __cs_threadargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 378 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function main_thread line 899 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 379 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function main_thread line 899 thread 0
+----------------------------------------------------
+  __cs_thread_index=6u (00000000 00000000 00000000 00000110)
+
+State 380 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function __cs_exit line 101 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[6l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 385 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function main line 1140 thread 0
+----------------------------------------------------
+  __cs_pc[6l]=5 (00101)
+
+State 386 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function main line 1143 thread 0
+----------------------------------------------------
+  __cs_tmp_t0_r2=0 (0000)
+
+State 388 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function main line 1146 thread 0
+----------------------------------------------------
+  __cs_pc_cs[0l]=0 (000000)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c line 1147 function main
+  (signed int)__cs_pc_cs[(signed long int)0] >= (signed int)__cs_pc[(signed long int)0]
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c line 1148 function main
+  (signed int)__cs_pc_cs[(signed long int)0] <= 11
+
+State 394 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function main line 1151 thread 0
+----------------------------------------------------
+  SM__&__dr_param_thr3_arg!0@3__dr_write_noatomic=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 395 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function main line 1151 thread 0
+----------------------------------------------------
+  SM__&__dr_param_thr3_arg!0@3__dr_write=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 396 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function main line 1151 thread 0
+----------------------------------------------------
+  __dr_param_thr3_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 410 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function thr3_0 line 409 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 411 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function thr3_0 line 409 thread 0
+----------------------------------------------------
+  __cs_thread_index=0u (00000000 00000000 00000000 00000000)
+
+State 412 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function __cs_exit line 101 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 417 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function main line 1156 thread 0
+----------------------------------------------------
+  __cs_pc[0l]=0 (00000)
+
+State 418 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function main line 1159 thread 0
+----------------------------------------------------
+  __cs_tmp_t1_r2=4 (0100)
+
+State 420 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function main line 1162 thread 0
+----------------------------------------------------
+  __cs_pc_cs[1l]=4 (000100)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c line 1163 function main
+  (signed int)__cs_pc_cs[(signed long int)1] >= (signed int)__cs_pc[(signed long int)1]
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c line 1164 function main
+  (signed int)__cs_pc_cs[(signed long int)1] <= 11
+
+State 424 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function main line 1166 thread 0
+----------------------------------------------------
+  __cs_dataraceDetectionStarted=TRUE (00000001)
+
+State 427 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function main line 1167 thread 0
+----------------------------------------------------
+  SM__&__dr_param_thr3_arg!0@3__dr_write_noatomic$0=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 428 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function main line 1167 thread 0
+----------------------------------------------------
+  SM__&__dr_param_thr3_arg!0@3__dr_write$0=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 429 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function main line 1167 thread 0
+----------------------------------------------------
+  __dr_param_thr3_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 431 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function thr3_1 line 414 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 432 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function thr3_1 line 415 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=TRUE (00000001)
+
+State 438 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function __CSEQ_atomic_acquire line 315 thread 0
+----------------------------------------------------
+  SM__&cond!0@57__dr_write_noatomic=0 (00000000 00000000 00000000 00000000)
+
+State 439 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function __CSEQ_atomic_acquire line 315 thread 0
+----------------------------------------------------
+  SM__&cond!0@57__dr_write=0 (00000000 00000000 00000000 00000000)
+
+State 440 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function __CSEQ_atomic_acquire line 315 thread 0
+----------------------------------------------------
+  cond=1 (00000000 00000000 00000000 00000001)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c line 300 function assume_abort_if_not
+  cond != 0
+
+State 445 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function __CSEQ_atomic_acquire line 316 thread 0
+----------------------------------------------------
+  mutex=1 (00000000 00000000 00000000 00000001)
+
+State 451 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function thr3_1 line 420 thread 0
+----------------------------------------------------
+  return_value_nondet_int=512 (00000000 00000000 00000010 00000000)
+
+State 452 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function thr3_1 line 420 thread 0
+----------------------------------------------------
+  __dr_nondet_thr3___cs_tmp_if_cond_0=TRUE (00000001)
+
+State 456 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function thr3_1 line 425 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 457 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function thr3_1 line 426 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 461 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function thr3_1 line 427 thread 0
+----------------------------------------------------
+  g0=0 (00000000 00000000 00000000 00000000)
+
+State 463 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function thr3_1 line 430 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 464 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function thr3_1 line 431 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 468 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function thr3_1 line 432 thread 0
+----------------------------------------------------
+  g1=0 (00000000 00000000 00000000 00000000)
+
+State 470 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function thr3_1 line 435 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=TRUE (00000001)
+
+State 471 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function thr3_1 line 436 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 475 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function thr3_1 line 437 thread 0
+----------------------------------------------------
+  SM__&lock__dr_write=TRUE (00000001)
+
+State 479 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function thr3_1 line 437 thread 0
+----------------------------------------------------
+  SM__&lock__dr_write_noatomic=TRUE (00000001)
+
+State 481 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function thr3_1 line 437 thread 0
+----------------------------------------------------
+  lock=FALSE (00000000)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c line 439 function thr3_1
+  (signed int)__cs_pc_cs[(signed long int)1] >= 4
+
+State 492 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function thr3_1 line 497 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 493 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function thr3_1 line 497 thread 0
+----------------------------------------------------
+  __cs_thread_index=1u (00000000 00000000 00000000 00000001)
+
+State 494 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function __cs_exit line 101 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 499 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function main line 1171 thread 0
+----------------------------------------------------
+  __cs_dataraceSecondThread=TRUE (00000001)
+
+State 500 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function main line 1172 thread 0
+----------------------------------------------------
+  __cs_pc[1l]=4 (00100)
+
+State 501 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function main line 1175 thread 0
+----------------------------------------------------
+  __cs_tmp_t2_r2=5 (0101)
+
+State 503 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function main line 1191 thread 0
+----------------------------------------------------
+  __cs_tmp_t3_r2=5 (0101)
+
+State 505 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function main line 1207 thread 0
+----------------------------------------------------
+  __cs_tmp_t4_r2=0 (00000)
+
+State 507 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function main line 1210 thread 0
+----------------------------------------------------
+  __cs_pc_cs[4l]=0 (000000)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c line 1211 function main
+  (signed int)__cs_pc_cs[(signed long int)4] >= (signed int)__cs_pc[(signed long int)4]
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c line 1212 function main
+  (signed int)__cs_pc_cs[(signed long int)4] <= 17
+
+State 513 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function main line 1215 thread 0
+----------------------------------------------------
+  SM__&__dr_param_thr2_arg!0@3__dr_write_noatomic=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 514 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function main line 1215 thread 0
+----------------------------------------------------
+  SM__&__dr_param_thr2_arg!0@3__dr_write=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 515 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function main line 1215 thread 0
+----------------------------------------------------
+  __dr_param_thr2_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 539 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function thr2_0 line 821 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 540 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function thr2_0 line 821 thread 0
+----------------------------------------------------
+  __cs_thread_index=4u (00000000 00000000 00000000 00000100)
+
+State 541 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function __cs_exit line 101 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[4l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 546 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function main line 1219 thread 0
+----------------------------------------------------
+  __cs_dataraceSecondThread=TRUE (00000001)
+
+State 547 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function main line 1220 thread 0
+----------------------------------------------------
+  __cs_pc[4l]=0 (00000)
+
+State 548 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function main line 1223 thread 0
+----------------------------------------------------
+  __cs_tmp_t5_r2=1 (001)
+
+State 550 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function main line 1226 thread 0
+----------------------------------------------------
+  __cs_pc_cs[5l]=4 (000100)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c line 1227 function main
+  (signed int)__cs_pc_cs[(signed long int)5] >= (signed int)__cs_pc[(signed long int)5]
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c line 1228 function main
+  (signed int)__cs_pc_cs[(signed long int)5] <= 4
+
+State 555 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function main line 1229 thread 0
+----------------------------------------------------
+  SM__&__dr_param_thr1_arg!0@3__dr_write_noatomic=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 556 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function main line 1229 thread 0
+----------------------------------------------------
+  SM__&__dr_param_thr1_arg!0@3__dr_write=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 557 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function main line 1229 thread 0
+----------------------------------------------------
+  __dr_param_thr1_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 562 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function thr1_0 line 839 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=TRUE (00000001)
+
+State 563 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function thr1_0 line 840 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=TRUE (00000001)
+
+State 571 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function thr1_0 line 841 thread 0
+----------------------------------------------------
+  return_value___CPROVER_get_field$1=1 (00000000 00000000 00000000 00000001)
+
+State 572 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function thr1_0 line 841 thread 0
+----------------------------------------------------
+  tmp_if_expr$1=FALSE (0)
+
+State 574 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function thr1_0 line 841 thread 0
+----------------------------------------------------
+  __cs_dataraceNotDetected=FALSE (00000000)
+
+State 575 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function thr1_0 line 841 thread 0
+----------------------------------------------------
+  lock=TRUE (00000001)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c line 845 function thr1_0
+  (signed int)__cs_pc_cs[(signed long int)5] >= 4
+
+State 579 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function thr1_0 line 849 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 580 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function thr1_0 line 849 thread 0
+----------------------------------------------------
+  __cs_thread_index=5u (00000000 00000000 00000000 00000101)
+
+State 581 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function __cs_exit line 101 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[5l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 585 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function main line 1231 thread 0
+----------------------------------------------------
+  __cs_dataraceContinue=FALSE (00000000)
+
+State 586 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function main line 1232 thread 0
+----------------------------------------------------
+  __cs_pc[5l]=4 (00100)
+
+Violated property:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_32_pthread5_vs.c function main line 1234 thread 0
+  Data race failure
+  __cs_dataraceNotDetected != FALSE
+
+
+VERIFICATION FAILED
+
+real	0m0,561s
+user	0m0,555s
+sys	0m0,009s

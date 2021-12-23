@@ -1,0 +1,960 @@
+CBMC version 5.45.0 (cbmc-5.45.0-179-gd48dc284f7) 64-bit x86_64 linux
+Parsing /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c
+Converting
+Type-checking _csdr_fkp2013-2
+file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c line 315 function thr1_0: function '__CPROVER_get_field' is not declared
+file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c line 331 function thr2_0: function '__CPROVER_set_field' is not declared
+file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c line 475 function main: function '__CPROVER_field_decl_global' is not declared
+file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c line 476 function main: function '__CPROVER_field_decl_local' is not declared
+Generating GOTO Program
+Adding CPROVER library (x86_64)
+Removal of function pointers and virtual functions
+Generic Property Instrumentation
+Running with 8 object bits, 56 offset bits (default)
+Starting Bounded Model Checking
+Runtime Symex: 0.0630429s
+size of program expression: 3428 steps
+simple slicing removed 5 assignments
+Generated 1 VCC(s), 1 remaining after simplification
+Runtime Postprocess Equation: 0.000141237s
+Passing problem to propositional reduction
+converting SSA
+Runtime Convert SSA: 0.0122746s
+Running propositional reduction
+Post-processing
+Runtime Post-process: 1.7412e-05s
+Solving with Glucose Syrup with simplifier
+9403 variables, 14789 clauses
+SAT checker: instance is SATISFIABLE
+Runtime Solver: 0.0102321s
+Runtime decision procedure: 0.0225617s
+Building error trace
+Counterexample:
+
+State 21 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function __CPROVER_initialize line 57 thread 0
+----------------------------------------------------
+  __cs_active_thread[0l]=0 (0)
+
+State 22 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function __CPROVER_initialize line 57 thread 0
+----------------------------------------------------
+  __cs_active_thread[1l]=0 (0)
+
+State 23 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function __CPROVER_initialize line 57 thread 0
+----------------------------------------------------
+  __cs_active_thread[2l]=0 (0)
+
+State 24 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function __CPROVER_initialize line 57 thread 0
+----------------------------------------------------
+  __cs_active_thread[3l]=0 (0)
+
+State 25 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function __CPROVER_initialize line 57 thread 0
+----------------------------------------------------
+  __cs_active_thread[4l]=0 (0)
+
+State 26 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function __CPROVER_initialize line 57 thread 0
+----------------------------------------------------
+  __cs_active_thread[5l]=0 (0)
+
+State 35 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function __CPROVER_initialize line 58 thread 0
+----------------------------------------------------
+  __cs_pc[0l]=0 (0000)
+
+State 36 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function __CPROVER_initialize line 58 thread 0
+----------------------------------------------------
+  __cs_pc[1l]=0 (0000)
+
+State 37 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function __CPROVER_initialize line 58 thread 0
+----------------------------------------------------
+  __cs_pc[2l]=0 (0000)
+
+State 38 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function __CPROVER_initialize line 58 thread 0
+----------------------------------------------------
+  __cs_pc[3l]=0 (0000)
+
+State 39 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function __CPROVER_initialize line 58 thread 0
+----------------------------------------------------
+  __cs_pc[4l]=0 (0000)
+
+State 40 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function __CPROVER_initialize line 58 thread 0
+----------------------------------------------------
+  __cs_pc[5l]=0 (0000)
+
+State 42 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function __CPROVER_initialize line 59 thread 0
+----------------------------------------------------
+  __cs_pc_cs[0l]=0 (00000)
+
+State 43 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function __CPROVER_initialize line 59 thread 0
+----------------------------------------------------
+  __cs_pc_cs[1l]=0 (00000)
+
+State 44 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function __CPROVER_initialize line 59 thread 0
+----------------------------------------------------
+  __cs_pc_cs[2l]=0 (00000)
+
+State 45 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function __CPROVER_initialize line 59 thread 0
+----------------------------------------------------
+  __cs_pc_cs[3l]=0 (00000)
+
+State 46 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function __CPROVER_initialize line 59 thread 0
+----------------------------------------------------
+  __cs_pc_cs[4l]=0 (00000)
+
+State 47 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function __CPROVER_initialize line 59 thread 0
+----------------------------------------------------
+  __cs_pc_cs[5l]=0 (00000)
+
+State 49 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function __CPROVER_initialize line 82 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 50 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function __CPROVER_initialize line 82 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 51 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function __CPROVER_initialize line 82 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[2l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 52 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function __CPROVER_initialize line 82 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[3l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 53 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function __CPROVER_initialize line 82 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[4l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 54 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function __CPROVER_initialize line 82 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[5l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 56 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function __CPROVER_initialize line 61 thread 0
+----------------------------------------------------
+  __cs_thread_lines[0l]=1 (0001)
+
+State 57 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function __CPROVER_initialize line 61 thread 0
+----------------------------------------------------
+  __cs_thread_lines[1l]=2 (0010)
+
+State 58 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function __CPROVER_initialize line 61 thread 0
+----------------------------------------------------
+  __cs_thread_lines[2l]=2 (0010)
+
+State 59 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function __CPROVER_initialize line 61 thread 0
+----------------------------------------------------
+  __cs_thread_lines[3l]=2 (0010)
+
+State 60 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function __CPROVER_initialize line 61 thread 0
+----------------------------------------------------
+  __cs_thread_lines[4l]=2 (0010)
+
+State 61 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function __CPROVER_initialize line 61 thread 0
+----------------------------------------------------
+  __cs_thread_lines[5l]=8 (1000)
+
+State 63 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function __CPROVER_initialize line 81 thread 0
+----------------------------------------------------
+  __cs_threadargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 64 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function __CPROVER_initialize line 81 thread 0
+----------------------------------------------------
+  __cs_threadargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 65 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function __CPROVER_initialize line 81 thread 0
+----------------------------------------------------
+  __cs_threadargs[2l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 66 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function __CPROVER_initialize line 81 thread 0
+----------------------------------------------------
+  __cs_threadargs[3l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 67 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function __CPROVER_initialize line 81 thread 0
+----------------------------------------------------
+  __cs_threadargs[4l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 68 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function __CPROVER_initialize line 81 thread 0
+----------------------------------------------------
+  __cs_threadargs[5l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 90 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function main line 477 thread 0
+----------------------------------------------------
+  __cs_dr_ts=10 (01010)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c line 478 function main
+  (signed int)__cs_dr_ts <= 16
+
+State 92 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function main line 481 thread 0
+----------------------------------------------------
+  __cs_active_thread[5l]=1 (1)
+
+State 93 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function main line 482 thread 0
+----------------------------------------------------
+  __cs_tmp_t5_r0=4 (0100)
+
+State 94 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function main line 483 thread 0
+----------------------------------------------------
+  __cs_pc_cs[5l]=4 (00100)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c line 484 function main
+  (signed int)__cs_pc_cs[(signed long int)5] > 0
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c line 485 function main
+  (signed int)__cs_pc_cs[(signed long int)5] <= 8
+
+State 100 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function main_thread line 411 thread 0
+----------------------------------------------------
+  __dr_param_main_argc=0 (00000000 00000000 00000000 00000000)
+
+State 102 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function main_thread line 412 thread 0
+----------------------------------------------------
+  __dr_param_main_argv=((char **)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 105 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function main_thread line 414 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 106 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function main_thread line 415 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=TRUE (00000001)
+
+State 108 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function main_thread line 421 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 109 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function main_thread line 422 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 112 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function main_thread line 423 thread 0
+----------------------------------------------------
+  x=0 (00000000 00000000 00000000 00000000)
+
+State 116 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function main_thread line 426 thread 0
+----------------------------------------------------
+  __cs_new_thread_id=&__dr_nondet_main_t1 (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 117 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function main_thread line 426 thread 0
+----------------------------------------------------
+  __cs_attr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 118 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function main_thread line 426 thread 0
+----------------------------------------------------
+  __cs_thread_function=thr1_0 (00000011 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 119 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function main_thread line 426 thread 0
+----------------------------------------------------
+  __cs_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 120 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function main_thread line 426 thread 0
+----------------------------------------------------
+  __cs_threadID=0 (00000000 00000000 00000000 00000000)
+
+State 122 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function __cs_create line 87 thread 0
+----------------------------------------------------
+  __dr_nondet_main_t1=0 (00000000 00000000 00000000 00000000)
+
+State 123 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function __cs_create line 88 thread 0
+----------------------------------------------------
+  __cs_active_thread[0l]=1 (1)
+
+State 124 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function __cs_create line 89 thread 0
+----------------------------------------------------
+  __cs_threadargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 128 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function main_thread line 427 thread 0
+----------------------------------------------------
+  __dr_nondet_main_i=0 (00000000 00000000 00000000 00000000)
+
+State 132 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function main_thread line 431 thread 0
+----------------------------------------------------
+  __cs_new_thread_id=&__dr_nondet_main_t2 (00000100 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 133 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function main_thread line 431 thread 0
+----------------------------------------------------
+  __cs_attr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 134 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function main_thread line 431 thread 0
+----------------------------------------------------
+  __cs_thread_function=thr2_0 (00000101 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 135 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function main_thread line 431 thread 0
+----------------------------------------------------
+  __cs_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 136 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function main_thread line 431 thread 0
+----------------------------------------------------
+  __cs_threadID=1 (00000000 00000000 00000000 00000001)
+
+State 138 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function __cs_create line 87 thread 0
+----------------------------------------------------
+  __dr_nondet_main_t2=1 (00000000 00000000 00000000 00000001)
+
+State 139 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function __cs_create line 88 thread 0
+----------------------------------------------------
+  __cs_active_thread[1l]=1 (1)
+
+State 140 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function __cs_create line 89 thread 0
+----------------------------------------------------
+  __cs_threadargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 144 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function main_thread line 434 thread 0
+----------------------------------------------------
+  __dr_nondet_main_i=1 (00000000 00000000 00000000 00000001)
+
+State 151 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function main_thread line 471 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 152 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function main_thread line 471 thread 0
+----------------------------------------------------
+  __cs_thread_index=5u (00000000 00000000 00000000 00000101)
+
+State 153 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function __cs_exit line 101 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[5l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 157 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function main line 491 thread 0
+----------------------------------------------------
+  __cs_pc[5l]=4 (0100)
+
+State 158 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function main line 493 thread 0
+----------------------------------------------------
+  __cs_tmp_t0_r0=0 (0)
+
+State 160 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function main line 496 thread 0
+----------------------------------------------------
+  __cs_pc_cs[0l]=0 (00000)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c line 497 function main
+  (signed int)__cs_pc_cs[(signed long int)0] <= 1
+
+State 165 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function main line 500 thread 0
+----------------------------------------------------
+  SM__&__dr_param_thr1_arg!0@1__dr_write=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 166 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function main line 500 thread 0
+----------------------------------------------------
+  __dr_param_thr1_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 170 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function thr1_0 line 323 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 171 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function thr1_0 line 323 thread 0
+----------------------------------------------------
+  __cs_thread_index=0u (00000000 00000000 00000000 00000000)
+
+State 172 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function __cs_exit line 101 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 177 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function main line 505 thread 0
+----------------------------------------------------
+  __cs_pc[0l]=0 (0000)
+
+State 178 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function main line 508 thread 0
+----------------------------------------------------
+  __cs_tmp_t1_r0=0 (00)
+
+State 180 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function main line 511 thread 0
+----------------------------------------------------
+  __cs_pc_cs[1l]=0 (00000)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c line 512 function main
+  (signed int)__cs_pc_cs[(signed long int)1] <= 2
+
+State 185 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function main line 515 thread 0
+----------------------------------------------------
+  SM__&__dr_param_thr2_arg!0@1__dr_write=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 186 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function main line 515 thread 0
+----------------------------------------------------
+  __dr_param_thr2_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 191 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function thr2_0 line 344 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 192 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function thr2_0 line 344 thread 0
+----------------------------------------------------
+  __cs_thread_index=1u (00000000 00000000 00000000 00000001)
+
+State 193 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function __cs_exit line 101 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 198 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function main line 520 thread 0
+----------------------------------------------------
+  __cs_pc[1l]=0 (0000)
+
+State 199 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function main line 523 thread 0
+----------------------------------------------------
+  __cs_tmp_t2_r0=2 (10)
+
+State 201 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function main line 538 thread 0
+----------------------------------------------------
+  __cs_tmp_t3_r0=2 (10)
+
+State 203 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function main line 553 thread 0
+----------------------------------------------------
+  __cs_tmp_t4_r0=2 (10)
+
+State 205 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function main line 569 thread 0
+----------------------------------------------------
+  __cs_tmp_t5_r1=3 (0011)
+
+State 207 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function main line 572 thread 0
+----------------------------------------------------
+  __cs_pc_cs[5l]=7 (00111)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c line 573 function main
+  (signed int)__cs_pc_cs[(signed long int)5] >= (signed int)__cs_pc[(signed long int)5]
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c line 574 function main
+  (signed int)__cs_pc_cs[(signed long int)5] <= 8
+
+State 213 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function main_thread line 411 thread 0
+----------------------------------------------------
+  __dr_param_main_argc=0 (00000000 00000000 00000000 00000000)
+
+State 215 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function main_thread line 412 thread 0
+----------------------------------------------------
+  __dr_param_main_argv=((char **)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 224 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function main_thread line 438 thread 0
+----------------------------------------------------
+  __cs_new_thread_id=&__dr_nondet_main_t2 (00000100 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 225 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function main_thread line 438 thread 0
+----------------------------------------------------
+  __cs_attr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 226 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function main_thread line 438 thread 0
+----------------------------------------------------
+  __cs_thread_function=thr2_1 (00000110 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 227 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function main_thread line 438 thread 0
+----------------------------------------------------
+  __cs_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 228 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function main_thread line 438 thread 0
+----------------------------------------------------
+  __cs_threadID=2 (00000000 00000000 00000000 00000010)
+
+State 230 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function __cs_create line 87 thread 0
+----------------------------------------------------
+  __dr_nondet_main_t2=2 (00000000 00000000 00000000 00000010)
+
+State 231 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function __cs_create line 88 thread 0
+----------------------------------------------------
+  __cs_active_thread[2l]=1 (1)
+
+State 232 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function __cs_create line 89 thread 0
+----------------------------------------------------
+  __cs_threadargs[2l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 236 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function main_thread line 441 thread 0
+----------------------------------------------------
+  __dr_nondet_main_i=2 (00000000 00000000 00000000 00000010)
+
+State 240 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function main_thread line 445 thread 0
+----------------------------------------------------
+  __cs_new_thread_id=&__dr_nondet_main_t2 (00000100 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 241 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function main_thread line 445 thread 0
+----------------------------------------------------
+  __cs_attr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 242 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function main_thread line 445 thread 0
+----------------------------------------------------
+  __cs_thread_function=thr2_2 (00000111 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 243 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function main_thread line 445 thread 0
+----------------------------------------------------
+  __cs_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 244 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function main_thread line 445 thread 0
+----------------------------------------------------
+  __cs_threadID=3 (00000000 00000000 00000000 00000011)
+
+State 246 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function __cs_create line 87 thread 0
+----------------------------------------------------
+  __dr_nondet_main_t2=3 (00000000 00000000 00000000 00000011)
+
+State 247 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function __cs_create line 88 thread 0
+----------------------------------------------------
+  __cs_active_thread[3l]=1 (1)
+
+State 248 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function __cs_create line 89 thread 0
+----------------------------------------------------
+  __cs_threadargs[3l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 252 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function main_thread line 448 thread 0
+----------------------------------------------------
+  __dr_nondet_main_i=3 (00000000 00000000 00000000 00000011)
+
+State 256 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function main_thread line 452 thread 0
+----------------------------------------------------
+  __cs_new_thread_id=&__dr_nondet_main_t2 (00000100 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 257 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function main_thread line 452 thread 0
+----------------------------------------------------
+  __cs_attr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 258 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function main_thread line 452 thread 0
+----------------------------------------------------
+  __cs_thread_function=thr2_3 (00001000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 259 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function main_thread line 452 thread 0
+----------------------------------------------------
+  __cs_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 260 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function main_thread line 452 thread 0
+----------------------------------------------------
+  __cs_threadID=4 (00000000 00000000 00000000 00000100)
+
+State 262 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function __cs_create line 87 thread 0
+----------------------------------------------------
+  __dr_nondet_main_t2=4 (00000000 00000000 00000000 00000100)
+
+State 263 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function __cs_create line 88 thread 0
+----------------------------------------------------
+  __cs_active_thread[4l]=1 (1)
+
+State 264 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function __cs_create line 89 thread 0
+----------------------------------------------------
+  __cs_threadargs[4l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 268 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function main_thread line 455 thread 0
+----------------------------------------------------
+  __dr_nondet_main_i=4 (00000000 00000000 00000000 00000100)
+
+State 272 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function main_thread line 471 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 273 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function main_thread line 471 thread 0
+----------------------------------------------------
+  __cs_thread_index=5u (00000000 00000000 00000000 00000101)
+
+State 274 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function __cs_exit line 101 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[5l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 279 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function main line 582 thread 0
+----------------------------------------------------
+  __cs_pc[5l]=7 (0111)
+
+State 280 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function main line 585 thread 0
+----------------------------------------------------
+  __cs_tmp_t0_r1=1 (1)
+
+State 282 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function main line 588 thread 0
+----------------------------------------------------
+  __cs_pc_cs[0l]=1 (00001)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c line 589 function main
+  (signed int)__cs_pc_cs[(signed long int)0] >= (signed int)__cs_pc[(signed long int)0]
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c line 590 function main
+  (signed int)__cs_pc_cs[(signed long int)0] <= 1
+
+State 288 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function main line 593 thread 0
+----------------------------------------------------
+  SM__&__dr_param_thr1_arg!0@2__dr_write=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 289 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function main line 593 thread 0
+----------------------------------------------------
+  __dr_param_thr1_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 291 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function thr1_0 line 313 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=TRUE (00000001)
+
+State 292 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function thr1_0 line 314 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=TRUE (00000001)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c line 315 function thr1_0
+  x <= 50
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c line 319 function thr1_0
+  (signed int)__cs_pc_cs[(signed long int)0] >= 1
+
+State 298 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function thr1_0 line 323 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 299 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function thr1_0 line 323 thread 0
+----------------------------------------------------
+  __cs_thread_index=0u (00000000 00000000 00000000 00000000)
+
+State 300 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function __cs_exit line 101 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 305 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function main line 598 thread 0
+----------------------------------------------------
+  __cs_pc[0l]=1 (0001)
+
+State 306 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function main line 601 thread 0
+----------------------------------------------------
+  __cs_tmp_t1_r1=2 (10)
+
+State 308 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function main line 604 thread 0
+----------------------------------------------------
+  __cs_pc_cs[1l]=2 (00010)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c line 605 function main
+  (signed int)__cs_pc_cs[(signed long int)1] >= (signed int)__cs_pc[(signed long int)1]
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c line 606 function main
+  (signed int)__cs_pc_cs[(signed long int)1] <= 2
+
+State 314 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function main line 609 thread 0
+----------------------------------------------------
+  SM__&__dr_param_thr2_arg!0@2__dr_write=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 315 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function main line 609 thread 0
+----------------------------------------------------
+  __dr_param_thr2_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 317 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function thr2_0 line 329 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 318 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function thr2_0 line 330 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=TRUE (00000001)
+
+State 322 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function thr2_0 line 331 thread 0
+----------------------------------------------------
+  __dr_nondet_thr2_t=0 (00000000 00000000 00000000 00000000)
+
+State 324 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function thr2_0 line 334 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=TRUE (00000001)
+
+State 325 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function thr2_0 line 335 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 329 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function thr2_0 line 336 thread 0
+----------------------------------------------------
+  x=1 (00000000 00000000 00000000 00000001)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c line 340 function thr2_0
+  (signed int)__cs_pc_cs[(signed long int)1] >= 2
+
+State 333 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function thr2_0 line 344 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 334 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function thr2_0 line 344 thread 0
+----------------------------------------------------
+  __cs_thread_index=1u (00000000 00000000 00000000 00000001)
+
+State 335 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function __cs_exit line 101 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 340 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function main line 614 thread 0
+----------------------------------------------------
+  __cs_pc[1l]=2 (0010)
+
+State 341 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function main line 617 thread 0
+----------------------------------------------------
+  __cs_tmp_t2_r1=2 (10)
+
+State 343 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function main line 620 thread 0
+----------------------------------------------------
+  __cs_pc_cs[2l]=2 (00010)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c line 621 function main
+  (signed int)__cs_pc_cs[(signed long int)2] >= (signed int)__cs_pc[(signed long int)2]
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c line 622 function main
+  (signed int)__cs_pc_cs[(signed long int)2] <= 2
+
+State 349 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function main line 625 thread 0
+----------------------------------------------------
+  SM__&__dr_param_thr2_arg!0@2__dr_write$0=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 350 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function main line 625 thread 0
+----------------------------------------------------
+  __dr_param_thr2_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 352 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function thr2_1 line 350 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 353 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function thr2_1 line 351 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=TRUE (00000001)
+
+State 357 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function thr2_1 line 352 thread 0
+----------------------------------------------------
+  __dr_nondet_thr2_t=1 (00000000 00000000 00000000 00000001)
+
+State 359 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function thr2_1 line 355 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=TRUE (00000001)
+
+State 360 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function thr2_1 line 356 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 364 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function thr2_1 line 357 thread 0
+----------------------------------------------------
+  x=2 (00000000 00000000 00000000 00000010)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c line 361 function thr2_1
+  (signed int)__cs_pc_cs[(signed long int)2] >= 2
+
+State 368 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function thr2_1 line 365 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 369 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function thr2_1 line 365 thread 0
+----------------------------------------------------
+  __cs_thread_index=2u (00000000 00000000 00000000 00000010)
+
+State 370 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function __cs_exit line 101 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[2l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 375 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function main line 630 thread 0
+----------------------------------------------------
+  __cs_pc[2l]=2 (0010)
+
+State 376 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function main line 633 thread 0
+----------------------------------------------------
+  __cs_tmp_t3_r1=2 (10)
+
+State 378 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function main line 636 thread 0
+----------------------------------------------------
+  __cs_pc_cs[3l]=2 (00010)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c line 637 function main
+  (signed int)__cs_pc_cs[(signed long int)3] >= (signed int)__cs_pc[(signed long int)3]
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c line 638 function main
+  (signed int)__cs_pc_cs[(signed long int)3] <= 2
+
+State 382 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function main line 640 thread 0
+----------------------------------------------------
+  __cs_dataraceDetectionStarted=TRUE (00000001)
+
+State 385 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function main line 641 thread 0
+----------------------------------------------------
+  SM__&__dr_param_thr2_arg!0@2__dr_write$1=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 386 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function main line 641 thread 0
+----------------------------------------------------
+  __dr_param_thr2_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 388 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function thr2_2 line 371 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 389 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function thr2_2 line 372 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=TRUE (00000001)
+
+State 393 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function thr2_2 line 373 thread 0
+----------------------------------------------------
+  __dr_nondet_thr2_t=2 (00000000 00000000 00000000 00000010)
+
+State 395 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function thr2_2 line 376 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=TRUE (00000001)
+
+State 396 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function thr2_2 line 377 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 400 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function thr2_2 line 378 thread 0
+----------------------------------------------------
+  SM__&x__dr_write=16843009 (00000001 00000001 00000001 00000001)
+
+State 403 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function thr2_2 line 378 thread 0
+----------------------------------------------------
+  x=3 (00000000 00000000 00000000 00000011)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c line 382 function thr2_2
+  (signed int)__cs_pc_cs[(signed long int)3] >= 2
+
+State 407 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function thr2_2 line 386 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 408 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function thr2_2 line 386 thread 0
+----------------------------------------------------
+  __cs_thread_index=3u (00000000 00000000 00000000 00000011)
+
+State 409 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function __cs_exit line 101 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[3l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 414 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function main line 645 thread 0
+----------------------------------------------------
+  __cs_dataraceSecondThread=TRUE (00000001)
+
+State 415 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function main line 646 thread 0
+----------------------------------------------------
+  __cs_pc[3l]=2 (0010)
+
+State 416 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function main line 649 thread 0
+----------------------------------------------------
+  __cs_tmp_t4_r1=2 (10)
+
+State 418 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function main line 652 thread 0
+----------------------------------------------------
+  __cs_pc_cs[4l]=2 (00010)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c line 653 function main
+  (signed int)__cs_pc_cs[(signed long int)4] >= (signed int)__cs_pc[(signed long int)4]
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c line 654 function main
+  (signed int)__cs_pc_cs[(signed long int)4] <= 2
+
+State 424 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function main line 657 thread 0
+----------------------------------------------------
+  SM__&__dr_param_thr2_arg!0@2__dr_write$2=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 425 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function main line 657 thread 0
+----------------------------------------------------
+  __dr_param_thr2_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 427 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function thr2_3 line 392 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 428 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function thr2_3 line 393 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=TRUE (00000001)
+
+State 435 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function thr2_3 line 394 thread 0
+----------------------------------------------------
+  return_value___CPROVER_get_field=0 (00000000 00000000 00000000 00000000)
+
+State 436 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function thr2_3 line 394 thread 0
+----------------------------------------------------
+  tmp_if_expr=TRUE (1)
+
+State 438 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function thr2_3 line 394 thread 0
+----------------------------------------------------
+  __cs_dataraceNotDetected=TRUE (00000001)
+
+State 444 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function thr2_3 line 394 thread 0
+----------------------------------------------------
+  return_value___CPROVER_get_field$0=1 (00000000 00000000 00000000 00000001)
+
+State 445 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function thr2_3 line 394 thread 0
+----------------------------------------------------
+  tmp_if_expr$0=FALSE (0)
+
+State 447 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function thr2_3 line 394 thread 0
+----------------------------------------------------
+  __cs_dataraceNotDetected=FALSE (00000000)
+
+State 448 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function thr2_3 line 394 thread 0
+----------------------------------------------------
+  __dr_nondet_thr2_t=3 (00000000 00000000 00000000 00000011)
+
+State 450 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function thr2_3 line 397 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=TRUE (00000001)
+
+State 451 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function thr2_3 line 398 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 455 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function thr2_3 line 399 thread 0
+----------------------------------------------------
+  x=4 (00000000 00000000 00000000 00000100)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c line 403 function thr2_3
+  (signed int)__cs_pc_cs[(signed long int)4] >= 2
+
+State 459 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function thr2_3 line 407 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 460 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function thr2_3 line 407 thread 0
+----------------------------------------------------
+  __cs_thread_index=4u (00000000 00000000 00000000 00000100)
+
+State 461 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function __cs_exit line 101 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[4l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 465 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function main line 659 thread 0
+----------------------------------------------------
+  __cs_dataraceContinue=FALSE (00000000)
+
+State 467 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function main line 661 thread 0
+----------------------------------------------------
+  __cs_dataraceSecondThread=TRUE (00000001)
+
+State 468 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function main line 662 thread 0
+----------------------------------------------------
+  __cs_pc[4l]=2 (0010)
+
+State 469 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function main line 666 thread 0
+----------------------------------------------------
+  __cs_tmp_t5_r2=0 (0000)
+
+State 471 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function main line 682 thread 0
+----------------------------------------------------
+  __cs_tmp_t0_r2=0 (0)
+
+State 473 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function main line 698 thread 0
+----------------------------------------------------
+  __cs_tmp_t1_r2=0 (00)
+
+State 475 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function main line 714 thread 0
+----------------------------------------------------
+  __cs_tmp_t2_r2=0 (00)
+
+State 477 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function main line 730 thread 0
+----------------------------------------------------
+  __cs_tmp_t3_r2=1 (01)
+
+State 479 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function main line 746 thread 0
+----------------------------------------------------
+  __cs_tmp_t4_r2=0 (00)
+
+Violated property:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_fkp2013-2.c function main line 757 thread 0
+  Data race failure
+  __cs_dataraceNotDetected != FALSE
+
+
+VERIFICATION FAILED
+
+real	0m0,160s
+user	0m0,150s
+sys	0m0,013s

@@ -1,0 +1,794 @@
+CBMC version 5.45.0 (cbmc-5.45.0-179-gd48dc284f7) 64-bit x86_64 linux
+Parsing /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c
+Converting
+Type-checking _csdr_33_double_lock_p1_vs
+file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c line 311 function __CSEQ_atomic_acquire: function '__CPROVER_get_field' is not declared
+file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c line 312 function __CSEQ_atomic_acquire: function '__CPROVER_set_field' is not declared
+file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c line 889 function main: function '__CPROVER_field_decl_global' is not declared
+file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c line 890 function main: function '__CPROVER_field_decl_local' is not declared
+Generating GOTO Program
+Adding CPROVER library (x86_64)
+Removal of function pointers and virtual functions
+Generic Property Instrumentation
+Running with 8 object bits, 56 offset bits (default)
+Starting Bounded Model Checking
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c line 875 function main_thread thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c line 566 function thr1_0 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c line 875 function main_thread thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c line 566 function thr1_0 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c line 875 function main_thread thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c line 566 function thr1_0 thread 0
+Runtime Symex: 0.517218s
+size of program expression: 19472 steps
+simple slicing removed 5 assignments
+Generated 1 VCC(s), 1 remaining after simplification
+Runtime Postprocess Equation: 0.00263997s
+Passing problem to propositional reduction
+converting SSA
+Runtime Convert SSA: 0.0833529s
+Running propositional reduction
+Post-processing
+Runtime Post-process: 2.3742e-05s
+Solving with Glucose Syrup with simplifier
+59368 variables, 86118 clauses
+SAT checker: instance is SATISFIABLE
+Runtime Solver: 0.0923366s
+Runtime decision procedure: 0.176178s
+Building error trace
+Counterexample:
+
+State 21 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function __CPROVER_initialize line 57 thread 0
+----------------------------------------------------
+  __cs_active_thread[0l]=0 (0)
+
+State 22 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function __CPROVER_initialize line 57 thread 0
+----------------------------------------------------
+  __cs_active_thread[1l]=0 (0)
+
+State 23 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function __CPROVER_initialize line 57 thread 0
+----------------------------------------------------
+  __cs_active_thread[2l]=0 (0)
+
+State 24 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function __CPROVER_initialize line 57 thread 0
+----------------------------------------------------
+  __cs_active_thread[3l]=0 (0)
+
+State 25 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function __CPROVER_initialize line 57 thread 0
+----------------------------------------------------
+  __cs_active_thread[4l]=0 (0)
+
+State 26 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function __CPROVER_initialize line 57 thread 0
+----------------------------------------------------
+  __cs_active_thread[5l]=0 (0)
+
+State 35 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function __CPROVER_initialize line 58 thread 0
+----------------------------------------------------
+  __cs_pc[0l]=0 (000000)
+
+State 36 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function __CPROVER_initialize line 58 thread 0
+----------------------------------------------------
+  __cs_pc[1l]=0 (000000)
+
+State 37 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function __CPROVER_initialize line 58 thread 0
+----------------------------------------------------
+  __cs_pc[2l]=0 (000000)
+
+State 38 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function __CPROVER_initialize line 58 thread 0
+----------------------------------------------------
+  __cs_pc[3l]=0 (000000)
+
+State 39 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function __CPROVER_initialize line 58 thread 0
+----------------------------------------------------
+  __cs_pc[4l]=0 (000000)
+
+State 40 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function __CPROVER_initialize line 58 thread 0
+----------------------------------------------------
+  __cs_pc[5l]=0 (000000)
+
+State 42 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function __CPROVER_initialize line 59 thread 0
+----------------------------------------------------
+  __cs_pc_cs[0l]=0 (0000000)
+
+State 43 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function __CPROVER_initialize line 59 thread 0
+----------------------------------------------------
+  __cs_pc_cs[1l]=0 (0000000)
+
+State 44 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function __CPROVER_initialize line 59 thread 0
+----------------------------------------------------
+  __cs_pc_cs[2l]=0 (0000000)
+
+State 45 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function __CPROVER_initialize line 59 thread 0
+----------------------------------------------------
+  __cs_pc_cs[3l]=0 (0000000)
+
+State 46 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function __CPROVER_initialize line 59 thread 0
+----------------------------------------------------
+  __cs_pc_cs[4l]=0 (0000000)
+
+State 47 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function __CPROVER_initialize line 59 thread 0
+----------------------------------------------------
+  __cs_pc_cs[5l]=0 (0000000)
+
+State 49 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function __CPROVER_initialize line 82 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 50 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function __CPROVER_initialize line 82 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 51 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function __CPROVER_initialize line 82 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[2l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 52 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function __CPROVER_initialize line 82 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[3l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 53 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function __CPROVER_initialize line 82 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[4l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 54 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function __CPROVER_initialize line 82 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[5l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 56 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function __CPROVER_initialize line 61 thread 0
+----------------------------------------------------
+  __cs_thread_lines[0l]=33 (100001)
+
+State 57 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function __CPROVER_initialize line 61 thread 0
+----------------------------------------------------
+  __cs_thread_lines[1l]=9 (001001)
+
+State 58 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function __CPROVER_initialize line 61 thread 0
+----------------------------------------------------
+  __cs_thread_lines[2l]=9 (001001)
+
+State 59 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function __CPROVER_initialize line 61 thread 0
+----------------------------------------------------
+  __cs_thread_lines[3l]=9 (001001)
+
+State 60 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function __CPROVER_initialize line 61 thread 0
+----------------------------------------------------
+  __cs_thread_lines[4l]=9 (001001)
+
+State 61 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function __CPROVER_initialize line 61 thread 0
+----------------------------------------------------
+  __cs_thread_lines[5l]=7 (000111)
+
+State 63 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function __CPROVER_initialize line 81 thread 0
+----------------------------------------------------
+  __cs_threadargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 64 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function __CPROVER_initialize line 81 thread 0
+----------------------------------------------------
+  __cs_threadargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 65 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function __CPROVER_initialize line 81 thread 0
+----------------------------------------------------
+  __cs_threadargs[2l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 66 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function __CPROVER_initialize line 81 thread 0
+----------------------------------------------------
+  __cs_threadargs[3l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 67 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function __CPROVER_initialize line 81 thread 0
+----------------------------------------------------
+  __cs_threadargs[4l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 68 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function __CPROVER_initialize line 81 thread 0
+----------------------------------------------------
+  __cs_threadargs[5l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 124 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function main line 893 thread 0
+----------------------------------------------------
+  __cs_dr_ts=8 (01000)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c line 894 function main
+  (signed int)__cs_dr_ts <= 16
+
+State 126 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function main line 897 thread 0
+----------------------------------------------------
+  __cs_active_thread[5l]=1 (1)
+
+State 127 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function main line 898 thread 0
+----------------------------------------------------
+  __cs_tmp_t5_r0=3 (011)
+
+State 128 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function main line 899 thread 0
+----------------------------------------------------
+  __cs_pc_cs[5l]=3 (0000011)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c line 900 function main
+  (signed int)__cs_pc_cs[(signed long int)5] > 0
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c line 901 function main
+  (signed int)__cs_pc_cs[(signed long int)5] <= 7
+
+State 135 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function main_thread line 843 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 136 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function main_thread line 844 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=TRUE (00000001)
+
+State 140 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function main_thread line 848 thread 0
+----------------------------------------------------
+  __cs_new_thread_id=&__dr_nondet_main_t (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 141 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function main_thread line 848 thread 0
+----------------------------------------------------
+  __cs_attr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 142 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function main_thread line 848 thread 0
+----------------------------------------------------
+  __cs_thread_function=thr1_0 (00000011 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 143 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function main_thread line 848 thread 0
+----------------------------------------------------
+  __cs_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 144 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function main_thread line 848 thread 0
+----------------------------------------------------
+  __cs_threadID=0 (00000000 00000000 00000000 00000000)
+
+State 146 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function __cs_create line 87 thread 0
+----------------------------------------------------
+  __dr_nondet_main_t=0 (00000000 00000000 00000000 00000000)
+
+State 147 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function __cs_create line 88 thread 0
+----------------------------------------------------
+  __cs_active_thread[0l]=1 (1)
+
+State 148 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function __cs_create line 89 thread 0
+----------------------------------------------------
+  __cs_threadargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 153 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function main_thread line 852 thread 0
+----------------------------------------------------
+  __cs_new_thread_id=&__dr_nondet_main_t (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 154 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function main_thread line 852 thread 0
+----------------------------------------------------
+  __cs_attr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 155 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function main_thread line 852 thread 0
+----------------------------------------------------
+  __cs_thread_function=thr2_0 (00000100 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 156 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function main_thread line 852 thread 0
+----------------------------------------------------
+  __cs_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 157 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function main_thread line 852 thread 0
+----------------------------------------------------
+  __cs_threadID=1 (00000000 00000000 00000000 00000001)
+
+State 159 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function __cs_create line 87 thread 0
+----------------------------------------------------
+  __dr_nondet_main_t=1 (00000000 00000000 00000000 00000001)
+
+State 160 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function __cs_create line 88 thread 0
+----------------------------------------------------
+  __cs_active_thread[1l]=1 (1)
+
+State 161 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function __cs_create line 89 thread 0
+----------------------------------------------------
+  __cs_threadargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 169 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function main_thread line 885 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 170 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function main_thread line 885 thread 0
+----------------------------------------------------
+  __cs_thread_index=5u (00000000 00000000 00000000 00000101)
+
+State 171 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function __cs_exit line 101 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[5l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 175 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function main line 907 thread 0
+----------------------------------------------------
+  __cs_pc[5l]=3 (000011)
+
+State 176 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function main line 909 thread 0
+----------------------------------------------------
+  __cs_tmp_t0_r0=0 (000000)
+
+State 178 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function main line 912 thread 0
+----------------------------------------------------
+  __cs_pc_cs[0l]=0 (0000000)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c line 913 function main
+  (signed int)__cs_pc_cs[(signed long int)0] <= 33
+
+State 183 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function main line 916 thread 0
+----------------------------------------------------
+  SM__&__dr_param_thr1_arg!0@1__dr_write_noatomic=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 184 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function main line 916 thread 0
+----------------------------------------------------
+  SM__&__dr_param_thr1_arg!0@1__dr_write=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 185 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function main line 916 thread 0
+----------------------------------------------------
+  __dr_param_thr1_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 229 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function thr1_0 line 578 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 230 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function thr1_0 line 578 thread 0
+----------------------------------------------------
+  __cs_thread_index=0u (00000000 00000000 00000000 00000000)
+
+State 231 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function __cs_exit line 101 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 236 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function main line 921 thread 0
+----------------------------------------------------
+  __cs_pc[0l]=0 (000000)
+
+State 237 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function main line 924 thread 0
+----------------------------------------------------
+  __cs_tmp_t1_r0=6 (0110)
+
+State 239 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function main line 927 thread 0
+----------------------------------------------------
+  __cs_pc_cs[1l]=6 (0000110)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c line 928 function main
+  (signed int)__cs_pc_cs[(signed long int)1] <= 9
+
+State 244 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function main line 931 thread 0
+----------------------------------------------------
+  SM__&__dr_param_thr2_arg!0@1__dr_write_noatomic=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 245 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function main line 931 thread 0
+----------------------------------------------------
+  SM__&__dr_param_thr2_arg!0@1__dr_write=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 246 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function main line 931 thread 0
+----------------------------------------------------
+  __dr_param_thr2_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 248 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function thr2_0 line 583 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 249 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function thr2_0 line 584 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=TRUE (00000001)
+
+State 254 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function thr2_0 line 588 thread 0
+----------------------------------------------------
+  return_value_nondet_int=0 (00000000 00000000 00000000 00000000)
+
+State 255 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function thr2_0 line 588 thread 0
+----------------------------------------------------
+  __dr_nondet_thr2___cs_tmp_if_cond_2=FALSE (00000000)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c line 613 function thr2_0
+  (signed int)__cs_pc_cs[(signed long int)1] >= 5
+
+State 262 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function thr2_0 line 617 thread 0
+----------------------------------------------------
+  SM__&__dr_param___CSEQ_atomic_acquire_m!0@10__dr_write_noatomic=((signed int *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 263 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function thr2_0 line 617 thread 0
+----------------------------------------------------
+  SM__&__dr_param___CSEQ_atomic_acquire_m!0@10__dr_write=((signed int *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 264 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function thr2_0 line 617 thread 0
+----------------------------------------------------
+  __dr_param___CSEQ_atomic_acquire_m=&mutexb (00001001 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 269 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function __CSEQ_atomic_acquire line 311 thread 0
+----------------------------------------------------
+  SM__&cond!0@19__dr_write_noatomic=0 (00000000 00000000 00000000 00000000)
+
+State 270 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function __CSEQ_atomic_acquire line 311 thread 0
+----------------------------------------------------
+  SM__&cond!0@19__dr_write=0 (00000000 00000000 00000000 00000000)
+
+State 271 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function __CSEQ_atomic_acquire line 311 thread 0
+----------------------------------------------------
+  cond=1 (00000000 00000000 00000000 00000001)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c line 300 function assume_abort_if_not
+  cond != 0
+
+State 278 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function __CSEQ_atomic_acquire line 312 thread 0
+----------------------------------------------------
+  mutexb=1 (00000000 00000000 00000000 00000001)
+
+State 285 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function thr2_0 line 643 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 286 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function thr2_0 line 643 thread 0
+----------------------------------------------------
+  __cs_thread_index=1u (00000000 00000000 00000000 00000001)
+
+State 287 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function __cs_exit line 101 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 292 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function main line 936 thread 0
+----------------------------------------------------
+  __cs_pc[1l]=6 (000110)
+
+State 293 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function main line 939 thread 0
+----------------------------------------------------
+  __cs_tmp_t2_r0=5 (0101)
+
+State 295 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function main line 954 thread 0
+----------------------------------------------------
+  __cs_tmp_t3_r0=5 (0101)
+
+State 297 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function main line 969 thread 0
+----------------------------------------------------
+  __cs_tmp_t4_r0=1 (0001)
+
+State 299 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function main line 985 thread 0
+----------------------------------------------------
+  __cs_tmp_t5_r1=0 (000)
+
+State 301 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function main line 988 thread 0
+----------------------------------------------------
+  __cs_pc_cs[5l]=3 (0000011)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c line 989 function main
+  (signed int)__cs_pc_cs[(signed long int)5] >= (signed int)__cs_pc[(signed long int)5]
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c line 990 function main
+  (signed int)__cs_pc_cs[(signed long int)5] <= 7
+
+State 316 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function main_thread line 885 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 317 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function main_thread line 885 thread 0
+----------------------------------------------------
+  __cs_thread_index=5u (00000000 00000000 00000000 00000101)
+
+State 318 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function __cs_exit line 101 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[5l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 323 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function main line 998 thread 0
+----------------------------------------------------
+  __cs_pc[5l]=3 (000011)
+
+State 324 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function main line 1001 thread 0
+----------------------------------------------------
+  __cs_tmp_t0_r1=1 (000001)
+
+State 326 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function main line 1004 thread 0
+----------------------------------------------------
+  __cs_pc_cs[0l]=1 (0000001)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c line 1005 function main
+  (signed int)__cs_pc_cs[(signed long int)0] >= (signed int)__cs_pc[(signed long int)0]
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c line 1006 function main
+  (signed int)__cs_pc_cs[(signed long int)0] <= 33
+
+State 332 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function main line 1009 thread 0
+----------------------------------------------------
+  SM__&__dr_param_thr1_arg!0@2__dr_write_noatomic=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 333 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function main line 1009 thread 0
+----------------------------------------------------
+  SM__&__dr_param_thr1_arg!0@2__dr_write=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 334 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function main line 1009 thread 0
+----------------------------------------------------
+  __dr_param_thr1_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 336 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function thr1_0 line 333 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=TRUE (00000001)
+
+State 337 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function thr1_0 line 334 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=TRUE (00000001)
+
+State 340 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function thr1_0 line 335 thread 0
+----------------------------------------------------
+  SM__&__dr_param___CSEQ_atomic_acquire_m!0@17__dr_write_noatomic=((signed int *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 341 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function thr1_0 line 335 thread 0
+----------------------------------------------------
+  SM__&__dr_param___CSEQ_atomic_acquire_m!0@17__dr_write=((signed int *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 342 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function thr1_0 line 335 thread 0
+----------------------------------------------------
+  __dr_param___CSEQ_atomic_acquire_m=&mutexa (00001000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 347 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function __CSEQ_atomic_acquire line 311 thread 0
+----------------------------------------------------
+  SM__&cond!0@33__dr_write_noatomic=0 (00000000 00000000 00000000 00000000)
+
+State 348 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function __CSEQ_atomic_acquire line 311 thread 0
+----------------------------------------------------
+  SM__&cond!0@33__dr_write=0 (00000000 00000000 00000000 00000000)
+
+State 349 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function __CSEQ_atomic_acquire line 311 thread 0
+----------------------------------------------------
+  cond=1 (00000000 00000000 00000000 00000001)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c line 300 function assume_abort_if_not
+  cond != 0
+
+State 356 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function __CSEQ_atomic_acquire line 312 thread 0
+----------------------------------------------------
+  mutexa=1 (00000000 00000000 00000000 00000001)
+
+State 400 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function thr1_0 line 578 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 401 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function thr1_0 line 578 thread 0
+----------------------------------------------------
+  __cs_thread_index=0u (00000000 00000000 00000000 00000000)
+
+State 402 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function __cs_exit line 101 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 407 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function main line 1014 thread 0
+----------------------------------------------------
+  __cs_pc[0l]=1 (000001)
+
+State 408 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function main line 1017 thread 0
+----------------------------------------------------
+  __cs_tmp_t1_r1=1 (0001)
+
+State 410 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function main line 1020 thread 0
+----------------------------------------------------
+  __cs_pc_cs[1l]=7 (0000111)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c line 1021 function main
+  (signed int)__cs_pc_cs[(signed long int)1] >= (signed int)__cs_pc[(signed long int)1]
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c line 1022 function main
+  (signed int)__cs_pc_cs[(signed long int)1] <= 9
+
+State 414 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function main line 1024 thread 0
+----------------------------------------------------
+  __cs_dataraceDetectionStarted=TRUE (00000001)
+
+State 417 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function main line 1025 thread 0
+----------------------------------------------------
+  SM__&__dr_param_thr2_arg!0@2__dr_write_noatomic=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 418 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function main line 1025 thread 0
+----------------------------------------------------
+  SM__&__dr_param_thr2_arg!0@2__dr_write=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 419 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function main line 1025 thread 0
+----------------------------------------------------
+  __dr_param_thr2_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 432 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function __CSEQ_atomic_dec line 325 thread 0
+----------------------------------------------------
+  SM__&count__dr_write=16843009 (00000001 00000001 00000001 00000001)
+
+State 434 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function __CSEQ_atomic_dec line 325 thread 0
+----------------------------------------------------
+  count=-1 (11111111 11111111 11111111 11111111)
+
+State 440 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function thr2_0 line 643 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 441 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function thr2_0 line 643 thread 0
+----------------------------------------------------
+  __cs_thread_index=1u (00000000 00000000 00000000 00000001)
+
+State 442 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function __cs_exit line 101 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 447 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function main line 1029 thread 0
+----------------------------------------------------
+  __cs_dataraceSecondThread=TRUE (00000001)
+
+State 448 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function main line 1030 thread 0
+----------------------------------------------------
+  __cs_pc[1l]=7 (000111)
+
+State 449 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function main line 1033 thread 0
+----------------------------------------------------
+  __cs_tmp_t2_r1=0 (0000)
+
+State 451 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function main line 1049 thread 0
+----------------------------------------------------
+  __cs_tmp_t3_r1=10 (1010)
+
+State 453 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function main line 1065 thread 0
+----------------------------------------------------
+  __cs_tmp_t4_r1=0 (0000)
+
+State 455 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function main line 1082 thread 0
+----------------------------------------------------
+  __cs_tmp_t5_r2=0 (000)
+
+State 457 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function main line 1085 thread 0
+----------------------------------------------------
+  __cs_pc_cs[5l]=3 (0000011)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c line 1086 function main
+  (signed int)__cs_pc_cs[(signed long int)5] >= (signed int)__cs_pc[(signed long int)5]
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c line 1087 function main
+  (signed int)__cs_pc_cs[(signed long int)5] <= 7
+
+State 472 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function main_thread line 885 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 473 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function main_thread line 885 thread 0
+----------------------------------------------------
+  __cs_thread_index=5u (00000000 00000000 00000000 00000101)
+
+State 474 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function __cs_exit line 101 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[5l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 479 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function main line 1094 thread 0
+----------------------------------------------------
+  __cs_dataraceSecondThread=TRUE (00000001)
+
+State 480 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function main line 1095 thread 0
+----------------------------------------------------
+  __cs_pc[5l]=3 (000011)
+
+State 481 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function main line 1098 thread 0
+----------------------------------------------------
+  __cs_tmp_t0_r2=2 (000010)
+
+State 483 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function main line 1101 thread 0
+----------------------------------------------------
+  __cs_pc_cs[0l]=3 (0000011)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c line 1102 function main
+  (signed int)__cs_pc_cs[(signed long int)0] >= (signed int)__cs_pc[(signed long int)0]
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c line 1103 function main
+  (signed int)__cs_pc_cs[(signed long int)0] <= 33
+
+State 489 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function main line 1106 thread 0
+----------------------------------------------------
+  SM__&__dr_param_thr1_arg!0@3__dr_write_noatomic=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 490 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function main line 1106 thread 0
+----------------------------------------------------
+  SM__&__dr_param_thr1_arg!0@3__dr_write=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 491 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function main line 1106 thread 0
+----------------------------------------------------
+  __dr_param_thr1_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 494 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function thr1_0 line 342 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 495 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function thr1_0 line 343 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=TRUE (00000001)
+
+State 503 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function thr1_0 line 344 thread 0
+----------------------------------------------------
+  return_value___CPROVER_get_field=0 (00000000 00000000 00000000 00000000)
+
+State 504 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function thr1_0 line 344 thread 0
+----------------------------------------------------
+  tmp_if_expr=TRUE (1)
+
+State 506 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function thr1_0 line 344 thread 0
+----------------------------------------------------
+  __cs_dataraceNotDetected=TRUE (00000001)
+
+State 512 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function thr1_0 line 344 thread 0
+----------------------------------------------------
+  return_value___CPROVER_get_field$0=1 (00000000 00000000 00000000 00000001)
+
+State 513 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function thr1_0 line 344 thread 0
+----------------------------------------------------
+  tmp_if_expr$0=FALSE (0)
+
+State 515 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function thr1_0 line 344 thread 0
+----------------------------------------------------
+  __cs_dataraceNotDetected=FALSE (00000000)
+
+State 516 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function thr1_0 line 344 thread 0
+----------------------------------------------------
+  __dr_nondet_thr1___cs_tmp_if_cond_0=FALSE (00000000)
+
+State 520 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function thr1_0 line 345 thread 0
+----------------------------------------------------
+  tmp_if_expr$1=FALSE (0)
+
+State 521 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function thr1_0 line 345 thread 0
+----------------------------------------------------
+  __cs_dataraceNotDetected=FALSE (00000000)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c line 351 function thr1_0
+  (signed int)__cs_pc_cs[(signed long int)0] >= 3
+
+State 563 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function thr1_0 line 578 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 564 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function thr1_0 line 578 thread 0
+----------------------------------------------------
+  __cs_thread_index=0u (00000000 00000000 00000000 00000000)
+
+State 565 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function __cs_exit line 101 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 569 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function main line 1108 thread 0
+----------------------------------------------------
+  __cs_dataraceContinue=FALSE (00000000)
+
+State 571 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function main line 1110 thread 0
+----------------------------------------------------
+  __cs_dataraceSecondThread=TRUE (00000001)
+
+State 572 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function main line 1111 thread 0
+----------------------------------------------------
+  __cs_pc[0l]=3 (000011)
+
+State 573 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function main line 1114 thread 0
+----------------------------------------------------
+  __cs_tmp_t1_r2=0 (0000)
+
+State 575 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function main line 1130 thread 0
+----------------------------------------------------
+  __cs_tmp_t2_r2=0 (0000)
+
+State 577 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function main line 1146 thread 0
+----------------------------------------------------
+  __cs_tmp_t3_r2=0 (0000)
+
+State 579 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function main line 1162 thread 0
+----------------------------------------------------
+  __cs_tmp_t4_r2=0 (0000)
+
+Violated property:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_33_double_lock_p1_vs.c function main line 1173 thread 0
+  Data race failure
+  __cs_dataraceNotDetected != FALSE
+
+
+VERIFICATION FAILED
+
+real	0m0,862s
+user	0m0,830s
+sys	0m0,035s

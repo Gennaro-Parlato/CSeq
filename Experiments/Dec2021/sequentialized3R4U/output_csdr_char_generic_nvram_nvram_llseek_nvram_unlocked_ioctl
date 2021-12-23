@@ -1,0 +1,12 @@
+CBMC version 5.45.0 (cbmc-5.45.0-179-gd48dc284f7) 64-bit x86_64 linux
+Parsing /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_char_generic_nvram_nvram_llseek_nvram_unlocked_ioctl.c
+Converting
+Type-checking _csdr_char_generic_nvram_nvram_llseek_nvram_unlocked_ioctl
+file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_char_generic_nvram_nvram_llseek_nvram_unlocked_ioctl.c line 429 function nvram_llseek: function '__CPROVER_set_field' is not declared
+file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_char_generic_nvram_nvram_llseek_nvram_unlocked_ioctl.c line 429 function nvram_llseek: function '__CPROVER_get_field' is not declared
+file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_char_generic_nvram_nvram_llseek_nvram_unlocked_ioctl.c line 513 function read_nvram: expected constant expression, but got '(const void *)__dr_param_read_nvram_buf'
+CONVERSION ERROR
+
+real	0m0,079s
+user	0m0,060s
+sys	0m0,025s

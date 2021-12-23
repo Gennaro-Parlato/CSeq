@@ -1,0 +1,35 @@
+CBMC version 5.45.0 (cbmc-5.45.0-179-gd48dc284f7) 64-bit x86_64 linux
+Parsing /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_safe011_pso.opt.c
+Converting
+Type-checking _csdr_safe011_pso.opt
+file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_safe011_pso.opt.c line 350 function P0_0: function '__CPROVER_set_field' is not declared
+file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_safe011_pso.opt.c line 350 function P0_0: function '__CPROVER_get_field' is not declared
+file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_safe011_pso.opt.c line 529 function main: function '__CPROVER_field_decl_global' is not declared
+file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_safe011_pso.opt.c line 530 function main: function '__CPROVER_field_decl_local' is not declared
+Generating GOTO Program
+Adding CPROVER library (x86_64)
+Removal of function pointers and virtual functions
+Generic Property Instrumentation
+Running with 8 object bits, 56 offset bits (default)
+Starting Bounded Model Checking
+Runtime Symex: 0.292411s
+size of program expression: 14331 steps
+simple slicing removed 5 assignments
+Generated 1 VCC(s), 1 remaining after simplification
+Runtime Postprocess Equation: 0.00163785s
+Passing problem to propositional reduction
+converting SSA
+Runtime Convert SSA: 0.0461437s
+Running propositional reduction
+Post-processing
+Runtime Post-process: 2.2676e-05s
+Solving with Glucose Syrup with simplifier
+29265 variables, 27742 clauses
+SAT checker: instance is UNSATISFIABLE
+Runtime Solver: 0.0253049s
+Runtime decision procedure: 0.0718005s
+VERIFICATION SUCCESSFUL
+
+real	0m0,515s
+user	0m0,492s
+sys	0m0,025s

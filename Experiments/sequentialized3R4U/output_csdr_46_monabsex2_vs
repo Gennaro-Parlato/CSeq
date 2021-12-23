@@ -1,0 +1,779 @@
+CBMC version 5.32.1 (cbmc-5.32.1-140-g7c8c411038-dirty) 64-bit x86_64 linux
+Parsing /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c
+Converting
+Type-checking _csdr_46_monabsex2_vs
+file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c line 319 function thr1_0: function '__CPROVER_set_field' is not declared
+file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c line 319 function thr1_0: function '__CPROVER_get_field' is not declared
+file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c line 518 function main: function '__CPROVER_field_decl_global' is not declared
+file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c line 519 function main: function '__CPROVER_field_decl_local' is not declared
+Generating GOTO Program
+Adding CPROVER library (x86_64)
+Removal of function pointers and virtual functions
+Generic Property Instrumentation
+Running with 8 object bits, 56 offset bits (default)
+Starting Bounded Model Checking
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c line 504 function main_thread thread 0
+Shadow memory: cannot set_field for &__cs_nondet_thr1___cs_tmp_if_cond_0
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot set_field for __cs_thread_local_l
+Shadow memory: cannot set_field for &__cs_nondet_thr1___cs_tmp_if_cond_0
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot set_field for (_Bool *)((char *)__cs_thread_local_l + 1l)
+Shadow memory: cannot set_field for &__cs_nondet_thr1___cs_tmp_if_cond_0
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot set_field for (_Bool *)((char *)__cs_thread_local_l + 2l)
+Shadow memory: cannot set_field for &__cs_nondet_thr1___cs_tmp_if_cond_0
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot set_field for (_Bool *)((char *)__cs_thread_local_l + 3l)
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c line 504 function main_thread thread 0
+Shadow memory: cannot set_field for &__cs_nondet_thr1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_thr1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_thr1___cs_tmp_if_cond_0
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot set_field for __cs_thread_local_l
+Shadow memory: cannot get_field for __cs_thread_local_l
+Shadow memory: cannot set_field for &__cs_nondet_thr1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_thr1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_thr1___cs_tmp_if_cond_0
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot set_field for (_Bool *)((char *)__cs_thread_local_l + 1l)
+Shadow memory: cannot get_field for (_Bool *)((char *)__cs_thread_local_l + 1l)
+Shadow memory: cannot set_field for &__cs_nondet_thr1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_thr1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_thr1___cs_tmp_if_cond_0
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot set_field for (_Bool *)((char *)__cs_thread_local_l + 2l)
+Shadow memory: cannot get_field for (_Bool *)((char *)__cs_thread_local_l + 2l)
+Shadow memory: cannot set_field for &__cs_nondet_thr1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_thr1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_thr1___cs_tmp_if_cond_0
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot set_field for (_Bool *)((char *)__cs_thread_local_l + 3l)
+Shadow memory: cannot get_field for (_Bool *)((char *)__cs_thread_local_l + 3l)
+aborting path on assume(false) at file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c line 504 function main_thread thread 0
+Shadow memory: cannot set_field for &__cs_nondet_thr1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_thr1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_thr1___cs_tmp_if_cond_0
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot set_field for __cs_thread_local_l
+Shadow memory: cannot get_field for __cs_thread_local_l
+Shadow memory: cannot set_field for &__cs_nondet_thr1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_thr1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_thr1___cs_tmp_if_cond_0
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot set_field for (_Bool *)((char *)__cs_thread_local_l + 1l)
+Shadow memory: cannot get_field for (_Bool *)((char *)__cs_thread_local_l + 1l)
+Shadow memory: cannot set_field for &__cs_nondet_thr1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_thr1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_thr1___cs_tmp_if_cond_0
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot set_field for (_Bool *)((char *)__cs_thread_local_l + 2l)
+Shadow memory: cannot get_field for (_Bool *)((char *)__cs_thread_local_l + 2l)
+Shadow memory: cannot set_field for &__cs_nondet_thr1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_thr1___cs_tmp_if_cond_0
+Shadow memory: cannot get_field for &__cs_nondet_thr1___cs_tmp_if_cond_0
+Shadow memory: cannot handle non-primitive union updates correctly for 1
+Shadow memory: cannot set_field for (_Bool *)((char *)__cs_thread_local_l + 3l)
+Shadow memory: cannot get_field for (_Bool *)((char *)__cs_thread_local_l + 3l)
+Runtime Symex: 0.0505039s
+size of program expression: 2743 steps
+simple slicing removed 5 assignments
+Generated 1 VCC(s), 1 remaining after simplification
+Runtime Postprocess Equation: 0.00011352s
+Passing problem to propositional reduction
+converting SSA
+Runtime Convert SSA: 0.00964974s
+Running propositional reduction
+Post-processing
+Runtime Post-process: 4.8173e-05s
+Solving with Glucose Syrup with simplifier
+7840 variables, 12139 clauses
+SAT checker: instance is SATISFIABLE
+Runtime Solver: 0.00758847s
+Runtime decision procedure: 0.0172871s
+Building error trace
+Counterexample:
+
+State 22 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function __CPROVER_initialize line 57 thread 0
+----------------------------------------------------
+  __cs_active_thread[0l]=0 (0)
+
+State 23 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function __CPROVER_initialize line 57 thread 0
+----------------------------------------------------
+  __cs_active_thread[1l]=0 (0)
+
+State 24 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function __CPROVER_initialize line 57 thread 0
+----------------------------------------------------
+  __cs_active_thread[2l]=0 (0)
+
+State 25 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function __CPROVER_initialize line 57 thread 0
+----------------------------------------------------
+  __cs_active_thread[3l]=0 (0)
+
+State 26 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function __CPROVER_initialize line 57 thread 0
+----------------------------------------------------
+  __cs_active_thread[4l]=0 (0)
+
+State 35 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function __CPROVER_initialize line 58 thread 0
+----------------------------------------------------
+  __cs_pc[0l]=0 (000)
+
+State 36 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function __CPROVER_initialize line 58 thread 0
+----------------------------------------------------
+  __cs_pc[1l]=0 (000)
+
+State 37 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function __CPROVER_initialize line 58 thread 0
+----------------------------------------------------
+  __cs_pc[2l]=0 (000)
+
+State 38 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function __CPROVER_initialize line 58 thread 0
+----------------------------------------------------
+  __cs_pc[3l]=0 (000)
+
+State 39 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function __CPROVER_initialize line 58 thread 0
+----------------------------------------------------
+  __cs_pc[4l]=0 (000)
+
+State 41 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function __CPROVER_initialize line 59 thread 0
+----------------------------------------------------
+  __cs_pc_cs[0l]=0 (0000)
+
+State 42 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function __CPROVER_initialize line 59 thread 0
+----------------------------------------------------
+  __cs_pc_cs[1l]=0 (0000)
+
+State 43 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function __CPROVER_initialize line 59 thread 0
+----------------------------------------------------
+  __cs_pc_cs[2l]=0 (0000)
+
+State 44 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function __CPROVER_initialize line 59 thread 0
+----------------------------------------------------
+  __cs_pc_cs[3l]=0 (0000)
+
+State 45 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function __CPROVER_initialize line 59 thread 0
+----------------------------------------------------
+  __cs_pc_cs[4l]=0 (0000)
+
+State 47 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function __CPROVER_initialize line 82 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 48 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function __CPROVER_initialize line 82 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 49 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function __CPROVER_initialize line 82 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[2l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 50 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function __CPROVER_initialize line 82 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[3l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 51 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function __CPROVER_initialize line 82 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[4l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 53 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function __CPROVER_initialize line 61 thread 0
+----------------------------------------------------
+  __cs_thread_lines[0l]=4 (100)
+
+State 54 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function __CPROVER_initialize line 61 thread 0
+----------------------------------------------------
+  __cs_thread_lines[1l]=4 (100)
+
+State 55 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function __CPROVER_initialize line 61 thread 0
+----------------------------------------------------
+  __cs_thread_lines[2l]=4 (100)
+
+State 56 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function __CPROVER_initialize line 61 thread 0
+----------------------------------------------------
+  __cs_thread_lines[3l]=4 (100)
+
+State 57 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function __CPROVER_initialize line 61 thread 0
+----------------------------------------------------
+  __cs_thread_lines[4l]=5 (101)
+
+State 59 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function __CPROVER_initialize line 305 thread 0
+----------------------------------------------------
+  __cs_thread_local_l[0l]=FALSE (00000000)
+
+State 60 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function __CPROVER_initialize line 305 thread 0
+----------------------------------------------------
+  __cs_thread_local_l[1l]=FALSE (00000000)
+
+State 61 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function __CPROVER_initialize line 305 thread 0
+----------------------------------------------------
+  __cs_thread_local_l[2l]=FALSE (00000000)
+
+State 62 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function __CPROVER_initialize line 305 thread 0
+----------------------------------------------------
+  __cs_thread_local_l[3l]=FALSE (00000000)
+
+State 63 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function __CPROVER_initialize line 305 thread 0
+----------------------------------------------------
+  __cs_thread_local_l[4l]=FALSE (00000000)
+
+State 65 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function __CPROVER_initialize line 81 thread 0
+----------------------------------------------------
+  __cs_threadargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 66 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function __CPROVER_initialize line 81 thread 0
+----------------------------------------------------
+  __cs_threadargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 67 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function __CPROVER_initialize line 81 thread 0
+----------------------------------------------------
+  __cs_threadargs[2l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 68 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function __CPROVER_initialize line 81 thread 0
+----------------------------------------------------
+  __cs_threadargs[3l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 69 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function __CPROVER_initialize line 81 thread 0
+----------------------------------------------------
+  __cs_threadargs[4l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 82 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function main line 520 thread 0
+----------------------------------------------------
+  __cs_dr_ts=6 (0110)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c line 521 function main
+  (signed int)__cs_dr_ts <= 13
+
+State 84 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function main line 524 thread 0
+----------------------------------------------------
+  __cs_active_thread[4l]=1 (1)
+
+State 85 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function main line 525 thread 0
+----------------------------------------------------
+  __cs_tmp_t4_r0=3 (011)
+
+State 86 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function main line 526 thread 0
+----------------------------------------------------
+  __cs_pc_cs[4l]=3 (0011)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c line 527 function main
+  (signed int)__cs_pc_cs[(signed long int)4] > 0
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c line 528 function main
+  (signed int)__cs_pc_cs[(signed long int)4] <= 5
+
+State 93 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function main_thread line 477 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 94 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function main_thread line 478 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=TRUE (00000001)
+
+State 97 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function main_thread line 481 thread 0
+----------------------------------------------------
+  __cs_new_thread_id=&__cs_nondet_main_t (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 98 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function main_thread line 481 thread 0
+----------------------------------------------------
+  __cs_attr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 99 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function main_thread line 481 thread 0
+----------------------------------------------------
+  __cs_thread_function=thr1_0 (00000011 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 100 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function main_thread line 481 thread 0
+----------------------------------------------------
+  __cs_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 101 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function main_thread line 481 thread 0
+----------------------------------------------------
+  __cs_threadID=0 (00000000 00000000 00000000 00000000)
+
+State 103 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function __cs_create line 87 thread 0
+----------------------------------------------------
+  __cs_nondet_main_t=0 (00000000 00000000 00000000 00000000)
+
+State 104 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function __cs_create line 88 thread 0
+----------------------------------------------------
+  __cs_active_thread[0l]=1 (1)
+
+State 105 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function __cs_create line 89 thread 0
+----------------------------------------------------
+  __cs_threadargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 111 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function main_thread line 487 thread 0
+----------------------------------------------------
+  __cs_new_thread_id=&__cs_nondet_main_t (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 112 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function main_thread line 487 thread 0
+----------------------------------------------------
+  __cs_attr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 113 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function main_thread line 487 thread 0
+----------------------------------------------------
+  __cs_thread_function=thr1_1 (00000100 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 114 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function main_thread line 487 thread 0
+----------------------------------------------------
+  __cs_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 115 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function main_thread line 487 thread 0
+----------------------------------------------------
+  __cs_threadID=1 (00000000 00000000 00000000 00000001)
+
+State 117 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function __cs_create line 87 thread 0
+----------------------------------------------------
+  __cs_nondet_main_t=1 (00000000 00000000 00000000 00000001)
+
+State 118 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function __cs_create line 88 thread 0
+----------------------------------------------------
+  __cs_active_thread[1l]=1 (1)
+
+State 119 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function __cs_create line 89 thread 0
+----------------------------------------------------
+  __cs_threadargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 125 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function main_thread line 493 thread 0
+----------------------------------------------------
+  __cs_new_thread_id=&__cs_nondet_main_t (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 126 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function main_thread line 493 thread 0
+----------------------------------------------------
+  __cs_attr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 127 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function main_thread line 493 thread 0
+----------------------------------------------------
+  __cs_thread_function=thr1_2 (00000101 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 128 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function main_thread line 493 thread 0
+----------------------------------------------------
+  __cs_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 129 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function main_thread line 493 thread 0
+----------------------------------------------------
+  __cs_threadID=2 (00000000 00000000 00000000 00000010)
+
+State 131 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function __cs_create line 87 thread 0
+----------------------------------------------------
+  __cs_nondet_main_t=2 (00000000 00000000 00000000 00000010)
+
+State 132 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function __cs_create line 88 thread 0
+----------------------------------------------------
+  __cs_active_thread[2l]=1 (1)
+
+State 133 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function __cs_create line 89 thread 0
+----------------------------------------------------
+  __cs_threadargs[2l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 140 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function main_thread line 514 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 141 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function main_thread line 514 thread 0
+----------------------------------------------------
+  __cs_thread_index=4u (00000000 00000000 00000000 00000100)
+
+State 142 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function __cs_exit line 101 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[4l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 148 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function main line 534 thread 0
+----------------------------------------------------
+  __cs_pc[4l]=3 (011)
+
+State 149 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function main line 536 thread 0
+----------------------------------------------------
+  __cs_tmp_t0_r0=3 (011)
+
+State 151 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function main line 539 thread 0
+----------------------------------------------------
+  __cs_pc_cs[0l]=3 (0011)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c line 540 function main
+  (signed int)__cs_pc_cs[(signed long int)0] <= 4
+
+State 156 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function main line 543 thread 0
+----------------------------------------------------
+  __cs_param_thr1_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 158 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function thr1_0 line 310 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 159 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function thr1_0 line 311 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=TRUE (00000001)
+
+State 161 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function thr1_0 line 317 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 162 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function thr1_0 line 318 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 165 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function thr1_0 line 319 thread 0
+----------------------------------------------------
+  __cs_nondet_thr1___cs_tmp_if_cond_0=FALSE (00000000)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c line 327 function thr1_0
+  (signed int)__cs_pc_cs[(signed long int)0] >= 3
+
+State 172 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function thr1_0 line 346 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 173 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function thr1_0 line 346 thread 0
+----------------------------------------------------
+  __cs_thread_index=0u (00000000 00000000 00000000 00000000)
+
+State 174 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function __cs_exit line 101 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 181 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function main line 548 thread 0
+----------------------------------------------------
+  __cs_pc[0l]=3 (011)
+
+State 182 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function main line 551 thread 0
+----------------------------------------------------
+  __cs_tmp_t1_r0=3 (011)
+
+State 184 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function main line 554 thread 0
+----------------------------------------------------
+  __cs_pc_cs[1l]=3 (0011)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c line 555 function main
+  (signed int)__cs_pc_cs[(signed long int)1] <= 4
+
+State 189 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function main line 558 thread 0
+----------------------------------------------------
+  __cs_param_thr1_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 191 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function thr1_1 line 352 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 192 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function thr1_1 line 353 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=TRUE (00000001)
+
+State 194 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function thr1_1 line 359 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 195 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function thr1_1 line 360 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 198 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function thr1_1 line 361 thread 0
+----------------------------------------------------
+  __cs_nondet_thr1___cs_tmp_if_cond_0=FALSE (00000000)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c line 369 function thr1_1
+  (signed int)__cs_pc_cs[(signed long int)1] >= 3
+
+State 205 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function thr1_1 line 388 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 206 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function thr1_1 line 388 thread 0
+----------------------------------------------------
+  __cs_thread_index=1u (00000000 00000000 00000000 00000001)
+
+State 207 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function __cs_exit line 101 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 214 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function main line 563 thread 0
+----------------------------------------------------
+  __cs_pc[1l]=3 (011)
+
+State 215 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function main line 566 thread 0
+----------------------------------------------------
+  __cs_tmp_t2_r0=1 (001)
+
+State 217 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function main line 569 thread 0
+----------------------------------------------------
+  __cs_pc_cs[2l]=1 (0001)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c line 570 function main
+  (signed int)__cs_pc_cs[(signed long int)2] <= 4
+
+State 222 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function main line 573 thread 0
+----------------------------------------------------
+  __cs_param_thr1_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 224 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function thr1_2 line 394 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=TRUE (00000001)
+
+State 225 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function thr1_2 line 395 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=TRUE (00000001)
+
+State 232 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function thr1_2 line 430 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 233 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function thr1_2 line 430 thread 0
+----------------------------------------------------
+  __cs_thread_index=2u (00000000 00000000 00000000 00000010)
+
+State 234 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function __cs_exit line 101 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[2l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 241 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function main line 578 thread 0
+----------------------------------------------------
+  __cs_pc[2l]=1 (001)
+
+State 242 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function main line 581 thread 0
+----------------------------------------------------
+  __cs_tmp_t3_r0=4 (100)
+
+State 244 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function main line 597 thread 0
+----------------------------------------------------
+  __cs_tmp_t4_r1=1 (001)
+
+State 246 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function main line 600 thread 0
+----------------------------------------------------
+  __cs_pc_cs[4l]=4 (0100)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c line 601 function main
+  (signed int)__cs_pc_cs[(signed long int)4] >= (signed int)__cs_pc[(signed long int)4]
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c line 602 function main
+  (signed int)__cs_pc_cs[(signed long int)4] <= 5
+
+State 258 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function main_thread line 499 thread 0
+----------------------------------------------------
+  __cs_new_thread_id=&__cs_nondet_main_t (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 259 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function main_thread line 499 thread 0
+----------------------------------------------------
+  __cs_attr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 260 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function main_thread line 499 thread 0
+----------------------------------------------------
+  __cs_thread_function=thr1_3 (00000110 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 261 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function main_thread line 499 thread 0
+----------------------------------------------------
+  __cs_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 262 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function main_thread line 499 thread 0
+----------------------------------------------------
+  __cs_threadID=3 (00000000 00000000 00000000 00000011)
+
+State 264 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function __cs_create line 87 thread 0
+----------------------------------------------------
+  __cs_nondet_main_t=3 (00000000 00000000 00000000 00000011)
+
+State 265 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function __cs_create line 88 thread 0
+----------------------------------------------------
+  __cs_active_thread[3l]=1 (1)
+
+State 266 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function __cs_create line 89 thread 0
+----------------------------------------------------
+  __cs_threadargs[3l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 272 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function main_thread line 514 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 273 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function main_thread line 514 thread 0
+----------------------------------------------------
+  __cs_thread_index=4u (00000000 00000000 00000000 00000100)
+
+State 274 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function __cs_exit line 101 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[4l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 281 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function main line 610 thread 0
+----------------------------------------------------
+  __cs_pc[4l]=4 (100)
+
+State 282 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function main line 613 thread 0
+----------------------------------------------------
+  __cs_tmp_t0_r1=1 (001)
+
+State 284 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function main line 616 thread 0
+----------------------------------------------------
+  __cs_pc_cs[0l]=4 (0100)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c line 617 function main
+  (signed int)__cs_pc_cs[(signed long int)0] >= (signed int)__cs_pc[(signed long int)0]
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c line 618 function main
+  (signed int)__cs_pc_cs[(signed long int)0] <= 4
+
+State 288 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function main line 620 thread 0
+----------------------------------------------------
+  __cs_dataraceDetectionStarted=TRUE (00000001)
+
+State 291 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function main line 621 thread 0
+----------------------------------------------------
+  __cs_param_thr1_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 297 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function thr1_0 line 335 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=TRUE (00000001)
+
+State 298 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function thr1_0 line 336 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=TRUE (00000001)
+
+State 305 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function thr1_0 line 337 thread 0
+----------------------------------------------------
+  s=TRUE (00000001)
+
+State 311 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function thr1_0 line 338 thread 0
+----------------------------------------------------
+  __cs_thread_local_l[0l]=TRUE (00000001)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c line 342 function thr1_0
+  (signed int)__cs_pc_cs[(signed long int)0] >= 4
+
+State 315 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function thr1_0 line 346 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 316 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function thr1_0 line 346 thread 0
+----------------------------------------------------
+  __cs_thread_index=0u (00000000 00000000 00000000 00000000)
+
+State 317 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function __cs_exit line 101 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 324 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function main line 625 thread 0
+----------------------------------------------------
+  __cs_dataraceSecondThread=TRUE (00000001)
+
+State 325 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function main line 626 thread 0
+----------------------------------------------------
+  __cs_pc[0l]=4 (100)
+
+State 326 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function main line 629 thread 0
+----------------------------------------------------
+  __cs_tmp_t1_r1=1 (001)
+
+State 328 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function main line 632 thread 0
+----------------------------------------------------
+  __cs_pc_cs[1l]=4 (0100)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c line 633 function main
+  (signed int)__cs_pc_cs[(signed long int)1] >= (signed int)__cs_pc[(signed long int)1]
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c line 634 function main
+  (signed int)__cs_pc_cs[(signed long int)1] <= 4
+
+State 334 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function main line 637 thread 0
+----------------------------------------------------
+  __cs_param_thr1_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 340 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function thr1_1 line 377 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=TRUE (00000001)
+
+State 341 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function thr1_1 line 378 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=TRUE (00000001)
+
+State 352 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function thr1_1 line 379 thread 0
+----------------------------------------------------
+  __cs_dataraceNotDetected=FALSE (00000000)
+
+State 353 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function thr1_1 line 379 thread 0
+----------------------------------------------------
+  s=TRUE (00000001)
+
+State 359 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function thr1_1 line 380 thread 0
+----------------------------------------------------
+  __cs_dataraceNotDetected=FALSE (00000000)
+
+State 360 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function thr1_1 line 380 thread 0
+----------------------------------------------------
+  __cs_thread_local_l[1l]=TRUE (00000001)
+
+Assumption:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c line 384 function thr1_1
+  (signed int)__cs_pc_cs[(signed long int)1] >= 4
+
+State 364 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function thr1_1 line 388 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 365 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function thr1_1 line 388 thread 0
+----------------------------------------------------
+  __cs_thread_index=1u (00000000 00000000 00000000 00000001)
+
+State 366 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function __cs_exit line 101 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 372 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function main line 639 thread 0
+----------------------------------------------------
+  __cs_dataraceContinue=FALSE (00000000)
+
+State 374 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function main line 641 thread 0
+----------------------------------------------------
+  __cs_dataraceSecondThread=TRUE (00000001)
+
+State 375 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function main line 642 thread 0
+----------------------------------------------------
+  __cs_pc[1l]=4 (100)
+
+State 376 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function main line 645 thread 0
+----------------------------------------------------
+  __cs_tmp_t2_r1=3 (011)
+
+State 378 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function main line 661 thread 0
+----------------------------------------------------
+  __cs_tmp_t3_r1=4 (100)
+
+State 380 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function main line 678 thread 0
+----------------------------------------------------
+  __cs_tmp_t4_r2=0 (000)
+
+State 382 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function main line 694 thread 0
+----------------------------------------------------
+  __cs_tmp_t0_r2=1 (001)
+
+State 384 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function main line 710 thread 0
+----------------------------------------------------
+  __cs_tmp_t1_r2=0 (000)
+
+State 386 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function main line 726 thread 0
+----------------------------------------------------
+  __cs_tmp_t2_r2=0 (000)
+
+State 388 file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function main line 742 thread 0
+----------------------------------------------------
+  __cs_tmp_t3_r2=7 (111)
+
+Violated property:
+  file /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/sequentialized3R4U/_csdr_46_monabsex2_vs.c function main line 753 thread 0
+  Data race failure
+  __cs_dataraceNotDetected != FALSE
+
+
+VERIFICATION FAILED
+
+real	0m0,145s
+user	0m0,137s
+sys	0m0,010s

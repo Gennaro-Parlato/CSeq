@@ -1,0 +1,879 @@
+CBMC version 5.45.0 (cbmc-5.45.0-179-gd48dc284f7) 64-bit x86_64 linux
+Parsing /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c
+Converting
+Type-checking _csdr_nondet-loop-bound-variant-1
+file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c line 316 function thr1_0: function '__CPROVER_get_field' is not declared
+file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c line 331 function thr2_0: function '__CPROVER_set_field' is not declared
+file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c line 700 function main: function '__CPROVER_field_decl_global' is not declared
+file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c line 701 function main: function '__CPROVER_field_decl_local' is not declared
+Generating GOTO Program
+Adding CPROVER library (x86_64)
+Removal of function pointers and virtual functions
+Generic Property Instrumentation
+Running with 8 object bits, 56 offset bits (default)
+Starting Bounded Model Checking
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+Runtime Symex: 0.184711s
+size of program expression: 8683 steps
+simple slicing removed 5 assignments
+Generated 49 VCC(s), 47 remaining after simplification
+Runtime Postprocess Equation: 0.000564377s
+Passing problem to propositional reduction
+converting SSA
+Runtime Convert SSA: 0.0373726s
+Running propositional reduction
+Post-processing
+Runtime Post-process: 2.6236e-05s
+Solving with Glucose Syrup with simplifier
+27265 variables, 51084 clauses
+SAT checker: instance is SATISFIABLE
+Runtime Solver: 0.0562405s
+Runtime decision procedure: 0.0938894s
+Building error trace
+Counterexample:
+
+State 21 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function __CPROVER_initialize line 57 thread 0
+----------------------------------------------------
+  __cs_active_thread[0l]=0 (0)
+
+State 22 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function __CPROVER_initialize line 57 thread 0
+----------------------------------------------------
+  __cs_active_thread[1l]=0 (0)
+
+State 23 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function __CPROVER_initialize line 57 thread 0
+----------------------------------------------------
+  __cs_active_thread[2l]=0 (0)
+
+State 24 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function __CPROVER_initialize line 57 thread 0
+----------------------------------------------------
+  __cs_active_thread[3l]=0 (0)
+
+State 25 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function __CPROVER_initialize line 57 thread 0
+----------------------------------------------------
+  __cs_active_thread[4l]=0 (0)
+
+State 26 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function __CPROVER_initialize line 57 thread 0
+----------------------------------------------------
+  __cs_active_thread[5l]=0 (0)
+
+State 35 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function __CPROVER_initialize line 58 thread 0
+----------------------------------------------------
+  __cs_pc[0l]=0 (0000)
+
+State 36 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function __CPROVER_initialize line 58 thread 0
+----------------------------------------------------
+  __cs_pc[1l]=0 (0000)
+
+State 37 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function __CPROVER_initialize line 58 thread 0
+----------------------------------------------------
+  __cs_pc[2l]=0 (0000)
+
+State 38 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function __CPROVER_initialize line 58 thread 0
+----------------------------------------------------
+  __cs_pc[3l]=0 (0000)
+
+State 39 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function __CPROVER_initialize line 58 thread 0
+----------------------------------------------------
+  __cs_pc[4l]=0 (0000)
+
+State 40 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function __CPROVER_initialize line 58 thread 0
+----------------------------------------------------
+  __cs_pc[5l]=0 (0000)
+
+State 42 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function __CPROVER_initialize line 59 thread 0
+----------------------------------------------------
+  __cs_pc_cs[0l]=0 (00000)
+
+State 43 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function __CPROVER_initialize line 59 thread 0
+----------------------------------------------------
+  __cs_pc_cs[1l]=0 (00000)
+
+State 44 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function __CPROVER_initialize line 59 thread 0
+----------------------------------------------------
+  __cs_pc_cs[2l]=0 (00000)
+
+State 45 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function __CPROVER_initialize line 59 thread 0
+----------------------------------------------------
+  __cs_pc_cs[3l]=0 (00000)
+
+State 46 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function __CPROVER_initialize line 59 thread 0
+----------------------------------------------------
+  __cs_pc_cs[4l]=0 (00000)
+
+State 47 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function __CPROVER_initialize line 59 thread 0
+----------------------------------------------------
+  __cs_pc_cs[5l]=0 (00000)
+
+State 49 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function __CPROVER_initialize line 82 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 50 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function __CPROVER_initialize line 82 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 51 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function __CPROVER_initialize line 82 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[2l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 52 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function __CPROVER_initialize line 82 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[3l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 53 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function __CPROVER_initialize line 82 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[4l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 54 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function __CPROVER_initialize line 82 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[5l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 56 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function __CPROVER_initialize line 61 thread 0
+----------------------------------------------------
+  __cs_thread_lines[0l]=1 (0001)
+
+State 57 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function __CPROVER_initialize line 61 thread 0
+----------------------------------------------------
+  __cs_thread_lines[1l]=6 (0110)
+
+State 58 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function __CPROVER_initialize line 61 thread 0
+----------------------------------------------------
+  __cs_thread_lines[2l]=6 (0110)
+
+State 59 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function __CPROVER_initialize line 61 thread 0
+----------------------------------------------------
+  __cs_thread_lines[3l]=6 (0110)
+
+State 60 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function __CPROVER_initialize line 61 thread 0
+----------------------------------------------------
+  __cs_thread_lines[4l]=6 (0110)
+
+State 61 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function __CPROVER_initialize line 61 thread 0
+----------------------------------------------------
+  __cs_thread_lines[5l]=14 (1110)
+
+State 63 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function __CPROVER_initialize line 81 thread 0
+----------------------------------------------------
+  __cs_threadargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 64 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function __CPROVER_initialize line 81 thread 0
+----------------------------------------------------
+  __cs_threadargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 65 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function __CPROVER_initialize line 81 thread 0
+----------------------------------------------------
+  __cs_threadargs[2l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 66 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function __CPROVER_initialize line 81 thread 0
+----------------------------------------------------
+  __cs_threadargs[3l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 67 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function __CPROVER_initialize line 81 thread 0
+----------------------------------------------------
+  __cs_threadargs[4l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 68 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function __CPROVER_initialize line 81 thread 0
+----------------------------------------------------
+  __cs_threadargs[5l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 130 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function main line 702 thread 0
+----------------------------------------------------
+  __cs_dr_ts=2 (00010)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c line 703 function main
+  (signed int)__cs_dr_ts <= 16
+
+State 132 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function main line 706 thread 0
+----------------------------------------------------
+  __cs_active_thread[5l]=1 (1)
+
+State 133 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function main line 707 thread 0
+----------------------------------------------------
+  __cs_tmp_t5_r0=12 (1100)
+
+State 134 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function main line 708 thread 0
+----------------------------------------------------
+  __cs_pc_cs[5l]=12 (01100)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c line 709 function main
+  (signed int)__cs_pc_cs[(signed long int)5] > 0
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c line 710 function main
+  (signed int)__cs_pc_cs[(signed long int)5] <= 14
+
+State 140 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function main_thread line 574 thread 0
+----------------------------------------------------
+  __dr_param_main_argc=0 (00000000 00000000 00000000 00000000)
+
+State 142 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function main_thread line 575 thread 0
+----------------------------------------------------
+  __dr_param_main_argv=((char **)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 145 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function main_thread line 577 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 146 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function main_thread line 578 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=TRUE (00000001)
+
+State 148 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function main_thread line 583 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 149 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function main_thread line 584 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 152 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function main_thread line 585 thread 0
+----------------------------------------------------
+  x=0 (00000000 00000000 00000000 00000000)
+
+State 154 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function main_thread line 588 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 155 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function main_thread line 589 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 159 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function main_thread line 590 thread 0
+----------------------------------------------------
+  return_value_nondet_uint=10u (00000000 00000000 00000000 00001010)
+
+State 160 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function main_thread line 590 thread 0
+----------------------------------------------------
+  n=10 (00000000 00000000 00000000 00001010)
+
+State 162 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function main_thread line 595 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 163 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function main_thread line 596 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 170 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function main_thread line 597 thread 0
+----------------------------------------------------
+  tmp_if_expr$4=FALSE (0)
+
+State 171 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function main_thread line 597 thread 0
+----------------------------------------------------
+  __dr_param_assume_abort_if_not_1_cond=1 (00000000 00000000 00000000 00000001)
+
+State 175 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function main_thread line 601 thread 0
+----------------------------------------------------
+  __dr_nondet_assume_abort_if_not_1___cs_tmp_if_cond_0=FALSE (00000000)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c line 608 function main_thread
+  (signed int)__cs_pc_cs[(signed long int)5] >= 4
+
+State 182 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function main_thread line 615 thread 0
+----------------------------------------------------
+  __cs_new_thread_id=&__dr_nondet_main_t1 (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 183 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function main_thread line 615 thread 0
+----------------------------------------------------
+  __cs_attr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 184 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function main_thread line 615 thread 0
+----------------------------------------------------
+  __cs_thread_function=thr1_0 (00000011 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 185 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function main_thread line 615 thread 0
+----------------------------------------------------
+  __cs_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 186 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function main_thread line 615 thread 0
+----------------------------------------------------
+  __cs_threadID=0 (00000000 00000000 00000000 00000000)
+
+State 188 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function __cs_create line 87 thread 0
+----------------------------------------------------
+  __dr_nondet_main_t1=0 (00000000 00000000 00000000 00000000)
+
+State 189 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function __cs_create line 88 thread 0
+----------------------------------------------------
+  __cs_active_thread[0l]=1 (1)
+
+State 190 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function __cs_create line 89 thread 0
+----------------------------------------------------
+  __cs_threadargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 194 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function main_thread line 618 thread 0
+----------------------------------------------------
+  __dr_nondet_main_i=0 (00000000 00000000 00000000 00000000)
+
+State 202 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function main_thread line 630 thread 0
+----------------------------------------------------
+  __cs_new_thread_id=&__dr_nondet_main_t2 (00000100 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 203 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function main_thread line 630 thread 0
+----------------------------------------------------
+  __cs_attr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 204 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function main_thread line 630 thread 0
+----------------------------------------------------
+  __cs_thread_function=thr2_0 (00000101 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 205 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function main_thread line 630 thread 0
+----------------------------------------------------
+  __cs_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 206 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function main_thread line 630 thread 0
+----------------------------------------------------
+  __cs_threadID=1 (00000000 00000000 00000000 00000001)
+
+State 208 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function __cs_create line 87 thread 0
+----------------------------------------------------
+  __dr_nondet_main_t2=1 (00000000 00000000 00000000 00000001)
+
+State 209 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function __cs_create line 88 thread 0
+----------------------------------------------------
+  __cs_active_thread[1l]=1 (1)
+
+State 210 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function __cs_create line 89 thread 0
+----------------------------------------------------
+  __cs_threadargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 214 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function main_thread line 633 thread 0
+----------------------------------------------------
+  __dr_nondet_main_i=1 (00000000 00000000 00000000 00000001)
+
+State 222 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function main_thread line 645 thread 0
+----------------------------------------------------
+  __cs_new_thread_id=&__dr_nondet_main_t2 (00000100 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 223 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function main_thread line 645 thread 0
+----------------------------------------------------
+  __cs_attr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 224 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function main_thread line 645 thread 0
+----------------------------------------------------
+  __cs_thread_function=thr2_1 (00000110 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 225 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function main_thread line 645 thread 0
+----------------------------------------------------
+  __cs_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 226 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function main_thread line 645 thread 0
+----------------------------------------------------
+  __cs_threadID=2 (00000000 00000000 00000000 00000010)
+
+State 228 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function __cs_create line 87 thread 0
+----------------------------------------------------
+  __dr_nondet_main_t2=2 (00000000 00000000 00000000 00000010)
+
+State 229 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function __cs_create line 88 thread 0
+----------------------------------------------------
+  __cs_active_thread[2l]=1 (1)
+
+State 230 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function __cs_create line 89 thread 0
+----------------------------------------------------
+  __cs_threadargs[2l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 234 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function main_thread line 648 thread 0
+----------------------------------------------------
+  __dr_nondet_main_i=2 (00000000 00000000 00000000 00000010)
+
+State 242 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function main_thread line 660 thread 0
+----------------------------------------------------
+  __cs_new_thread_id=&__dr_nondet_main_t2 (00000100 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 243 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function main_thread line 660 thread 0
+----------------------------------------------------
+  __cs_attr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 244 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function main_thread line 660 thread 0
+----------------------------------------------------
+  __cs_thread_function=thr2_2 (00000111 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 245 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function main_thread line 660 thread 0
+----------------------------------------------------
+  __cs_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 246 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function main_thread line 660 thread 0
+----------------------------------------------------
+  __cs_threadID=3 (00000000 00000000 00000000 00000011)
+
+State 248 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function __cs_create line 87 thread 0
+----------------------------------------------------
+  __dr_nondet_main_t2=3 (00000000 00000000 00000000 00000011)
+
+State 249 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function __cs_create line 88 thread 0
+----------------------------------------------------
+  __cs_active_thread[3l]=1 (1)
+
+State 250 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function __cs_create line 89 thread 0
+----------------------------------------------------
+  __cs_threadargs[3l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 254 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function main_thread line 663 thread 0
+----------------------------------------------------
+  __dr_nondet_main_i=3 (00000000 00000000 00000000 00000011)
+
+State 264 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function main_thread line 696 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 265 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function main_thread line 696 thread 0
+----------------------------------------------------
+  __cs_thread_index=5u (00000000 00000000 00000000 00000101)
+
+State 266 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function __cs_exit line 101 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[5l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 270 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function main line 716 thread 0
+----------------------------------------------------
+  __cs_pc[5l]=12 (1100)
+
+State 271 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function main line 718 thread 0
+----------------------------------------------------
+  __cs_tmp_t0_r0=0 (0)
+
+State 273 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function main line 721 thread 0
+----------------------------------------------------
+  __cs_pc_cs[0l]=0 (00000)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c line 722 function main
+  (signed int)__cs_pc_cs[(signed long int)0] <= 1
+
+State 278 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function main line 725 thread 0
+----------------------------------------------------
+  SM__&__dr_param_thr1_arg!0@1__dr_write=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 279 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function main line 725 thread 0
+----------------------------------------------------
+  __dr_param_thr1_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 283 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function thr1_0 line 322 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 284 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function thr1_0 line 322 thread 0
+----------------------------------------------------
+  __cs_thread_index=0u (00000000 00000000 00000000 00000000)
+
+State 285 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function __cs_exit line 101 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 290 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function main line 730 thread 0
+----------------------------------------------------
+  __cs_pc[0l]=0 (0000)
+
+State 291 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function main line 733 thread 0
+----------------------------------------------------
+  __cs_tmp_t1_r0=5 (101)
+
+State 293 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function main line 736 thread 0
+----------------------------------------------------
+  __cs_pc_cs[1l]=5 (00101)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c line 737 function main
+  (signed int)__cs_pc_cs[(signed long int)1] <= 6
+
+State 296 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function main line 739 thread 0
+----------------------------------------------------
+  __cs_dataraceDetectionStarted=TRUE (00000001)
+
+State 299 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function main line 740 thread 0
+----------------------------------------------------
+  SM__&__dr_param_thr2_arg!0@1__dr_write=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 300 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function main line 740 thread 0
+----------------------------------------------------
+  __dr_param_thr2_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 302 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function thr2_0 line 329 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 303 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function thr2_0 line 330 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=TRUE (00000001)
+
+State 307 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function thr2_0 line 331 thread 0
+----------------------------------------------------
+  return_value_nondet_uint=10u (00000000 00000000 00000000 00001010)
+
+State 308 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function thr2_0 line 331 thread 0
+----------------------------------------------------
+  __dr_nondet_thr2_k=10 (00000000 00000000 00000000 00001010)
+
+State 315 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function thr2_0 line 334 thread 0
+----------------------------------------------------
+  tmp_if_expr$3=FALSE (0)
+
+State 316 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function thr2_0 line 334 thread 0
+----------------------------------------------------
+  __dr_param_assume_abort_if_not_1_cond=1 (00000000 00000000 00000000 00000001)
+
+State 320 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function thr2_0 line 338 thread 0
+----------------------------------------------------
+  __dr_nondet_assume_abort_if_not_1___cs_tmp_if_cond_0=FALSE (00000000)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c line 345 function thr2_0
+  (signed int)__cs_pc_cs[(signed long int)1] >= 1
+
+State 327 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function thr2_0 line 352 thread 0
+----------------------------------------------------
+  __cs_mutex_to_lock=&mut (00001001 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 328 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function thr2_0 line 352 thread 0
+----------------------------------------------------
+  __cs_thread_index=1 (001)
+
+State 329 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function __cs_mutex_lock line 128 thread 0
+----------------------------------------------------
+  mut=2 (00000000 00000000 00000000 00000010)
+
+State 332 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function thr2_0 line 355 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 333 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function thr2_0 line 356 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 337 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function thr2_0 line 357 thread 0
+----------------------------------------------------
+  __dr_nondet_thr2_t=0 (00000000 00000000 00000000 00000000)
+
+State 339 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function thr2_0 line 363 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 340 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function thr2_0 line 364 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 345 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function thr2_0 line 365 thread 0
+----------------------------------------------------
+  __dr_nondet_thr2___cs_tmp_if_cond_2=TRUE (00000001)
+
+State 349 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function thr2_0 line 370 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=TRUE (00000001)
+
+State 350 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function thr2_0 line 371 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 354 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function thr2_0 line 372 thread 0
+----------------------------------------------------
+  SM__&x__dr_write=16843009 (00000001 00000001 00000001 00000001)
+
+State 357 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function thr2_0 line 372 thread 0
+----------------------------------------------------
+  x=1 (00000000 00000000 00000000 00000001)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c line 374 function thr2_0
+  (signed int)__cs_pc_cs[(signed long int)1] >= 5
+
+State 362 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function thr2_0 line 384 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 363 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function thr2_0 line 384 thread 0
+----------------------------------------------------
+  __cs_thread_index=1u (00000000 00000000 00000000 00000001)
+
+State 364 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function __cs_exit line 101 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 369 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function main line 744 thread 0
+----------------------------------------------------
+  __cs_dataraceSecondThread=TRUE (00000001)
+
+State 370 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function main line 745 thread 0
+----------------------------------------------------
+  __cs_pc[1l]=5 (0101)
+
+State 371 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function main line 748 thread 0
+----------------------------------------------------
+  __cs_tmp_t2_r0=0 (000)
+
+State 373 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function main line 751 thread 0
+----------------------------------------------------
+  __cs_pc_cs[2l]=0 (00000)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c line 752 function main
+  (signed int)__cs_pc_cs[(signed long int)2] <= 6
+
+State 378 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function main line 755 thread 0
+----------------------------------------------------
+  SM__&__dr_param_thr2_arg!0@1__dr_write$0=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 379 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function main line 755 thread 0
+----------------------------------------------------
+  __dr_param_thr2_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 388 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function thr2_1 line 446 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 389 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function thr2_1 line 446 thread 0
+----------------------------------------------------
+  __cs_thread_index=2u (00000000 00000000 00000000 00000010)
+
+State 390 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function __cs_exit line 101 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[2l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 395 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function main line 759 thread 0
+----------------------------------------------------
+  __cs_dataraceSecondThread=TRUE (00000001)
+
+State 396 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function main line 760 thread 0
+----------------------------------------------------
+  __cs_pc[2l]=0 (0000)
+
+State 397 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function main line 763 thread 0
+----------------------------------------------------
+  __cs_tmp_t3_r0=0 (000)
+
+State 399 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function main line 766 thread 0
+----------------------------------------------------
+  __cs_pc_cs[3l]=0 (00000)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c line 767 function main
+  (signed int)__cs_pc_cs[(signed long int)3] <= 6
+
+State 404 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function main line 770 thread 0
+----------------------------------------------------
+  SM__&__dr_param_thr2_arg!0@1__dr_write$1=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 405 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function main line 770 thread 0
+----------------------------------------------------
+  __dr_param_thr2_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 414 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function thr2_2 line 508 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 415 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function thr2_2 line 508 thread 0
+----------------------------------------------------
+  __cs_thread_index=3u (00000000 00000000 00000000 00000011)
+
+State 416 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function __cs_exit line 101 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[3l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 421 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function main line 774 thread 0
+----------------------------------------------------
+  __cs_dataraceSecondThread=TRUE (00000001)
+
+State 422 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function main line 775 thread 0
+----------------------------------------------------
+  __cs_pc[3l]=0 (0000)
+
+State 423 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function main line 778 thread 0
+----------------------------------------------------
+  __cs_tmp_t4_r0=0 (000)
+
+State 425 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function main line 794 thread 0
+----------------------------------------------------
+  __cs_tmp_t5_r1=0 (0000)
+
+State 427 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function main line 797 thread 0
+----------------------------------------------------
+  __cs_pc_cs[5l]=12 (01100)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c line 798 function main
+  (signed int)__cs_pc_cs[(signed long int)5] >= (signed int)__cs_pc[(signed long int)5]
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c line 799 function main
+  (signed int)__cs_pc_cs[(signed long int)5] <= 14
+
+State 433 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function main_thread line 574 thread 0
+----------------------------------------------------
+  __dr_param_main_argc=0 (00000000 00000000 00000000 00000000)
+
+State 435 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function main_thread line 575 thread 0
+----------------------------------------------------
+  __dr_param_main_argv=((char **)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 454 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function main_thread line 696 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 455 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function main_thread line 696 thread 0
+----------------------------------------------------
+  __cs_thread_index=5u (00000000 00000000 00000000 00000101)
+
+State 456 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function __cs_exit line 101 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[5l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 461 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function main line 806 thread 0
+----------------------------------------------------
+  __cs_dataraceSecondThread=TRUE (00000001)
+
+State 462 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function main line 807 thread 0
+----------------------------------------------------
+  __cs_pc[5l]=12 (1100)
+
+State 463 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function main line 810 thread 0
+----------------------------------------------------
+  __cs_tmp_t0_r1=1 (1)
+
+State 465 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function main line 813 thread 0
+----------------------------------------------------
+  __cs_pc_cs[0l]=1 (00001)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c line 814 function main
+  (signed int)__cs_pc_cs[(signed long int)0] >= (signed int)__cs_pc[(signed long int)0]
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c line 815 function main
+  (signed int)__cs_pc_cs[(signed long int)0] <= 1
+
+State 471 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function main line 818 thread 0
+----------------------------------------------------
+  SM__&__dr_param_thr1_arg!0@2__dr_write=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 472 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function main line 818 thread 0
+----------------------------------------------------
+  __dr_param_thr1_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 474 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function thr1_0 line 314 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=TRUE (00000001)
+
+State 475 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function thr1_0 line 315 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=TRUE (00000001)
+
+State 481 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function thr1_0 line 316 thread 0
+----------------------------------------------------
+  return_value___CPROVER_get_field=1 (00000000 00000000 00000000 00000001)
+
+State 482 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function thr1_0 line 316 thread 0
+----------------------------------------------------
+  tmp_if_expr=FALSE (0)
+
+State 484 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function thr1_0 line 316 thread 0
+----------------------------------------------------
+  __cs_dataraceNotDetected=FALSE (00000000)
+
+State 488 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function thr1_0 line 316 thread 0
+----------------------------------------------------
+  tmp_if_expr$0=FALSE (0)
+
+State 489 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function thr1_0 line 316 thread 0
+----------------------------------------------------
+  __cs_dataraceNotDetected=FALSE (00000000)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c line 316 function thr1_0
+  x < n
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c line 318 function thr1_0
+  (signed int)__cs_pc_cs[(signed long int)0] >= 1
+
+State 494 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function thr1_0 line 322 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 495 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function thr1_0 line 322 thread 0
+----------------------------------------------------
+  __cs_thread_index=0u (00000000 00000000 00000000 00000000)
+
+State 496 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function __cs_exit line 101 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 500 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function main line 820 thread 0
+----------------------------------------------------
+  __cs_dataraceContinue=FALSE (00000000)
+
+State 502 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function main line 822 thread 0
+----------------------------------------------------
+  __cs_dataraceSecondThread=TRUE (00000001)
+
+State 503 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function main line 823 thread 0
+----------------------------------------------------
+  __cs_pc[0l]=1 (0001)
+
+State 504 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function main line 826 thread 0
+----------------------------------------------------
+  __cs_tmp_t1_r1=0 (000)
+
+State 506 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function main line 842 thread 0
+----------------------------------------------------
+  __cs_tmp_t2_r1=0 (000)
+
+State 508 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function main line 858 thread 0
+----------------------------------------------------
+  __cs_tmp_t3_r1=0 (000)
+
+State 510 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function main line 874 thread 0
+----------------------------------------------------
+  __cs_tmp_t4_r1=0 (000)
+
+State 512 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function main line 891 thread 0
+----------------------------------------------------
+  __cs_tmp_t5_r2=0 (0000)
+
+State 514 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function main line 907 thread 0
+----------------------------------------------------
+  __cs_tmp_t0_r2=1 (1)
+
+State 516 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function main line 923 thread 0
+----------------------------------------------------
+  __cs_tmp_t1_r2=1 (001)
+
+State 518 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function main line 939 thread 0
+----------------------------------------------------
+  __cs_tmp_t2_r2=0 (000)
+
+State 520 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function main line 955 thread 0
+----------------------------------------------------
+  __cs_tmp_t3_r2=6 (110)
+
+State 522 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function main line 971 thread 0
+----------------------------------------------------
+  __cs_tmp_t4_r2=7 (111)
+
+Violated property:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_nondet-loop-bound-variant-1.c function main line 982 thread 0
+  Data race failure
+  __cs_dataraceNotDetected != FALSE
+
+
+VERIFICATION FAILED
+
+real	0m0,408s
+user	0m0,388s
+sys	0m0,023s

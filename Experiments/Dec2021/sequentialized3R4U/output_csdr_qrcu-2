@@ -1,0 +1,1040 @@
+CBMC version 5.45.0 (cbmc-5.45.0-179-gd48dc284f7) 64-bit x86_64 linux
+Parsing /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c
+Converting
+Type-checking _csdr_qrcu-2
+file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c line 316 function __CSEQ_atomic_use1: function '__CPROVER_get_field' is not declared
+file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c line 317 function __CSEQ_atomic_use1: function '__CPROVER_set_field' is not declared
+file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c line 1095 function main: function '__CPROVER_field_decl_global' is not declared
+file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c line 1096 function main: function '__CPROVER_field_decl_local' is not declared
+Generating GOTO Program
+Adding CPROVER library (x86_64)
+Removal of function pointers and virtual functions
+Generic Property Instrumentation
+Running with 8 object bits, 56 offset bits (default)
+Starting Bounded Model Checking
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c line 579 function qrcu_reader1_0 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c line 795 function qrcu_reader2_0 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c line 360 function __CSEQ_atomic_check_progress1 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c line 383 function __CSEQ_atomic_check_progress2 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c line 579 function qrcu_reader1_0 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c line 795 function qrcu_reader2_0 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c line 360 function __CSEQ_atomic_check_progress1 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c line 383 function __CSEQ_atomic_check_progress2 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c line 579 function qrcu_reader1_0 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c line 795 function qrcu_reader2_0 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c line 360 function __CSEQ_atomic_check_progress1 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c line 383 function __CSEQ_atomic_check_progress2 thread 0
+Runtime Symex: 0.709221s
+size of program expression: 23017 steps
+simple slicing removed 5 assignments
+Generated 22 VCC(s), 22 remaining after simplification
+Runtime Postprocess Equation: 0.0034322s
+Passing problem to propositional reduction
+converting SSA
+Runtime Convert SSA: 0.113819s
+Running propositional reduction
+Post-processing
+Runtime Post-process: 2.1731e-05s
+Solving with Glucose Syrup with simplifier
+69615 variables, 126376 clauses
+SAT checker: instance is SATISFIABLE
+Runtime Solver: 0.158624s
+Runtime decision procedure: 0.273062s
+Building error trace
+Counterexample:
+
+State 36 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function __CPROVER_initialize line 57 thread 0
+----------------------------------------------------
+  __cs_active_thread[0l]=0 (0)
+
+State 37 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function __CPROVER_initialize line 57 thread 0
+----------------------------------------------------
+  __cs_active_thread[1l]=0 (0)
+
+State 38 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function __CPROVER_initialize line 57 thread 0
+----------------------------------------------------
+  __cs_active_thread[2l]=0 (0)
+
+State 39 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function __CPROVER_initialize line 57 thread 0
+----------------------------------------------------
+  __cs_active_thread[3l]=0 (0)
+
+State 48 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function __CPROVER_initialize line 58 thread 0
+----------------------------------------------------
+  __cs_pc[0l]=0 (00000)
+
+State 49 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function __CPROVER_initialize line 58 thread 0
+----------------------------------------------------
+  __cs_pc[1l]=0 (00000)
+
+State 50 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function __CPROVER_initialize line 58 thread 0
+----------------------------------------------------
+  __cs_pc[2l]=0 (00000)
+
+State 51 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function __CPROVER_initialize line 58 thread 0
+----------------------------------------------------
+  __cs_pc[3l]=0 (00000)
+
+State 53 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function __CPROVER_initialize line 59 thread 0
+----------------------------------------------------
+  __cs_pc_cs[0l]=0 (000000)
+
+State 54 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function __CPROVER_initialize line 59 thread 0
+----------------------------------------------------
+  __cs_pc_cs[1l]=0 (000000)
+
+State 55 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function __CPROVER_initialize line 59 thread 0
+----------------------------------------------------
+  __cs_pc_cs[2l]=0 (000000)
+
+State 56 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function __CPROVER_initialize line 59 thread 0
+----------------------------------------------------
+  __cs_pc_cs[3l]=0 (000000)
+
+State 58 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function __CPROVER_initialize line 82 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 59 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function __CPROVER_initialize line 82 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 60 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function __CPROVER_initialize line 82 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[2l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 61 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function __CPROVER_initialize line 82 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[3l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 63 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function __CPROVER_initialize line 61 thread 0
+----------------------------------------------------
+  __cs_thread_lines[0l]=16 (10000)
+
+State 64 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function __CPROVER_initialize line 61 thread 0
+----------------------------------------------------
+  __cs_thread_lines[1l]=16 (10000)
+
+State 65 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function __CPROVER_initialize line 61 thread 0
+----------------------------------------------------
+  __cs_thread_lines[2l]=24 (11000)
+
+State 66 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function __CPROVER_initialize line 61 thread 0
+----------------------------------------------------
+  __cs_thread_lines[3l]=9 (01001)
+
+State 68 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function __CPROVER_initialize line 81 thread 0
+----------------------------------------------------
+  __cs_threadargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 69 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function __CPROVER_initialize line 81 thread 0
+----------------------------------------------------
+  __cs_threadargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 70 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function __CPROVER_initialize line 81 thread 0
+----------------------------------------------------
+  __cs_threadargs[2l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 71 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function __CPROVER_initialize line 81 thread 0
+----------------------------------------------------
+  __cs_threadargs[3l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 199 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function main line 1099 thread 0
+----------------------------------------------------
+  __cs_dr_ts=6 (0110)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c line 1100 function main
+  (signed int)__cs_dr_ts <= 10
+
+State 201 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function main line 1103 thread 0
+----------------------------------------------------
+  __cs_active_thread[3l]=1 (1)
+
+State 202 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function main line 1104 thread 0
+----------------------------------------------------
+  __cs_tmp_t3_r0=5 (0101)
+
+State 203 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function main line 1105 thread 0
+----------------------------------------------------
+  __cs_pc_cs[3l]=5 (000101)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c line 1106 function main
+  (signed int)__cs_pc_cs[(signed long int)3] > 0
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c line 1107 function main
+  (signed int)__cs_pc_cs[(signed long int)3] <= 9
+
+State 210 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function main_thread line 1052 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 211 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function main_thread line 1053 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=TRUE (00000001)
+
+State 215 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function main_thread line 1059 thread 0
+----------------------------------------------------
+  __cs_m=&mutex (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 216 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function main_thread line 1059 thread 0
+----------------------------------------------------
+  __cs_val=0 (00000000 00000000 00000000 00000000)
+
+State 217 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function __cs_mutex_init line 111 thread 0
+----------------------------------------------------
+  mutex=-1 (11111111 11111111 11111111 11111111)
+
+State 222 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function main_thread line 1062 thread 0
+----------------------------------------------------
+  __cs_new_thread_id=&__dr_nondet_main_t1 (00000011 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 223 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function main_thread line 1062 thread 0
+----------------------------------------------------
+  __cs_attr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 224 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function main_thread line 1062 thread 0
+----------------------------------------------------
+  __cs_thread_function=qrcu_reader1_0 (00000100 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 225 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function main_thread line 1062 thread 0
+----------------------------------------------------
+  __cs_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 226 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function main_thread line 1062 thread 0
+----------------------------------------------------
+  __cs_threadID=0 (00000000 00000000 00000000 00000000)
+
+State 228 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function __cs_create line 87 thread 0
+----------------------------------------------------
+  __dr_nondet_main_t1=0 (00000000 00000000 00000000 00000000)
+
+State 229 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function __cs_create line 88 thread 0
+----------------------------------------------------
+  __cs_active_thread[0l]=1 (1)
+
+State 230 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function __cs_create line 89 thread 0
+----------------------------------------------------
+  __cs_threadargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 235 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function main_thread line 1065 thread 0
+----------------------------------------------------
+  __cs_new_thread_id=&__dr_nondet_main_t2 (00000101 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 236 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function main_thread line 1065 thread 0
+----------------------------------------------------
+  __cs_attr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 237 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function main_thread line 1065 thread 0
+----------------------------------------------------
+  __cs_thread_function=qrcu_reader2_0 (00000110 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 238 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function main_thread line 1065 thread 0
+----------------------------------------------------
+  __cs_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 239 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function main_thread line 1065 thread 0
+----------------------------------------------------
+  __cs_threadID=1 (00000000 00000000 00000000 00000001)
+
+State 241 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function __cs_create line 87 thread 0
+----------------------------------------------------
+  __dr_nondet_main_t2=1 (00000000 00000000 00000000 00000001)
+
+State 242 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function __cs_create line 88 thread 0
+----------------------------------------------------
+  __cs_active_thread[1l]=1 (1)
+
+State 243 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function __cs_create line 89 thread 0
+----------------------------------------------------
+  __cs_threadargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 248 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function main_thread line 1068 thread 0
+----------------------------------------------------
+  __cs_new_thread_id=&__dr_nondet_main_t3 (00000111 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 249 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function main_thread line 1068 thread 0
+----------------------------------------------------
+  __cs_attr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 250 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function main_thread line 1068 thread 0
+----------------------------------------------------
+  __cs_thread_function=qrcu_updater_0 (00001000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 251 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function main_thread line 1068 thread 0
+----------------------------------------------------
+  __cs_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 252 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function main_thread line 1068 thread 0
+----------------------------------------------------
+  __cs_threadID=2 (00000000 00000000 00000000 00000010)
+
+State 254 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function __cs_create line 87 thread 0
+----------------------------------------------------
+  __dr_nondet_main_t3=2 (00000000 00000000 00000000 00000010)
+
+State 255 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function __cs_create line 88 thread 0
+----------------------------------------------------
+  __cs_active_thread[2l]=1 (1)
+
+State 256 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function __cs_create line 89 thread 0
+----------------------------------------------------
+  __cs_threadargs[2l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 264 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function main_thread line 1091 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 265 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function main_thread line 1091 thread 0
+----------------------------------------------------
+  __cs_thread_index=3u (00000000 00000000 00000000 00000011)
+
+State 266 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function __cs_exit line 101 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[3l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 270 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function main line 1113 thread 0
+----------------------------------------------------
+  __cs_pc[3l]=5 (00101)
+
+State 271 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function main line 1115 thread 0
+----------------------------------------------------
+  __cs_tmp_t0_r0=13 (01101)
+
+State 273 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function main line 1118 thread 0
+----------------------------------------------------
+  __cs_pc_cs[0l]=13 (001101)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c line 1119 function main
+  (signed int)__cs_pc_cs[(signed long int)0] <= 16
+
+State 278 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function main line 1122 thread 0
+----------------------------------------------------
+  SM__&__dr_param_qrcu_reader1_arg!0@1__dr_write_noatomic=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 279 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function main line 1122 thread 0
+----------------------------------------------------
+  SM__&__dr_param_qrcu_reader1_arg!0@1__dr_write=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 280 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function main line 1122 thread 0
+----------------------------------------------------
+  __dr_param_qrcu_reader1_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 282 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function qrcu_reader1_0 line 396 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 283 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function qrcu_reader1_0 line 397 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=TRUE (00000001)
+
+State 288 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function qrcu_reader1_0 line 398 thread 0
+----------------------------------------------------
+  __dr_nondet_qrcu_reader1_myidx=0 (00000000 00000000 00000000 00000000)
+
+State 293 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function qrcu_reader1_0 line 402 thread 0
+----------------------------------------------------
+  return_value_nondet_int=0 (00000000 00000000 00000000 00000000)
+
+State 294 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function qrcu_reader1_0 line 402 thread 0
+----------------------------------------------------
+  __dr_nondet_qrcu_reader1___cs_tmp_if_cond_5=FALSE (00000000)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c line 414 function qrcu_reader1_0
+  (signed int)__cs_pc_cs[(signed long int)0] >= 2
+
+State 302 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function qrcu_reader1_0 line 418 thread 0
+----------------------------------------------------
+  return_value_nondet_int$0=0 (00000000 00000000 00000000 00000000)
+
+State 303 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function qrcu_reader1_0 line 418 thread 0
+----------------------------------------------------
+  __dr_nondet_qrcu_reader1___cs_tmp_if_cond_6=FALSE (00000000)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c line 430 function qrcu_reader1_0
+  (signed int)__cs_pc_cs[(signed long int)0] >= 3
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c line 432 function qrcu_reader1_0
+  (signed int)__cs_pc_cs[(signed long int)0] >= 3
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c line 435 function qrcu_reader1_0
+  (signed int)__cs_pc_cs[(signed long int)0] >= 3
+
+State 310 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function qrcu_reader1_0 line 442 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 311 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function qrcu_reader1_0 line 443 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 316 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function qrcu_reader1_0 line 444 thread 0
+----------------------------------------------------
+  __dr_nondet_qrcu_reader1_myidx=0 (00000000 00000000 00000000 00000000)
+
+State 321 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function qrcu_reader1_0 line 448 thread 0
+----------------------------------------------------
+  return_value_nondet_int$1=4 (00000000 00000000 00000000 00000100)
+
+State 322 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function qrcu_reader1_0 line 448 thread 0
+----------------------------------------------------
+  __dr_nondet_qrcu_reader1___cs_tmp_if_cond_5=TRUE (00000001)
+
+State 326 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function qrcu_reader1_0 line 453 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 330 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function qrcu_reader1_0 line 454 thread 0
+----------------------------------------------------
+  SM__&__dr_param___CSEQ_atomic_use1_myidx!0@2__dr_write_noatomic=0 (00000000 00000000 00000000 00000000)
+
+State 331 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function qrcu_reader1_0 line 454 thread 0
+----------------------------------------------------
+  SM__&__dr_param___CSEQ_atomic_use1_myidx!0@2__dr_write=0 (00000000 00000000 00000000 00000000)
+
+State 332 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function qrcu_reader1_0 line 454 thread 0
+----------------------------------------------------
+  __dr_param___CSEQ_atomic_use1_myidx=0 (00000000 00000000 00000000 00000000)
+
+State 337 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function __CSEQ_atomic_use1 line 316 thread 0
+----------------------------------------------------
+  tmp_if_expr$1=FALSE (0)
+
+State 340 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function __CSEQ_atomic_use1 line 316 thread 0
+----------------------------------------------------
+  SM__&cond!0@3__dr_write_noatomic=0 (00000000 00000000 00000000 00000000)
+
+State 341 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function __CSEQ_atomic_use1 line 316 thread 0
+----------------------------------------------------
+  SM__&cond!0@3__dr_write=0 (00000000 00000000 00000000 00000000)
+
+State 342 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function __CSEQ_atomic_use1 line 316 thread 0
+----------------------------------------------------
+  cond=1 (00000000 00000000 00000000 00000001)
+
+State 346 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function __CSEQ_atomic_use1 line 317 thread 0
+----------------------------------------------------
+  ctr1=2 (00000000 00000000 00000000 00000010)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c line 581 function qrcu_reader1_0
+  (signed int)__cs_pc_cs[(signed long int)0] >= 13
+
+State 355 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function qrcu_reader1_0 line 605 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 356 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function qrcu_reader1_0 line 605 thread 0
+----------------------------------------------------
+  __cs_thread_index=0u (00000000 00000000 00000000 00000000)
+
+State 357 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function __cs_exit line 101 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 362 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function main line 1127 thread 0
+----------------------------------------------------
+  __cs_pc[0l]=13 (01101)
+
+State 363 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function main line 1130 thread 0
+----------------------------------------------------
+  __cs_tmp_t1_r0=0 (00000)
+
+State 365 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function main line 1133 thread 0
+----------------------------------------------------
+  __cs_pc_cs[1l]=0 (000000)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c line 1134 function main
+  (signed int)__cs_pc_cs[(signed long int)1] <= 16
+
+State 370 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function main line 1137 thread 0
+----------------------------------------------------
+  SM__&__dr_param_qrcu_reader2_arg!0@1__dr_write_noatomic=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 371 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function main line 1137 thread 0
+----------------------------------------------------
+  SM__&__dr_param_qrcu_reader2_arg!0@1__dr_write=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 372 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function main line 1137 thread 0
+----------------------------------------------------
+  __dr_param_qrcu_reader2_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 395 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function qrcu_reader2_0 line 821 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 396 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function qrcu_reader2_0 line 821 thread 0
+----------------------------------------------------
+  __cs_thread_index=1u (00000000 00000000 00000000 00000001)
+
+State 397 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function __cs_exit line 101 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 402 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function main line 1142 thread 0
+----------------------------------------------------
+  __cs_pc[1l]=0 (00000)
+
+State 403 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function main line 1145 thread 0
+----------------------------------------------------
+  __cs_tmp_t2_r0=1 (00001)
+
+State 405 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function main line 1148 thread 0
+----------------------------------------------------
+  __cs_pc_cs[2l]=1 (000001)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c line 1149 function main
+  (signed int)__cs_pc_cs[(signed long int)2] <= 24
+
+State 410 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function main line 1152 thread 0
+----------------------------------------------------
+  SM__&__dr_param_qrcu_updater_arg!0@1__dr_write_noatomic=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 411 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function main line 1152 thread 0
+----------------------------------------------------
+  SM__&__dr_param_qrcu_updater_arg!0@1__dr_write=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 412 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function main line 1152 thread 0
+----------------------------------------------------
+  __dr_param_qrcu_updater_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 414 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function qrcu_updater_0 line 828 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=TRUE (00000001)
+
+State 415 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function qrcu_updater_0 line 829 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=TRUE (00000001)
+
+State 419 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function qrcu_updater_0 line 830 thread 0
+----------------------------------------------------
+  __dr_nondet_qrcu_updater_readerstart1=0 (00000000 00000000 00000000 00000000)
+
+State 423 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function qrcu_updater_0 line 832 thread 0
+----------------------------------------------------
+  __dr_nondet_qrcu_updater_readerstart2=0 (00000000 00000000 00000000 00000000)
+
+State 452 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function qrcu_updater_0 line 1047 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 453 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function qrcu_updater_0 line 1047 thread 0
+----------------------------------------------------
+  __cs_thread_index=2u (00000000 00000000 00000000 00000010)
+
+State 454 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function __cs_exit line 101 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[2l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 459 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function main line 1157 thread 0
+----------------------------------------------------
+  __cs_pc[2l]=1 (00001)
+
+State 460 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function main line 1161 thread 0
+----------------------------------------------------
+  __cs_tmp_t3_r1=0 (0000)
+
+State 462 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function main line 1164 thread 0
+----------------------------------------------------
+  __cs_pc_cs[3l]=5 (000101)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c line 1165 function main
+  (signed int)__cs_pc_cs[(signed long int)3] >= (signed int)__cs_pc[(signed long int)3]
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c line 1166 function main
+  (signed int)__cs_pc_cs[(signed long int)3] <= 9
+
+State 479 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function main_thread line 1091 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 480 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function main_thread line 1091 thread 0
+----------------------------------------------------
+  __cs_thread_index=3u (00000000 00000000 00000000 00000011)
+
+State 481 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function __cs_exit line 101 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[3l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 486 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function main line 1174 thread 0
+----------------------------------------------------
+  __cs_pc[3l]=5 (00101)
+
+State 487 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function main line 1177 thread 0
+----------------------------------------------------
+  __cs_tmp_t0_r1=3 (00011)
+
+State 489 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function main line 1180 thread 0
+----------------------------------------------------
+  __cs_pc_cs[0l]=16 (010000)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c line 1181 function main
+  (signed int)__cs_pc_cs[(signed long int)0] >= (signed int)__cs_pc[(signed long int)0]
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c line 1182 function main
+  (signed int)__cs_pc_cs[(signed long int)0] <= 16
+
+State 495 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function main line 1185 thread 0
+----------------------------------------------------
+  SM__&__dr_param_qrcu_reader1_arg!0@2__dr_write_noatomic=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 496 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function main line 1185 thread 0
+----------------------------------------------------
+  SM__&__dr_param_qrcu_reader1_arg!0@2__dr_write=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 497 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function main line 1185 thread 0
+----------------------------------------------------
+  __dr_param_qrcu_reader1_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 516 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function qrcu_reader1_0 line 586 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 517 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function qrcu_reader1_0 line 587 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=TRUE (00000001)
+
+State 521 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function qrcu_reader1_0 line 588 thread 0
+----------------------------------------------------
+  readerprogress1=1 (00000000 00000000 00000000 00000001)
+
+State 523 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function qrcu_reader1_0 line 591 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 524 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function qrcu_reader1_0 line 592 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 528 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function qrcu_reader1_0 line 593 thread 0
+----------------------------------------------------
+  readerprogress1=2 (00000000 00000000 00000000 00000010)
+
+State 530 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function qrcu_reader1_0 line 596 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 534 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function qrcu_reader1_0 line 597 thread 0
+----------------------------------------------------
+  SM__&__dr_param___CSEQ_atomic_use_done_myidx!0@3__dr_write_noatomic=0 (00000000 00000000 00000000 00000000)
+
+State 535 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function qrcu_reader1_0 line 597 thread 0
+----------------------------------------------------
+  SM__&__dr_param___CSEQ_atomic_use_done_myidx!0@3__dr_write=0 (00000000 00000000 00000000 00000000)
+
+State 536 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function qrcu_reader1_0 line 597 thread 0
+----------------------------------------------------
+  __dr_param___CSEQ_atomic_use_done_myidx=0 (00000000 00000000 00000000 00000000)
+
+State 540 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function __CSEQ_atomic_use_done line 329 thread 0
+----------------------------------------------------
+  __dr_nondet___CSEQ_atomic_use_done___cs_tmp_if_cond_0=TRUE (00000001)
+
+State 545 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function __CSEQ_atomic_use_done line 332 thread 0
+----------------------------------------------------
+  ctr1=1 (00000000 00000000 00000000 00000001)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c line 601 function qrcu_reader1_0
+  (signed int)__cs_pc_cs[(signed long int)0] >= 16
+
+State 551 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function qrcu_reader1_0 line 605 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 552 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function qrcu_reader1_0 line 605 thread 0
+----------------------------------------------------
+  __cs_thread_index=0u (00000000 00000000 00000000 00000000)
+
+State 553 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function __cs_exit line 101 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 558 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function main line 1190 thread 0
+----------------------------------------------------
+  __cs_pc[0l]=16 (10000)
+
+State 559 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function main line 1193 thread 0
+----------------------------------------------------
+  __cs_tmp_t1_r1=14 (01110)
+
+State 561 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function main line 1196 thread 0
+----------------------------------------------------
+  __cs_pc_cs[1l]=14 (001110)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c line 1197 function main
+  (signed int)__cs_pc_cs[(signed long int)1] >= (signed int)__cs_pc[(signed long int)1]
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c line 1198 function main
+  (signed int)__cs_pc_cs[(signed long int)1] <= 16
+
+State 565 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function main line 1200 thread 0
+----------------------------------------------------
+  __cs_dataraceDetectionStarted=TRUE (00000001)
+
+State 568 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function main line 1201 thread 0
+----------------------------------------------------
+  SM__&__dr_param_qrcu_reader2_arg!0@2__dr_write_noatomic=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 569 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function main line 1201 thread 0
+----------------------------------------------------
+  SM__&__dr_param_qrcu_reader2_arg!0@2__dr_write=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 570 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function main line 1201 thread 0
+----------------------------------------------------
+  __dr_param_qrcu_reader2_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 572 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function qrcu_reader2_0 line 612 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 573 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function qrcu_reader2_0 line 613 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=TRUE (00000001)
+
+State 578 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function qrcu_reader2_0 line 614 thread 0
+----------------------------------------------------
+  __dr_nondet_qrcu_reader2_myidx=0 (00000000 00000000 00000000 00000000)
+
+State 583 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function qrcu_reader2_0 line 618 thread 0
+----------------------------------------------------
+  return_value_nondet_int=1 (00000000 00000000 00000000 00000001)
+
+State 584 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function qrcu_reader2_0 line 618 thread 0
+----------------------------------------------------
+  __dr_nondet_qrcu_reader2___cs_tmp_if_cond_7=TRUE (00000001)
+
+State 588 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function qrcu_reader2_0 line 623 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 592 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function qrcu_reader2_0 line 624 thread 0
+----------------------------------------------------
+  SM__&__dr_param___CSEQ_atomic_use1_myidx!0@13__dr_write_noatomic=0 (00000000 00000000 00000000 00000000)
+
+State 593 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function qrcu_reader2_0 line 624 thread 0
+----------------------------------------------------
+  SM__&__dr_param___CSEQ_atomic_use1_myidx!0@13__dr_write=0 (00000000 00000000 00000000 00000000)
+
+State 594 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function qrcu_reader2_0 line 624 thread 0
+----------------------------------------------------
+  __dr_param___CSEQ_atomic_use1_myidx=0 (00000000 00000000 00000000 00000000)
+
+State 599 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function __CSEQ_atomic_use1 line 316 thread 0
+----------------------------------------------------
+  tmp_if_expr$1=FALSE (0)
+
+State 602 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function __CSEQ_atomic_use1 line 316 thread 0
+----------------------------------------------------
+  SM__&cond!0@27__dr_write_noatomic=0 (00000000 00000000 00000000 00000000)
+
+State 603 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function __CSEQ_atomic_use1 line 316 thread 0
+----------------------------------------------------
+  SM__&cond!0@27__dr_write=0 (00000000 00000000 00000000 00000000)
+
+State 604 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function __CSEQ_atomic_use1 line 316 thread 0
+----------------------------------------------------
+  cond=1 (00000000 00000000 00000000 00000001)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c line 300 function assume_abort_if_not
+  cond != 0
+
+State 609 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function __CSEQ_atomic_use1 line 317 thread 0
+----------------------------------------------------
+  ctr1=2 (00000000 00000000 00000000 00000010)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c line 797 function qrcu_reader2_0
+  (signed int)__cs_pc_cs[(signed long int)1] >= 13
+
+State 614 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function qrcu_reader2_0 line 802 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=TRUE (00000001)
+
+State 615 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function qrcu_reader2_0 line 803 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 619 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function qrcu_reader2_0 line 804 thread 0
+----------------------------------------------------
+  SM__&readerprogress2__dr_write=16843009 (00000001 00000001 00000001 00000001)
+
+State 623 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function qrcu_reader2_0 line 804 thread 0
+----------------------------------------------------
+  SM__&readerprogress2__dr_write_noatomic=16843009 (00000001 00000001 00000001 00000001)
+
+State 625 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function qrcu_reader2_0 line 804 thread 0
+----------------------------------------------------
+  readerprogress2=1 (00000000 00000000 00000000 00000001)
+
+State 630 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function qrcu_reader2_0 line 821 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 631 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function qrcu_reader2_0 line 821 thread 0
+----------------------------------------------------
+  __cs_thread_index=1u (00000000 00000000 00000000 00000001)
+
+State 632 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function __cs_exit line 101 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 637 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function main line 1205 thread 0
+----------------------------------------------------
+  __cs_dataraceSecondThread=TRUE (00000001)
+
+State 638 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function main line 1206 thread 0
+----------------------------------------------------
+  __cs_pc[1l]=14 (01110)
+
+State 639 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function main line 1209 thread 0
+----------------------------------------------------
+  __cs_tmp_t2_r1=4 (00100)
+
+State 641 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function main line 1212 thread 0
+----------------------------------------------------
+  __cs_pc_cs[2l]=5 (000101)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c line 1213 function main
+  (signed int)__cs_pc_cs[(signed long int)2] >= (signed int)__cs_pc[(signed long int)2]
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c line 1214 function main
+  (signed int)__cs_pc_cs[(signed long int)2] <= 24
+
+State 647 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function main line 1217 thread 0
+----------------------------------------------------
+  SM__&__dr_param_qrcu_updater_arg!0@2__dr_write_noatomic=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 648 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function main line 1217 thread 0
+----------------------------------------------------
+  SM__&__dr_param_qrcu_updater_arg!0@2__dr_write=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 649 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function main line 1217 thread 0
+----------------------------------------------------
+  __dr_param_qrcu_updater_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 652 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function qrcu_updater_0 line 836 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=TRUE (00000001)
+
+State 658 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function qrcu_updater_0 line 837 thread 0
+----------------------------------------------------
+  return_value___CPROVER_get_field$1=0 (00000000 00000000 00000000 00000000)
+
+State 659 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function qrcu_updater_0 line 837 thread 0
+----------------------------------------------------
+  tmp_if_expr$1=TRUE (1)
+
+State 661 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function qrcu_updater_0 line 837 thread 0
+----------------------------------------------------
+  __cs_dataraceNotDetected=TRUE (00000001)
+
+State 667 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function qrcu_updater_0 line 837 thread 0
+----------------------------------------------------
+  return_value___CPROVER_get_field$2=0 (00000000 00000000 00000000 00000000)
+
+State 668 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function qrcu_updater_0 line 837 thread 0
+----------------------------------------------------
+  tmp_if_expr$2=TRUE (1)
+
+State 670 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function qrcu_updater_0 line 837 thread 0
+----------------------------------------------------
+  __cs_dataraceNotDetected=TRUE (00000001)
+
+State 673 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function qrcu_updater_0 line 837 thread 0
+----------------------------------------------------
+  SM__&__dr_param___CSEQ_atomic_take_snapshot_readerstart1!0@2__dr_write_noatomic=0 (00000000 00000000 00000000 00000000)
+
+State 674 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function qrcu_updater_0 line 837 thread 0
+----------------------------------------------------
+  SM__&__dr_param___CSEQ_atomic_take_snapshot_readerstart1!0@2__dr_write=0 (00000000 00000000 00000000 00000000)
+
+State 675 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function qrcu_updater_0 line 837 thread 0
+----------------------------------------------------
+  SM__&__dr_param___CSEQ_atomic_take_snapshot_readerstart2!0@2__dr_write_noatomic=0 (00000000 00000000 00000000 00000000)
+
+State 676 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function qrcu_updater_0 line 837 thread 0
+----------------------------------------------------
+  SM__&__dr_param___CSEQ_atomic_take_snapshot_readerstart2!0@2__dr_write=0 (00000000 00000000 00000000 00000000)
+
+State 677 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function qrcu_updater_0 line 837 thread 0
+----------------------------------------------------
+  __dr_param___CSEQ_atomic_take_snapshot_readerstart1=0 (00000000 00000000 00000000 00000000)
+
+State 678 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function qrcu_updater_0 line 837 thread 0
+----------------------------------------------------
+  __dr_param___CSEQ_atomic_take_snapshot_readerstart2=0 (00000000 00000000 00000000 00000000)
+
+State 685 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function __CSEQ_atomic_take_snapshot line 342 thread 0
+----------------------------------------------------
+  return_value___CPROVER_get_field=0 (00000000 00000000 00000000 00000000)
+
+State 686 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function __CSEQ_atomic_take_snapshot line 342 thread 0
+----------------------------------------------------
+  tmp_if_expr=TRUE (1)
+
+State 688 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function __CSEQ_atomic_take_snapshot line 342 thread 0
+----------------------------------------------------
+  __cs_dataraceNotDetected=TRUE (00000001)
+
+State 694 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function __CSEQ_atomic_take_snapshot line 342 thread 0
+----------------------------------------------------
+  return_value___CPROVER_get_field$0=0 (00000000 00000000 00000000 00000000)
+
+State 695 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function __CSEQ_atomic_take_snapshot line 342 thread 0
+----------------------------------------------------
+  tmp_if_expr$0=TRUE (1)
+
+State 697 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function __CSEQ_atomic_take_snapshot line 342 thread 0
+----------------------------------------------------
+  __cs_dataraceNotDetected=TRUE (00000001)
+
+State 698 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function __CSEQ_atomic_take_snapshot line 342 thread 0
+----------------------------------------------------
+  __dr_param___CSEQ_atomic_take_snapshot_readerstart1=2 (00000000 00000000 00000000 00000010)
+
+State 705 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function __CSEQ_atomic_take_snapshot line 343 thread 0
+----------------------------------------------------
+  return_value___CPROVER_get_field$1=0 (00000000 00000000 00000000 00000000)
+
+State 706 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function __CSEQ_atomic_take_snapshot line 343 thread 0
+----------------------------------------------------
+  tmp_if_expr$1=TRUE (1)
+
+State 708 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function __CSEQ_atomic_take_snapshot line 343 thread 0
+----------------------------------------------------
+  __cs_dataraceNotDetected=TRUE (00000001)
+
+State 714 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function __CSEQ_atomic_take_snapshot line 343 thread 0
+----------------------------------------------------
+  return_value___CPROVER_get_field$2=1 (00000000 00000000 00000000 00000001)
+
+State 715 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function __CSEQ_atomic_take_snapshot line 343 thread 0
+----------------------------------------------------
+  tmp_if_expr$2=FALSE (0)
+
+State 717 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function __CSEQ_atomic_take_snapshot line 343 thread 0
+----------------------------------------------------
+  __cs_dataraceNotDetected=FALSE (00000000)
+
+State 718 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function __CSEQ_atomic_take_snapshot line 343 thread 0
+----------------------------------------------------
+  __dr_param___CSEQ_atomic_take_snapshot_readerstart2=1 (00000000 00000000 00000000 00000001)
+
+State 725 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function qrcu_updater_0 line 841 thread 0
+----------------------------------------------------
+  tmp_if_expr$3=FALSE (0)
+
+State 726 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function qrcu_updater_0 line 841 thread 0
+----------------------------------------------------
+  __cs_dataraceNotDetected=FALSE (00000000)
+
+State 728 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function qrcu_updater_0 line 841 thread 0
+----------------------------------------------------
+  return_value_nondet_int=0 (00000000 00000000 00000000 00000000)
+
+State 729 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function qrcu_updater_0 line 841 thread 0
+----------------------------------------------------
+  __dr_nondet_qrcu_updater___cs_tmp_if_cond_9=FALSE (00000000)
+
+State 733 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function qrcu_updater_0 line 842 thread 0
+----------------------------------------------------
+  tmp_if_expr$20=FALSE (0)
+
+State 734 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function qrcu_updater_0 line 842 thread 0
+----------------------------------------------------
+  __cs_dataraceNotDetected=FALSE (00000000)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c line 862 function qrcu_updater_0
+  (signed int)__cs_pc_cs[(signed long int)2] >= 4
+
+State 738 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function qrcu_updater_0 line 865 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=TRUE (00000001)
+
+State 739 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function qrcu_updater_0 line 866 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 744 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function qrcu_updater_0 line 867 thread 0
+----------------------------------------------------
+  __dr_nondet_qrcu_updater_sum=0 (00000000 00000000 00000000 00000000)
+
+State 748 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function qrcu_updater_0 line 871 thread 0
+----------------------------------------------------
+  __dr_local_qrcu_updater___cs_temporary_1=0 (00000000 00000000 00000000 00000000)
+
+State 753 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function qrcu_updater_0 line 872 thread 0
+----------------------------------------------------
+  __dr_local_qrcu_updater___cs_temporary_1=0 (00000000 00000000 00000000 00000000)
+
+State 777 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function qrcu_updater_0 line 1047 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 778 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function qrcu_updater_0 line 1047 thread 0
+----------------------------------------------------
+  __cs_thread_index=2u (00000000 00000000 00000000 00000010)
+
+State 779 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function __cs_exit line 101 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[2l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 783 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function main line 1219 thread 0
+----------------------------------------------------
+  __cs_dataraceContinue=FALSE (00000000)
+
+State 785 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function main line 1221 thread 0
+----------------------------------------------------
+  __cs_dataraceSecondThread=TRUE (00000001)
+
+State 786 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function main line 1222 thread 0
+----------------------------------------------------
+  __cs_pc[2l]=5 (00101)
+
+State 787 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function main line 1226 thread 0
+----------------------------------------------------
+  __cs_tmp_t3_r2=0 (0000)
+
+State 789 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function main line 1242 thread 0
+----------------------------------------------------
+  __cs_tmp_t0_r2=28 (11100)
+
+State 791 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function main line 1258 thread 0
+----------------------------------------------------
+  __cs_tmp_t1_r2=1 (00001)
+
+State 793 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function main line 1274 thread 0
+----------------------------------------------------
+  __cs_tmp_t2_r2=29 (11101)
+
+Violated property:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_qrcu-2.c function main line 1285 thread 0
+  Data race failure
+  __cs_dataraceNotDetected != FALSE
+
+
+VERIFICATION FAILED
+
+real	0m1,199s
+user	0m1,152s
+sys	0m0,051s

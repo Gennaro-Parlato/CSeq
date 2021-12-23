@@ -1,0 +1,42 @@
+CBMC version 5.32.1 (cbmc-5.32.1-140-g7c8c411038-dirty) 64-bit x86_64 linux
+Parsing /home/salvatore/ShadowMemory/svcomp2020-concurrency-benchmarks/pthread-nondet/_csdr_nondet-loop-bound-variant-1.c
+Converting
+Type-checking _csdr_nondet-loop-bound-variant-1
+Generating GOTO Program
+Adding CPROVER library (x86_64)
+Removal of function pointers and virtual functions
+Generic Property Instrumentation
+Running with 8 object bits, 24 offset bits (default)
+Starting Bounded Model Checking
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+aborting path on assume(false) at file <builtin-library-abort> line 6 function abort thread 0
+Runtime Symex: 0.13835s
+size of program expression: 7617 steps
+simple slicing removed 5 assignments
+Generated 49 VCC(s), 47 remaining after simplification
+Runtime Postprocess Equation: 0.000464938s
+Passing problem to propositional reduction
+converting SSA
+Runtime Convert SSA: 0.0309271s
+Running propositional reduction
+Post-processing
+Runtime Post-process: 1.8993e-05s
+Solving with Glucose Syrup with simplifier
+23276 variables, 44404 clauses
+SAT checker: instance is UNSATISFIABLE
+Runtime Solver: 0.0787592s
+Runtime decision procedure: 0.109953s
+VERIFICATION SUCCESSFUL

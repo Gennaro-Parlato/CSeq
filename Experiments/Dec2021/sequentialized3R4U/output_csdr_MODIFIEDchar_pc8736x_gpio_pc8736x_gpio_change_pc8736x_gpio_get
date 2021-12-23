@@ -1,0 +1,1969 @@
+CBMC version 5.45.0 (cbmc-5.45.0-179-gd48dc284f7) 64-bit x86_64 linux
+Parsing /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c
+Converting
+Type-checking _csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get
+file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c line 442 function pc8736x_gpio_configure: function '__CPROVER_set_field' is not declared
+file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c line 442 function pc8736x_gpio_configure: function '__CPROVER_get_field' is not declared
+file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c line 910 function pc8736x_gpio_open: function 'iminor' is not declared
+file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c line 1195 function pc8736x_gpio_init: warning: conversion from 'signed int *' to 'struct device *': incompatible pointer types
+file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c line 2174 function main: function '__CPROVER_field_decl_global' is not declared
+file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c line 2175 function main: function '__CPROVER_field_decl_local' is not declared
+Generating GOTO Program
+Adding CPROVER library (x86_64)
+Removal of function pointers and virtual functions
+file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c line 2148 function main_thread: replacing function pointer by 1 possible targets
+Generic Property Instrumentation
+Running with 8 object bits, 56 offset bits (default)
+Starting Bounded Model Checking
+Shadow memory: cannot copy shadow memory to &pc8736x_gpio_config_lock.init
+Shadow memory: cannot copy shadow memory to &pc8736x_gpio_config_lock.init
+Shadow memory: cannot copy shadow memory to &pc8736x_gpio_ops.gpio_config
+Shadow memory: cannot copy shadow memory to &pc8736x_gpio_ops.gpio_config
+Shadow memory: cannot copy shadow memory to &pc8736x_gpio_ops.gpio_dump
+Shadow memory: cannot copy shadow memory to &pc8736x_gpio_ops.gpio_dump
+Shadow memory: cannot copy shadow memory to &pc8736x_gpio_ops.gpio_get
+Shadow memory: cannot copy shadow memory to &pc8736x_gpio_ops.gpio_get
+Shadow memory: cannot copy shadow memory to &pc8736x_gpio_ops.gpio_set
+Shadow memory: cannot copy shadow memory to &pc8736x_gpio_ops.gpio_set
+Shadow memory: cannot copy shadow memory to &pc8736x_gpio_ops.gpio_change
+Shadow memory: cannot copy shadow memory to &pc8736x_gpio_ops.gpio_change
+Shadow memory: cannot copy shadow memory to &pc8736x_gpio_ops.gpio_current
+Shadow memory: cannot copy shadow memory to &pc8736x_gpio_ops.gpio_current
+Runtime Symex: 1.63704s
+size of program expression: 25511 steps
+simple slicing removed 5 assignments
+Generated 1 VCC(s), 1 remaining after simplification
+Runtime Postprocess Equation: 0.0038912s
+Passing problem to propositional reduction
+converting SSA
+Runtime Convert SSA: 0.115821s
+Running propositional reduction
+Post-processing
+Runtime Post-process: 2.3537e-05s
+Solving with Glucose Syrup with simplifier
+95704 variables, 93792 clauses
+SAT checker: instance is SATISFIABLE
+Runtime Solver: 0.0608047s
+Runtime decision procedure: 0.177251s
+Building error trace
+Counterexample:
+
+State 21 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __CPROVER_initialize line 57 thread 0
+----------------------------------------------------
+  __cs_active_thread[0l]=0 (0)
+
+State 22 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __CPROVER_initialize line 57 thread 0
+----------------------------------------------------
+  __cs_active_thread[1l]=0 (0)
+
+State 23 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __CPROVER_initialize line 57 thread 0
+----------------------------------------------------
+  __cs_active_thread[2l]=0 (0)
+
+State 32 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __CPROVER_initialize line 58 thread 0
+----------------------------------------------------
+  __cs_pc[0l]=0 (00000)
+
+State 33 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __CPROVER_initialize line 58 thread 0
+----------------------------------------------------
+  __cs_pc[1l]=0 (00000)
+
+State 34 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __CPROVER_initialize line 58 thread 0
+----------------------------------------------------
+  __cs_pc[2l]=0 (00000)
+
+State 36 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __CPROVER_initialize line 59 thread 0
+----------------------------------------------------
+  __cs_pc_cs[0l]=0 (000000)
+
+State 37 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __CPROVER_initialize line 59 thread 0
+----------------------------------------------------
+  __cs_pc_cs[1l]=0 (000000)
+
+State 38 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __CPROVER_initialize line 59 thread 0
+----------------------------------------------------
+  __cs_pc_cs[2l]=0 (000000)
+
+State 40 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __CPROVER_initialize line 82 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 41 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __CPROVER_initialize line 82 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 42 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __CPROVER_initialize line 82 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[2l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 44 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __CPROVER_initialize line 61 thread 0
+----------------------------------------------------
+  __cs_thread_lines[0l]=2 (00010)
+
+State 45 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __CPROVER_initialize line 61 thread 0
+----------------------------------------------------
+  __cs_thread_lines[1l]=9 (01001)
+
+State 46 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __CPROVER_initialize line 61 thread 0
+----------------------------------------------------
+  __cs_thread_lines[2l]=28 (11100)
+
+State 48 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __CPROVER_initialize line 81 thread 0
+----------------------------------------------------
+  __cs_threadargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 49 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __CPROVER_initialize line 81 thread 0
+----------------------------------------------------
+  __cs_threadargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 50 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __CPROVER_initialize line 81 thread 0
+----------------------------------------------------
+  __cs_threadargs[2l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 670 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __CPROVER_initialize line 432 thread 0
+----------------------------------------------------
+  pc8736x_gpio_shadow[0l]=0 (00000000 00000000 00000000 00000000)
+
+State 671 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __CPROVER_initialize line 432 thread 0
+----------------------------------------------------
+  pc8736x_gpio_shadow[1l]=0 (00000000 00000000 00000000 00000000)
+
+State 672 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __CPROVER_initialize line 432 thread 0
+----------------------------------------------------
+  pc8736x_gpio_shadow[2l]=0 (00000000 00000000 00000000 00000000)
+
+State 673 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __CPROVER_initialize line 432 thread 0
+----------------------------------------------------
+  pc8736x_gpio_shadow[3l]=0 (00000000 00000000 00000000 00000000)
+
+State 675 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __CPROVER_initialize line 432 thread 0
+----------------------------------------------------
+  SM__&pc8736x_gpio_shadow__dr_write[0l]=0 (00000000 00000000 00000000 00000000)
+
+State 676 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __CPROVER_initialize line 432 thread 0
+----------------------------------------------------
+  SM__&pc8736x_gpio_shadow__dr_write[1l]=0 (00000000 00000000 00000000 00000000)
+
+State 677 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __CPROVER_initialize line 432 thread 0
+----------------------------------------------------
+  SM__&pc8736x_gpio_shadow__dr_write[2l]=0 (00000000 00000000 00000000 00000000)
+
+State 678 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __CPROVER_initialize line 432 thread 0
+----------------------------------------------------
+  SM__&pc8736x_gpio_shadow__dr_write[3l]=0 (00000000 00000000 00000000 00000000)
+
+State 680 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __CPROVER_initialize line 432 thread 0
+----------------------------------------------------
+  SM__&pc8736x_gpio_shadow__dr_write_noatomic[0l]=0 (00000000 00000000 00000000 00000000)
+
+State 681 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __CPROVER_initialize line 432 thread 0
+----------------------------------------------------
+  SM__&pc8736x_gpio_shadow__dr_write_noatomic[1l]=0 (00000000 00000000 00000000 00000000)
+
+State 682 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __CPROVER_initialize line 432 thread 0
+----------------------------------------------------
+  SM__&pc8736x_gpio_shadow__dr_write_noatomic[2l]=0 (00000000 00000000 00000000 00000000)
+
+State 683 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __CPROVER_initialize line 432 thread 0
+----------------------------------------------------
+  SM__&pc8736x_gpio_shadow__dr_write_noatomic[3l]=0 (00000000 00000000 00000000 00000000)
+
+State 688 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __CPROVER_initialize line 435 thread 0
+----------------------------------------------------
+  port_offset[0l]=0 (00000000 00000000 00000000 00000000)
+
+State 689 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __CPROVER_initialize line 435 thread 0
+----------------------------------------------------
+  port_offset[1l]=4 (00000000 00000000 00000000 00000100)
+
+State 690 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __CPROVER_initialize line 435 thread 0
+----------------------------------------------------
+  port_offset[2l]=8 (00000000 00000000 00000000 00001000)
+
+State 691 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __CPROVER_initialize line 435 thread 0
+----------------------------------------------------
+  port_offset[3l]=10 (00000000 00000000 00000000 00001010)
+
+State 693 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __CPROVER_initialize line 435 thread 0
+----------------------------------------------------
+  SM__&port_offset__dr_write[0l]=0 (00000000 00000000 00000000 00000000)
+
+State 694 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __CPROVER_initialize line 435 thread 0
+----------------------------------------------------
+  SM__&port_offset__dr_write[1l]=0 (00000000 00000000 00000000 00000000)
+
+State 695 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __CPROVER_initialize line 435 thread 0
+----------------------------------------------------
+  SM__&port_offset__dr_write[2l]=0 (00000000 00000000 00000000 00000000)
+
+State 696 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __CPROVER_initialize line 435 thread 0
+----------------------------------------------------
+  SM__&port_offset__dr_write[3l]=0 (00000000 00000000 00000000 00000000)
+
+State 698 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __CPROVER_initialize line 435 thread 0
+----------------------------------------------------
+  SM__&port_offset__dr_write_noatomic[0l]=0 (00000000 00000000 00000000 00000000)
+
+State 699 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __CPROVER_initialize line 435 thread 0
+----------------------------------------------------
+  SM__&port_offset__dr_write_noatomic[1l]=0 (00000000 00000000 00000000 00000000)
+
+State 700 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __CPROVER_initialize line 435 thread 0
+----------------------------------------------------
+  SM__&port_offset__dr_write_noatomic[2l]=0 (00000000 00000000 00000000 00000000)
+
+State 701 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __CPROVER_initialize line 435 thread 0
+----------------------------------------------------
+  SM__&port_offset__dr_write_noatomic[3l]=0 (00000000 00000000 00000000 00000000)
+
+State 861 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main line 2178 thread 0
+----------------------------------------------------
+  __cs_dr_ts=6 (110)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c line 2179 function main
+  (signed int)__cs_dr_ts <= 7
+
+State 863 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main line 2182 thread 0
+----------------------------------------------------
+  __cs_active_thread[2l]=1 (1)
+
+State 864 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main line 2183 thread 0
+----------------------------------------------------
+  __cs_tmp_t2_r0=11 (01011)
+
+State 865 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main line 2184 thread 0
+----------------------------------------------------
+  __cs_pc_cs[2l]=11 (001011)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c line 2185 function main
+  (signed int)__cs_pc_cs[(signed long int)2] > 0
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c line 2186 function main
+  (signed int)__cs_pc_cs[(signed long int)2] <= 28
+
+State 872 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main_thread line 2031 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 873 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main_thread line 2032 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=TRUE (00000001)
+
+State 880 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main_thread line 2033 thread 0
+----------------------------------------------------
+  __cs_size=4u (00000000 00000000 00000000 00000100)
+
+State 881 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __cs_safe_malloc line 64 thread 0
+----------------------------------------------------
+  __cs_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 885 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __cs_safe_malloc line 64 thread 0
+----------------------------------------------------
+  malloc_size=4ul (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000100)
+
+State 891 file <builtin-library-malloc> function malloc line 38 thread 0
+----------------------------------------------------
+  dynamic_object1.unused=0 (00000000 00000000 00000000 00000000)
+
+State 909 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __cs_safe_malloc line 64 thread 0
+----------------------------------------------------
+  return_value_malloc=(const void *)&dynamic_object1.unused (00001010 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 910 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __cs_safe_malloc line 64 thread 0
+----------------------------------------------------
+  __cs_ptr=(const void *)&dynamic_object1.unused (00001010 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 911 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __cs_safe_malloc line 65 thread 0
+----------------------------------------------------
+  goto_symex$$return_value$$__cs_safe_malloc=(const void *)&dynamic_object1.unused (00001010 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 913 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main_thread line 2033 thread 0
+----------------------------------------------------
+  return_value___cs_safe_malloc=(const void *)&dynamic_object1.unused (00001010 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 914 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main_thread line 2033 thread 0
+----------------------------------------------------
+  whoop_inode_0=&dynamic_object1 (00001010 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 916 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main_thread line 2036 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 917 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main_thread line 2037 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 924 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main_thread line 2038 thread 0
+----------------------------------------------------
+  __cs_size=16u (00000000 00000000 00000000 00010000)
+
+State 925 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __cs_safe_malloc line 64 thread 0
+----------------------------------------------------
+  __cs_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 929 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __cs_safe_malloc line 64 thread 0
+----------------------------------------------------
+  malloc_size=16ul (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00010000)
+
+State 935 file <builtin-library-malloc> function malloc line 38 thread 0
+----------------------------------------------------
+  dynamic_object2.f_pos=0l (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 936 file <builtin-library-malloc> function malloc line 38 thread 0
+----------------------------------------------------
+  dynamic_object2.private_data=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 956 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __cs_safe_malloc line 64 thread 0
+----------------------------------------------------
+  return_value_malloc=(const void *)&dynamic_object2.f_pos (00001011 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 957 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __cs_safe_malloc line 64 thread 0
+----------------------------------------------------
+  __cs_ptr=(const void *)&dynamic_object2.f_pos (00001011 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 958 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __cs_safe_malloc line 65 thread 0
+----------------------------------------------------
+  goto_symex$$return_value$$__cs_safe_malloc=(const void *)&dynamic_object2.f_pos (00001011 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 960 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main_thread line 2038 thread 0
+----------------------------------------------------
+  return_value___cs_safe_malloc$0=(const void *)&dynamic_object2.f_pos (00001011 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 961 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main_thread line 2038 thread 0
+----------------------------------------------------
+  whoop_file_0=&dynamic_object2 (00001011 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 963 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main_thread line 2041 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 964 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main_thread line 2042 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 971 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main_thread line 2043 thread 0
+----------------------------------------------------
+  __cs_size=4u (00000000 00000000 00000000 00000100)
+
+State 972 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __cs_safe_malloc line 64 thread 0
+----------------------------------------------------
+  __cs_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 976 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __cs_safe_malloc line 64 thread 0
+----------------------------------------------------
+  malloc_size=4ul (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000100)
+
+State 982 file <builtin-library-malloc> function malloc line 38 thread 0
+----------------------------------------------------
+  dynamic_object3.unused=0 (00000000 00000000 00000000 00000000)
+
+State 1000 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __cs_safe_malloc line 64 thread 0
+----------------------------------------------------
+  return_value_malloc=(const void *)&dynamic_object3.unused (00001100 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1001 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __cs_safe_malloc line 64 thread 0
+----------------------------------------------------
+  __cs_ptr=(const void *)&dynamic_object3.unused (00001100 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1002 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __cs_safe_malloc line 65 thread 0
+----------------------------------------------------
+  goto_symex$$return_value$$__cs_safe_malloc=(const void *)&dynamic_object3.unused (00001100 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1004 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main_thread line 2043 thread 0
+----------------------------------------------------
+  return_value___cs_safe_malloc$1=(const void *)&dynamic_object3.unused (00001100 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1005 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main_thread line 2043 thread 0
+----------------------------------------------------
+  whoop_inode_1=&dynamic_object3 (00001100 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1007 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main_thread line 2046 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 1008 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main_thread line 2047 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 1015 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main_thread line 2048 thread 0
+----------------------------------------------------
+  __cs_size=16u (00000000 00000000 00000000 00010000)
+
+State 1016 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __cs_safe_malloc line 64 thread 0
+----------------------------------------------------
+  __cs_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1020 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __cs_safe_malloc line 64 thread 0
+----------------------------------------------------
+  malloc_size=16ul (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00010000)
+
+State 1026 file <builtin-library-malloc> function malloc line 38 thread 0
+----------------------------------------------------
+  dynamic_object4.f_pos=0l (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1027 file <builtin-library-malloc> function malloc line 38 thread 0
+----------------------------------------------------
+  dynamic_object4.private_data=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1047 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __cs_safe_malloc line 64 thread 0
+----------------------------------------------------
+  return_value_malloc=(const void *)&dynamic_object4.f_pos (00001101 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1048 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __cs_safe_malloc line 64 thread 0
+----------------------------------------------------
+  __cs_ptr=(const void *)&dynamic_object4.f_pos (00001101 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1049 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __cs_safe_malloc line 65 thread 0
+----------------------------------------------------
+  goto_symex$$return_value$$__cs_safe_malloc=(const void *)&dynamic_object4.f_pos (00001101 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1051 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main_thread line 2048 thread 0
+----------------------------------------------------
+  return_value___cs_safe_malloc$2=(const void *)&dynamic_object4.f_pos (00001101 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1052 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main_thread line 2048 thread 0
+----------------------------------------------------
+  whoop_file_1=&dynamic_object4 (00001101 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1054 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main_thread line 2051 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 1055 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main_thread line 2052 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 1062 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main_thread line 2053 thread 0
+----------------------------------------------------
+  __cs_size=4u (00000000 00000000 00000000 00000100)
+
+State 1063 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __cs_safe_malloc line 64 thread 0
+----------------------------------------------------
+  __cs_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1067 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __cs_safe_malloc line 64 thread 0
+----------------------------------------------------
+  malloc_size=4ul (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000100)
+
+State 1073 file <builtin-library-malloc> function malloc line 38 thread 0
+----------------------------------------------------
+  dynamic_object5.unused=0 (00000000 00000000 00000000 00000000)
+
+State 1091 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __cs_safe_malloc line 64 thread 0
+----------------------------------------------------
+  return_value_malloc=(const void *)&dynamic_object5.unused (00001110 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1092 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __cs_safe_malloc line 64 thread 0
+----------------------------------------------------
+  __cs_ptr=(const void *)&dynamic_object5.unused (00001110 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1093 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __cs_safe_malloc line 65 thread 0
+----------------------------------------------------
+  goto_symex$$return_value$$__cs_safe_malloc=(const void *)&dynamic_object5.unused (00001110 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1095 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main_thread line 2053 thread 0
+----------------------------------------------------
+  return_value___cs_safe_malloc$3=(const void *)&dynamic_object5.unused (00001110 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1096 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main_thread line 2053 thread 0
+----------------------------------------------------
+  whoop_inode_2=&dynamic_object5 (00001110 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1098 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main_thread line 2056 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 1099 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main_thread line 2057 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 1106 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main_thread line 2058 thread 0
+----------------------------------------------------
+  __cs_size=16u (00000000 00000000 00000000 00010000)
+
+State 1107 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __cs_safe_malloc line 64 thread 0
+----------------------------------------------------
+  __cs_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1111 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __cs_safe_malloc line 64 thread 0
+----------------------------------------------------
+  malloc_size=16ul (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00010000)
+
+State 1117 file <builtin-library-malloc> function malloc line 38 thread 0
+----------------------------------------------------
+  dynamic_object6.f_pos=0l (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1118 file <builtin-library-malloc> function malloc line 38 thread 0
+----------------------------------------------------
+  dynamic_object6.private_data=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1138 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __cs_safe_malloc line 64 thread 0
+----------------------------------------------------
+  return_value_malloc=(const void *)&dynamic_object6.f_pos (00001111 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1139 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __cs_safe_malloc line 64 thread 0
+----------------------------------------------------
+  __cs_ptr=(const void *)&dynamic_object6.f_pos (00001111 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1140 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __cs_safe_malloc line 65 thread 0
+----------------------------------------------------
+  goto_symex$$return_value$$__cs_safe_malloc=(const void *)&dynamic_object6.f_pos (00001111 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1142 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main_thread line 2058 thread 0
+----------------------------------------------------
+  return_value___cs_safe_malloc$4=(const void *)&dynamic_object6.f_pos (00001111 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1143 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main_thread line 2058 thread 0
+----------------------------------------------------
+  whoop_file_2=&dynamic_object6 (00001111 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1145 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main_thread line 2061 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 1146 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main_thread line 2062 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 1153 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main_thread line 2063 thread 0
+----------------------------------------------------
+  __cs_size=4u (00000000 00000000 00000000 00000100)
+
+State 1154 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __cs_safe_malloc line 64 thread 0
+----------------------------------------------------
+  __cs_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1158 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __cs_safe_malloc line 64 thread 0
+----------------------------------------------------
+  malloc_size=4ul (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000100)
+
+State 1164 file <builtin-library-malloc> function malloc line 38 thread 0
+----------------------------------------------------
+  dynamic_object7.unused=0 (00000000 00000000 00000000 00000000)
+
+State 1182 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __cs_safe_malloc line 64 thread 0
+----------------------------------------------------
+  return_value_malloc=(const void *)&dynamic_object7.unused (00010000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1183 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __cs_safe_malloc line 64 thread 0
+----------------------------------------------------
+  __cs_ptr=(const void *)&dynamic_object7.unused (00010000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1184 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __cs_safe_malloc line 65 thread 0
+----------------------------------------------------
+  goto_symex$$return_value$$__cs_safe_malloc=(const void *)&dynamic_object7.unused (00010000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1186 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main_thread line 2063 thread 0
+----------------------------------------------------
+  return_value___cs_safe_malloc$5=(const void *)&dynamic_object7.unused (00010000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1187 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main_thread line 2063 thread 0
+----------------------------------------------------
+  whoop_inode_3=&dynamic_object7 (00010000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1189 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main_thread line 2066 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 1190 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main_thread line 2067 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 1197 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main_thread line 2068 thread 0
+----------------------------------------------------
+  __cs_size=16u (00000000 00000000 00000000 00010000)
+
+State 1198 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __cs_safe_malloc line 64 thread 0
+----------------------------------------------------
+  __cs_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1202 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __cs_safe_malloc line 64 thread 0
+----------------------------------------------------
+  malloc_size=16ul (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00010000)
+
+State 1208 file <builtin-library-malloc> function malloc line 38 thread 0
+----------------------------------------------------
+  dynamic_object8.f_pos=0l (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1209 file <builtin-library-malloc> function malloc line 38 thread 0
+----------------------------------------------------
+  dynamic_object8.private_data=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1229 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __cs_safe_malloc line 64 thread 0
+----------------------------------------------------
+  return_value_malloc=(const void *)&dynamic_object8.f_pos (00010001 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1230 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __cs_safe_malloc line 64 thread 0
+----------------------------------------------------
+  __cs_ptr=(const void *)&dynamic_object8.f_pos (00010001 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1231 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __cs_safe_malloc line 65 thread 0
+----------------------------------------------------
+  goto_symex$$return_value$$__cs_safe_malloc=(const void *)&dynamic_object8.f_pos (00010001 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1233 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main_thread line 2068 thread 0
+----------------------------------------------------
+  return_value___cs_safe_malloc$6=(const void *)&dynamic_object8.f_pos (00010001 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1234 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main_thread line 2068 thread 0
+----------------------------------------------------
+  whoop_file_3=&dynamic_object8 (00010001 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1236 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main_thread line 2071 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 1237 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main_thread line 2072 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 1244 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main_thread line 2073 thread 0
+----------------------------------------------------
+  __cs_size=4u (00000000 00000000 00000000 00000100)
+
+State 1245 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __cs_safe_malloc line 64 thread 0
+----------------------------------------------------
+  __cs_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1249 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __cs_safe_malloc line 64 thread 0
+----------------------------------------------------
+  malloc_size=4ul (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000100)
+
+State 1255 file <builtin-library-malloc> function malloc line 38 thread 0
+----------------------------------------------------
+  dynamic_object9.unused=0 (00000000 00000000 00000000 00000000)
+
+State 1273 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __cs_safe_malloc line 64 thread 0
+----------------------------------------------------
+  return_value_malloc=(const void *)&dynamic_object9.unused (00010010 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1274 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __cs_safe_malloc line 64 thread 0
+----------------------------------------------------
+  __cs_ptr=(const void *)&dynamic_object9.unused (00010010 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1275 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __cs_safe_malloc line 65 thread 0
+----------------------------------------------------
+  goto_symex$$return_value$$__cs_safe_malloc=(const void *)&dynamic_object9.unused (00010010 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1277 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main_thread line 2073 thread 0
+----------------------------------------------------
+  return_value___cs_safe_malloc$7=(const void *)&dynamic_object9.unused (00010010 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1278 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main_thread line 2073 thread 0
+----------------------------------------------------
+  whoop_inode_4=&dynamic_object9 (00010010 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1280 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main_thread line 2076 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 1281 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main_thread line 2077 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 1288 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main_thread line 2078 thread 0
+----------------------------------------------------
+  __cs_size=16u (00000000 00000000 00000000 00010000)
+
+State 1289 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __cs_safe_malloc line 64 thread 0
+----------------------------------------------------
+  __cs_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1293 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __cs_safe_malloc line 64 thread 0
+----------------------------------------------------
+  malloc_size=16ul (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00010000)
+
+State 1299 file <builtin-library-malloc> function malloc line 38 thread 0
+----------------------------------------------------
+  dynamic_object10.f_pos=0l (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1300 file <builtin-library-malloc> function malloc line 38 thread 0
+----------------------------------------------------
+  dynamic_object10.private_data=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1320 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __cs_safe_malloc line 64 thread 0
+----------------------------------------------------
+  return_value_malloc=(const void *)&dynamic_object10.f_pos (00010011 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1321 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __cs_safe_malloc line 64 thread 0
+----------------------------------------------------
+  __cs_ptr=(const void *)&dynamic_object10.f_pos (00010011 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1322 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __cs_safe_malloc line 65 thread 0
+----------------------------------------------------
+  goto_symex$$return_value$$__cs_safe_malloc=(const void *)&dynamic_object10.f_pos (00010011 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1324 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main_thread line 2078 thread 0
+----------------------------------------------------
+  return_value___cs_safe_malloc$8=(const void *)&dynamic_object10.f_pos (00010011 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1325 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main_thread line 2078 thread 0
+----------------------------------------------------
+  whoop_file_4=&dynamic_object10 (00010011 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1327 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main_thread line 2081 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=TRUE (00000001)
+
+State 1328 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main_thread line 2082 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 1335 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main_thread line 2083 thread 0
+----------------------------------------------------
+  __cs_size=4u (00000000 00000000 00000000 00000100)
+
+State 1336 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __cs_safe_malloc line 64 thread 0
+----------------------------------------------------
+  __cs_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1340 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __cs_safe_malloc line 64 thread 0
+----------------------------------------------------
+  malloc_size=4ul (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000100)
+
+State 1346 file <builtin-library-malloc> function malloc line 38 thread 0
+----------------------------------------------------
+  dynamic_object11.unused=0 (00000000 00000000 00000000 00000000)
+
+State 1364 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __cs_safe_malloc line 64 thread 0
+----------------------------------------------------
+  return_value_malloc=(const void *)&dynamic_object11.unused (00010100 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1365 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __cs_safe_malloc line 64 thread 0
+----------------------------------------------------
+  __cs_ptr=(const void *)&dynamic_object11.unused (00010100 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1366 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __cs_safe_malloc line 65 thread 0
+----------------------------------------------------
+  goto_symex$$return_value$$__cs_safe_malloc=(const void *)&dynamic_object11.unused (00010100 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1368 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main_thread line 2083 thread 0
+----------------------------------------------------
+  return_value___cs_safe_malloc$9=(const void *)&dynamic_object11.unused (00010100 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1369 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main_thread line 2083 thread 0
+----------------------------------------------------
+  whoop_inode_5=&dynamic_object11 (00010100 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1389 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main_thread line 2170 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1390 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main_thread line 2170 thread 0
+----------------------------------------------------
+  __cs_thread_index=2u (00000000 00000000 00000000 00000010)
+
+State 1391 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __cs_exit line 101 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[2l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1395 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main line 2192 thread 0
+----------------------------------------------------
+  __cs_pc[2l]=11 (01011)
+
+State 1396 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main line 2194 thread 0
+----------------------------------------------------
+  __cs_tmp_t0_r0=2 (10)
+
+State 1398 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main line 2209 thread 0
+----------------------------------------------------
+  __cs_tmp_t1_r0=2 (0010)
+
+State 1400 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main line 2225 thread 0
+----------------------------------------------------
+  __cs_tmp_t2_r1=14 (01110)
+
+State 1402 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main line 2228 thread 0
+----------------------------------------------------
+  __cs_pc_cs[2l]=25 (011001)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c line 2229 function main
+  (signed int)__cs_pc_cs[(signed long int)2] >= (signed int)__cs_pc[(signed long int)2]
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c line 2230 function main
+  (signed int)__cs_pc_cs[(signed long int)2] <= 28
+
+State 1420 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main_thread line 2086 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 1421 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main_thread line 2087 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=TRUE (00000001)
+
+State 1428 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main_thread line 2088 thread 0
+----------------------------------------------------
+  __cs_size=16u (00000000 00000000 00000000 00010000)
+
+State 1429 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __cs_safe_malloc line 64 thread 0
+----------------------------------------------------
+  __cs_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1433 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __cs_safe_malloc line 64 thread 0
+----------------------------------------------------
+  malloc_size=16ul (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00010000)
+
+State 1439 file <builtin-library-malloc> function malloc line 38 thread 0
+----------------------------------------------------
+  dynamic_object35.f_pos=0l (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1440 file <builtin-library-malloc> function malloc line 38 thread 0
+----------------------------------------------------
+  dynamic_object35.private_data=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1460 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __cs_safe_malloc line 64 thread 0
+----------------------------------------------------
+  return_value_malloc=(const void *)&dynamic_object35.f_pos (00110000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1461 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __cs_safe_malloc line 64 thread 0
+----------------------------------------------------
+  __cs_ptr=(const void *)&dynamic_object35.f_pos (00110000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1462 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __cs_safe_malloc line 65 thread 0
+----------------------------------------------------
+  goto_symex$$return_value$$__cs_safe_malloc=(const void *)&dynamic_object35.f_pos (00110000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1464 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main_thread line 2088 thread 0
+----------------------------------------------------
+  return_value___cs_safe_malloc$10=(const void *)&dynamic_object35.f_pos (00110000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1465 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main_thread line 2088 thread 0
+----------------------------------------------------
+  whoop_file_5=&dynamic_object35 (00110000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1467 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main_thread line 2091 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 1468 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main_thread line 2092 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 1475 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main_thread line 2093 thread 0
+----------------------------------------------------
+  __cs_size=4u (00000000 00000000 00000000 00000100)
+
+State 1476 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __cs_safe_malloc line 64 thread 0
+----------------------------------------------------
+  __cs_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1480 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __cs_safe_malloc line 64 thread 0
+----------------------------------------------------
+  malloc_size=4ul (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000100)
+
+State 1486 file <builtin-library-malloc> function malloc line 38 thread 0
+----------------------------------------------------
+  dynamic_object36.unused=0 (00000000 00000000 00000000 00000000)
+
+State 1504 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __cs_safe_malloc line 64 thread 0
+----------------------------------------------------
+  return_value_malloc=(const void *)&dynamic_object36.unused (00110001 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1505 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __cs_safe_malloc line 64 thread 0
+----------------------------------------------------
+  __cs_ptr=(const void *)&dynamic_object36.unused (00110001 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1506 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __cs_safe_malloc line 65 thread 0
+----------------------------------------------------
+  goto_symex$$return_value$$__cs_safe_malloc=(const void *)&dynamic_object36.unused (00110001 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1508 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main_thread line 2093 thread 0
+----------------------------------------------------
+  return_value___cs_safe_malloc$11=(const void *)&dynamic_object36.unused (00110001 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1509 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main_thread line 2093 thread 0
+----------------------------------------------------
+  whoop_inode_6=&dynamic_object36 (00110001 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1511 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main_thread line 2096 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 1512 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main_thread line 2097 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 1519 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main_thread line 2098 thread 0
+----------------------------------------------------
+  __cs_size=16u (00000000 00000000 00000000 00010000)
+
+State 1520 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __cs_safe_malloc line 64 thread 0
+----------------------------------------------------
+  __cs_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1524 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __cs_safe_malloc line 64 thread 0
+----------------------------------------------------
+  malloc_size=16ul (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00010000)
+
+State 1530 file <builtin-library-malloc> function malloc line 38 thread 0
+----------------------------------------------------
+  dynamic_object37.f_pos=0l (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1531 file <builtin-library-malloc> function malloc line 38 thread 0
+----------------------------------------------------
+  dynamic_object37.private_data=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1551 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __cs_safe_malloc line 64 thread 0
+----------------------------------------------------
+  return_value_malloc=(const void *)&dynamic_object37.f_pos (00110010 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1552 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __cs_safe_malloc line 64 thread 0
+----------------------------------------------------
+  __cs_ptr=(const void *)&dynamic_object37.f_pos (00110010 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1553 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __cs_safe_malloc line 65 thread 0
+----------------------------------------------------
+  goto_symex$$return_value$$__cs_safe_malloc=(const void *)&dynamic_object37.f_pos (00110010 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1555 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main_thread line 2098 thread 0
+----------------------------------------------------
+  return_value___cs_safe_malloc$12=(const void *)&dynamic_object37.f_pos (00110010 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1556 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main_thread line 2098 thread 0
+----------------------------------------------------
+  whoop_file_6=&dynamic_object37 (00110010 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1558 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main_thread line 2101 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 1559 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main_thread line 2102 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 1566 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main_thread line 2103 thread 0
+----------------------------------------------------
+  __cs_size=4u (00000000 00000000 00000000 00000100)
+
+State 1567 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __cs_safe_malloc line 64 thread 0
+----------------------------------------------------
+  __cs_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1571 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __cs_safe_malloc line 64 thread 0
+----------------------------------------------------
+  malloc_size=4ul (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000100)
+
+State 1577 file <builtin-library-malloc> function malloc line 38 thread 0
+----------------------------------------------------
+  dynamic_object38.unused=0 (00000000 00000000 00000000 00000000)
+
+State 1595 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __cs_safe_malloc line 64 thread 0
+----------------------------------------------------
+  return_value_malloc=(const void *)&dynamic_object38.unused (00110011 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1596 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __cs_safe_malloc line 64 thread 0
+----------------------------------------------------
+  __cs_ptr=(const void *)&dynamic_object38.unused (00110011 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1597 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __cs_safe_malloc line 65 thread 0
+----------------------------------------------------
+  goto_symex$$return_value$$__cs_safe_malloc=(const void *)&dynamic_object38.unused (00110011 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1599 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main_thread line 2103 thread 0
+----------------------------------------------------
+  return_value___cs_safe_malloc$13=(const void *)&dynamic_object38.unused (00110011 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1600 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main_thread line 2103 thread 0
+----------------------------------------------------
+  whoop_pci_dev=&dynamic_object38 (00110011 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1602 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main_thread line 2106 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 1603 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main_thread line 2107 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 1610 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main_thread line 2108 thread 0
+----------------------------------------------------
+  __cs_size=1u (00000000 00000000 00000000 00000001)
+
+State 1611 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __cs_safe_malloc line 64 thread 0
+----------------------------------------------------
+  __cs_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1615 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __cs_safe_malloc line 64 thread 0
+----------------------------------------------------
+  malloc_size=1ul (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000001)
+
+State 1638 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __cs_safe_malloc line 64 thread 0
+----------------------------------------------------
+  return_value_malloc=(const void *)&dynamic_object39 (00110100 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1639 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __cs_safe_malloc line 64 thread 0
+----------------------------------------------------
+  __cs_ptr=(const void *)&dynamic_object39 (00110100 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1640 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __cs_safe_malloc line 65 thread 0
+----------------------------------------------------
+  goto_symex$$return_value$$__cs_safe_malloc=(const void *)&dynamic_object39 (00110100 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1642 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main_thread line 2108 thread 0
+----------------------------------------------------
+  return_value___cs_safe_malloc$14=(const void *)&dynamic_object39 (00110100 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1643 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main_thread line 2108 thread 0
+----------------------------------------------------
+  whoop_buf=&dynamic_object39 (00110100 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1645 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main_thread line 2111 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 1646 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main_thread line 2112 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 1653 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main_thread line 2113 thread 0
+----------------------------------------------------
+  __cs_size=4u (00000000 00000000 00000000 00000100)
+
+State 1654 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __cs_safe_malloc line 64 thread 0
+----------------------------------------------------
+  __cs_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1658 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __cs_safe_malloc line 64 thread 0
+----------------------------------------------------
+  malloc_size=4ul (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000100)
+
+State 1664 file <builtin-library-malloc> function malloc line 38 thread 0
+----------------------------------------------------
+  dynamic_object40.dev=0 (00000000 00000000 00000000 00000000)
+
+State 1682 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __cs_safe_malloc line 64 thread 0
+----------------------------------------------------
+  return_value_malloc=(const void *)&dynamic_object40.dev (00110101 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1683 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __cs_safe_malloc line 64 thread 0
+----------------------------------------------------
+  __cs_ptr=(const void *)&dynamic_object40.dev (00110101 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1684 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __cs_safe_malloc line 65 thread 0
+----------------------------------------------------
+  goto_symex$$return_value$$__cs_safe_malloc=(const void *)&dynamic_object40.dev (00110101 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1686 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main_thread line 2113 thread 0
+----------------------------------------------------
+  return_value___cs_safe_malloc$15=(const void *)&dynamic_object40.dev (00110101 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1687 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main_thread line 2113 thread 0
+----------------------------------------------------
+  whoop_platform_device=&dynamic_object40 (00110101 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1689 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main_thread line 2116 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 1690 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main_thread line 2117 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 1697 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main_thread line 2118 thread 0
+----------------------------------------------------
+  __cs_size=4u (00000000 00000000 00000000 00000100)
+
+State 1698 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __cs_safe_malloc line 64 thread 0
+----------------------------------------------------
+  __cs_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1702 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __cs_safe_malloc line 64 thread 0
+----------------------------------------------------
+  malloc_size=4ul (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000100)
+
+State 1708 file <builtin-library-malloc> function malloc line 38 thread 0
+----------------------------------------------------
+  dynamic_object41.unused=0 (00000000 00000000 00000000 00000000)
+
+State 1726 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __cs_safe_malloc line 64 thread 0
+----------------------------------------------------
+  return_value_malloc=(const void *)&dynamic_object41.unused (00110110 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1727 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __cs_safe_malloc line 64 thread 0
+----------------------------------------------------
+  __cs_ptr=(const void *)&dynamic_object41.unused (00110110 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1728 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __cs_safe_malloc line 65 thread 0
+----------------------------------------------------
+  goto_symex$$return_value$$__cs_safe_malloc=(const void *)&dynamic_object41.unused (00110110 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1730 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main_thread line 2118 thread 0
+----------------------------------------------------
+  return_value___cs_safe_malloc$16=(const void *)&dynamic_object41.unused (00110110 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1731 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main_thread line 2118 thread 0
+----------------------------------------------------
+  whoop_vm_area_struct=&dynamic_object41 (00110110 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1733 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main_thread line 2121 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 1734 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main_thread line 2122 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 1741 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main_thread line 2123 thread 0
+----------------------------------------------------
+  __cs_size=4u (00000000 00000000 00000000 00000100)
+
+State 1742 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __cs_safe_malloc line 64 thread 0
+----------------------------------------------------
+  __cs_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1746 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __cs_safe_malloc line 64 thread 0
+----------------------------------------------------
+  malloc_size=4ul (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000100)
+
+State 1752 file <builtin-library-malloc> function malloc line 38 thread 0
+----------------------------------------------------
+  dynamic_object42.unused=0 (00000000 00000000 00000000 00000000)
+
+State 1770 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __cs_safe_malloc line 64 thread 0
+----------------------------------------------------
+  return_value_malloc=(const void *)&dynamic_object42.unused (00110111 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1771 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __cs_safe_malloc line 64 thread 0
+----------------------------------------------------
+  __cs_ptr=(const void *)&dynamic_object42.unused (00110111 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1772 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __cs_safe_malloc line 65 thread 0
+----------------------------------------------------
+  goto_symex$$return_value$$__cs_safe_malloc=(const void *)&dynamic_object42.unused (00110111 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1774 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main_thread line 2123 thread 0
+----------------------------------------------------
+  return_value___cs_safe_malloc$17=(const void *)&dynamic_object42.unused (00110111 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1775 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main_thread line 2123 thread 0
+----------------------------------------------------
+  whoop_cx_dev=&dynamic_object42 (00110111 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1777 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main_thread line 2126 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 1778 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main_thread line 2127 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 1785 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main_thread line 2128 thread 0
+----------------------------------------------------
+  __cs_size=4u (00000000 00000000 00000000 00000100)
+
+State 1786 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __cs_safe_malloc line 64 thread 0
+----------------------------------------------------
+  __cs_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1790 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __cs_safe_malloc line 64 thread 0
+----------------------------------------------------
+  malloc_size=4ul (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000100)
+
+State 1796 file <builtin-library-malloc> function malloc line 38 thread 0
+----------------------------------------------------
+  dynamic_object43.something=0 (00000000 00000000 00000000 00000000)
+
+State 1814 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __cs_safe_malloc line 64 thread 0
+----------------------------------------------------
+  return_value_malloc=(const void *)&dynamic_object43.something (00111000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1815 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __cs_safe_malloc line 64 thread 0
+----------------------------------------------------
+  __cs_ptr=(const void *)&dynamic_object43.something (00111000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1816 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __cs_safe_malloc line 65 thread 0
+----------------------------------------------------
+  goto_symex$$return_value$$__cs_safe_malloc=(const void *)&dynamic_object43.something (00111000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1818 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main_thread line 2128 thread 0
+----------------------------------------------------
+  return_value___cs_safe_malloc$18=(const void *)&dynamic_object43.something (00111000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1819 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main_thread line 2128 thread 0
+----------------------------------------------------
+  whoop_poll_table=&dynamic_object43 (00111000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1821 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main_thread line 2131 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 1822 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main_thread line 2132 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 1829 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main_thread line 2133 thread 0
+----------------------------------------------------
+  __cs_size=8u (00000000 00000000 00000000 00001000)
+
+State 1830 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __cs_safe_malloc line 64 thread 0
+----------------------------------------------------
+  __cs_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1834 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __cs_safe_malloc line 64 thread 0
+----------------------------------------------------
+  malloc_size=8ul (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00001000)
+
+State 1857 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __cs_safe_malloc line 64 thread 0
+----------------------------------------------------
+  return_value_malloc=(const void *)&dynamic_object44 (00111001 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1858 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __cs_safe_malloc line 64 thread 0
+----------------------------------------------------
+  __cs_ptr=(const void *)&dynamic_object44 (00111001 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1859 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __cs_safe_malloc line 65 thread 0
+----------------------------------------------------
+  goto_symex$$return_value$$__cs_safe_malloc=(const void *)&dynamic_object44 (00111001 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1861 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main_thread line 2133 thread 0
+----------------------------------------------------
+  return_value___cs_safe_malloc$19=(const void *)&dynamic_object44 (00111001 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1862 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main_thread line 2133 thread 0
+----------------------------------------------------
+  whoop_loff_t=&dynamic_object44 (00111001 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1864 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main_thread line 2136 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 1865 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main_thread line 2137 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 1869 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main_thread line 2138 thread 0
+----------------------------------------------------
+  whoop_int=56 (00000000 00000000 00000000 00111000)
+
+State 1871 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main_thread line 2141 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 1875 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main_thread line 2142 thread 0
+----------------------------------------------------
+  SM__&cond!0@2__dr_write=0 (00000000 00000000 00000000 00000000)
+
+State 1876 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main_thread line 2142 thread 0
+----------------------------------------------------
+  SM__&cond!0@2__dr_write_noatomic=0 (00000000 00000000 00000000 00000000)
+
+State 1877 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main_thread line 2142 thread 0
+----------------------------------------------------
+  cond=1 (00000000 00000000 00000000 00000001)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c line 300 function assume_abort_if_not
+  cond != 0
+
+State 1881 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main_thread line 2146 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 1882 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main_thread line 2147 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 1891 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function pc8736x_gpio_init line 958 thread 0
+----------------------------------------------------
+  __dr_param_platform_device_alloc_1_arg1=0 (00000000 00000000 00000000 00000000)
+
+State 1894 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function pc8736x_gpio_init line 962 thread 0
+----------------------------------------------------
+  __dr_param_external_alloc_1_size=4u (00000000 00000000 00000000 00000100)
+
+State 1901 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function pc8736x_gpio_init line 964 thread 0
+----------------------------------------------------
+  __cs_size=4u (00000000 00000000 00000000 00000100)
+
+State 1902 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __cs_safe_malloc line 64 thread 0
+----------------------------------------------------
+  __cs_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1906 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __cs_safe_malloc line 64 thread 0
+----------------------------------------------------
+  malloc_size=4ul (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000100)
+
+State 1912 file <builtin-library-malloc> function malloc line 38 thread 0
+----------------------------------------------------
+  dynamic_object45.dev=0 (00000000 00000000 00000000 00000000)
+
+State 1930 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __cs_safe_malloc line 64 thread 0
+----------------------------------------------------
+  return_value_malloc=(const void *)&dynamic_object45.dev (00111010 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1931 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __cs_safe_malloc line 64 thread 0
+----------------------------------------------------
+  __cs_ptr=(const void *)&dynamic_object45.dev (00111010 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1932 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __cs_safe_malloc line 65 thread 0
+----------------------------------------------------
+  goto_symex$$return_value$$__cs_safe_malloc=(const void *)&dynamic_object45.dev (00111010 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1934 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function pc8736x_gpio_init line 964 thread 0
+----------------------------------------------------
+  return_value___cs_safe_malloc=(const void *)&dynamic_object45.dev (00111010 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1935 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function pc8736x_gpio_init line 964 thread 0
+----------------------------------------------------
+  __dr_nondet_external_alloc_1_p=(char *)&dynamic_object45.dev (00111010 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1938 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function pc8736x_gpio_init line 967 thread 0
+----------------------------------------------------
+  __dr_nondet_external_alloc_1_i=0u (00000000 00000000 00000000 00000000)
+
+State 1947 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function pc8736x_gpio_init line 975 thread 0
+----------------------------------------------------
+  return_value_nondet_char=0 (00000000)
+
+State 1948 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function pc8736x_gpio_init line 975 thread 0
+----------------------------------------------------
+  byte_extract_little_endian(dynamic_object45.dev, 0l, char)=0 (00000000)
+
+State 1951 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function pc8736x_gpio_init line 978 thread 0
+----------------------------------------------------
+  __dr_nondet_external_alloc_1_i=1u (00000000 00000000 00000000 00000001)
+
+State 1960 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function pc8736x_gpio_init line 986 thread 0
+----------------------------------------------------
+  return_value_nondet_char$0=0 (00000000)
+
+State 1961 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function pc8736x_gpio_init line 986 thread 0
+----------------------------------------------------
+  byte_extract_little_endian(dynamic_object45.dev, 1l, char)=0 (00000000)
+
+State 1964 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function pc8736x_gpio_init line 989 thread 0
+----------------------------------------------------
+  __dr_nondet_external_alloc_1_i=2u (00000000 00000000 00000000 00000010)
+
+State 1973 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function pc8736x_gpio_init line 997 thread 0
+----------------------------------------------------
+  return_value_nondet_char$1=0 (00000000)
+
+State 1974 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function pc8736x_gpio_init line 997 thread 0
+----------------------------------------------------
+  byte_extract_little_endian(dynamic_object45.dev, 2l, char)=0 (00000000)
+
+State 1977 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function pc8736x_gpio_init line 1000 thread 0
+----------------------------------------------------
+  __dr_nondet_external_alloc_1_i=3u (00000000 00000000 00000000 00000011)
+
+State 1986 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function pc8736x_gpio_init line 1008 thread 0
+----------------------------------------------------
+  return_value_nondet_char$2=0 (00000000)
+
+State 1987 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function pc8736x_gpio_init line 1008 thread 0
+----------------------------------------------------
+  byte_extract_little_endian(dynamic_object45.dev, 3l, char)=0 (00000000)
+
+State 1990 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function pc8736x_gpio_init line 1011 thread 0
+----------------------------------------------------
+  __dr_nondet_external_alloc_1_i=4u (00000000 00000000 00000000 00000100)
+
+State 1994 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function pc8736x_gpio_init line 1018 thread 0
+----------------------------------------------------
+  __cs_retval_external_alloc_1=(const void *)&dynamic_object45.dev (00111010 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1995 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function pc8736x_gpio_init line 1026 thread 0
+----------------------------------------------------
+  __cs_retval_platform_device_alloc_1=&dynamic_object45 (00111010 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1998 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function pc8736x_gpio_init line 1034 thread 0
+----------------------------------------------------
+  pdev=&dynamic_object45 (00111010 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 2002 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function pc8736x_gpio_init line 1038 thread 0
+----------------------------------------------------
+  __dr_nondet_pc8736x_gpio_init___cs_tmp_if_cond_4=FALSE (00000000)
+
+State 2008 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function pc8736x_gpio_init line 1048 thread 0
+----------------------------------------------------
+  __dr_param_platform_device_add_1_arg0=&dynamic_object45 (00111010 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 2009 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function pc8736x_gpio_init line 1049 thread 0
+----------------------------------------------------
+  __cs_retval_platform_device_add_1=0 (00000000 00000000 00000000 00000000)
+
+State 2012 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function pc8736x_gpio_init line 1057 thread 0
+----------------------------------------------------
+  __dr_nondet_pc8736x_gpio_init_rc=0 (00000000 00000000 00000000 00000000)
+
+State 2016 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function pc8736x_gpio_init line 1061 thread 0
+----------------------------------------------------
+  __dr_nondet_pc8736x_gpio_init___cs_tmp_if_cond_5=FALSE (00000000)
+
+State 2021 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function pc8736x_gpio_init line 1078 thread 0
+----------------------------------------------------
+  superio_cmd=46 (00101110)
+
+State 2024 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function pc8736x_gpio_init line 1082 thread 0
+----------------------------------------------------
+  __dr_param_superio_inb_2_addr=32 (00000000 00000000 00000000 00100000)
+
+State 2028 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function pc8736x_gpio_init line 1085 thread 0
+----------------------------------------------------
+  __dr_param_outb_p_12_arg0=32 (00100000)
+
+State 2032 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function pc8736x_gpio_init line 1087 thread 0
+----------------------------------------------------
+  __dr_param_outb_p_12_arg1=46u (00000000 00000000 00000000 00101110)
+
+State 2036 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function pc8736x_gpio_init line 1098 thread 0
+----------------------------------------------------
+  __dr_param_inb_p_9_arg0=47u (00000000 00000000 00000000 00101111)
+
+State 2037 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function pc8736x_gpio_init line 1099 thread 0
+----------------------------------------------------
+  __cs_retval_inb_p_9=237 (11101101)
+
+State 2038 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function pc8736x_gpio_init line 1107 thread 0
+----------------------------------------------------
+  __cs_retval_superio_inb_2=237 (00000000 00000000 00000000 11101101)
+
+State 2041 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function pc8736x_gpio_init line 1115 thread 0
+----------------------------------------------------
+  __dr_nondet_pc8736x_superio_present_1_id=237 (00000000 00000000 00000000 11101101)
+
+State 2048 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function pc8736x_gpio_init line 1119 thread 0
+----------------------------------------------------
+  tmp_if_expr$54=FALSE (0)
+
+State 2049 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function pc8736x_gpio_init line 1119 thread 0
+----------------------------------------------------
+  __dr_nondet_pc8736x_superio_present_1___cs_tmp_if_cond_1=FALSE (00000000)
+
+State 2054 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function pc8736x_gpio_init line 1127 thread 0
+----------------------------------------------------
+  superio_cmd=78 (01001110)
+
+State 2057 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function pc8736x_gpio_init line 1131 thread 0
+----------------------------------------------------
+  __dr_param_superio_inb_3_addr=32 (00000000 00000000 00000000 00100000)
+
+State 2061 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function pc8736x_gpio_init line 1134 thread 0
+----------------------------------------------------
+  __dr_param_outb_p_13_arg0=32 (00100000)
+
+State 2065 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function pc8736x_gpio_init line 1136 thread 0
+----------------------------------------------------
+  __dr_param_outb_p_13_arg1=78u (00000000 00000000 00000000 01001110)
+
+State 2069 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function pc8736x_gpio_init line 1147 thread 0
+----------------------------------------------------
+  __dr_param_inb_p_10_arg0=79u (00000000 00000000 00000000 01001111)
+
+State 2070 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function pc8736x_gpio_init line 1148 thread 0
+----------------------------------------------------
+  __cs_retval_inb_p_10=233 (11101001)
+
+State 2071 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function pc8736x_gpio_init line 1156 thread 0
+----------------------------------------------------
+  __cs_retval_superio_inb_3=233 (00000000 00000000 00000000 11101001)
+
+State 2074 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function pc8736x_gpio_init line 1164 thread 0
+----------------------------------------------------
+  __dr_nondet_pc8736x_superio_present_1_id=233 (00000000 00000000 00000000 11101001)
+
+State 2081 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function pc8736x_gpio_init line 1168 thread 0
+----------------------------------------------------
+  tmp_if_expr$69=FALSE (0)
+
+State 2082 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function pc8736x_gpio_init line 1168 thread 0
+----------------------------------------------------
+  __dr_nondet_pc8736x_superio_present_1___cs_tmp_if_cond_2=TRUE (00000001)
+
+State 2086 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function pc8736x_gpio_init line 1171 thread 0
+----------------------------------------------------
+  __cs_retval_pc8736x_superio_present_1=78 (00000000 00000000 00000000 01001110)
+
+State 2090 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function pc8736x_gpio_init line 1184 thread 0
+----------------------------------------------------
+  __dr_nondet_pc8736x_gpio_init___cs_tmp_if_cond_6=FALSE (00000000)
+
+State 2097 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function pc8736x_gpio_init line 1195 thread 0
+----------------------------------------------------
+  pc8736x_gpio_ops.dev=(struct device *)&dynamic_object45.dev (00111010 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 2103 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function pc8736x_gpio_init line 1200 thread 0
+----------------------------------------------------
+  __dr_param_superio_inb_4_addr=33 (00000000 00000000 00000000 00100001)
+
+State 2107 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function pc8736x_gpio_init line 1203 thread 0
+----------------------------------------------------
+  __dr_param_outb_p_14_arg0=33 (00100001)
+
+State 2111 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function pc8736x_gpio_init line 1205 thread 0
+----------------------------------------------------
+  __dr_param_outb_p_14_arg1=78u (00000000 00000000 00000000 01001110)
+
+State 2115 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function pc8736x_gpio_init line 1216 thread 0
+----------------------------------------------------
+  __dr_param_inb_p_11_arg0=79u (00000000 00000000 00000000 01001111)
+
+State 2116 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function pc8736x_gpio_init line 1217 thread 0
+----------------------------------------------------
+  __cs_retval_inb_p_11=1 (00000001)
+
+State 2117 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function pc8736x_gpio_init line 1225 thread 0
+----------------------------------------------------
+  __cs_retval_superio_inb_4=1 (00000000 00000000 00000000 00000001)
+
+State 2120 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function pc8736x_gpio_init line 1233 thread 0
+----------------------------------------------------
+  __dr_nondet_pc8736x_gpio_init_rc=1 (00000000 00000000 00000000 00000001)
+
+State 2124 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function pc8736x_gpio_init line 1237 thread 0
+----------------------------------------------------
+  __dr_nondet_pc8736x_gpio_init___cs_tmp_if_cond_7=FALSE (00000000)
+
+State 2129 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function pc8736x_gpio_init line 1250 thread 0
+----------------------------------------------------
+  __dr_param_device_select_3_devldn=7u (00000000 00000000 00000000 00000111)
+
+State 2132 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function pc8736x_gpio_init line 1253 thread 0
+----------------------------------------------------
+  __dr_param_superio_outb_5_addr=7 (00000000 00000000 00000000 00000111)
+
+State 2136 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function pc8736x_gpio_init line 1255 thread 0
+----------------------------------------------------
+  __dr_param_superio_outb_5_val=7 (00000000 00000000 00000000 00000111)
+
+State 2140 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function pc8736x_gpio_init line 1258 thread 0
+----------------------------------------------------
+  __dr_param_outb_p_15_arg0=7 (00000111)
+
+State 2144 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function pc8736x_gpio_init line 1260 thread 0
+----------------------------------------------------
+  __dr_param_outb_p_15_arg1=78u (00000000 00000000 00000000 01001110)
+
+State 2148 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function pc8736x_gpio_init line 1270 thread 0
+----------------------------------------------------
+  __dr_param_outb_p_16_arg0=7 (00000111)
+
+State 2152 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function pc8736x_gpio_init line 1272 thread 0
+----------------------------------------------------
+  __dr_param_outb_p_16_arg1=79u (00000000 00000000 00000000 01001111)
+
+State 2156 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function pc8736x_gpio_init line 1285 thread 0
+----------------------------------------------------
+  selected_device=7 (00000111)
+
+State 2159 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function pc8736x_gpio_init line 1297 thread 0
+----------------------------------------------------
+  __dr_param_superio_inb_5_addr=48 (00000000 00000000 00000000 00110000)
+
+State 2163 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function pc8736x_gpio_init line 1300 thread 0
+----------------------------------------------------
+  __dr_param_outb_p_17_arg0=48 (00110000)
+
+State 2167 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function pc8736x_gpio_init line 1302 thread 0
+----------------------------------------------------
+  __dr_param_outb_p_17_arg1=78u (00000000 00000000 00000000 01001110)
+
+State 2171 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function pc8736x_gpio_init line 1313 thread 0
+----------------------------------------------------
+  __dr_param_inb_p_12_arg0=79u (00000000 00000000 00000000 01001111)
+
+State 2172 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function pc8736x_gpio_init line 1314 thread 0
+----------------------------------------------------
+  __cs_retval_inb_p_12=0 (00000000)
+
+State 2173 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function pc8736x_gpio_init line 1322 thread 0
+----------------------------------------------------
+  __cs_retval_superio_inb_5=0 (00000000 00000000 00000000 00000000)
+
+State 2176 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function pc8736x_gpio_init line 1330 thread 0
+----------------------------------------------------
+  __dr_nondet_pc8736x_gpio_init___cs_tmp_if_cond_8=TRUE (00000001)
+
+State 2181 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function pc8736x_gpio_init line 1333 thread 0
+----------------------------------------------------
+  __dr_nondet_pc8736x_gpio_init_rc=-19 (11111111 11111111 11111111 11101101)
+
+State 2186 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function pc8736x_gpio_init line 1716 thread 0
+----------------------------------------------------
+  __dr_param_platform_device_del_1_arg0=&dynamic_object45 (00111010 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 2190 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function pc8736x_gpio_init line 1729 thread 0
+----------------------------------------------------
+  __dr_param_platform_device_put_1_arg0=&dynamic_object45 (00111010 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 2192 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function pc8736x_gpio_init line 1737 thread 0
+----------------------------------------------------
+  goto_symex$$return_value$$pc8736x_gpio_init=-19 (11111111 11111111 11111111 11101101)
+
+State 2195 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main_thread line 2148 thread 0
+----------------------------------------------------
+  __dr_nondet_main__whoop_init_result=-19 (11111111 11111111 11111111 11101101)
+
+State 2199 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main_thread line 2153 thread 0
+----------------------------------------------------
+  __cs_new_thread_id=&__dr_nondet_main_pthread_t_pc8736x_gpio_get (00100001 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 2200 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main_thread line 2153 thread 0
+----------------------------------------------------
+  __cs_attr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 2201 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main_thread line 2153 thread 0
+----------------------------------------------------
+  __cs_thread_function=whoop_wrapper_pc8736x_gpio_get_0 (00100010 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 2202 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main_thread line 2153 thread 0
+----------------------------------------------------
+  __cs_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 2203 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main_thread line 2153 thread 0
+----------------------------------------------------
+  __cs_threadID=0 (00000000 00000000 00000000 00000000)
+
+State 2205 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __cs_create line 87 thread 0
+----------------------------------------------------
+  __dr_nondet_main_pthread_t_pc8736x_gpio_get=0 (00000000 00000000 00000000 00000000)
+
+State 2206 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __cs_create line 88 thread 0
+----------------------------------------------------
+  __cs_active_thread[0l]=1 (1)
+
+State 2207 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __cs_create line 89 thread 0
+----------------------------------------------------
+  __cs_threadargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 2214 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main_thread line 2170 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 2215 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main_thread line 2170 thread 0
+----------------------------------------------------
+  __cs_thread_index=2u (00000000 00000000 00000000 00000010)
+
+State 2216 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __cs_exit line 101 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[2l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 2221 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main line 2238 thread 0
+----------------------------------------------------
+  __cs_pc[2l]=25 (11001)
+
+State 2222 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main line 2241 thread 0
+----------------------------------------------------
+  __cs_tmp_t0_r1=1 (01)
+
+State 2224 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main line 2244 thread 0
+----------------------------------------------------
+  __cs_pc_cs[0l]=1 (000001)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c line 2245 function main
+  (signed int)__cs_pc_cs[(signed long int)0] >= (signed int)__cs_pc[(signed long int)0]
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c line 2246 function main
+  (signed int)__cs_pc_cs[(signed long int)0] <= 2
+
+State 2230 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main line 2249 thread 0
+----------------------------------------------------
+  SM__&__dr_param_whoop_wrapper_pc8736x_gpio_get_args!0@2__dr_write=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 2231 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main line 2249 thread 0
+----------------------------------------------------
+  SM__&__dr_param_whoop_wrapper_pc8736x_gpio_get_args!0@2__dr_write_noatomic=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 2232 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main line 2249 thread 0
+----------------------------------------------------
+  __dr_param_whoop_wrapper_pc8736x_gpio_get_args=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 2234 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function whoop_wrapper_pc8736x_gpio_get_0 line 1820 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=TRUE (00000001)
+
+State 2235 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function whoop_wrapper_pc8736x_gpio_get_0 line 1821 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=TRUE (00000001)
+
+State 2240 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function whoop_wrapper_pc8736x_gpio_get_0 line 1822 thread 0
+----------------------------------------------------
+  __dr_param_pc8736x_gpio_get_1_minor=56u (00000000 00000000 00000000 00111000)
+
+State 2245 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function whoop_wrapper_pc8736x_gpio_get_0 line 1826 thread 0
+----------------------------------------------------
+  __dr_nondet_pc8736x_gpio_get_1_port=7 (00000000 00000000 00000000 00000111)
+
+State 2250 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function whoop_wrapper_pc8736x_gpio_get_0 line 1827 thread 0
+----------------------------------------------------
+  __dr_nondet_pc8736x_gpio_get_1_bit=0 (00000000 00000000 00000000 00000000)
+
+State 2255 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function whoop_wrapper_pc8736x_gpio_get_0 line 1868 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 2256 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function whoop_wrapper_pc8736x_gpio_get_0 line 1868 thread 0
+----------------------------------------------------
+  __cs_thread_index=0u (00000000 00000000 00000000 00000000)
+
+State 2257 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __cs_exit line 101 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 2262 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main line 2254 thread 0
+----------------------------------------------------
+  __cs_pc[0l]=1 (00001)
+
+State 2263 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main line 2257 thread 0
+----------------------------------------------------
+  __cs_tmp_t1_r1=8 (1000)
+
+State 2265 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main line 2274 thread 0
+----------------------------------------------------
+  __cs_tmp_t2_r2=0 (00000)
+
+State 2267 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main line 2277 thread 0
+----------------------------------------------------
+  __cs_pc_cs[2l]=25 (011001)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c line 2278 function main
+  (signed int)__cs_pc_cs[(signed long int)2] >= (signed int)__cs_pc[(signed long int)2]
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c line 2279 function main
+  (signed int)__cs_pc_cs[(signed long int)2] <= 28
+
+State 2271 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main line 2281 thread 0
+----------------------------------------------------
+  __cs_dataraceDetectionStarted=TRUE (00000001)
+
+State 2304 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main_thread line 2170 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 2305 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main_thread line 2170 thread 0
+----------------------------------------------------
+  __cs_thread_index=2u (00000000 00000000 00000000 00000010)
+
+State 2306 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __cs_exit line 101 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[2l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 2311 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main line 2286 thread 0
+----------------------------------------------------
+  __cs_dataraceSecondThread=TRUE (00000001)
+
+State 2312 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main line 2287 thread 0
+----------------------------------------------------
+  __cs_pc[2l]=25 (11001)
+
+State 2313 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main line 2290 thread 0
+----------------------------------------------------
+  __cs_tmp_t0_r2=1 (01)
+
+State 2315 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main line 2293 thread 0
+----------------------------------------------------
+  __cs_pc_cs[0l]=2 (000010)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c line 2294 function main
+  (signed int)__cs_pc_cs[(signed long int)0] >= (signed int)__cs_pc[(signed long int)0]
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c line 2295 function main
+  (signed int)__cs_pc_cs[(signed long int)0] <= 2
+
+State 2321 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main line 2298 thread 0
+----------------------------------------------------
+  SM__&__dr_param_whoop_wrapper_pc8736x_gpio_get_args!0@3__dr_write=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 2322 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main line 2298 thread 0
+----------------------------------------------------
+  SM__&__dr_param_whoop_wrapper_pc8736x_gpio_get_args!0@3__dr_write_noatomic=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 2323 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main line 2298 thread 0
+----------------------------------------------------
+  __dr_param_whoop_wrapper_pc8736x_gpio_get_args=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 2326 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function whoop_wrapper_pc8736x_gpio_get_0 line 1833 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=TRUE (00000001)
+
+State 2327 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function whoop_wrapper_pc8736x_gpio_get_0 line 1834 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=TRUE (00000001)
+
+State 2335 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function whoop_wrapper_pc8736x_gpio_get_0 line 1835 thread 0
+----------------------------------------------------
+  return_value___CPROVER_get_field$5=0 (00000000 00000000 00000000 00000000)
+
+State 2336 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function whoop_wrapper_pc8736x_gpio_get_0 line 1835 thread 0
+----------------------------------------------------
+  tmp_if_expr$5=TRUE (1)
+
+State 2338 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function whoop_wrapper_pc8736x_gpio_get_0 line 1835 thread 0
+----------------------------------------------------
+  __cs_dataraceNotDetected=TRUE (00000001)
+
+State 2344 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function whoop_wrapper_pc8736x_gpio_get_0 line 1835 thread 0
+----------------------------------------------------
+  return_value___CPROVER_get_field$6=0 (00000000 00000000 00000000 00000000)
+
+State 2345 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function whoop_wrapper_pc8736x_gpio_get_0 line 1835 thread 0
+----------------------------------------------------
+  tmp_if_expr$6=TRUE (1)
+
+State 2347 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function whoop_wrapper_pc8736x_gpio_get_0 line 1835 thread 0
+----------------------------------------------------
+  __cs_dataraceNotDetected=TRUE (00000001)
+
+State 2353 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function whoop_wrapper_pc8736x_gpio_get_0 line 1835 thread 0
+----------------------------------------------------
+  return_value___CPROVER_get_field$7=0 (00000000 00000000 00000000 00000000)
+
+State 2354 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function whoop_wrapper_pc8736x_gpio_get_0 line 1835 thread 0
+----------------------------------------------------
+  tmp_if_expr$7=TRUE (1)
+
+State 2356 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function whoop_wrapper_pc8736x_gpio_get_0 line 1835 thread 0
+----------------------------------------------------
+  __cs_dataraceNotDetected=TRUE (00000001)
+
+State 2362 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function whoop_wrapper_pc8736x_gpio_get_0 line 1835 thread 0
+----------------------------------------------------
+  return_value___CPROVER_get_field$8=0 (00000000 00000000 00000000 00000000)
+
+State 2363 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function whoop_wrapper_pc8736x_gpio_get_0 line 1835 thread 0
+----------------------------------------------------
+  tmp_if_expr$8=TRUE (1)
+
+State 2365 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function whoop_wrapper_pc8736x_gpio_get_0 line 1835 thread 0
+----------------------------------------------------
+  __cs_dataraceNotDetected=TRUE (00000001)
+
+State 2371 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function whoop_wrapper_pc8736x_gpio_get_0 line 1835 thread 0
+----------------------------------------------------
+  return_value___CPROVER_get_field$9=1 (00000000 00000000 00000000 00000001)
+
+State 2372 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function whoop_wrapper_pc8736x_gpio_get_0 line 1835 thread 0
+----------------------------------------------------
+  tmp_if_expr$9=FALSE (0)
+
+State 2374 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function whoop_wrapper_pc8736x_gpio_get_0 line 1835 thread 0
+----------------------------------------------------
+  __cs_dataraceNotDetected=FALSE (00000000)
+
+State 2375 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function whoop_wrapper_pc8736x_gpio_get_0 line 1835 thread 0
+----------------------------------------------------
+  __dr_param_inb_p_16_arg0=1u (00000000 00000000 00000000 00000001)
+
+State 2376 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function whoop_wrapper_pc8736x_gpio_get_0 line 1836 thread 0
+----------------------------------------------------
+  __cs_retval_inb_p_16=0 (00000000)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c line 1840 function whoop_wrapper_pc8736x_gpio_get_0
+  (signed int)__cs_pc_cs[(signed long int)0] >= 2
+
+State 2383 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function whoop_wrapper_pc8736x_gpio_get_0 line 1845 thread 0
+----------------------------------------------------
+  tmp_if_expr$10=FALSE (0)
+
+State 2384 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function whoop_wrapper_pc8736x_gpio_get_0 line 1845 thread 0
+----------------------------------------------------
+  __cs_dataraceNotDetected=FALSE (00000000)
+
+State 2385 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function whoop_wrapper_pc8736x_gpio_get_0 line 1845 thread 0
+----------------------------------------------------
+  __dr_nondet_pc8736x_gpio_get_1_val=0 (00000000 00000000 00000000 00000000)
+
+State 2391 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function whoop_wrapper_pc8736x_gpio_get_0 line 1846 thread 0
+----------------------------------------------------
+  tmp_if_expr$11=FALSE (0)
+
+State 2392 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function whoop_wrapper_pc8736x_gpio_get_0 line 1846 thread 0
+----------------------------------------------------
+  __cs_dataraceNotDetected=FALSE (00000000)
+
+State 2396 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function whoop_wrapper_pc8736x_gpio_get_0 line 1846 thread 0
+----------------------------------------------------
+  tmp_if_expr$12=FALSE (0)
+
+State 2397 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function whoop_wrapper_pc8736x_gpio_get_0 line 1846 thread 0
+----------------------------------------------------
+  __cs_dataraceNotDetected=FALSE (00000000)
+
+State 2398 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function whoop_wrapper_pc8736x_gpio_get_0 line 1846 thread 0
+----------------------------------------------------
+  __dr_nondet_pc8736x_gpio_get_1_val=0 (00000000 00000000 00000000 00000000)
+
+State 2404 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function whoop_wrapper_pc8736x_gpio_get_0 line 1847 thread 0
+----------------------------------------------------
+  tmp_if_expr$13=FALSE (0)
+
+State 2405 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function whoop_wrapper_pc8736x_gpio_get_0 line 1847 thread 0
+----------------------------------------------------
+  __cs_dataraceNotDetected=FALSE (00000000)
+
+State 2406 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function whoop_wrapper_pc8736x_gpio_get_0 line 1847 thread 0
+----------------------------------------------------
+  __dr_nondet_pc8736x_gpio_get_1_val=0 (00000000 00000000 00000000 00000000)
+
+State 2410 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function whoop_wrapper_pc8736x_gpio_get_0 line 1851 thread 0
+----------------------------------------------------
+  tmp_if_expr$14=FALSE (0)
+
+State 2411 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function whoop_wrapper_pc8736x_gpio_get_0 line 1851 thread 0
+----------------------------------------------------
+  __cs_dataraceNotDetected=FALSE (00000000)
+
+State 2412 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function whoop_wrapper_pc8736x_gpio_get_0 line 1851 thread 0
+----------------------------------------------------
+  __cs_retval_pc8736x_gpio_get_1=0 (00000000 00000000 00000000 00000000)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c line 1855 function whoop_wrapper_pc8736x_gpio_get_0
+  (signed int)__cs_pc_cs[(signed long int)0] >= 2
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c line 1864 function whoop_wrapper_pc8736x_gpio_get_0
+  (signed int)__cs_pc_cs[(signed long int)0] >= 2
+
+State 2417 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function whoop_wrapper_pc8736x_gpio_get_0 line 1868 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 2418 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function whoop_wrapper_pc8736x_gpio_get_0 line 1868 thread 0
+----------------------------------------------------
+  __cs_thread_index=0u (00000000 00000000 00000000 00000000)
+
+State 2419 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function __cs_exit line 101 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 2423 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main line 2300 thread 0
+----------------------------------------------------
+  __cs_dataraceContinue=FALSE (00000000)
+
+State 2425 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main line 2302 thread 0
+----------------------------------------------------
+  __cs_dataraceSecondThread=TRUE (00000001)
+
+State 2426 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main line 2303 thread 0
+----------------------------------------------------
+  __cs_pc[0l]=2 (00010)
+
+State 2427 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main line 2306 thread 0
+----------------------------------------------------
+  __cs_tmp_t1_r2=0 (0000)
+
+Violated property:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_MODIFIEDchar_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get.c function main line 2317 thread 0
+  Data race failure
+  __cs_dataraceNotDetected != FALSE
+
+
+VERIFICATION FAILED
+
+real	0m2,169s
+user	0m2,131s
+sys	0m0,043s

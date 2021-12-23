@@ -1,0 +1,1107 @@
+CBMC version 5.45.0 (cbmc-5.45.0-179-gd48dc284f7) 64-bit x86_64 linux
+Parsing /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c
+Converting
+Type-checking _csdr_10_fmaxsym_cas
+file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c line 319 function __CSEQ_atomic_CAS: function '__CPROVER_set_field' is not declared
+file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c line 319 function __CSEQ_atomic_CAS: function '__CPROVER_get_field' is not declared
+file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c line 3604 function main: function '__CPROVER_field_decl_global' is not declared
+file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c line 3605 function main: function '__CPROVER_field_decl_local' is not declared
+Generating GOTO Program
+Adding CPROVER library (x86_64)
+Removal of function pointers and virtual functions
+Generic Property Instrumentation
+Running with 8 object bits, 56 offset bits (default)
+Starting Bounded Model Checking
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c line 3590 function main_thread thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c line 508 function thr1_0 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c line 526 function thr1_0 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c line 700 function thr1_0 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c line 718 function thr1_0 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c line 892 function thr1_0 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c line 910 function thr1_0 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c line 1084 function thr1_0 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c line 1102 function thr1_0 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c line 1315 function thr1_1 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c line 1333 function thr1_1 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c line 1507 function thr1_1 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c line 1525 function thr1_1 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c line 1699 function thr1_1 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c line 1717 function thr1_1 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c line 1891 function thr1_1 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c line 1909 function thr1_1 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c line 2122 function thr1_2 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c line 2140 function thr1_2 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c line 2314 function thr1_2 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c line 2332 function thr1_2 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c line 2506 function thr1_2 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c line 2524 function thr1_2 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c line 2698 function thr1_2 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c line 2716 function thr1_2 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c line 2929 function thr1_3 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c line 2947 function thr1_3 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c line 3121 function thr1_3 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c line 3139 function thr1_3 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c line 3313 function thr1_3 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c line 3331 function thr1_3 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c line 3505 function thr1_3 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c line 3523 function thr1_3 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c line 3590 function main_thread thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c line 508 function thr1_0 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c line 526 function thr1_0 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c line 700 function thr1_0 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c line 718 function thr1_0 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c line 892 function thr1_0 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c line 910 function thr1_0 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c line 1084 function thr1_0 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c line 1102 function thr1_0 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c line 1315 function thr1_1 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c line 1333 function thr1_1 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c line 1507 function thr1_1 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c line 1525 function thr1_1 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c line 1699 function thr1_1 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c line 1717 function thr1_1 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c line 1891 function thr1_1 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c line 1909 function thr1_1 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c line 2122 function thr1_2 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c line 2140 function thr1_2 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c line 2314 function thr1_2 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c line 2332 function thr1_2 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c line 2506 function thr1_2 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c line 2524 function thr1_2 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c line 2698 function thr1_2 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c line 2716 function thr1_2 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c line 2929 function thr1_3 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c line 2947 function thr1_3 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c line 3121 function thr1_3 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c line 3139 function thr1_3 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c line 3313 function thr1_3 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c line 3331 function thr1_3 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c line 3505 function thr1_3 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c line 3523 function thr1_3 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c line 3590 function main_thread thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c line 508 function thr1_0 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c line 526 function thr1_0 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c line 700 function thr1_0 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c line 718 function thr1_0 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c line 892 function thr1_0 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c line 910 function thr1_0 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c line 1084 function thr1_0 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c line 1102 function thr1_0 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c line 1315 function thr1_1 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c line 1333 function thr1_1 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c line 1507 function thr1_1 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c line 1525 function thr1_1 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c line 1699 function thr1_1 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c line 1717 function thr1_1 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c line 1891 function thr1_1 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c line 1909 function thr1_1 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c line 2122 function thr1_2 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c line 2140 function thr1_2 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c line 2314 function thr1_2 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c line 2332 function thr1_2 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c line 2506 function thr1_2 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c line 2524 function thr1_2 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c line 2698 function thr1_2 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c line 2716 function thr1_2 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c line 2929 function thr1_3 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c line 2947 function thr1_3 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c line 3121 function thr1_3 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c line 3139 function thr1_3 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c line 3313 function thr1_3 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c line 3331 function thr1_3 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c line 3505 function thr1_3 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c line 3523 function thr1_3 thread 0
+Runtime Symex: 10.7718s
+size of program expression: 160010 steps
+simple slicing removed 5 assignments
+Generated 1 VCC(s), 1 remaining after simplification
+Runtime Postprocess Equation: 0.037342s
+Passing problem to propositional reduction
+converting SSA
+Runtime Convert SSA: 0.91088s
+Running propositional reduction
+Post-processing
+Runtime Post-process: 3.274e-05s
+Solving with Glucose Syrup with simplifier
+451138 variables, 971240 clauses
+SAT checker: instance is SATISFIABLE
+Runtime Solver: 3.6208s
+Runtime decision procedure: 4.53681s
+Building error trace
+Counterexample:
+
+State 24 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function __CPROVER_initialize line 57 thread 0
+----------------------------------------------------
+  __cs_active_thread[0l]=0 (0)
+
+State 25 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function __CPROVER_initialize line 57 thread 0
+----------------------------------------------------
+  __cs_active_thread[1l]=0 (0)
+
+State 26 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function __CPROVER_initialize line 57 thread 0
+----------------------------------------------------
+  __cs_active_thread[2l]=0 (0)
+
+State 27 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function __CPROVER_initialize line 57 thread 0
+----------------------------------------------------
+  __cs_active_thread[3l]=0 (0)
+
+State 28 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function __CPROVER_initialize line 57 thread 0
+----------------------------------------------------
+  __cs_active_thread[4l]=0 (0)
+
+State 37 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function __CPROVER_initialize line 58 thread 0
+----------------------------------------------------
+  __cs_pc[0l]=0 (000000)
+
+State 38 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function __CPROVER_initialize line 58 thread 0
+----------------------------------------------------
+  __cs_pc[1l]=0 (000000)
+
+State 39 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function __CPROVER_initialize line 58 thread 0
+----------------------------------------------------
+  __cs_pc[2l]=0 (000000)
+
+State 40 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function __CPROVER_initialize line 58 thread 0
+----------------------------------------------------
+  __cs_pc[3l]=0 (000000)
+
+State 41 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function __CPROVER_initialize line 58 thread 0
+----------------------------------------------------
+  __cs_pc[4l]=0 (000000)
+
+State 43 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function __CPROVER_initialize line 59 thread 0
+----------------------------------------------------
+  __cs_pc_cs[0l]=0 (0000000)
+
+State 44 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function __CPROVER_initialize line 59 thread 0
+----------------------------------------------------
+  __cs_pc_cs[1l]=0 (0000000)
+
+State 45 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function __CPROVER_initialize line 59 thread 0
+----------------------------------------------------
+  __cs_pc_cs[2l]=0 (0000000)
+
+State 46 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function __CPROVER_initialize line 59 thread 0
+----------------------------------------------------
+  __cs_pc_cs[3l]=0 (0000000)
+
+State 47 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function __CPROVER_initialize line 59 thread 0
+----------------------------------------------------
+  __cs_pc_cs[4l]=0 (0000000)
+
+State 49 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function __CPROVER_initialize line 82 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 50 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function __CPROVER_initialize line 82 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 51 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function __CPROVER_initialize line 82 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[2l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 52 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function __CPROVER_initialize line 82 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[3l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 53 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function __CPROVER_initialize line 82 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[4l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 55 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function __CPROVER_initialize line 61 thread 0
+----------------------------------------------------
+  __cs_thread_lines[0l]=50 (110010)
+
+State 56 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function __CPROVER_initialize line 61 thread 0
+----------------------------------------------------
+  __cs_thread_lines[1l]=50 (110010)
+
+State 57 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function __CPROVER_initialize line 61 thread 0
+----------------------------------------------------
+  __cs_thread_lines[2l]=50 (110010)
+
+State 58 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function __CPROVER_initialize line 61 thread 0
+----------------------------------------------------
+  __cs_thread_lines[3l]=50 (110010)
+
+State 59 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function __CPROVER_initialize line 61 thread 0
+----------------------------------------------------
+  __cs_thread_lines[4l]=6 (000110)
+
+State 61 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function __CPROVER_initialize line 81 thread 0
+----------------------------------------------------
+  __cs_threadargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 62 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function __CPROVER_initialize line 81 thread 0
+----------------------------------------------------
+  __cs_threadargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 63 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function __CPROVER_initialize line 81 thread 0
+----------------------------------------------------
+  __cs_threadargs[2l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 64 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function __CPROVER_initialize line 81 thread 0
+----------------------------------------------------
+  __cs_threadargs[3l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 65 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function __CPROVER_initialize line 81 thread 0
+----------------------------------------------------
+  __cs_threadargs[4l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 73 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function __CPROVER_initialize line 309 thread 0
+----------------------------------------------------
+  storage[0l]=0 (00000000 00000000 00000000 00000000)
+
+State 74 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function __CPROVER_initialize line 309 thread 0
+----------------------------------------------------
+  storage[1l]=0 (00000000 00000000 00000000 00000000)
+
+State 75 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function __CPROVER_initialize line 309 thread 0
+----------------------------------------------------
+  storage[2l]=0 (00000000 00000000 00000000 00000000)
+
+State 76 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function __CPROVER_initialize line 309 thread 0
+----------------------------------------------------
+  storage[3l]=0 (00000000 00000000 00000000 00000000)
+
+State 77 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function __CPROVER_initialize line 309 thread 0
+----------------------------------------------------
+  storage[4l]=0 (00000000 00000000 00000000 00000000)
+
+State 78 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function __CPROVER_initialize line 309 thread 0
+----------------------------------------------------
+  storage[5l]=0 (00000000 00000000 00000000 00000000)
+
+State 80 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function __CPROVER_initialize line 309 thread 0
+----------------------------------------------------
+  SM__&storage__dr_write[0l]=0 (00000000 00000000 00000000 00000000)
+
+State 81 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function __CPROVER_initialize line 309 thread 0
+----------------------------------------------------
+  SM__&storage__dr_write[1l]=0 (00000000 00000000 00000000 00000000)
+
+State 82 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function __CPROVER_initialize line 309 thread 0
+----------------------------------------------------
+  SM__&storage__dr_write[2l]=0 (00000000 00000000 00000000 00000000)
+
+State 83 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function __CPROVER_initialize line 309 thread 0
+----------------------------------------------------
+  SM__&storage__dr_write[3l]=0 (00000000 00000000 00000000 00000000)
+
+State 84 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function __CPROVER_initialize line 309 thread 0
+----------------------------------------------------
+  SM__&storage__dr_write[4l]=0 (00000000 00000000 00000000 00000000)
+
+State 85 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function __CPROVER_initialize line 309 thread 0
+----------------------------------------------------
+  SM__&storage__dr_write[5l]=0 (00000000 00000000 00000000 00000000)
+
+State 87 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function __CPROVER_initialize line 309 thread 0
+----------------------------------------------------
+  SM__&storage__dr_write_noatomic[0l]=0 (00000000 00000000 00000000 00000000)
+
+State 88 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function __CPROVER_initialize line 309 thread 0
+----------------------------------------------------
+  SM__&storage__dr_write_noatomic[1l]=0 (00000000 00000000 00000000 00000000)
+
+State 89 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function __CPROVER_initialize line 309 thread 0
+----------------------------------------------------
+  SM__&storage__dr_write_noatomic[2l]=0 (00000000 00000000 00000000 00000000)
+
+State 90 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function __CPROVER_initialize line 309 thread 0
+----------------------------------------------------
+  SM__&storage__dr_write_noatomic[3l]=0 (00000000 00000000 00000000 00000000)
+
+State 91 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function __CPROVER_initialize line 309 thread 0
+----------------------------------------------------
+  SM__&storage__dr_write_noatomic[4l]=0 (00000000 00000000 00000000 00000000)
+
+State 92 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function __CPROVER_initialize line 309 thread 0
+----------------------------------------------------
+  SM__&storage__dr_write_noatomic[5l]=0 (00000000 00000000 00000000 00000000)
+
+State 604 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function main line 3608 thread 0
+----------------------------------------------------
+  __cs_dr_ts=6 (0110)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c line 3609 function main
+  (signed int)__cs_dr_ts <= 13
+
+State 606 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function main line 3612 thread 0
+----------------------------------------------------
+  __cs_active_thread[4l]=1 (1)
+
+State 607 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function main line 3613 thread 0
+----------------------------------------------------
+  __cs_tmp_t4_r0=3 (011)
+
+State 608 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function main line 3614 thread 0
+----------------------------------------------------
+  __cs_pc_cs[4l]=3 (0000011)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c line 3615 function main
+  (signed int)__cs_pc_cs[(signed long int)4] > 0
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c line 3616 function main
+  (signed int)__cs_pc_cs[(signed long int)4] <= 6
+
+State 615 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function main_thread line 3561 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 616 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function main_thread line 3562 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=TRUE (00000001)
+
+State 620 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function main_thread line 3567 thread 0
+----------------------------------------------------
+  __cs_new_thread_id=&__dr_nondet_main_t (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 621 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function main_thread line 3567 thread 0
+----------------------------------------------------
+  __cs_attr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 622 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function main_thread line 3567 thread 0
+----------------------------------------------------
+  __cs_thread_function=thr1_0 (00000011 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 623 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function main_thread line 3567 thread 0
+----------------------------------------------------
+  __cs_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 624 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function main_thread line 3567 thread 0
+----------------------------------------------------
+  __cs_threadID=0 (00000000 00000000 00000000 00000000)
+
+State 626 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function __cs_create line 87 thread 0
+----------------------------------------------------
+  __dr_nondet_main_t=0 (00000000 00000000 00000000 00000000)
+
+State 627 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function __cs_create line 88 thread 0
+----------------------------------------------------
+  __cs_active_thread[0l]=1 (1)
+
+State 628 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function __cs_create line 89 thread 0
+----------------------------------------------------
+  __cs_threadargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 633 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function main_thread line 3573 thread 0
+----------------------------------------------------
+  __cs_new_thread_id=&__dr_nondet_main_t (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 634 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function main_thread line 3573 thread 0
+----------------------------------------------------
+  __cs_attr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 635 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function main_thread line 3573 thread 0
+----------------------------------------------------
+  __cs_thread_function=thr1_1 (00000100 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 636 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function main_thread line 3573 thread 0
+----------------------------------------------------
+  __cs_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 637 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function main_thread line 3573 thread 0
+----------------------------------------------------
+  __cs_threadID=1 (00000000 00000000 00000000 00000001)
+
+State 639 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function __cs_create line 87 thread 0
+----------------------------------------------------
+  __dr_nondet_main_t=1 (00000000 00000000 00000000 00000001)
+
+State 640 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function __cs_create line 88 thread 0
+----------------------------------------------------
+  __cs_active_thread[1l]=1 (1)
+
+State 641 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function __cs_create line 89 thread 0
+----------------------------------------------------
+  __cs_threadargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 648 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function main_thread line 3600 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 649 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function main_thread line 3600 thread 0
+----------------------------------------------------
+  __cs_thread_index=4u (00000000 00000000 00000000 00000100)
+
+State 650 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function __cs_exit line 101 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[4l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 654 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function main line 3622 thread 0
+----------------------------------------------------
+  __cs_pc[4l]=3 (000011)
+
+State 655 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function main line 3624 thread 0
+----------------------------------------------------
+  __cs_tmp_t0_r0=3 (000011)
+
+State 657 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function main line 3627 thread 0
+----------------------------------------------------
+  __cs_pc_cs[0l]=3 (0000011)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c line 3628 function main
+  (signed int)__cs_pc_cs[(signed long int)0] <= 50
+
+State 662 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function main line 3631 thread 0
+----------------------------------------------------
+  SM__&__dr_param_thr1_arg!0@1__dr_write=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 663 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function main line 3631 thread 0
+----------------------------------------------------
+  SM__&__dr_param_thr1_arg!0@1__dr_write_noatomic=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 664 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function main line 3631 thread 0
+----------------------------------------------------
+  __dr_param_thr1_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 666 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function thr1_0 line 334 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 667 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function thr1_0 line 335 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=TRUE (00000001)
+
+State 671 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function thr1_0 line 336 thread 0
+----------------------------------------------------
+  __dr_nondet_thr1_offset=2 (00000000 00000000 00000000 00000010)
+
+State 676 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function thr1_0 line 337 thread 0
+----------------------------------------------------
+  tmp_if_expr$2=FALSE (0)
+
+State 680 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function thr1_0 line 337 thread 0
+----------------------------------------------------
+  tmp_if_expr$4=FALSE (0)
+
+State 683 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function thr1_0 line 337 thread 0
+----------------------------------------------------
+  SM__&cond!0@1__dr_write=0 (00000000 00000000 00000000 00000000)
+
+State 684 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function thr1_0 line 337 thread 0
+----------------------------------------------------
+  SM__&cond!0@1__dr_write_noatomic=0 (00000000 00000000 00000000 00000000)
+
+State 685 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function thr1_0 line 337 thread 0
+----------------------------------------------------
+  cond=1 (00000000 00000000 00000000 00000001)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c line 300 function assume_abort_if_not
+  cond != 0
+
+State 692 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function thr1_0 line 340 thread 0
+----------------------------------------------------
+  __dr_param_findMax_1_offset=2 (00000000 00000000 00000000 00000010)
+
+State 697 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function thr1_0 line 345 thread 0
+----------------------------------------------------
+  __dr_nondet_findMax_1_i=2 (00000000 00000000 00000000 00000010)
+
+State 702 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function thr1_0 line 355 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 703 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function thr1_0 line 356 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 710 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function thr1_0 line 357 thread 0
+----------------------------------------------------
+  __dr_nondet_findMax_1_e=0 (00000000 00000000 00000000 00000000)
+
+State 712 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function thr1_0 line 361 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=TRUE (00000001)
+
+State 713 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function thr1_0 line 362 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 718 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function thr1_0 line 363 thread 0
+----------------------------------------------------
+  __dr_nondet_findMax_1_c=-2147483648 (10000000 00000000 00000000 00000000)
+
+State 724 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function thr1_0 line 367 thread 0
+----------------------------------------------------
+  __dr_nondet_findMax_1___cs_tmp_if_cond_1=TRUE (00000001)
+
+State 793 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function thr1_0 line 1135 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 794 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function thr1_0 line 1135 thread 0
+----------------------------------------------------
+  __cs_thread_index=0u (00000000 00000000 00000000 00000000)
+
+State 795 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function __cs_exit line 101 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 800 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function main line 3636 thread 0
+----------------------------------------------------
+  __cs_pc[0l]=3 (000011)
+
+State 801 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function main line 3639 thread 0
+----------------------------------------------------
+  __cs_tmp_t1_r0=2 (000010)
+
+State 803 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function main line 3642 thread 0
+----------------------------------------------------
+  __cs_pc_cs[1l]=2 (0000010)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c line 3643 function main
+  (signed int)__cs_pc_cs[(signed long int)1] <= 50
+
+State 808 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function main line 3646 thread 0
+----------------------------------------------------
+  SM__&__dr_param_thr1_arg!0@1__dr_write$0=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 809 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function main line 3646 thread 0
+----------------------------------------------------
+  SM__&__dr_param_thr1_arg!0@1__dr_write_noatomic$0=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 810 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function main line 3646 thread 0
+----------------------------------------------------
+  __dr_param_thr1_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 812 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function thr1_1 line 1141 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 813 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function thr1_1 line 1142 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=TRUE (00000001)
+
+State 817 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function thr1_1 line 1143 thread 0
+----------------------------------------------------
+  __dr_nondet_thr1_offset=4 (00000000 00000000 00000000 00000100)
+
+State 822 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function thr1_1 line 1144 thread 0
+----------------------------------------------------
+  tmp_if_expr$2=FALSE (0)
+
+State 826 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function thr1_1 line 1144 thread 0
+----------------------------------------------------
+  tmp_if_expr$4=FALSE (0)
+
+State 829 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function thr1_1 line 1144 thread 0
+----------------------------------------------------
+  SM__&cond!0@2__dr_write=0 (00000000 00000000 00000000 00000000)
+
+State 830 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function thr1_1 line 1144 thread 0
+----------------------------------------------------
+  SM__&cond!0@2__dr_write_noatomic=0 (00000000 00000000 00000000 00000000)
+
+State 831 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function thr1_1 line 1144 thread 0
+----------------------------------------------------
+  cond=1 (00000000 00000000 00000000 00000001)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c line 300 function assume_abort_if_not
+  cond != 0
+
+State 838 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function thr1_1 line 1147 thread 0
+----------------------------------------------------
+  __dr_param_findMax_1_offset=4 (00000000 00000000 00000000 00000100)
+
+State 843 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function thr1_1 line 1152 thread 0
+----------------------------------------------------
+  __dr_nondet_findMax_1_i=4 (00000000 00000000 00000000 00000100)
+
+State 848 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function thr1_1 line 1162 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=TRUE (00000001)
+
+State 849 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function thr1_1 line 1163 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 856 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function thr1_1 line 1164 thread 0
+----------------------------------------------------
+  __dr_nondet_findMax_1_e=0 (00000000 00000000 00000000 00000000)
+
+State 924 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function thr1_1 line 1942 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 925 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function thr1_1 line 1942 thread 0
+----------------------------------------------------
+  __cs_thread_index=1u (00000000 00000000 00000000 00000001)
+
+State 926 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function __cs_exit line 101 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 931 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function main line 3651 thread 0
+----------------------------------------------------
+  __cs_pc[1l]=2 (000010)
+
+State 932 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function main line 3654 thread 0
+----------------------------------------------------
+  __cs_tmp_t2_r0=3 (000011)
+
+State 934 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function main line 3669 thread 0
+----------------------------------------------------
+  __cs_tmp_t3_r0=31 (011111)
+
+State 936 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function main line 3685 thread 0
+----------------------------------------------------
+  __cs_tmp_t4_r1=2 (010)
+
+State 938 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function main line 3688 thread 0
+----------------------------------------------------
+  __cs_pc_cs[4l]=5 (0000101)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c line 3689 function main
+  (signed int)__cs_pc_cs[(signed long int)4] >= (signed int)__cs_pc[(signed long int)4]
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c line 3690 function main
+  (signed int)__cs_pc_cs[(signed long int)4] <= 6
+
+State 950 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function main_thread line 3579 thread 0
+----------------------------------------------------
+  __cs_new_thread_id=&__dr_nondet_main_t (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 951 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function main_thread line 3579 thread 0
+----------------------------------------------------
+  __cs_attr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 952 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function main_thread line 3579 thread 0
+----------------------------------------------------
+  __cs_thread_function=thr1_2 (00000101 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 953 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function main_thread line 3579 thread 0
+----------------------------------------------------
+  __cs_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 954 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function main_thread line 3579 thread 0
+----------------------------------------------------
+  __cs_threadID=2 (00000000 00000000 00000000 00000010)
+
+State 956 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function __cs_create line 87 thread 0
+----------------------------------------------------
+  __dr_nondet_main_t=2 (00000000 00000000 00000000 00000010)
+
+State 957 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function __cs_create line 88 thread 0
+----------------------------------------------------
+  __cs_active_thread[2l]=1 (1)
+
+State 958 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function __cs_create line 89 thread 0
+----------------------------------------------------
+  __cs_threadargs[2l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 963 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function main_thread line 3585 thread 0
+----------------------------------------------------
+  __cs_new_thread_id=&__dr_nondet_main_t (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 964 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function main_thread line 3585 thread 0
+----------------------------------------------------
+  __cs_attr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 965 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function main_thread line 3585 thread 0
+----------------------------------------------------
+  __cs_thread_function=thr1_3 (00000110 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 966 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function main_thread line 3585 thread 0
+----------------------------------------------------
+  __cs_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 967 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function main_thread line 3585 thread 0
+----------------------------------------------------
+  __cs_threadID=3 (00000000 00000000 00000000 00000011)
+
+State 969 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function __cs_create line 87 thread 0
+----------------------------------------------------
+  __dr_nondet_main_t=3 (00000000 00000000 00000000 00000011)
+
+State 970 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function __cs_create line 88 thread 0
+----------------------------------------------------
+  __cs_active_thread[3l]=1 (1)
+
+State 971 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function __cs_create line 89 thread 0
+----------------------------------------------------
+  __cs_threadargs[3l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 976 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function main_thread line 3600 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 977 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function main_thread line 3600 thread 0
+----------------------------------------------------
+  __cs_thread_index=4u (00000000 00000000 00000000 00000100)
+
+State 978 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function __cs_exit line 101 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[4l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 983 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function main line 3698 thread 0
+----------------------------------------------------
+  __cs_pc[4l]=5 (000101)
+
+State 984 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function main line 3701 thread 0
+----------------------------------------------------
+  __cs_tmp_t0_r1=10 (001010)
+
+State 986 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function main line 3704 thread 0
+----------------------------------------------------
+  __cs_pc_cs[0l]=13 (0001101)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c line 3705 function main
+  (signed int)__cs_pc_cs[(signed long int)0] >= (signed int)__cs_pc[(signed long int)0]
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c line 3706 function main
+  (signed int)__cs_pc_cs[(signed long int)0] <= 50
+
+State 990 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function main line 3708 thread 0
+----------------------------------------------------
+  __cs_dataraceDetectionStarted=TRUE (00000001)
+
+State 993 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function main line 3709 thread 0
+----------------------------------------------------
+  SM__&__dr_param_thr1_arg!0@2__dr_write=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 994 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function main line 3709 thread 0
+----------------------------------------------------
+  SM__&__dr_param_thr1_arg!0@2__dr_write_noatomic=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 995 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function main line 3709 thread 0
+----------------------------------------------------
+  __dr_param_thr1_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1000 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function thr1_0 line 372 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=TRUE (00000001)
+
+State 1005 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function thr1_0 line 373 thread 0
+----------------------------------------------------
+  SM__&__dr_param___CSEQ_atomic_CAS_v!0@65__dr_write=((signed int *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1006 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function thr1_0 line 373 thread 0
+----------------------------------------------------
+  SM__&__dr_param___CSEQ_atomic_CAS_v!0@65__dr_write_noatomic=((signed int *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1007 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function thr1_0 line 373 thread 0
+----------------------------------------------------
+  SM__&__dr_param___CSEQ_atomic_CAS_e!0@65__dr_write=0 (00000000 00000000 00000000 00000000)
+
+State 1008 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function thr1_0 line 373 thread 0
+----------------------------------------------------
+  SM__&__dr_param___CSEQ_atomic_CAS_e!0@65__dr_write_noatomic=0 (00000000 00000000 00000000 00000000)
+
+State 1009 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function thr1_0 line 373 thread 0
+----------------------------------------------------
+  SM__&__dr_param___CSEQ_atomic_CAS_u!0@65__dr_write=0 (00000000 00000000 00000000 00000000)
+
+State 1010 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function thr1_0 line 373 thread 0
+----------------------------------------------------
+  SM__&__dr_param___CSEQ_atomic_CAS_u!0@65__dr_write_noatomic=0 (00000000 00000000 00000000 00000000)
+
+State 1011 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function thr1_0 line 373 thread 0
+----------------------------------------------------
+  SM__&__dr_param___CSEQ_atomic_CAS_r!0@65__dr_write=((signed int *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1012 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function thr1_0 line 373 thread 0
+----------------------------------------------------
+  SM__&__dr_param___CSEQ_atomic_CAS_r!0@65__dr_write_noatomic=((signed int *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1013 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function thr1_0 line 373 thread 0
+----------------------------------------------------
+  __dr_param___CSEQ_atomic_CAS_v=&max (00000111 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1014 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function thr1_0 line 373 thread 0
+----------------------------------------------------
+  __dr_param___CSEQ_atomic_CAS_e=-2147483648 (10000000 00000000 00000000 00000000)
+
+State 1015 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function thr1_0 line 373 thread 0
+----------------------------------------------------
+  __dr_param___CSEQ_atomic_CAS_u=0 (00000000 00000000 00000000 00000000)
+
+State 1016 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function thr1_0 line 373 thread 0
+----------------------------------------------------
+  __dr_param___CSEQ_atomic_CAS_r=&__dr_nondet_findMax_1_cret (00001000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1020 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function __CSEQ_atomic_CAS line 319 thread 0
+----------------------------------------------------
+  SM__&__dr_nondet___CSEQ_atomic_CAS___cs_tmp_if_cond_0__dr_write=TRUE (00000001)
+
+State 1025 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function __CSEQ_atomic_CAS line 319 thread 0
+----------------------------------------------------
+  __dr_nondet___CSEQ_atomic_CAS___cs_tmp_if_cond_0=TRUE (00000001)
+
+State 1033 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function __CSEQ_atomic_CAS line 322 thread 0
+----------------------------------------------------
+  SM__&max__dr_write=16843009 (00000001 00000001 00000001 00000001)
+
+State 1036 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function __CSEQ_atomic_CAS line 322 thread 0
+----------------------------------------------------
+  max=0 (00000000 00000000 00000000 00000000)
+
+State 1042 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function __CSEQ_atomic_CAS line 322 thread 0
+----------------------------------------------------
+  SM__&__dr_nondet_findMax_1_cret__dr_write=16843009 (00000001 00000001 00000001 00000001)
+
+State 1044 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function __CSEQ_atomic_CAS line 322 thread 0
+----------------------------------------------------
+  __dr_nondet_findMax_1_cret=1 (00000000 00000000 00000000 00000001)
+
+State 1050 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function thr1_0 line 377 thread 0
+----------------------------------------------------
+  SM__&__dr_nondet_findMax_1___cs_tmp_if_cond_2__dr_write=TRUE (00000001)
+
+State 1054 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function thr1_0 line 377 thread 0
+----------------------------------------------------
+  SM__&__dr_nondet_findMax_1___cs_tmp_if_cond_2__dr_write_noatomic=TRUE (00000001)
+
+State 1057 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function thr1_0 line 377 thread 0
+----------------------------------------------------
+  __dr_nondet_findMax_1___cs_tmp_if_cond_2=TRUE (00000001)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c line 510 function thr1_0
+  (signed int)__cs_pc_cs[(signed long int)0] >= 11
+
+State 1063 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function thr1_0 line 519 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 1064 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function thr1_0 line 520 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 1070 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function thr1_0 line 521 thread 0
+----------------------------------------------------
+  __dr_nondet_findMax_1___cs_tmp_if_cond_3=FALSE (00000000)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c line 529 function thr1_0
+  (signed int)__cs_pc_cs[(signed long int)0] >= 13
+
+State 1077 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function thr1_0 line 537 thread 0
+----------------------------------------------------
+  __dr_nondet_findMax_1_i=3 (00000000 00000000 00000000 00000011)
+
+State 1133 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function thr1_0 line 1135 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1134 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function thr1_0 line 1135 thread 0
+----------------------------------------------------
+  __cs_thread_index=0u (00000000 00000000 00000000 00000000)
+
+State 1135 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function __cs_exit line 101 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1140 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function main line 3713 thread 0
+----------------------------------------------------
+  __cs_dataraceSecondThread=TRUE (00000001)
+
+State 1141 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function main line 3714 thread 0
+----------------------------------------------------
+  __cs_pc[0l]=13 (001101)
+
+State 1142 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function main line 3717 thread 0
+----------------------------------------------------
+  __cs_tmp_t1_r1=11 (001011)
+
+State 1144 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function main line 3720 thread 0
+----------------------------------------------------
+  __cs_pc_cs[1l]=13 (0001101)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c line 3721 function main
+  (signed int)__cs_pc_cs[(signed long int)1] >= (signed int)__cs_pc[(signed long int)1]
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c line 3722 function main
+  (signed int)__cs_pc_cs[(signed long int)1] <= 50
+
+State 1150 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function main line 3725 thread 0
+----------------------------------------------------
+  SM__&__dr_param_thr1_arg!0@2__dr_write$0=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1151 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function main line 3725 thread 0
+----------------------------------------------------
+  SM__&__dr_param_thr1_arg!0@2__dr_write_noatomic$0=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1152 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function main line 3725 thread 0
+----------------------------------------------------
+  __dr_param_thr1_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1156 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function thr1_1 line 1168 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 1157 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function thr1_1 line 1169 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=TRUE (00000001)
+
+State 1165 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function thr1_1 line 1170 thread 0
+----------------------------------------------------
+  return_value___CPROVER_get_field$13=0 (00000000 00000000 00000000 00000000)
+
+State 1166 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function thr1_1 line 1170 thread 0
+----------------------------------------------------
+  tmp_if_expr$15=TRUE (1)
+
+State 1168 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function thr1_1 line 1170 thread 0
+----------------------------------------------------
+  __cs_dataraceNotDetected=TRUE (00000001)
+
+State 1174 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function thr1_1 line 1170 thread 0
+----------------------------------------------------
+  return_value___CPROVER_get_field$14=1 (00000000 00000000 00000000 00000001)
+
+State 1175 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function thr1_1 line 1170 thread 0
+----------------------------------------------------
+  tmp_if_expr$16=FALSE (0)
+
+State 1177 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function thr1_1 line 1170 thread 0
+----------------------------------------------------
+  __cs_dataraceNotDetected=FALSE (00000000)
+
+State 1178 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function thr1_1 line 1170 thread 0
+----------------------------------------------------
+  __dr_nondet_findMax_1_c=0 (00000000 00000000 00000000 00000000)
+
+State 1184 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function thr1_1 line 1174 thread 0
+----------------------------------------------------
+  tmp_if_expr$17=FALSE (0)
+
+State 1185 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function thr1_1 line 1174 thread 0
+----------------------------------------------------
+  __cs_dataraceNotDetected=FALSE (00000000)
+
+State 1189 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function thr1_1 line 1174 thread 0
+----------------------------------------------------
+  tmp_if_expr$18=FALSE (0)
+
+State 1190 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function thr1_1 line 1174 thread 0
+----------------------------------------------------
+  __cs_dataraceNotDetected=FALSE (00000000)
+
+State 1194 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function thr1_1 line 1174 thread 0
+----------------------------------------------------
+  tmp_if_expr$19=FALSE (0)
+
+State 1195 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function thr1_1 line 1174 thread 0
+----------------------------------------------------
+  __cs_dataraceNotDetected=FALSE (00000000)
+
+State 1196 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function thr1_1 line 1174 thread 0
+----------------------------------------------------
+  __dr_nondet_findMax_1___cs_tmp_if_cond_1=FALSE (00000000)
+
+State 1200 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function thr1_1 line 1175 thread 0
+----------------------------------------------------
+  tmp_if_expr$25=FALSE (0)
+
+State 1201 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function thr1_1 line 1175 thread 0
+----------------------------------------------------
+  __cs_dataraceNotDetected=FALSE (00000000)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c line 1194 function thr1_1
+  (signed int)__cs_pc_cs[(signed long int)1] >= 4
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c line 1317 function thr1_1
+  (signed int)__cs_pc_cs[(signed long int)1] >= 11
+
+State 1207 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function thr1_1 line 1326 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 1208 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function thr1_1 line 1327 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 1214 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function thr1_1 line 1328 thread 0
+----------------------------------------------------
+  __dr_nondet_findMax_1___cs_tmp_if_cond_3=FALSE (00000000)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c line 1336 function thr1_1
+  (signed int)__cs_pc_cs[(signed long int)1] >= 13
+
+State 1221 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function thr1_1 line 1344 thread 0
+----------------------------------------------------
+  __dr_nondet_findMax_1_i=5 (00000000 00000000 00000000 00000101)
+
+State 1277 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function thr1_1 line 1942 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1278 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function thr1_1 line 1942 thread 0
+----------------------------------------------------
+  __cs_thread_index=1u (00000000 00000000 00000000 00000001)
+
+State 1279 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function __cs_exit line 101 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1283 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function main line 3727 thread 0
+----------------------------------------------------
+  __cs_dataraceContinue=FALSE (00000000)
+
+State 1285 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function main line 3729 thread 0
+----------------------------------------------------
+  __cs_dataraceSecondThread=TRUE (00000001)
+
+State 1286 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function main line 3730 thread 0
+----------------------------------------------------
+  __cs_pc[1l]=13 (001101)
+
+State 1287 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function main line 3733 thread 0
+----------------------------------------------------
+  __cs_tmp_t2_r1=0 (000000)
+
+State 1289 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function main line 3749 thread 0
+----------------------------------------------------
+  __cs_tmp_t3_r1=2 (000010)
+
+State 1291 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function main line 3766 thread 0
+----------------------------------------------------
+  __cs_tmp_t4_r2=0 (000)
+
+State 1293 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function main line 3782 thread 0
+----------------------------------------------------
+  __cs_tmp_t0_r2=6 (000110)
+
+State 1295 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function main line 3798 thread 0
+----------------------------------------------------
+  __cs_tmp_t1_r2=1 (000001)
+
+State 1297 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function main line 3814 thread 0
+----------------------------------------------------
+  __cs_tmp_t2_r2=4 (000100)
+
+State 1299 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function main line 3830 thread 0
+----------------------------------------------------
+  __cs_tmp_t3_r2=3 (000011)
+
+Violated property:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_10_fmaxsym_cas.c function main line 3841 thread 0
+  Data race failure
+  __cs_dataraceNotDetected != FALSE
+
+
+VERIFICATION FAILED
+
+real	0m16,612s
+user	0m16,447s
+sys	0m0,172s

@@ -1,0 +1,117 @@
+ldv-races-original/race-1_2-join
+ldv-races-original/race-1_3-join
+ldv-races-original/race-2_2-container_of   PORSE
+ldv-races-original/race-2_3-container_of   PORSE
+ldv-races-original/race-2_4-container_of   PORSE
+ldv-races-original/race-2_5-container_of   PORSE
+ldv-races-original/race-3_2-container_of-global   PORSE
+ldv-races-original/race-4_2-thread_local_vars   PORSE,Lazy-DRSeq
+pthread-C-DAC-original/pthread-demo-datarace-2
+pthread-atomic-original/dekker
+pthread-atomic-original/gcd-2   PORSE, Lazy-DRSeq
+pthread-atomic-original/lamport  
+pthread-atomic-original/peterson  
+pthread-atomic-original/qrcu-1   PORSE, Lazy-DRSeq
+pthread-atomic-original/qrcu-2   PORSE, Lazy-DRSeq
+pthread-atomic-original/read_write_lock-1  
+pthread-atomic-original/read_write_lock-2  
+pthread-atomic-original/scull  
+pthread-atomic-original/szymanski  
+pthread-complex-original/elimination_backoff_stack    PORSE
+pthread-complex-original/safestack_relacy      PORSE, TSAN
+pthread-complex-original/workstealqueue_mutex-1    PORSE
+pthread-divine-original/barrier_2t    PORSE, TSAN
+pthread-divine-original/barrier_3t    PORSE, TSAN
+pthread-divine-original/condvar    TSAN, Lazy-DRSeq
+pthread-divine-original/divinefifo_1w1r    TSAN, Lazy-DRSeq
+pthread-divine-original/divinefifo-bug_1w1r    TSAN, Lazy-DRSeq
+pthread-divine-original/one_time_barrier_2t  PORSE, TSAN
+pthread-divine-original/one_time_barrier_3t  PORSE, TSAN
+pthread-divine-original/one_time_barrier_twice_2t  PORSE, TSAN
+pthread-divine-original/one_time_barrier_twice_3t  PORSE, TSAN
+pthread-divine-original/ring_1w1r-1      TSAN, Lazy-DRSeq
+pthread-divine-original/ring_1w1r-2      TSAN, Lazy-DRSeq
+pthread-divine-original/ring_2w1r-1      TSAN, Lazy-DRSeq
+pthread-divine-original/ring_2w1r-2      TSAN, Lazy-DRSeq
+pthread-driver-races-original/char_generic_nvram_read_nvram_write_nvram        PORSE
+pthread-driver-races-original/char_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_current           (WRONG Lazy-DRSeq)
+pthread-driver-races-original/char_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_get    Lazy-DRSeq  (WRONG Lazy-DRSeq) 
+pthread-driver-races-original/char_pc8736x_gpio_pc8736x_gpio_change_pc8736x_gpio_set                 (WRONG Lazy-DRSeq)
+pthread-driver-races-original/char_pc8736x_gpio_pc8736x_gpio_configure_pc8736x_gpio_get    PORSE, Lazy-DRSeq  (WRONG Lazy-DRSeq)
+pthread-driver-races-original/char_pc8736x_gpio_pc8736x_gpio_current_pc8736x_gpio_get   Lazy-DRSeq   (WRONG Lazy-DRSeq)
+pthread-driver-races-original/char_pc8736x_gpio_pc8736x_gpio_current_pc8736x_gpio_set              (WRONG Lazy-DRSeq)
+pthread-driver-races-original/char_pc8736x_gpio_pc8736x_gpio_get_pc8736x_gpio_set    Lazy-DRSeq        (WRONG Lazy-DRSeq)
+pthread-driver-races-original/char_pc8736x_gpio_pc8736x_gpio_open_pc8736x_gpio_get    Lazy-DRSeq   (WRONG Lazy-DRSeq)
+pthread-ext-original/01_inc
+pthread-ext-original/02_inc_cas
+pthread-ext-original/03_incdec    PORSE,TSAN
+pthread-ext-original/04_incdec_cas
+pthread-ext-original/05_tas      TSAN, Lazy-DRSeq
+pthread-ext-original/06_ticket
+pthread-ext-original/07_rand     TSAN, Lazy-DRSeq
+pthread-ext-original/08_rand_cas     TSAN, Lazy-DRSeq
+pthread-ext-original/09_fmaxsym   PORSE
+pthread-ext-original/10_fmaxsym_cas   PORSE, Lazy-DRSeq
+pthread-ext-original/11_fmaxsymopt   PORSE
+pthread-ext-original/12_fmaxsymopt_cas   PORSE, Lazy-DRSeq
+pthread-ext-original/13_unverif  TSAN, Lazy-DRSeq
+pthread-ext-original/14_spin2003    PORSE, TSAN
+pthread-ext-original/15_dekker
+pthread-ext-original/16_peterson
+pthread-ext-original/17_szymanski  TSAN, Lazy-DRSeq	
+pthread-ext-original/18_read_write_lock
+pthread-ext-original/19_time_var_mutex  PORSE, TSAN
+pthread-ext-original/20_lamport  
+pthread-ext-original/23_lu-fig2  TSAN, Lazy-DRSeq
+pthread-ext-original/25_stack
+pthread-ext-original/25_stack_longer-1    PORSE, Lazy-DRSeq
+pthread-ext-original/25_stack_longer-2
+pthread-ext-original/25_stack_longest-1
+pthread-ext-original/25_stack_longest-2    PORSE, Lazy-DRSeq
+pthread-ext-original/26_stack_cas
+pthread-ext-original/26_stack_cas_longer-1    PORSE, Lazy-DRSeq
+pthread-ext-original/26_stack_cas_longer-2
+pthread-ext-original/26_stack_cas_longest-1    PORSE
+pthread-ext-original/26_stack_cas_longest-2    PORSE, TSAN
+pthread-ext-original/27_Boop_simple      TSAN, Lazy-DRSeq
+pthread-ext-original/29_conditionals_vs  PORSE,TSAN
+pthread-ext-original/30_Function_Pointer3_vs
+pthread-ext-original/31_simple_loop5_vs   TSAN
+pthread-ext-original/32_pthread5_vs
+pthread-ext-original/33_double_lock_p1_vs
+pthread-ext-original/34_double_lock_p2_vs
+pthread-ext-original/36_stack_cas_p0_vs_concur    Lazy-DRSeq
+pthread-ext-original/37_stack_lock_p0_vs_concur  TSAN, Lazy-DRSeq
+pthread-ext-original/38_rand_cas_vs_concur
+pthread-ext-original/39_rand_lock_p0_vs
+pthread-ext-original/41_FreeBSD_abd_kbd_sliced   PORSE
+pthread-ext-original/42_FreeBSD_rdma_addr_sliced   PORSE
+pthread-ext-original/44_Solaris_space_map_sliced   PORSE, TSAN
+pthread-ext-original/45_monabsex1_vs
+pthread-ext-original/46_monabsex2_vs
+pthread-ext-original/47_ticket_lock_hc_backoff_vs    TSAN, Lazy-DRSeq
+pthread-ext-original/48_ticket_lock_low_contention_vs
+pthread-lit-original/fk2012
+pthread-lit-original/fkp2013-1
+pthread-lit-original/fkp2013-2
+pthread-lit-original/fkp2013_variant-1
+pthread-lit-original/fkp2013_variant-2
+pthread-lit-original/fkp2014
+pthread-lit-original/qw2004-1     PORSE, Lazy-DRSeq
+pthread-lit-original/qw2004-2     
+pthread-lit-original/qw2004_variant     PORSE, Lazy-DRSeq
+pthread-nondet-original/nondet-array-1
+pthread-nondet-original/nondet-array-2
+pthread-nondet-original/nondet-loop-bound-1
+pthread-nondet-original/nondet-loop-bound-2
+pthread-nondet-original/nondet-loop-bound-variant-1     PORSE, Lazy-DRSeq
+pthread-nondet-original/nondet-loop-bound-variant-2     PORSE, Lazy-DRSeq
+pthread-original/bigshot_p
+pthread-original/indexer    PORSE, TSAN
+pthread-original/reorder_2   PORSE, TSAN
+pthread-original/reorder_5   PORSE, TSAN
+pthread-original/sigma   PORSE, TSAN
+pthread-original/singleton  
+pthread-original/singleton_with-uninit-problems   
+pthread-original/twostage_3   
+pthread-wmm-original/mix005_tso.opt     PORSE

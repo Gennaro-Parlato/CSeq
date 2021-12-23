@@ -1,0 +1,2027 @@
+CBMC version 5.45.0 (cbmc-5.45.0-179-gd48dc284f7) 64-bit x86_64 linux
+Parsing /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c
+Converting
+Type-checking _csdr_36_stack_cas_p0_vs_concur
+file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c line 317 function __CSEQ_atomic_CAS: function '__CPROVER_set_field' is not declared
+file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c line 317 function __CSEQ_atomic_CAS: function '__CPROVER_get_field' is not declared
+file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c line 3213 function main: function '__CPROVER_field_decl_global' is not declared
+file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c line 3214 function main: function '__CPROVER_field_decl_local' is not declared
+Generating GOTO Program
+Adding CPROVER library (x86_64)
+Removal of function pointers and virtual functions
+Generic Property Instrumentation
+Running with 8 object bits, 56 offset bits (default)
+Starting Bounded Model Checking
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c line 3199 function main_thread thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c line 512 function thr1_0 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c line 683 function thr1_0 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c line 854 function thr1_0 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c line 1038 function thr1_0 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c line 1217 function thr1_1 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c line 1388 function thr1_1 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c line 1559 function thr1_1 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c line 1743 function thr1_1 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c line 1922 function thr1_2 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c line 2093 function thr1_2 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c line 2264 function thr1_2 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c line 2448 function thr1_2 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c line 2627 function thr1_3 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c line 2798 function thr1_3 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c line 2969 function thr1_3 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c line 3153 function thr1_3 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c line 3199 function main_thread thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c line 512 function thr1_0 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c line 683 function thr1_0 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c line 854 function thr1_0 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c line 1038 function thr1_0 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c line 1217 function thr1_1 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c line 1388 function thr1_1 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c line 1559 function thr1_1 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c line 1743 function thr1_1 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c line 1922 function thr1_2 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c line 2093 function thr1_2 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c line 2264 function thr1_2 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c line 2448 function thr1_2 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c line 2627 function thr1_3 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c line 2798 function thr1_3 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c line 2969 function thr1_3 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c line 3153 function thr1_3 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c line 3199 function main_thread thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c line 512 function thr1_0 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c line 683 function thr1_0 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c line 854 function thr1_0 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c line 1038 function thr1_0 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c line 1217 function thr1_1 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c line 1388 function thr1_1 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c line 1559 function thr1_1 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c line 1743 function thr1_1 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c line 1922 function thr1_2 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c line 2093 function thr1_2 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c line 2264 function thr1_2 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c line 2448 function thr1_2 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c line 2627 function thr1_3 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c line 2798 function thr1_3 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c line 2969 function thr1_3 thread 0
+aborting path on assume(false) at file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c line 3153 function thr1_3 thread 0
+Runtime Symex: 9.53727s
+size of program expression: 141549 steps
+simple slicing removed 5 assignments
+Generated 1 VCC(s), 1 remaining after simplification
+Runtime Postprocess Equation: 0.0324699s
+Passing problem to propositional reduction
+converting SSA
+Runtime Convert SSA: 2.28427s
+Running propositional reduction
+Post-processing
+Runtime Post-process: 3.5121e-05s
+Solving with Glucose Syrup with simplifier
+1892643 variables, 6782335 clauses
+SAT checker: instance is SATISFIABLE
+Runtime Solver: 12.4592s
+Runtime decision procedure: 14.7476s
+Building error trace
+Counterexample:
+
+State 27 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function __CPROVER_initialize line 57 thread 0
+----------------------------------------------------
+  __cs_active_thread[0l]=0 (0)
+
+State 28 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function __CPROVER_initialize line 57 thread 0
+----------------------------------------------------
+  __cs_active_thread[1l]=0 (0)
+
+State 29 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function __CPROVER_initialize line 57 thread 0
+----------------------------------------------------
+  __cs_active_thread[2l]=0 (0)
+
+State 30 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function __CPROVER_initialize line 57 thread 0
+----------------------------------------------------
+  __cs_active_thread[3l]=0 (0)
+
+State 31 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function __CPROVER_initialize line 57 thread 0
+----------------------------------------------------
+  __cs_active_thread[4l]=0 (0)
+
+State 40 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function __CPROVER_initialize line 58 thread 0
+----------------------------------------------------
+  __cs_pc[0l]=0 (0000000)
+
+State 41 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function __CPROVER_initialize line 58 thread 0
+----------------------------------------------------
+  __cs_pc[1l]=0 (0000000)
+
+State 42 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function __CPROVER_initialize line 58 thread 0
+----------------------------------------------------
+  __cs_pc[2l]=0 (0000000)
+
+State 43 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function __CPROVER_initialize line 58 thread 0
+----------------------------------------------------
+  __cs_pc[3l]=0 (0000000)
+
+State 44 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function __CPROVER_initialize line 58 thread 0
+----------------------------------------------------
+  __cs_pc[4l]=0 (0000000)
+
+State 46 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function __CPROVER_initialize line 59 thread 0
+----------------------------------------------------
+  __cs_pc_cs[0l]=0 (00000000)
+
+State 47 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function __CPROVER_initialize line 59 thread 0
+----------------------------------------------------
+  __cs_pc_cs[1l]=0 (00000000)
+
+State 48 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function __CPROVER_initialize line 59 thread 0
+----------------------------------------------------
+  __cs_pc_cs[2l]=0 (00000000)
+
+State 49 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function __CPROVER_initialize line 59 thread 0
+----------------------------------------------------
+  __cs_pc_cs[3l]=0 (00000000)
+
+State 50 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function __CPROVER_initialize line 59 thread 0
+----------------------------------------------------
+  __cs_pc_cs[4l]=0 (00000000)
+
+State 52 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function __CPROVER_initialize line 82 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 53 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function __CPROVER_initialize line 82 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 54 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function __CPROVER_initialize line 82 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[2l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 55 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function __CPROVER_initialize line 82 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[3l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 56 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function __CPROVER_initialize line 82 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[4l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 58 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function __CPROVER_initialize line 61 thread 0
+----------------------------------------------------
+  __cs_thread_lines[0l]=70 (1000110)
+
+State 59 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function __CPROVER_initialize line 61 thread 0
+----------------------------------------------------
+  __cs_thread_lines[1l]=70 (1000110)
+
+State 60 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function __CPROVER_initialize line 61 thread 0
+----------------------------------------------------
+  __cs_thread_lines[2l]=70 (1000110)
+
+State 61 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function __CPROVER_initialize line 61 thread 0
+----------------------------------------------------
+  __cs_thread_lines[3l]=70 (1000110)
+
+State 62 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function __CPROVER_initialize line 61 thread 0
+----------------------------------------------------
+  __cs_thread_lines[4l]=6 (0000110)
+
+State 64 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function __CPROVER_initialize line 81 thread 0
+----------------------------------------------------
+  __cs_threadargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 65 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function __CPROVER_initialize line 81 thread 0
+----------------------------------------------------
+  __cs_threadargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 66 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function __CPROVER_initialize line 81 thread 0
+----------------------------------------------------
+  __cs_threadargs[2l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 67 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function __CPROVER_initialize line 81 thread 0
+----------------------------------------------------
+  __cs_threadargs[3l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 68 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function __CPROVER_initialize line 81 thread 0
+----------------------------------------------------
+  __cs_threadargs[4l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 568 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function main line 3217 thread 0
+----------------------------------------------------
+  __cs_dr_ts=6 (0110)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c line 3218 function main
+  (signed int)__cs_dr_ts <= 13
+
+State 570 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function main line 3221 thread 0
+----------------------------------------------------
+  __cs_active_thread[4l]=1 (1)
+
+State 571 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function main line 3222 thread 0
+----------------------------------------------------
+  __cs_tmp_t4_r0=5 (101)
+
+State 572 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function main line 3223 thread 0
+----------------------------------------------------
+  __cs_pc_cs[4l]=5 (00000101)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c line 3224 function main
+  (signed int)__cs_pc_cs[(signed long int)4] > 0
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c line 3225 function main
+  (signed int)__cs_pc_cs[(signed long int)4] <= 6
+
+State 579 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function main_thread line 3170 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 580 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function main_thread line 3171 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=TRUE (00000001)
+
+State 584 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function main_thread line 3176 thread 0
+----------------------------------------------------
+  __cs_new_thread_id=&__dr_nondet_main_t (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 585 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function main_thread line 3176 thread 0
+----------------------------------------------------
+  __cs_attr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 586 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function main_thread line 3176 thread 0
+----------------------------------------------------
+  __cs_thread_function=thr1_0 (00000011 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 587 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function main_thread line 3176 thread 0
+----------------------------------------------------
+  __cs_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 588 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function main_thread line 3176 thread 0
+----------------------------------------------------
+  __cs_threadID=0 (00000000 00000000 00000000 00000000)
+
+State 590 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function __cs_create line 87 thread 0
+----------------------------------------------------
+  __dr_nondet_main_t=0 (00000000 00000000 00000000 00000000)
+
+State 591 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function __cs_create line 88 thread 0
+----------------------------------------------------
+  __cs_active_thread[0l]=1 (1)
+
+State 592 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function __cs_create line 89 thread 0
+----------------------------------------------------
+  __cs_threadargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 597 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function main_thread line 3182 thread 0
+----------------------------------------------------
+  __cs_new_thread_id=&__dr_nondet_main_t (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 598 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function main_thread line 3182 thread 0
+----------------------------------------------------
+  __cs_attr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 599 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function main_thread line 3182 thread 0
+----------------------------------------------------
+  __cs_thread_function=thr1_1 (00000100 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 600 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function main_thread line 3182 thread 0
+----------------------------------------------------
+  __cs_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 601 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function main_thread line 3182 thread 0
+----------------------------------------------------
+  __cs_threadID=1 (00000000 00000000 00000000 00000001)
+
+State 603 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function __cs_create line 87 thread 0
+----------------------------------------------------
+  __dr_nondet_main_t=1 (00000000 00000000 00000000 00000001)
+
+State 604 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function __cs_create line 88 thread 0
+----------------------------------------------------
+  __cs_active_thread[1l]=1 (1)
+
+State 605 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function __cs_create line 89 thread 0
+----------------------------------------------------
+  __cs_threadargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 610 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function main_thread line 3188 thread 0
+----------------------------------------------------
+  __cs_new_thread_id=&__dr_nondet_main_t (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 611 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function main_thread line 3188 thread 0
+----------------------------------------------------
+  __cs_attr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 612 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function main_thread line 3188 thread 0
+----------------------------------------------------
+  __cs_thread_function=thr1_2 (00000101 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 613 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function main_thread line 3188 thread 0
+----------------------------------------------------
+  __cs_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 614 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function main_thread line 3188 thread 0
+----------------------------------------------------
+  __cs_threadID=2 (00000000 00000000 00000000 00000010)
+
+State 616 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function __cs_create line 87 thread 0
+----------------------------------------------------
+  __dr_nondet_main_t=2 (00000000 00000000 00000000 00000010)
+
+State 617 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function __cs_create line 88 thread 0
+----------------------------------------------------
+  __cs_active_thread[2l]=1 (1)
+
+State 618 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function __cs_create line 89 thread 0
+----------------------------------------------------
+  __cs_threadargs[2l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 623 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function main_thread line 3194 thread 0
+----------------------------------------------------
+  __cs_new_thread_id=&__dr_nondet_main_t (00000010 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 624 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function main_thread line 3194 thread 0
+----------------------------------------------------
+  __cs_attr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 625 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function main_thread line 3194 thread 0
+----------------------------------------------------
+  __cs_thread_function=thr1_3 (00000110 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 626 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function main_thread line 3194 thread 0
+----------------------------------------------------
+  __cs_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 627 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function main_thread line 3194 thread 0
+----------------------------------------------------
+  __cs_threadID=3 (00000000 00000000 00000000 00000011)
+
+State 629 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function __cs_create line 87 thread 0
+----------------------------------------------------
+  __dr_nondet_main_t=3 (00000000 00000000 00000000 00000011)
+
+State 630 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function __cs_create line 88 thread 0
+----------------------------------------------------
+  __cs_active_thread[3l]=1 (1)
+
+State 631 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function __cs_create line 89 thread 0
+----------------------------------------------------
+  __cs_threadargs[3l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 636 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function main_thread line 3209 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 637 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function main_thread line 3209 thread 0
+----------------------------------------------------
+  __cs_thread_index=4u (00000000 00000000 00000000 00000100)
+
+State 638 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function __cs_exit line 101 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[4l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 642 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function main line 3231 thread 0
+----------------------------------------------------
+  __cs_pc[4l]=5 (0000101)
+
+State 643 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function main line 3233 thread 0
+----------------------------------------------------
+  __cs_tmp_t0_r0=16 (0010000)
+
+State 645 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function main line 3236 thread 0
+----------------------------------------------------
+  __cs_pc_cs[0l]=16 (00010000)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c line 3237 function main
+  (signed int)__cs_pc_cs[(signed long int)0] <= 70
+
+State 650 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function main line 3240 thread 0
+----------------------------------------------------
+  SM__&__dr_param_thr1_arg!0@1__dr_write=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 651 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function main line 3240 thread 0
+----------------------------------------------------
+  SM__&__dr_param_thr1_arg!0@1__dr_write_noatomic=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 652 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function main line 3240 thread 0
+----------------------------------------------------
+  __dr_param_thr1_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 654 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_0 line 353 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 655 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_0 line 354 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=TRUE (00000001)
+
+State 659 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_0 line 355 thread 0
+----------------------------------------------------
+  __dr_param_push_1_d=10 (00000000 00000000 00000000 00001010)
+
+State 663 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_0 line 361 thread 0
+----------------------------------------------------
+  SM__&__dr_param___CSEQ_atomic_index_malloc_curr_alloc_idx!0@1__dr_write=((signed int *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 664 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_0 line 361 thread 0
+----------------------------------------------------
+  SM__&__dr_param___CSEQ_atomic_index_malloc_curr_alloc_idx!0@1__dr_write_noatomic=((signed int *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 665 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_0 line 361 thread 0
+----------------------------------------------------
+  __dr_param___CSEQ_atomic_index_malloc_curr_alloc_idx=&__dr_nondet_push_1_newTop (00000111 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 669 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function __CSEQ_atomic_index_malloc line 336 thread 0
+----------------------------------------------------
+  __dr_nondet___CSEQ_atomic_index_malloc___cs_tmp_if_cond_1=FALSE (00000000)
+
+State 677 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function __CSEQ_atomic_index_malloc line 343 thread 0
+----------------------------------------------------
+  __dr_nondet_push_1_newTop=1 (00000000 00000000 00000000 00000001)
+
+State 680 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function __CSEQ_atomic_index_malloc line 343 thread 0
+----------------------------------------------------
+  next_alloc_idx=3 (00000000 00000000 00000000 00000011)
+
+State 686 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_0 line 365 thread 0
+----------------------------------------------------
+  __dr_nondet_push_1___cs_tmp_if_cond_2=FALSE (00000000)
+
+State 690 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_0 line 375 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 691 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_0 line 376 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 698 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_0 line 377 thread 0
+----------------------------------------------------
+  memory[1l]=10 (00000000 00000000 00000000 00001010)
+
+State 700 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_0 line 381 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 701 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_0 line 382 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 706 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_0 line 383 thread 0
+----------------------------------------------------
+  __dr_nondet_push_1_oldTop=0 (00000000 00000000 00000000 00000000)
+
+State 708 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_0 line 386 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 709 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_0 line 387 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 716 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_0 line 388 thread 0
+----------------------------------------------------
+  memory[2l]=0 (00000000 00000000 00000000 00000000)
+
+State 718 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_0 line 391 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 723 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_0 line 392 thread 0
+----------------------------------------------------
+  SM__&__dr_param___CSEQ_atomic_CAS_v!0@1__dr_write=((signed int *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 724 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_0 line 392 thread 0
+----------------------------------------------------
+  SM__&__dr_param___CSEQ_atomic_CAS_v!0@1__dr_write_noatomic=((signed int *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 725 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_0 line 392 thread 0
+----------------------------------------------------
+  SM__&__dr_param___CSEQ_atomic_CAS_e!0@1__dr_write=0 (00000000 00000000 00000000 00000000)
+
+State 726 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_0 line 392 thread 0
+----------------------------------------------------
+  SM__&__dr_param___CSEQ_atomic_CAS_e!0@1__dr_write_noatomic=0 (00000000 00000000 00000000 00000000)
+
+State 727 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_0 line 392 thread 0
+----------------------------------------------------
+  SM__&__dr_param___CSEQ_atomic_CAS_u!0@1__dr_write=0 (00000000 00000000 00000000 00000000)
+
+State 728 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_0 line 392 thread 0
+----------------------------------------------------
+  SM__&__dr_param___CSEQ_atomic_CAS_u!0@1__dr_write_noatomic=0 (00000000 00000000 00000000 00000000)
+
+State 729 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_0 line 392 thread 0
+----------------------------------------------------
+  SM__&__dr_param___CSEQ_atomic_CAS_r!0@1__dr_write=((signed int *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 730 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_0 line 392 thread 0
+----------------------------------------------------
+  SM__&__dr_param___CSEQ_atomic_CAS_r!0@1__dr_write_noatomic=((signed int *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 731 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_0 line 392 thread 0
+----------------------------------------------------
+  __dr_param___CSEQ_atomic_CAS_v=&top (00001000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 732 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_0 line 392 thread 0
+----------------------------------------------------
+  __dr_param___CSEQ_atomic_CAS_e=0 (00000000 00000000 00000000 00000000)
+
+State 733 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_0 line 392 thread 0
+----------------------------------------------------
+  __dr_param___CSEQ_atomic_CAS_u=1 (00000000 00000000 00000000 00000001)
+
+State 734 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_0 line 392 thread 0
+----------------------------------------------------
+  __dr_param___CSEQ_atomic_CAS_r=&__dr_nondet_push_1_ret (00001001 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 740 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function __CSEQ_atomic_CAS line 317 thread 0
+----------------------------------------------------
+  __dr_nondet___CSEQ_atomic_CAS___cs_tmp_if_cond_0=TRUE (00000001)
+
+State 748 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function __CSEQ_atomic_CAS line 320 thread 0
+----------------------------------------------------
+  top=1 (00000000 00000000 00000000 00000001)
+
+State 753 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function __CSEQ_atomic_CAS line 320 thread 0
+----------------------------------------------------
+  __dr_nondet_push_1_ret=1 (00000000 00000000 00000000 00000001)
+
+State 760 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_0 line 396 thread 0
+----------------------------------------------------
+  __dr_nondet_push_1___cs_tmp_if_cond_3=TRUE (00000001)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c line 494 function thr1_0
+  (signed int)__cs_pc_cs[(signed long int)0] >= 16
+
+State 837 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_0 line 1050 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 838 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_0 line 1050 thread 0
+----------------------------------------------------
+  __cs_thread_index=0u (00000000 00000000 00000000 00000000)
+
+State 839 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function __cs_exit line 101 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 844 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function main line 3245 thread 0
+----------------------------------------------------
+  __cs_pc[0l]=16 (0010000)
+
+State 845 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function main line 3248 thread 0
+----------------------------------------------------
+  __cs_tmp_t1_r0=19 (0010011)
+
+State 847 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function main line 3251 thread 0
+----------------------------------------------------
+  __cs_pc_cs[1l]=19 (00010011)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c line 3252 function main
+  (signed int)__cs_pc_cs[(signed long int)1] <= 70
+
+State 852 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function main line 3255 thread 0
+----------------------------------------------------
+  SM__&__dr_param_thr1_arg!0@1__dr_write$0=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 853 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function main line 3255 thread 0
+----------------------------------------------------
+  SM__&__dr_param_thr1_arg!0@1__dr_write_noatomic$0=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 854 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function main line 3255 thread 0
+----------------------------------------------------
+  __dr_param_thr1_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 856 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_1 line 1058 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 857 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_1 line 1059 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=TRUE (00000001)
+
+State 861 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_1 line 1060 thread 0
+----------------------------------------------------
+  __dr_param_push_1_d=10 (00000000 00000000 00000000 00001010)
+
+State 865 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_1 line 1066 thread 0
+----------------------------------------------------
+  SM__&__dr_param___CSEQ_atomic_index_malloc_curr_alloc_idx!0@5__dr_write=((signed int *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 866 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_1 line 1066 thread 0
+----------------------------------------------------
+  SM__&__dr_param___CSEQ_atomic_index_malloc_curr_alloc_idx!0@5__dr_write_noatomic=((signed int *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 867 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_1 line 1066 thread 0
+----------------------------------------------------
+  __dr_param___CSEQ_atomic_index_malloc_curr_alloc_idx=&__dr_nondet_push_1_newTop (00010000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 871 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function __CSEQ_atomic_index_malloc line 336 thread 0
+----------------------------------------------------
+  __dr_nondet___CSEQ_atomic_index_malloc___cs_tmp_if_cond_1=FALSE (00000000)
+
+State 879 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function __CSEQ_atomic_index_malloc line 343 thread 0
+----------------------------------------------------
+  __dr_nondet_push_1_newTop=3 (00000000 00000000 00000000 00000011)
+
+State 882 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function __CSEQ_atomic_index_malloc line 343 thread 0
+----------------------------------------------------
+  next_alloc_idx=5 (00000000 00000000 00000000 00000101)
+
+State 888 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_1 line 1070 thread 0
+----------------------------------------------------
+  __dr_nondet_push_1___cs_tmp_if_cond_2=FALSE (00000000)
+
+State 892 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_1 line 1080 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 893 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_1 line 1081 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 900 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_1 line 1082 thread 0
+----------------------------------------------------
+  memory[3l]=10 (00000000 00000000 00000000 00001010)
+
+State 902 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_1 line 1086 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 903 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_1 line 1087 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 908 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_1 line 1088 thread 0
+----------------------------------------------------
+  __dr_nondet_push_1_oldTop=1 (00000000 00000000 00000000 00000001)
+
+State 910 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_1 line 1091 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 911 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_1 line 1092 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 918 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_1 line 1093 thread 0
+----------------------------------------------------
+  memory[4l]=1 (00000000 00000000 00000000 00000001)
+
+State 920 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_1 line 1096 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 925 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_1 line 1097 thread 0
+----------------------------------------------------
+  SM__&__dr_param___CSEQ_atomic_CAS_v!0@17__dr_write=((signed int *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 926 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_1 line 1097 thread 0
+----------------------------------------------------
+  SM__&__dr_param___CSEQ_atomic_CAS_v!0@17__dr_write_noatomic=((signed int *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 927 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_1 line 1097 thread 0
+----------------------------------------------------
+  SM__&__dr_param___CSEQ_atomic_CAS_e!0@17__dr_write=0 (00000000 00000000 00000000 00000000)
+
+State 928 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_1 line 1097 thread 0
+----------------------------------------------------
+  SM__&__dr_param___CSEQ_atomic_CAS_e!0@17__dr_write_noatomic=0 (00000000 00000000 00000000 00000000)
+
+State 929 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_1 line 1097 thread 0
+----------------------------------------------------
+  SM__&__dr_param___CSEQ_atomic_CAS_u!0@17__dr_write=0 (00000000 00000000 00000000 00000000)
+
+State 930 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_1 line 1097 thread 0
+----------------------------------------------------
+  SM__&__dr_param___CSEQ_atomic_CAS_u!0@17__dr_write_noatomic=0 (00000000 00000000 00000000 00000000)
+
+State 931 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_1 line 1097 thread 0
+----------------------------------------------------
+  SM__&__dr_param___CSEQ_atomic_CAS_r!0@17__dr_write=((signed int *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 932 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_1 line 1097 thread 0
+----------------------------------------------------
+  SM__&__dr_param___CSEQ_atomic_CAS_r!0@17__dr_write_noatomic=((signed int *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 933 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_1 line 1097 thread 0
+----------------------------------------------------
+  __dr_param___CSEQ_atomic_CAS_v=&top (00001000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 934 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_1 line 1097 thread 0
+----------------------------------------------------
+  __dr_param___CSEQ_atomic_CAS_e=1 (00000000 00000000 00000000 00000001)
+
+State 935 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_1 line 1097 thread 0
+----------------------------------------------------
+  __dr_param___CSEQ_atomic_CAS_u=3 (00000000 00000000 00000000 00000011)
+
+State 936 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_1 line 1097 thread 0
+----------------------------------------------------
+  __dr_param___CSEQ_atomic_CAS_r=&__dr_nondet_push_1_ret (00010001 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 942 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function __CSEQ_atomic_CAS line 317 thread 0
+----------------------------------------------------
+  __dr_nondet___CSEQ_atomic_CAS___cs_tmp_if_cond_0=TRUE (00000001)
+
+State 950 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function __CSEQ_atomic_CAS line 320 thread 0
+----------------------------------------------------
+  top=3 (00000000 00000000 00000000 00000011)
+
+State 955 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function __CSEQ_atomic_CAS line 320 thread 0
+----------------------------------------------------
+  __dr_nondet_push_1_ret=1 (00000000 00000000 00000000 00000001)
+
+State 962 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_1 line 1101 thread 0
+----------------------------------------------------
+  __dr_nondet_push_1___cs_tmp_if_cond_3=TRUE (00000001)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c line 1199 function thr1_1
+  (signed int)__cs_pc_cs[(signed long int)1] >= 16
+
+State 968 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_1 line 1210 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 969 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_1 line 1211 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 974 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_1 line 1212 thread 0
+----------------------------------------------------
+  __dr_nondet_thr1___cs_tmp_if_cond_4=FALSE (00000000)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c line 1220 function thr1_1
+  (signed int)__cs_pc_cs[(signed long int)1] >= 18
+
+State 981 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_1 line 1231 thread 0
+----------------------------------------------------
+  __dr_param_push_1_d=10 (00000000 00000000 00000000 00001010)
+
+State 985 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_1 line 1237 thread 0
+----------------------------------------------------
+  SM__&__dr_param___CSEQ_atomic_index_malloc_curr_alloc_idx!0@6__dr_write=((signed int *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 986 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_1 line 1237 thread 0
+----------------------------------------------------
+  SM__&__dr_param___CSEQ_atomic_index_malloc_curr_alloc_idx!0@6__dr_write_noatomic=((signed int *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 987 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_1 line 1237 thread 0
+----------------------------------------------------
+  __dr_param___CSEQ_atomic_index_malloc_curr_alloc_idx=&__dr_nondet_push_1_newTop (00010010 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 991 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function __CSEQ_atomic_index_malloc line 336 thread 0
+----------------------------------------------------
+  __dr_nondet___CSEQ_atomic_index_malloc___cs_tmp_if_cond_1=FALSE (00000000)
+
+State 999 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function __CSEQ_atomic_index_malloc line 343 thread 0
+----------------------------------------------------
+  __dr_nondet_push_1_newTop=5 (00000000 00000000 00000000 00000101)
+
+State 1002 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function __CSEQ_atomic_index_malloc line 343 thread 0
+----------------------------------------------------
+  next_alloc_idx=7 (00000000 00000000 00000000 00000111)
+
+State 1008 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_1 line 1241 thread 0
+----------------------------------------------------
+  __dr_nondet_push_1___cs_tmp_if_cond_2=FALSE (00000000)
+
+State 1080 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_1 line 1755 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1081 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_1 line 1755 thread 0
+----------------------------------------------------
+  __cs_thread_index=1u (00000000 00000000 00000000 00000001)
+
+State 1082 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function __cs_exit line 101 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1087 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function main line 3260 thread 0
+----------------------------------------------------
+  __cs_pc[1l]=19 (0010011)
+
+State 1088 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function main line 3263 thread 0
+----------------------------------------------------
+  __cs_tmp_t2_r0=54 (0110110)
+
+State 1090 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function main line 3266 thread 0
+----------------------------------------------------
+  __cs_pc_cs[2l]=54 (00110110)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c line 3267 function main
+  (signed int)__cs_pc_cs[(signed long int)2] <= 70
+
+State 1095 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function main line 3270 thread 0
+----------------------------------------------------
+  SM__&__dr_param_thr1_arg!0@1__dr_write$1=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1096 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function main line 3270 thread 0
+----------------------------------------------------
+  SM__&__dr_param_thr1_arg!0@1__dr_write_noatomic$1=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1097 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function main line 3270 thread 0
+----------------------------------------------------
+  __dr_param_thr1_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1099 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_2 line 1763 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 1100 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_2 line 1764 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=TRUE (00000001)
+
+State 1104 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_2 line 1765 thread 0
+----------------------------------------------------
+  __dr_param_push_1_d=10 (00000000 00000000 00000000 00001010)
+
+State 1108 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_2 line 1771 thread 0
+----------------------------------------------------
+  SM__&__dr_param___CSEQ_atomic_index_malloc_curr_alloc_idx!0@9__dr_write=((signed int *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1109 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_2 line 1771 thread 0
+----------------------------------------------------
+  SM__&__dr_param___CSEQ_atomic_index_malloc_curr_alloc_idx!0@9__dr_write_noatomic=((signed int *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1110 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_2 line 1771 thread 0
+----------------------------------------------------
+  __dr_param___CSEQ_atomic_index_malloc_curr_alloc_idx=&__dr_nondet_push_1_newTop (00011000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1114 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function __CSEQ_atomic_index_malloc line 336 thread 0
+----------------------------------------------------
+  __dr_nondet___CSEQ_atomic_index_malloc___cs_tmp_if_cond_1=FALSE (00000000)
+
+State 1122 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function __CSEQ_atomic_index_malloc line 343 thread 0
+----------------------------------------------------
+  __dr_nondet_push_1_newTop=7 (00000000 00000000 00000000 00000111)
+
+State 1125 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function __CSEQ_atomic_index_malloc line 343 thread 0
+----------------------------------------------------
+  next_alloc_idx=9 (00000000 00000000 00000000 00001001)
+
+State 1131 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_2 line 1775 thread 0
+----------------------------------------------------
+  __dr_nondet_push_1___cs_tmp_if_cond_2=FALSE (00000000)
+
+State 1135 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_2 line 1785 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 1136 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_2 line 1786 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 1143 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_2 line 1787 thread 0
+----------------------------------------------------
+  memory[7l]=10 (00000000 00000000 00000000 00001010)
+
+State 1145 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_2 line 1791 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 1146 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_2 line 1792 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 1151 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_2 line 1793 thread 0
+----------------------------------------------------
+  __dr_nondet_push_1_oldTop=3 (00000000 00000000 00000000 00000011)
+
+State 1153 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_2 line 1796 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 1154 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_2 line 1797 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 1161 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_2 line 1798 thread 0
+----------------------------------------------------
+  memory[8l]=3 (00000000 00000000 00000000 00000011)
+
+State 1163 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_2 line 1801 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 1168 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_2 line 1802 thread 0
+----------------------------------------------------
+  SM__&__dr_param___CSEQ_atomic_CAS_v!0@33__dr_write=((signed int *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1169 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_2 line 1802 thread 0
+----------------------------------------------------
+  SM__&__dr_param___CSEQ_atomic_CAS_v!0@33__dr_write_noatomic=((signed int *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1170 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_2 line 1802 thread 0
+----------------------------------------------------
+  SM__&__dr_param___CSEQ_atomic_CAS_e!0@33__dr_write=0 (00000000 00000000 00000000 00000000)
+
+State 1171 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_2 line 1802 thread 0
+----------------------------------------------------
+  SM__&__dr_param___CSEQ_atomic_CAS_e!0@33__dr_write_noatomic=0 (00000000 00000000 00000000 00000000)
+
+State 1172 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_2 line 1802 thread 0
+----------------------------------------------------
+  SM__&__dr_param___CSEQ_atomic_CAS_u!0@33__dr_write=0 (00000000 00000000 00000000 00000000)
+
+State 1173 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_2 line 1802 thread 0
+----------------------------------------------------
+  SM__&__dr_param___CSEQ_atomic_CAS_u!0@33__dr_write_noatomic=0 (00000000 00000000 00000000 00000000)
+
+State 1174 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_2 line 1802 thread 0
+----------------------------------------------------
+  SM__&__dr_param___CSEQ_atomic_CAS_r!0@33__dr_write=((signed int *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1175 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_2 line 1802 thread 0
+----------------------------------------------------
+  SM__&__dr_param___CSEQ_atomic_CAS_r!0@33__dr_write_noatomic=((signed int *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1176 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_2 line 1802 thread 0
+----------------------------------------------------
+  __dr_param___CSEQ_atomic_CAS_v=&top (00001000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1177 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_2 line 1802 thread 0
+----------------------------------------------------
+  __dr_param___CSEQ_atomic_CAS_e=3 (00000000 00000000 00000000 00000011)
+
+State 1178 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_2 line 1802 thread 0
+----------------------------------------------------
+  __dr_param___CSEQ_atomic_CAS_u=7 (00000000 00000000 00000000 00000111)
+
+State 1179 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_2 line 1802 thread 0
+----------------------------------------------------
+  __dr_param___CSEQ_atomic_CAS_r=&__dr_nondet_push_1_ret (00011001 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1185 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function __CSEQ_atomic_CAS line 317 thread 0
+----------------------------------------------------
+  __dr_nondet___CSEQ_atomic_CAS___cs_tmp_if_cond_0=TRUE (00000001)
+
+State 1193 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function __CSEQ_atomic_CAS line 320 thread 0
+----------------------------------------------------
+  top=7 (00000000 00000000 00000000 00000111)
+
+State 1198 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function __CSEQ_atomic_CAS line 320 thread 0
+----------------------------------------------------
+  __dr_nondet_push_1_ret=1 (00000000 00000000 00000000 00000001)
+
+State 1205 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_2 line 1806 thread 0
+----------------------------------------------------
+  __dr_nondet_push_1___cs_tmp_if_cond_3=TRUE (00000001)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c line 1904 function thr1_2
+  (signed int)__cs_pc_cs[(signed long int)2] >= 16
+
+State 1211 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_2 line 1915 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 1212 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_2 line 1916 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 1217 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_2 line 1917 thread 0
+----------------------------------------------------
+  __dr_nondet_thr1___cs_tmp_if_cond_4=FALSE (00000000)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c line 1925 function thr1_2
+  (signed int)__cs_pc_cs[(signed long int)2] >= 18
+
+State 1224 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_2 line 1936 thread 0
+----------------------------------------------------
+  __dr_param_push_1_d=10 (00000000 00000000 00000000 00001010)
+
+State 1228 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_2 line 1942 thread 0
+----------------------------------------------------
+  SM__&__dr_param___CSEQ_atomic_index_malloc_curr_alloc_idx!0@10__dr_write=((signed int *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1229 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_2 line 1942 thread 0
+----------------------------------------------------
+  SM__&__dr_param___CSEQ_atomic_index_malloc_curr_alloc_idx!0@10__dr_write_noatomic=((signed int *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1230 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_2 line 1942 thread 0
+----------------------------------------------------
+  __dr_param___CSEQ_atomic_index_malloc_curr_alloc_idx=&__dr_nondet_push_1_newTop (00011010 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1234 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function __CSEQ_atomic_index_malloc line 336 thread 0
+----------------------------------------------------
+  __dr_nondet___CSEQ_atomic_index_malloc___cs_tmp_if_cond_1=FALSE (00000000)
+
+State 1242 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function __CSEQ_atomic_index_malloc line 343 thread 0
+----------------------------------------------------
+  __dr_nondet_push_1_newTop=9 (00000000 00000000 00000000 00001001)
+
+State 1245 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function __CSEQ_atomic_index_malloc line 343 thread 0
+----------------------------------------------------
+  next_alloc_idx=11 (00000000 00000000 00000000 00001011)
+
+State 1251 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_2 line 1946 thread 0
+----------------------------------------------------
+  __dr_nondet_push_1___cs_tmp_if_cond_2=FALSE (00000000)
+
+State 1255 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_2 line 1956 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 1256 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_2 line 1957 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 1263 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_2 line 1958 thread 0
+----------------------------------------------------
+  memory[9l]=10 (00000000 00000000 00000000 00001010)
+
+State 1265 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_2 line 1962 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 1266 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_2 line 1963 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 1271 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_2 line 1964 thread 0
+----------------------------------------------------
+  __dr_nondet_push_1_oldTop=7 (00000000 00000000 00000000 00000111)
+
+State 1273 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_2 line 1967 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 1274 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_2 line 1968 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 1281 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_2 line 1969 thread 0
+----------------------------------------------------
+  memory[10l]=7 (00000000 00000000 00000000 00000111)
+
+State 1283 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_2 line 1972 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 1288 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_2 line 1973 thread 0
+----------------------------------------------------
+  SM__&__dr_param___CSEQ_atomic_CAS_v!0@37__dr_write=((signed int *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1289 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_2 line 1973 thread 0
+----------------------------------------------------
+  SM__&__dr_param___CSEQ_atomic_CAS_v!0@37__dr_write_noatomic=((signed int *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1290 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_2 line 1973 thread 0
+----------------------------------------------------
+  SM__&__dr_param___CSEQ_atomic_CAS_e!0@37__dr_write=0 (00000000 00000000 00000000 00000000)
+
+State 1291 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_2 line 1973 thread 0
+----------------------------------------------------
+  SM__&__dr_param___CSEQ_atomic_CAS_e!0@37__dr_write_noatomic=0 (00000000 00000000 00000000 00000000)
+
+State 1292 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_2 line 1973 thread 0
+----------------------------------------------------
+  SM__&__dr_param___CSEQ_atomic_CAS_u!0@37__dr_write=0 (00000000 00000000 00000000 00000000)
+
+State 1293 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_2 line 1973 thread 0
+----------------------------------------------------
+  SM__&__dr_param___CSEQ_atomic_CAS_u!0@37__dr_write_noatomic=0 (00000000 00000000 00000000 00000000)
+
+State 1294 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_2 line 1973 thread 0
+----------------------------------------------------
+  SM__&__dr_param___CSEQ_atomic_CAS_r!0@37__dr_write=((signed int *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1295 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_2 line 1973 thread 0
+----------------------------------------------------
+  SM__&__dr_param___CSEQ_atomic_CAS_r!0@37__dr_write_noatomic=((signed int *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1296 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_2 line 1973 thread 0
+----------------------------------------------------
+  __dr_param___CSEQ_atomic_CAS_v=&top (00001000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1297 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_2 line 1973 thread 0
+----------------------------------------------------
+  __dr_param___CSEQ_atomic_CAS_e=7 (00000000 00000000 00000000 00000111)
+
+State 1298 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_2 line 1973 thread 0
+----------------------------------------------------
+  __dr_param___CSEQ_atomic_CAS_u=9 (00000000 00000000 00000000 00001001)
+
+State 1299 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_2 line 1973 thread 0
+----------------------------------------------------
+  __dr_param___CSEQ_atomic_CAS_r=&__dr_nondet_push_1_ret (00011011 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1305 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function __CSEQ_atomic_CAS line 317 thread 0
+----------------------------------------------------
+  __dr_nondet___CSEQ_atomic_CAS___cs_tmp_if_cond_0=TRUE (00000001)
+
+State 1313 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function __CSEQ_atomic_CAS line 320 thread 0
+----------------------------------------------------
+  top=9 (00000000 00000000 00000000 00001001)
+
+State 1318 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function __CSEQ_atomic_CAS line 320 thread 0
+----------------------------------------------------
+  __dr_nondet_push_1_ret=1 (00000000 00000000 00000000 00000001)
+
+State 1325 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_2 line 1977 thread 0
+----------------------------------------------------
+  __dr_nondet_push_1___cs_tmp_if_cond_3=TRUE (00000001)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c line 2075 function thr1_2
+  (signed int)__cs_pc_cs[(signed long int)2] >= 33
+
+State 1331 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_2 line 2086 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 1332 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_2 line 2087 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 1337 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_2 line 2088 thread 0
+----------------------------------------------------
+  __dr_nondet_thr1___cs_tmp_if_cond_4=FALSE (00000000)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c line 2096 function thr1_2
+  (signed int)__cs_pc_cs[(signed long int)2] >= 35
+
+State 1344 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_2 line 2107 thread 0
+----------------------------------------------------
+  __dr_param_push_1_d=10 (00000000 00000000 00000000 00001010)
+
+State 1348 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_2 line 2113 thread 0
+----------------------------------------------------
+  SM__&__dr_param___CSEQ_atomic_index_malloc_curr_alloc_idx!0@11__dr_write=((signed int *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1349 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_2 line 2113 thread 0
+----------------------------------------------------
+  SM__&__dr_param___CSEQ_atomic_index_malloc_curr_alloc_idx!0@11__dr_write_noatomic=((signed int *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1350 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_2 line 2113 thread 0
+----------------------------------------------------
+  __dr_param___CSEQ_atomic_index_malloc_curr_alloc_idx=&__dr_nondet_push_1_newTop (00011100 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1354 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function __CSEQ_atomic_index_malloc line 336 thread 0
+----------------------------------------------------
+  __dr_nondet___CSEQ_atomic_index_malloc___cs_tmp_if_cond_1=FALSE (00000000)
+
+State 1362 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function __CSEQ_atomic_index_malloc line 343 thread 0
+----------------------------------------------------
+  __dr_nondet_push_1_newTop=11 (00000000 00000000 00000000 00001011)
+
+State 1365 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function __CSEQ_atomic_index_malloc line 343 thread 0
+----------------------------------------------------
+  next_alloc_idx=13 (00000000 00000000 00000000 00001101)
+
+State 1371 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_2 line 2117 thread 0
+----------------------------------------------------
+  __dr_nondet_push_1___cs_tmp_if_cond_2=FALSE (00000000)
+
+State 1375 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_2 line 2127 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 1376 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_2 line 2128 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 1383 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_2 line 2129 thread 0
+----------------------------------------------------
+  memory[11l]=10 (00000000 00000000 00000000 00001010)
+
+State 1385 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_2 line 2133 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 1386 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_2 line 2134 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 1391 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_2 line 2135 thread 0
+----------------------------------------------------
+  __dr_nondet_push_1_oldTop=9 (00000000 00000000 00000000 00001001)
+
+State 1393 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_2 line 2138 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 1394 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_2 line 2139 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 1401 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_2 line 2140 thread 0
+----------------------------------------------------
+  memory[12l]=9 (00000000 00000000 00000000 00001001)
+
+State 1403 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_2 line 2143 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 1408 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_2 line 2144 thread 0
+----------------------------------------------------
+  SM__&__dr_param___CSEQ_atomic_CAS_v!0@41__dr_write=((signed int *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1409 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_2 line 2144 thread 0
+----------------------------------------------------
+  SM__&__dr_param___CSEQ_atomic_CAS_v!0@41__dr_write_noatomic=((signed int *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1410 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_2 line 2144 thread 0
+----------------------------------------------------
+  SM__&__dr_param___CSEQ_atomic_CAS_e!0@41__dr_write=0 (00000000 00000000 00000000 00000000)
+
+State 1411 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_2 line 2144 thread 0
+----------------------------------------------------
+  SM__&__dr_param___CSEQ_atomic_CAS_e!0@41__dr_write_noatomic=0 (00000000 00000000 00000000 00000000)
+
+State 1412 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_2 line 2144 thread 0
+----------------------------------------------------
+  SM__&__dr_param___CSEQ_atomic_CAS_u!0@41__dr_write=0 (00000000 00000000 00000000 00000000)
+
+State 1413 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_2 line 2144 thread 0
+----------------------------------------------------
+  SM__&__dr_param___CSEQ_atomic_CAS_u!0@41__dr_write_noatomic=0 (00000000 00000000 00000000 00000000)
+
+State 1414 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_2 line 2144 thread 0
+----------------------------------------------------
+  SM__&__dr_param___CSEQ_atomic_CAS_r!0@41__dr_write=((signed int *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1415 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_2 line 2144 thread 0
+----------------------------------------------------
+  SM__&__dr_param___CSEQ_atomic_CAS_r!0@41__dr_write_noatomic=((signed int *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1416 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_2 line 2144 thread 0
+----------------------------------------------------
+  __dr_param___CSEQ_atomic_CAS_v=&top (00001000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1417 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_2 line 2144 thread 0
+----------------------------------------------------
+  __dr_param___CSEQ_atomic_CAS_e=9 (00000000 00000000 00000000 00001001)
+
+State 1418 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_2 line 2144 thread 0
+----------------------------------------------------
+  __dr_param___CSEQ_atomic_CAS_u=11 (00000000 00000000 00000000 00001011)
+
+State 1419 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_2 line 2144 thread 0
+----------------------------------------------------
+  __dr_param___CSEQ_atomic_CAS_r=&__dr_nondet_push_1_ret (00011101 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1425 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function __CSEQ_atomic_CAS line 317 thread 0
+----------------------------------------------------
+  __dr_nondet___CSEQ_atomic_CAS___cs_tmp_if_cond_0=TRUE (00000001)
+
+State 1433 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function __CSEQ_atomic_CAS line 320 thread 0
+----------------------------------------------------
+  top=11 (00000000 00000000 00000000 00001011)
+
+State 1438 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function __CSEQ_atomic_CAS line 320 thread 0
+----------------------------------------------------
+  __dr_nondet_push_1_ret=1 (00000000 00000000 00000000 00000001)
+
+State 1445 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_2 line 2148 thread 0
+----------------------------------------------------
+  __dr_nondet_push_1___cs_tmp_if_cond_3=TRUE (00000001)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c line 2246 function thr1_2
+  (signed int)__cs_pc_cs[(signed long int)2] >= 50
+
+State 1451 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_2 line 2257 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 1452 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_2 line 2258 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 1457 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_2 line 2259 thread 0
+----------------------------------------------------
+  __dr_nondet_thr1___cs_tmp_if_cond_4=FALSE (00000000)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c line 2267 function thr1_2
+  (signed int)__cs_pc_cs[(signed long int)2] >= 52
+
+State 1464 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_2 line 2278 thread 0
+----------------------------------------------------
+  __dr_param_push_1_d=10 (00000000 00000000 00000000 00001010)
+
+State 1468 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_2 line 2284 thread 0
+----------------------------------------------------
+  SM__&__dr_param___CSEQ_atomic_index_malloc_curr_alloc_idx!0@12__dr_write=((signed int *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1469 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_2 line 2284 thread 0
+----------------------------------------------------
+  SM__&__dr_param___CSEQ_atomic_index_malloc_curr_alloc_idx!0@12__dr_write_noatomic=((signed int *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1470 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_2 line 2284 thread 0
+----------------------------------------------------
+  __dr_param___CSEQ_atomic_index_malloc_curr_alloc_idx=&__dr_nondet_push_1_newTop (00011110 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1474 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function __CSEQ_atomic_index_malloc line 336 thread 0
+----------------------------------------------------
+  __dr_nondet___CSEQ_atomic_index_malloc___cs_tmp_if_cond_1=FALSE (00000000)
+
+State 1482 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function __CSEQ_atomic_index_malloc line 343 thread 0
+----------------------------------------------------
+  __dr_nondet_push_1_newTop=13 (00000000 00000000 00000000 00001101)
+
+State 1485 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function __CSEQ_atomic_index_malloc line 343 thread 0
+----------------------------------------------------
+  next_alloc_idx=15 (00000000 00000000 00000000 00001111)
+
+State 1491 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_2 line 2288 thread 0
+----------------------------------------------------
+  __dr_nondet_push_1___cs_tmp_if_cond_2=FALSE (00000000)
+
+State 1495 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_2 line 2298 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=TRUE (00000001)
+
+State 1496 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_2 line 2299 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 1503 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_2 line 2300 thread 0
+----------------------------------------------------
+  memory[13l]=10 (00000000 00000000 00000000 00001010)
+
+State 1528 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_2 line 2460 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1529 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_2 line 2460 thread 0
+----------------------------------------------------
+  __cs_thread_index=2u (00000000 00000000 00000000 00000010)
+
+State 1530 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function __cs_exit line 101 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[2l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1535 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function main line 3275 thread 0
+----------------------------------------------------
+  __cs_pc[2l]=54 (0110110)
+
+State 1536 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function main line 3278 thread 0
+----------------------------------------------------
+  __cs_tmp_t3_r0=33 (0100001)
+
+State 1538 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function main line 3281 thread 0
+----------------------------------------------------
+  __cs_pc_cs[3l]=33 (00100001)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c line 3282 function main
+  (signed int)__cs_pc_cs[(signed long int)3] <= 70
+
+State 1543 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function main line 3285 thread 0
+----------------------------------------------------
+  SM__&__dr_param_thr1_arg!0@1__dr_write$2=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1544 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function main line 3285 thread 0
+----------------------------------------------------
+  SM__&__dr_param_thr1_arg!0@1__dr_write_noatomic$2=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1545 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function main line 3285 thread 0
+----------------------------------------------------
+  __dr_param_thr1_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1547 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_3 line 2468 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 1548 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_3 line 2469 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=TRUE (00000001)
+
+State 1552 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_3 line 2470 thread 0
+----------------------------------------------------
+  __dr_param_push_1_d=10 (00000000 00000000 00000000 00001010)
+
+State 1556 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_3 line 2476 thread 0
+----------------------------------------------------
+  SM__&__dr_param___CSEQ_atomic_index_malloc_curr_alloc_idx!0@13__dr_write=((signed int *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1557 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_3 line 2476 thread 0
+----------------------------------------------------
+  SM__&__dr_param___CSEQ_atomic_index_malloc_curr_alloc_idx!0@13__dr_write_noatomic=((signed int *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1558 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_3 line 2476 thread 0
+----------------------------------------------------
+  __dr_param___CSEQ_atomic_index_malloc_curr_alloc_idx=&__dr_nondet_push_1_newTop (00100000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1562 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function __CSEQ_atomic_index_malloc line 336 thread 0
+----------------------------------------------------
+  __dr_nondet___CSEQ_atomic_index_malloc___cs_tmp_if_cond_1=FALSE (00000000)
+
+State 1570 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function __CSEQ_atomic_index_malloc line 343 thread 0
+----------------------------------------------------
+  __dr_nondet_push_1_newTop=15 (00000000 00000000 00000000 00001111)
+
+State 1573 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function __CSEQ_atomic_index_malloc line 343 thread 0
+----------------------------------------------------
+  next_alloc_idx=17 (00000000 00000000 00000000 00010001)
+
+State 1579 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_3 line 2480 thread 0
+----------------------------------------------------
+  __dr_nondet_push_1___cs_tmp_if_cond_2=FALSE (00000000)
+
+State 1583 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_3 line 2490 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 1584 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_3 line 2491 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 1591 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_3 line 2492 thread 0
+----------------------------------------------------
+  memory[15l]=10 (00000000 00000000 00000000 00001010)
+
+State 1593 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_3 line 2496 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 1594 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_3 line 2497 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 1599 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_3 line 2498 thread 0
+----------------------------------------------------
+  __dr_nondet_push_1_oldTop=11 (00000000 00000000 00000000 00001011)
+
+State 1601 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_3 line 2501 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 1602 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_3 line 2502 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 1609 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_3 line 2503 thread 0
+----------------------------------------------------
+  memory[16l]=11 (00000000 00000000 00000000 00001011)
+
+State 1611 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_3 line 2506 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 1616 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_3 line 2507 thread 0
+----------------------------------------------------
+  SM__&__dr_param___CSEQ_atomic_CAS_v!0@49__dr_write=((signed int *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1617 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_3 line 2507 thread 0
+----------------------------------------------------
+  SM__&__dr_param___CSEQ_atomic_CAS_v!0@49__dr_write_noatomic=((signed int *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1618 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_3 line 2507 thread 0
+----------------------------------------------------
+  SM__&__dr_param___CSEQ_atomic_CAS_e!0@49__dr_write=0 (00000000 00000000 00000000 00000000)
+
+State 1619 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_3 line 2507 thread 0
+----------------------------------------------------
+  SM__&__dr_param___CSEQ_atomic_CAS_e!0@49__dr_write_noatomic=0 (00000000 00000000 00000000 00000000)
+
+State 1620 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_3 line 2507 thread 0
+----------------------------------------------------
+  SM__&__dr_param___CSEQ_atomic_CAS_u!0@49__dr_write=0 (00000000 00000000 00000000 00000000)
+
+State 1621 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_3 line 2507 thread 0
+----------------------------------------------------
+  SM__&__dr_param___CSEQ_atomic_CAS_u!0@49__dr_write_noatomic=0 (00000000 00000000 00000000 00000000)
+
+State 1622 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_3 line 2507 thread 0
+----------------------------------------------------
+  SM__&__dr_param___CSEQ_atomic_CAS_r!0@49__dr_write=((signed int *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1623 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_3 line 2507 thread 0
+----------------------------------------------------
+  SM__&__dr_param___CSEQ_atomic_CAS_r!0@49__dr_write_noatomic=((signed int *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1624 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_3 line 2507 thread 0
+----------------------------------------------------
+  __dr_param___CSEQ_atomic_CAS_v=&top (00001000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1625 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_3 line 2507 thread 0
+----------------------------------------------------
+  __dr_param___CSEQ_atomic_CAS_e=11 (00000000 00000000 00000000 00001011)
+
+State 1626 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_3 line 2507 thread 0
+----------------------------------------------------
+  __dr_param___CSEQ_atomic_CAS_u=15 (00000000 00000000 00000000 00001111)
+
+State 1627 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_3 line 2507 thread 0
+----------------------------------------------------
+  __dr_param___CSEQ_atomic_CAS_r=&__dr_nondet_push_1_ret (00100001 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1633 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function __CSEQ_atomic_CAS line 317 thread 0
+----------------------------------------------------
+  __dr_nondet___CSEQ_atomic_CAS___cs_tmp_if_cond_0=TRUE (00000001)
+
+State 1641 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function __CSEQ_atomic_CAS line 320 thread 0
+----------------------------------------------------
+  top=15 (00000000 00000000 00000000 00001111)
+
+State 1646 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function __CSEQ_atomic_CAS line 320 thread 0
+----------------------------------------------------
+  __dr_nondet_push_1_ret=1 (00000000 00000000 00000000 00000001)
+
+State 1653 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_3 line 2511 thread 0
+----------------------------------------------------
+  __dr_nondet_push_1___cs_tmp_if_cond_3=TRUE (00000001)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c line 2609 function thr1_3
+  (signed int)__cs_pc_cs[(signed long int)3] >= 16
+
+State 1659 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_3 line 2620 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 1660 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_3 line 2621 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 1665 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_3 line 2622 thread 0
+----------------------------------------------------
+  __dr_nondet_thr1___cs_tmp_if_cond_4=FALSE (00000000)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c line 2630 function thr1_3
+  (signed int)__cs_pc_cs[(signed long int)3] >= 18
+
+State 1672 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_3 line 2641 thread 0
+----------------------------------------------------
+  __dr_param_push_1_d=10 (00000000 00000000 00000000 00001010)
+
+State 1676 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_3 line 2647 thread 0
+----------------------------------------------------
+  SM__&__dr_param___CSEQ_atomic_index_malloc_curr_alloc_idx!0@14__dr_write=((signed int *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1677 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_3 line 2647 thread 0
+----------------------------------------------------
+  SM__&__dr_param___CSEQ_atomic_index_malloc_curr_alloc_idx!0@14__dr_write_noatomic=((signed int *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1678 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_3 line 2647 thread 0
+----------------------------------------------------
+  __dr_param___CSEQ_atomic_index_malloc_curr_alloc_idx=&__dr_nondet_push_1_newTop (00100010 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1682 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function __CSEQ_atomic_index_malloc line 336 thread 0
+----------------------------------------------------
+  __dr_nondet___CSEQ_atomic_index_malloc___cs_tmp_if_cond_1=FALSE (00000000)
+
+State 1690 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function __CSEQ_atomic_index_malloc line 343 thread 0
+----------------------------------------------------
+  __dr_nondet_push_1_newTop=17 (00000000 00000000 00000000 00010001)
+
+State 1693 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function __CSEQ_atomic_index_malloc line 343 thread 0
+----------------------------------------------------
+  next_alloc_idx=19 (00000000 00000000 00000000 00010011)
+
+State 1699 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_3 line 2651 thread 0
+----------------------------------------------------
+  __dr_nondet_push_1___cs_tmp_if_cond_2=FALSE (00000000)
+
+State 1703 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_3 line 2661 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 1704 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_3 line 2662 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 1711 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_3 line 2663 thread 0
+----------------------------------------------------
+  memory[17l]=10 (00000000 00000000 00000000 00001010)
+
+State 1713 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_3 line 2667 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 1714 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_3 line 2668 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 1719 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_3 line 2669 thread 0
+----------------------------------------------------
+  __dr_nondet_push_1_oldTop=15 (00000000 00000000 00000000 00001111)
+
+State 1721 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_3 line 2672 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 1722 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_3 line 2673 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 1729 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_3 line 2674 thread 0
+----------------------------------------------------
+  memory[18l]=15 (00000000 00000000 00000000 00001111)
+
+State 1731 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_3 line 2677 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 1736 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_3 line 2678 thread 0
+----------------------------------------------------
+  SM__&__dr_param___CSEQ_atomic_CAS_v!0@53__dr_write=((signed int *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1737 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_3 line 2678 thread 0
+----------------------------------------------------
+  SM__&__dr_param___CSEQ_atomic_CAS_v!0@53__dr_write_noatomic=((signed int *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1738 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_3 line 2678 thread 0
+----------------------------------------------------
+  SM__&__dr_param___CSEQ_atomic_CAS_e!0@53__dr_write=0 (00000000 00000000 00000000 00000000)
+
+State 1739 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_3 line 2678 thread 0
+----------------------------------------------------
+  SM__&__dr_param___CSEQ_atomic_CAS_e!0@53__dr_write_noatomic=0 (00000000 00000000 00000000 00000000)
+
+State 1740 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_3 line 2678 thread 0
+----------------------------------------------------
+  SM__&__dr_param___CSEQ_atomic_CAS_u!0@53__dr_write=0 (00000000 00000000 00000000 00000000)
+
+State 1741 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_3 line 2678 thread 0
+----------------------------------------------------
+  SM__&__dr_param___CSEQ_atomic_CAS_u!0@53__dr_write_noatomic=0 (00000000 00000000 00000000 00000000)
+
+State 1742 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_3 line 2678 thread 0
+----------------------------------------------------
+  SM__&__dr_param___CSEQ_atomic_CAS_r!0@53__dr_write=((signed int *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1743 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_3 line 2678 thread 0
+----------------------------------------------------
+  SM__&__dr_param___CSEQ_atomic_CAS_r!0@53__dr_write_noatomic=((signed int *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1744 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_3 line 2678 thread 0
+----------------------------------------------------
+  __dr_param___CSEQ_atomic_CAS_v=&top (00001000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1745 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_3 line 2678 thread 0
+----------------------------------------------------
+  __dr_param___CSEQ_atomic_CAS_e=15 (00000000 00000000 00000000 00001111)
+
+State 1746 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_3 line 2678 thread 0
+----------------------------------------------------
+  __dr_param___CSEQ_atomic_CAS_u=17 (00000000 00000000 00000000 00010001)
+
+State 1747 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_3 line 2678 thread 0
+----------------------------------------------------
+  __dr_param___CSEQ_atomic_CAS_r=&__dr_nondet_push_1_ret (00100011 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1753 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function __CSEQ_atomic_CAS line 317 thread 0
+----------------------------------------------------
+  __dr_nondet___CSEQ_atomic_CAS___cs_tmp_if_cond_0=TRUE (00000001)
+
+State 1761 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function __CSEQ_atomic_CAS line 320 thread 0
+----------------------------------------------------
+  top=17 (00000000 00000000 00000000 00010001)
+
+State 1766 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function __CSEQ_atomic_CAS line 320 thread 0
+----------------------------------------------------
+  __dr_nondet_push_1_ret=1 (00000000 00000000 00000000 00000001)
+
+State 1773 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_3 line 2682 thread 0
+----------------------------------------------------
+  __dr_nondet_push_1___cs_tmp_if_cond_3=TRUE (00000001)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c line 2780 function thr1_3
+  (signed int)__cs_pc_cs[(signed long int)3] >= 33
+
+State 1828 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_3 line 3165 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1829 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_3 line 3165 thread 0
+----------------------------------------------------
+  __cs_thread_index=3u (00000000 00000000 00000000 00000011)
+
+State 1830 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function __cs_exit line 101 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[3l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1835 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function main line 3290 thread 0
+----------------------------------------------------
+  __cs_pc[3l]=33 (0100001)
+
+State 1836 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function main line 3294 thread 0
+----------------------------------------------------
+  __cs_tmp_t4_r1=0 (000)
+
+State 1838 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function main line 3297 thread 0
+----------------------------------------------------
+  __cs_pc_cs[4l]=5 (00000101)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c line 3298 function main
+  (signed int)__cs_pc_cs[(signed long int)4] >= (signed int)__cs_pc[(signed long int)4]
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c line 3299 function main
+  (signed int)__cs_pc_cs[(signed long int)4] <= 6
+
+State 1852 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function main_thread line 3209 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1853 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function main_thread line 3209 thread 0
+----------------------------------------------------
+  __cs_thread_index=4u (00000000 00000000 00000000 00000100)
+
+State 1854 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function __cs_exit line 101 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[4l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1859 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function main line 3307 thread 0
+----------------------------------------------------
+  __cs_pc[4l]=5 (0000101)
+
+State 1860 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function main line 3310 thread 0
+----------------------------------------------------
+  __cs_tmp_t0_r1=6 (0000110)
+
+State 1862 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function main line 3313 thread 0
+----------------------------------------------------
+  __cs_pc_cs[0l]=22 (00010110)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c line 3314 function main
+  (signed int)__cs_pc_cs[(signed long int)0] >= (signed int)__cs_pc[(signed long int)0]
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c line 3315 function main
+  (signed int)__cs_pc_cs[(signed long int)0] <= 70
+
+State 1866 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function main line 3317 thread 0
+----------------------------------------------------
+  __cs_dataraceDetectionStarted=TRUE (00000001)
+
+State 1869 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function main line 3318 thread 0
+----------------------------------------------------
+  SM__&__dr_param_thr1_arg!0@2__dr_write=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1870 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function main line 3318 thread 0
+----------------------------------------------------
+  SM__&__dr_param_thr1_arg!0@2__dr_write_noatomic=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1871 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function main line 3318 thread 0
+----------------------------------------------------
+  __dr_param_thr1_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1894 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_0 line 505 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 1895 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_0 line 506 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=TRUE (00000001)
+
+State 1900 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_0 line 507 thread 0
+----------------------------------------------------
+  __dr_nondet_thr1___cs_tmp_if_cond_4=FALSE (00000000)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c line 515 function thr1_0
+  (signed int)__cs_pc_cs[(signed long int)0] >= 18
+
+State 1907 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_0 line 526 thread 0
+----------------------------------------------------
+  __dr_param_push_1_d=10 (00000000 00000000 00000000 00001010)
+
+State 1911 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_0 line 532 thread 0
+----------------------------------------------------
+  SM__&__dr_param___CSEQ_atomic_index_malloc_curr_alloc_idx!0@18__dr_write=((signed int *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1912 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_0 line 532 thread 0
+----------------------------------------------------
+  SM__&__dr_param___CSEQ_atomic_index_malloc_curr_alloc_idx!0@18__dr_write_noatomic=((signed int *)NULL) (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1913 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_0 line 532 thread 0
+----------------------------------------------------
+  __dr_param___CSEQ_atomic_index_malloc_curr_alloc_idx=&__dr_nondet_push_1_newTop (00001010 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 1917 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function __CSEQ_atomic_index_malloc line 336 thread 0
+----------------------------------------------------
+  __dr_nondet___CSEQ_atomic_index_malloc___cs_tmp_if_cond_1=FALSE (00000000)
+
+State 1925 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function __CSEQ_atomic_index_malloc line 343 thread 0
+----------------------------------------------------
+  __dr_nondet_push_1_newTop=19 (00000000 00000000 00000000 00010011)
+
+State 1928 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function __CSEQ_atomic_index_malloc line 343 thread 0
+----------------------------------------------------
+  next_alloc_idx=21 (00000000 00000000 00000000 00010101)
+
+State 1934 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_0 line 536 thread 0
+----------------------------------------------------
+  __dr_nondet_push_1___cs_tmp_if_cond_2=FALSE (00000000)
+
+State 1938 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_0 line 546 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 1939 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_0 line 547 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 1946 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_0 line 548 thread 0
+----------------------------------------------------
+  memory[19l]=10 (00000000 00000000 00000000 00001010)
+
+State 1948 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_0 line 552 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=FALSE (00000000)
+
+State 1949 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_0 line 553 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 1954 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_0 line 554 thread 0
+----------------------------------------------------
+  __dr_nondet_push_1_oldTop=17 (00000000 00000000 00000000 00010001)
+
+State 1956 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_0 line 557 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=TRUE (00000001)
+
+State 1957 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_0 line 558 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=FALSE (00000000)
+
+State 1963 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_0 line 559 thread 0
+----------------------------------------------------
+  SM__&memory__dr_write[20l]=16843009 (00000001 00000001 00000001 00000001)
+
+State 1967 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_0 line 559 thread 0
+----------------------------------------------------
+  SM__&memory__dr_write_noatomic[20l]=16843009 (00000001 00000001 00000001 00000001)
+
+State 1970 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_0 line 559 thread 0
+----------------------------------------------------
+  memory[20l]=17 (00000000 00000000 00000000 00010001)
+
+State 2037 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_0 line 1050 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 2038 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_0 line 1050 thread 0
+----------------------------------------------------
+  __cs_thread_index=0u (00000000 00000000 00000000 00000000)
+
+State 2039 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function __cs_exit line 101 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[0l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 2044 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function main line 3322 thread 0
+----------------------------------------------------
+  __cs_dataraceSecondThread=TRUE (00000001)
+
+State 2045 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function main line 3323 thread 0
+----------------------------------------------------
+  __cs_pc[0l]=22 (0010110)
+
+State 2046 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function main line 3326 thread 0
+----------------------------------------------------
+  __cs_tmp_t1_r1=1 (0000001)
+
+State 2048 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function main line 3329 thread 0
+----------------------------------------------------
+  __cs_pc_cs[1l]=20 (00010100)
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c line 3330 function main
+  (signed int)__cs_pc_cs[(signed long int)1] >= (signed int)__cs_pc[(signed long int)1]
+
+Assumption:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c line 3331 function main
+  (signed int)__cs_pc_cs[(signed long int)1] <= 70
+
+State 2054 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function main line 3334 thread 0
+----------------------------------------------------
+  SM__&__dr_param_thr1_arg!0@2__dr_write$0=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 2055 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function main line 3334 thread 0
+----------------------------------------------------
+  SM__&__dr_param_thr1_arg!0@2__dr_write_noatomic$0=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 2056 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function main line 3334 thread 0
+----------------------------------------------------
+  __dr_param_thr1_arg=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 2082 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_1 line 1251 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP1=TRUE (00000001)
+
+State 2083 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_1 line 1252 thread 0
+----------------------------------------------------
+  __cs_dataraceActiveVP2=TRUE (00000001)
+
+State 2089 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_1 line 1253 thread 0
+----------------------------------------------------
+  return_value___CPROVER_get_field$58=1 (00000000 00000000 00000000 00000001)
+
+State 2090 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_1 line 1253 thread 0
+----------------------------------------------------
+  tmp_if_expr$58=FALSE (0)
+
+State 2092 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_1 line 1253 thread 0
+----------------------------------------------------
+  __cs_dataraceNotDetected=FALSE (00000000)
+
+State 2096 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_1 line 1253 thread 0
+----------------------------------------------------
+  tmp_if_expr$59=FALSE (0)
+
+State 2097 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_1 line 1253 thread 0
+----------------------------------------------------
+  __cs_dataraceNotDetected=FALSE (00000000)
+
+State 2103 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_1 line 1253 thread 0
+----------------------------------------------------
+  tmp_if_expr$60=FALSE (0)
+
+State 2104 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_1 line 1253 thread 0
+----------------------------------------------------
+  __cs_dataraceNotDetected=FALSE (00000000)
+
+State 2108 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_1 line 1253 thread 0
+----------------------------------------------------
+  tmp_if_expr$61=FALSE (0)
+
+State 2109 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_1 line 1253 thread 0
+----------------------------------------------------
+  __cs_dataraceNotDetected=FALSE (00000000)
+
+State 2110 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_1 line 1253 thread 0
+----------------------------------------------------
+  memory[5l]=10 (00000000 00000000 00000000 00001010)
+
+State 2179 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_1 line 1755 thread 0
+----------------------------------------------------
+  __cs_value_ptr=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 2180 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function thr1_1 line 1755 thread 0
+----------------------------------------------------
+  __cs_thread_index=1u (00000000 00000000 00000000 00000001)
+
+State 2181 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function __cs_exit line 101 thread 0
+----------------------------------------------------
+  __cs_thread_joinargs[1l]=NULL (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000)
+
+State 2185 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function main line 3336 thread 0
+----------------------------------------------------
+  __cs_dataraceContinue=FALSE (00000000)
+
+State 2187 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function main line 3338 thread 0
+----------------------------------------------------
+  __cs_dataraceSecondThread=TRUE (00000001)
+
+State 2188 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function main line 3339 thread 0
+----------------------------------------------------
+  __cs_pc[1l]=20 (0010100)
+
+State 2189 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function main line 3342 thread 0
+----------------------------------------------------
+  __cs_tmp_t2_r1=4 (0000100)
+
+State 2191 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function main line 3358 thread 0
+----------------------------------------------------
+  __cs_tmp_t3_r1=34 (0100010)
+
+State 2193 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function main line 3375 thread 0
+----------------------------------------------------
+  __cs_tmp_t4_r2=4 (100)
+
+State 2195 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function main line 3391 thread 0
+----------------------------------------------------
+  __cs_tmp_t0_r2=0 (0000000)
+
+State 2197 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function main line 3407 thread 0
+----------------------------------------------------
+  __cs_tmp_t1_r2=127 (1111111)
+
+State 2199 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function main line 3423 thread 0
+----------------------------------------------------
+  __cs_tmp_t2_r2=31 (0011111)
+
+State 2201 file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function main line 3439 thread 0
+----------------------------------------------------
+  __cs_tmp_t3_r2=4 (0000100)
+
+Violated property:
+  file /home/salvatore/github/CSeq/Experiments/Dec2021/sequentialized3R4U/_csdr_36_stack_cas_p0_vs_concur.c function main line 3450 thread 0
+  Data race failure
+  __cs_dataraceNotDetected != FALSE
+
+
+VERIFICATION FAILED
+
+real	0m25,813s
+user	0m25,425s
+sys	0m0,395s
