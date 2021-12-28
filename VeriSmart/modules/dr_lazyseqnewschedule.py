@@ -304,7 +304,7 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 # old condition: 
 # not self.isThread(n.name) and not self.__isArray and not self._isConst(self.getCurrentThread(),n.name) ):
 #			print(self._isVar(self.getCurrentThread(),n.name))
-			print(n.name)
+			#print(n.name)
 			if self.__stats != Stats.noACC: 
 				if self.isAtomic():
 					ret += '( __cs_dataraceActiveVP2 && __cs_dataraceSecondThread  && (__cs_dataraceNotDetected = __cs_dataraceNotDetected && ! __CPROVER_get_field(&%s,"dr_write_noatomic")))' %  n.name

@@ -1,8 +1,12 @@
 sourcedir=/home/salvatore/github/CSeq/svcomp2020-concurrency-benchmarks/
-basedir=/home/salvatore/github/CSeq/Experiments/Dec2021/
+basedir=/home/salvatore/github/CSeq/Experiments/Dec2021-27/
 result=${basedir}results${1}R${2}U.out
 seqdir=${basedir}sequentialized${1}R${2}U/
 outdir=${basedir}output/
+
+if [ ! -d $basedir ]; then
+    mkdir $basedir
+fi
 
 if [ -f $result ]; then
     rm $result
