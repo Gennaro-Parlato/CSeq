@@ -379,13 +379,16 @@ class Translator(BasicModule, pycparser.c_generator.CGenerator):
     def loadfromstring(self, string, env, fill_only_fields=None):
         self.__produce_counter_examples = env.cex
         #if self.__class__.__name__ == 'instrumenter': 
-            #print("QUI " + self.__class__.__name__)
+        #    print("QUI " + self.__class__.__name__)
             #print(string)
         super(Translator, self).loadfromstring(string, env)
 
         self.input = string
         self.Parser.reset()  # resets all the parser datastructs
         #print(string)
+        #if self.__class__.__name__ == 'instrumenter': 
+            #print("QUI " + self.__class__.__name__)
+            #print(string)
         self.Parser.loadfromstring(string, fill_only_fields)
         self.ast = self.Parser.ast
         self.output = self.visit(self.ast)

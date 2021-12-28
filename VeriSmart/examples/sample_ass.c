@@ -3,6 +3,23 @@ extern void __VERIFIER_error() __attribute__ ((__noreturn__));
 #include <pthread.h>
 #include <assert.h>
 
+typedef struct Cell Cell;
+struct Cell {
+    Cell *pnext;
+    int pdata;
+};
+typedef struct ThreadInfo ThreadInfo;
+struct ThreadInfo {
+    unsigned int id;
+    int op;
+    Cell cell;
+};
+typedef struct Simple_Stack Simple_Stack;
+struct Simple_Stack {
+    Cell *ptop;
+};
+Simple_Stack S;
+
 pthread_mutex_t  m;
 int data = 0;
 int g[3];
@@ -21,10 +38,12 @@ void *thread1(void *arg)
 void *thread2(void *arg)
 {
   int *x, a[3][4];
+  x = &S.ptop;
+
 //  int i=1;
 //  p =  malloc(sizeof(int));
 //  i = data;
-  *x = data;
+//  *x = data;
 //  data = foo(3)+7;
 //  a[1][1]= 7+x;
 //  *(a+3) = x; 

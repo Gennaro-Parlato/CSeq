@@ -229,6 +229,7 @@ class Parser(pycparser.c_generator.CGenerator):
 
     def loadfromstring(self, string, fill_only_fields=None):
         self.ast = pycparser.c_parser.CParser().parse(string)
+        #print("QUI")
         if fill_only_fields is None or len(fill_only_fields) > 0:
             self.__fields_to_fill = fill_only_fields
             self.__sourcecode = self.visit(self.ast)

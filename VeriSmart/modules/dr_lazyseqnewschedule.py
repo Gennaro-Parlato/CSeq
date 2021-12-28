@@ -399,7 +399,7 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
                 #print(rvalue) 
 
                 if not self.__optional2:
-                   if ret != '':
+                   if ret != '' and rvalue.strip() != '':
                       ret += ', '
                    ret +=  rvalue 
                    #print("RET: " + ret)
@@ -414,9 +414,9 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 		#print self.__sharedVarsW
                 if ret != '':
                     ret += ','
+                #print("RET: " + ret)
                 ret += '%s %s %s' % (lwse, n.op, rwse)
                 self.__WSE = lwse
-                #print("RET: " + ret)
 
                 self.__stats = old_drStats  
                 return ret
