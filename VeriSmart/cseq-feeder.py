@@ -154,7 +154,7 @@ class cseqenv:
     # DR
     enableDR = False
     wwDatarace = False  # True if requires that write-write datarace are on different written values
-    local = 2
+    local = 0
     inlineInfix = '$$$$'  # S: placeholder to insert counter value in function inlining, see varname.py and inliner.py
     paths = False
     no_shadow = False
@@ -307,7 +307,7 @@ def usage(cmd, errormsg, showhelp=True, detail=False, isSwarm=False):
         print("data race option:")
         print("   --dr                              enable data race detection")
         print("   -W,--wwDatarace                   requires that write-write datarace are on different written values")
-        print("   --local-vars                      0 for init with malloc, 1 wih memcopy, 2 with nondet-static option")
+        print("   --local-vars                      0 for init with malloc (default), 1 wih memcopy, 2 with nondet-static option")
         # Module-specific params for the given chain (or for the default one)
         print("")
         print("module options:")
@@ -548,7 +548,7 @@ def main():
                     # Backend
                     "stop-on-fail", "bounds-check", "div-by-zero-check", "pointer-check", "memory-leak-check",
                     "signed-overflow-check", "unsigned-overflow-check", "float-overflow-check", "nan-check",
-                    "no-simplify", "refine-arrays",
+                    "no-simplify", "refine-arrays", 
 
                     # DataRace
                     "dr", "ww-datarace", "local-vars="]
@@ -710,6 +710,7 @@ def main():
             cseqenv.wwDatarace = True
         elif o in ("--dr"):
             cseqenv.enableDR = True
+            cseqenv.local = 2   #data race default option: nondet-static init of _nondet_ named vars with cbmc-SM
         elif o in ("--local-vars"):
             cseqenv.local = int(a)
 

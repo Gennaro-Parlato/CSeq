@@ -37,7 +37,10 @@ void *thread1(void *arg)
 
 void *thread2(void *arg)
 {
-  int *x, a[3][4];
+  int *x, b[2], a[3][4];
+  int y = data;
+
+  *x = data;
   x = &S.ptop;
 
 //  int i=1;

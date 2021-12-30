@@ -541,13 +541,12 @@ class lazyseqnewschedule(core.module.Translator):
 		###print "THREAD %s, LINES %s \n\n" % (self._currentThread, self.__lines)
 
 		#
+		self.__stmtCount = -1
 		if n.param_decls:
 			knrdecls = ';\n'.join(self.visit(p) for p in n.param_decls)
-			self.__stmtCount = -1
 			#body = body[:body.rfind('}')] + self._make_indent() + returnStmt + '\n}'
 			f = decl + '\n' + knrdecls + ';\n'
 		else:
-			self.__stmtCount = -1
 			#body = body[:body.rfind('}')] + self._make_indent() + returnStmt + '\n}'
 			f = decl + '\n'
 

@@ -71,7 +71,7 @@ Changelog:
 
 """
 
-import copy, re
+import copy, re, sys
 import pycparser.c_parser, pycparser.c_ast, pycparser.c_generator
 from pycparser import c_ast
 import core.common, core.module, core.parser, core.utils
@@ -114,7 +114,7 @@ class inliner(core.module.Translator):
     # Keep return and pthread_exit of each thread
     __exit_args = {}
 
-    local = 0  # S: added to handle differen versions of init of local vars
+    local = 0  # S: added to handle different versions of init of local vars
     inlineInfix = ''  # S: added to copy inlineInfix from env passed in loadfromstring
 
     currFuncPtrParamMap = {}  # keeps the value in the current call of the function parameters of type function pointer
@@ -143,8 +143,7 @@ class inliner(core.module.Translator):
         if self.getInputParamValue('nondet-static') is not None:
             self.__nondet_static = True
         # DR
-        if env.enableDR:
-            self.local = env.local  # S
+        self.local = env.local  # S
         self.inlineInfix = env.inlineInfix  # S
 
         super(self.__class__, self).loadfromstring(string, env)
@@ -674,14 +673,15 @@ class inliner(core.module.Translator):
                             vartype = self.Parser.varType[self.currentFunction[-1], n.name]
                             s = 'static %s %s %s; ' % (vartype, stars, name)  # S: n.name --> name
                             # S: init local vars
-                            if self.init == 1:
-                                s += '__cs_init_scalar(& %s, (sizeof(%s)*%s));' % (
-                                name, vartype, self._totalSize(self.currentFunction[-1], n.name))  # S: n.name --> name
-                            elif self.init == 0:
-                                s += n.name + ' = (%s %s) %s(sizeof(%s)*%s)' % (
+                            #if self.init == 1:
+                            #   s += '__cs_init_scalar(& %s, (sizeof(%s)*%s));' % (
+                            #    name, vartype, self._totalSize(self.currentFunction[-1], n.name))  # S: n.name --> name
+                            #elif self.init == 0:
+                            if self.local in range(0, 2):
+                                s += name + ' = (%s %s) %s(sizeof(%s)*%s)' % (
                                 vartype, stars, core.common.changeID['malloc'], vartype,
-                                self._totalSize(self.currentFunction[-1],
-                                                name))  # S: original transf.  #S: n.name --> name
+                                    self._totalSize(self.currentFunction[-1],
+                                                n.name))  # S: original transf.  #S: n.name --> name
             else:  # Anything else, Truc's modification
                 init = ''
                 initType = 0
@@ -1059,7 +1059,6 @@ class inliner(core.module.Translator):
 
     def _totalSize(self, f, v):
         sizeExpression = ''
-
         for i in range(0, self.Parser.varArity[f, v]):
             # if self.Parser.varSize[f,v][i].isdigit():     # simple digit
             sizeExpression += str(self.Parser.varSize[f, v][i]) + '*'

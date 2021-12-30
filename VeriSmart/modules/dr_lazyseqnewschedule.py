@@ -130,7 +130,7 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 
 	def initFlags(self,count):
             self.__stats  =  Stats.TOP
-            if count == -1:
+            if count == -2:
                 self.__VP1required = True
                 self.__VP2required = True
             else:

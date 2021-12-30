@@ -1,4 +1,4 @@
-sourcedir=/home/salvatore/github/Experiments/Dec2021-28/
+sourcedir=/home/salvatore/github/Experiments/Dec2021-30/
 result=${sourcedir}resultscbmc${1}R${2}U.out
 seqdir=${sourcedir}sequentialized${1}R${2}U/
 
@@ -17,9 +17,9 @@ do
      noExtFile=${file::-2}
      prefix="output"
      suffix=${noExtFile#${seqdir}}
-     echo "./cbmc-SM $file --unwind 1 --no-unwinding-assertions --stop-on-fail"
+     echo "./cbmc-SM $file --unwind 1 --no-unwinding-assertions --stop-on-fail --nondet-static"
      output=${seqdir}$prefix$suffix
-     (time  timeout -k 10 900 ./cbmc-SM $file --unwind 1 --no-unwinding-assertions --stop-on-fail) > $output  2>&1
+     (time  timeout -k 10 900 ./cbmc-SM $file --unwind 1 --no-unwinding-assertions --stop-on-fail --nondet-static) > $output  2>&1
      (cat "$output" | grep '^user\|^[[:digit:]]\{1,10\} variables\|^Runtime decision \|^CBMC \|^Parsing\|^VERIFICATION') >> $result
      echo "" >> $result
   fi
