@@ -85,7 +85,7 @@ class varnames(core.module.Translator):
 		self.__noShadow = env.no_shadow
 		self.__enableDR = env.enableDR
 		
-		if self.__noShadow or not self.__enableDR:
+		if env.local != 2 and (self.__noShadow or not self.__enableDR):
 			self.nondetprefix = self.prefix
 		super(varnames, self).loadfromstring(string, env, fill_only_fields=['varNames', 'funcName'])
 		self.setOutputParam('varnamesmap', self.varmap)

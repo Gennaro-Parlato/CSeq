@@ -561,6 +561,7 @@ class inliner(core.module.Translator):
                      not s.startswith('static ') and  # This may not usefull
                      not self.__parsingStruct):  # and not part of a struct or union
                    s = "static " + s
+
             if n.init:
                 processInit = True
                 if isinstance(n.init, c_ast.InitList):
@@ -671,7 +672,7 @@ class inliner(core.module.Translator):
                         else:
                             stars = '*' * self.Parser.varArity[self.currentFunction[-1], n.name]
                             vartype = self.Parser.varType[self.currentFunction[-1], n.name]
-                            s = 'static %s %s %s; ' % (vartype, stars, name)  # S: n.name --> name
+                            s = 'static %s %s %s' % (vartype, stars, name)  # S: n.name --> name
                             # S: init local vars
                             #if self.init == 1:
                             #   s += '__cs_init_scalar(& %s, (sizeof(%s)*%s));' % (

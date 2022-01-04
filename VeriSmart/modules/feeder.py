@@ -234,6 +234,8 @@ class feeder(core.module.BasicModule):
 					exe = "cbmc" #"./cbmc-v5.10-static"
 				else:
 					exe = "./cbmc-SM"	
+			elif env.local == 2:
+				exe = "./cbmc-SM"
 			else:
 				exe = "cbmc" #"./cbmc-v5.10-static"
 
