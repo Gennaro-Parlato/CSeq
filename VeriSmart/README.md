@@ -28,6 +28,7 @@ To install VeriSmart, please follow the steps below:
         - ijson (pip3 install --user ijson)
         - CBMC (available from http://www.cprover.org/cbmc/) 
           note that we tested VeriSmart with CBMC v5.11 only
+        - g++-multilib (apt install g++-multilib)
     
     2. create a directory, suppose this is called /workspace
     
