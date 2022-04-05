@@ -121,10 +121,10 @@ cluster.
 Specifically, with the --config-only option, VeriSmart
 stops afer writing the configuration file:
 
-    ./verismart.py --config-only examples/lazy_unsafe.c
+    ./verismart.py --config-only -i examples/lazy_unsafe.c
 
 Note that the contents of this file depend on any other control parameters such
-as -l or -p.  These configuration files can then idependently be used with the
+as -l or -p.  These configuration files can then independently be used with the
 --config-file (or -c) option to re-start the verification process;
 configuration files can also be created manually or by other tools.
 
@@ -132,7 +132,7 @@ Similarly, with the --instances-only option, VeriSmart stops afer
 writing the instance files (i.e., the sequentialized program
 variants):
 
-    ./verismart.py --instances-only examples/lazy_unsafe.c
+    ./verismart.py --instances-only -i examples/lazy_unsafe.c
 
 Finally, VeriSmart can also be used to generate a set of configuration
 files, each describing the specified number of configurations:
@@ -146,7 +146,7 @@ and verify the described instances.
 
 To try a more complicated example, run
 
-  ./verismart.py examples/elimination-backoff-stack.c -p2 -l12 -r2 --instances-limit 20 --timeout 500 --cores 5
+  ./verismart.py -i examples/elimination-backoff-stack.c -p2 -l12 -r2 --instances-limit 20 --timeout 500 --cores 5
 
 Note that you need to increase the --instances-limit --timeout, --cores, or -l 
 to find the error, depending on the hardware.
