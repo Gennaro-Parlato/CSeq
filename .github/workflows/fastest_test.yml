@@ -22,7 +22,9 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Run a file
-        run: pwd
+        run: |
+          cd VeriSmart
+          ./verismart.sh -i /home/giulio/benchmarks/hello_world/test.c --debug --stop-on-fail -T 10
       
       
   # This workflow contains a single job called "build"
