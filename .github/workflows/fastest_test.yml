@@ -28,7 +28,7 @@ jobs:
           cd VeriSmart
           for c in hello_world/test.c
           do
-            mkdir -p $dr/$c/logs
+            mkdir -p $dr/$c/log
             ./verismart.py -i /home/giulio/benchmarks/$c --debug --stop-on-fail -T 10 &> $dr/$c/output.txt
             mv log/* $dr/$c/log
           done
