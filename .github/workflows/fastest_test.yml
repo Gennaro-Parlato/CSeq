@@ -24,7 +24,7 @@ jobs:
       - name: Run a file
         run: |
           cd VeriSmart
-          ./verismart.sh -i /home/giulio/benchmarks/hello_world/test.c --debug --stop-on-fail -T 10
+          ./verismart.py -i /home/giulio/benchmarks/hello_world/test.c --debug --stop-on-fail -T 10
       
       
   # This workflow contains a single job called "build"
