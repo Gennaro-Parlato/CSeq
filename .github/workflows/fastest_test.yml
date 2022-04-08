@@ -15,6 +15,16 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
+  timeout1s:
+    runs-on: self-hosted
+    steps:
+      - uses: actions/checkout@v3
+
+      # Runs a single command using the runners shell
+      - name: Run a file
+        run: ./verismart -h
+      
+      
   # This workflow contains a single job called "build"
   build:
   
