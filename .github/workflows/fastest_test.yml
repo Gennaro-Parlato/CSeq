@@ -23,27 +23,12 @@ jobs:
       # Runs a single command using the runners shell
       - name: Run a file
         run: |
+          export dr=/home/giulio/runner_results/`printf '%(%Y-%m-%d-%H-%M-%S)T\n' -1 `_$GITHUB_SHA
+          mkdir -p $dr
           cd VeriSmart
-          ./verismart.py -i /home/giulio/benchmarks/hello_world/test.c --debug --stop-on-fail -T 10
-      
-      
-  # This workflow contains a single job called "build"
-  build:
-  
-    # The type of runner that the job will run on
-    runs-on: self-hosted
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
-    steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v3
-
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
-
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
-        run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+          for c in hello_world/test.c
+          do
+            mkdir -p $dr/$c/logs
+            ./verismart.py -i /home/giulio/benchmarks/$c --debug --stop-on-fail -T 10 &> $dr/$c/output.txt
+            mv logs/* $dr/$c/logs
+          done
