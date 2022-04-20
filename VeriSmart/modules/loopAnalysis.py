@@ -7,6 +7,7 @@ from bin import utils
 import core.module
 import json
 import sys
+import traceback
 
 
 def start_process():
@@ -381,6 +382,9 @@ class loopAnalysis(core.module.Translator):
 			except KeyboardInterrupt as e:
 				print("Chain interrupted by user")
 				sys.exit(1)
+			except Exception as e:
+				traceback.print_exc()
+				raise e
 		if env.instances_only:
 			if not env.isSwarm:
 				print("Sequentialization successfully completed.")

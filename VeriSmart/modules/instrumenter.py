@@ -197,6 +197,7 @@ class instrumenter(core.module.Translator):
 		self.backend = self.getInputParamValue('backend')
 		self.bitwidths = self.getInputParamValue('bitwidth')
 		self.extheader = self.getInputParamValue('header')
+		self.abt_header = self.getInputParamValue('header_abstraction')
 
 		if self.getInputParamValue('svcomp') is not None:
 			self.__svcomp = True
@@ -251,6 +252,8 @@ class instrumenter(core.module.Translator):
 		self.output = newstring
 
 		self.insertheader(self.extheader)          # header passed by previous module
+		if self.abt_header is not None:
+			self.insertheader(self.abt_header) # abstraction_prep macro file
 
 		# linearizability instrumentation
 		liheaderfile = self.getInputParamValue("liheader")
