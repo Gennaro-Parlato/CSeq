@@ -803,6 +803,7 @@ if __name__ == '__main__':
         for fa in category['files']:
             f = fa[0]
             ans = fa[1]
+            print(filepath)
             filepath = base_file_path + '/' + category['relative_path'] + '/' + f
             outpathdir = output_file_path + '/' + category['relative_path'] + '/' + f +'/'
             mkdir(outpathdir)
