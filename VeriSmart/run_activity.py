@@ -4,6 +4,7 @@ import argparse
 import pathlib
 import os
 import shutil
+import sys
 
 def mkdir(path, *paths):
     pathlib.Path(os.path.join(path, *paths)).mkdir(parents=True, exist_ok=True)
@@ -804,7 +805,7 @@ if __name__ == '__main__':
             f = fa[0]
             ans = fa[1]
             filepath = base_file_path + '/' + category['relative_path'] + '/' + f
-            print(filepath)
+            print(filepath, file=sys.stderr)
             outpathdir = output_file_path + '/' + category['relative_path'] + '/' + f +'/'
             mkdir(outpathdir)
             print('./lazycseq.py -i %s --unwind %d --rounds %d --seq --debug' % (
