@@ -23,6 +23,8 @@ import core.module
 from core.abstractionDir.transformation_rule_prep import TransformationsRulePrep
 import math
 
+import sys
+
 class abstraction_prep(core.module.Translator):
 
 
@@ -187,7 +189,6 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
             self.macro_file_name = basePath + fname[0:-1] + 'macro_plain.h'
             # self.name_support_file = basePath + self.env.opts[0][1][0:-1] + 'supp.c'
             self.name_support_file = basePath + fname[0:-1] + 'supp.c'
-            print(self.name_support_file)
             self.support_macro_file = open(self.name_support_file, 'a')
             self.transformation_rule = TransformationsRulePrep(self, encoding, self.bitmask_encoding,macro_file_name=self.macro_file_name)
 
@@ -667,11 +668,11 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
         type_of_n = self.transformation_rule.getType(n.type)
 
         if type_of_n == 'FuncDecl' and hasattr(n,'name'):
-            if n.name != None and  not n.name.startswith('__cs_'):
+            if n.name != None and not n.name.startswith('__cs_'):
                 self.visit(n.type)
 
         if hasattr(n,'name'):
-            if n.name != None and not n.name.startswith('__cs_'): #and not self.visiting_struct:
+            if n.name != None and (not n.name.startswith('__cs_') or n.name.startswith('__cs_local_') or n.name.startswith('__cs_retval_') or n.name.startswith('__cs_param_') or n.name.startswith('__cs_thread_local_')): #and not self.visiting_struct:
                 self.checkForWriting(type_of_n, n)
 
         if type_of_n == 'FuncDecl':
@@ -928,7 +929,6 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
 
 
     def visit_FuncDef(self, n):
-
         self.resetOperationBit()
         self.scope = 'local'
         func_name = n.decl.name
@@ -987,7 +987,6 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
             return "....\n" + '\n' + '\n' + "\n" + knrdecls + ';\n' + body + '\n'
 
         else:
-
             if self.translationPerformed:
                 #self.string_support_macro += '}\n'
                 self.translationPerformed = 0
