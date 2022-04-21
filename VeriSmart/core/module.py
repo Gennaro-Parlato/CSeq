@@ -333,13 +333,13 @@ class Translator(BasicModule, pycparser.c_generator.CGenerator):
         # utils.saveFile("beforestrip.c", self.output)
 
         for i, line in enumerate(self.output.split('\n')):
-            if '_____STARTSTRIPPINGFROMHERE_____' in line:
+            if '_____STARTSTRIPPINGFROMHERE_____' in line or 'START_STRIP_ABT' in line:
                 status = 1
                 # print '-----> top line: %s' % (i + 1)
                 top = i + 1
                 continue
 
-            if '_____STOPSTRIPPINGFROMHERE_____' in line:
+            if '_____STOPSTRIPPINGFROMHERE_____' in line or 'END_STRIP_ABT' in line:
                 status = 2
                 # print '-----> bottom line: %s' % (i + 1)
                 bottom = i + 1
