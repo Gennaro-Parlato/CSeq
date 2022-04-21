@@ -3,13 +3,14 @@
 
 """
 
-	2021.03.30  Initial version
+     Two different encodings:
+     -  lazyCseq: only the statements with DR code are generated
+     -  Verismart: for each statement S,   DR_S @£@I3 S @£@I4
+                   such that when instances are generated we pick DR_S at the selected visible points, 
+                   and S at the remaining ones.
+                   DR_S is computed by the functions of this class
+                   S is computed by the functions of the superclass
 
-       TODO:  now DR is detected also when the two accesses are from atomic blocks, we need to 
-              discard those
-              - possible solution use a bit-field of the SM to annotate whether a write of the first step of DRD is done into an atomic block
-                (within an atomic block before setting it to true we check if the same location was already marked as written, since
-                 this could have occurred outside the atomic block but still at the same visible point)
 """
 import math, re, os.path
 import sys
@@ -28,7 +29,7 @@ class Stats(Enum):
 class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 
 	# DR data for discarding clearly benign dataraces (i.e., when we have write-write of the same value
-	__enableDR = False   #True iff input option --dr is chosen
+	#__enableDR = True   #False iff statement with no DR code must be generated
 	__wwDatarace = False 
 	__noShadow = False
 	#__enableDRlocals = False  # data race code also on local vars
@@ -53,7 +54,9 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 	__VP1required = False  # True iff current visible point is the last one of this context
 
 	__VP2required = False  # True iff current visible point is the first one of this context
-	__enableDRcode = True  # Disabled when visiting assert conditions
+	__enableDRcode = True  # Disabled when no DR code must be injected: 
+                               #    - when visiting assert conditions
+                               #    - when generating the statement with no DR code for instance generation
 
 	__isArray = False                # used to flag that we are below an ArrayRef node
 	__arrayName = ''            # contains the array name when on visiting array ref (going-up)
@@ -101,7 +104,7 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 		header += '_Bool __cs_dataraceActiveVP2 = 0; \n'   #DR
 #		header += '_Bool __cs_atomicDR = 0; \n'   #DR: is set to true iff in the first pass of the  
 		# DR API implementation
-		if self.__enableDR and self.__noShadow:
+		if self.__noShadow:   #self.__enableDR and 
 			header += 'const void * shadowmem[SMSIZE]={0,0,0,0,0};\n\
 					int shadowmem_idx=0;\n\
 					void __CPROVER_field_decl_global(char* s,  _Bool b){\n\
@@ -119,7 +122,7 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 
 	def loadfromstring(self, string, env):
 
-		self.__enableDR = env.enableDR
+		#self.__enableDR = env.enableDR
 		self.__wwDatarace = env.wwDatarace
 		self.__noShadow = env.no_shadow
 		#self.__enableDRlocals = env.local
@@ -147,6 +150,13 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 			s += '__cs_dataraceActiveVP2 = ( @£@L2 == __cs_pc[%s] ) ; \n' % threadIndex   #DR
 		return s
 
+	def alternateCode(self, n):
+		oldEnableDRcode = self.__enableDRcode
+		self.__enableDRcode = False
+		s = super(dr_lazyseqnewschedule, self).visit(n)
+		self.__enableDRcode = oldEnableDRcode
+		return s
+     
 #end routines for visit_Compound
 
 
@@ -723,11 +733,15 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 
 
 	def visit_FuncDef(self, n):
+		self.__const[n.decl.name] = []
+
+		if not self.__enableDRcode: 
+			return super(dr_lazyseqnewschedule, self).visit_FuncDef(n)
 		#if (n.decl.name.startswith('__CSEQ_atomic_') or n.decl.name == '__CSEQ_assert'):
+
 		if (n.decl.name == '__CSEQ_assert'):
 			self.__enableDRcode = False
 
-		self.__const[n.decl.name] = []
 
 		ret = super(dr_lazyseqnewschedule,self).visit_FuncDef(n)
 

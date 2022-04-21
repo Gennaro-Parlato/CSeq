@@ -389,6 +389,8 @@ class lazyseqnewschedule(core.module.Translator):
 
 	def additionalCode(self,threadIndex):
 		return ''
+	def alternateCode(self, n):
+		return ''
 
 
 	def visit_Compound(self, n):
@@ -422,7 +424,7 @@ class lazyseqnewschedule(core.module.Translator):
 						self.__maxInCompound = self.__stmtCount
 						threadIndex = self.Parser.threadOccurenceIndex[self.__currentThread]
 						s = self.visit(stmt.stmt)
-						code = '@£@I1' + self.additionalCode(threadIndex) + '@£@I2' + s +  ';\n'
+						code = '@£@I1' + self.additionalCode(threadIndex) + '@£@I2' + s + '@£@I3' + self.alternateCode(stmt.stmt) + '@£@I4' + ';\n' 
 					elif (not self.__visit_funcReference and (
 						(type(stmt) == pycparser.c_ast.FuncCall and stmt.name.name == '__CSEQ_atomic_begin') or
 						(not self.__atomic and
@@ -440,7 +442,7 @@ class lazyseqnewschedule(core.module.Translator):
 #@@@@		code = self.visit(stmt)
 						threadIndex = self.Parser.threadOccurenceIndex[self.__currentThread]
 						s = self.visit(stmt.stmt)
-						code = '@£@I1' + self.additionalCode(threadIndex) + '@£@I2' + s + ';\n'
+						code = '@£@I1' + self.additionalCode(threadIndex) + '@£@I2' + s + '@£@I3' + self.alternateCode(stmt.stmt) + '@£@I4' + ';\n'
 					else:
 						code = self.visit(stmt.stmt) + ';\n'
 
@@ -470,7 +472,7 @@ class lazyseqnewschedule(core.module.Translator):
 						self.__maxInCompound = self.__stmtCount
 						threadIndex = self.Parser.threadOccurenceIndex[self.__currentThread]
 						s =  self.visit(stmt)
-						code = '@£@I1' + self.additionalCode(threadIndex)+ '@£@I2' + s + ';\n'
+						code = '@£@I1' + self.additionalCode(threadIndex)+ '@£@I2' + s + '@£@I3' + self.alternateCode(stmt) + '@£@I4' + ';\n'
 					elif (not self.__visit_funcReference and (
 						(type(stmt) == pycparser.c_ast.FuncCall and stmt.name.name == '__CSEQ_atomic_begin') or
 						(not self.__atomic and
@@ -487,7 +489,7 @@ class lazyseqnewschedule(core.module.Translator):
 						self.__maxInCompound = self.__stmtCount
 						threadIndex = self.Parser.threadOccurenceIndex[self.__currentThread]
 						s = self.visit(stmt)
-						code = '@£@I1' + self.additionalCode(threadIndex) + '@£@I2' + s + ';\n'
+						code = '@£@I1' + self.additionalCode(threadIndex) + '@£@I2' + s + '@£@I3' + self.alternateCode(stmt) + '@£@I4' + ';\n'
 	
 					else:
 						code = self.visit(stmt) + ";\n"
