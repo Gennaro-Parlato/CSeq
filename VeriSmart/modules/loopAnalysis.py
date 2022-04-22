@@ -183,42 +183,76 @@ class loopAnalysis(core.module.Translator):
 			if seqCode[i:i+3] == '@£@':
 				if seqCode[i + 3] == 'I':
 					# Stop stripping at m
-					m = i
-					stringToStrip = seqCode[j:i]
+					m = i   #S: +3 ?
+					output.append(seqCode[j:i])
+					stringToStrip = ''
 					while(seqCode[m-5 : m] != "@£@I2"):
 						stringToStrip += seqCode[m]
 						m += 1
 
 					# First statement of thread
 					if count == 0:
+						while(seqCode[m-5 : m] != "@£@I3"):   #take DR_S from "@£@I2 DR_S @£@I3 S @£@I4"
+                                                	stringToStrip += seqCode[m]
+                                                	m += 1	
+
 						for sub in (
 							("@£@I1",'__CSEQ_rawline("IF(%s,%s,t%s_%s)");' % (self.__threadIndex[tName], count, tName, count + 1)),
 							("@£@L1", str(count)),
 							("@£@L2", str(count)),
-							("@£@I2", '')):
+							("@£@I2", ''), 
+							("@£@I3", '')):
     							stringToStrip = stringToStrip.replace(*sub)
 						output.append(stringToStrip)
+
+						while(seqCode[m-5 : m] != "@£@I4"): #delete "S @£@I4" from "@£@I2 DR_S @£@I3 S @£@I4"
+                                                	m += 1	
 						count += 1
 						i = m
+
 					
 					elif ICount in cRange:
+
+						while(seqCode[m-5 : m] != "@£@I3"):   #include "DR_S @£@I3" from " DR_S @£@I3 S @£@I4"
+                                                	stringToStrip += seqCode[m]
+                                                	m += 1	
+
+						while(seqCode[m-5 : m] != "@£@I4"): #delete "S @£@I4" from "@£@I2 DR_S @£@I3 S @£@I4"
+                                                	m += 1	
+
 						for sub in (
 							("@£@I1", '__CSEQ_rawline("t%s_%s:"); __CSEQ_rawline("IF(%s,%s,t%s_%s)");' % (tName, count, self.__threadIndex[tName], count, tName, count + 1)),
 							("@£@L1", str(count)),
 							("@£@L2", str(count)),
-							("@£@I2", '')):
+							("@£@I2", ''), 
+							("@£@I3", '')):
     							stringToStrip = stringToStrip.replace(*sub)
 						output.append(stringToStrip)
+
 						count += 1
+
 						if ICount == list[iList][1] and iList < len(list) - 1:
 							iList += 1
 							cRange = range(list[iList][0], list[iList][1] + 1)
 						i = m
 					
 					else:
-						if seqCode[j:i] != '':
-							output.append(seqCode[j:i])
+						while(seqCode[m-5 : m] != "@£@I3"):   #delete "DR_S @£@I3"  from "DR_S @£@I3 S @£@I4"
+                                                	m += 1	
+						stringToStrip = ''  #delete portion "@£@I1...@£@I2"
+
+						while(seqCode[m-5 : m] != "@£@I4"): #include "S @£@I4" from "DR_S @£@I3 S @£@I4"
+                                                	stringToStrip += seqCode[m]
+                                                	m += 1	
+
+						stringToStrip = stringToStrip.replace('@£@I4','')
+						output.append(stringToStrip)
+
+
 						i = m
+#						if seqCode[j:i] != '':
+#							output.append(seqCode[j:i])
+#						i = m
 					
 					j = i
 					ICount += 1
