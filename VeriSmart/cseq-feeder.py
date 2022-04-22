@@ -561,7 +561,12 @@ def main():
                     "no-simplify", "refine-arrays", 
 
                     # DataRace
-                    "dr", "ww-datarace", "local-vars="]
+                    "dr", "ww-datarace", "local-vars=", 
+                    
+                    "sat-swarm",
+                    
+                    # Abstraction
+                    "abstraction","bit_width","macro-file"]
 
         # add one command-line parameter for each module-specific parameter
         for p in cseqenv.params:

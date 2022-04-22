@@ -142,9 +142,9 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
 
     def loadfromstring(self, string, env):
         self.env = env
-        if not env.enableAbstraction:
+        if not self.env.enableAbstraction:
             #not interested in abstraction: passthrough
-            return super().loadfromstring(string, env)
+            return super(self.__class__, self).loadfromstring(string, env)
         #print(self.env.outputDir)
         dirname, filename = os.path.split(os.path.abspath(self.env.inputfile))
         #os.makedirs(self.outdir, exist_ok=True)
@@ -252,6 +252,9 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
         self.operationBit = None
 
     def visit_FuncCall(self, n):
+        if not self.env.enableAbstraction:
+            #not interested in abstraction: passthrough
+            return super(self.__class__, self).visit_FuncCall(n)
 
         tmp = self.operationBit
 
@@ -287,6 +290,9 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
             return s
 
     def visit_ID(self, n):
+        if not self.env.enableAbstraction:
+            #not interested in abstraction: passthrough
+            return super(self.__class__, self).visit_ID(n)
 
         original_exp = self.cGen_original.visit(n)
 
@@ -327,6 +333,9 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
             return s
 
     def visit_ArrayRef(self, n):
+        if not self.env.enableAbstraction:
+            #not interested in abstraction: passthrough
+            return super(self.__class__, self).visit_ArrayRef(n)
 
         macro_key = None
 
@@ -363,6 +372,9 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
         return '%s' % s
 
     def visit_StructRef(self, n):
+        if not self.env.enableAbstraction:
+            #not interested in abstraction: passthrough
+            return super(self.__class__, self).visit_StructRef(n)
 
         tmp = self.operationBit
 
@@ -406,6 +418,9 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
 
 
     def visit_UnaryOp(self, n):
+        if not self.env.enableAbstraction:
+            #not interested in abstraction: passthrough
+            return super(self.__class__, self).visit_UnaryOp(n)
 
         macro_key = None
 
@@ -575,6 +590,9 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
             return s
 
     def visit_BinaryOp(self, n):
+        if not self.env.enableAbstraction:
+            #not interested in abstraction: passthrough
+            return super(self.__class__, self).visit_BinaryOp(n)
 
         tmp = self.operationBit
 
@@ -615,6 +633,9 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
         return s
 
     def visit_Assignment(self, n):
+        if not self.env.enableAbstraction:
+            #not interested in abstraction: passthrough
+            return super(self.__class__, self).visit_Assignment(n)
 
         tmp = self.operationBit
 
@@ -664,6 +685,9 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
 
 
     def visit_Decl(self, n, no_type=False):
+        if not self.env.enableAbstraction:
+            #not interested in abstraction: passthrough
+            return super(self.__class__, self).visit_Decl(n)
 
 
         original_exp = self.cGen_original.visit(n)
@@ -869,6 +893,9 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
             return s
 
     def visit_Typedef(self, n):
+        if not self.env.enableAbstraction:
+            #not interested in abstraction: passthrough
+            return super(self.__class__, self).visit_Typedef(n)
 
         s = self.cGen_original.visit(n)
 
@@ -897,6 +924,9 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
         return s
 
     def visit_Compound(self, n):
+        if not self.env.enableAbstraction:
+            #not interested in abstraction: passthrough
+            return super(self.__class__, self).visit_Compound(n)
 
 
         s = self._make_indent() + '{\n'
@@ -915,6 +945,9 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
         return s
 
     def visit_Constant(self, n):
+        if not self.env.enableAbstraction:
+            #not interested in abstraction: passthrough
+            return super(self.__class__, self).visit_Constant(n)
 
         tmp = self.operationBit
 
@@ -932,6 +965,9 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
 
 
     def visit_FuncDef(self, n):
+        if not self.env.enableAbstraction:
+            #not interested in abstraction: passthrough
+            return super(self.__class__, self).visit_FuncDef(n)
         self.resetOperationBit()
         self.scope = 'local'
         func_name = n.decl.name
@@ -998,6 +1034,9 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
 
 
     def visit_FileAST(self, n):
+        if not self.env.enableAbstraction:
+            #not interested in abstraction: passthrough
+            return super(self.__class__, self).visit_FileAST(n)
 
         #Print on macro file, the first set of variables,define and so on...
         self.transformation_rule.utility.printFirsMacroSet(self.support_variables)
@@ -1029,6 +1068,9 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
         return ris
 
     def visit_Return(self, n):
+        if not self.env.enableAbstraction:
+            #not interested in abstraction: passthrough
+            return super(self.__class__, self).visit_Return(n)
 
         s = 'return '
         if n.expr: s += ' ' + self.cGen_original.visit(n.expr)
@@ -1040,6 +1082,9 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
             return s + ';'
 
     def visit_ExprList(self, n):
+        if not self.env.enableAbstraction:
+            #not interested in abstraction: passthrough
+            return super(self.__class__, self).visit_ExprList(n)
 
         tmp = self.operationBit
 
@@ -1057,6 +1102,9 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
 
 
     def visit_Cast(self, n):
+        if not self.env.enableAbstraction:
+            #not interested in abstraction: passthrough
+            return super(self.__class__, self).visit_Cast(n)
 
         tmp = self.operationBit
         if self.operationBit == None:
@@ -1082,6 +1130,9 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
             return ris
 
     def visit_TernaryOp(self, n):
+        if not self.env.enableAbstraction:
+            #not interested in abstraction: passthrough
+            return super(self.__class__, self).visit_TernaryOp(n)
 
 
         tmp = self.operationBit
@@ -1107,6 +1158,9 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
 
 
     def visit_If(self, n):
+        if not self.env.enableAbstraction:
+            #not interested in abstraction: passthrough
+            return super(self.__class__, self).visit_If(n)
 
             original_exp = self.cGen_original.visit(n.cond)
 
@@ -1139,6 +1193,9 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
 
 
     def visit_Struct(self, n):
+        if not self.env.enableAbstraction:
+            #not interested in abstraction: passthrough
+            return super(self.__class__, self).visit_Struct(n)
 
         #self.visiting_struct = True
 
