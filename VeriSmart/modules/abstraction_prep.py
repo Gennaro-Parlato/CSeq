@@ -142,6 +142,9 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
 
     def loadfromstring(self, string, env):
         self.env = env
+        if not env.enableAbstraction:
+            #not interested in abstraction: passthrough
+            return super().loadfromstring(string, env)
         #print(self.env.outputDir)
         dirname, filename = os.path.split(os.path.abspath(self.env.inputfile))
         #os.makedirs(self.outdir, exist_ok=True)

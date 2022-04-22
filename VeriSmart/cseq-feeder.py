@@ -87,6 +87,7 @@ class cseqenv:
     backend_path = ""  # path to clang (or llvm-gcc) binary (only for -b klee and -b llbmc)
     domain = "default"
     extra_args = ""  # extra arguments for backends
+    sat_swarm = False
 
     # Unwind bound
     softunwindbound = False
@@ -159,6 +160,10 @@ class cseqenv:
     paths = False
     no_shadow = False
     arrayNamesList = []  #here are annotated the names of the pointers that correspond to array names in the input program
+    
+    # Abstraction
+    enableAbstraction = False
+    bit_width = 3
 
 
 def parseChainCommand(s):
@@ -288,6 +293,7 @@ def usage(cmd, errormsg, showhelp=True, detail=False, isSwarm=False):
         print("   --cex                             enable counterexample generation (if supported by backend)")
         print("   --cex-dir<X>                      counterexample output directory (default: FILE-counterexample)")
         print("   --seq                             generate only the sequentialized program (no backend analysis)")
+        print("   --sat-swarm                       ?")
         print("")
         print("CBMC-specific options (requires -b cbmc):")
         print("   --stop-on-fail                    stop when the first error is found")
@@ -308,6 +314,10 @@ def usage(cmd, errormsg, showhelp=True, detail=False, isSwarm=False):
         print("   --dr                              enable data race detection")
         print("   -W,--wwDatarace                   requires that write-write datarace are on different written values")
         print("   --local-vars                      0 for init with malloc (default), 1 wih memcopy, 2 with nondet-static option")
+        print("bit abstraction option:")
+        print("   --abstraction                     turn on abstraction module (default: 0 false)")
+        print("   --bit_width                       abstraction precision [3-32] bits (default: 3 bit)")
+        print("   --macro-file                      macro file name for the over-approximation schema (default: macro_plain.h)")
         # Module-specific params for the given chain (or for the default one)
         print("")
         print("module options:")
@@ -713,6 +723,14 @@ def main():
             cseqenv.local = 2   #data race default option: nondet-static init of _nondet_ named vars with cbmc-SM
         elif o in ("--local-vars"):
             cseqenv.local = int(a)
+            
+        # Abstraction
+        elif o in ('--abstraction'):
+            cseqenv.enableAbstraction = True
+        elif o in ('--bit_width'):
+            cseqenv.bit_width = int(a)
+        elif o in ('--macro-file'):
+            cseqenv.macro_file = a
 
         else:  # module-specific parameters
             cseqenv.paramvalues[o[2:]] = a

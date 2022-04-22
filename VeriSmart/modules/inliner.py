@@ -531,11 +531,6 @@ class inliner(core.module.Translator):
         return True
 
     def visit_Decl(self, n, no_type=False):
-        ans = self.ivisit_Decl(n, no_type)
-        print('inliner_decl', str(n.name), ans)
-        return ans
-        
-    def ivisit_Decl(self, n, no_type=False):
         # no_type is used when a Decl is part of a DeclList, where the type is
         # explicitly only for the first delaration in a list.
         #

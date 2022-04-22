@@ -40,6 +40,7 @@ class loopAnalysis(core.module.Translator):
 		self.__threadName = self.getInputParamValue('threadNames')
 		self.__threadIndex = self.getInputParamValue('threadIndex')
 		self.__threadBound = len(self.__threadName)
+		self.__satSwarm = env.sat_swarm
 		if (self.__satSwarm): 
 			self.__bitwidths = self.getInputParamValue('bitwidth')
 			self.__bitwidths['','nondet1'] = 1
