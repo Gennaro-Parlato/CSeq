@@ -24,15 +24,26 @@ class loopAnalysis(core.module.Translator):
 	__threadbound = 0		# number of threads
 
 	__threadIndex = {}  	# index of the thread = value of threadcount when the pthread_create to that thread was discovered
+       #SAT formula level instances 
+	__satSwarm = False      # must become an input option, True iff we generate instances at the sat formula level
+	__ctrlVarPrefix = "_cs_SwCtrl"
+	__ctrlVarDefs = ['unsigned int nondet1();']
+        
+	__bitwidths = {}
 
 	def init(self):
-		pass
+		self.addInputParam('bitwidth','custom bidwidths for integers','w',None,True)
+		self.addOutputParam('bitwidth')
 
 	def loadfromstring(self, seqcode, env, fill_only_fields=None):
 		self.__lines = self.getInputParamValue('lines')
 		self.__threadName = self.getInputParamValue('threadNames')
 		self.__threadIndex = self.getInputParamValue('threadIndex')
 		self.__threadBound = len(self.__threadName)
+		if (self.__satSwarm): 
+			self.__bitwidths = self.getInputParamValue('bitwidth')
+			self.__bitwidths['','nondet1'] = 1
+
 		# 17/03/2021 C.J Rossouw
 		# Avoid crash due to functions being called before declaration,  this uses map from before without reseting parser values
 		self.__threadIndex = self.Parser.threadOccurenceIndex
@@ -186,6 +197,14 @@ class loopAnalysis(core.module.Translator):
 					m = i   #S: +3 ?
 					output.append(seqCode[j:i])
 					stringToStrip = ''
+
+					l1 = count
+					#l2 = count + 1
+					if (self.__satSwarm): 
+						l1 = self.__ctrlVarPrefix + '_' +  str(self.__threadIndex[tName]) + '_' + str(l1)
+						self.__bitwidths['',l1] = 1
+					#	l2 = self.__ctrlVarPrefix + tName + str(l2)
+							
 					while(seqCode[m-5 : m] != "@£@I2"):
 						stringToStrip += seqCode[m]
 						m += 1
@@ -197,13 +216,17 @@ class loopAnalysis(core.module.Translator):
                                                 	m += 1	
 
 						for sub in (
-							("@£@I1",'__CSEQ_rawline("IF(%s,%s,t%s_%s)");' % (self.__threadIndex[tName], count, tName, count + 1)),
+							("@£@I1",'__CSEQ_rawline("IF(%s,%s,t%s_%s)");' % (self.__threadIndex[tName], l1, tName, count+1)),
 							("@£@L1", str(count)),
 							("@£@L2", str(count)),
 							("@£@I2", ''), 
 							("@£@I3", '')):
     							stringToStrip = stringToStrip.replace(*sub)
 						output.append(stringToStrip)
+
+						if(self.__satSwarm):
+							self.__ctrlVarDefs.append('unsigned int %s = nondet1();' % l1)
+							#self.__ctrlVarDefs.append('__CSEQ_rawline("__CPROVER_bitvector[1] %s = nondet1();");' % l2)
 
 						while(seqCode[m-5 : m] != "@£@I4"): #delete "S @£@I4" from "@£@I2 DR_S @£@I3 S @£@I4"
                                                 	m += 1	
@@ -221,13 +244,16 @@ class loopAnalysis(core.module.Translator):
                                                 	m += 1	
 
 						for sub in (
-							("@£@I1", '__CSEQ_rawline("t%s_%s:"); __CSEQ_rawline("IF(%s,%s,t%s_%s)");' % (tName, count, self.__threadIndex[tName], count, tName, count + 1)),
+							("@£@I1", '__CSEQ_rawline("t%s_%s:"); __CSEQ_rawline("IF(%s,%s,t%s_%s)");' % (tName, count, self.__threadIndex[tName], l1, tName, count + 1 )),
 							("@£@L1", str(count)),
 							("@£@L2", str(count)),
 							("@£@I2", ''), 
 							("@£@I3", '')):
     							stringToStrip = stringToStrip.replace(*sub)
 						output.append(stringToStrip)
+
+						if(self.__satSwarm):
+							self.__ctrlVarDefs.append('unsigned int %s = nondet1();' % l1)
 
 						count += 1
 
@@ -363,16 +389,23 @@ class loopAnalysis(core.module.Translator):
 				output = []
 				i = 0
 				startIndex = 0
+
 				while i < len(self.__threadName):	
 					tName = self.__threadName[i]
 					startIndex, l = self.substitute(
-						seqCode, configintervals[tName], tName, startIndex, maxlabels)
+                                                seqCode, configintervals[tName], tName, startIndex, maxlabels)
 					listToStr = ''.join(s for s in l)
 					output.append(listToStr)
 					i += 1
 				maindriver = self.substituteMainDriver(maxlabels, seqCode[startIndex:])
 				output.append(maindriver)
+
 				output[0] = self.substituteThreadLines(output[0], maxlabels)
+			if (self.__satSwarm):
+				stemp = ''.join(s for s in self.__ctrlVarDefs)
+				output.insert(0,stemp)
+				#print(stemp)
+				#sys.exit(0)
 			instanceGenerated = ''.join(t for t in output)
 			#with open("test.c", 'w') as fd:
 				#fd.write(instanceGenerated)
@@ -393,6 +426,8 @@ class loopAnalysis(core.module.Translator):
 				m.setInstanceInfo(swarmdirname, filename, confignumber, configintervals)
 			#	print(output)
 			#	sys.exit(0)
+				if (self.__satSwarm):
+					self.setOutputParam('bitwidth', self.__bitwidths)
 				m.loadfromstring(output, env)
 				output = m.getoutput()
 				#print(output)
