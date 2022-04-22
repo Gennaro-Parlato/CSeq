@@ -672,7 +672,7 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
                 self.visit(n.type)
 
         if hasattr(n,'name'):
-            if n.name != None and (not n.name.startswith('__cs_') or n.name.startswith('__cs_local_') or n.name.startswith('__cs_retval_') or n.name.startswith('__cs_param_') or n.name.startswith('__cs_thread_local_')): #and not self.visiting_struct:
+            if n.name != None and (not n.name.startswith('__cs_') or n.name.startswith('__cs_local_') or n.name.startswith('__cs_retval_') or n.name.startswith('__cs_param_')): #or (n.name.startswith('__cs_thread_local_') and n.name != "__cs_thread_local_COND")): #and not self.visiting_struct:
                 self.checkForWriting(type_of_n, n)
 
         if type_of_n == 'FuncDecl':
