@@ -1,7 +1,7 @@
 import multiprocessing
 import os.path
 
-import time
+import time, math
 
 from bin import utils
 import core.module
@@ -25,9 +25,9 @@ class loopAnalysis(core.module.Translator):
 
 	__threadIndex = {}  	# index of the thread = value of threadcount when the pthread_create to that thread was discovered
        #SAT formula level instances 
-	__satSwarm = False      # must become an input option, True iff we generate instances at the sat formula level
+	__satSwarm = True      # must become an input option, True iff we generate instances at the sat formula level
 	__ctrlVarPrefix = "_cs_SwCtrl"
-	__ctrlVarDefs = ['unsigned int nondet1();']
+	__ctrlVarDefs = []
         
 	__bitwidths = {}
 
@@ -40,17 +40,26 @@ class loopAnalysis(core.module.Translator):
 		self.__threadName = self.getInputParamValue('threadNames')
 		self.__threadIndex = self.getInputParamValue('threadIndex')
 		self.__threadBound = len(self.__threadName)
-		if (self.__satSwarm): 
-			self.__bitwidths = self.getInputParamValue('bitwidth')
-			self.__bitwidths['','nondet1'] = 1
+		#print(self.__lines)
+		#print(self.__threadName)
+		#print(self.__threadBound)
 
 		# 17/03/2021 C.J Rossouw
 		# Avoid crash due to functions being called before declaration,  this uses map from before without reseting parser values
 		self.__threadIndex = self.Parser.threadOccurenceIndex
+		#print(self.__threadIndex)
+		#sys.exit(0)
 		cs = "Number of context-switch of each thread:"
 		for t in self.__lines:
 			cs += "\n%s : %s" %(t, str(self.__lines[t]))
 			
+		if (self.__satSwarm): 
+			self.__bitwidths = self.getInputParamValue('bitwidth')
+			for t in self.__lines:
+				fname = 'nondet' + str(self.__threadIndex[t])
+				self.__bitwidths['',fname] = math.ceil(math.log(self.__lines[t],2))
+				self.__ctrlVarDefs.append('unsigned int %s();'%fname)
+
 		if env.show_cs:
 			print(cs)
 		# Generating configuration file
@@ -202,7 +211,8 @@ class loopAnalysis(core.module.Translator):
 					#l2 = count + 1
 					if (self.__satSwarm): 
 						l1 = self.__ctrlVarPrefix + '_' +  str(self.__threadIndex[tName]) + '_' + str(l1)
-						self.__bitwidths['',l1] = 1
+						original_tName = 'main' if tName == 'main_thread' else tName 
+						self.__bitwidths['',l1] = math.ceil(math.log(self.__lines[original_tName],2))
 					#	l2 = self.__ctrlVarPrefix + tName + str(l2)
 							
 					while(seqCode[m-5 : m] != "@£@I2"):
@@ -225,7 +235,8 @@ class loopAnalysis(core.module.Translator):
 						output.append(stringToStrip)
 
 						if(self.__satSwarm):
-							self.__ctrlVarDefs.append('unsigned int %s = nondet1();' % l1)
+							fname = 'nondet' + str(self.__threadIndex[tName])
+							self.__ctrlVarDefs.append('unsigned int %s = %s();' % (l1,fname))
 							#self.__ctrlVarDefs.append('__CSEQ_rawline("__CPROVER_bitvector[1] %s = nondet1();");' % l2)
 
 						while(seqCode[m-5 : m] != "@£@I4"): #delete "S @£@I4" from "@£@I2 DR_S @£@I3 S @£@I4"
@@ -253,7 +264,8 @@ class loopAnalysis(core.module.Translator):
 						output.append(stringToStrip)
 
 						if(self.__satSwarm):
-							self.__ctrlVarDefs.append('unsigned int %s = nondet1();' % l1)
+							fname = 'nondet' + str(self.__threadIndex[tName])
+							self.__ctrlVarDefs.append('unsigned int %s = %s();' % (l1,fname))
 
 						count += 1
 
