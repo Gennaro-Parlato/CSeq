@@ -2,8 +2,10 @@
 	written by Omar Inverso, Truc Nguyen Lam, University of Southampton.
 """
 import os
+#import sys
 
 from bin import utils
+
 
 VERSION = 'instrumenter-0.1-2016.08.09'
 # VERSION = 'instrumenter-0.0-2015.07.15'
@@ -225,6 +227,7 @@ class instrumenter(core.module.Translator):
 		]
 
 		#print(string)
+		#sys.exit(0)
 		super(instrumenter, self).loadfromstring(string, env)
 		self.lastoutputlineno = 0
 		self.removelinenumbers()
