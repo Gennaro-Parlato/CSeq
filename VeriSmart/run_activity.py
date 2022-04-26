@@ -778,6 +778,8 @@ parser.add_argument('--dr', action='store_true', default=False,
                     help='Run with data race detection, defaults to false')
 parser.add_argument('--skipseq', action='store_true', default=False,
                     help='Skip sequentialization, defaults to false')
+parser.add_argument('--abstraction', action='store_true', default=False,
+                    help='Run with abstraction, defaults to false')
 
 args = parser.parse_args()
 
@@ -787,9 +789,13 @@ unwind_bound = args.unwind
 rounds_bound = args.rounds
 timeout = args.timeout
 is_data_race_mode = args.dr
+is_abstraction = args.abstraction
 dr_str = ''
 if is_data_race_mode:
     dr_str = '--dr'
+abs_str = ''
+if is_abstraction:
+    abs_str = '--abstraction'
 skipseq = args.skipseq
 
 # -----------------------------------------------------------------------------
@@ -809,12 +815,12 @@ if __name__ == '__main__':
             outpathdir = output_file_path + '/' + category['relative_path'] + '/' + f +'/'
             mkdir(outpathdir)
             print('./lazycseq.py -i %s --unwind %d --rounds %d --seq --debug' % (
-                filepath, unwind_bound, rounds_bound) + dr_str)
+                filepath, unwind_bound, rounds_bound) + ' '.join([dr_str, abs_str]))
             start_time = time()
             if not skipseq:
                 p = subprocess.Popen(
                     ['./lazycseq.py -i %s --unwind %d --rounds %d --seq --debug ' % (
-                        filepath, unwind_bound, rounds_bound) + dr_str],
+                        filepath, unwind_bound, rounds_bound) + ' '.join([dr_str, abs_str])],
                     stdout=subprocess.PIPE, shell=True)
                 output = p.stdout.read()
                 save(output, outpathdir, "lazycseq_output.txt")

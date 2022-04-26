@@ -30,12 +30,16 @@ class abstraction_prep(core.module.Translator):
 
     def init(self):
         self.name_support_file = ''
+        # TODO ?
         self.typedef_lock = 0
+        # TODO ?
         self.operationBit = None
         self.indent_level = 0
         self.translationPerformed = 0
 
+        # TODO ?
         self.string_support_macro = ""
+        # TODO ?
         self.string_support_macro_headers = """
 #include <stdio.h>
 #define PRINT_DT(E,ID, EXP) printf("%s_%d, %d\\n",EXP,ID,typename(E) )
@@ -78,20 +82,32 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
         #self.visiting_struct = False
 
 
+        # TODO ?
         self.interest_variables_list = {}
+        # TODO ?
         self.program_arrays = []
+        # TODO ?
         self.program_pointers = []
         self.initialized = False
 
+        # TODO vanilla CGenerator to copy the original code
         self.cGen_original = CGenerator()
+        # TODO ?
         self.scope = 'global'
+        # TODO ?
         self.field_declaration_global = 'FIELD_DECLARATION_GLOBAL()'
+        # TODO ?
         self.field_declaration_local =  'FIELD_DECLARATION_LOCAL()'
+        # TODO ?
         self.global_declaration = []
+        # TODO ?
         self.global_support_macro = []
+        # TODO ?
         self.main = 0
+        # TODO ?
         self.global_support_macro_declarations = ''
 
+        # TODO variables used for instrumentation: they shouldn't be touched
         self.ignore_list = [
             '__cs_active_thread',
             '__cs_pc',
@@ -107,13 +123,16 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
 
 
         #The following 3 variables are initialized in loadFromString function by considering the input parameters
+        # TODO ?
         self.upper_bound = -1
+        # TODO ?
         self.lower_bound = -1
+        # TODO ?
         self.bit_for_bitmask = -1
 
         self.support_variables = []
 
-        #extends the following list when special function or void function are found during parsing
+        # Don't touch those functions. Extend the following list when special function or void function are found during parsing
         self.funcCall_to_exclude = ['sscanf',
                                     'exit',
                                     'fprintf',
@@ -130,6 +149,7 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
         self.placeholder_strip_start = 'START_STRIP_ABT'
         self.placeholder_strip_end = 'END_STRIP_ABT'
 
+        # Delete all the code between those typedefs
         self.faked_typedef_start = 'typedef int %s;\n' % self.placeholder_strip_start
         self.faked_typedef_end = 'typedef int %s;\n' % self.placeholder_strip_end
         
@@ -182,7 +202,7 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
         self.bitmask_interval = int(env.paramvalues['bit_width'])
         self.bitmask_encoding = int(env.paramvalues['bit_width'])
 
-
+        # Macro file (the one with all the translations)
         if 'macro-file' in env.paramvalues:
             self.macro_file_name = basePath + env.paramvalues['macro-file']
             self.name_support_file = basePath + fname[0:-1] + 'supp.c' + env.paramvalues['macro-file'][:-2] + '.c'
@@ -196,15 +216,17 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
             self.transformation_rule = TransformationsRulePrep(self, encoding, self.bitmask_encoding,macro_file_name=self.macro_file_name)
 
 
-
+        # bav & bal for abstraction rules
         self.support_variables.append('_Bool __cs_baL;')
         self.support_variables.append('_Bool __cs_baV;')
+        # TODO ?
         self.support_variables.append('_Bool __cs_ba_assert;')
+        # TODO ?
         self.support_variables.append('BITVECTOR __cs_bitvector_tmp;')
 
         self.support_variables.append('_Bool nondetbool(void);\n')
 
-
+        # Bounds for data types
         self.support_variables.append('const int __cs_int_mask=(1 << %s) - 1;' % self.bitmask_encoding)
         self.support_variables.append('const int __cs_int_min = (%s <= (sizeof(int) * 8) ?  ( 1 << (%s-1) ):  (1 << ((sizeof(int) * 8) - 1)) );'  % ( self.bitmask_interval, self.bitmask_interval) )
         self.support_variables.append('const int __cs_int_max = (%s <= (sizeof(int) * 8) ?  ( (1 << (%s-1) ) - 1 ):  ~(1 << ((sizeof(int) * 8) - 1)) );\n'  % ( self.bitmask_interval, self.bitmask_interval) )
@@ -1162,34 +1184,34 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
             #not interested in abstraction: passthrough
             return super(self.__class__, self).visit_If(n)
 
-            original_exp = self.cGen_original.visit(n.cond)
+        original_exp = self.cGen_original.visit(n.cond)
 
 
-            if original_exp.startswith('__cs'):
-                #print('visit_If',original_exp,n.cond)
-                #return super(abstraction_prep, self).visit(n)
-                return super(self.__class__, self).visit_If(n)
+        if original_exp.startswith('__cs'):
+            #print('visit_If',original_exp,n.cond)
+            #return super(abstraction_prep, self).visit(n)
+            return super(self.__class__, self).visit_If(n)
 
-            condition = self.transformation_rule.getTR_if_statement(n.cond, original_exp)
-            decl = self.transformation_rule.getDeclarations()
+        condition = self.transformation_rule.getTR_if_statement(n.cond, original_exp)
+        decl = self.transformation_rule.getDeclarations()
 
-            s = 'if ('
-            if n.cond: s += condition
-            s += ')\n'
+        s = 'if ('
+        if n.cond: s += condition
+        s += ')\n'
 
-            s += self.visit(n.iftrue)
+        s += self.visit(n.iftrue)
 
-            if n.iffalse:
+        if n.iffalse:
 
-                s += self._make_indent() + 'else\n'
-                s += self._make_indent()
-                s +=  self._generate_stmt(n.iffalse, add_indent=True)
+            s += self._make_indent() + 'else\n'
+            s += self._make_indent()
+            s +=  self._generate_stmt(n.iffalse, add_indent=True)
 
-            self.resetOperationBit()
-            if 'DECL' in decl:
-                return decl + s
-            else:
-                return  s
+        self.resetOperationBit()
+        if 'DECL' in decl:
+            return decl + s
+        else:
+            return  s
 
 
     def visit_Struct(self, n):
