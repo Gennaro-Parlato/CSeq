@@ -736,6 +736,9 @@ def main():
             cseqenv.bit_width = int(a)
         elif o in ('--macro-file'):
             cseqenv.macro_file = a
+            
+        elif o in ('--sat-swarm'):
+            cseqenv.sat_swarm = True
 
         else:  # module-specific parameters
             cseqenv.paramvalues[o[2:]] = a

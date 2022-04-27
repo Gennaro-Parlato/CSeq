@@ -40,6 +40,7 @@ class loopAnalysis(core.module.Translator):
 		self.__threadName = self.getInputParamValue('threadNames')
 		self.__threadIndex = self.getInputParamValue('threadIndex')
 		self.__threadBound = len(self.__threadName)
+		self.__satSwarm = env.sat_swarm
 		#print(self.__lines)
 		#print(self.__threadName)
 		#print(self.__threadBound)
