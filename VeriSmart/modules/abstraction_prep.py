@@ -30,16 +30,18 @@ class abstraction_prep(core.module.Translator):
 
     def init(self):
         self.name_support_file = ''
-        # TODO ?
+        # 1 if we are in the zone between _____STARTSTRIPPINGFROMHERE_____ and _____STOPSTRIPPINGFROMHERE_____ (i.e., things that must not be written in the output file)
         self.typedef_lock = 0
-        # TODO ?
+        # OPT for the abstraction rules. It is set to None before any statement, and reset to None once the statement ends.
         self.operationBit = None
+        # Indentation level (to keep the output code pretty)
         self.indent_level = 0
+        # TODO 1 if already computed the new value of the variable (++, --, =, +=, ...) ?
         self.translationPerformed = 0
 
-        # TODO ?
+        # Local expressions for which I should evaluate the type
         self.string_support_macro = ""
-        # TODO ?
+        # Header for local expressions type file
         self.string_support_macro_headers = """
 #include <stdio.h>
 #define PRINT_DT(E,ID, EXP) printf("%s_%d, %d\\n",EXP,ID,typename(E) )
@@ -82,32 +84,33 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
         #self.visiting_struct = False
 
 
-        # TODO ?
+        # TODO Global variables. Should I also consider thread locals?
         self.interest_variables_list = {}
-        # TODO ?
+        # Array declarations
         self.program_arrays = []
-        # TODO ?
+        # Pointer declarations
         self.program_pointers = []
+        # True if what we are visiting is part of a variable initialization expression
         self.initialized = False
 
-        # TODO vanilla CGenerator to copy the original code
+        # vanilla CGenerator to copy the original code
         self.cGen_original = CGenerator()
-        # TODO ?
+        # variable scope (global/local) ?
         self.scope = 'global'
         # TODO ?
         self.field_declaration_global = 'FIELD_DECLARATION_GLOBAL()'
         # TODO ?
         self.field_declaration_local =  'FIELD_DECLARATION_LOCAL()'
-        # TODO ?
+        # Global declarations (of everythong)
         self.global_declaration = []
-        # TODO ?
+        # Global expressions for which I should evaluate the type
         self.global_support_macro = []
-        # TODO ?
+        # 1 if we are visiting nodes inside the main() function, else 0
         self.main = 0
-        # TODO ?
+        # Global expressions for which I should evaluate the type support macros
         self.global_support_macro_declarations = ''
 
-        # TODO variables used for instrumentation: they shouldn't be touched
+        # variables used for instrumentation: they shouldn't be touched
         self.ignore_list = [
             '__cs_active_thread',
             '__cs_pc',
@@ -165,18 +168,21 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
         if not self.env.enableAbstraction:
             #not interested in abstraction: passthrough
             return super(self.__class__, self).loadfromstring(string, env)
-        #print(self.env.outputDir)
+        # Extract the inputfile's directory: we need to create some auxiliary files in the same directory.
         dirname, filename = os.path.split(os.path.abspath(self.env.inputfile))
-        #os.makedirs(self.outdir, exist_ok=True)
         basePath = dirname + '/' #dirname + '/' + self.env.outputDir
 
         if (not os.path.exists(basePath)):
             os.mkdir(basePath)
 
         # basePath = os.path.abspath(os.getcwd()) + '/' + self.env.outputDir
+        
+        # AIUI, fname == filename and dname == dirname 
+        # TODO keep only one pair of names
         dname, fname = os.path.split(self.env.opts[0][1])
 
-	
+	    # Now, filename represents the logfile 
+	    # TODO: rename to log_filename
         filename = basePath + fname[0:-1] + 'log'
 
         if os.path.exists(filename):
@@ -199,6 +205,7 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
         if 'encoding' not in env.paramvalues:
             env.paramvalues['encoding'] = 'pack_n_repack'
 
+        # They both represent the abstraction bit_width, once for checking the domains and once for encoding the abstracted values
         self.bitmask_interval = int(env.paramvalues['bit_width'])
         self.bitmask_encoding = int(env.paramvalues['bit_width'])
 
@@ -262,6 +269,7 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
 
         self.addInputParam('bid_width', 'specify the bit_width for over-approximation', '', default=None, optional=True)
 
+        # Include the macro file
         self.setOutputParam('header_abstraction','#include "%s"\n' % self.macro_file_name)
 
         super(self.__class__, self).loadfromstring(string, env)
@@ -277,37 +285,40 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
         if not self.env.enableAbstraction:
             #not interested in abstraction: passthrough
             return super(self.__class__, self).visit_FuncCall(n)
-
+        
+        
         tmp = self.operationBit
 
         fref = self.cGen_original._parenthesize_unless_simple(n.name)
-
+        
         if fref == '__CSEQ_assert':
-
+            # that's an assert
 
             s = self.transformation_rule.getTR_assert_call(n.args)
 
-            if tmp is None:
+            if tmp is None: # this is a full statement: return also the declarations you might have needed to compile the statement
                 self.resetOperationBit()
                 return self.transformation_rule.getDeclarations() + '\n' + s
 
-            else:
+            else: # this is part of an expression: just return the instrumented call
                 self.resetOperationBit()
                 return s
 
         elif fref in self.funcCall_to_exclude:
+            # That's either a special function or a void function. Don't touch it
             return fref + '(' + self.cGen_original.visit(n.args) + ')'
 
 
-
+        # call expression
         call = fref + '(' + self.cGen_original.visit(n.args) + ')'
 
+        # instrument call
         s = self.transformation_rule.getTR_FuncCall('TRANSF_READ', call, 1) if tmp is None else self.transformation_rule.getTR_FuncCall(tmp, call, 0)
 
-        if tmp is None:
+        if tmp is None: # this is a full statement: return also the declarations you might have needed to compile the statement
             self.resetOperationBit()
             return self.transformation_rule.getDeclarations() + '\n' + s
-        else:
+        else: # this is part of an expression: just return the instrumented call
             self.resetOperationBit()
             return s
 
@@ -315,28 +326,37 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
         if not self.env.enableAbstraction:
             #not interested in abstraction: passthrough
             return super(self.__class__, self).visit_ID(n)
+        
 
         original_exp = self.cGen_original.visit(n)
 
+        # Those variables were introduced for instrumentation: don't touch them and return the original expression.
         if original_exp in self.ignore_list:  # or original_exp in self.special_function_for_seq:
             return original_exp
 
+        # TODO in previous infrastructure, __cs didn't identify thread local variables. Check that this is ok in this edition.
+        # An instrumentation variable or threadlocal is the first operand of the condition. Ok only if no brackets or whatsoever before. Keep this in mind while instrumenting in previous modules.
         elif original_exp.startswith('__cs'):
+            # TODO why repeating the visit?
             return self.cGen_original.visit(n)
 
+        # TODO what is self.interest_variables_list?
         elif original_exp not in self.interest_variables_list:
+            # TODO why repeating the visit?
             return self.cGen_original.visit(n)
 
+        # backup the operationBit
         tmp = None
         if self.operationBit is not None:
             tmp = self.operationBit
 
+        # get the translation using a fresh macro name
         s = self.transformation_rule.getTR_Identifier('TRANSF_READ', n.name,
                                                       1) if tmp is None else self.transformation_rule.getTR_Identifier(
             self.operationBit, n.name, 0)
 
-        if tmp == 'GET_VALUE':
-
+        if tmp == 'GET_VALUE': 
+            # get the type for ID
             macro_key = self.transformation_rule.macro_key.pop()
             local_exp = self.transformation_rule.getLocal(macro_key)
             print_string = 'PRINT_DT(%s, %s, "LOCALEXP" )' % (
@@ -348,9 +368,10 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
 
 
         if tmp is None and not self.initialized:
+            # that's a full statement not during any variable initialization: return also the declarations you might have needed to compile the statement
             self.resetOperationBit()
             return self.transformation_rule.getDeclarations() + '\n' + s
-        else:
+        else: # you are in an expression: just return the instrumented call
             self.resetOperationBit()
             return s
 
@@ -358,6 +379,7 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
         if not self.env.enableAbstraction:
             #not interested in abstraction: passthrough
             return super(self.__class__, self).visit_ArrayRef(n)
+        
 
         macro_key = None
 
@@ -365,17 +387,20 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
         arrref = self.cGen_original._parenthesize_unless_simple(n.name)
 
         if arrref.startswith('__cs'):
+            # that's something coming from instrumentation: don't touch it
             return self.cGen_original.visit(n)
 
 
         if self.operationBit is None:
+            # statement
             s = self.transformation_rule.getTR_postfix_array('TRANSF_READ', n.subscript, n.name, arrref, 1)
 
         else:
+            # inside an expression
             s = self.transformation_rule.getTR_postfix_array(self.operationBit, n.subscript, n.name, arrref, 0)
 
             if tmp == 'GET_VALUE':
-
+                # you need its type: compute it
                 macro_key = self.transformation_rule.macro_key.pop()
                 local_exp = self.transformation_rule.getLocal(macro_key)
                 print_string = 'PRINT_DT(%s, %s, "LOCALEXP" )' % (local_exp, self.transformation_rule.utility.local_macro_counter - 1)
@@ -386,7 +411,7 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
 
 
         if tmp is None and not self.initialized:
-
+            # statement on it's own not in an initialization: return also the declarations you might have needed to compile the statement.
             declaration = self.transformation_rule.getDeclarations()
             s = declaration + '\n' + s
 
@@ -397,6 +422,7 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
         if not self.env.enableAbstraction:
             #not interested in abstraction: passthrough
             return super(self.__class__, self).visit_StructRef(n)
+        
 
         tmp = self.operationBit
 
@@ -404,30 +430,35 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
 
         sref = self.cGen_original._parenthesize_unless_simple(n.name)
         field = n.field.name
+        # structure (./->) field
         postfix_expID = sref + n.type + field
         reference = '.'
 
         if sref.startswith('__cs'):
+            # that's something coming from instrumentation: don't touch it
             return self.cGen_original.visit(n)
 
         if '->' in postfix_expID:
+            # accessing through pointer (->)
             reference = '->'
+        # else: accessing through variable (.)
 
         if tmp is None:
-
+            # statement: return also the declarations you might have needed to compile the statement.
             s = self.transformation_rule.getTR_postfixReference('TRANSF_READ', field, n.name,
                                                                 reference, sref, 1)
             declaration = self.transformation_rule.getDeclarations()
             self.resetOperationBit()
+            # TODO shouldn't that be \n and ; ?
             return '%s %s\n ' % (declaration, s)
 
         else:
-
+            # part of expression
             s = self.transformation_rule.getTR_postfixReference(self.operationBit, field, n.name,
                                                                 reference, sref, 0)
 
             if tmp == 'GET_VALUE':
-
+                # you need also its type
                 macro_key = self.transformation_rule.macro_key.pop()
                 local_exp = self.transformation_rule.getLocal(macro_key)
                 print_string = 'PRINT_DT(%s, %s, "LOCALEXP" )' % (
@@ -443,6 +474,7 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
         if not self.env.enableAbstraction:
             #not interested in abstraction: passthrough
             return super(self.__class__, self).visit_UnaryOp(n)
+        
 
         macro_key = None
 
@@ -459,6 +491,7 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
             operand = operand[1:]
 
         if operand.startswith('__cs'):
+            # that's something coming from instrumentation: don't touch it
             return self.cGen_original.visit(n)
 
         if type_of_expr == 'StructRef':
@@ -488,6 +521,7 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
 
 
             if tmp == 'GET_VALUE':
+                # you need its type
                 macro_key = self.transformation_rule.macro_key.pop()
                 local_exp = self.transformation_rule.getLocal(macro_key)
                 print_string = 'PRINT_DT(%s, %s, "LOCALEXP" )' % (
@@ -581,12 +615,12 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
                     s = self.visit(n)
 
         if tmp is None and not self.initialized:
-
+            # statement: return also the declarations you might have needed to compile the statement.
             self.resetOperationBit()
             declarations = self.transformation_rule.getDeclarations()
 
             if macro_key is not None:
-
+                # you need its type: compute it
                 self.string_support_macro+=declarations+'\n'
                 local_exp = self.transformation_rule.getLocal(macro_key)
                 print_string = 'PRINT_DT(%s, %s, "EXP" )' % (local_exp, self.transformation_rule.utility.macro_counter - 1)
@@ -601,6 +635,7 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
             self.resetOperationBit()
 
             if macro_key is not None:
+                # you need its type: compute it
                 local_exp = self.transformation_rule.getLocal(macro_key)
                 print_string = 'PRINT_DT(%s, %s, "LOCALEXP" )' % (local_exp, self.transformation_rule.utility.local_macro_counter - 1)
 
@@ -615,6 +650,7 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
         if not self.env.enableAbstraction:
             #not interested in abstraction: passthrough
             return super(self.__class__, self).visit_BinaryOp(n)
+        
 
         tmp = self.operationBit
 
@@ -658,6 +694,7 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
         if not self.env.enableAbstraction:
             #not interested in abstraction: passthrough
             return super(self.__class__, self).visit_Assignment(n)
+        
 
         tmp = self.operationBit
 
@@ -710,7 +747,6 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
         if not self.env.enableAbstraction:
             #not interested in abstraction: passthrough
             return super(self.__class__, self).visit_Decl(n)
-
 
         original_exp = self.cGen_original.visit(n)
 
@@ -950,7 +986,8 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
             #not interested in abstraction: passthrough
             return super(self.__class__, self).visit_Compound(n)
 
-
+        # In the instrumented version (s), convert each instruction and put {} around to keep the scope.
+        # In the macro file to get types (string_support_macro), you need to put the macros for the types (together with declarations), and keep the {} for the scope
         s = self._make_indent() + '{\n'
 
         self.string_support_macro += s+'\n'
@@ -958,6 +995,7 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
 
         self.indent_level += 2
         if n.block_items:
+            # instrument each instruction
             s += ''.join(self._generate_stmt(stmt) for stmt in n.block_items)
         self.indent_level -= 2
         s += self._make_indent() + '}\n'
@@ -970,6 +1008,7 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
         if not self.env.enableAbstraction:
             #not interested in abstraction: passthrough
             return super(self.__class__, self).visit_Constant(n)
+        
 
         tmp = self.operationBit
 
@@ -1093,6 +1132,7 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
         if not self.env.enableAbstraction:
             #not interested in abstraction: passthrough
             return super(self.__class__, self).visit_Return(n)
+        
 
         s = 'return '
         if n.expr: s += ' ' + self.cGen_original.visit(n.expr)
@@ -1107,6 +1147,7 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
         if not self.env.enableAbstraction:
             #not interested in abstraction: passthrough
             return super(self.__class__, self).visit_ExprList(n)
+        
 
         tmp = self.operationBit
 
@@ -1127,6 +1168,7 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
         if not self.env.enableAbstraction:
             #not interested in abstraction: passthrough
             return super(self.__class__, self).visit_Cast(n)
+        
 
         tmp = self.operationBit
         if self.operationBit == None:
@@ -1155,6 +1197,7 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
         if not self.env.enableAbstraction:
             #not interested in abstraction: passthrough
             return super(self.__class__, self).visit_TernaryOp(n)
+        
 
 
         tmp = self.operationBit
@@ -1183,6 +1226,7 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
         if not self.env.enableAbstraction:
             #not interested in abstraction: passthrough
             return super(self.__class__, self).visit_If(n)
+        
 
         original_exp = self.cGen_original.visit(n.cond)
 
@@ -1284,6 +1328,7 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
             elif not inRecording and not line.startswith('}'):
                 global_text += line+'\n'
 
+        # Create type evaluation file
         pthread_defs_path = os.path.abspath(os.getcwd()) + '/modules/pthread_defs.c'
         self.string_support_macro = '#include "'+self.macro_file_name + '"' + self.string_support_macro_headers + '\n' + '#include "' + pthread_defs_path + '"\n' + self.global_support_macro_declarations + '\n' + global_text + '\n' + 'int main(){\n' + str_to_append + '\n' +'return 0;' + '\n' + '}'
 
@@ -1303,7 +1348,7 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
 
         logging.info("Time before running: %s", datetime.fromtimestamp(time.time()))
 
-        # run
+        # run (to get types)
         command = "./a.out"
         process = subprocess.Popen(shlex.split(command), stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
         result = process.communicate()[0].decode('utf-8').split('\n')
