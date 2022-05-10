@@ -566,7 +566,7 @@ def main():
                     "sat-swarm",
                     
                     # Abstraction
-                    "abstraction","bit_width","macro-file"]
+                    "abstraction","bit_width=","macro-file="]
 
         # add one command-line parameter for each module-specific parameter
         for p in cseqenv.params:
