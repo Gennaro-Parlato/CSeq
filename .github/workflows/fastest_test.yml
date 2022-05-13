@@ -21,9 +21,15 @@ jobs:
       - uses: actions/checkout@v3
 
       # Runs a single command using the runners shell
-      - name: Test the svcomp with 1 second timeout
+      - name: Test the svcomp with 1 second timeout in lazycseq
         run: |
           export dr=/home/giulio/runner_results/`printf '%(%Y-%m-%d-%H-%M-%S)T\n' -1 `_$GITHUB_SHA
           mkdir -p $dr
           cd VeriSmart
           python3 run_activity.py ~/sv-benchmarks-svcomp21/c/ $dr --timeout 1
+      - name: Test the svcomp with 1 second timeout in verismart
+        run: |
+          export dr=/home/giulio/runner_results/`printf '%(%Y-%m-%d-%H-%M-%S)T\n' -1 `_${GITHUB_SHA}_verismart
+          mkdir -p $dr
+          cd VeriSmart
+          python3 run_activity_verismart.py ~/sv-benchmarks-svcomp21/c/ $dr --timeout 1
