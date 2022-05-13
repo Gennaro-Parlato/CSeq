@@ -44,6 +44,7 @@ import core.common, core.module, core.parser, core.utils
 
 class lazyseqnewschedule(core.module.Translator):
 	__lines = {}                     # lines for each thread
+	__compulsoryVP = {}              # compulsory visible points for each thread
 	#__threadName = ['main']         # OLD: name of threads, as they are found in pthread_create(s) - the threads all have different names
 	__threadName = []                # NEW: name of threads, as they are found in code
 
@@ -57,6 +58,7 @@ class lazyseqnewschedule(core.module.Translator):
 	__startChar = 't'                # special char to distinguish between labeled and non-labelled lines
 
 	__stmtCount = -1                 # thread statement counter (to build thread labels)
+	__stmtVPCompulsory = 0           # number of compulsory visible points
 
 	__currentThread = ''             # name of the current thread (also used to build thread labels)
 
@@ -112,6 +114,7 @@ class lazyseqnewschedule(core.module.Translator):
 
 		#Calenda De Mattia
 		self.addOutputParam('lines')
+		self.addOutputParam('compulsoryVPs')
 		self.addOutputParam('threadNames')
 		self.addOutputParam('threadIndex')
 
@@ -321,6 +324,7 @@ class lazyseqnewschedule(core.module.Translator):
 
 
 		self.setOutputParam('lines', self.__lines)
+		self.setOutputParam('compulsoryVPs',self.__compulsoryVP)
 		self.setOutputParam('threadNames', self.__threadName)
 		self.setOutputParam('threadIndex', self.__threadIndex)
 
@@ -390,8 +394,10 @@ class lazyseqnewschedule(core.module.Translator):
 	def additionalCode(self,threadIndex):
 		return ''
 	def alternateCode(self, n):
-		return ''
+		return super(lazyseqnewschedule, self).visit(n)
 
+	def needs_compulsory_visible_point(self, n):
+		return type(n) == pycparser.c_ast.FuncCall and n.name.name in (core.common.changeID['pthread_join'],core.common.changeID['pthread_create'])
 
 	def visit_Compound(self, n):
 		compoundList = ["{\n"]
@@ -485,11 +491,15 @@ class lazyseqnewschedule(core.module.Translator):
 							)
 						)
 						)):
+						is_compulsory_vp = self.needs_compulsory_visible_point(stmt)
+						if is_compulsory_vp:
+							self.__stmtVPCompulsory += 1
 						self.__stmtCount += 1
 						self.__maxInCompound = self.__stmtCount
 						threadIndex = self.Parser.threadOccurenceIndex[self.__currentThread]
 						s = self.visit(stmt)
-						code = '@£@I1' + self.additionalCode(threadIndex) + '@£@I2' + s + '@£@I3' + self.alternateCode(stmt) + '@£@I4' + ';\n'
+						prefix = '@£@J1' if is_compulsory_vp else '@£@I1'
+						code = prefix + self.additionalCode(threadIndex) + '@£@I2' + s + '@£@I3' + self.alternateCode(stmt) + '@£@I4' + ';\n'
 	
 					else:
 						code = self.visit(stmt) + ";\n"
@@ -540,10 +550,12 @@ class lazyseqnewschedule(core.module.Translator):
 		f = ''
 
 		self.__lines[self.__currentThread] = self.__stmtCount
+		self.__compulsoryVP[self.__currentThread] = self.__stmtVPCompulsory
 		###print "THREAD %s, LINES %s \n\n" % (self._currentThread, self.__lines)
 
 		#
 		self.__stmtCount = -1
+		self.__stmtVPCompulsory = 0
 		if n.param_decls:
 			knrdecls = ';\n'.join(self.visit(p) for p in n.param_decls)
 			#body = body[:body.rfind('}')] + self._make_indent() + returnStmt + '\n}'
@@ -1737,6 +1749,7 @@ class lazyseqnewschedule(core.module.Translator):
 			return False  # if between atomic_begin() and atomic_end() calls no context switchs needed..
 
 		oldStmtCount = self.__stmtCount             # backup counters
+		oldStmtVPCompulsory = self.__stmtVPCompulsory
 		oldMaxInCompound = self.__maxInCompound
 		oldGlobalMemoryAccessed = self.__globalMemoryAccessed
 
@@ -1751,6 +1764,7 @@ class lazyseqnewschedule(core.module.Translator):
 		globalAccess = self.__globalMemoryAccessed
 
 		self.__stmtCount = oldStmtCount             # restore counters
+		self.__stmtVPCompulsory = oldStmtVPCompulsory
 		self.__maxInCompound = oldMaxInCompound
 		self.__globalMemoryAccessed = oldGlobalMemoryAccessed
 		

@@ -37,6 +37,7 @@ class loopAnalysis(core.module.Translator):
 
 	def loadfromstring(self, seqcode, env, fill_only_fields=None):
 		self.__lines = self.getInputParamValue('lines')
+		self.__compulsoryVPs = self.getInputParamValue('compulsoryVPs')
 		self.__threadName = self.getInputParamValue('threadNames')
 		self.__threadIndex = self.getInputParamValue('threadIndex')
 		self.__threadBound = len(self.__threadName)
@@ -52,7 +53,7 @@ class loopAnalysis(core.module.Translator):
 		#sys.exit(0)
 		cs = "Number of context-switch of each thread:"
 		for t in self.__lines:
-			cs += "\n%s : %s" %(t, str(self.__lines[t]))
+			cs += "\n%s : %s" %(t, str(self.__lines[t]-self.__compulsoryVPs[t]))
 			
 		if (self.__satSwarm): 
 			self.__bitwidths = self.getInputParamValue('bitwidth')
@@ -202,8 +203,9 @@ class loopAnalysis(core.module.Translator):
 		cRange = range(list[iList][0], list[iList][1] + 1)
 		while (i < len(seqCode) and not done):
 			if seqCode[i:i+3] == '@£@':
-				if seqCode[i + 3] == 'I':
+				if seqCode[i + 3] in ('I','J'):
 					# Stop stripping at m
+					isCompulsoryVP = seqCode[i + 3] == 'J'
 					m = i   #S: +3 ?
 					output.append(seqCode[j:i])
 					stringToStrip = ''
@@ -228,6 +230,7 @@ class loopAnalysis(core.module.Translator):
 
 						for sub in (
 							("@£@I1",'__CSEQ_rawline("IF(%s,%s,t%s_%s)");' % (self.__threadIndex[tName], l1, tName, count+1)),
+							("@£@J1",'__CSEQ_rawline("IF(%s,%s,t%s_%s)");' % (self.__threadIndex[tName], l1, tName, count+1)),
 							("@£@L1", str(count)),
 							("@£@L2", str(count)),
 							("@£@I2", ''), 
@@ -246,7 +249,7 @@ class loopAnalysis(core.module.Translator):
 						i = m
 
 					
-					elif ICount in cRange:
+					elif ICount in cRange or isCompulsoryVP:
 
 						while(seqCode[m-5 : m] != "@£@I3"):   #include "DR_S @£@I3" from " DR_S @£@I3 S @£@I4"
                                                 	stringToStrip += seqCode[m]
@@ -257,6 +260,7 @@ class loopAnalysis(core.module.Translator):
 
 						for sub in (
 							("@£@I1", '__CSEQ_rawline("t%s_%s:"); __CSEQ_rawline("IF(%s,%s,t%s_%s)");' % (tName, count, self.__threadIndex[tName], l1, tName, count + 1 )),
+							("@£@J1", '__CSEQ_rawline("t%s_%s:"); __CSEQ_rawline("IF(%s,%s,t%s_%s)");' % (tName, count, self.__threadIndex[tName], l1, tName, count + 1 )),
 							("@£@L1", str(count)),
 							("@£@L2", str(count)),
 							("@£@I2", ''), 
@@ -269,10 +273,13 @@ class loopAnalysis(core.module.Translator):
 							self.__ctrlVarDefs.append('unsigned int %s = %s();' % (l1,fname))
 
 						count += 1
-
-						if ICount == list[iList][1] and iList < len(list) - 1:
+						if isCompulsoryVP: # that was a compulsory vp. You shouldn't be counting it, treat it like it was invisible
+							ICount -= 1
+						elif ICount == list[iList][1] and iList < len(list) - 1:
 							iList += 1
 							cRange = range(list[iList][0], list[iList][1] + 1)
+							
+						
 						i = m
 					
 					else:
