@@ -1,6 +1,6 @@
 from pycparser import c_ast
 
-class State:
+class CPState:
     def __init__(self):
         # Constant propagation: <value> = it is already known without reading it; None = must read it
         self.cp_bav = None 
@@ -9,20 +9,24 @@ class State:
         self.cp_dr = None 
         self.cp_wam = None 
         self.cp_wkm = None 
-        self.cp_p1 = None 
-        self.cp_p2 = None 
+        
+class VPState:
+    def __init__(self):
+        self.VP1required = False
+        self.VP2required = False
         
 class AbsDrRules:            
     # TODO create a boilerplate code to define needed vars
     
-    def __init__(self, visitor, abs_on, dr_on, abstr_bits):
-        assert(abs_on or dr_on)
+    def __init__(self, visitor, abs_on, dr_possible, abstr_bits):
         # visitor module
         self.visitor = visitor
         # abstraction active
         self.abs_on = abs_on
-        # data race active
-        self.dr_on = dr_on
+        # data race is possible
+        self.dr_possible = dr_possible
+        # data race is on by default (if possible)
+        self.dr_on = dr_possible
         
         # abstraction: bit abstraction Value/Lvalue
         self.bav = "__cs_baV" if abs_on else None
@@ -38,17 +42,29 @@ class AbsDrRules:
         self.sm_abs = "abstr" if abs_on else None
         
         # data race: data race detected
-        self.dr = "__cs_dr" if dr_on else None
+        self.dr = "__cs_dr" if dr_possible else None
         # data race: wrote all memory, i.e. if we wrote to an abstracted location
-        self.wam = "__cs_wam" if dr_on else None
+        self.wam = "__cs_wam" if dr_possible else None
         # data race: wrote known memory, i.e. if we wrote to a concrete location
-        self.wkm = "__cs_wkm" if dr_on else None
-        # data race: p1, i.e., we need to discover writes
-        self.p1 = "__cs_p1" if dr_on else None
-        # data race: p2, i.e., we need to discover reads and writes
-        self.p2 = "__cs_p2" if dr_on else None
+        self.wkm = "__cs_wkm" if dr_possible else None
+        
         # abstraction: name field for dr
-        self.sm_dr = "dr" if dr_on else None
+        self.sm_dr = "dr" if dr_possible else None
+        
+        # data race: p1, i.e., we need to discover writes
+    def p1code(self, vpstate):
+        assert(self.dr_on)
+        vpstate.VP1required = True
+        return "(__cs_dataraceDetectionStarted && !__cs_dataraceSecondThread && __cs_dataraceActiveVP1)"
+        
+        # data race: p2, i.e., we need to discover reads and writes
+    def p2code(self, vpstate):
+        assert(self.dr_on)
+        vpstate.VP2required = True
+        return "(__cs_dataraceSecondThread && __cs_dataraceActiveVP2)"
+        
+    def getVpstate(self, **kwargs):
+        return kwargs['dr_vp_state']
         
     def aux_vars_decl(self):
         #TODO use __CPROVER_bitvector
@@ -56,11 +72,15 @@ class AbsDrRules:
             self.if_abs(lambda: "unsigned char "+self.bav+" = (unsigned char) 0;"),
             self.if_abs(lambda: "unsigned char "+self.bal+" = (unsigned char) 0;"),
             self.if_abs(lambda: "unsigned char "+self.bav_lhs+" = (unsigned char) 0;"),
-            self.if_dr(lambda: "unsigned char "+self.dr+" = (unsigned char) 0;"),
-            self.if_dr(lambda: "unsigned char "+self.wam+" = (unsigned char) 0;"),
-            self.if_dr(lambda: "unsigned char "+self.wkm+" = (unsigned char) 0;"),
-            self.if_dr(lambda: "unsigned char "+self.p1+" = (unsigned char) 0;"),
-            self.if_dr(lambda: "unsigned char "+self.p2+" = (unsigned char) 0;")
+            self.if_dr_possible(lambda: "unsigned char "+self.dr+" = (unsigned char) 0;"),
+            self.if_dr_possible(lambda: "unsigned char "+self.wam+" = (unsigned char) 0;"),
+            self.if_dr_possible(lambda: "unsigned char "+self.wkm+" = (unsigned char) 0;"),
+            self.if_dr_possible(lambda: 'unsigned char __cs_dataraceDetectionStarted = (unsigned char) 0;'),
+            self.if_dr_possible(lambda: 'unsigned char __cs_dataraceSecondThread = (unsigned char) 0;'),
+            self.if_dr_possible(lambda: 'unsigned char __cs_dataraceNotDetected = (unsigned char) 1;'),
+            self.if_dr_possible(lambda: 'unsigned char __cs_dataraceContinue = (unsigned char) 1;'),
+            self.if_dr_possible(lambda: 'unsigned char __cs_dataraceActiveVP1 = (unsigned char) 0;'),
+            self.if_dr_possible(lambda: 'unsigned char __cs_dataraceActiveVP2 = (unsigned char) 0;'),
         ]))[0]
         
     def sm_field_decl(self):
@@ -81,14 +101,20 @@ class AbsDrRules:
             self.if_abs(lambda: "#define MASK_"+bitstr+" "+mask_t),
             self.sm_field_decl(),
         ]+[
-            "#define BOUNDS_FAILURE_"+t.replace(" ","_")+"(exp) ((((exp)&~"+bitstr_1+")!=(~MASK_"+bitstr_1+")) && ((exp)&~MASK_"+bitstr_1+"))" for t in self.abstrTypesSigned
+            "#define BOUNDS_FAILURE_"+t.replace(" ","_")+"(exp) ((((exp)&~MASK_"+bitstr_1+")!=(~MASK_"+bitstr_1+")) && ((exp)&~MASK_"+bitstr_1+"))" for t in self.abstrTypesSigned
         ]+[
-            "#define BOUNDS_FAILURE_"+t.replace(" ","_")+"(exp) ((exp)&~"+bitstr+")" for t in self.abstrTypesUnsigned
+            "#define BOUNDS_FAILURE_"+t.replace(" ","_")+"(exp) ((exp)&~MASK_"+bitstr+")" for t in self.abstrTypesUnsigned
         ]))[0]
         
     def get_first_state(self):
-        s = State()
+        s = CPState()
         return s
+        
+    def enableDr(self):
+        self.dr_on = True
+        
+    def disableDr(self):
+        self.dr_on = False
         
     # apply constant propagation: if it is 0 or 1 => ifZero()/ifOne(), else ifNone()
     # default values: ifZero/ifOne -> lambda: "0"/"1", ifNone -> self.field
@@ -183,10 +209,22 @@ class AbsDrRules:
     # return expr() if dr is on else ""        
     def if_dr(self, expr):
         return expr() if self.dr_on else ""
+        
+    # return expr() if dr is possible else ""        
+    def if_dr_possible(self, expr):
+        return expr() if self.dr_possible else ""
     
     # return expr() if abs is on else ""        
     def if_abs(self, expr):
         return expr() if self.abs_on else ""
+        
+    # return expr() if abs is off else ""        
+    def if_no_abs(self, expr):
+        return "" if self.abs_on else expr()
+        
+    # return expr() if either abs or dr is off else ""     
+    def if_abs_or_dr(self, expr):
+        return expr() if self.abs_on or self.dr_on else ""
         
     def decode(self, x, xtype):
         assert(self.abs_on)
@@ -212,78 +250,64 @@ class AbsDrRules:
     def fail_expr(self):
         return self.assert_expr("0")
         
-    def assertDisabledIIFModesAreNone(self, abs_mode, dr_mode):
+    def assertDisabledIIFModesAreNone(self, abs_mode, dr_mode, **kwargs):
         impl = lambda a,b : not a or b
+        iif = lambda a,b : (not a) == (not b)
         assert(impl(self.abs_on, abs_mode in ("SET_VAL", "GET_ADDR", "GET_VAL", "UPD_VAL")), "Invalid abstraction mode: "+str(abs_mode))
         assert(impl(not self.abs_on, abs_mode is None), "Abstraction is disabled but mode is not None: "+str(abs_mode))
-        assert(impl(self.dr_on, dr_mode in ("ACCESS", "NO_ACCESS", "WSE", "LVALUE")), "Invalid dr mode: "+str(dr_mode)) #LVALUE needed only to get the label. This is needed to keep both abstraction ad dr together without None values
+        assert(impl(self.dr_on, dr_mode in ("ACCESS", "NO_ACCESS", "WSE")), "Invalid dr mode: "+str(dr_mode)) #LVALUE needed only to get the label. This is needed to keep both abstraction ad dr together without None values
         assert(impl(not self.dr_on, dr_mode is None), "Dr is disabled but mode is not None: "+str(dr_mode))
+        assert(iif(self.dr_on, 'dr_vp_state' in kwargs), "IIF in dr mode, you need to pass a dr_vp_state")
     
     # Perform a visit using the visitor module, according to the enabled modes
-    def visitor_visit(self, state, n, abs_mode, dr_mode):
-        return self.visitor.visit_with_absdr_args(state, n, abs_mode if self.abs_on else None, dr_mode if self.dr_on else None)
+    def visitor_visit(self, state, n, abs_mode, dr_mode, **kwargs):
+        return self.visitor.visit_with_absdr_args(state, n, abs_mode if self.abs_on else None, dr_mode if self.dr_on else None, **kwargs)
         
-    def rule_ID(self, state, sid, abs_mode, dr_mode):
-        self.assertDisabledIIFModesAreNone(abs_mode, dr_mode)
-        assert(not(dr_mode == "NO_ACCESS" and abs_mode in ("SET_VAL", "GET_ADDR")))
+    def rule_ID(self, state, sid, abs_mode, dr_mode, **kwargs):
+        self.assertDisabledIIFModesAreNone(abs_mode, dr_mode, **kwargs)
+        #TODO this is possible! assert(not(dr_mode == "NO_ACCESS" and abs_mode in ("SET_VAL", "GET_ADDR")))
         if not self.abs_on and not self.dr_on:
             return sid.name
-        elif abs_mode == "LVALUE" or dr_mode == "LVALUE":
+        elif abs_mode == "LVALUE":
             return sid.name
-        elif abs_mode == "VALUE" or dr_mode == "WSE":
+        elif abs_mode == "VALUE" :
             return self.decode(sid.name, "int") # TODO get type of ID from abstr
+        elif dr_mode == "WSE": # and implicitly abs is disabled
+            return sid.name
         else:
             return self.comma_expr(
                 self.if_dr(lambda: 
                     self.and_expr(
-                        self.p2, 
-                        self.assign_with_prop(state,"dr", self.or_expr_prop(self.cp(state, "dr"), self.cp(state, "wam"), self.getsm("&("+sid.name+")", self.sm_dr))
-                    )) if dr_mode != "NO_ACCESS" else ""),
+                        self.p2code(self.getVpstate(**kwargs)), 
+                        self.brackets(self.assign_with_prop(state,"dr", self.or_expr_prop(self.cp(state, "dr"), self.cp(state, "wam"), self.getsm("&("+sid.name+")", self.sm_dr))))
+                    ) if dr_mode != "NO_ACCESS" else ""),
                 self.if_abs(lambda: self.assign_with_prop(state,"bal","0")),
                 self.if_abs(lambda: self.assign_with_prop(state,"bav",self.getsm("&("+sid.name+")", self.sm_abs)) if abs_mode in ("GET_VAL", "UPD_VAL") else "")
             )
             
-    def rule_Constant(self, state, con, abs_mode, dr_mode):      
-        self.assertDisabledIIFModesAreNone(abs_mode, dr_mode)  
+    def rule_Constant(self, state, con, abs_mode, dr_mode, **kwargs):      
+        self.assertDisabledIIFModesAreNone(abs_mode, dr_mode, **kwargs)  
         assert(abs_mode not in ("SET_VAL", "GET_ADDR"), "Invalid: cannot get address or set the value of constants")
-        assert(abs_mode not in ("LVALUE"), "Invalid: constants aren't lvalues")
         if not self.abs_on and not self.dr_on:
             return con.value
         elif abs_mode == "VALUE" or dr_mode == "WSE":
             return con.value
         else:
-            return self.assign_with_prop(state,"bav", "0")
+            return self.if_abs(lambda:self.assign_with_prop(state,"bav", "0"))
             
     # helper function: returns "p1 && (set_sm_dr(&[[unexp, LVALUE]],1), WKM=1)" and manually applies const propagation
-    def __assignment_manual_cp_p1(self, state, unExpr):
-        if state.cp_p1 is None:
-            return self.and_expr(self.p1,
-                self.comma_expr(
-                    self.setsm("&("+self.visitor_visit(self, state, unExpr, "LVALUE", "WSE")+")", self.sm_dr, "1"),
-                    self.assign(self, state, "wkm", "1")))
-        elif state.cp_p1 == 0:
-            return ""
-        elif state.cp_p1 == 1:
-            return self.comma_expr(
-                    self.setsm("&("+self.visitor_visit(self, state, unExpr, "LVALUE", "WSE")+")", self.sm_dr, "1"),
-                    self.assign_prop(self, state, "wkm", "1"))
-        else:
-            assert(False, "Invalid cp_p1: "+str(state.cp_p1))
+    def __assignment_manual_cp_p1(self, state, unExpr, vpstate):
+        return self.and_expr(self.p1code(vpstate),
+            self.comma_expr(
+                self.setsm("&("+self.visitor_visit(state, unExpr, "LVALUE", "WSE", dr_vp_state=vpstate)+")", self.sm_dr, "1"),
+                self.assign(state, "wkm", "1")))
             
     # helper function: returns "p2 && (DR = DR || WAM || get_sm_dr(&[[unexp, LVALUE]]))" and manually applies const propagation
-    def __assignment_manual_cp_p2(self, state, unExpr):
-        if state.cp_p2 is None:
-            return self.and_expr(self.p2,
-                self.brackets(self.assign(state, "dr", self.or_expr_prop(self.cp(state, "dr"), self.cp(state, "wam"), 
-                    self.getsm("&("+self.visitor_visit(self, state, unExpr, "LVALUE", "WSE")+")", self.sm_dr))))
-                )
-        elif state.cp_p2 == 0:
-            return ""
-        elif state.cp_p2 == 1:
-            return self.assign_prop(state, "dr", self.or_expr_prop(self.cp(state, "dr"), self.cp(state, "wam"), 
-                    self.getsm("&("+self.visitor_visit(self, state, unExpr, "LVALUE", "WSE")+")", self.sm_dr)))
-        else:
-            assert(False, "Invalid cp_p2: "+str(state.cp_p2))
+    def __assignment_manual_cp_p2(self, state, unExpr, vpstate):
+        return self.and_expr(self.p2code(vpstate),
+            self.brackets(self.assign(state, "dr", self.or_expr_prop(self.cp(state, "dr"), self.cp(state, "wam"), 
+                self.getsm("&("+self.visitor_visit(state, unExpr, "LVALUE", "WSE", dr_vp_state=vpstate)+")", self.sm_dr))))
+            )
     
     # helper function: returns "bal && fail()" and manually applies const propagation    
     def __assignment_manual_bal_fail(self, state):
@@ -308,21 +332,21 @@ class AbsDrRules:
         else:
             assert(False, "Invalid bav: "+str(state.cp_bav))'''
         
-    def rule_Assignment(self, state, assn, abs_mode, dr_mode):      
-        self.assertDisabledIIFModesAreNone(abs_mode, dr_mode)  
+    def rule_Assignment(self, state, assn, abs_mode, dr_mode, **kwargs):      
+        self.assertDisabledIIFModesAreNone(abs_mode, dr_mode, **kwargs)  
         unExp = assn.lvalue
         assExp = assn.rvalue
         op = assn.op
         if op != "=":
-            fullOp = lambda: self.visitor_visit(state, unExp, "VALUE", "WSE")+" "+op.replace("=","")+" "+self.visitor_visit(state, assExp, "VALUE", "WSE")
+            fullOp = lambda: self.visitor_visit(state, unExp, "VALUE", "WSE", **kwargs)+" "+op.replace("=","")+" "+self.visitor_visit(state, assExp, "VALUE", "WSE", **kwargs)
         unexprType = "int" #TODO proper type
         return self.comma_expr(
-            self.visitor_visit(state, unExp, "SET_VAL" if op == "=" else "UPD_VAL", "NO_ACCESS"),
+            self.if_abs_or_dr(lambda: self.visitor_visit(state, unExp, "SET_VAL" if op == "=" else "UPD_VAL", "NO_ACCESS", **kwargs)),
             self.if_abs(lambda: self.__assignment_manual_bal_fail(state) if op == "=" else self.__assignment_manual_bav_fail(state)),
             "" if op == "=" else self.if_abs(lambda: self.assign_with_prop(state,"bav_lhs", self.cp(state,"bav"))),
-            self.if_dr(lambda: self.__assignment_manual_cp_p1(state, unExpr)),
-            self.if_dr(lambda: self.__assignment_manual_cp_p2(state, unExpr)),
-            self.visitor_visit(state, assExp, "GET_VAL", "ACCESS"),
+            self.if_dr(lambda: self.__assignment_manual_cp_p1(state, unExp, self.getVpstate(**kwargs))),
+            self.if_dr(lambda: self.__assignment_manual_cp_p2(state, unExp, self.getVpstate(**kwargs))),
+            self.if_abs_or_dr(lambda: self.visitor_visit(state, assExp, "GET_VAL", "ACCESS", **kwargs)),
             self.if_abs(lambda:
                 self.ternary_expr( 
                     self.or_expr_prop(
@@ -333,14 +357,16 @@ class AbsDrRules:
                     ),
                     self.comma_expr(
                         self.assign(state, "bav", "1"),
-                        self.setsm("&("+self.visitor_visit(state, unExp, "LVALUE", "LVALUE")+")", self.sm_abs, "1")
+                        self.setsm("&("+self.visitor_visit(state, unExp, "LVALUE", "WSE", **kwargs)+")", self.sm_abs, "1")
                     ), 
                     self.comma_expr(
-                        self.setsm("&("+self.visitor_visit(state, unExp, "LVALUE", "LVALUE")+")", self.sm_abs, "0"),
-                        self.visitor_visit(state, unExp, "LVALUE", "LVALUE")+" = "+self.encode(self.visitor_visit(state, assExp, "VALUE", "WSE"), unexprType) if op == "=" else "",
-                        "" if op == "=" else self.visitor_visit(state, unExp, "LVALUE", "LVALUE")+" = "+self.encode(fullOp(), unexprType),
+                        self.setsm("&("+self.visitor_visit(state, unExp, "LVALUE", "WSE", **kwargs)+")", self.sm_abs, "0"),
+                        self.visitor_visit(state, unExp, "LVALUE", "WSE", **kwargs)+" = "+self.encode(self.visitor_visit(state, assExp, "VALUE", "WSE", **kwargs), unexprType) if op == "=" else "",
+                        "" if op == "=" else self.visitor_visit(state, unExp, "LVALUE", "WSE", **kwargs)+" = "+self.encode(fullOp(), unexprType),
                     ))
-            )
+            ),
+            self.if_no_abs(lambda: self.visitor_visit(state, unExp, None, "WSE", **kwargs)+" = "+self.visitor_visit(state, assExp, None, "WSE", **kwargs) if op == "=" \
+                else self.visitor_visit(state, unExp, None, "WSE", **kwargs)+" = "+fullOp())
         )
             
             
