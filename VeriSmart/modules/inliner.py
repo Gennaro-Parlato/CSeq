@@ -469,14 +469,19 @@ class inliner(core.module.Translator):
 
         return s
 
+    __visited_structs = set()
     def visit_Union(self, n):
         #
-        oldParsingStruct = self.__parsingStruct
-        self.__parsingStruct = True
-        s = self._generate_struct_union_enum(n, 'union')
-        self.__parsingStruct = oldParsingStruct
+        if False:# n.name in self.__visited_structs:
+            return "union "+n.name
+        else:
+            self.__visited_structs.add(n.name)
+            oldParsingStruct = self.__parsingStruct
+            self.__parsingStruct = True
+            s = self._generate_struct_union_enum(n, 'union')
+            self.__parsingStruct = oldParsingStruct
 
-        return s
+            return s
 
     @staticmethod
     def _initVar(varType, varName, varTypeUnExpanded):
@@ -505,7 +510,8 @@ class inliner(core.module.Translator):
             s = ''
 
         else:
-            s = '__cs_init_scalar(&%s, sizeof(%s))' % (varName, varType)
+            #s = '__cs_init_scalar(&%s, sizeof(%s))' % (varName, varType)
+            s = '__cs_init_scalar(&%s, sizeof(%s))' % (varName, varTypeUnExpanded)
         return s
 
     def _hasBeenAssignedLater(self, varname):
@@ -614,8 +620,16 @@ class inliner(core.module.Translator):
                     #                       s += ''
                     else:  ## what can it be?
                         if self.local in range(0, 2):
+                            #print("*****", self.Parser.varType[self.currentFunction[-1], n.name])
+                            #s += '; __cs_init_scalar(&%s, sizeof(%s))' % (
+                            #    name, self.Parser.varType[self.currentFunction[-1], n.name])
+                            
+                            #G: remove struct/union/enum definitions
+                            vartype = self.Parser.varType[self.currentFunction[-1], n.name]
+                            if "{" in vartype:
+                                vartype = vartype[:vartype.find("{")]
                             s += '; __cs_init_scalar(&%s, sizeof(%s))' % (
-                                name, self.Parser.varType[self.currentFunction[-1], n.name])
+                                name, vartype)
 
             #            elif (self.__isScalar(self.currentFunction[-1], n.name) and
             #                    # Do not believe this check, it is not always true???
