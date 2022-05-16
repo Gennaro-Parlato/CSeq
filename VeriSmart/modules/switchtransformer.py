@@ -58,6 +58,7 @@ import core.common, core.module, core.parser, core.utils
 
 
 class switchtransformer(core.module.Translator):
+    __switchFreshId = 0
     __currentSwitchCount = 0
     __currentSwitchVar = []
     __currentSwitchExprALL = []
@@ -80,26 +81,33 @@ class switchtransformer(core.module.Translator):
     def visit_Switch(self, n):
         cond = self.visit(n.cond)
         # Increase ID of switch
-        self.__currentSwitchCount += 1
-        switchCondVar = '__cs_switch_cond_%s_%s' % (self.__currentFunction, self.__currentSwitchCount)
-        self.__currentSwitchVar.append(switchCondVar)
-        self.__caseCount[self.__currentSwitchCount] = 0
-        self.__currentSwitchExprALL.append([])
-        header = self._make_indent() + '; static int %s;%s = %s;\n' % (switchCondVar, switchCondVar, cond)
-        s = self._generate_stmt(n.stmt, add_indent=True)
-        s = s[s.find('{') + 1:s.rfind('}')]
-        endCaseNumber = self.__caseCount[self.__currentSwitchCount] + 1
-        switchEndLabel = '__cs_switch_%s_%s_case_%s' % (self.__currentFunction, self.__currentSwitchCount, endCaseNumber)
-        switchEndLabelFinal = '__cs_switch_%s_%s_exit' % (self.__currentFunction, self.__currentSwitchCount)
-        s += self._make_indent() + switchEndLabel + ':;'
-        breakLabel = '<case-break-of-switch-%s_%s>' % (self.__currentFunction, self.__currentSwitchCount)
-        self.__currentSwitchExprALL.pop()
-        self.__currentSwitchVar.pop()
-        #S: the currentSwitchCount does not have to be decremented, this ensures that each translated switch uses  its own labels
-        #self.__currentSwitchCount -= 1
-        s = s.replace(breakLabel, 'goto %s;' % switchEndLabel)
-        s = s.replace(switchEndLabel, switchEndLabelFinal)
-        return header + s
+        prevSwitchCount = self.__currentSwitchCount
+        try:
+            self.__switchFreshId += 1
+            self.__currentSwitchCount = self.__switchFreshId
+            currSwitchCount = self.__currentSwitchCount
+            switchCondVar = '__cs_switch_cond_%s_%s' % (self.__currentFunction, self.__currentSwitchCount)
+            self.__currentSwitchVar.append(switchCondVar)
+            self.__caseCount[self.__currentSwitchCount] = 0
+            self.__currentSwitchExprALL.append([])
+            header = self._make_indent() + '; static int %s;%s = %s;\n' % (switchCondVar, switchCondVar, cond)
+            s = self._generate_stmt(n.stmt, add_indent=True)
+            self.__currentSwitchCount = currSwitchCount
+            s = s[s.find('{') + 1:s.rfind('}')]
+            endCaseNumber = self.__caseCount[self.__currentSwitchCount] + 1
+            switchEndLabel = '__cs_switch_%s_%s_case_%s' % (self.__currentFunction, self.__currentSwitchCount, endCaseNumber)
+            switchEndLabelFinal = '__cs_switch_%s_%s_exit' % (self.__currentFunction, self.__currentSwitchCount)
+            s += self._make_indent() + switchEndLabel + ':;'
+            breakLabel = '<case-break-of-switch-%s_%s>' % (self.__currentFunction, self.__currentSwitchCount)
+            self.__currentSwitchExprALL.pop()
+            self.__currentSwitchVar.pop()
+            #S: the currentSwitchCount does not have to be decremented, this ensures that each translated switch uses  its own labels
+            #self.__currentSwitchCount -= 1
+            s = s.replace(breakLabel, 'goto %s;' % switchEndLabel)
+            s = s.replace(switchEndLabel, switchEndLabelFinal)
+            return header + s
+        finally:
+            self.__currentSwitchCount = prevSwitchCount
 
     def visit_Case(self, n):
         expr = self.visit(n.expr)
