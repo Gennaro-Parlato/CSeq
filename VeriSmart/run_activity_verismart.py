@@ -12,8 +12,10 @@ def mkdir(path, *paths):
 def copydir(frm, to):
     src = os.path.join(*frm)
     dst = os.path.join(*to)
-    mkdir(dst)
-    shutil.copytree(src, dst)
+    #mkdir(dst)
+    shutil.rmtree(dst,ignore_errors=True)
+    if os.path.isdir(src):
+        shutil.copytree(src, dst)
     
 def copyfile(frm, to):
     src = os.path.join(*frm)
@@ -759,7 +761,7 @@ categories = [
    pthread, pthread_atomic, pthread_ext, pthread_wmm, pthread_lit, ldv_races, pthread_complex, pthread_driver_races,
    pthread_c_dac, pthread_divine, pthread_nondet
 ]
-
+   
 #categories = [
 #    pthread_complex
 #]
@@ -773,13 +775,16 @@ parser.add_argument('--unwind', default=3, type=int,
                     help='How many iterations loops should be unwound for')
 parser.add_argument('--rounds', default=3, type=int,
                     help='Rounds for round-robin')
-parser.add_argument('--timeout', default=3600, type=int, help='Timeout for cbmc in seconds')
-parser.add_argument('--dr', action='store_true', default=False,
-                    help='Run with data race detection, defaults to false')
-parser.add_argument('--skipseq', action='store_true', default=False,
-                    help='Skip sequentialization, defaults to false')
-parser.add_argument('--abstraction', action='store_true', default=False,
-                    help='Run with abstraction, defaults to false')
+parser.add_argument('--timeout', default=3600, type=int, help='Timeout in seconds')
+#parser.add_argument('--dr', action='store_true', default=False,
+#                    help='Run with data race detection, defaults to false')
+#parser.add_argument('--abstraction', action='store_true', default=False,
+#                    help='Run with abstraction, defaults to false')
+parser.add_argument('--cores', default=24, type=int,
+                    help='How many concurrent instances of cbmc')
+parser.add_argument('--percent', default=34, type=int,
+                    help='window size as percentage of thread size')
+
 
 args = parser.parse_args()
 
@@ -788,21 +793,14 @@ output_file_path = args.output_path
 unwind_bound = args.unwind
 rounds_bound = args.rounds
 timeout = args.timeout
-is_data_race_mode = args.dr
-is_abstraction = args.abstraction
-dr_str = ''
-if is_data_race_mode:
-    dr_str = '--dr'
-abs_str = ''
-if is_abstraction:
-    abs_str = '--abstraction'
-skipseq = args.skipseq
+cores = args.cores
+window_percent = args.percent
 
 # -----------------------------------------------------------------------------
 
 if __name__ == '__main__':
     results = dict()
-    reportBlocks = ['WRONG ANSWER - expected N', 'WRONG ANSWER - expected P', 'SEQ ERROR', 'CBMC ERROR', 'TIMEOUT', 'ok - got N', 'ok - got P']
+    reportBlocks = ['WRONG ANSWER - expected N', 'WRONG ANSWER - expected P', 'SEQ ERROR', 'ERROR', 'TIMEOUT', 'ok - got N', 'ok - got P']
     points = 0
     maxpoints = 0
     report = {k:0 for k in reportBlocks}
@@ -814,86 +812,58 @@ if __name__ == '__main__':
             print(filepath, file=sys.stderr)
             outpathdir = output_file_path + '/' + category['relative_path'] + '/' + f +'/'
             mkdir(outpathdir)
-            print('./verismart.py -i %s --unwind %d --rounds %d --seq --debug' % (
-                filepath, unwind_bound, rounds_bound) + ' '.join([dr_str, abs_str]))
+            swarm_dir = base_file_path + '/' + category['relative_path'] + '/' + f[:-2]+".swarm"
+            shutil.rmtree(swarm_dir,ignore_errors=True)
+            cmdline = "./verismart.py -i %s --unwind %d --rounds %d --debug --instances-limit 0 --cores %d --window-percent %d"%(filepath, unwind_bound, rounds_bound, cores, window_percent)
+            print('timeout -k 10 %d %s' % (timeout, cmdline))
             start_time = time()
-            if not skipseq:
-                p = subprocess.Popen(
-                    ['./verismart.py -i %s --unwind %d --rounds %d --seq --debug ' % (
-                        filepath, unwind_bound, rounds_bound) + ' '.join([dr_str, abs_str])],
-                    stdout=subprocess.PIPE, shell=True)
-                output = p.stdout.read()
-                save(output, outpathdir, "verismart_output.txt")
+            p = subprocess.Popen(
+                ['timeout -k 10 %d %s' % (timeout, cmdline)],
+                stdout=subprocess.PIPE, shell=True)
+            output = p.stdout.read()
+            save(output, outpathdir, "verismart_output.txt")
             end_time = time()
             if category['relative_path'] not in results:
                 results[category['relative_path']] = dict()
             if f not in results[category['relative_path']]:
                 results[category['relative_path']][f] = dict()
-            if skipseq or 'Sequentialization successfully completed' in output.decode():
+            if 'Analyzing instance(s)' in output.decode():
                 results[category['relative_path']][f]['seq_result'] = 'SUCCESS'
                 prefix = '_cs'
-                if is_data_race_mode:
-                    prefix += 'dr'
                 prefix += '_'
                 seq_filepath = base_file_path + '/' + category['relative_path'] + '/' + prefix + f
-                if not skipseq:
-                    p = subprocess.Popen(
-                        ['wc -l %s' % (seq_filepath)],
-                        stdout=subprocess.PIPE, shell=True)
-                    output = p.stdout.read()
-                    length = re.findall('(.*) .*', output.decode())[0]
-                    results[category['relative_path']][f]['seq_length'] = length
-                    copyfile([seq_filepath], [output_file_path + '/' + category['relative_path'] + '/' + f +'/' + prefix + f])
+                p = subprocess.Popen(
+                    ['wc -l %s' % (seq_filepath)],
+                    stdout=subprocess.PIPE, shell=True)
+                outputWc = p.stdout.read()
+                length = re.findall('(.*) .*', outputWc.decode())[0]
+                results[category['relative_path']][f]['seq_length'] = length
+                copyfile([seq_filepath], [output_file_path + '/' + category['relative_path'] + '/' + f +'/' + prefix + f])
+                copydir([swarm_dir], [output_file_path + '/' + category['relative_path'] + '/' + f +'/' + f[:-2]+".swarm"])
+                
+                if 'FALSE' in output.decode():
+                    results[category['relative_path']][f]['cbmc_result'] = 'P'
+                elif 'TRUE' in output.decode():
+                    results[category['relative_path']][f]['cbmc_result'] = 'N'
+                elif 'core dumped' in output.decode():
+                    results[category['relative_path']][f]['cbmc_result'] = 'ERROR'
                 else:
-                    results[category['relative_path']][f]['seq_length'] = '-1'
+                    results[category['relative_path']][f]['cbmc_result'] = 'TIMEOUT'
+
+                if results[category['relative_path']][f]['cbmc_result'] in ('P', 'N'):
+                    try:
+                        vars_amount = re.findall('(.+) variables,', output.decode())[0]
+                        clauses_amount = re.findall('variables, (.+) clauses\n', output.decode())[0]
+                        solver_time = re.findall('Runtime Solver: (.+)s\n', output.decode())[0]
+                        results[category['relative_path']][f]['variables'] = vars_amount
+                        results[category['relative_path']][f]['clauses'] = clauses_amount
+                        results[category['relative_path']][f]['solver_time'] = solver_time
+                    except:
+                        pass
+                results[category['relative_path']][f]['total_time'] = end_time - start_time
             else:
                 results[category['relative_path']][f]['seq_result'] = 'SEQ ERROR'
-            results[category['relative_path']][f]['seq_time'] = end_time - start_time
-
-    for category in categories:
-        for fa in category['files']:
-            f = fa[0]
-            ans = fa[1]
-            prefix = '_cs'
-            if is_data_race_mode:
-                prefix += 'dr'
-            prefix += '_'
-            filepath = base_file_path + '/' + category['relative_path'] + '/' + prefix + f
-
-            print('timeout -k 10 %d ./cbmc-SM %s --unwind %d --no-unwinding-assertions --stop-on-fail' % (
-                timeout, filepath, unwind_bound))
-            start_time = time()
-            p = subprocess.Popen(
-                ['timeout -k 10 %d ./cbmc-SM %s --unwind %d --no-unwinding-assertions --stop-on-fail' % (
-                    timeout, filepath, unwind_bound)],
-                stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
-            output = p.stdout.read()
-            errout = p.stderr.read()
-            save(output, output_file_path + '/' + category['relative_path'] + '/' + f +'/cbmc_output.txt')
-            save(errout, output_file_path + '/' + category['relative_path'] + '/' + f +'/cbmc_stderr.txt')
-            end_time = time()
-            time_taken = end_time - start_time
-            if 'VERIFICATION FAILED' in output.decode():
-                results[category['relative_path']][f]['cbmc_result'] = 'P'
-            elif 'VERIFICATION SUCCESSFUL' in output.decode():
-                results[category['relative_path']][f]['cbmc_result'] = 'N'
-            elif 'core dumped' in output.decode():
-                results[category['relative_path']][f]['cbmc_result'] = 'CBMC ERROR'
-            else:
-                results[category['relative_path']][f]['cbmc_result'] = 'TIMEOUT'
-
-            if results[category['relative_path']][f]['cbmc_result'] in ('P', 'N'):
-                try:
-                    vars_amount = re.findall('(.+) variables,', output.decode())[0]
-                    clauses_amount = re.findall('variables, (.+) clauses\n', output.decode())[0]
-                    solver_time = re.findall('Runtime Solver: (.+)s\n', output.decode())[0]
-                    results[category['relative_path']][f]['variables'] = vars_amount
-                    results[category['relative_path']][f]['clauses'] = clauses_amount
-                    results[category['relative_path']][f]['solver_time'] = solver_time
-                except:
-                    pass
-            results[category['relative_path']][f]['total_time'] = time_taken + results[category['relative_path']][f][
-                'seq_time']
+            results[category['relative_path']][f]['total_time'] = end_time - start_time
 
     output = ["file,result,seq-length,Total Time, variables, clauses, SAT-solver time, check"]
     for category in categories:
