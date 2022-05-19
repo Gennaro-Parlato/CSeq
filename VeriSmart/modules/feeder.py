@@ -345,13 +345,13 @@ class feeder(core.module.BasicModule):
 		if env.debug:
 			if ('warning').encode() in err:
 				self.warn('warnings on stderr from the backend')
-				core.utils.saveFile(seqfile + '.' + backend + '.warn', err)
+				core.utils.saveFile(seqfile + '.' + backend + '.warn', err.decode())
 
 		if backend == 'smack':
-			core.utils.saveFile(logfile, out+err)
+			core.utils.saveFile(logfile, out+err.decode())
 			self.output = out+err
 		elif backend == 'klee':
-			core.utils.saveFile(logfile, err)
+			core.utils.saveFile(logfile, err.decode())
 			self.output = err
 		else:
 			core.utils.saveFile(logfile, out)   # klee outputs errors to stdout, all other backends to stderr

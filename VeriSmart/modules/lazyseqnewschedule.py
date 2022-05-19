@@ -457,7 +457,9 @@ class lazyseqnewschedule(core.module.Translator):
 						guard = '@£@G'
 					code = self._make_indent() + stmt.name + ': ' + guard + code + '\n'
 					compoundList.append(code)
-
+				elif type(stmt) is pycparser.c_ast.Compound:
+					code = self.visit(stmt) + ";\n"
+					compoundList.append(code)
 				# Case 3: all the rest....
 				elif (type(stmt) not in (pycparser.c_ast.Compound, pycparser.c_ast.Goto, pycparser.c_ast.Decl)
 					and not (self.__currentThread=='main' and not self.__enableDR and self.__firstThreadCreate == False) # and not running with datarace --dr => False
@@ -479,7 +481,7 @@ class lazyseqnewschedule(core.module.Translator):
 						threadIndex = self.Parser.threadOccurenceIndex[self.__currentThread]
 						s =  self.visit(stmt)
 						code = '@£@I1' + self.additionalCode(threadIndex)+ '@£@I2' + s + '@£@I3' + self.alternateCode(stmt) + '@£@I4' + ';\n'
-					elif (not self.__visit_funcReference and (
+					elif not self.__visit_funcReference and (
 						(type(stmt) == pycparser.c_ast.FuncCall and stmt.name.name == '__CSEQ_atomic_begin') or
 						(not self.__atomic and
 							(globalAccess or
@@ -490,7 +492,7 @@ class lazyseqnewschedule(core.module.Translator):
 							(type(stmt) == pycparser.c_ast.FuncCall and stmt.name.name == '__cs_cond_wait_2')
 							)
 						)
-						)):
+						):
 						is_compulsory_vp = self.needs_compulsory_visible_point(stmt)
 						if is_compulsory_vp:
 							self.__stmtVPCompulsory += 1
