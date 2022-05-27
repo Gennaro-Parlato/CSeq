@@ -5,6 +5,7 @@ import core.common, core.module, core.parser, core.utils
 from pycparser.c_generator import CGenerator
 from core import abs_dr_rules
 import os
+from core.support_file import SupportFileManager
 
 '''
 Utility class that allows to set a field to a specific value in a block and restore it when left.
@@ -92,6 +93,11 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
         # Macro file name. TODO make it parametric (see abstraction_prep.loadfromstring)
         self.macro_file_name = "macro_plain.h"
         
+        # Support file name. TODO make it parametric (see abstraction_prep.loadfromstring)
+        self.support_file_name = "support_file.c"
+        # Support file name. TODO make it parametric (see abstraction_prep.loadfromstring)
+        self.support_file_runnable = "support_file"
+        
         # set of arrays (they have a known address)
         self.program_arrays = []
         
@@ -130,20 +136,45 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
         # TODO Global variables (also consider thread locals?). Unclear role
         self.interest_variables_list = {}
         
+        self.global_var_initializations = ""
+        
+    def insertGlobalVarInit(self, x):
+        return x.replace("int main(void) {", "int main(void) {\n"+self.global_var_initializations, 1)
+    def __createMainKLEERoundRobinDecomposePC(self, rounds):
+        return self.insertGlobalVarInit(super().__createMainKLEERoundRobinDecomposePC(rounds))
+    def __createMainKLEERoundRobinOnePCCS(self, rounds):
+        return self.insertGlobalVarInit(super().__createMainKLEERoundRobinOnePCCS(rounds))
+    def __createMainKLEERoundRobin(self, rounds):
+        return self.insertGlobalVarInit(super().__createMainKLEERoundRobin(rounds))
+    def __createMainRoundRobinDecomposePC(self, rounds):
+        return self.insertGlobalVarInit(super().__createMainRoundRobinDecomposePC(rounds))
+    def __createMainRoundRobinOnePCCS(self, rounds):
+        return self.insertGlobalVarInit(super().__createMainRoundRobinOnePCCS(rounds))
+    def createMainRoundRobin(self, rounds):
+        return self.insertGlobalVarInit(super().createMainRoundRobin(rounds))
+    def __createMainDecomposePC(self, rounds):
+        return self.insertGlobalVarInit(super().__createMainDecomposePC(rounds))
+    def __createMainOnePCCS(self, rounds):
+        return self.insertGlobalVarInit(super().__createMainOnePCCS(rounds))
+    def __createMain(self, rounds):
+        return self.insertGlobalVarInit(super().__createMain(rounds))
+        
     def loadfromstring(self, string, env):
         self.env = env  
         self.abs_bitwidth = env.bit_width
-        self.abs_dr_rules = abs_dr_rules.AbsDrRules(self, self.abs_on, self.dr_on, self.abs_bitwidth)
+        self.abs_dr_rules = abs_dr_rules.AbsDrRules(self, self.abs_on, self.dr_on, self.abs_bitwidth, SupportFileManager(), self.macro_file_name, debug=env.debug)
         
         # Instrumentation arguments: {'abs_mode':abs_mode, 'dr_mode':dr_mode} or {'abs_mode':'GET_VAL', 'dr_mode':'NO_ACCESS'} when translating a statement
         self.abs_dr_mode = {'abs_mode':'GET_VAL' if self.abs_on else None, 'dr_mode':'NO_ACCESS' if self.dr_on else None}
         self.abs_dr_state = None
         super().loadfromstring(string, env)
         
-        abs_mfn = os.path.abspath(self.macro_file_name) #TODO
-        self.setOutputParam('header_abstraction','#include "%s"\n' % abs_mfn)
-        with open(abs_mfn, "w") as f:
-            f.write(self.abs_dr_rules.macro_file_content())
+        abs_mfn = self.abs_dr_rules.macroFile.save_get_path()
+        if abs_mfn is not None:
+            #os.path.abspath(self.macro_file_name)
+            self.setOutputParam('header_abstraction','#include "%s"\n' % abs_mfn)
+            #with open(abs_mfn, "w") as f:
+            #    f.write(self.abs_dr_rules.macro_file_content())
     
     # allows to create blocks where abstraction instrumentation is avoided                                
     def no_any_instrument(self): 
@@ -167,6 +198,8 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
     def visit_FileAST(self, n):
         if not self.any_instrument:
             return super().visit_FileAST(n)
+            
+        self.abs_dr_rules.supportFile.compile(n, self.support_file_name, self.support_file_runnable)
 
         #Print on macro file, the first set of variables,define and so on...
         # TODO self.transformation_rule.utility.printFirsMacroSet(self.support_variables)
@@ -174,14 +207,17 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
         s = ''
         s += self.abs_dr_rules.aux_vars_decl()
 
+        s3 = ''
         for ext in n.ext:
             if isinstance(ext, c_ast.FuncDef):
-                s += self.visit(ext)
+                s3 += self.visit(ext)
                 self.scope = 'global'
             elif isinstance(ext, c_ast.Pragma):
-                s += self.visit(ext) + '\n'
+                s3 += self.visit(ext) + '\n'
             else:
-                s += self.visit(ext) + ';\n'
+                s3 += self.visit(ext) + ';\n'
+                
+        s2 = self.abs_dr_rules.cond_vars_decl()
 
         #TODO check what it means
         #ris = self.faked_typedef_start \
@@ -190,7 +226,7 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
         #      + self.faked_typedef_end \
         #      + '\n' \
         #      + s
-        ris = s
+        ris = s + s2 + s3
 
         #self.addOutputParam('abstraction')
         #self.setOutputParam('abstraction', self)
@@ -303,13 +339,17 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
                             )
                         )
                         )):
+                        is_compulsory_vp = self.needs_compulsory_visible_point(stmt)
+                        if is_compulsory_vp:
+                            self._lazyseqnewschedule__stmtVPCompulsory += 1
                         self._lazyseqnewschedule__stmtCount += 1
                         self._lazyseqnewschedule__maxInCompound = self._lazyseqnewschedule__stmtCount
                         threadIndex = self.Parser.threadOccurenceIndex[self._lazyseqnewschedule__currentThread]
                         with self.clean_cp_state():
                             s = self.visit(stmt)
                         with self.clean_cp_state():
-                            code = '@£@I1' + self.additionalCode(threadIndex) + '@£@I2' + s + '@£@I3' + self.alternateCode(stmt) + '@£@I4' + ';\n'
+                            prefix = '@£@J1' if is_compulsory_vp else '@£@I1'
+                            code = prefix + self.additionalCode(threadIndex) + '@£@I2' + s + '@£@I3' + self.alternateCode(stmt) + '@£@I4' + ';\n'
     
                     else:
                         with self.clean_cp_state():
@@ -324,7 +364,7 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
         return listToStr
         
     def dynamicSelectionInfoForDebug(self):
-        print("Starting SSM:",self.string_support_macro)
+        #OLD print("Starting SSM:",self.string_support_macro)
         #this will be the text to put into a main
         str_to_append = '' # TODO ?
         global_text = '' # global and local variables
@@ -350,7 +390,8 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
         pthread_defs_path = os.path.abspath(os.getcwd()) + '/modules/pthread_defs.c'
         self.string_support_macro = '#include "'+self.macro_file_name + '"' + self.string_support_macro_headers + '\n' + '#include "' + pthread_defs_path + '"\n' + self.global_support_macro_declarations + '\n' + global_text + '\n' + 'int main(){\n' + str_to_append + '\n' +'return 0;' + '\n' + '}'
         
-        print("Type macro SSM:",self.string_support_macro)
+        # OLD print("Type macro SSM:",self.string_support_macro)
+        #print("Type macro SSM:",self.abs_dr_rules.support.getFile())
         
     '''# destroy constant propagation state between statements, as with visible points we do not know whether they will be executed sequentially
     def additionalCode(self,threadIndex):
@@ -396,6 +437,57 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
             extra_args['dr_vp_state'] = self.abs_dr_vpstate
         return self.abs_dr_rules.rule_Assignment(self.abs_dr_state, n, self.abs_dr_mode['abs_mode'], self.abs_dr_mode['dr_mode'], **extra_args)
         
+    def visit_BinaryOp(self, n):
+        if not self.any_instrument:
+            return super().visit_BinaryOp(n)
+        if n.op in ('||','&&'):
+            extra_args = {}
+            if self.dr_on:
+                extra_args['dr_vp_state'] = self.abs_dr_vpstate
+            return self.abs_dr_rules.rule_OrAnd(self.abs_dr_state, n, self.abs_dr_mode['abs_mode'], self.abs_dr_mode['dr_mode'], **extra_args)
+        else:
+            extra_args = {}
+            if self.dr_on:
+                extra_args['dr_vp_state'] = self.abs_dr_vpstate
+            return self.abs_dr_rules.rule_BinaryOp(self.abs_dr_state, n, self.abs_dr_mode['abs_mode'], self.abs_dr_mode['dr_mode'], **extra_args)
+            
+    def visit_UnaryOp(self, n):
+        if not self.any_instrument:
+            return super().visit_UnaryOp(n)
+        if n.op in ('--','++'):
+            extra_args = {}
+            if self.dr_on:
+                extra_args['dr_vp_state'] = self.abs_dr_vpstate
+            return self.abs_dr_rules.rule_preOp(self.abs_dr_state, n, self.abs_dr_mode['abs_mode'], self.abs_dr_mode['dr_mode'], **extra_args)
+        elif n.op in ('p--','p++'):
+            extra_args = {}
+            if self.dr_on:
+                extra_args['dr_vp_state'] = self.abs_dr_vpstate
+            return self.abs_dr_rules.rule_postOp(self.abs_dr_state, n, self.abs_dr_mode['abs_mode'], self.abs_dr_mode['dr_mode'], **extra_args)
+        elif n.op in ('+','-','~'):
+            extra_args = {}
+            if self.dr_on:
+                extra_args['dr_vp_state'] = self.abs_dr_vpstate
+            return self.abs_dr_rules.rule_UnOp(self.abs_dr_state, n, self.abs_dr_mode['abs_mode'], self.abs_dr_mode['dr_mode'], **extra_args)
+        elif n.op in ('!',):
+            extra_args = {}
+            if self.dr_on:
+                extra_args['dr_vp_state'] = self.abs_dr_vpstate
+            return self.abs_dr_rules.rule_NotOp(self.abs_dr_state, n, self.abs_dr_mode['abs_mode'], self.abs_dr_mode['dr_mode'], **extra_args)
+        elif n.op in ('&',):
+            extra_args = {}
+            if self.dr_on:
+                extra_args['dr_vp_state'] = self.abs_dr_vpstate
+            return self.abs_dr_rules.rule_AddrOp(self.abs_dr_state, n, self.abs_dr_mode['abs_mode'], self.abs_dr_mode['dr_mode'], **extra_args)
+        elif n.op in ('*',):
+            extra_args = {}
+            if self.dr_on:
+                extra_args['dr_vp_state'] = self.abs_dr_vpstate
+            return self.abs_dr_rules.rule_PtrOp(self.abs_dr_state, n, self.abs_dr_mode['abs_mode'], self.abs_dr_mode['dr_mode'], **extra_args)
+        else:
+            return super().visit_UnaryOp(n)
+            
+        
     def visit_ID(self, n):
         if not self.any_instrument:
             return super().visit_ID(n)
@@ -406,7 +498,11 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
         extra_args = {}
         if self.dr_on:
             extra_args['dr_vp_state'] = self.abs_dr_vpstate
-        return self.abs_dr_rules.rule_ID(self.abs_dr_state, n, self.abs_dr_mode['abs_mode'], self.abs_dr_mode['dr_mode'], **extra_args)
+        if n.name in self.program_arrays:
+            myans = self.abs_dr_rules.rule_ArrayID(self.abs_dr_state, n, self.abs_dr_mode['abs_mode'], self.abs_dr_mode['dr_mode'], **extra_args)
+        else:
+            myans = self.abs_dr_rules.rule_ID(self.abs_dr_state, n, self.abs_dr_mode['abs_mode'], self.abs_dr_mode['dr_mode'], **extra_args)
+        return myans
         
     def visit_Constant(self, n):
         if not self.any_instrument:
@@ -416,19 +512,78 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
             extra_args['dr_vp_state'] = self.abs_dr_vpstate
         return self.abs_dr_rules.rule_Constant(self.abs_dr_state, n, self.abs_dr_mode['abs_mode'], self.abs_dr_mode['dr_mode'], **extra_args)
         
+    def visit_Cast(self, n):
+        if not self.any_instrument:
+            return super().visit_Cast(n)
+        extra_args = {}
+        if self.dr_on:
+            extra_args['dr_vp_state'] = self.abs_dr_vpstate
+        return self.abs_dr_rules.rule_Cast(self.abs_dr_state, n, self.abs_dr_mode['abs_mode'], self.abs_dr_mode['dr_mode'], **extra_args)
+        
+    def visit_ExprList(self, n):
+        if not self.any_instrument:
+            return super().visit_ExprList(n)
+        
+        extra_args = {}
+        if self.dr_on:
+            extra_args['dr_vp_state'] = self.abs_dr_vpstate
+        visited_subexprs = []
+        visit_ans = self.abs_dr_rules.rule_Comma(self.abs_dr_state, n, self.abs_dr_mode['abs_mode'], self.abs_dr_mode['dr_mode'], **extra_args)
+        self.expList = None if visit_ans[1] is None else visit_ans[1].copy()
+        return visit_ans[0]
+        
     # TODO do it properly. Just there to make valid code for now
     def visit_FuncCall(self, n):
         if not self.any_instrument:
             return super().visit_FuncCall(n)
         fref = self.cGen_original._parenthesize_unless_simple(n.name)
         
-        if fref == '__CSEQ_assert':
-            assert(False, "assert not implemented")
+        extra_args = {}
+        if self.dr_on:
+            extra_args['dr_vp_state'] = self.abs_dr_vpstate
+            
+        if fref in ('__CSEQ_assert', '__CSEQ_assume', 'assert'):
+            return self.abs_dr_rules.rule_Assert_Assume(self.abs_dr_state, n, self.abs_dr_mode['abs_mode'], self.abs_dr_mode['dr_mode'], **extra_args)
+        elif fref == 'sizeof':
+            return self.abs_dr_rules.rule_Sizeof(self.abs_dr_state, n, self.abs_dr_mode['abs_mode'], self.abs_dr_mode['dr_mode'], **extra_args)
         # all functions are either instrumentation ones or thread functions. Anyways, don't instrument
         with self.no_any_instrument():
             return super().visit_FuncCall(n)
 
+    def visit_ArrayRef(self, n):
+        if not self.any_instrument or n.subscript == '__cs_thread_index':
+            return super().visit_ArrayRef(n)
+        else:
+            extra_args = {}
+            if self.dr_on:
+                extra_args['dr_vp_state'] = self.abs_dr_vpstate
+            return self.abs_dr_rules.rule_ArrayRef(self.abs_dr_state, n, self.abs_dr_mode['abs_mode'], self.abs_dr_mode['dr_mode'], **extra_args)
+
+
+    def visit_TernaryOp(self, n):
+        if not self.any_instrument:
+            return super().visit_TernaryOp(n)
+        else:
+            extra_args = {}
+            if self.dr_on:
+                extra_args['dr_vp_state'] = self.abs_dr_vpstate
+            return self.abs_dr_rules.rule_TernaryOp(self.abs_dr_state, n, self.abs_dr_mode['abs_mode'], self.abs_dr_mode['dr_mode'], **extra_args)
+                        
+    def visit_StructRef(self, n):
+        if not self.any_instrument:
+            return super().visit_StructRef(n)
+        else:
+            extra_args = {}
+            if self.dr_on:
+                extra_args['dr_vp_state'] = self.abs_dr_vpstate
+            if n.type == "->":
+                return self.abs_dr_rules.rule_StructRefPtr(self.abs_dr_state, n, self.abs_dr_mode['abs_mode'], self.abs_dr_mode['dr_mode'], **extra_args)
+            else:
+                return self.abs_dr_rules.rule_StructRefVar(self.abs_dr_state, n, self.abs_dr_mode['abs_mode'], self.abs_dr_mode['dr_mode'], **extra_args)
             
+    def visit_Typedef(self, n):
+        return super().visit_Typedef(n)
+        
     def visit_Decl(self, n, no_type=False):
         if not self.any_instrument:
             return super().visit_Decl(n, no_type)
@@ -488,7 +643,8 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
                             assert(False, "Variable without name "+str(n)) #return original_exp
                     else:
                         assert(False, "This type condition is not expected in a TypeDecl: "+str(n)) #TODO it might be possible
-                    ans = super().visit_Decl(n)
+                    with BakAndRestore(n,"init", None):
+                        ans = super().visit_Decl(n)
             elif type_of_n in ('PtrDecl', 'ArrayDecl') :
                 type_st = getType(n.type.type) if n.type.type else None
                 if type_st == 'Struct':
@@ -512,8 +668,12 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
                 elif type_of_n == 'PtrDecl' and n.name != None:
                     self.interest_variables_list[n.name] = type_of_arrptr
                     self.program_pointers.append(n.name)
-                        
-                ans = super().visit_Decl(n)
+                
+                if self.scope == 'global':
+                    with self.no_any_instrument():        
+                        ans = super().visit_Decl(n)
+                else:
+                    ans = super().visit_Decl(n)
             else:
                 assert(False, "Unknown declaration type: "+type_of_n)
             
@@ -522,22 +682,122 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
                 pass
             if n.init:
                 #TODO
-                ans = ans + " /* INSTR DECL "+type_of_n+" init not treated */"
-            # TODO have a look at this once you have the initialization ready    
-            """
-            if self.scope == 'global' and n.name != 'main' and flag_init:
-                self.global_declaration.append(final)
-                self.translationPerformed = 1
-                if print_string != '':
-                    self.global_support_macro.append(declaration + '\n' + print_string)
-                return ans+';'+'\n'
-
-            elif flag_init and self.scope == 'local':
-                last_semicolon = final.rfind(';')
-                self.resetOperationBit()
-                return ans + ';' + '\n' + final[0:last_semicolon]
-            else:
-                self.resetOperationBit()
-                return ans
-            """
+                init = ""
+                if type_of_n == 'ArrayDecl':
+                    for index, ass_exp in enumerate(n.init):
+                        unary_exp = c_ast.ArrayRef(c_ast.ID(n.name), c_ast.Constant('int', str(index)))
+                        assignment = c_ast.Assignment("=", unary_exp, ass_exp)
+                        new_abs_dr_mode = {'abs_mode':"GET_VAL" if self.abs_on else None, 'dr_mode':None}
+                        with BakAndRestore(self, 'abs_dr_mode', new_abs_dr_mode):
+                            with self.clean_cp_state():
+                                with BakAndRestore(self, 'dr_on', False):
+                                    tr = self.visit(assignment)
+                        init += tr + ';' + '\n'
+                elif type_of_n in ('PtrDecl','TypeDecl'):
+                    unary_exp = c_ast.ID(n.name)
+                    ass_exp = n.init
+                    assignment = c_ast.Assignment("=", unary_exp, ass_exp)
+                    new_abs_dr_mode = {'abs_mode':"GET_VAL" if self.abs_on else None, 'dr_mode':None}
+                    with BakAndRestore(self, 'abs_dr_mode', new_abs_dr_mode):
+                        with self.clean_cp_state():
+                            with BakAndRestore(self, 'dr_on', False):
+                                tr = self.visit(assignment)
+                    init += tr + ';' + '\n'
+                else:
+                    assert(False, "Unexpected initializer for variable "+n.name+" with type_of_n = "+type_of_n)
+                    
+                if self.scope == 'global' and n.name != 'main':
+                    self.global_var_initializations += init
+                elif self.scope == 'local':
+                    ans = ans + init
             return ans
+         
+    # TODO integrate into lazy...   
+    def visit_If(self, n):
+        if not self.any_instrument:
+            return super().visit_If(n)
+        
+        ifStart = self._lazyseqnewschedule__maxInCompound   # label where the if stmt begins
+
+        s = 'if ('
+
+        if n.cond:
+            extra_args = {}
+            if self.dr_on:
+                extra_args['dr_vp_state'] = self.abs_dr_vpstate
+            condition = self.abs_dr_rules.rule_IfCond(self.abs_dr_state, n.cond, self.abs_dr_mode['abs_mode'], self.abs_dr_mode['dr_mode'], **extra_args)
+            s += condition
+
+        s += ')\n'
+        stateThen = self.abs_dr_state.copy()
+        stateElse = self.abs_dr_state.copy()
+        self.abs_dr_state = stateThen
+        s += self._generate_stmt(n.iftrue, add_indent=True)
+
+        ifEnd = self._lazyseqnewschedule__maxInCompound   # label for the last stmt in the if block:  if () { block; }
+        nextLabelID = ifEnd+1
+
+        if n.iffalse:
+            self.abs_dr_state = stateElse
+            elseBlock = self._generate_stmt(n.iffalse, add_indent=True)
+
+            elseEnd = self._lazyseqnewschedule__maxInCompound   # label for the last stmt in the if_false block if () {...} else { block; }
+
+            if ifStart < ifEnd:
+                #threadIndex = self.Parser.threadIndex[self.__currentThread] if self.__currentThread in self.Parser.threadIndex else 0
+                # GUARD(%s,%s)
+                if not self._lazyseqnewschedule__visit_funcReference:
+                    # elseHeader = '@G' + str(ifEnd+1) + ' '
+                    elseHeader = '@£@G '
+                    # if self.__decomposepc:
+                        ## elseHeader = '__CSEQ_assume( __cs_pc_cs_%s >= %s );' % (threadIndex, str(ifEnd+1))
+                        # elseHeader = '__CSEQ_rawline(@G__cs_pc_cs_%s >= $$);\n' % (threadIndex)
+                    # elif self.__one_pc_cs:
+                        ## elseHeader = '__CSEQ_assume( __cs_pc_cs >= %s );' % (str(ifEnd+1))
+                        # elseHeader = '__CSEQ_rawline(@G__cs_pc_cs_ >= $$);\n'
+                    # else:
+                        ## elseHeader = '__CSEQ_assume( __cs_pc_cs[%s] >= %s );' % (threadIndex, str(ifEnd+1))
+                        # elseHeader = '__CSEQ_rawline(@G__cs_pc_cs_[%s] >= $$);\n' % (threadIndex)
+                        ## elseHeader = (guard.replace('$$',str(self.__stmtCount+1))
+            else:
+                elseHeader = ''
+
+            nextLabelID = elseEnd+1
+            s += self._make_indent() + 'else\n'
+
+            elseBlock = elseBlock.replace('{', '{ '+elseHeader, 1)
+            s += elseBlock
+            
+            self.abs_dr_state.doMerge(stateThen, stateElse)
+
+        header = ''
+
+        if ifStart+1 < nextLabelID:
+            #threadIndex = self.Parser.threadIndex[self.__currentThread] if self.__currentThread in self.Parser.threadIndex else 0
+            # GUARD(%s,%s)
+            if not self._lazyseqnewschedule__visit_funcReference:
+                # footer = '@G' + str(nextLabelID) + ' '
+                footer = '@£@G' + ' '
+                #if self.__decomposepc:
+                    ## footer = '__CSEQ_assume( __cs_pc_cs_%s >= %s );' % (threadIndex, nextLabelID)
+                    #footer = '__CSEQ_rawline(@G__cs_pc_cs_%s >= $$);\n' % (threadIndex)
+                #elif self.__one_pc_cs:
+                    ## footer = '__CSEQ_assume( __cs_pc_cs >= %s );' % (nextLabelID)
+                    #footer = '__CSEQ_rawline(@G__cs_pc_cs_ >= $$);\n'
+                #else:
+                    ## footer = '__CSEQ_assume( __cs_pc_cs[%s] >= %s );' % (threadIndex, nextLabelID)
+                    #footer = '__CSEQ_rawline(@G__cs_pc_cs_[%s] >= $$);\n' % (threadIndex)
+
+        else:
+            footer = ''
+
+        '''
+        if n.iffalse:
+            header = 'ASS_ELSE(%s, %s, %s)' % (condition, ifEnd+1, elseEnd+1) + '\n' + self._make_indent()
+        else:
+            if ifEnd > ifStart:
+                header = 'ASS_THEN(%s, %s)' % (condition, ifEnd+1) + '\n' + self._make_indent()
+            else: header = ''
+        '''
+
+        return header + s + self._make_indent() + footer

@@ -1,24 +1,120 @@
 from pycparser import c_ast
+from pycparser.c_generator import CGenerator
+from core.support_file import SupportFileManager
+from pycparser.c_ast import BinaryOp
+import os
 
 class CPState:
     def __init__(self):
         # Constant propagation: <value> = it is already known without reading it; None = must read it
         self.cp_bav = None 
         self.cp_bav_lhs = None 
+        self.cp_bav_tmp = None 
+        self.cp_bav_1 = None 
         self.cp_bal = None 
         self.cp_dr = None 
         self.cp_wam = None 
         self.cp_wkm = None 
+        
+    def copy(self):
+        # return a copy of this state
+        newst = CPState()
+        newst.cp_bav = self.cp_bav 
+        newst.cp_bav_lhs = self.cp_bav_lhs 
+        newst.cp_bav_tmp = self.cp_bav_tmp 
+        newst.cp_bav_1 = self.cp_bav_1 
+        newst.cp_bal = self.cp_bal 
+        newst.cp_dr = self.cp_dr 
+        newst.cp_wam = self.cp_wam 
+        newst.cp_wkm = self.cp_wkm 
+        return newst
+        
+    def doMerge(self, stateThen, stateEls):
+        #stores in this state the intersection of stateThen and stateEls, i.e., for each cp var keep them only if they constant propagated the same value, otherwise None
+        self.cp_bav = self.__mergeVar(stateThen.cp_bav, stateEls.cp_bav)
+        self.cp_bav_lhs = self.__mergeVar(stateThen.cp_bav_lhs, stateEls.cp_bav_lhs) 
+        self.cp_bav_tmp = self.__mergeVar(stateThen.cp_bav_tmp, stateEls.cp_bav_tmp) 
+        self.cp_bav_1 = self.__mergeVar(stateThen.cp_bav_1, stateEls.cp_bav_1) 
+        self.cp_bal = self.__mergeVar(stateThen.cp_bal, stateEls.cp_bal) 
+        self.cp_dr = self.__mergeVar(stateThen.cp_dr, stateEls.cp_dr) 
+        self.cp_wam = self.__mergeVar(stateThen.cp_wam, stateEls.cp_wam) 
+        self.cp_wkm = self.__mergeVar(stateThen.cp_wkm, stateEls.cp_wkm) 
+        
+    def __mergeVar(self, v1, v2):
+        return v1 if v1==v2 else None
+        
         
 class VPState:
     def __init__(self):
         self.VP1required = False
         self.VP2required = False
         
+    def __str__(self):
+        return " ".join(("VP1r:",str(self.VP1required), "VP2r:",str(self.VP2required)))
+        
+class MacroFile:
+    def __init__(self, fname, adr, debug):
+        self.fname = os.path.abspath(fname)
+        self.adr = adr
+        self.conversions = dict() # macro_content -> (rule_progr, [conversion params... only if debug])
+        self.list_conversions = [] # conversion of EXPR_0, EXPR_1, ...
+        self.macroProgr = 0
+        self.dbg_visitor = CGenerator() if debug else None
+        
+    def store_macro(self, macro_content, node, abs_mode, dr_mode):
+        if len(macro_content) < 15:
+            # short content, won't generate a macro
+            return macro_content
+        if macro_content.startswith("EXPR_") and macro_content.endswith("()") and macro_content[5:-2].isdigit():
+            # this is a known expression, just return it and save into conversions
+            index = int(macro_content[5:-2])
+            assert(not macro_content[4].isdigit())
+            assert(not macro_content[-2].isdigit())
+            expanded_macro_content = self.list_conversions[index]
+            conv = self.conversions[expanded_macro_content]
+            if self.dbg_visitor:
+                conv_params = (self.dbg_visitor.visit(node), str(abs_mode), str(dr_mode))
+                if conv_params not in conv[1]:
+                    conv[1].append(conv_params)
+            return macro_content
+        
+        if macro_content in self.conversions:
+            conv = self.conversions[macro_content]
+            if self.dbg_visitor:
+                conv_params = (self.dbg_visitor.visit(node), str(abs_mode), str(dr_mode))
+                if conv_params not in conv[1]:
+                    conv[1].append(conv_params)
+            return conv[0]
+        else:
+            rule_prog = "EXPR_"+str(self.macroProgr)+"()"
+            self.macroProgr += 1
+            if self.dbg_visitor:
+                conv_params = (self.dbg_visitor.visit(node), str(abs_mode), str(dr_mode))
+                self.conversions[macro_content] = (rule_prog, [conv_params])
+            else:
+                self.conversions[macro_content] = (rule_prog, )
+            self.list_conversions += [macro_content]
+            return rule_prog
+        
+    def save_get_path(self):
+        output = self.adr.getAbstractionMacros()
+        output = output.strip()+"\n"
+        for macro_content in self.list_conversions:
+            conv = self.conversions[macro_content]
+            output += "\n"
+            if self.dbg_visitor:
+                output += "/*"+" ; ".join("("+c[0]+","+c[1]+","+c[2]+")" for c in conv[1])+"*/"
+            output += "\n#define "+conv[0]+" "+macro_content
+        if len(output) > 0:
+            with open(self.fname, "w") as f:
+                f.write(output)
+            return self.fname
+        else:
+            return None
+        
+        
 class AbsDrRules:            
-    # TODO create a boilerplate code to define needed vars
-    
-    def __init__(self, visitor, abs_on, dr_possible, abstr_bits):
+    def __init__(self, visitor, abs_on, dr_possible, abstr_bits, supportFile, macroFileName, debug=False):
         # visitor module
         self.visitor = visitor
         # abstraction active
@@ -32,10 +128,14 @@ class AbsDrRules:
         self.bav = "__cs_baV" if abs_on else None
         self.bal = "__cs_baL" if abs_on else None
         self.bav_lhs = "__cs_baV_lhs" if abs_on else None
+        self.bav_tmp = "__cs_baV_tmp" if abs_on else None
+        self.bav_1 = "__cs_baV_1" if abs_on else None
         # abstraction: signed types for which abstraction is enabled
         self.abstrTypesSigned = ["int"] if abs_on else []
         # abstraction: unsigned types for which abstraction is enabled
         self.abstrTypesUnsigned = ["unsigned int"] if abs_on else []
+        # abstraction: sizeof of each abstractable type. TODO: use auxiliary file to get such values
+        self.abstrTypesSizeof = {"int":4, "unsigned int":4}
         # abstraction: nr of bits for abstracted vars
         self.abstr_bits = abstr_bits
         # abstraction: name field for abstraction
@@ -48,8 +148,14 @@ class AbsDrRules:
         # data race: wrote known memory, i.e. if we wrote to a concrete location
         self.wkm = "__cs_wkm" if dr_possible else None
         
+        # condition expressions, used in ifs and ternary ops
+        self.conditions = {}
+        
         # abstraction: name field for dr
         self.sm_dr = "dr" if dr_possible else None
+        
+        self.supportFile = supportFile
+        self.macroFile = MacroFile(macroFileName, self, debug)
         
         # data race: p1, i.e., we need to discover writes
     def p1code(self, vpstate):
@@ -72,6 +178,8 @@ class AbsDrRules:
             self.if_abs(lambda: "unsigned char "+self.bav+" = (unsigned char) 0;"),
             self.if_abs(lambda: "unsigned char "+self.bal+" = (unsigned char) 0;"),
             self.if_abs(lambda: "unsigned char "+self.bav_lhs+" = (unsigned char) 0;"),
+            self.if_abs(lambda: "unsigned char "+self.bav_tmp+" = (unsigned char) 0;"),
+            self.if_abs(lambda: "unsigned char "+self.bav_1+" = (unsigned char) 0;"),
             self.if_dr_possible(lambda: "unsigned char "+self.dr+" = (unsigned char) 0;"),
             self.if_dr_possible(lambda: "unsigned char "+self.wam+" = (unsigned char) 0;"),
             self.if_dr_possible(lambda: "unsigned char "+self.wkm+" = (unsigned char) 0;"),
@@ -83,28 +191,48 @@ class AbsDrRules:
             self.if_dr_possible(lambda: 'unsigned char __cs_dataraceActiveVP2 = (unsigned char) 0;'),
         ]))[0]
         
+    def cond_vars_decl(self):
+        #TODO use __CPROVER_bitvector
+        return self.compound_expr("\n",*(['unsigned char '+v+';' for v in self.conditions.values()]))[0]
+        
     def sm_field_decl(self):
         return "#define FIELD_DECLS() "+self.compound_expr(" ",*([
             self.if_abs(lambda: '__CPROVER_field_decl_global("'+self.sm_abs+'", (_Bool)0);'),
             self.if_dr(lambda: '__CPROVER_field_decl_global("'+self.sm_dr+'", (_Bool)0);'),
         ]))[0]
         
-    def macro_file_content(self):
-        assert(self.abs_on or self.dr_on, "External macro file is meaningful only if we have abstraction or dr")
+    def getAbstractionMacros(self):
         if self.abs_on:
             bitstr = str(self.abstr_bits)
             bitstr_1 = str(self.abstr_bits-1)
             mask_t = hex(2**self.abstr_bits-1)
             mask_t_1 = hex(2**(self.abstr_bits-1)-1)
-        return self.compound_expr("\n",*([
-            self.if_abs(lambda: "#define MASK_"+bitstr_1+" "+mask_t_1),
-            self.if_abs(lambda: "#define MASK_"+bitstr+" "+mask_t),
-            self.sm_field_decl(),
-        ]+[
-            "#define BOUNDS_FAILURE_"+t.replace(" ","_")+"(exp) ((((exp)&~MASK_"+bitstr_1+")!=(~MASK_"+bitstr_1+")) && ((exp)&~MASK_"+bitstr_1+"))" for t in self.abstrTypesSigned
-        ]+[
-            "#define BOUNDS_FAILURE_"+t.replace(" ","_")+"(exp) ((exp)&~MASK_"+bitstr+")" for t in self.abstrTypesUnsigned
-        ]))[0]
+            return self.compound_expr("\n",*([
+                self.sm_field_decl(),
+            ]+["#define MASK_"+t.replace(" ","_")+"_"+bitstr+" (("+t+") "+mask_t+")" for t in self.abstrTypesSigned]+
+              ["#define MASK_"+t.replace(" ","_")+"_"+bitstr_1+" (("+t+") "+mask_t_1+")" for t in self.abstrTypesSigned]+
+              ["#define BOUNDS_FAILURE_"+t.replace(" ","_")+"(exp) ((((exp)&~MASK_"+t.replace(" ","_")+"_"+bitstr_1+")!=(~MASK_"+t.replace(" ","_")+"_"+bitstr_1+")) && ((exp)&~MASK_"+t.replace(" ","_")+"_"+bitstr_1+"))" for t in self.abstrTypesSigned]+
+              ["#define ENCODE_"+t.replace(" ","_")+"(exp) ((exp)&MASK_"+t.replace(" ","_")+"_"+bitstr+")" for t in self.abstrTypesSigned]+
+              ["#define DECODE_"+t.replace(" ","_")+"(exp) (("+t+")((signed __CPROVER_bitvector["+bitstr+"]) (exp)))" for t in self.abstrTypesSigned]+
+              ["#define MIN_"+t.replace(" ","_")+" "+("((~(("+t+")0)) << "+bitstr_1+")" if self.abstr_bits < self.abstrTypesSizeof[t]*8 else "((~(("+t+")0)) << "+str(self.abstrTypesSizeof[t]*8-1)+")") for t in self.abstrTypesSigned]+
+              ["#define MAX_"+t.replace(" ","_")+" "+"(~(MIN_"+t.replace(" ","_")+"))" for t in self.abstrTypesSigned]+
+              ["#define ISMIN_"+t.replace(" ","_")+"(exp) "+"((exp) == MIN_"+t.replace(" ","_")+")" for t in self.abstrTypesSigned]+
+              ["#define ISMAX_"+t.replace(" ","_")+"(exp) "+"((exp) == MAX_"+t.replace(" ","_")+")" for t in self.abstrTypesSigned]+
+              
+              
+             
+              ["#define MASK_"+t.replace(" ","_")+"_"+bitstr+" (("+t+") "+mask_t+")" for t in self.abstrTypesUnsigned]+
+              #["#define MASK_"+t.replace(" ","_")+"_"+bitstr_1+" (("+t+") "+mask_t_1+")" for t in self.abstrTypesUnsigned]+
+              ["#define BOUNDS_FAILURE_"+t.replace(" ","_")+"(exp) ((exp)&~MASK_"+t.replace(" ","_")+"_"+bitstr+")" for t in self.abstrTypesUnsigned]+
+              ["#define ENCODE_"+t.replace(" ","_")+"(exp) ((exp)&MASK_"+t.replace(" ","_")+"_"+bitstr+")" for t in self.abstrTypesUnsigned]+
+              ["#define DECODE_"+t.replace(" ","_")+"(exp) (("+t+")((unsigned __CPROVER_bitvector["+bitstr+"]) (exp)))" for t in self.abstrTypesUnsigned]+
+              ["#define MIN_"+t.replace(" ","_")+" (("+t+")0)" for t in self.abstrTypesUnsigned]+
+              ["#define MAX_"+t.replace(" ","_")+" "+("(~((~(("+t+")0)) << "+bitstr+"))" if self.abstr_bits < self.abstrTypesSizeof[t]*8 else "(~(("+t+")0))") for t in self.abstrTypesUnsigned]+
+              ["#define ISMIN_"+t.replace(" ","_")+"(exp) "+"((exp) == MIN_"+t.replace(" ","_")+")" for t in self.abstrTypesUnsigned]+
+              ["#define ISMAX_"+t.replace(" ","_")+"(exp) "+"((exp) == MAX_"+t.replace(" ","_")+")" for t in self.abstrTypesUnsigned]
+              ))[0]
+        else:
+            return "" 
         
     def get_first_state(self):
         s = CPState()
@@ -132,10 +260,23 @@ class AbsDrRules:
         clean_items = [x for x in items if x != "" and x is not None]
         joined = jn.join(clean_items)
         return joined, len(clean_items)
+        
+    # join parts to form a compound expression with lambda functions
+    def compound_expr_lambda(self, jn, *items):
+        parts = [x() for x in items]
+        return self.compound_expr(jn, *parts)
             
     # join parts to form a comma expression
     def comma_expr(self, *items):
         commas, parts = self.compound_expr(", ", items)
+        if parts >=2 :
+            return "(" + commas + ")"
+        else:
+            return commas
+            
+    # join parts to form a comma expression, with lambda functions
+    def comma_expr_lambda(self, *items):
+        commas, parts = self.compound_expr_lambda(", ", items)
         if parts >=2 :
             return "(" + commas + ")"
         else:
@@ -149,7 +290,7 @@ class AbsDrRules:
     def or_expr(self, *items):
         ors, parts = self.compound_expr(" || ", *items)
         if parts == 0:
-            return "1"
+            return "0"
         elif parts == 1:
             return ors
         else:
@@ -167,7 +308,7 @@ class AbsDrRules:
     def and_expr(self, *items):
         ands, parts = self.compound_expr(" && ", *items)
         if parts == 0:
-            return "0"
+            return "1"
         elif parts == 1:
             return ands
         else:
@@ -184,7 +325,7 @@ class AbsDrRules:
     
     # apply constant propagation in assignment, i.e., if val = "0"/"1" set state.cp_target = 0/1, else set state.cp_target = None
     def assign_with_prop(self, state, target, val):
-        if val == getattr(state, "cp_"+target):
+        if val == str(getattr(state, "cp_"+target)) and val != "None":
             # value is the same as in cp: I don't even need to assign
             return ""
         if val == "0":
@@ -197,8 +338,15 @@ class AbsDrRules:
         
     # assignment disabling self propagation
     def assign(self, state, target, val):
+        assert(hasattr(state, "cp_"+target))
         setattr(state, "cp_"+target, None)   
         return getattr(self, target) + " = " + val
+        
+    def assign_var(self, target, val):
+        return target + " = " + val
+        
+    def nondet(self):
+        return "__VERIFIER_nondet_bool()"
         
     def getsm(self, addr, field):
         return "__CPROVER_get_field("+addr+", \""+field+"\")"
@@ -226,23 +374,59 @@ class AbsDrRules:
     def if_abs_or_dr(self, expr):
         return expr() if self.abs_on or self.dr_on else ""
         
+    def is_abstractable(self, xtype):
+        return xtype in ("int",) #TODO fill it properly
+        
     def decode(self, x, xtype):
         assert(self.abs_on)
-        xtype_nospaces = xtype.replace(" ","_")
-        return "DECODE_"+xtype_nospaces+"("+x+")"
+        if self.is_abstractable(xtype):
+            xtype_nospaces = xtype.replace(" ","_")
+            return "DECODE_"+xtype_nospaces+"("+x+")"
+        else:
+            return x
         
     def encode(self, x, xtype):
         assert(self.abs_on)
+        if self.is_abstractable(xtype):
+            xtype_nospaces = xtype.replace(" ","_")
+            return "ENCODE_"+xtype_nospaces+"("+x+")"
+        else:
+            return "("+x+")"
+        
+    def ismin_type(self, x, xtype):
+        # returns "ISMIN_xtype(x)"
+        assert(self.abs_on and self.is_abstractable(xtype))
         xtype_nospaces = xtype.replace(" ","_")
-        return "ENCODE_"+xtype_nospaces+"("+x+")"
+        return "ISMIN_"+xtype_nospaces+"("+x+")"
+        
+    def ismax_type(self, x, xtype):
+        # returns "ISMAX_xtype(x)"
+        assert(self.abs_on and self.is_abstractable(xtype))
+        xtype_nospaces = xtype.replace(" ","_")
+        return "ISMAX_"+xtype_nospaces+"("+x+")"
         
     def bounds_failure(self, x, xtype):
-        assert(self.abs_on)
+        assert(self.abs_on and self.is_abstractable(xtype))
         xtype_nospaces = xtype.replace(" ","_")
         return "BOUNDS_FAILURE_"+xtype_nospaces+"("+x+")"
         
-    def ternary_expr(self, cond, then, els):
-        return "(" + cond + "?" + then + ":" + els + ")"
+    def ternary_expr(self, state, cond, then, els):
+        if cond == "0":
+            return els(state)
+        elif cond == "1":
+            return then(state)
+        else:
+            stateThen = state.copy()
+            stateEls = state.copy()
+            expr_then = then(stateThen)
+            expr_els = els(stateEls)
+            if expr_then in ("()",""):
+                expr_then = "((void)0)"
+            if expr_els in ("()",""):
+                expr_els = "((void)0)"
+            ans = "(" + cond + "?" + expr_then + ":" + expr_els + ")"
+            state.doMerge(stateThen, stateEls)
+            return ans
         
     def assert_expr(self, val):
         return "__CSEQ_assert("+val+")"
@@ -263,28 +447,695 @@ class AbsDrRules:
     def visitor_visit(self, state, n, abs_mode, dr_mode, **kwargs):
         return self.visitor.visit_with_absdr_args(state, n, abs_mode if self.abs_on else None, dr_mode if self.dr_on else None, **kwargs)
         
+    def __preop_manual_cp_bal(self,state, unExpr, vpstate):
+        # if abstraction is on:
+            # return bal?err:ok
+            # where
+            # err ::= (p1&&wam=1, p2&&dr=dr||wam||wkm)
+            # ok  ::= (p1 && (set_sm_dr(&[[unexp, LVALUE]],1), WKM=1), p2 && (DR = DR || WAM || get_sm_dr(&[[unexp, LVALUE]]))) {i.e., __assignment_manual_cp_p1,__assignment_manual_cp_p2}
+        # else: ok
+        # applying manually the constant propagation
+        assert(self.dr_on)
+        err = lambda state: self.comma_expr(self.and_expr(self.p1code(vpstate), self.assign(state,"wam", self.cp(state, "wam"))),
+                              self.and_expr(self.p2code(vpstate), self.assign(state, "dr", self.or_expr_prop(self.cp(state, "dr"), self.cp(state, "wam"), self.cp(state, "wkm")))))
+        ok = lambda state: self.comma_expr(self.__assignment_manual_cp_p1(state, unExpr, vpstate),
+                              self.__assignment_manual_cp_p2(state, unExpr, vpstate))
+        if state.cp_bal == 0 or not self.abs_on:
+            return ok(state)
+        elif state.cp_bal == 1:
+            return err(state)
+        else:
+            return self.ternary_expr(state, self.cp(state,"bal"),err,ok)
+            
+    def __preop_manual_cp_bav_bal(self,state, unExpr, op, unexprType, **kwargs):
+        assert(self.abs_on)
+        # unexprType is abstractable:
+            # return (bav=bav||min_t([[unexp,VALUE]]))?err:ok
+            # where
+            # err ::= (bal||set_sm(&[[unexp,LVALUE]],1))
+            # ok  ::= [[unexp,LVALUE]] = encode([[unexp,VALUE]] op 1)
+        # unexprType is not abstractable:
+            # return (bav || ([[unexp,LVALUE]] op op))
+        # applying manually the constant propagation
+        abstr_type = self.is_abstractable(unexprType)
+        
+        if abstr_type:
+            mint = lambda: self.ismin_type(self.visitor_visit(state, unExpr, "VALUE", "WSE", **kwargs), unexprType) if op == '-' else self.ismax_type(self.visitor_visit(state, unExpr, "VALUE", "WSE", **kwargs), unexprType)
+            setsm_1 = lambda state: self.setsm("&("+self.visitor_visit(state, unExpr, "LVALUE", "WSE", **kwargs)+")", self.sm_abs, "1")
+            err = lambda state: setsm_1(state) if state.cp_bal == 0 else ( "" if state.cp_bal == 1 else self.or_expr(self.cp(state,"bal"), setsm_1(state)))
+            ok = lambda state: self.brackets(self.visitor_visit(state, unExpr, "LVALUE", "WSE", **kwargs)+" = "+self.encode(self.visitor_visit(state, unExpr, "VALUE", "WSE", **kwargs)+" "+op+" 1", unexprType))
+        
+            if state.cp_bav == 1:
+                if state.cp_bal == 1:
+                    return ""
+                elif state.cp_bal == 0:
+                    return setsm_1(state)
+                else:
+                    return err(state)
+            elif state.cp_bav == 0:
+                return ok(state)
+            else:
+                return self.ternary_expr(state, self.or_expr_prop(self.cp(state, "bav"),mint()), err, ok)
+        else:
+            unexpr_op_op = lambda: self.visitor_visit(state, unExpr, "LVALUE", "WSE", **kwargs)+op+op
+            
+            if state.cp_bav == 1:
+                return ""
+            elif state.cp_bav == 0:
+                return unexpr_op_op()
+            else:
+                return self.or_expr(self.cp(state,"bav"),unexpr_op_op())
+        
+        
+    def rule_preOp(self, state, preop, abs_mode, dr_mode, **kwargs): # --x, ++x
+        self.assertDisabledIIFModesAreNone(abs_mode, dr_mode, **kwargs)  
+        unExp = preop.expr
+        op = preop.op
+        assert(op in ("--","++"))
+        if abs_mode in ("GET_VAL", None) and dr_mode in ("ACCESS", "PREFIX", "NO_ACCESS", None):
+            intop = op[-1]
+            unexprType = self.supportFile.get_type(unExp)#"int" #TODO proper type
+            ans = self.comma_expr(
+                self.if_abs_or_dr(lambda: self.visitor_visit(state, unExp, "UPD_VAL", "NO_ACCESS", **kwargs)),
+                self.if_dr(lambda: self.__preop_manual_cp_bal(state, unExp, self.getVpstate(**kwargs))),
+                self.if_abs(lambda: self.__preop_manual_cp_bav_bal(state, unExp, intop, unexprType, **kwargs)),
+                self.if_no_abs(lambda: intop+intop+self.visitor_visit(state, unExp, None, "WSE", **kwargs)))
+            return self.macroFile.store_macro(ans, preop, abs_mode, dr_mode)
+        elif abs_mode in ("VALUE", None) and dr_mode in ("WSE", None) and (abs_mode is not None or dr_mode is not None):
+            return self.macroFile.store_macro(self.visitor_visit(state, unExp, "VALUE", "WSE", **kwargs), preop, abs_mode, dr_mode)
+        else:
+            assert(False, "Invalid mode for preOp: abs_mode = "+str(abs_mode)+"; dr_mode = "+str(dr_mode))
+        
+        
+    def rule_postOp(self, state, preop, abs_mode, dr_mode, **kwargs): # x--, x++
+        self.assertDisabledIIFModesAreNone(abs_mode, dr_mode, **kwargs)  
+        unExp = preop.expr
+        op = preop.op
+        assert(op in ("p--","p++"))
+        if abs_mode in ("GET_VAL", None) and dr_mode in ("ACCESS", "PREFIX", "NO_ACCESS", None):
+            intop = op[-1]
+            unexprType = self.supportFile.get_type(unExp) #"int" #TODO proper type
+            ans = self.comma_expr(
+                self.if_abs_or_dr(lambda: self.visitor_visit(state, unExp, "UPD_VAL", "NO_ACCESS", **kwargs)),
+                self.if_dr(lambda: self.__preop_manual_cp_bal(state, unExp, self.getVpstate(**kwargs))),
+                self.if_abs(lambda: self.__preop_manual_cp_bav_bal(state, unExp, intop, unexprType, **kwargs)),
+                self.if_no_abs(lambda: self.visitor_visit(state, unExp, None, "WSE", **kwargs)+intop+intop))
+            return self.macroFile.store_macro(ans, preop, abs_mode, dr_mode)
+        elif abs_mode in ("VALUE", None) and dr_mode in ("WSE", None) and (abs_mode is not None or dr_mode is not None):
+            intop = op[-1]
+            invertOp = "+" if intop == "-" else "-" #invert the operator to get access to the value before op
+            return self.macroFile.store_macro(self.visitor_visit(state, unExp, "VALUE", "WSE", **kwargs)+" "+invertOp+" 1", preop, abs_mode, dr_mode)
+        else:
+            assert(False, "Invalid mode for postOp: abs_mode = "+str(abs_mode)+"; dr_mode = "+str(dr_mode))
+            
+    def __arrayref_bavtmp_dr(self, state, dr_mode, postExp, exp, **kwargs):
+        # if dr_mode is NO_ACCESS/PREFIX: remove
+        # if abstraction:
+        # return (bav_tmp || bav)?(p2&&dr=(dr||wam||wkm)):(p2&&dr=(dr||wam||get_sm_dr(&[[postExp,VALUE,WSE]][ [[exp,VALUE,WSE]] ])))
+        # else:
+        # return p2&&dr=(dr||wam||get_sm_dr(&[[postExp,WSE]][ [[exp,WSE]] ]))
+        assert(self.dr_on)
+        ok = lambda state: self.and_expr(self.p2code(self.getVpstate(**kwargs)), self.brackets(self.assign_with_prop(state, "dr", self.or_expr_prop(self.cp(state, "dr"), self.cp(state, "wam"), 
+            self.getsm("&("+self.brackets(self.visitor_visit(state, postExp, "VALUE", "WSE", **kwargs))+"["+self.visitor_visit(state, exp, "VALUE", "WSE", **kwargs)+"])", self.sm_dr)))))
+        err = lambda state: self.and_expr(self.p2code(self.getVpstate(**kwargs)), self.brackets(self.assign_with_prop(state, "dr", self.or_expr_prop(self.cp(state, "dr"), self.cp(state, "wam"), self.cp(state, "wkm")))))
+        if dr_mode in ("NO_ACCESS", "PREFIX"):
+            return ""
+        elif self.abs_on:
+            tmp_bav_cp = (state.cp_bav_tmp, state.cp_bav)
+            if tmp_bav_cp[0] == 1 or tmp_bav_cp[1] == 1: # True || x, x || True
+                return ok(state)
+            elif tmp_bav_cp[0] == 0 and tmp_bav_cp[1] == 0: # False || False
+                return err(state)
+            elif tmp_bav_cp[1] == 0: # ? || False
+                return self.ternary_expr(state, self.cp(state, "bav"), err, ok)
+            elif tmp_bav_cp[0] == 0: # False || ?
+                return self.ternary_expr(state, self.cp(state, "bav_tmp"), err, ok)
+            else: # ? || ?
+                return self.ternary_expr(state, self.or_expr(self.cp(state, "bav"),self.cp(state, "bav_tmp")), err, ok)
+        else:
+            return ok()
+            
+    def __arrayref_bavtmp_abs(self, state, postExp, exp, **kwargs):
+        # return bav = ((bal = (bav_tmp || bav)) || get_sm_abs(&[[postExp,VALUE,WSE]] [ [[exp,VALUE,WSE]] ]))
+        assert(self.abs_on)
+        getsm = lambda: self.getsm("&("+self.brackets(self.visitor_visit(state, postExp, "VALUE", "WSE", **kwargs))+"["+self.visitor_visit(state, exp, "VALUE", "WSE", **kwargs)+"])", self.sm_abs)
+        tmp_bav_cp = (state.cp_bav_tmp, state.cp_bav) #(bav_tmp || bav) as const propagation
+        if tmp_bav_cp[1] == 1: # x || True
+            return self.assign_with_prop(state, "bal", "1") 
+        elif tmp_bav_cp[0] == 1: # True || (False/?)
+            return self.comma_expr(self.assign_with_prop(state, "bal", "1"), self.assign_with_prop(state, "bav", "1")) 
+        elif tmp_bav_cp[0] == 0 and tmp_bav_cp[1] == 0: #(False || False)
+            return self.comma_expr(self.assign_with_prop(state, "bal", "0"), self.assign(state, "bav", getsm()))
+        else: # (? || ?) (False || ?) (? || False)
+            return self.assign(state, "bav", self.or_expr(self.assign(state,"bal",self.or_expr_prop(self.cp(state,"bav_tmp"),self.cp(state,"bav"))),getsm())) 
+        
+            
+    def rule_ArrayRef(self, state, arrexp, abs_mode, dr_mode, **kwargs): # postExp[exp]
+        self.assertDisabledIIFModesAreNone(abs_mode, dr_mode, **kwargs)  
+        postExp = arrexp.name
+        exp = arrexp.subscript
+        if abs_mode in ("LVALUE", None) and dr_mode in ("WSE", None):
+            return self.macroFile.store_macro(self.visitor_visit(state, postExp, "VALUE", "WSE", **kwargs)+"["+self.visitor_visit(state, exp, "VALUE", "WSE", **kwargs)+"]", \
+                arrexp, abs_mode, dr_mode)
+        elif abs_mode in ("VALUE",) and dr_mode in ("WSE", None):
+            arrexpType = self.supportFile.get_type(arrexp) #"int" #TODO get type from expression
+            return self.macroFile.store_macro(self.decode(self.visitor_visit(state, postExp, "VALUE", "WSE", **kwargs)+"["+self.visitor_visit(state, exp, "VALUE", "WSE", **kwargs)+"]", \
+                arrexpType), arrexp, abs_mode, dr_mode)
+        elif abs_mode in ("GET_VAL", "UPD_VAL", None) and dr_mode in ("ACCESS", "PREFIX", "NO_ACCESS", None):
+            return self.macroFile.store_macro(self.comma_expr(
+                self.if_abs_or_dr(lambda: self.visitor_visit(state, postExp, "GET_VAL", "PREFIX", **kwargs)),
+                self.if_abs(lambda: self.assign_with_prop(state, "bav_tmp", self.cp(state, "bav"))),
+                self.if_abs_or_dr(lambda: self.visitor_visit(state, exp, "GET_VAL", "ACCESS", **kwargs)),
+                self.if_dr(lambda: self.__arrayref_bavtmp_dr(state, dr_mode, postExp, exp, **kwargs)),
+                self.if_abs(lambda: self.__arrayref_bavtmp_abs(state, postExp, exp, **kwargs))
+            ), arrexp, abs_mode, dr_mode)
+        elif abs_mode in ("SET_VAL", "GET_ADDR",) and dr_mode in ("PREFIX", "NO_ACCESS", None):
+            ans = self.comma_expr(
+                self.if_abs_or_dr(lambda: self.visitor_visit(state, postExp, "GET_VAL", "PREFIX", **kwargs)),
+                self.if_abs(lambda: self.assign_with_prop(state, "bav_tmp", self.cp(state, "bav"))),
+                self.if_abs_or_dr(lambda: self.visitor_visit(state, exp, "GET_VAL", "ACCESS", **kwargs)),
+                self.if_abs(lambda: self.assign_with_prop(state,"bal",self.or_expr_prop(self.cp(state,"bav_tmp"),self.cp(state,"bav"))))
+            )
+            return self.macroFile.store_macro(ans, arrexp, abs_mode, dr_mode)
+        else:
+            assert(False, "Invalid mode for ArrayRef: abs_mode = "+str(abs_mode)+"; dr_mode = "+str(dr_mode))
+    
+    def __structrefptr_bavtmp_dr(self, state, dr_mode, postExp, exp, **kwargs):
+        # if dr_mode is NO_ACCESS/PREFIX: remove
+        # if abstraction:
+        # return (bav)?(p2&&dr=(dr||wam||wkm)):(p2&&dr=(dr||wam||get_sm_dr(&[[postExp,VALUE,WSE]][ [[exp,VALUE,WSE]] ])))
+        # else:
+        # return p2&&dr=(dr||wam||get_sm_dr(&([[postExp,WSE]]->exp)]))
+        assert(self.dr_on)
+        ok = lambda state: self.and_expr(self.p2code(self.getVpstate(**kwargs)), self.brackets(self.assign_with_prop(state, "dr", self.or_expr_prop(self.cp(state, "dr"), self.cp(state, "wam"), 
+            self.getsm("&("+self.brackets(self.visitor_visit(state, postExp, "VALUE", "WSE", **kwargs))+"->"+exp.name+")", self.sm_dr)))))
+        err = lambda state: self.and_expr(self.p2code(self.getVpstate(**kwargs)), self.brackets(self.assign_with_prop(state, "dr", self.or_expr_prop(self.cp(state, "dr"), self.cp(state, "wam"), self.cp(state, "wkm")))))
+        if dr_mode in ("NO_ACCESS", "PREFIX"):
+            return ""
+        elif self.abs_on:
+            if state.cp_bav == 1:
+                return err(state)
+            elif state.cp_bav == 0:
+                return ok(state)
+            else:
+                return self.ternary_expr(state, self.cp(state, "bav"), err, ok)
+        else:
+            return ok()        
+    
+    def __structrefptr_bavtmp_abs(self, state, postExp, exp, **kwargs):
+        # return (bal = bav) || get_sm_abs(&([[postExp,VALUE,WSE]]->exp))
+        assert(self.abs_on)
+        getsm = lambda: self.getsm("&("+self.brackets(self.visitor_visit(state, postExp, "VALUE", "WSE", **kwargs))+"->"+exp.name+")", self.sm_abs)
+        cp = (state.cp_bal, state.cp_bav) #(bal, bav) as const propagation
+        if cp[0] == 0 and cp[1] == 0: #bal = False, bav = False
+            return getsm()
+        elif cp[0] in (1, None) and cp[1] == 0: #bal = True/?, bav = False
+            return self.or_expr(self.assign_with_prop(state, "bal", self.cp(state, "bav")), getsm())
+        elif cp[0] == 1 and cp[1] == 1: #bal = True, bav = True
+            return ""
+        elif cp[0] in (0, None) and cp[1] == 1: #bal = False/?, bav = True
+            return self.assign_with_prop(state, "bal", self.cp(state, "bav"))
+        elif cp[1] is None: #bal = False/True/?, bav = ?
+            return self.or_expr(self.assign_with_prop(state, "bal", self.cp(state, "bav")), getsm())
+        else:
+            assert(False)
+            
+    def rule_StructRefPtr(self, state, srexp, abs_mode, dr_mode, **kwargs): # postExp->exp
+        self.assertDisabledIIFModesAreNone(abs_mode, dr_mode, **kwargs)  
+        assert(srexp.type == "->")
+        postExp = srexp.name
+        fid = srexp.field
+        if abs_mode in ("LVALUE", None) and dr_mode in ("WSE", None):
+            return self.macroFile.store_macro(self.visitor_visit(state, postExp, "VALUE", "WSE", **kwargs)+"->"+fid.name, srexp, abs_mode, dr_mode)
+        elif abs_mode in ("VALUE",) and dr_mode in ("WSE", None):
+            srexpType = self.supportFile.get_type(srexp) #"int" #TODO get type from expression
+            return self.macroFile.store_macro(self.decode(self.visitor_visit(state, postExp, "VALUE", "WSE", **kwargs)+"->"+fid.name, srexpType), srexp, abs_mode, dr_mode)
+            
+        elif abs_mode in ("GET_VAL", "UPD_VAL", None) and dr_mode in ("ACCESS", "PREFIX", "NO_ACCESS", None):
+            return self.macroFile.store_macro(self.comma_expr(
+                self.if_abs_or_dr(lambda: self.visitor_visit(state, postExp, "GET_VAL", "ACCESS", **kwargs)),
+                self.if_dr(lambda: self.__structrefptr_bavtmp_dr(state, dr_mode, postExp, fid, **kwargs)), 
+                self.if_abs(lambda: self.__structrefptr_bavtmp_abs(state, postExp, fid, **kwargs))
+            ), srexp, abs_mode, dr_mode)
+        elif abs_mode in ("SET_VAL", "GET_ADDR",) and dr_mode in ("PREFIX", "NO_ACCESS", None):
+            ans = self.comma_expr(
+                self.if_abs_or_dr(lambda: self.visitor_visit(state, postExp, "GET_VAL", "ACCESS", **kwargs)),
+                self.if_abs(lambda: self.assign_with_prop(state, "bal", self.cp(state, "bav")))
+            )
+            return self.macroFile.store_macro(ans, srexp, abs_mode, dr_mode)
+        else:
+            assert(False, "Invalid mode for StructRefPtr: abs_mode = "+str(abs_mode)+"; dr_mode = "+str(dr_mode))
+            
+    def __structrefvar_bal_dr(self, state, dr_mode, postExp, exp, **kwargs):
+        # if dr_mode is NO_ACCESS/PREFIX: remove
+        # if abstraction:
+        # return (bal)?(p2&&dr=(dr||wam||wkm)):(p2&&dr=(dr||wam||get_sm_dr(&([[postExp,WSE]].exp)))
+        # else:
+        # return p2&&dr=(dr||wam||get_sm_dr(&([[postExp,WSE]].exp)))
+        assert(self.dr_on)
+        ok = lambda state: self.and_expr(self.p2code(self.getVpstate(**kwargs)), self.brackets(self.assign_with_prop(state, "dr", self.or_expr_prop(self.cp(state, "dr"), self.cp(state, "wam"), 
+            self.getsm("&("+self.visitor_visit(state, postExp, "LVALUE", "WSE", **kwargs)+"."+exp.name+")", self.sm_dr)))))
+        err = lambda state: self.and_expr(self.p2code(self.getVpstate(**kwargs)), self.brackets(self.assign_with_prop(state, "dr", self.or_expr_prop(self.cp(state, "dr"), self.cp(state, "wam"), self.cp(state, "wkm")))))
+        if dr_mode in ("NO_ACCESS", "PREFIX"):
+            return ""
+        elif self.abs_on:
+            if state.cp_bal == 1:
+                return err(state)
+            elif state.cp_bal == 0:
+                return ok(state)
+            else:
+                return self.ternary_expr(state, self.cp(state, "bal"), err, ok)
+        else:
+            return ok()        
+            
+    def __structrefvar_bav_abs(self, state, postExp, exp, **kwargs):
+        # return (bal || bav = get_sm_abs(&([[postExp,VALUE,WSE]]->exp))) && (bav=1)
+        assert(self.abs_on)
+        getsm = lambda: self.getsm("&("+self.brackets(self.visitor_visit(state, postExp, "LVALUE", "WSE", **kwargs))+"."+exp.name+")", self.sm_abs)
+        if state.cp_bal == 1:
+            return self.assign_with_prop(state, "bav", "1")
+        elif state.cp_bal == 0:
+            return self.assign(state, "bav", getsm())
+        elif state.cp_bal is None:
+            return self.and_expr(self.or_expr(self.cp(state,"bal"),self.assign(state, "bav", getsm())), self.assign(state, "bav", "1"))
+        else:
+            assert(False)
+            
+    def rule_StructRefVar(self, state, srexp, abs_mode, dr_mode, **kwargs): # postExp->exp
+        self.assertDisabledIIFModesAreNone(abs_mode, dr_mode, **kwargs)  
+        assert(srexp.type == ".")
+        postExp = srexp.name
+        fid = srexp.field
+        if abs_mode in ("LVALUE", None) and dr_mode in ("WSE", None):
+            return self.macroFile.store_macro(self.visitor_visit(state, postExp, "LVALUE", "WSE", **kwargs)+"."+fid.name, srexp, abs_mode, dr_mode)
+        elif abs_mode in ("VALUE",) and dr_mode in ("WSE", None):
+            srexpType = self.supportFile.get_type(srexp) #"int" #TODO get type from expression
+            return self.macroFile.store_macro(self.decode(self.visitor_visit(state, postExp, "LVALUE", "WSE", **kwargs)+"."+fid.name, srexpType), srexp, abs_mode, dr_mode)
+            
+        elif abs_mode in ("GET_VAL", "UPD_VAL", None) and dr_mode in ("ACCESS", "PREFIX", "NO_ACCESS", None):
+            return self.macroFile.store_macro(self.comma_expr(
+                self.if_abs_or_dr(lambda: self.visitor_visit(state, postExp, "GET_ADDRESS", "NO_ACCESS", **kwargs)),
+                self.if_dr(lambda: self.__structrefvar_bal_dr(state, dr_mode, postExp, fid, **kwargs)), 
+                self.if_abs(lambda: self.__structrefvar_bav_abs(state, postExp, fid, **kwargs))
+            ), srexp, abs_mode, dr_mode)
+        elif abs_mode in ("SET_VAL", "GET_ADDR",) and dr_mode in ("PREFIX", "NO_ACCESS", None):
+            ans = self.if_abs_or_dr(lambda: self.visitor_visit(state, postExp, "GET_ADDRESS", "NO_ACCESS", **kwargs))
+            return self.macroFile.store_macro(ans, srexp, abs_mode, dr_mode)
+        else:
+            assert(False, "Invalid mode for StructRefVar: abs_mode = "+str(abs_mode)+"; dr_mode = "+str(dr_mode))
+            
+    def getCondition(self, cond):
+        if cond not in self.conditions:
+            self.conditions[cond] = "__cs_cond_"+str(len(self.conditions))
+        return self.conditions[cond]
+        
+    def rule_TernaryOp(self, state, top, abs_mode, dr_mode, **kwargs):
+        self.assertDisabledIIFModesAreNone(abs_mode, dr_mode, **kwargs)
+        lorExp = top.cond
+        exp = top.iftrue
+        condExp = top.iffalse
+        if abs_mode is None and dr_mode is None:
+            return self.macroFile.store_macro(self.ternary_expr(state, self.visitor_visit(state, lorExp, None, None, **kwargs), \
+                lambda state: self.visitor_visit(state, exp, None, None, **kwargs), \
+                lambda state: self.visitor_visit(state, condExp, None, None, **kwargs)), top, abs_mode, dr_mode)
+        elif abs_mode in ("VALUE",None) and dr_mode in ("WSE", None):
+            return self.macroFile.store_macro(self.ternary_expr(state, self.getCondition(top), 
+                lambda state: (self.visitor_visit(state, exp, "VALUE", "WSE", **kwargs)), 
+                lambda state: (self.visitor_visit(state, condExp, "VALUE", "WSE", **kwargs))), top, abs_mode, dr_mode)
+        elif abs_mode in ("GET_VAL",None) and dr_mode in ("ACCESS","PREFIX","NO_ACCESS", None):
+            condvar = self.getCondition(top)
+            return self.macroFile.store_macro(self.comma_expr(
+                self.visitor_visit(state, lorExp, "GET_VAL", "ACCESS", **kwargs),
+                self.if_abs(lambda: self.assign_var(condvar, self.ternary_expr(state, self.cp(state, "bav"), lambda state: self.nondet(), lambda state:self.visitor_visit(state, lorExp, "VALUE", "WSE", **kwargs)))),
+                self.if_no_abs(lambda: self.assign_var(condvar, self.visitor_visit(state, lorExp, "VALUE", "WSE", **kwargs))),
+                self.ternary_expr(state, condvar, 
+                    lambda state: self.brackets(self.visitor_visit(state, exp, "GET_VAL", "ACCESS", **kwargs)), 
+                    lambda state: self.brackets(self.visitor_visit(state, condExp, "GET_VAL", "ACCESS", **kwargs)))
+            ), top, abs_mode, dr_mode)
+        else:
+            assert(False)
+    
+    def __ptrop_dr(self, state, dr_mode, castExp, **kwargs):
+        # if dr_mode is NO_ACCESS/PREFIX: remove
+        # if abstraction:
+        # return (bav)?(p2&&dr=(dr||wam||wkm)):(p2&&dr=(dr||wam||get_sm_dr(*[[castExp,VALUE,WSE]]))
+        # else:
+        # return p2&&dr=(dr||wam||get_sm_dr(*[[castExp,VALUE,WSE]])
+        assert(self.dr_on)
+        ok = lambda state: self.and_expr(self.p2code(self.getVpstate(**kwargs)), self.brackets(self.assign_with_prop(state, "dr", self.or_expr_prop(self.cp(state, "dr"), self.cp(state, "wam"), 
+            self.getsm("*("+self.visitor_visit(state, castExp, "VALUE", "WSE", **kwargs)+")", self.sm_dr)))))
+        err = lambda state: self.and_expr(self.p2code(self.getVpstate(**kwargs)), self.brackets(self.assign_with_prop(state, "dr", self.or_expr_prop(self.cp(state, "dr"), self.cp(state, "wam"), self.cp(state, "wkm")))))
+        if dr_mode in ("NO_ACCESS", "PREFIX"):
+            return ""
+        elif self.abs_on:
+            if state.cp_bav == 1:
+                return err(state)
+            elif state.cp_bav == 0:
+                return ok(state)
+            else:
+                return self.ternary_expr(state, self.cp(state, "bav"), err, ok)
+        else:
+            return ok()   
+            
+    def __ptrop_abs(self, state, castExp, **kwargs):
+        # return (bal = bav) || bav = get_sm_abs([[castExp,VALUE,WSE]])
+        assert(self.abs_on)
+        getsm = lambda: self.assign(state, "bav", self.getsm(self.visitor_visit(state, castExp, "VALUE", "WSE", **kwargs), self.sm_abs))
+        cp = (state.cp_bal, state.cp_bav) #(bal, bav) as const propagation
+        if cp[0] == 0 and cp[1] == 0: #bal = False, bav = False
+            return getsm()
+        elif cp[0] in (1, None) and cp[1] == 0: #bal = True/?, bav = False
+            return self.or_expr(self.assign_with_prop(state, "bal", self.cp(state, "bav")), getsm())
+        elif cp[0] == 1 and cp[1] == 1: #bal = True, bav = True
+            return ""
+        elif cp[0] in (0, None) and cp[1] == 1: #bal = False/?, bav = True
+            return self.assign_with_prop(state, "bal", self.cp(state, "bav"))
+        elif cp[1] is None: #bal = False/True/?, bav = ?
+            return self.or_expr(self.assign_with_prop(state, "bal", self.cp(state, "bav")), getsm())
+        else:
+            assert(False)     
+                    
+    def rule_PtrOp(self, state, ptrop, abs_mode, dr_mode, **kwargs):
+        self.assertDisabledIIFModesAreNone(abs_mode, dr_mode, **kwargs)
+        assert(ptrop.op == '*')
+        castExp = ptrop.expr
+        if abs_mode is None and dr_mode is None:
+            return self.macroFile.store_macro("*("+self.visitor_visit(state, castExp, None, None, **kwargs)+")", ptrop, abs_mode, dr_mode)
+        elif abs_mode in ("GET_VAL","UPD_VAL",None) and dr_mode in ("ACCESS","NO_ACCESS","PREFIX",None):
+            return self.macroFile.store_macro(self.comma_expr(
+                self.visitor_visit(state, castExp, "GET_VAL", "ACCESS", **kwargs)+")",
+                self.if_dr(lambda:self.__ptrop_dr(state, dr_mode, castExp, **kwargs)),
+                self.if_abs(lambda:self.__ptrop_abs(state, castExp, **kwargs))
+            ), ptrop, abs_mode, dr_mode)
+        elif abs_mode in ("SET_VAL","GET_ADDR") and dr_mode in ("ACCESS","NO_ACCESS","PREFIX",None):
+            return self.macroFile.store_macro(self.comma_expr(
+                self.visitor_visit(state, castExp, "GET_VAL", "ACCESS", **kwargs)+")",
+                self.assign_with_prop(state, "bal", self.cp(state, "bav"))
+            ), ptrop, abs_mode, dr_mode)
+        elif abs_mode in ("LVALUE", None) and dr_mode in ("WSE",None):
+            return self.macroFile.store_macro("*("+self.visitor_visit(state, castExp, "VALUE", "WSE", **kwargs)+")", ptrop, abs_mode, dr_mode)
+        elif abs_mode in ("VALUE", None) and dr_mode in ("WSE",None):
+            castExpType = self.supportFile.get_type(castExp) #"int" # TODO type
+            return self.macroFile.store_macro(self.decode("*("+self.visitor_visit(state, castExp, "VALUE", "WSE", **kwargs)+")", castExpType), ptrop, abs_mode, dr_mode)
+        else:
+            assert(False)
+            
+    def rule_AddrOp(self, state, addrop, abs_mode, dr_mode, **kwargs):
+        self.assertDisabledIIFModesAreNone(abs_mode, dr_mode, **kwargs)
+        assert(addrop.op == '&')
+        castExp = addrop.expr
+        if abs_mode is None and dr_mode is None:
+            return self.macroFile.store_macro("&("+self.visitor_visit(state, castExp, None, None, **kwargs)+")", addrop, abs_mode, dr_mode)
+        elif abs_mode in ("GET_VAL",None) and dr_mode in ("ACCESS","NO_ACCESS",None):
+            return self.macroFile.store_macro(self.comma_expr(
+                self.visitor_visit(state, castExp, "GET_ADDR", "NO_ACCESS", **kwargs),
+                self.if_abs(lambda: self.assign_with_prop(state, "bav", self.cp(state, "bal")))
+            ), addrop, abs_mode, dr_mode)
+        elif abs_mode in ("VALUE", None) and dr_mode in ("WSE",None):
+            return self.macroFile.store_macro("&("+self.visitor_visit(state, castExp, "LVALUE", "WSE", **kwargs)+")", addrop, abs_mode, dr_mode)
+        else:
+            assert(False)
+            
+    def _not_getval(self, state, notop, **kwargs):
+        # returns value = value = (([[castExp, GET_VAL, ACCESS]], bav) ? nondetbool(), :![[castexp, VALUE, WSE]])
+        # and applies constant propagation
+        castExp = notop.expr
+        value = self.getCondition(notop)
+        if self.abs_on or state.cp_bav == 0:
+            return self.comma_expr(
+                self.visitor_visit(state, castExp, "GET_VAL", "ACCESS", **kwargs), 
+                self.assign_var(value, "!("+self.visitor_visit(state, castExp, "VALUE", "WSE", **kwargs)+")"))
+        elif state.cp_bav == 1:
+            return self.comma_expr(
+                self.visitor_visit(state, castExp, "GET_VAL", "ACCESS", **kwargs), 
+                self.assign_var(value, self.nondet()),
+                self.assign_with_prop(state,"bav","0"))
+        elif state.cp_bav is None:
+            return self.comma_expr_lambda(
+                lambda: self.assign_var(value, 
+                    self.ternary_expr(state, self.comma_expr(self.visitor_visit(state, castExp, "GET_VAL", "ACCESS", **kwargs),self.bav), 
+                        lambda state: self.nondet(), lambda state: "!("+self.visitor_visit(state, castExp, "VALUE", "WSE", **kwargs)+")")),
+                lambda: self.assign_with_prop(state,"bav","0")
+            )
+        else:
+            assert(False)
+            
+            
+    def rule_NotOp(self, state, notop, abs_mode, dr_mode, **kwargs):
+        self.assertDisabledIIFModesAreNone(abs_mode, dr_mode, **kwargs)
+        assert(notop.op == '!')
+        castExp = notop.expr
+        if abs_mode is None and dr_mode is None:
+            return self.macroFile.store_macro("!("+self.visitor_visit(state, castExp, None, None, **kwargs)+")", notop, abs_mode, dr_mode)
+        elif abs_mode in ("GET_VAL",None) and dr_mode in ("ACCESS","PREFIX","NO_ACCESS",None):
+            return self.macroFile.store_macro(self._not_getval(state, castExp, **kwargs), notop, abs_mode, dr_mode)
+        elif abs_mode in ("VALUE", None) and dr_mode in ("WSE",None):
+            return self.getCondition(notop)
+        else:
+            assert(False)
+            
+    def __unop_setbav(self, state, unOp, castExp, **kwargs):
+        # returns bav = (bav || bounds_failure(unOp [[castExp, VALUE, WSE]]))
+        # with constant propagation
+        castExpType = self.supportFile.get_type(castExp) #"int" # TODO get proper type
+        if not self.abs_on or state.cp_bav == 1 or not self.is_abstractable(castExpType):
+            return ""
+        elif state.cp_bav == 0:
+            return self.assign_with_prop(state, "bav", self.bounds_failure(unOp+"("+self.visitor_visit(state, castExp, "VALUE", "WSE", **kwargs)+")", castExpType))
+        elif state.cp_bav is None:
+            return self.assign_with_prop(state, "bav", 
+                self.or_expr(self.cp(state,"bav"),
+                self.bounds_failure(unOp+"("+self.visitor_visit(state, castExp, "VALUE", "WSE", **kwargs)+")", castExpType)))
+            
+    def rule_UnOp(self, state, unop, abs_mode, dr_mode, **kwargs):
+        self.assertDisabledIIFModesAreNone(abs_mode, dr_mode, **kwargs)
+        assert(unop.op in ('+','-','~'))
+        castExp = unop.expr
+        unOp = unop.op
+        if abs_mode is None and dr_mode is None:
+            return self.macroFile.store_macro(unOp+"("+self.visitor_visit(state, castExp, None, None, **kwargs)+")", unop, abs_mode, dr_mode)
+        elif abs_mode in ("GET_VAL",None) and dr_mode in ("ACCESS","PREFIX","NO_ACCESS",None):
+            return self.macroFile.store_macro(self.comma_expr(
+                self.visitor_visit(state, castExp, "GET_VAL", "ACCESS", **kwargs),
+                self.__unop_setbav(state, unOp, castExp, **kwargs)), unop, abs_mode, dr_mode)
+        elif abs_mode in ("VALUE", None) and dr_mode in ("WSE",None):
+            return self.macroFile.store_macro(unOp+"("+self.visitor_visit(state, castExp, "VALUE", "WSE", **kwargs)+")", unop, abs_mode, dr_mode)
+        else:
+            assert(False)
+            
+    def rule_Sizeof(self, state, sizeof, abs_mode, dr_mode, **kwargs):
+        self.assertDisabledIIFModesAreNone(abs_mode, dr_mode, **kwargs)
+        unexp_type = sizeof.args
+        if abs_mode is None and dr_mode is None:
+            return self.macroFile.store_macro("sizeof("+self.visitor_visit(state, unexp_type, None, None, **kwargs)+")", sizeof, abs_mode, dr_mode)
+        elif abs_mode in ("GET_VAL",None) and dr_mode in ("ACCESS","NO_ACCESS",None):
+            return self.macroFile.store_macro(self.assign_with_prop(state, "bav", "0"), sizeof, abs_mode, dr_mode)
+        elif abs_mode in ("VALUE", None) and dr_mode in ("WSE",None):
+            return self.macroFile.store_macro("sizeof("+self.visitor_visit(state, unexp_type, "VALUE", "WSE", **kwargs)+")", sizeof, abs_mode, dr_mode)
+        else:
+            assert(False)
+            
+    def rule_Comma(self, state, comma, abs_mode, dr_mode, **kwargs):
+        self.assertDisabledIIFModesAreNone(abs_mode, dr_mode, **kwargs) 
+        exps = comma.exprs
+        if abs_mode is None and dr_mode is None:
+            parts = [self.visitor_visit(state, x, None, None, **kwargs) for x in exps]
+            return (self.macroFile.store_macro('('+', '.join(parts)+')', comma, abs_mode, dr_mode), parts) #This should be the only place where you need the second argument
+        elif abs_mode in ("GET_VAL",None) and dr_mode in ("ACCESS","NO_ACCESS",'PREFIX',None):
+            parts = [self.visitor_visit(state, x, "GET_VAL", "NO_ACCESS", **kwargs) for x in exps[:-1]] + \
+                [self.visitor_visit(state, exps[-1], "GET_VAL", "NO_ACCESS" if dr_mode == "NO_ACCESS" else "ACCESS", **kwargs)]
+            return (self.macroFile.store_macro('('+', '.join(parts)+')', comma, abs_mode, dr_mode), None)
+        elif abs_mode in ("VALUE", None) and dr_mode in ("WSE",None):
+            return (self.macroFile.store_macro(self.visitor_visit(state, exps[-1], "VALUE", "WSE", **kwargs), sizeof, abs_mode, dr_mode), None)
+        else:
+            assert(False)
+            
+    def __assert_assume_inner(self, state, exp, **kwargs):
+        if not self.abs_on or state.cp_bav == 0:
+            return self.visitor_visit(state, exp, "VALUE", "WSE", **kwargs)
+        elif state.cp_bav == 1:
+            return self.nondet()
+        elif state.cp_bav is None:
+            return self.ternary_expr(state, self.cp(state, "bav"),
+                lambda state: self.nondet(), 
+                lambda state: self.visitor_visit(state, exp, "VALUE", "WSE", **kwargs))
+        else:
+            assert(False)
+            
+    def rule_Assert_Assume(self, state, fullExpr, abs_mode, dr_mode, **kwargs):
+        self.assertDisabledIIFModesAreNone(abs_mode, dr_mode, **kwargs) 
+        exp = fullExpr.args
+        fncName = fullExpr.name.name
+        if abs_mode in ("GET_VAL",None) and dr_mode in ("NO_ACCESS",None):
+            return self.macroFile.store_macro(fncName+"("+ \
+                self.comma_expr(
+                    self.visitor_visit(state, exp, "GET_VAL", "ACCESS", **kwargs),
+                    self.__assert_assume_inner(state, exp, **kwargs)
+                ) \
+            +")", fullExpr, abs_mode, dr_mode)
+        else:
+            assert(False)
+            
+    def rule_IfCond(self, state, exp, abs_mode, dr_mode, **kwargs):
+        exp_getval = self.visitor_visit(state, unExpr, "GET_VAL", "ACCESS", **kwargs)
+        exp_val = lambda state: self.visitor_visit(state, unExpr, "GET_VAL", "ACCESS", **kwargs)
+        
+        if not self.abs_on or state.cp_bav == 0:
+            return self.macroFile.store_macro(self.comma_expr(exp_getval, exp_val(state)), exp, abs_mode, dr_mode)
+        elif state.cp_bav == 1:
+            return self.macroFile.store_macro(self.comma_expr(exp_getval, self.nondet()), exp, abs_mode, dr_mode)
+        elif state.cp_bav is None:
+            texp = self.ternary_expr(state, self.cp(state, "bav"),lambda state: self.nondet(), expr_val)
+            return self.macroFile.store_macro(self.comma_expr(exp_getval, texp), exp, abs_mode, dr_mode)
+        else:
+            assert(False)
+    
+    def rule_Cast(self, state, cast, abs_mode, dr_mode, **kwargs):
+        self.assertDisabledIIFModesAreNone(abs_mode, dr_mode, **kwargs)
+        unExpr = cast.expr
+        toType = cast.to_type
+        if abs_mode in ("VALUE", None) and dr_mode in ("WSE",None):
+            return self.macroFile.store_macro("("+self.visitor_visit(state, toType, "VALUE", "WSE", **kwargs)+") "+ \
+                self.visitor_visit(state, unExpr, "VALUE", "WSE", **kwargs), cast, abs_mode, dr_mode)
+        elif abs_mode in ("GET_VAL",None) and dr_mode in ("ACCESS","NO_ACCESS",'PREFIX',None):
+            return self.macroFile.store_macro(self.visitor_visit(state, unExpr, "GET_VAL", "NO_ACCESS" if dr_mode == "NO_ACCESS" else "ACCESS", **kwargs), cast, abs_mode, dr_mode)
+        else:
+            assert(False)
+            
+    def __binaryop_bav(self, state, exp1, exp2, op, fullOp, **kwargs):
+        # returns bav = bav1 || bav || bounds_failure([[exp1, VALUE]] bop [[exp2, VALUE]])
+        # using constant propagation
+        assert(self.abs_on)
+        cp = (state.cp_bav, state.cp_bav_1) #(bav, bav_1) as const propagation
+        if cp[0] == 1: #(True, x)
+            return ""
+        if cp[1] == 1: #(x, True)
+            return self.assign_with_prop(state, "bav", "1")
+        e1_op_e2_type = self.supportFile.get_type(fullOp) #"int" # TODO
+        e1_op_e2 = lambda: "("+self.visitor_visit(state, exp1, "VALUE", "WSE", **kwargs)+" "+op+" "+self.visitor_visit(state, exp2, "VALUE", "WSE", **kwargs)+")"
+        isAbs = self.is_abstractable(e1_op_e2_type)
+        if cp[0] == 0 and cp[1] == 0: #(False, False)
+            if isAbs: # might be abstract
+                return self.assign(state, "bav",self.bounds_failure(e1_op_e2(), e1_op_e2_type))
+            else:
+                return ""
+        if cp[0] == 0: #(False, ?)
+            if isAbs: # might be abstract
+                return self.assign(state, "bav",self.or_expr(self.cp(state,"bav_1"),self.bounds_failure(e1_op_e2(), e1_op_e2_type)))
+            else:
+                return self.assign(state, "bav",self.cp(state,"bav_1"))
+        if cp[1] == 0: #(?, False)
+            if isAbs: # might be abstract
+                return self.assign(state, "bav",self.bounds_failure(e1_op_e2(), e1_op_e2_type))
+            else:
+                return ""
+        if cp[0] is None and cp[1] is None: #(?,?)
+            if isAbs: # might be abstract
+                return self.assign(state, "bav",self.or_expr(self.cp(state,"bav_1"),self.cp(state,"bav"),self.bounds_failure(e1_op_e2(), e1_op_e2_type)))
+            else:
+                return self.assign(state, "bav",self.or_expr(self.cp(state,"bav_1"),self.cp(state,"bav")))
+        assert(False)
+        
+    def __binaryShortCircuit_internal(self, state, expr, **kwargs):
+        # return (([[expr, GET_VAL, ACCESS]], bav)? nondet : [[expr, VALUE]])
+        # with cp
+        expr_getval = self.visitor_visit(state, expr, "GET_VAL", "ACCESS", **kwargs)
+        expr_val = lambda state: self.visitor_visit(state, expr, "VALUE", "WSE", **kwargs)
+        if not self.abs_on or state.cp_bav == 0:
+            return self.comma_expr(expr_getval, expr_val(state))
+        elif state.cp_bav == 1:
+            return self.comma_expr(expr_getval, self.nondet())
+        elif state.cp_bav is None:
+            return self.ternary_expr(state, self.comma_expr(expr_getval,self.cp(state, "bav")), expr_val, lambda state: self.nondet())
+        
+        
+    def rule_OrAnd(self, state, fullOp, abs_mode, dr_mode, **kwargs):
+        self.assertDisabledIIFModesAreNone(abs_mode, dr_mode, **kwargs)
+        exp1 = fullOp.left
+        exp2 = fullOp.right
+        
+        assert(fullOp.op in ("||", "&&"))
+        
+        if abs_mode in ("VALUE", None) and dr_mode in ("WSE",None):
+            return self.getCondition(fullOp)
+        elif abs_mode in ("GET_VAL",None) and dr_mode in ("ACCESS","NO_ACCESS",'PREFIX',None):
+            value = self.getCondition(fullOp)
+            exp1_tr = self.__binaryShortCircuit_internal(state, exp1, **kwargs)
+            stateBetween = state.copy()
+            exp2_tr = self.__binaryShortCircuit_internal(state, exp2, **kwargs)
+            state.doMerge(state, stateBetween)
+            return self.macroFile.store_macro(self.comma_expr(
+                self.assign_var(self, value, "("+exp1_tr + " " + fullOp.op + " " +exp2_tr+")"),
+                self.if_abs(self.assign_with_prop(self, state, "bav", "0"))
+            ), fullOp, abs_mode, dr_mode)
+        else:
+            assert(False)
+            
+    def rule_BinaryOp(self, state, fullOp, abs_mode, dr_mode, **kwargs):
+        self.assertDisabledIIFModesAreNone(abs_mode, dr_mode, **kwargs)
+        exp1 = fullOp.left
+        exp2 = fullOp.right
+        op = fullOp.op
+        
+        assert(op in ('|','^','&','==','!=','<','<=','>','>=','<<','>>','+','-','*','/','%'))
+        
+        if abs_mode in ("VALUE", None) and dr_mode in ("WSE",None):
+            return self.macroFile.store_macro("("+self.visitor_visit(state, exp1, "VALUE", "WSE", **kwargs)+" "+op+" "+ \
+                self.visitor_visit(state, exp2, "VALUE", "WSE", **kwargs)+")", fullOp, abs_mode, dr_mode)
+        elif abs_mode in ("GET_VAL",None) and dr_mode in ("ACCESS","NO_ACCESS",'PREFIX',None):
+            return self.macroFile.store_macro(self.comma_expr(
+                self.visitor_visit(state, exp1, "GET_VAL", "ACCESS", **kwargs),
+                self.if_abs(lambda: self.assign_with_prop(state, "bav_1", self.cp(state, "bav"))),
+                self.visitor_visit(state, exp2, "GET_VAL", "ACCESS", **kwargs),
+                self.if_abs(lambda: self.__binaryop_bav(state, exp1, exp2, op, fullOp, **kwargs))
+            ), fullOp, abs_mode, dr_mode)
+        else:
+            assert(False)
+        
+        
     def rule_ID(self, state, sid, abs_mode, dr_mode, **kwargs):
         self.assertDisabledIIFModesAreNone(abs_mode, dr_mode, **kwargs)
-        #TODO this is possible! assert(not(dr_mode == "NO_ACCESS" and abs_mode in ("SET_VAL", "GET_ADDR")))
         if not self.abs_on and not self.dr_on:
             return sid.name
         elif abs_mode == "LVALUE":
             return sid.name
         elif abs_mode == "VALUE" :
-            return self.decode(sid.name, "int") # TODO get type of ID from abstr
+            sidType = self.supportFile.get_type(sid) #"int" # TODO get type of ID from abstr
+            return self.decode(sid.name, sidType) 
         elif dr_mode == "WSE": # and implicitly abs is disabled
             return sid.name
         else:
-            return self.comma_expr(
+            return self.macroFile.store_macro(self.comma_expr(
                 self.if_dr(lambda: 
                     self.and_expr(
                         self.p2code(self.getVpstate(**kwargs)), 
                         self.brackets(self.assign_with_prop(state,"dr", self.or_expr_prop(self.cp(state, "dr"), self.cp(state, "wam"), self.getsm("&("+sid.name+")", self.sm_dr))))
                     ) if dr_mode != "NO_ACCESS" else ""),
                 self.if_abs(lambda: self.assign_with_prop(state,"bal","0")),
-                self.if_abs(lambda: self.assign_with_prop(state,"bav",self.getsm("&("+sid.name+")", self.sm_abs)) if abs_mode in ("GET_VAL", "UPD_VAL") else "")
-            )
-            
+                self.if_abs(lambda: (self.assign_with_prop(state,"bav",self.getsm("&("+sid.name+")", self.sm_abs)) if abs_mode in ("GET_VAL", "UPD_VAL") else ""))
+            ), sid, abs_mode, dr_mode)
+    
+    def rule_ArrayID(self, state, sid, abs_mode, dr_mode, **kwargs):   
+        self.assertDisabledIIFModesAreNone(abs_mode, dr_mode, **kwargs)
+        if not self.abs_on and not self.dr_on:
+            return sid.name
+        elif abs_mode == "LVALUE":
+            return sid.name
+        elif abs_mode == "VALUE" :
+            return sid.name
+        elif dr_mode == "WSE": # and implicitly abs is disabled
+            return sid.name
+        else:
+            return self.macroFile.store_macro(self.comma_expr(
+                self.if_dr(lambda: 
+                    self.and_expr(
+                        self.p2code(self.getVpstate(**kwargs)), 
+                        self.brackets(self.assign_with_prop(state,"dr", self.or_expr_prop(self.cp(state, "dr"), self.cp(state, "wam"), self.getsm("&("+sid.name+")", self.sm_dr))))
+                    ) if dr_mode not in ("NO_ACCESS", "PREFIX") else ""),
+                self.if_abs(lambda: self.assign_with_prop(state,"bal","0")),
+                self.if_abs(lambda: self.assign_with_prop(state,"bav","0") if abs_mode in ("GET_VAL", "UPD_VAL") else "")
+            ), sid, abs_mode, dr_mode)
+                    
     def rule_Constant(self, state, con, abs_mode, dr_mode, **kwargs):      
         self.assertDisabledIIFModesAreNone(abs_mode, dr_mode, **kwargs)  
         assert(abs_mode not in ("SET_VAL", "GET_ADDR"), "Invalid: cannot get address or set the value of constants")
@@ -296,22 +1147,29 @@ class AbsDrRules:
             return self.if_abs(lambda:self.assign_with_prop(state,"bav", "0"))
             
     # helper function: returns "p1 && (set_sm_dr(&[[unexp, LVALUE]],1), WKM=1)" and manually applies const propagation
-    def __assignment_manual_cp_p1(self, state, unExpr, vpstate):
+    def __assignment_manual_cp_p1(self, state, unExpr, **kwargs):
         return self.and_expr(self.p1code(vpstate),
             self.comma_expr(
-                self.setsm("&("+self.visitor_visit(state, unExpr, "LVALUE", "WSE", dr_vp_state=vpstate)+")", self.sm_dr, "1"),
+                self.setsm("&("+self.visitor_visit(state, unExpr, "LVALUE", "WSE", **kwargs)+")", self.sm_dr, "1"),
                 self.assign(state, "wkm", "1")))
             
     # helper function: returns "p2 && (DR = DR || WAM || get_sm_dr(&[[unexp, LVALUE]]))" and manually applies const propagation
-    def __assignment_manual_cp_p2(self, state, unExpr, vpstate):
+    def __assignment_manual_cp_p2(self, state, unExpr, **kwargs):
         return self.and_expr(self.p2code(vpstate),
             self.brackets(self.assign(state, "dr", self.or_expr_prop(self.cp(state, "dr"), self.cp(state, "wam"), 
-                self.getsm("&("+self.visitor_visit(state, unExpr, "LVALUE", "WSE", dr_vp_state=vpstate)+")", self.sm_dr))))
+                self.getsm("&("+self.visitor_visit(state, unExpr, "LVALUE", "WSE", **kwargs)+")", self.sm_dr))))
             )
     
     # helper function: returns "bal && fail()" and manually applies const propagation    
     def __assignment_manual_bal_fail(self, state):
-        return self.assert_expr("!"+self.bal)
+        if state.cp_bal == 0:
+            return ""
+        elif state.cp_bal == 1:
+            return fail_expr()
+        elif state.cp_bal is None:
+            return self.assert_expr("!"+self.bal)
+        else:
+            assert(False)
         '''if state.cp_bal is None:
             return self.and_expr(self.bal, self.fail_expr())
         elif state.cp_bal == 0:
@@ -322,7 +1180,14 @@ class AbsDrRules:
             assert(False, "Invalid bal: "+str(state.cp_bal))'''
     # helper function: returns "bav && fail()" and manually applies const propagation    
     def __assignment_manual_bav_fail(self, state):
-        return self.assert_expr("!"+self.bav)
+        if state.cp_bav == 0:
+            return ""
+        elif state.cp_bav == 1:
+            return fail_expr()
+        elif state.cp_bav is None:
+            return self.assert_expr("!"+self.bav)
+        else:
+            assert(False)
         '''if state.cp_bav is None:
             return self.and_expr(self.bav, self.fail_expr())
         elif state.cp_bav == 0:
@@ -339,36 +1204,35 @@ class AbsDrRules:
         op = assn.op
         if op != "=":
             fullOp = lambda: self.visitor_visit(state, unExp, "VALUE", "WSE", **kwargs)+" "+op.replace("=","")+" "+self.visitor_visit(state, assExp, "VALUE", "WSE", **kwargs)
-        unexprType = "int" #TODO proper type
-        return self.comma_expr(
+            fullOpType = self.supportFile.get_type(BinaryOp(op.replace("=",""), unExp, assExp)) #"int" #TODO proper type
+        else:
+            assExprType = self.supportFile.get_type(assExp) #"int" #TODO proper type
+        return self.macroFile.store_macro(self.comma_expr(
             self.if_abs_or_dr(lambda: self.visitor_visit(state, unExp, "SET_VAL" if op == "=" else "UPD_VAL", "NO_ACCESS", **kwargs)),
             self.if_abs(lambda: self.__assignment_manual_bal_fail(state) if op == "=" else self.__assignment_manual_bav_fail(state)),
             "" if op == "=" else self.if_abs(lambda: self.assign_with_prop(state,"bav_lhs", self.cp(state,"bav"))),
-            self.if_dr(lambda: self.__assignment_manual_cp_p1(state, unExp, self.getVpstate(**kwargs))),
-            self.if_dr(lambda: self.__assignment_manual_cp_p2(state, unExp, self.getVpstate(**kwargs))),
+            self.if_dr(lambda: self.__assignment_manual_cp_p1(state, unExp, **kwargs)),
+            self.if_dr(lambda: self.__assignment_manual_cp_p2(state, unExp, **kwargs)),
             self.if_abs_or_dr(lambda: self.visitor_visit(state, assExp, "GET_VAL", "ACCESS", **kwargs)),
             self.if_abs(lambda:
-                self.ternary_expr( 
+                self.ternary_expr(state,  
                     self.or_expr_prop(
                         self.cp(state, "bav"),
-                        "" if op == "=" else self.cp(state, "bav_lhs"),
-                        self.bounds_failure(self.visitor_visit(state, assExp, "VALUE", "WSE"), unexprType) if op == "=" else 
-                            self.bounds_failure(fullOp(), unexprType)
+                        self.cp(state, "bav_lhs") if op != "=" else "",
+                        self.bounds_failure(fullOp(), fullOpType) if op != "=" and self.is_abstractable(fullOpType) else ""
                     ),
-                    self.comma_expr(
-                        self.assign(state, "bav", "1"),
+                    lambda state: self.comma_expr(
+                        self.assign(state, "bav", "1") if op != "=" else "",
                         self.setsm("&("+self.visitor_visit(state, unExp, "LVALUE", "WSE", **kwargs)+")", self.sm_abs, "1")
                     ), 
-                    self.comma_expr(
+                    lambda state: self.comma_expr(
                         self.setsm("&("+self.visitor_visit(state, unExp, "LVALUE", "WSE", **kwargs)+")", self.sm_abs, "0"),
-                        self.visitor_visit(state, unExp, "LVALUE", "WSE", **kwargs)+" = "+self.encode(self.visitor_visit(state, assExp, "VALUE", "WSE", **kwargs), unexprType) if op == "=" else "",
-                        "" if op == "=" else self.visitor_visit(state, unExp, "LVALUE", "WSE", **kwargs)+" = "+self.encode(fullOp(), unexprType),
+                        self.visitor_visit(state, unExp, "LVALUE", "WSE", **kwargs)+" = "+self.encode(self.visitor_visit(state, assExp, "VALUE", "WSE", **kwargs), assExprType) if op == "=" else "",
+                        "" if op == "=" else self.visitor_visit(state, unExp, "LVALUE", "WSE", **kwargs)+" = "+self.encode(fullOp(), fullOpType),
                     ))
             ),
             self.if_no_abs(lambda: self.visitor_visit(state, unExp, None, "WSE", **kwargs)+" = "+self.visitor_visit(state, assExp, None, "WSE", **kwargs) if op == "=" \
                 else self.visitor_visit(state, unExp, None, "WSE", **kwargs)+" = "+fullOp())
-        )
-            
-            
+        ), assn, abs_mode, dr_mode)
             
             

@@ -804,7 +804,7 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 
 		maxts = ROUNDS*(self.getThreadbound()+1)-2  #DR
 		main +="          unsigned int __cs_dr_ts %s;\n" % self.getExtra_nondet()   #DR
-		self._bitwidth['main','__cs_dr_ts'] = int(math.floor(math.log(maxts,2)))+1  #DR
+		self._bitwidth['main','__cs_dr_ts'] = int(math.floor(math.log(max(1,maxts),2)))+1  #DR
 		main +="          __CSEQ_assume(__cs_dr_ts <= %s);\n" % maxts  #DR
 
 
