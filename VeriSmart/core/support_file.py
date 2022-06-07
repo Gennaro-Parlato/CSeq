@@ -1,5 +1,5 @@
 from pycparser.c_generator import CGenerator
-from pycparser.c_ast import BinaryOp
+from pycparser.c_ast import BinaryOp, ID, ArrayRef, Constant
 import os
 import subprocess
 import shlex
@@ -89,7 +89,7 @@ enum t_typename {
             self.progLbl += 1
             label = "TYPE_"+str(idx)
             self.expr_to_label[n_expr] = label
-            print_line = 'PRINT_DT('+n_expr+','+str(idx)+', "TYPE");'
+            print_line = 'PRINT_DT(('+n_expr+'),'+str(idx)+', "TYPE");'
             return [print_line]
         else:
             return []
@@ -164,6 +164,8 @@ enum t_typename {
         
     def visit_FuncCall(self, n):
         ans = []
+        if n.name.name == "__cs_safe_malloc":
+            ans += self.bookNodeType(n.args.exprs[0])
         '''if self.can_value:
             ans += self.bookNodeType(n)
         # TODO might have to visit n.name for function pointers?
@@ -175,7 +177,7 @@ enum t_typename {
         ans = []
         if self.can_value:
             ans += self.bookNodeType(n)
-        with self.set_can_value(self.can_value or n.op in ("--","++","p++","p--",'+','-','~')):
+        with self.set_can_value(self.can_value or n.op in ("--","++","p++","p--",'+','-','~','!','*')):
             ans += self.visit(n.expr)
         return ans
     
@@ -192,19 +194,26 @@ enum t_typename {
         if self.can_value:
             ans += self.bookNodeType(n)
         with self.set_can_value(True):
-            if n.op == "=":
-                ans += self.bookNodeType(n.rvalue)
-            else:
-                ans += self.bookNodeType(BinaryOp(n.op.replace("=",""), n.lvalue, n.rvalue))
+            ans += self.bookNodeType(n.lvalue)
             ans += self.visit(n.lvalue)
             ans += self.visit(n.rvalue)
         return ans
+    
+    def __getType(self, node_info):
+        return str(type(node_info)).split('.')[-1].replace('>', ' ').replace("'", '').replace(' ', '')
     
     def visit_Decl(self, n, no_type=False):
         ans = []
         if self.global_decl:
             ans += [self.cgenerator.visit(n)+";"]
         if n.init is not None:
+            type_of_n = self.__getType(n.type)
+            if type_of_n == 'ArrayDecl':
+                for index, ass_exp in enumerate(n.init):
+                    ans += self.bookNodeType(ArrayRef(ID(n.name), Constant('int', str(index))))
+            elif type_of_n in ('PtrDecl','TypeDecl'):
+                ans += self.bookNodeType(ID(n.name))
+                    
             with self.inner_decl():
                 with self.set_can_value(True):
                     ans += self.visit(n.init)

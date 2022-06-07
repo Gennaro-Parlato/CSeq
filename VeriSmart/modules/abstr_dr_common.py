@@ -138,6 +138,9 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
         
         self.global_var_initializations = ""
         
+        # are we instrumenting a full statement?
+        self.full_statement = True
+        
     def insertGlobalVarInit(self, x):
         return x.replace("int main(void) {", "int main(void) {\n"+self.global_var_initializations, 1)
     def __createMainKLEERoundRobinDecomposePC(self, rounds):
@@ -189,10 +192,16 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
     def clean_cp_state(self): 
         return BakAndRestore(self, 'abs_dr_state', abs_dr_rules.CPState())
         
-    def visit_with_absdr_args(self, state, n, abs_mode, dr_mode, **kwargs):
+    def visit_with_absdr_args(self, state, n, abs_mode, dr_mode, full_statement, **kwargs):
         new_abs_dr_mode = {'abs_mode':abs_mode, 'dr_mode':dr_mode}
         with BakAndRestore(self, 'abs_dr_mode', new_abs_dr_mode):
             with BakAndRestore(self, 'abs_dr_state', state):
+                with BakAndRestore(self, 'full_statement', full_statement):
+                    return self.visit(n)
+                
+    def visit_noinstr(self, n, full_statement):
+        with self.no_any_instrument():
+            with BakAndRestore(self, 'full_statement', full_statement):
                 return self.visit(n)
         
     def visit_FileAST(self, n):
@@ -435,7 +444,7 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
         extra_args = {}
         if self.dr_on:
             extra_args['dr_vp_state'] = self.abs_dr_vpstate
-        return self.abs_dr_rules.rule_Assignment(self.abs_dr_state, n, self.abs_dr_mode['abs_mode'], self.abs_dr_mode['dr_mode'], **extra_args)
+        return self.abs_dr_rules.rule_Assignment(self.abs_dr_state, n, self.abs_dr_mode['abs_mode'], self.abs_dr_mode['dr_mode'], self.full_statement, **extra_args)
         
     def visit_BinaryOp(self, n):
         if not self.any_instrument:
@@ -444,12 +453,12 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
             extra_args = {}
             if self.dr_on:
                 extra_args['dr_vp_state'] = self.abs_dr_vpstate
-            return self.abs_dr_rules.rule_OrAnd(self.abs_dr_state, n, self.abs_dr_mode['abs_mode'], self.abs_dr_mode['dr_mode'], **extra_args)
+            return self.abs_dr_rules.rule_OrAnd(self.abs_dr_state, n, self.abs_dr_mode['abs_mode'], self.abs_dr_mode['dr_mode'], self.full_statement, **extra_args)
         else:
             extra_args = {}
             if self.dr_on:
                 extra_args['dr_vp_state'] = self.abs_dr_vpstate
-            return self.abs_dr_rules.rule_BinaryOp(self.abs_dr_state, n, self.abs_dr_mode['abs_mode'], self.abs_dr_mode['dr_mode'], **extra_args)
+            return self.abs_dr_rules.rule_BinaryOp(self.abs_dr_state, n, self.abs_dr_mode['abs_mode'], self.abs_dr_mode['dr_mode'], self.full_statement, **extra_args)
             
     def visit_UnaryOp(self, n):
         if not self.any_instrument:
@@ -458,34 +467,40 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
             extra_args = {}
             if self.dr_on:
                 extra_args['dr_vp_state'] = self.abs_dr_vpstate
-            return self.abs_dr_rules.rule_preOp(self.abs_dr_state, n, self.abs_dr_mode['abs_mode'], self.abs_dr_mode['dr_mode'], **extra_args)
+            return self.abs_dr_rules.rule_preOp(self.abs_dr_state, n, self.abs_dr_mode['abs_mode'], self.abs_dr_mode['dr_mode'], self.full_statement, **extra_args)
         elif n.op in ('p--','p++'):
             extra_args = {}
             if self.dr_on:
                 extra_args['dr_vp_state'] = self.abs_dr_vpstate
-            return self.abs_dr_rules.rule_postOp(self.abs_dr_state, n, self.abs_dr_mode['abs_mode'], self.abs_dr_mode['dr_mode'], **extra_args)
+            return self.abs_dr_rules.rule_postOp(self.abs_dr_state, n, self.abs_dr_mode['abs_mode'], self.abs_dr_mode['dr_mode'], self.full_statement, **extra_args)
         elif n.op in ('+','-','~'):
             extra_args = {}
             if self.dr_on:
                 extra_args['dr_vp_state'] = self.abs_dr_vpstate
-            return self.abs_dr_rules.rule_UnOp(self.abs_dr_state, n, self.abs_dr_mode['abs_mode'], self.abs_dr_mode['dr_mode'], **extra_args)
+            return self.abs_dr_rules.rule_UnOp(self.abs_dr_state, n, self.abs_dr_mode['abs_mode'], self.abs_dr_mode['dr_mode'], self.full_statement, **extra_args)
         elif n.op in ('!',):
             extra_args = {}
             if self.dr_on:
                 extra_args['dr_vp_state'] = self.abs_dr_vpstate
-            return self.abs_dr_rules.rule_NotOp(self.abs_dr_state, n, self.abs_dr_mode['abs_mode'], self.abs_dr_mode['dr_mode'], **extra_args)
+            return self.abs_dr_rules.rule_NotOp(self.abs_dr_state, n, self.abs_dr_mode['abs_mode'], self.abs_dr_mode['dr_mode'], self.full_statement, **extra_args)
         elif n.op in ('&',):
             extra_args = {}
             if self.dr_on:
                 extra_args['dr_vp_state'] = self.abs_dr_vpstate
-            return self.abs_dr_rules.rule_AddrOp(self.abs_dr_state, n, self.abs_dr_mode['abs_mode'], self.abs_dr_mode['dr_mode'], **extra_args)
+            return self.abs_dr_rules.rule_AddrOp(self.abs_dr_state, n, self.abs_dr_mode['abs_mode'], self.abs_dr_mode['dr_mode'], self.full_statement, **extra_args)
         elif n.op in ('*',):
             extra_args = {}
             if self.dr_on:
                 extra_args['dr_vp_state'] = self.abs_dr_vpstate
-            return self.abs_dr_rules.rule_PtrOp(self.abs_dr_state, n, self.abs_dr_mode['abs_mode'], self.abs_dr_mode['dr_mode'], **extra_args)
+            return self.abs_dr_rules.rule_PtrOp(self.abs_dr_state, n, self.abs_dr_mode['abs_mode'], self.abs_dr_mode['dr_mode'], self.full_statement, **extra_args)
+        elif n.op in ('sizeof',):
+            extra_args = {}
+            if self.dr_on:
+                extra_args['dr_vp_state'] = self.abs_dr_vpstate
+            return self.abs_dr_rules.rule_Sizeof(self.abs_dr_state, n, self.abs_dr_mode['abs_mode'], self.abs_dr_mode['dr_mode'], self.full_statement, **extra_args)
         else:
-            return super().visit_UnaryOp(n)
+            assert(False)
+            #return super().visit_UnaryOp(n)
             
         
     def visit_ID(self, n):
@@ -499,9 +514,9 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
         if self.dr_on:
             extra_args['dr_vp_state'] = self.abs_dr_vpstate
         if n.name in self.program_arrays:
-            myans = self.abs_dr_rules.rule_ArrayID(self.abs_dr_state, n, self.abs_dr_mode['abs_mode'], self.abs_dr_mode['dr_mode'], **extra_args)
+            myans = self.abs_dr_rules.rule_ArrayID(self.abs_dr_state, n, self.abs_dr_mode['abs_mode'], self.abs_dr_mode['dr_mode'], self.full_statement, **extra_args)
         else:
-            myans = self.abs_dr_rules.rule_ID(self.abs_dr_state, n, self.abs_dr_mode['abs_mode'], self.abs_dr_mode['dr_mode'], **extra_args)
+            myans = self.abs_dr_rules.rule_ID(self.abs_dr_state, n, self.abs_dr_mode['abs_mode'], self.abs_dr_mode['dr_mode'], self.full_statement, **extra_args)
         return myans
         
     def visit_Constant(self, n):
@@ -510,7 +525,7 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
         extra_args = {}
         if self.dr_on:
             extra_args['dr_vp_state'] = self.abs_dr_vpstate
-        return self.abs_dr_rules.rule_Constant(self.abs_dr_state, n, self.abs_dr_mode['abs_mode'], self.abs_dr_mode['dr_mode'], **extra_args)
+        return self.abs_dr_rules.rule_Constant(self.abs_dr_state, n, self.abs_dr_mode['abs_mode'], self.abs_dr_mode['dr_mode'], self.full_statement, **extra_args)
         
     def visit_Cast(self, n):
         if not self.any_instrument:
@@ -518,7 +533,7 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
         extra_args = {}
         if self.dr_on:
             extra_args['dr_vp_state'] = self.abs_dr_vpstate
-        return self.abs_dr_rules.rule_Cast(self.abs_dr_state, n, self.abs_dr_mode['abs_mode'], self.abs_dr_mode['dr_mode'], **extra_args)
+        return self.abs_dr_rules.rule_Cast(self.abs_dr_state, n, self.abs_dr_mode['abs_mode'], self.abs_dr_mode['dr_mode'], self.full_statement, **extra_args)
         
     def visit_ExprList(self, n):
         if not self.any_instrument:
@@ -528,7 +543,7 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
         if self.dr_on:
             extra_args['dr_vp_state'] = self.abs_dr_vpstate
         visited_subexprs = []
-        visit_ans = self.abs_dr_rules.rule_Comma(self.abs_dr_state, n, self.abs_dr_mode['abs_mode'], self.abs_dr_mode['dr_mode'], **extra_args)
+        visit_ans = self.abs_dr_rules.rule_Comma(self.abs_dr_state, n, self.abs_dr_mode['abs_mode'], self.abs_dr_mode['dr_mode'], self.full_statement, **extra_args)
         self.expList = None if visit_ans[1] is None else visit_ans[1].copy()
         return visit_ans[0]
         
@@ -543,9 +558,13 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
             extra_args['dr_vp_state'] = self.abs_dr_vpstate
             
         if fref in ('__CSEQ_assert', '__CSEQ_assume', 'assert'):
-            return self.abs_dr_rules.rule_Assert_Assume(self.abs_dr_state, n, self.abs_dr_mode['abs_mode'], self.abs_dr_mode['dr_mode'], **extra_args)
+            return self.abs_dr_rules.rule_Assert_Assume(self.abs_dr_state, n, self.abs_dr_mode['abs_mode'], self.abs_dr_mode['dr_mode'], self.full_statement, **extra_args)
         elif fref == 'sizeof':
-            return self.abs_dr_rules.rule_Sizeof(self.abs_dr_state, n, self.abs_dr_mode['abs_mode'], self.abs_dr_mode['dr_mode'], **extra_args)
+            return self.abs_dr_rules.rule_Sizeof(self.abs_dr_state, n, self.abs_dr_mode['abs_mode'], self.abs_dr_mode['dr_mode'], self.full_statement, **extra_args)
+        elif fref == '__cs_safe_malloc':
+            return self.abs_dr_rules.rule_Malloc(self.abs_dr_state, n, self.abs_dr_mode['abs_mode'], self.abs_dr_mode['dr_mode'], self.full_statement, **extra_args)
+        elif fref == '__CSEQ_nondet_int':
+            return self.abs_dr_rules.rule_Nondet(self.abs_dr_state, n, self.abs_dr_mode['abs_mode'], self.abs_dr_mode['dr_mode'], self.full_statement, **extra_args)
         # all functions are either instrumentation ones or thread functions. Anyways, don't instrument
         with self.no_any_instrument():
             return super().visit_FuncCall(n)
@@ -557,7 +576,7 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
             extra_args = {}
             if self.dr_on:
                 extra_args['dr_vp_state'] = self.abs_dr_vpstate
-            return self.abs_dr_rules.rule_ArrayRef(self.abs_dr_state, n, self.abs_dr_mode['abs_mode'], self.abs_dr_mode['dr_mode'], **extra_args)
+            return self.abs_dr_rules.rule_ArrayRef(self.abs_dr_state, n, self.abs_dr_mode['abs_mode'], self.abs_dr_mode['dr_mode'], self.full_statement, **extra_args)
 
 
     def visit_TernaryOp(self, n):
@@ -567,7 +586,7 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
             extra_args = {}
             if self.dr_on:
                 extra_args['dr_vp_state'] = self.abs_dr_vpstate
-            return self.abs_dr_rules.rule_TernaryOp(self.abs_dr_state, n, self.abs_dr_mode['abs_mode'], self.abs_dr_mode['dr_mode'], **extra_args)
+            return self.abs_dr_rules.rule_TernaryOp(self.abs_dr_state, n, self.abs_dr_mode['abs_mode'], self.abs_dr_mode['dr_mode'], self.full_statement, **extra_args)
                         
     def visit_StructRef(self, n):
         if not self.any_instrument:
@@ -577,9 +596,9 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
             if self.dr_on:
                 extra_args['dr_vp_state'] = self.abs_dr_vpstate
             if n.type == "->":
-                return self.abs_dr_rules.rule_StructRefPtr(self.abs_dr_state, n, self.abs_dr_mode['abs_mode'], self.abs_dr_mode['dr_mode'], **extra_args)
+                return self.abs_dr_rules.rule_StructRefPtr(self.abs_dr_state, n, self.abs_dr_mode['abs_mode'], self.abs_dr_mode['dr_mode'], self.full_statement, **extra_args)
             else:
-                return self.abs_dr_rules.rule_StructRefVar(self.abs_dr_state, n, self.abs_dr_mode['abs_mode'], self.abs_dr_mode['dr_mode'], **extra_args)
+                return self.abs_dr_rules.rule_StructRefVar(self.abs_dr_state, n, self.abs_dr_mode['abs_mode'], self.abs_dr_mode['dr_mode'], self.full_statement, **extra_args)
             
     def visit_Typedef(self, n):
         return super().visit_Typedef(n)
@@ -725,7 +744,7 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
             extra_args = {}
             if self.dr_on:
                 extra_args['dr_vp_state'] = self.abs_dr_vpstate
-            condition = self.abs_dr_rules.rule_IfCond(self.abs_dr_state, n.cond, self.abs_dr_mode['abs_mode'], self.abs_dr_mode['dr_mode'], **extra_args)
+            condition = self.abs_dr_rules.rule_IfCond(self.abs_dr_state, n.cond, self.abs_dr_mode['abs_mode'], self.abs_dr_mode['dr_mode'], self.full_statement, **extra_args)
             s += condition
 
         s += ')\n'
