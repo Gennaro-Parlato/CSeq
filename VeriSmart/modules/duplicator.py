@@ -88,7 +88,8 @@ class duplicator(core.module.Translator):
         # if len(string) > 2000000 and 'unwind-for' in env.paramvalues and env.paramvalues['unwind-for'] >= 16:
         #     raise core.module.ModuleError("sequentialized file is too big")
 
-        super(self.__class__, self).loadfromstring(string, env, fill_only_fields=['threadName', 'funcDecl', 'threadCallCnt'])
+        #super(self.__class__, self).loadfromstring(string, env, fill_only_fields=['threadName', 'funcDecl', 'threadCallCnt']) INHERITANCE PROBLEMS
+        super().loadfromstring(string, env, fill_only_fields=['threadName', 'funcDecl', 'threadCallCnt'])
         self.postprocess()
 
         env.threads = self.getactualthreads() #if env.threads == 0 else env.threads

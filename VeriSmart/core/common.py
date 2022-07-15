@@ -117,7 +117,7 @@ changeID['pthread_setcancelstate'] = '__cs_setcancelstate'
 changeID['pthread_setcanceltype'] = '__cs_setcanceltype'
 changeID['pthread_setconcurrency'] = '__cs_setconcurrency'
 changeID['pthread_setschedparam'] = '__cs_setschedparam'
-changeID['pthread_setspecific'] = '__cs_setspecific'
+changeID['pthread_setspecific'] = '__cs__setspecific'
 changeID['pthread_testcancel'] = '__cs_testcancel'
 
 changeID['pthread_barrier_t'] = '__cs_barrier_t'

@@ -1,5 +1,6 @@
 from pycparser.c_generator import CGenerator
-from pycparser.c_ast import BinaryOp, ID, ArrayRef, Constant
+from pycparser.c_ast import *
+import copy
 import os
 import subprocess
 import shlex
@@ -27,6 +28,9 @@ class SupportFileManager(CGenerator):
         # True only when the declaration is global.
         self.global_decl = True 
         
+        # Set of already printed declarations for the current scope
+        self.knownDeclsStack = [set()]
+        
         self.types_map = {
             6: ('unsigned', 'unsigned char'),
             1: ('signed', 'char'),
@@ -42,6 +46,7 @@ class SupportFileManager(CGenerator):
             
         self.boilerplate = """
 #include <stdio.h>
+#include <errno.h>
 #include \""""+os.path.abspath(os.getcwd())+"""/modules/pthread_defs.c\"
 #define PRINT_DT(E,ID, EXP) printf("%s_%d, %d\\n",EXP,ID,typename(E) )
 void __CPROVER_get_field(void *a, char field[100] ){return;}
@@ -129,8 +134,26 @@ enum t_typename {
             
     def visit_FileAST(self, n):
         mainContent = []
+        lastNode = None
         for ext in n.ext:
-            mainContent += self.visit(ext)
+            if type(ext) is Decl and type(lastNode) is Decl:
+                if ext.name == lastNode.name:
+                    if ext.init is None and lastNode.init is not None:
+                        pass #skip
+                    elif ext.init is not None and lastNode.init is None:
+                        mainContent.pop()
+                        mainContent += self.visit(ext)
+                        lastNode = ext
+                    else:
+                        mainContent += self.visit(ext)
+                        lastNode = ext
+                else:
+                    mainContent += self.visit(ext)
+                    lastNode = ext
+            else:
+                mainContent += self.visit(ext)
+                lastNode = ext
+            
         return "\n".join([self.boilerplate, "int main(){"]+mainContent+["return 0;","}"])
     
     def visit_Constant(self, n):
@@ -164,8 +187,9 @@ enum t_typename {
         
     def visit_FuncCall(self, n):
         ans = []
-        if n.name.name == "__cs_safe_malloc":
-            ans += self.bookNodeType(n.args.exprs[0])
+        if n.name.name in ("__cs_safe_malloc", "__CSEQ_assert", "assert", "__CSEQ_assume"):
+            with self.set_can_value(True):
+                ans += self.visit(n.args.exprs[0])
         '''if self.can_value:
             ans += self.bookNodeType(n)
         # TODO might have to visit n.name for function pointers?
@@ -204,19 +228,59 @@ enum t_typename {
     
     def visit_Decl(self, n, no_type=False):
         ans = []
-        if self.global_decl:
-            ans += [self.cgenerator.visit(n)+";"]
-        if n.init is not None:
-            type_of_n = self.__getType(n.type)
-            if type_of_n == 'ArrayDecl':
-                for index, ass_exp in enumerate(n.init):
-                    ans += self.bookNodeType(ArrayRef(ID(n.name), Constant('int', str(index))))
-            elif type_of_n in ('PtrDecl','TypeDecl'):
-                ans += self.bookNodeType(ID(n.name))
-                    
-            with self.inner_decl():
-                with self.set_can_value(True):
-                    ans += self.visit(n.init)
+        if type(n.type) is TypeDecl and type(n.type.type) is Struct:
+            struct_t_name = "struct "+n.type.type.name
+            for decl in self.knownDeclsStack[::-1]:
+                if struct_t_name in decl:
+                    old_decl = n.type.type.decls
+                    n.type.type.decls = None
+                    ans += [self.cgenerator.visit(n)+";"]
+                    n.type.type.decls = old_decl
+                    break
+            else:
+                self.knownDeclsStack[-1].add(struct_t_name)
+                ans += [self.cgenerator.visit(n)+";"]
+            if n.init is not None:
+                with self.inner_decl():
+                    with self.set_can_value(True):
+                        ans += self.visit(n.init)
+        elif type(n.type) is PtrDecl and type(n.type.type) is TypeDecl and type(n.type.type.type) is Struct:
+            struct_t_name = "struct "+n.type.type.type.name
+            for decl in self.knownDeclsStack[::-1]:
+                if struct_t_name in decl:
+                    old_decl = n.type.type.type.decls
+                    n.type.type.type.decls = None
+                    ans += [self.cgenerator.visit(n)+";"]
+                    n.type.type.type.decls = old_decl
+                    break
+            else:
+                self.knownDeclsStack[-1].add(struct_t_name)
+                ans += [self.cgenerator.visit(n)+";"]
+            if n.init is not None:
+                with self.inner_decl():
+                    with self.set_can_value(True):
+                        ans += self.visit(n.init)
+        else:
+            if self.global_decl and (type(n.type) is not FuncDecl or n.name != "main"):
+                ans += [self.cgenerator.visit(n)+";"]
+            if type(n.type) is FuncDecl and n.type.args is not None:
+                ans += self.visit(n.type.args)
+            if n.init is not None:
+                type_of_n = self.__getType(n.type)
+                if type_of_n == 'ArrayDecl':
+                    for index, ass_exp in enumerate(n.init):
+                        ans += self.bookNodeType(ArrayRef(ID(n.name), Constant('int', str(index))))
+                elif type_of_n in ('PtrDecl','TypeDecl'):
+                    ans += self.bookNodeType(ID(n.name))
+                        
+                with self.inner_decl():
+                    with self.set_can_value(True):
+                        ans += self.visit(n.init)
+        strans = "\n".join(ans)
+        for decl in self.knownDeclsStack[::-1]:
+            if strans in decl:
+                return []
+        self.knownDeclsStack[-1].add(strans)
         return ans
         
     def visit_DeclList(self, n):
@@ -229,7 +293,11 @@ enum t_typename {
         return [self.cgenerator.visit(n)+";"]
         
     def visit_Cast(self, n):
-        return self.visit(n.expr)
+        ans = []
+        if self.can_value:
+            ans += self.bookNodeType(n)
+        ans += self.visit(n.expr)
+        return ans
 
     def visit_ExprList(self, n):
         ans = []
@@ -263,21 +331,30 @@ enum t_typename {
 
     def visit_FuncDef(self, n):
         ans = []
-        ans += self.visit(n.decl)
+        if type(n.decl.type.type.type) is IdentifierType and n.decl.type.type.type.names[0] == "void":
+            #void function
+            ncp = copy.copy(n)
+            ncp.body = Compound([])
+            ans += [self.cgenerator.visit(ncp)]
+            if n.decl.type.args is not None:
+                ans += self.visit(n.decl.type.args)
+        else:
+            ans += self.visit(n.decl)
         if n.param_decls:
-            for p in n.param_decls:
-                ans += self.visit(p)
+            self.visit(n.param_decls)
         ans += self.visit(n.body)
         return ans
         
     def visit_Compound(self, n):
         ans = []
         ans += ["{"]
+        self.knownDeclsStack.append(set())
         if n.block_items:
             with self.set_can_value(False):
                 for stmt in n.block_items:
                     ans += self.visit(stmt)
         ans += ["}"]
+        self.knownDeclsStack.pop()
         return ans
 
     def visit_CompoundLiteral(self, n):
@@ -285,11 +362,22 @@ enum t_typename {
     
     def visit_EmptyStatement(self, n):
         return []
+        
+    def __cleanParamDecl(self, n):
+        # returns a new declaration where arrays without dimensions are replaced with pointers.
+        if type(n.type) is IdentifierType:
+            return n
+        n_cp = copy.copy(n)
+        if type(n.type) is ArrayDecl and n.type.dim is None:
+            n_cp.type = self.__cleanParamDecl(PtrDecl([], n.type.type))
+        else:
+            n_cp.type = self.__cleanParamDecl(n.type)
+        return n_cp
     
     def visit_ParamList(self, n):
         ans = []
-        for p in n.param_decls:
-            ans += self.visit(p)
+        for p in n.params:
+            ans += self.visit(self.__cleanParamDecl(p))
         return ans
             
     def visit_Return(self, n):
@@ -314,8 +402,8 @@ enum t_typename {
 
     def visit_If(self, n):
         ans = []
-        ans += self.bookNodeType(n.iftrue)
-        ans += self.visit(n.cond)
+        with self.set_can_value(True):
+            ans += self.visit(n.cond)
         ans += self.visit(n.iftrue)
         ans += self.visit(n.iffalse)
         return ans
@@ -360,4 +448,6 @@ enum t_typename {
         return [self.cgenerator.visit(n)+";"]
 
     def visit_NamedInitializer(self, n):
-        assert(False)
+        ans = []
+        ans += self.visit(n.expr)
+        return ans

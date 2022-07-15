@@ -1,6 +1,7 @@
 from pycparser import CParser
 from pycparser.c_generator import CGenerator
 from pycparser.c_ast import *
+import time
 
 class Cleaner(CGenerator):
     # remove useless assignments, i.e., x = 0 or x = getsm... where x is an interesting_var
@@ -8,16 +9,53 @@ class Cleaner(CGenerator):
     def __init__(self, doClean = True):
         self.parser = CParser()
         self.generate = CGenerator()
-        self.side_effects = HasSideEffects()
         self.doClean = doClean
+        self.typedefs = ""
+        self.typedefList = ["char ___fakeifvar___;"]
         
-    def clean(self, code):
+        self.codes_to_clean = dict()
+        self.clean_codes = dict()
+        
+    def addTypedef(self, txt):
+        self.typedefList.append(txt+";")
+        
+    def add_code_to_clean(self, key, code):
+        self.codes_to_clean[key] = code
+        
+    def do_clean_codes(self):
         if self.doClean:
-            with_boilerplate = "void main(){"+code+";}"
-            ans = self.visit(self.parser.parse(with_boilerplate).ext[0].body.block_items[0])['code']
+            if len(self.typedefList) > 0:
+                txt = "\n".join(self.typedefList)
+                self.typedefs += txt + "\n"
+                self.typedefList = []
+            code = "\n".join([k+": "+self.codes_to_clean[k]+";" for k in self.codes_to_clean])
+            with_boilerplate = self.typedefs + "void main(){"+code+"}"
+            #print(with_boilerplate)
+            parsed = self.parser.parse(with_boilerplate)
+            if parsed.ext[-1].body.block_items is not None:
+                for label_stmt in parsed.ext[-1].body.block_items:
+                    self.side_effects = HasSideEffects(keep_void0 = True)
+                    clean_ast = self.visit(label_stmt.stmt)['code']
+                    self.clean_codes[label_stmt.name] = self.generate.visit(clean_ast).replace("___fakeifvar___ = ","")
+        else:
+            for k in self.codes_to_clean:
+                self.clean_codes[k] = self.codes_to_clean[k].replace("___fakeifvar___ = ","")
+                
+    def get_clean_codes(self):
+        return self.clean_codes
+        
+    '''def clean(self, code):
+        if self.doClean:
+            if len(self.typedefList) > 0:
+                txt = "\n".join(self.typedefList)
+                self.typedefs += txt + "\n"
+                self.typedefList = []
+            with_boilerplate = self.typedefs + "void main(){"+code+";}"
+            parsed = self.parser.parse(with_boilerplate)
+            ans = self.visit(parsed.ext[-1].body.block_items[0])['code']
             return self.generate.visit(ans)
         else:
-            return code
+            return code'''
         
     def interesting_vars(self, name):
         if name is None:
@@ -50,7 +88,7 @@ class Cleaner(CGenerator):
         return {'code': StructRef(visit_name['code'], n.type, visit_field['code']), 'read_IDs': read_IDs}
         
     def __check_encode_decode(self, n):
-        # returns True if n is ENCODE_t(DECODE_t(...)) for some t
+        # returns True if n is ENCODE_t((t) DECODE_t(...)) for some t TODO  fix
         return type(n) is FuncCall \
             and type(n.name) is ID \
             and n.name.name.startswith("ENCODE_") \
@@ -60,7 +98,7 @@ class Cleaner(CGenerator):
             and n.args.exprs[0].name.name == "DECODE_"+n.name.name[7:]
             
     def __check_boundsfailure_decode(self, n):
-        # returns True if n is BOUNDS_FAILURE_t(DECODE_t(...)) for some t
+        # returns True if n is BOUNDS_FAILURE_t((t) DECODE_t(...)) for some t TODO  fix
         return type(n) is FuncCall \
             and type(n.name) is ID \
             and n.name.name.startswith("BOUNDS_FAILURE_") \
@@ -127,8 +165,11 @@ class Cleaner(CGenerator):
             return {'code': Assignment(n.op, visit_lvalue['code'], visit_rvalue['code']), 'read_IDs': read_IDs}
 
     def visit_Cast(self, n, read=False, after=set()):
-        visit_expr = self.visit(n.expr, read=read, after = after)
-        return {'code': Cast(n.to_type, visit_expr['code']), 'read_IDs': visit_expr['read_IDs']}
+        if type(n.to_type.type.type) is IdentifierType and "void" in n.to_type.type.type.names and n.expr.value == "0": # (void) 0 : do not remove it
+            return {'code': n, 'read_IDs': after}
+        else:
+            visit_expr = self.visit(n.expr, read=read, after = after)
+            return {'code': Cast(n.to_type, visit_expr['code']), 'read_IDs': visit_expr['read_IDs']}
 
     def visit_ExprList(self, n, read=False, after=set()):
         stats = []
@@ -159,6 +200,11 @@ class Cleaner(CGenerator):
         
 class HasSideEffects(CGenerator):
     # check if statement has side effects
+    
+    def __init__(self, keep_void0 = False):
+        super().__init__()
+        self.parser = CParser()
+        self.keep_void0 = keep_void0
         
     def check(self, code):
         with_boilerplate = "void main(){"+code+";}"
@@ -198,7 +244,10 @@ class HasSideEffects(CGenerator):
         return True
 
     def visit_Cast(self, n):
-        return self.visit(n.expr)
+        if type(n.to_type.type.type) is IdentifierType and "void" in n.to_type.type.type.names and n.expr.value == "0": # (void) 0 : do not remove it
+            return self.keep_void0
+        else:
+            return self.visit(n.expr)
 
     def visit_ExprList(self, n):
         return any([self.visit(e) for e in n.exprs])

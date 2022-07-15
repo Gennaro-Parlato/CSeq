@@ -191,6 +191,17 @@ class instrumenter(core.module.Translator):
 		self.__filename = filename
 		self.__confignumber = confignumber
 		self.__intervals = configintervals
+		
+	def is_bw1_abstr_var(self, l):
+		lstrip = l.strip()
+		if not lstrip.startswith("unsigned char "):
+			return False
+		vname = lstrip.split(";")[0].split("=")[0].split()[2]
+		if vname in ("__cs_baV","__cs_baL","__cs_baV_lhs","__cs_baV_tmp","__cs_dr","__cs_wam","__cs_wkm", "__cs_dataraceDetectionStarted", "__cs_dataraceSecondThread", "__cs_dataraceNotDetected", "__cs_dataraceContinue", "__cs_dataraceActiveVP1", "__cs_dataraceActiveVP2"):
+			return True
+		elif (vname.startswith("__cs_bav1_") or vname.startswith("__cs_cond_")) and vname.split("_")[-1].isdigit():
+			return True
+		return False
 
 	def loadfromstring(self,string,env):
 		self.env = env
@@ -226,8 +237,6 @@ class instrumenter(core.module.Translator):
 			'__cs_thread_index'
 		]
 
-		#print(string)
-		#sys.exit(0)
 		super(instrumenter, self).loadfromstring(string, env)
 		self.lastoutputlineno = 0
 		self.removelinenumbers()
@@ -249,10 +258,18 @@ class instrumenter(core.module.Translator):
 		for l in self.output.splitlines():
 			if l.endswith(_rawlinemarker+';'):
 				newstring += l[:-len(_rawlinemarker+';')].lstrip() + '\n'
+			elif self.is_bw1_abstr_var(l):
+				newstring += ' '*(maxlinemarkerlen)+l.replace("char","__CPROVER_bitvector[1]")+'\n'
 			else:
 				newstring += ' '*(maxlinemarkerlen)+l+'\n'
 
 		self.output = newstring
+		
+		#print("***********************************")
+		
+		# transformation 0: replace BW1s with __CPROVER_bitvector[1]
+		#self.output = self.output.replace(" BW1 ", " __CPROVER_bitvector[1] ")
+		#print(self.output)
 
 		self.insertheader(self.extheader)          # header passed by previous module
 		if self.abt_header is not None:

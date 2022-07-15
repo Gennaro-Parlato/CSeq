@@ -168,6 +168,11 @@ struct device {
     def loadfromstring(self, string, env):
         self.cseqenv = env
         self.input = string
+        
+        # test to ensure that at least one include is present (with all the fake typedefs and so on)
+        if not re.match(r'[ \t]*#[ \t]*include[ \t]*[\"<](.+)[\">]', string):
+            self.input = "#include <pthread.h>\n"+self.input
+            string = self.input
 
         # set system header
         setattr(env, "systemheaders", self.getSystemHeaders(string))

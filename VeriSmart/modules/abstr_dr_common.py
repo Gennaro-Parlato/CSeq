@@ -6,6 +6,7 @@ from pycparser.c_generator import CGenerator
 from core import abs_dr_rules
 import os
 from core.support_file import SupportFileManager
+import copy
 
 '''
 Utility class that allows to set a field to a specific value in a block and restore it when left.
@@ -141,6 +142,8 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
         # are we instrumenting a full statement?
         self.full_statement = True
         
+        self.atomicLvl = 0 # this counts how much nesting in __CSEQ_atomic_ functions we are. If =0: we are not in an atomic function; otherwise that's atomic and we need to disable Visible Points
+        
     def insertGlobalVarInit(self, x):
         return x.replace("int main(void) {", "int main(void) {\n"+self.global_var_initializations, 1)
     def __createMainKLEERoundRobinDecomposePC(self, rounds):
@@ -201,11 +204,13 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
                 
     def visit_noinstr(self, n, full_statement):
         with self.no_any_instrument():
+            #print("NOINSTR1", n)
             with BakAndRestore(self, 'full_statement', full_statement):
-                return self.visit(n)
+                ans = self.visit(n)
+                return ans
         
     def visit_FileAST(self, n):
-        if not self.any_instrument:
+        if not self.any_instrument or not (self.dr_on or self.abs_on):
             return super().visit_FileAST(n)
             
         self.abs_dr_rules.supportFile.compile(n, self.support_file_name, self.support_file_runnable)
@@ -226,7 +231,7 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
             else:
                 s3 += self.visit(ext) + ';\n'
                 
-        s2 = self.abs_dr_rules.cond_vars_decl()
+        s2 = self.abs_dr_rules.cond_vars_decl() + '\n' + self.abs_dr_rules.bav1_vars_decl()
 
         #TODO check what it means
         #ris = self.faked_typedef_start \
@@ -247,6 +252,16 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
 
         return ris
         
+    def additionalCode(self,threadIndex):
+        s = ''
+        
+        if self.dr_on and self.abs_dr_vpstate is not None:
+            if self.abs_dr_vpstate.VP1required:
+                s += '__cs_dataraceActiveVP1 = ( @£@L1 == (__cs_pc_cs[%s]-1) ) ; \n' % threadIndex
+            if self.abs_dr_vpstate.VP2required:
+                s += '__cs_dataraceActiveVP2 = ( @£@L2 == __cs_pc[%s] ) ; \n' % threadIndex   #DR
+        return s
+        
     def visit_Compound(self, n): # copied to reset cp state between statements TODO once accepted, move this in lazyseqnewschedule and replace self._lazyseqnewschedule__<x> with self.__<x>
         compoundList = ["{\n"]
         # Insert the labels at the beginning of each statement,
@@ -254,6 +269,15 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
 
         if n.block_items:
             for stmt in n.block_items:
+                if type(stmt) == pycparser.c_ast.FuncCall and stmt.name.name == "__CSEQ_ROWLINE" and stmt.args is not None and type(stmt.args.exprs[0]) is c_ast.UnaryOp and stmt.args.exprs[0].expr.name == "atomiclvl":
+                    if stmt.args.exprs[0].op == "p++":
+                        self.atomicLvl += 1
+                        continue
+                    elif stmt.args.exprs[0].op == "p--":
+                        self.atomicLvl -= 1
+                        continue
+                    else:
+                        assert(False)
                 self.initFlags(self._lazyseqnewschedule__stmtCount)
                 # Case 1: last statement in a thread (must correspond to last label)
                 if type(stmt) == pycparser.c_ast.FuncCall and stmt.name.name == core.common.changeID['pthread_exit']: ##if type(stmt) == pycparser.c_ast.FuncCall and self._parenthesize_unless_simple(stmt.name) == core.common.changeID['pthread_exit']:
@@ -274,17 +298,20 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
                     #       (now we know if the statement is accessing global memory,
                     #       so to insert the stamp at the beginning when needed)
                     #
-                    if not self._lazyseqnewschedule__atomic and self._lazyseqnewschedule__stmtCount == -1:   # first statement in a thread
+                    if not (self._lazyseqnewschedule__atomic or self.atomicLvl > 0) and self._lazyseqnewschedule__stmtCount == -1:   # first statement in a thread
                         self._lazyseqnewschedule__stmtCount += 1
                         self._lazyseqnewschedule__maxInCompound = self._lazyseqnewschedule__stmtCount
                         threadIndex = self.Parser.threadOccurenceIndex[self._lazyseqnewschedule__currentThread]
                         with self.clean_cp_state():
                             s = self.visit(stmt.stmt)
                         with self.clean_cp_state():
+                            #if s.count('\n') > 2:
+                            #    print(1, stmt)
+                            #print(stmt.stmt, self.abs_dr_vpstate)
                             code = '@£@I1' + self.additionalCode(threadIndex) + '@£@I2' + s + '@£@I3' + self.alternateCode(stmt.stmt) + '@£@I4' + ';\n' 
                     elif (not self._lazyseqnewschedule__visit_funcReference and (
                         (type(stmt) == pycparser.c_ast.FuncCall and stmt.name.name == '__CSEQ_atomic_begin') or
-                        (not self._lazyseqnewschedule__atomic and
+                        (not (self._lazyseqnewschedule__atomic or self.atomicLvl > 0) and
                             (globalAccess or
                             (type(stmt) == pycparser.c_ast.FuncCall and stmt.name.name == core.common.changeID['pthread_create']) or
                             (type(stmt) == pycparser.c_ast.FuncCall and stmt.name.name == core.common.changeID['pthread_join']) or
@@ -300,22 +327,27 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
                         threadIndex = self.Parser.threadOccurenceIndex[self._lazyseqnewschedule__currentThread]
                         with self.clean_cp_state():
                             s = self.visit(stmt.stmt)
+                        #if s.count('\n') > 2:
+                        #    print(2, stmt)
                         with self.clean_cp_state():
+                            #print(stmt.stmt, self.abs_dr_vpstate)
                             code = '@£@I1' + self.additionalCode(threadIndex) + '@£@I2' + s + '@£@I3' + self.alternateCode(stmt.stmt) + '@£@I4' + ';\n'
                     else:
                         with self.clean_cp_state():
                             code = self.visit(stmt.stmt) + ';\n'
 
                     guard = ''
-                    if not self._lazyseqnewschedule__atomic:
+                    if not (self._lazyseqnewschedule__atomic or self.atomicLvl > 0):
                         guard = '@£@G'
                     code = self._make_indent() + stmt.name + ': ' + guard + code + '\n'
                     compoundList.append(code)
 
                 # Case 3: all the rest....
                 elif (type(stmt) not in (pycparser.c_ast.Compound, pycparser.c_ast.Goto, pycparser.c_ast.Decl)
-                    and not (self._lazyseqnewschedule__currentThread=='main' and not self._lazyseqnewschedule__enableDR and self._lazyseqnewschedule__firstThreadCreate == False) # and not running with datarace --dr => False
-                    or (self._lazyseqnewschedule__currentThread=='main' and self._lazyseqnewschedule__stmtCount == -1)) :
+                    and not (self._lazyseqnewschedule__currentThread=='main' and not self._lazyseqnewschedule__enableDR and self._lazyseqnewschedule__firstThreadCreate == False) # and not running with datarace --dr => False 
+                    or (type(stmt) not in (pycparser.c_ast.Compound,) and (self._lazyseqnewschedule__currentThread=='main' and self._lazyseqnewschedule__stmtCount == -1))
+                    ) :
+                    is_compulsory_vp = self.needs_compulsory_visible_point(stmt)
 
                     # --1-- Simulate a visit to the stmt block to see whether it makes any use of pointers or shared memory.
                     with self.clean_cp_state():
@@ -328,17 +360,20 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
                     #       this time using the proper formatting
                     #      (now we know if the statement is accessing global memory,
                     #       so to insert the stamp at the beginning when needed)
-                    if not self._lazyseqnewschedule__atomic and self._lazyseqnewschedule__stmtCount == -1:   # first statement in a thread
+                    if (not self._lazyseqnewschedule__atomic or self.atomicLvl > 0) and self._lazyseqnewschedule__stmtCount == -1:   # first statement in a thread
                         self._lazyseqnewschedule__stmtCount += 1
                         self._lazyseqnewschedule__maxInCompound = self._lazyseqnewschedule__stmtCount
                         threadIndex = self.Parser.threadOccurenceIndex[self._lazyseqnewschedule__currentThread]
                         with self.clean_cp_state():
                             s =  self.visit(stmt)
+                        #if s.count('\n') > 2:
+                        #    print(3, stmt)
                         with self.clean_cp_state():
+                            #print(stmt, self.abs_dr_vpstate)
                             code = '@£@I1' + self.additionalCode(threadIndex)+ '@£@I2' + s + '@£@I3' + self.alternateCode(stmt) + '@£@I4' + ';\n'
-                    elif (not self._lazyseqnewschedule__visit_funcReference and (
+                    elif is_compulsory_vp or (not self._lazyseqnewschedule__visit_funcReference and (
                         (type(stmt) == pycparser.c_ast.FuncCall and stmt.name.name == '__CSEQ_atomic_begin') or
-                        (not self._lazyseqnewschedule__atomic and
+                        (not (self._lazyseqnewschedule__atomic or self.atomicLvl > 0) and
                             (globalAccess or
                             (type(stmt) == pycparser.c_ast.FuncCall and stmt.name.name == core.common.changeID['pthread_create']) or
                             (type(stmt) == pycparser.c_ast.FuncCall and stmt.name.name == core.common.changeID['pthread_join']) or
@@ -348,7 +383,7 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
                             )
                         )
                         )):
-                        is_compulsory_vp = self.needs_compulsory_visible_point(stmt)
+                        
                         if is_compulsory_vp:
                             self._lazyseqnewschedule__stmtVPCompulsory += 1
                         self._lazyseqnewschedule__stmtCount += 1
@@ -356,7 +391,11 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
                         threadIndex = self.Parser.threadOccurenceIndex[self._lazyseqnewschedule__currentThread]
                         with self.clean_cp_state():
                             s = self.visit(stmt)
+                            
+                        #if s.count('\n') > 2:
+                        #    print(4, stmt)
                         with self.clean_cp_state():
+                            #print(stmt, self.abs_dr_vpstate)
                             prefix = '@£@J1' if is_compulsory_vp else '@£@I1'
                             code = prefix + self.additionalCode(threadIndex) + '@£@I2' + s + '@£@I3' + self.alternateCode(stmt) + '@£@I4' + ';\n'
     
@@ -412,13 +451,14 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
         return super().alternateCode(n)'''
         
     def visit_FuncDef(self, n):
-        if not self.any_instrument:
+        if not self.any_instrument or not (self.dr_on or self.abs_on):
             return super().visit_FuncDef(n)
         self.scope = 'local'
         func_name = n.decl.name
         if func_name.startswith('__cs_') or func_name == 'assume_abort_if_not':
             # those functions are made by us: won't touch them
             with self.no_any_instrument():
+                #print("NOINSTR2", n)
                 ans = super().visit_FuncDef(n)
             return ans
         else: # thread functions
@@ -439,64 +479,84 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
             self.string_support_macro += node_decl_vanilla + ';\n'
             
     def visit_Assignment(self, n):
-        if not self.any_instrument:
+        if not self.any_instrument or not (self.dr_on or self.abs_on):
             return super().visit_Assignment(n)
+        rvalue_noinstr = self.cGen_original.visit(n.rvalue)
+        '''if rvalue_noinstr.startswith("__cs_create("):
+            # I should check whether the first argument has a valid bav
+            extra_args_r = {"bavtest": n.rvalue.args.exprs[0]}
+            if self.dr_on:
+                extra_args_r['dr_vp_state'] = self.abs_dr_vpstate
+            return self.cGen_original.visit(n.lvalue) + " = " + \
+                    self.abs_dr_rules.rule_SpecialFuncCall(self.abs_dr_state, n.rvalue, self.abs_dr_mode['abs_mode'], self.abs_dr_mode['dr_mode'], self.full_statement, **extra_args_r)'''
+        if rvalue_noinstr.startswith("__cs_") and not rvalue_noinstr.startswith("__cs_local") and not rvalue_noinstr.startswith("__cs_retval"):
+            return self.visit_noinstr(n, self.full_statement)
         extra_args = {}
         if self.dr_on:
             extra_args['dr_vp_state'] = self.abs_dr_vpstate
+            extra_args['atomic'] = self._lazyseqnewschedule__atomic or self.atomicLvl > 0
         return self.abs_dr_rules.rule_Assignment(self.abs_dr_state, n, self.abs_dr_mode['abs_mode'], self.abs_dr_mode['dr_mode'], self.full_statement, **extra_args)
         
     def visit_BinaryOp(self, n):
-        if not self.any_instrument:
+        if not self.any_instrument or not (self.dr_on or self.abs_on):
             return super().visit_BinaryOp(n)
         if n.op in ('||','&&'):
             extra_args = {}
             if self.dr_on:
                 extra_args['dr_vp_state'] = self.abs_dr_vpstate
+                extra_args['atomic'] = self._lazyseqnewschedule__atomic or self.atomicLvl > 0
             return self.abs_dr_rules.rule_OrAnd(self.abs_dr_state, n, self.abs_dr_mode['abs_mode'], self.abs_dr_mode['dr_mode'], self.full_statement, **extra_args)
         else:
             extra_args = {}
             if self.dr_on:
                 extra_args['dr_vp_state'] = self.abs_dr_vpstate
+                extra_args['atomic'] = self._lazyseqnewschedule__atomic or self.atomicLvl > 0
             return self.abs_dr_rules.rule_BinaryOp(self.abs_dr_state, n, self.abs_dr_mode['abs_mode'], self.abs_dr_mode['dr_mode'], self.full_statement, **extra_args)
             
     def visit_UnaryOp(self, n):
-        if not self.any_instrument:
+        if not self.any_instrument or not (self.dr_on or self.abs_on):
             return super().visit_UnaryOp(n)
         if n.op in ('--','++'):
             extra_args = {}
             if self.dr_on:
                 extra_args['dr_vp_state'] = self.abs_dr_vpstate
+                extra_args['atomic'] = self._lazyseqnewschedule__atomic or self.atomicLvl > 0
             return self.abs_dr_rules.rule_preOp(self.abs_dr_state, n, self.abs_dr_mode['abs_mode'], self.abs_dr_mode['dr_mode'], self.full_statement, **extra_args)
         elif n.op in ('p--','p++'):
             extra_args = {}
             if self.dr_on:
                 extra_args['dr_vp_state'] = self.abs_dr_vpstate
+                extra_args['atomic'] = self._lazyseqnewschedule__atomic or self.atomicLvl > 0
             return self.abs_dr_rules.rule_postOp(self.abs_dr_state, n, self.abs_dr_mode['abs_mode'], self.abs_dr_mode['dr_mode'], self.full_statement, **extra_args)
         elif n.op in ('+','-','~'):
             extra_args = {}
             if self.dr_on:
                 extra_args['dr_vp_state'] = self.abs_dr_vpstate
+                extra_args['atomic'] = self._lazyseqnewschedule__atomic or self.atomicLvl > 0
             return self.abs_dr_rules.rule_UnOp(self.abs_dr_state, n, self.abs_dr_mode['abs_mode'], self.abs_dr_mode['dr_mode'], self.full_statement, **extra_args)
         elif n.op in ('!',):
             extra_args = {}
             if self.dr_on:
                 extra_args['dr_vp_state'] = self.abs_dr_vpstate
+                extra_args['atomic'] = self._lazyseqnewschedule__atomic or self.atomicLvl > 0
             return self.abs_dr_rules.rule_NotOp(self.abs_dr_state, n, self.abs_dr_mode['abs_mode'], self.abs_dr_mode['dr_mode'], self.full_statement, **extra_args)
         elif n.op in ('&',):
             extra_args = {}
             if self.dr_on:
                 extra_args['dr_vp_state'] = self.abs_dr_vpstate
+                extra_args['atomic'] = self._lazyseqnewschedule__atomic or self.atomicLvl > 0
             return self.abs_dr_rules.rule_AddrOp(self.abs_dr_state, n, self.abs_dr_mode['abs_mode'], self.abs_dr_mode['dr_mode'], self.full_statement, **extra_args)
         elif n.op in ('*',):
             extra_args = {}
             if self.dr_on:
                 extra_args['dr_vp_state'] = self.abs_dr_vpstate
+                extra_args['atomic'] = self._lazyseqnewschedule__atomic or self.atomicLvl > 0
             return self.abs_dr_rules.rule_PtrOp(self.abs_dr_state, n, self.abs_dr_mode['abs_mode'], self.abs_dr_mode['dr_mode'], self.full_statement, **extra_args)
         elif n.op in ('sizeof',):
             extra_args = {}
             if self.dr_on:
                 extra_args['dr_vp_state'] = self.abs_dr_vpstate
+                extra_args['atomic'] = self._lazyseqnewschedule__atomic or self.atomicLvl > 0
             return self.abs_dr_rules.rule_Sizeof(self.abs_dr_state, n, self.abs_dr_mode['abs_mode'], self.abs_dr_mode['dr_mode'], self.full_statement, **extra_args)
         else:
             assert(False)
@@ -504,15 +564,20 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
             
         
     def visit_ID(self, n):
-        if not self.any_instrument:
+        if not self.any_instrument or not (self.dr_on or self.abs_on):
             return super().visit_ID(n)
         ans = super().visit_ID(n) # do the lazy... part
         if n.name in self.funcNames:
-            # this is a function name: return verbatim
+            # this is a function name or NULL: return verbatim
             return n.name
+        if n.name == "NULL":
+            return self.visit(c_ast.Constant("void*", "NULL"))
+        if n.name[0] == "E" and n.name in ("EPERM", "ENOENT", "ESRCH", "EINTR", "EIO", "ENXIO", "E2BIG", "ENOEXEC", "EBADF", "ECHILD", "EAGAIN", "ENOMEM", "EACCES", "EFAULT", "ENOTBLK", "EBUSY", "EEXIST", "EXDEV", "ENODEV", "ENOTDIR", "EISDIR", "EINVAL", "ENFILE", "EMFILE", "ENOTTY", "ETXTBSY", "EFBIG", "ENOSPC", "ESPIPE", "EROFS", "EMLINK", "EPIPE", "EDOM", "ERANGE", "EDEADLK", "ENAMETOOLONG", "ENOLCK", "ENOSYS", "ENOTEMPTY", "ELOOP", "ENOMSG", "EIDRM", "ECHRNG", "EL2NSYNC", "EL3HLT", "EL3RST", "ELNRNG", "EUNATCH", "ENOCSI", "EL2HLT", "EBADE", "EBADR", "EXFULL", "ENOANO", "EBADRQC", "EBADSLT", "EBFONT", "ENOSTR", "ENODATA", "ETIME", "ENOSR", "ENONET", "ENOPKG", "EREMOTE", "ENOLINK", "EADV", "ESRMNT", "ECOMM", "EPROTO", "EMULTIHOP", "EDOTDOT", "EBADMSG", "EOVERFLOW", "ENOTUNIQ", "EBADFD", "EREMCHG", "ELIBACC", "ELIBBAD", "ELIBSCN", "ELIBMAX", "ELIBEXEC", "EILSEQ", "ERESTART", "ESTRPIPE", "EUSERS", "ENOTSOCK", "EDESTADDRREQ", "EMSGSIZE", "EPROTOTYPE", "ENOPROTOOPT", "EPROTONOSUPPORT", "ESOCKTNOSUPPORT", "EOPNOTSUPP", "EPFNOSUPPORT", "EAFNOSUPPORT", "EADDRINUSE", "EADDRNOTAVAIL", "ENETDOWN", "ENETUNREACH", "ENETRESET", "ECONNABORTED", "ECONNRESET", "ENOBUFS", "EISCONN", "ENOTCONN", "ESHUTDOWN", "ETOOMANYREFS", "ETIMEDOUT", "ECONNREFUSED", "EHOSTDOWN", "EHOSTUNREACH", "EALREADY", "EINPROGRESS", "ESTALE", "EUCLEAN", "ENOTNAM", "ENAVAIL", "EISNAM", "EREMOTEIO", "EDQUOT", "ENOMEDIUM", "EMEDIUMTYPE", "ECANCELED", "ENOKEY", "EKEYEXPIRED", "EKEYREVOKED", "EKEYREJECTED", "EOWNERDEAD", "ENOTRECOVERABLE"):
+            return self.visit(c_ast.Constant("int", n.name))
         extra_args = {}
         if self.dr_on:
             extra_args['dr_vp_state'] = self.abs_dr_vpstate
+            extra_args['atomic'] = self._lazyseqnewschedule__atomic or self.atomicLvl > 0
         if n.name in self.program_arrays:
             myans = self.abs_dr_rules.rule_ArrayID(self.abs_dr_state, n, self.abs_dr_mode['abs_mode'], self.abs_dr_mode['dr_mode'], self.full_statement, **extra_args)
         else:
@@ -520,42 +585,153 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
         return myans
         
     def visit_Constant(self, n):
-        if not self.any_instrument:
+        if not self.any_instrument or not (self.dr_on or self.abs_on):
             return super().visit_Constant(n)
         extra_args = {}
         if self.dr_on:
             extra_args['dr_vp_state'] = self.abs_dr_vpstate
+            extra_args['atomic'] = self._lazyseqnewschedule__atomic or self.atomicLvl > 0
         return self.abs_dr_rules.rule_Constant(self.abs_dr_state, n, self.abs_dr_mode['abs_mode'], self.abs_dr_mode['dr_mode'], self.full_statement, **extra_args)
         
     def visit_Cast(self, n):
-        if not self.any_instrument:
+        if not self.any_instrument or not (self.dr_on or self.abs_on):
             return super().visit_Cast(n)
         extra_args = {}
         if self.dr_on:
             extra_args['dr_vp_state'] = self.abs_dr_vpstate
+            extra_args['atomic'] = self._lazyseqnewschedule__atomic or self.atomicLvl > 0
         return self.abs_dr_rules.rule_Cast(self.abs_dr_state, n, self.abs_dr_mode['abs_mode'], self.abs_dr_mode['dr_mode'], self.full_statement, **extra_args)
         
     def visit_ExprList(self, n):
-        if not self.any_instrument:
+        if not self.any_instrument or not (self.dr_on or self.abs_on):
             return super().visit_ExprList(n)
         
         extra_args = {}
         if self.dr_on:
             extra_args['dr_vp_state'] = self.abs_dr_vpstate
+            extra_args['atomic'] = self._lazyseqnewschedule__atomic or self.atomicLvl > 0
         visited_subexprs = []
         visit_ans = self.abs_dr_rules.rule_Comma(self.abs_dr_state, n, self.abs_dr_mode['abs_mode'], self.abs_dr_mode['dr_mode'], self.full_statement, **extra_args)
         self.expList = None if visit_ans[1] is None else visit_ans[1].copy()
         return visit_ans[0]
         
+        
+    def DRvisit_FuncCall(self, n):
+        fref = self.frefVisit(n)
+        
+        # Visiting arguments
+        visited_subexprs = []
+        visited_subexprs_WSE = []
+        bak_dr_mode = self.abs_dr_mode['dr_mode']
+        for expr in n.args.exprs:
+            self.abs_dr_mode['dr_mode'] = "ACCESS"
+            expr_ACCESS = self._visit_expr(expr)
+            self.abs_dr_mode['dr_mode'] = "WSE"
+            expr_WSE = self._visit_expr(expr)
+            visited_subexprs.append("("+", ".join([k for k in [expr_ACCESS, expr_WSE] if k != ""])+")")
+            visited_subexprs_WSE.append(expr_WSE)
+        self.expList = visited_subexprs_WSE.copy()
+        args =  ', '.join(visited_subexprs)
+        self.abs_dr_mode['dr_mode'] = bak_dr_mode
+        
+        
+        #print("FREF: " + fref)
+        #if fref == '__cs_safe_malloc': 
+        #    print("ARGS: " + args)
+        #    n.show()
+        if fref == '__CSEQ_atomic_begin':
+            if not self._lazyseqnewschedule__visit_funcReference:
+                self._lazyseqnewschedule__atomic = True
+            return ''
+        elif fref == '__CSEQ_atomic_end':
+            if not self._lazyseqnewschedule__visit_funcReference:
+                self._lazyseqnewschedule__atomic = False
+            return ''
+        elif fref.startswith('__CSEQ_atomic_'):
+            self._lazyseqnewschedule__globalMemoryAccessed = True
+        elif fref == core.common.changeID['pthread_cond_wait']:
+            self.error('pthread_cond_wait in input code (use conditional wait converter module first)')
+
+
+        # When a thread is created, extract its function name
+        # based on the 3rd parameter in the pthread_create() call:
+        #
+        # pthread_create(&id, NULL, f, &arg);
+        #                          ^^^
+        #
+        if fref == core.common.changeID['pthread_create']: # TODO re-write AST-based (see other modules)
+            #n.show()
+            #print(fref + '\n' + str(self.expList))
+            #sys.exit(0)
+#            fName = args[:args.rfind(',')]
+#            fName = fName[fName.rfind(',')+2:]
+#            fName = fName.replace('&', '')
+            fName = self.expList[2]
+            fName = fName.strip()
+            fName = fName.strip('()&')
+            args = args + ', %s' % (self.Parser.threadOccurenceIndex[fName])
+
+            self._lazyseqnewschedule__firstThreadCreate = True
+
+        if fref == core.common.changeID['pthread_exit']:
+            # 17 March 2021
+            #threadIndex = self.Parser.threadIndex[self.__currentThread] if self.__currentThread in self.Parser.threadIndex else 0
+            threadIndex = self.Parser.threadOccurenceIndex[self._lazyseqnewschedule__currentThread] if self._lazyseqnewschedule__currentThread in self.Parser.threadOccurenceIndex else 0
+            self.addRetFuncCall(fref,args,threadIndex)
+            return fref + '(' + args + ', %s)' % threadIndex
+
+        '''
+        Avoid using pointers to handle mutexes
+        by changing the function calls,
+        there are two cases:
+
+           pthread_mutex_lock(&l)   ->  __cs_mutex_lock(l)
+           pthread_mutex_lock(ptr)  ->  __cs_mutex_lock(*ptr)
+
+        TODO:
+           this needs proper implementation,
+           one should check that the argument is not referenced
+           elsewhere (otherwise this optimisation will not work)
+        '''
+
+        # Optimization for removing __cs_thread_index variable from global scope
+        if ((fref == core.common.changeID['pthread_mutex_lock'] ) or (fref == core.common.changeID['pthread_mutex_unlock']) or
+                fref.startswith('__cs_cond_wait_')):
+            #threadIndex = self.Parser.threadIndex[self.__currentThread] if self.__currentThread in self.Parser.threadIndex else 0
+            threadIndex= self.Parser.threadOccurenceIndex[self._lazyseqnewschedule__currentThread] if self._lazyseqnewschedule__currentThread in self.Parser.threadOccurenceIndex else 0 # 17 March 2021
+            self.addRetFuncCall(fref,args,threadIndex)
+            return fref + '(' + args + ', %s)' % threadIndex
+
+        #S: fake implementation of pthread_key_create
+        #   it is replaced with  __cs_key_create and last argument (the destroyer function pointer) is removed
+        #   the body of __cs_key_create differs from that of pthread_key_create in that the
+        #   storing of the detroyer function is removed
+
+        if (fref == core.common.changeID['pthread_key_create'] ):
+            #print (fref + '(' + args + ')')
+            args = args[:args.rfind(',')]
+            #print (fref + '(' + args + ')')
+
+#        if fref == core.common.changeID['pthread_create']: # TODO re-write AST-based (see other modules)
+#            self.addRetFuncCall(fref,args, self.Parser.threadOccurenceIndex[fName])
+#        else:
+        self.addRetFuncCall(fref,args)
+        #ret = fref + '(' + args + ')'
+        #print("GMT: " + str(self.getGlobalMemoryTest() ))
+        #print(ret)
+        return fref + '(' + args + ')'
+        
     # TODO do it properly. Just there to make valid code for now
     def visit_FuncCall(self, n):
-        if not self.any_instrument:
+        #print(n)
+        if not self.any_instrument or not (self.dr_on or self.abs_on):
             return super().visit_FuncCall(n)
         fref = self.cGen_original._parenthesize_unless_simple(n.name)
         
         extra_args = {}
         if self.dr_on:
             extra_args['dr_vp_state'] = self.abs_dr_vpstate
+            extra_args['atomic'] = self._lazyseqnewschedule__atomic or self.atomicLvl > 0
             
         if fref in ('__CSEQ_assert', '__CSEQ_assume', 'assert'):
             return self.abs_dr_rules.rule_Assert_Assume(self.abs_dr_state, n, self.abs_dr_mode['abs_mode'], self.abs_dr_mode['dr_mode'], self.full_statement, **extra_args)
@@ -565,50 +741,64 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
             return self.abs_dr_rules.rule_Malloc(self.abs_dr_state, n, self.abs_dr_mode['abs_mode'], self.abs_dr_mode['dr_mode'], self.full_statement, **extra_args)
         elif fref == '__CSEQ_nondet_int':
             return self.abs_dr_rules.rule_Nondet(self.abs_dr_state, n, self.abs_dr_mode['abs_mode'], self.abs_dr_mode['dr_mode'], self.full_statement, **extra_args)
+            
+        ## all functions are either instrumentation ones or thread functions. Anyways, don't instrument
+        with BakAndRestore(self, 'abs_on', False):
+            if self.dr_on:
+                ans = self.DRvisit_FuncCall(n)
+                #print(ans)
+                return ans
+            else:
+                return super().visit_FuncCall(n)
+        
         # all functions are either instrumentation ones or thread functions. Anyways, don't instrument
-        with self.no_any_instrument():
-            return super().visit_FuncCall(n)
+        
 
     def visit_ArrayRef(self, n):
-        if not self.any_instrument or n.subscript == '__cs_thread_index':
+        if not self.any_instrument or n.subscript == '__cs_thread_index' or not (self.dr_on or self.abs_on):
             return super().visit_ArrayRef(n)
         else:
             extra_args = {}
             if self.dr_on:
                 extra_args['dr_vp_state'] = self.abs_dr_vpstate
+                extra_args['atomic'] = self._lazyseqnewschedule__atomic or self.atomicLvl > 0
             return self.abs_dr_rules.rule_ArrayRef(self.abs_dr_state, n, self.abs_dr_mode['abs_mode'], self.abs_dr_mode['dr_mode'], self.full_statement, **extra_args)
 
 
     def visit_TernaryOp(self, n):
-        if not self.any_instrument:
+        if not self.any_instrument or not (self.dr_on or self.abs_on):
             return super().visit_TernaryOp(n)
         else:
             extra_args = {}
             if self.dr_on:
                 extra_args['dr_vp_state'] = self.abs_dr_vpstate
+                extra_args['atomic'] = self._lazyseqnewschedule__atomic or self.atomicLvl > 0
             return self.abs_dr_rules.rule_TernaryOp(self.abs_dr_state, n, self.abs_dr_mode['abs_mode'], self.abs_dr_mode['dr_mode'], self.full_statement, **extra_args)
                         
     def visit_StructRef(self, n):
-        if not self.any_instrument:
+        if not self.any_instrument or not (self.dr_on or self.abs_on):
             return super().visit_StructRef(n)
         else:
             extra_args = {}
             if self.dr_on:
                 extra_args['dr_vp_state'] = self.abs_dr_vpstate
+                extra_args['atomic'] = self._lazyseqnewschedule__atomic or self.atomicLvl > 0
             if n.type == "->":
                 return self.abs_dr_rules.rule_StructRefPtr(self.abs_dr_state, n, self.abs_dr_mode['abs_mode'], self.abs_dr_mode['dr_mode'], self.full_statement, **extra_args)
             else:
                 return self.abs_dr_rules.rule_StructRefVar(self.abs_dr_state, n, self.abs_dr_mode['abs_mode'], self.abs_dr_mode['dr_mode'], self.full_statement, **extra_args)
             
     def visit_Typedef(self, n):
-        return super().visit_Typedef(n)
+        ans = super().visit_Typedef(n)
+        self.abs_dr_rules.addTypedef(ans)
+        return ans
         
     def visit_Decl(self, n, no_type=False):
-        if not self.any_instrument:
+        if not self.any_instrument or not (self.dr_on or self.abs_on):
             return super().visit_Decl(n, no_type)
         if no_type:
             return n.name
-        if not self.any_instrument:
+        if not self.any_instrument or not (self.dr_on or self.abs_on):
             return super().visit_Decl(n)
         else:
             type_of_n = getType(n.type)
@@ -633,6 +823,7 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
                     self.visit(n.type.args)
                 # Do not instrument func declarations (func declarations != func bodies)
                 with self.no_any_instrument():
+                    #print("NOINSTR4", n)
                     ans = super().visit_Decl(n)
                     
             elif type_of_n == 'Struct':
@@ -642,12 +833,18 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
                 if hasattr(n, 'quals') and len(getattr(n, 'quals')) >= 1 and getattr(n, 'quals')[0] == 'const':
                     # costants
                     with self.no_any_instrument():
+                        #print("NOINSTR5", n)
                         ans = super().visit_Decl(n)
+                        return ans #do not do anything else (they are ready now). This to avoid setting global consts in main
                 else:
                     # Antonio's comment: struct when no typedef is specified
                     type_st = getType(n.type.type) if n.type.type else None
                     if type_st == 'Struct':
-                        self.integral_type_list.append(n.type.type.name)
+                        if n.type.type.name in self.integral_type_list:
+                            #known struct type, don't declare content
+                            n.type.type.decls = None
+                        else:
+                            self.integral_type_list.append(n.type.type.name)
                     elif (hasattr(n.type.type, 'names')): # Antonio's comment: variable case
                         qualifier = []
                         if hasattr(n, 'quals'):
@@ -665,9 +862,22 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
                     with BakAndRestore(n,"init", None):
                         ans = super().visit_Decl(n)
             elif type_of_n in ('PtrDecl', 'ArrayDecl') :
-                type_st = getType(n.type.type) if n.type.type else None
+                type_st = getType(n.type.type.type) if n.type.type.type else None
+                #print(n, getType(n.type), getType(n.type.type), getType(n.type.type.type), getType(n.type.type.type.type))
                 if type_st == 'Struct':
-                    self.integral_type_list.append(n.type.type.name)
+                    if n.type.type.type.name in self.integral_type_list:
+                        #known struct type, don't declare content
+                        n.type.type.type.decls = None
+                    else:
+                        self.integral_type_list.append(n.type.type.type.name)
+                    type_of_arrptr = None
+                elif getType(n.type) == "ArrayDecl" and getType(n.type.type) == "PtrDecl" and getType(n.type.type.type) == "TypeDecl" and getType(n.type.type.type.type) == "Struct":
+                    if n.type.type.type.type.name in self.integral_type_list:
+                        #known struct type, don't declare content
+                        n.type.type.type.type.decls = None
+                    else:
+                        self.integral_type_list.append(n.type.type.type.type.name)
+                    type_of_arrptr = n.type.type.type.type.name
                 elif hasattr(n.type.type.type, 'names'): #array
                     type_of_arrptr = n.type.type.type.names[0]
                 elif hasattr(n.type.type.type, 'name'): #This condition capture the following case: 'static struct device *__local_csmy_callback_dev'
@@ -690,9 +900,14 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
                 
                 if self.scope == 'global':
                     with self.no_any_instrument():        
+                        #print("NOINSTR6", n)
                         ans = super().visit_Decl(n)
                 else:
-                    ans = super().visit_Decl(n)
+                    with self.no_any_instrument():   
+                        #print("NOINSTR7", n)
+                        n_copy = copy.copy(n)
+                        n_copy.init = None
+                        ans = super().visit_Decl(n_copy)
             else:
                 assert(False, "Unknown declaration type: "+type_of_n)
             
@@ -701,8 +916,11 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
                 pass
             if n.init:
                 #TODO
+                if n.name == "__cs_local_reader_two_read":
+                    print(n)
                 init = ""
                 if type_of_n == 'ArrayDecl':
+                    init += ";"
                     for index, ass_exp in enumerate(n.init):
                         unary_exp = c_ast.ArrayRef(c_ast.ID(n.name), c_ast.Constant('int', str(index)))
                         assignment = c_ast.Assignment("=", unary_exp, ass_exp)
@@ -713,15 +931,36 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
                                     tr = self.visit(assignment)
                         init += tr + ';' + '\n'
                 elif type_of_n in ('PtrDecl','TypeDecl'):
-                    unary_exp = c_ast.ID(n.name)
-                    ass_exp = n.init
-                    assignment = c_ast.Assignment("=", unary_exp, ass_exp)
-                    new_abs_dr_mode = {'abs_mode':"GET_VAL" if self.abs_on else None, 'dr_mode':None}
-                    with BakAndRestore(self, 'abs_dr_mode', new_abs_dr_mode):
-                        with self.clean_cp_state():
-                            with BakAndRestore(self, 'dr_on', False):
-                                tr = self.visit(assignment)
-                    init += tr + ';' + '\n'
+                    if type(n.init) is c_ast.InitList:
+                        for exp in n.init.exprs:
+                            str_ref = c_ast.ID(n.name)
+                            for field in exp.name:
+                                str_ref = c_ast.StructRef(str_ref,'.', field)
+                            ass_exp = exp.expr
+                            assignment = c_ast.Assignment("=", str_ref, ass_exp)
+                            new_abs_dr_mode = {'abs_mode':"GET_VAL" if self.abs_on else None, 'dr_mode':None}
+                            with BakAndRestore(self, 'abs_dr_mode', new_abs_dr_mode):
+                                with self.clean_cp_state():
+                                    with BakAndRestore(self, 'dr_on', False):
+                                        tr = self.visit(assignment)
+                            init += tr + ';' + '\n'
+                    else:
+                        unary_exp = c_ast.ID(n.name)
+                        ass_exp = n.init
+                        assignment = c_ast.Assignment("=", unary_exp, ass_exp)
+                        new_abs_dr_mode = {'abs_mode':"GET_VAL" if self.abs_on else None, 'dr_mode':None}
+                        with BakAndRestore(self, 'abs_dr_mode', new_abs_dr_mode):
+                            with self.clean_cp_state():
+                                with BakAndRestore(self, 'dr_on', False):
+                                    #if self.scope == 'global':
+                                    tr = self.visit(assignment)
+                                    #else:
+                                    #    tr = self.visit(ass_exp)
+                        if self.scope == 'global':
+                            init += tr + ';' + '\n'
+                        else:
+                            #init += " = " + tr + ';' + '\n'
+                            init += "; " + tr + ';' + '\n'
                 else:
                     assert(False, "Unexpected initializer for variable "+n.name+" with type_of_n = "+type_of_n)
                     
@@ -733,9 +972,8 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
          
     # TODO integrate into lazy...   
     def visit_If(self, n):
-        if not self.any_instrument:
+        if not self.any_instrument or not (self.dr_on or self.abs_on):
             return super().visit_If(n)
-        
         ifStart = self._lazyseqnewschedule__maxInCompound   # label where the if stmt begins
 
         s = 'if ('
@@ -744,6 +982,8 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
             extra_args = {}
             if self.dr_on:
                 extra_args['dr_vp_state'] = self.abs_dr_vpstate
+                extra_args['atomic'] = self._lazyseqnewschedule__atomic or self.atomicLvl > 0
+            #with BakAndRestore(self, 'full_statement', False):
             condition = self.abs_dr_rules.rule_IfCond(self.abs_dr_state, n.cond, self.abs_dr_mode['abs_mode'], self.abs_dr_mode['dr_mode'], self.full_statement, **extra_args)
             s += condition
 
