@@ -46,6 +46,7 @@ class drace(abstr_dr_common.abstr_dr_common):
         return s
       
     def codeContainsAtomic(self):
+        return True
         if self.__codeContainsAtomicCheck:
             for i in self.Parser.funcCallCnt: #self.Parser.funcName:
                 if i.startswith("__CSEQ_atomic"):
@@ -59,6 +60,7 @@ class drace(abstr_dr_common.abstr_dr_common):
         '''
         main = ''
         main += "int main(void) {\n"
+        main += self.global_var_initializations+";\n"
         main += "FIELD_DECLS();\n"
 
         #DR init TODO handle atomic

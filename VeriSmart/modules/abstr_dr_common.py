@@ -168,7 +168,7 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
     def loadfromstring(self, string, env):
         self.env = env  
         self.abs_bitwidth = env.bit_width
-        self.abs_dr_rules = abs_dr_rules.AbsDrRules(self, self.abs_on, self.dr_on, self.abs_bitwidth, SupportFileManager(), self.macro_file_name, debug=env.debug)
+        self.abs_dr_rules = abs_dr_rules.AbsDrRules(self, self.abs_on, self.dr_on, self.dr_on and self.codeContainsAtomic(), self.abs_bitwidth, SupportFileManager(), self.macro_file_name, debug=env.debug)
         
         # Instrumentation arguments: {'abs_mode':abs_mode, 'dr_mode':dr_mode} or {'abs_mode':'GET_VAL', 'dr_mode':'NO_ACCESS'} when translating a statement
         self.abs_dr_mode = {'abs_mode':'GET_VAL' if self.abs_on else None, 'dr_mode':'NO_ACCESS' if self.dr_on else None}
@@ -617,19 +617,20 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
         
         
     def DRvisit_FuncCall(self, n):
-        fref = self.frefVisit(n)
+        fref = n.name.name #self.frefVisit(n)
         
         # Visiting arguments
         visited_subexprs = []
         visited_subexprs_WSE = []
         bak_dr_mode = self.abs_dr_mode['dr_mode']
-        for expr in n.args.exprs:
-            self.abs_dr_mode['dr_mode'] = "ACCESS"
-            expr_ACCESS = self._visit_expr(expr)
-            self.abs_dr_mode['dr_mode'] = "WSE"
-            expr_WSE = self._visit_expr(expr)
-            visited_subexprs.append("("+", ".join([k for k in [expr_ACCESS, expr_WSE] if k != ""])+")")
-            visited_subexprs_WSE.append(expr_WSE)
+        if n.args is not None:
+            for expr in n.args.exprs:
+                self.abs_dr_mode['dr_mode'] = "TOP_ACCESS"
+                expr_TOP_ACCESS = self._visit_expr(expr)
+                self.abs_dr_mode['dr_mode'] = "WSE"
+                expr_WSE = self._visit_expr(expr)
+                visited_subexprs.append(expr_TOP_ACCESS)
+                visited_subexprs_WSE.append(expr_WSE)
         self.expList = visited_subexprs_WSE.copy()
         args =  ', '.join(visited_subexprs)
         self.abs_dr_mode['dr_mode'] = bak_dr_mode

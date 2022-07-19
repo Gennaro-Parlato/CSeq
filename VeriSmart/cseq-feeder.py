@@ -312,6 +312,7 @@ def usage(cmd, errormsg, showhelp=True, detail=False, isSwarm=False):
         print("   --overflow-check                  enable arithmetic over- and underflow check (optional)")
         print("data race option:")
         print("   --dr                              enable data race detection")
+        print("   --mydr                            enable data race detection")
         print("   -W,--wwDatarace                   requires that write-write datarace are on different written values")
         print("   --local-vars                      0 for init with malloc (default), 1 wih memcopy, 2 with nondet-static option")
         print("bit abstraction option:")
@@ -399,6 +400,9 @@ def main():
     if "--dr" in cseqenv.cmdline:
         cseqenv.chainfile = "modules/%s.chain" % core.utils.extractparamvalue(cseqenv.cmdline, "-C", "--chain",
                                                                               core.config.defaultDRchain)
+    elif "--mydr" in cseqenv.cmdline:
+        cseqenv.chainfile = "modules/%s.chain" % core.utils.extractparamvalue(cseqenv.cmdline, "-C", "--chain",
+                                                                              "dr_assertionChecking")
     else:
         cseqenv.chainfile = "modules/%s.chain" % core.utils.extractparamvalue(cseqenv.cmdline, "-C", "--chain",
                                                                               core.config.defaultchain)
@@ -561,7 +565,7 @@ def main():
                     "no-simplify", "refine-arrays", 
 
                     # DataRace
-                    "dr", "ww-datarace", "local-vars=", 
+                    "dr", "mydr", "ww-datarace", "local-vars=", 
                     
                     "sat-swarm",
                     
@@ -723,7 +727,7 @@ def main():
         # Datarace
         elif o in ("-W", "--ww-datarace"):
             cseqenv.wwDatarace = True
-        elif o in ("--dr"):
+        elif o in ("--dr", "--mydr"):
             cseqenv.enableDR = True
             cseqenv.local = 2   #data race default option: nondet-static init of _nondet_ named vars with cbmc-SM
         elif o in ("--local-vars"):

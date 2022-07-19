@@ -134,7 +134,7 @@ class MacroFile:
         
         
 class AbsDrRules:            
-    def __init__(self, visitor, abs_on, dr_possible, abstr_bits, supportFile, macroFileName, debug=False):
+    def __init__(self, visitor, abs_on, dr_possible, code_contains_atomic, abstr_bits, supportFile, macroFileName, debug=False):
         # visitor module
         self.visitor = visitor
         # abstraction active
@@ -143,6 +143,7 @@ class AbsDrRules:
         self.dr_possible = dr_possible
         # data race is on by default (if possible)
         self.dr_on = dr_possible
+        self.code_contains_atomic = code_contains_atomic
         
         # abstraction: bit abstraction Value/Lvalue
         self.bav = "__cs_baV" if abs_on else None
@@ -202,10 +203,11 @@ class AbsDrRules:
         self.bav1s = {}
         
         # abstraction: name field for dr
-        self.sm_dr_noatomic = "dr" if dr_possible else None
-        self.sm_dr_atomic = "dr_atomic" if dr_possible else None
+        assert(dr_possible)
+        self.sm_dr_all = "dr" if dr_possible else None
+        self.sm_dr_noatomic = "dr_noatomic" if code_contains_atomic else None
         
-        self.sm_dr = lambda kwargs: self.sm_dr_atomic if kwargs['atomic'] else self.sm_dr_noatomic
+        self.getsm_dr = lambda kwargs: self.sm_dr_noatomic if kwargs['atomic'] else self.sm_dr_all
         
         # support file to compute types
         self.supportFile = supportFile
@@ -267,10 +269,10 @@ class AbsDrRules:
         return "#define FIELD_DECLS() "+self.compound_expr(" ",*([
             self.if_abs(lambda: '__CPROVER_field_decl_global("'+self.sm_abs+'", (unsigned __CPROVER_bitvector[1])0);'),
             self.if_abs(lambda: '__CPROVER_field_decl_local("'+self.sm_abs+'", (unsigned __CPROVER_bitvector[1])0);'),
-            self.if_dr_possible(lambda: '__CPROVER_field_decl_global("'+self.sm_dr_noatomic+'", (_Bool)0);'),
-            self.if_dr_possible(lambda: '__CPROVER_field_decl_local("'+self.sm_dr_noatomic+'", (_Bool)0);'),
-            self.if_dr_possible(lambda: '__CPROVER_field_decl_global("'+self.sm_dr_atomic+'", (_Bool)0);'),
-            self.if_dr_possible(lambda: '__CPROVER_field_decl_local("'+self.sm_dr_atomic+'", (_Bool)0);'),
+            self.if_dr_possible(lambda: '__CPROVER_field_decl_global("'+self.sm_dr_noatomic+'", (_Bool)0);' if self.code_contains_atomic else ""),
+            self.if_dr_possible(lambda: '__CPROVER_field_decl_global("'+self.sm_dr_all+'", (_Bool)0);'),
+            self.if_dr_possible(lambda: '__CPROVER_field_decl_local("'+self.sm_dr_noatomic+'", (_Bool)0);' if self.code_contains_atomic else ""),
+            self.if_dr_possible(lambda: '__CPROVER_field_decl_local("'+self.sm_dr_all+'", (_Bool)0);'),
         ]))[0]
         
     def getAbstractionMacros(self):
@@ -631,6 +633,11 @@ class AbsDrRules:
         
     def rule_preOpOld(self, state, preop, abs_mode, dr_mode, full_statement, **kwargs): # --x, ++x
         self.assertDisabledIIFModesAreNone(abs_mode, dr_mode, **kwargs)  
+        if dr_mode == "TOP_ACCESS":
+            return self.store_content(full_statement, self.fakeIfAssignment(self.comma_expr(
+                    self.visitor_visit(state, preop, abs_mode, "ACCESS", **kwargs),
+                    self.visitor_visit(state, preop, abs_mode, "WSE", **kwargs)
+                )), preop, abs_mode, dr_mode)
         unExp = preop.expr
         op = preop.op
         assert(op in ("--","++"))
@@ -650,6 +657,11 @@ class AbsDrRules:
             
     def rule_preOp(self, state, preop, abs_mode, dr_mode, full_statement, **kwargs): # --x, ++x
         self.assertDisabledIIFModesAreNone(abs_mode, dr_mode, **kwargs)  
+        if dr_mode == "TOP_ACCESS":
+            return self.store_content(full_statement, self.fakeIfAssignment(self.comma_expr(
+                    self.visitor_visit(state, preop, abs_mode, "ACCESS", **kwargs),
+                    self.visitor_visit(state, preop, abs_mode, "WSE", **kwargs)
+                )), preop, abs_mode, dr_mode)
         unExp = preop.expr
         op = preop.op
         assert(op in ("--","++"))
@@ -691,6 +703,11 @@ class AbsDrRules:
         
     def rule_postOpOld(self, state, preop, abs_mode, dr_mode, full_statement, **kwargs): # x--, x++
         self.assertDisabledIIFModesAreNone(abs_mode, dr_mode, **kwargs)  
+        if dr_mode == "TOP_ACCESS":
+            return self.store_content(full_statement, self.fakeIfAssignment(self.comma_expr(
+                    self.visitor_visit(state, postop, abs_mode, "ACCESS", **kwargs),
+                    self.visitor_visit(state, postop, abs_mode, "WSE", **kwargs)
+                )), postop, abs_mode, dr_mode)
         unExp = preop.expr
         op = preop.op
         assert(op in ("p--","p++"))
@@ -712,6 +729,12 @@ class AbsDrRules:
             
     def rule_postOp(self, state, preop, abs_mode, dr_mode, full_statement, **kwargs): # --x, ++x
         self.assertDisabledIIFModesAreNone(abs_mode, dr_mode, **kwargs)  
+        if dr_mode == "TOP_ACCESS":
+            return self.store_content(full_statement, self.fakeIfAssignment(self.comma_expr(
+                    self.visitor_visit(state, postop, abs_mode, "ACCESS", **kwargs),
+                    self.visitor_visit(state, postop, abs_mode, "WSE", **kwargs)
+                )), postop, abs_mode, dr_mode)
+        
         unExp = preop.expr
         op = preop.op
         assert(op in ("p--","p++"))
@@ -759,7 +782,7 @@ class AbsDrRules:
         # return p2&&dr=(dr||wam||get_sm_dr(&[[postExp,WSE]][ [[exp,WSE]] ]))
         assert(self.dr_on)
         ok = lambda state: self.and_expr(self.p2code(self.getVpstate(**kwargs)), self.brackets(self.assign_with_prop(state, "dr", self.or_expr_prop(self.cp(state, "dr"), self.cp(state, "wam"), 
-            self.getsm("&("+self.brackets(self.visitor_visit(state, postExp, "VALUE", "WSE", **kwargs))+"["+self.visitor_visit(state, exp, "VALUE", "WSE", **kwargs)+"])", self.sm_dr(kwargs))))))
+            self.getsm("&("+self.brackets(self.visitor_visit(state, postExp, "VALUE", "WSE", **kwargs))+"["+self.visitor_visit(state, exp, "VALUE", "WSE", **kwargs)+"])", self.getsm_dr(kwargs))))))
         err = lambda state: self.and_expr(self.p2code(self.getVpstate(**kwargs)), self.brackets(self.assign_with_prop(state, "dr", self.or_expr_prop(self.cp(state, "dr"), self.cp(state, "wam"), self.cp(state, "wkm")))))
         if dr_mode in ("NO_ACCESS", "PREFIX"):
             return ""
@@ -795,6 +818,11 @@ class AbsDrRules:
             
     def rule_ArrayRef(self, state, arrexp, abs_mode, dr_mode, full_statement, **kwargs): # postExp[exp]
         self.assertDisabledIIFModesAreNone(abs_mode, dr_mode, **kwargs)  
+        if dr_mode == "TOP_ACCESS":
+            return self.store_content(full_statement, self.fakeIfAssignment(self.comma_expr(
+                    self.visitor_visit(state, arrexp, abs_mode, "ACCESS", **kwargs),
+                    self.visitor_visit(state, arrexp, abs_mode, "WSE", **kwargs)
+                )), arrexp, abs_mode, dr_mode)
         postExp = arrexp.name
         exp = arrexp.subscript
         if abs_mode in ("LVALUE", None) and dr_mode in ("WSE", None):
@@ -831,7 +859,7 @@ class AbsDrRules:
         # return p2&&dr=(dr||wam||get_sm_dr(&([[postExp,WSE]]->exp)]))
         assert(self.dr_on)
         ok = lambda state: self.and_expr(self.p2code(self.getVpstate(**kwargs)), self.brackets(self.assign_with_prop(state, "dr", self.or_expr_prop(self.cp(state, "dr"), self.cp(state, "wam"), 
-            self.getsm("&("+self.brackets(self.visitor_visit(state, postExp, "VALUE", "WSE", **kwargs))+"->"+exp.name+")", self.sm_dr(kwargs))))))
+            self.getsm("&("+self.brackets(self.visitor_visit(state, postExp, "VALUE", "WSE", **kwargs))+"->"+exp.name+")", self.getsm_dr(kwargs))))))
         err = lambda state: self.and_expr(self.p2code(self.getVpstate(**kwargs)), self.brackets(self.assign_with_prop(state, "dr", self.or_expr_prop(self.cp(state, "dr"), self.cp(state, "wam"), self.cp(state, "wkm")))))
         if dr_mode in ("NO_ACCESS", "PREFIX"):
             return ""
@@ -865,6 +893,11 @@ class AbsDrRules:
             
     def rule_StructRefPtr(self, state, srexp, abs_mode, dr_mode, full_statement, **kwargs): # postExp->exp
         self.assertDisabledIIFModesAreNone(abs_mode, dr_mode, **kwargs)  
+        if dr_mode == "TOP_ACCESS":
+            return self.store_content(full_statement, self.fakeIfAssignment(self.comma_expr(
+                    self.visitor_visit(state, srexp, abs_mode, "ACCESS", **kwargs),
+                    self.visitor_visit(state, srexp, abs_mode, "WSE", **kwargs)
+                )), srexp, abs_mode, dr_mode)
         assert(srexp.type == "->")
         postExp = srexp.name
         fid = srexp.field
@@ -897,7 +930,7 @@ class AbsDrRules:
         # return p2&&dr=(dr||wam||get_sm_dr(&([[postExp,WSE]].exp)))
         assert(self.dr_on)
         ok = lambda state: self.and_expr(self.p2code(self.getVpstate(**kwargs)), self.brackets(self.assign_with_prop(state, "dr", self.or_expr_prop(self.cp(state, "dr"), self.cp(state, "wam"), 
-            self.getsm("&("+self.brackets(self.visitor_visit(state, postExp, "LVALUE", "WSE", **kwargs))+"."+exp.name+")", self.sm_dr(kwargs))))))
+            self.getsm("&("+self.brackets(self.visitor_visit(state, postExp, "LVALUE", "WSE", **kwargs))+"."+exp.name+")", self.getsm_dr(kwargs))))))
         err = lambda state: self.and_expr(self.p2code(self.getVpstate(**kwargs)), self.brackets(self.assign_with_prop(state, "dr", self.or_expr_prop(self.cp(state, "dr"), self.cp(state, "wam"), self.cp(state, "wkm")))))
         if dr_mode in ("NO_ACCESS", "PREFIX"):
             return ""
@@ -926,6 +959,11 @@ class AbsDrRules:
             
     def rule_StructRefVar(self, state, srexp, abs_mode, dr_mode, full_statement, **kwargs): # postExp->exp
         self.assertDisabledIIFModesAreNone(abs_mode, dr_mode, **kwargs)  
+        if dr_mode == "TOP_ACCESS":
+            return self.store_content(full_statement, self.fakeIfAssignment(self.comma_expr(
+                    self.visitor_visit(state, srexp, abs_mode, "ACCESS", **kwargs),
+                    self.visitor_visit(state, srexp, abs_mode, "WSE", **kwargs)
+                )), srexp, abs_mode, dr_mode)
         assert(srexp.type == ".")
         postExp = srexp.name
         fid = srexp.field
@@ -959,6 +997,11 @@ class AbsDrRules:
         
     def rule_TernaryOp(self, state, top, abs_mode, dr_mode, full_statement, **kwargs):
         self.assertDisabledIIFModesAreNone(abs_mode, dr_mode, **kwargs)
+        if dr_mode == "TOP_ACCESS":
+            return self.store_content(full_statement, self.fakeIfAssignment(self.comma_expr(
+                    self.visitor_visit(state, top, abs_mode, "ACCESS", **kwargs),
+                    self.visitor_visit(state, top, abs_mode, "WSE", **kwargs)
+                )), top, abs_mode, dr_mode)
         lorExp = top.cond
         exp = top.iftrue
         condExp = top.iffalse
@@ -991,7 +1034,7 @@ class AbsDrRules:
         # return p2&&dr=(dr||wam||get_sm_dr(*[[castExp,VALUE,WSE]])
         assert(self.dr_on)
         ok = lambda state: self.and_expr(self.p2code(self.getVpstate(**kwargs)), self.brackets(self.assign_with_prop(state, "dr", self.or_expr_prop(self.cp(state, "dr"), self.cp(state, "wam"), 
-            self.getsm("("+self.visitor_visit(state, castExp, "VALUE", "WSE", **kwargs)+")", self.sm_dr(kwargs))))))
+            self.getsm("("+self.visitor_visit(state, castExp, "VALUE", "WSE", **kwargs)+")", self.getsm_dr(kwargs))))))
         err = lambda state: self.and_expr(self.p2code(self.getVpstate(**kwargs)), self.brackets(self.assign_with_prop(state, "dr", self.or_expr_prop(self.cp(state, "dr"), self.cp(state, "wam"), self.cp(state, "wkm")))))
         if dr_mode in ("NO_ACCESS", "PREFIX"):
             return ""
@@ -1025,6 +1068,11 @@ class AbsDrRules:
                     
     def rule_PtrOp(self, state, ptrop, abs_mode, dr_mode, full_statement, **kwargs):
         self.assertDisabledIIFModesAreNone(abs_mode, dr_mode, **kwargs)
+        if dr_mode == "TOP_ACCESS":
+            return self.store_content(full_statement, self.fakeIfAssignment(self.comma_expr(
+                    self.visitor_visit(state, ptrop, abs_mode, "ACCESS", **kwargs),
+                    self.visitor_visit(state, ptrop, abs_mode, "WSE", **kwargs)
+                )), ptrop, abs_mode, dr_mode)
         assert(ptrop.op == '*')
         castExp = ptrop.expr
         if abs_mode is None and dr_mode is None:
@@ -1050,6 +1098,11 @@ class AbsDrRules:
             
     def rule_AddrOp(self, state, addrop, abs_mode, dr_mode, full_statement, **kwargs):
         self.assertDisabledIIFModesAreNone(abs_mode, dr_mode, **kwargs)
+        if dr_mode == "TOP_ACCESS":
+            return self.store_content(full_statement, self.fakeIfAssignment(self.comma_expr(
+                    self.visitor_visit(state, addrop, abs_mode, "ACCESS", **kwargs),
+                    self.visitor_visit(state, addrop, abs_mode, "WSE", **kwargs)
+                )), addrop, abs_mode, dr_mode)
         assert(addrop.op == '&')
         castExp = addrop.expr
         if abs_mode is None and dr_mode is None:
@@ -1094,6 +1147,11 @@ class AbsDrRules:
             
     def rule_NotOp(self, state, notop, abs_mode, dr_mode, full_statement, **kwargs):
         self.assertDisabledIIFModesAreNone(abs_mode, dr_mode, **kwargs)
+        if dr_mode == "TOP_ACCESS":
+            return self.store_content(full_statement, self.fakeIfAssignment(self.comma_expr(
+                    self.visitor_visit(state, notop, abs_mode, "ACCESS", **kwargs),
+                    self.visitor_visit(state, notop, abs_mode, "WSE", **kwargs)
+                )), notop, abs_mode, dr_mode)
         assert(notop.op == '!')
         castExp = notop.expr
         if abs_mode is None and dr_mode is None:
@@ -1107,6 +1165,11 @@ class AbsDrRules:
             
     def rule_UnOp(self, state, unop, abs_mode, dr_mode, full_statement, **kwargs):
         self.assertDisabledIIFModesAreNone(abs_mode, dr_mode, **kwargs)
+        if dr_mode == "TOP_ACCESS":
+            return self.store_content(full_statement, self.fakeIfAssignment(self.comma_expr(
+                    self.visitor_visit(state, unop, abs_mode, "ACCESS", **kwargs),
+                    self.visitor_visit(state, unop, abs_mode, "WSE", **kwargs)
+                )), unop, abs_mode, dr_mode)
         assert(unop.op in ('+','-','~'))
         castExp = unop.expr
         unOp = unop.op
@@ -1122,6 +1185,11 @@ class AbsDrRules:
             
     def rule_Sizeof(self, state, sizeof, abs_mode, dr_mode, full_statement, **kwargs):
         self.assertDisabledIIFModesAreNone(abs_mode, dr_mode, **kwargs)
+        if dr_mode == "TOP_ACCESS":
+            return self.store_content(full_statement, self.fakeIfAssignment(self.comma_expr(
+                    self.visitor_visit(state, sizeof, abs_mode, "ACCESS", **kwargs),
+                    self.visitor_visit(state, sizeof, abs_mode, "WSE", **kwargs)
+                )), sizeof, abs_mode, dr_mode)
         assert(sizeof.op in ('sizeof',))
         unexp_type = sizeof.expr
         if abs_mode is None and dr_mode is None:
@@ -1136,6 +1204,11 @@ class AbsDrRules:
             
     def rule_Comma(self, state, comma, abs_mode, dr_mode, full_statement, **kwargs):
         self.assertDisabledIIFModesAreNone(abs_mode, dr_mode, **kwargs) 
+        if dr_mode == "TOP_ACCESS":
+            return self.store_content(full_statement, self.fakeIfAssignment(self.comma_expr(
+                    self.visitor_visit(state, comma, abs_mode, "ACCESS", **kwargs),
+                    self.visitor_visit(state, comma, abs_mode, "WSE", **kwargs)
+                )), comma, abs_mode, dr_mode)
         exps = comma.exprs
         if abs_mode is None and dr_mode is None:
             parts = [self.visitor_visit(state, x, None, None, **kwargs) for x in exps]
@@ -1174,6 +1247,11 @@ class AbsDrRules:
             
     def rule_Malloc(self, state, fullExpr, abs_mode, dr_mode, full_statement, **kwargs):
         self.assertDisabledIIFModesAreNone(abs_mode, dr_mode, **kwargs) 
+        if dr_mode == "TOP_ACCESS":
+            return self.store_content(full_statement, self.fakeIfAssignment(self.comma_expr(
+                    self.visitor_visit(state, fullExpr, abs_mode, "ACCESS", **kwargs),
+                    self.visitor_visit(state, fullExpr, abs_mode, "WSE", **kwargs)
+                )), fullExpr, abs_mode, dr_mode)
         exp = fullExpr.args
         fncName = fullExpr.name.name
         if abs_mode in ("VALUE", None) and dr_mode in ("WSE",None):
@@ -1210,11 +1288,19 @@ class AbsDrRules:
             
     def rule_Assert_Assume(self, state, fullExpr, abs_mode, dr_mode, full_statement, **kwargs):
         self.assertDisabledIIFModesAreNone(abs_mode, dr_mode, **kwargs) 
+        if dr_mode == "TOP_ACCESS":
+            return self.store_content(full_statement, self.fakeIfAssignment(self.comma_expr(
+                    self.visitor_visit(state, fullExpr, abs_mode, "ACCESS", **kwargs),
+                    self.visitor_visit(state, fullExpr, abs_mode, "WSE", **kwargs)
+                )), fullExpr, abs_mode, dr_mode)
         exp = fullExpr.args
         fncName = fullExpr.name.name
         # TODO this is already done by the backend's instrumenter on the c file, but it does not act on the macro file. Therefore I'll do it now here
-        if fncName == "__CSEQ_assert":
-            fncName = "assert"
+        if fncName in ("__CSEQ_assert", "assert", "__CPROVER_assert"):
+            if  self.dr_possible:
+                fncName = "__CPROVER_assume"
+            else:
+                fncName = "assert"
         elif fncName == "__CSEQ_assume":
             fncName = "__CPROVER_assume"
         if abs_mode in ("GET_VAL",None) and dr_mode in ("NO_ACCESS",None):
@@ -1246,6 +1332,11 @@ class AbsDrRules:
     
     def rule_Cast(self, state, cast, abs_mode, dr_mode, full_statement, **kwargs):
         self.assertDisabledIIFModesAreNone(abs_mode, dr_mode, **kwargs)
+        if dr_mode == "TOP_ACCESS":
+            return self.store_content(full_statement, self.fakeIfAssignment(self.comma_expr(
+                    self.visitor_visit(state, cast, abs_mode, "ACCESS", **kwargs),
+                    self.visitor_visit(state, cast, abs_mode, "WSE", **kwargs)
+                )), cast, abs_mode, dr_mode)
         unExpr = cast.expr
         toType = cast.to_type
         if abs_mode in ("VALUE", None) and dr_mode in ("WSE",None):
@@ -1318,6 +1409,11 @@ class AbsDrRules:
         
     def rule_OrAnd(self, state, fullOp, abs_mode, dr_mode, full_statement, **kwargs):
         self.assertDisabledIIFModesAreNone(abs_mode, dr_mode, **kwargs)
+        if dr_mode == "TOP_ACCESS":
+            return self.store_content(full_statement, self.fakeIfAssignment(self.comma_expr(
+                    self.visitor_visit(state, fullOp, abs_mode, "ACCESS", **kwargs),
+                    self.visitor_visit(state, fullOp, abs_mode, "WSE", **kwargs)
+                )), fullOp, abs_mode, dr_mode)
         exp1 = fullOp.left
         exp2 = fullOp.right
         
@@ -1342,6 +1438,11 @@ class AbsDrRules:
             
     def rule_BinaryOp(self, state, fullOp, abs_mode, dr_mode, full_statement, **kwargs):
         self.assertDisabledIIFModesAreNone(abs_mode, dr_mode, **kwargs)
+        if dr_mode == "TOP_ACCESS":
+            return self.store_content(full_statement, self.fakeIfAssignment(self.comma_expr(
+                    self.visitor_visit(state, fullOp, abs_mode, "ACCESS", **kwargs),
+                    self.visitor_visit(state, fullOp, abs_mode, "WSE", **kwargs)
+                )), fullOp, abs_mode, dr_mode)
         exp1 = fullOp.left
         exp2 = fullOp.right
         op = fullOp.op
@@ -1366,6 +1467,11 @@ class AbsDrRules:
         
     def rule_ID(self, state, sid, abs_mode, dr_mode, full_statement, **kwargs):
         self.assertDisabledIIFModesAreNone(abs_mode, dr_mode, **kwargs)
+        if dr_mode == "TOP_ACCESS":
+            return self.store_content(full_statement, self.fakeIfAssignment(self.comma_expr(
+                    self.visitor_visit(state, sid, abs_mode, "ACCESS", **kwargs),
+                    self.visitor_visit(state, sid, abs_mode, "WSE", **kwargs)
+                )), sid, abs_mode, dr_mode)
         if not self.abs_on and not self.dr_on:
             return sid.name
         elif abs_mode == "LVALUE":
@@ -1380,7 +1486,7 @@ class AbsDrRules:
                 self.if_dr(lambda: 
                     self.and_expr(
                         self.p2code(self.getVpstate(**kwargs)), 
-                        self.brackets(self.assign_with_prop(state,"dr", self.or_expr_prop(self.cp(state, "dr"), self.cp(state, "wam"), self.getsm("&("+sid.name+")", self.sm_dr(kwargs)))))
+                        self.brackets(self.assign_with_prop(state,"dr", self.or_expr_prop(self.cp(state, "dr"), self.cp(state, "wam"), self.getsm("&("+sid.name+")", self.getsm_dr(kwargs)))))
                     ) if dr_mode != "NO_ACCESS" else ""),
                 self.if_abs(lambda: self.assign_with_prop(state,"bal","0")),
                 self.if_abs(lambda: (self.assign_with_prop(state,"bav",self.getsm("&("+sid.name+")", self.sm_abs)) if abs_mode in ("GET_VAL", "UPD_VAL") else ""))
@@ -1388,6 +1494,11 @@ class AbsDrRules:
     
     def rule_ArrayID(self, state, sid, abs_mode, dr_mode, full_statement, **kwargs):   
         self.assertDisabledIIFModesAreNone(abs_mode, dr_mode, **kwargs)
+        if dr_mode == "TOP_ACCESS":
+            return self.store_content(full_statement, self.fakeIfAssignment(self.comma_expr(
+                    self.visitor_visit(state, sid, abs_mode, "ACCESS", **kwargs),
+                    self.visitor_visit(state, sid, abs_mode, "WSE", **kwargs)
+                )), sid, abs_mode, dr_mode)
         if not self.abs_on and not self.dr_on:
             return sid.name
         elif abs_mode == "LVALUE":
@@ -1401,7 +1512,7 @@ class AbsDrRules:
                 self.if_dr(lambda: 
                     self.and_expr(
                         self.p2code(self.getVpstate(**kwargs)), 
-                        self.brackets(self.assign_with_prop(state,"dr", self.or_expr_prop(self.cp(state, "dr"), self.cp(state, "wam"), self.getsm("&("+sid.name+")", self.sm_dr(kwargs)))))
+                        self.brackets(self.assign_with_prop(state,"dr", self.or_expr_prop(self.cp(state, "dr"), self.cp(state, "wam"), self.getsm("&("+sid.name+")", self.getsm_dr(kwargs)))))
                     ) if dr_mode not in ("NO_ACCESS", "PREFIX") else ""),
                 self.if_abs(lambda: self.assign_with_prop(state,"bal","0")),
                 self.if_abs(lambda: self.assign_with_prop(state,"bav","0") if abs_mode in ("GET_VAL", "UPD_VAL") else "")
@@ -1409,6 +1520,11 @@ class AbsDrRules:
                     
     def rule_Constant(self, state, con, abs_mode, dr_mode, full_statement, **kwargs):      
         self.assertDisabledIIFModesAreNone(abs_mode, dr_mode, **kwargs)  
+        if dr_mode == "TOP_ACCESS":
+            return self.store_content(full_statement, self.fakeIfAssignment(self.comma_expr(
+                    self.visitor_visit(state, con, abs_mode, "ACCESS", **kwargs),
+                    self.visitor_visit(state, con, abs_mode, "WSE", **kwargs)
+                )), con, abs_mode, dr_mode)
         assert(abs_mode not in ("SET_VAL", "GET_ADDR"), "Invalid: cannot get address or set the value of constants")
         if not self.abs_on and not self.dr_on:
             return con.value
@@ -1420,6 +1536,11 @@ class AbsDrRules:
     # nondeterministic returning function. Treat as a constant
     def rule_Nondet(self, state, fnc, abs_mode, dr_mode, full_statement, **kwargs):      
         self.assertDisabledIIFModesAreNone(abs_mode, dr_mode, **kwargs)  
+        if dr_mode == "TOP_ACCESS":
+            return self.store_content(full_statement, self.fakeIfAssignment(self.comma_expr(
+                    self.visitor_visit(state, fnc, abs_mode, "ACCESS", **kwargs),
+                    self.visitor_visit(state, fnc, abs_mode, "WSE", **kwargs)
+                )), fnc, abs_mode, dr_mode)
         assert(abs_mode not in ("SET_VAL", "GET_ADDR"), "Invalid: cannot get address or set the value of constants")
         if not self.abs_on and not self.dr_on:
             return self.visitor_visit_noinstr(fnc)
@@ -1432,14 +1553,15 @@ class AbsDrRules:
     def __assignment_manual_cp_p1(self, state, unExpr, **kwargs):
         return self.and_expr(self.p1code(self.getVpstate(**kwargs)),
             self.comma_expr(
-                self.setsm("&("+self.visitor_visit(state, unExpr, "LVALUE", "WSE", **kwargs)+")", self.sm_dr(kwargs), "1"),
+                self.setsm("&("+self.visitor_visit(state, unExpr, "LVALUE", "WSE", **kwargs)+")", self.sm_dr_all, "1"),  
+                self.setsm("&("+self.visitor_visit(state, unExpr, "LVALUE", "WSE", **kwargs)+")", self.sm_dr_noatomic, "1") if self.code_contains_atomic and not kwargs['atomic'] else "",
                 self.assign(state, "wkm", "1")))
             
     # helper function: returns "p2 && (DR = DR || WAM || get_sm_dr(&[[unexp, LVALUE]]))" and manually applies const propagation
     def __assignment_manual_cp_p2(self, state, unExpr, **kwargs):
         return self.and_expr(self.p2code(self.getVpstate(**kwargs)),
             self.brackets(self.assign(state, "dr", self.or_expr_prop(self.cp(state, "dr"), self.cp(state, "wam"), 
-                self.getsm("&("+self.visitor_visit(state, unExpr, "LVALUE", "WSE", **kwargs)+")", self.sm_dr(kwargs)))))
+                self.getsm("&("+self.visitor_visit(state, unExpr, "LVALUE", "WSE", **kwargs)+")", self.getsm_dr(kwargs)))))
             )
     
     # helper function: returns "bal && fail()" and manually applies const propagation    
@@ -1554,6 +1676,11 @@ class AbsDrRules:
         
     def rule_Assignment(self, state, assn, abs_mode, dr_mode, full_statement, **kwargs):
         self.assertDisabledIIFModesAreNone(abs_mode, dr_mode, **kwargs)  
+        if dr_mode == "TOP_ACCESS":
+            return self.store_content(full_statement, self.fakeIfAssignment(self.comma_expr(
+                    self.visitor_visit(state, assn, abs_mode, "ACCESS", **kwargs),
+                    self.visitor_visit(state, assn, abs_mode, "WSE", **kwargs)
+                )), assn, abs_mode, dr_mode)
         unExp = assn.lvalue
         assExp = assn.rvalue
         op = assn.op
@@ -1598,6 +1725,11 @@ class AbsDrRules:
             
     def rule_SpecialFuncCall(self, state, fcall, abs_mode, dr_mode, full_statement, **kwargs):
         self.assertDisabledIIFModesAreNone(abs_mode, dr_mode, **kwargs)  
+        if dr_mode == "TOP_ACCESS":
+            return self.store_content(full_statement, self.fakeIfAssignment(self.comma_expr(
+                    self.visitor_visit(state, fcall, abs_mode, "ACCESS", **kwargs),
+                    self.visitor_visit(state, fcall, abs_mode, "WSE", **kwargs)
+                )), fcall, abs_mode, dr_mode)
         kwargs_nobavtest = {k:kwargs[k] for k in kwargs if k != "bavtest"}
         return self.comma_expr(
             self.if_abs(lambda: self.comma_expr(*[self.comma_expr(self.visitor_visit(state, x, "GET_VAL", "NO_ACCESS", **kwargs_nobavtest), self.__assignment_manual_bav_fail(state)) for x in kwargs["bavtest"]])),
