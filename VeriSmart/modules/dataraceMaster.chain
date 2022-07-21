@@ -1,0 +1,29 @@
+# Datarace chain for LazyCseq and Verismart 
+#
+#
+
+workarounds
+functiontracker
+
+dr_preinstrumenter
+constants
+spinlock
+
+# program simplification
+switchtransformer
+dowhileconverter
+conditionextractor
+#shortcircuitconverter
+
+dr_varnames
+
+# program flattening
+inliner
+unroller
+duplicator
+
+# sequentialization
+condwaitconverter
+dr_lazyseqnewschedule
+loopAnalysisMasterSlave
+

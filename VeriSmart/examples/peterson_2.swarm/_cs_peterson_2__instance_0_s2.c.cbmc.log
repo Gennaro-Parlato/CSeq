@@ -1,0 +1,51 @@
+CBMC version 5.54.0 (cbmc-5.54.0) 64-bit x86_64 linux
+Parsing examples/peterson_2.swarm/_cs_peterson_2__instance_0_s2.c
+Converting
+Type-checking _cs_peterson_2__instance_0_s2
+Generating GOTO Program
+Adding CPROVER library (x86_64)
+Removal of function pointers and virtual functions
+Generic Property Instrumentation
+Running with 8 object bits, 24 offset bits (default)
+Starting Bounded Model Checking
+Runtime Symex: 0.0225708s
+size of program expression: 365 steps
+simple slicing removed 0 assignments
+Generated 0 VCC(s), 0 remaining after simplification
+Runtime Postprocess Equation: 6.5245e-05s
+
+** Results:
+examples/peterson_2.swarm/_cs_peterson_2__instance_0_s2.c function __cs_barrier_init
+[__cs_barrier_init.assertion.1] line 183 count must be greater than 0: SUCCESS
+
+examples/peterson_2.swarm/_cs_peterson_2__instance_0_s2.c function __cs_barrier_wait_1
+[__cs_barrier_wait_1.assertion.1] line 196 attempt to use an uninitialized barrier variable: SUCCESS
+
+examples/peterson_2.swarm/_cs_peterson_2__instance_0_s2.c function __cs_barrier_wait_2
+[__cs_barrier_wait_2.assertion.1] line 202 attempt to use an uninitialized barrier variable: SUCCESS
+
+examples/peterson_2.swarm/_cs_peterson_2__instance_0_s2.c function __cs_cond_wait_1
+[__cs_cond_wait_1.assertion.1] line 153 attempt to use an uninitialized conditional variable: SUCCESS
+[__cs_cond_wait_1.assertion.2] line 154 attempt to use a destroyed conditional variable: SUCCESS
+
+examples/peterson_2.swarm/_cs_peterson_2__instance_0_s2.c function __cs_mutex_destroy
+[__cs_mutex_destroy.assertion.1] line 115 attempt to destroy an uninitialized mutex: SUCCESS
+[__cs_mutex_destroy.assertion.2] line 116 attempt to destroy a previously destroyed mutex: SUCCESS
+[__cs_mutex_destroy.assertion.3] line 117 attempt to destroy a locked mutex: SUCCESS
+
+examples/peterson_2.swarm/_cs_peterson_2__instance_0_s2.c function __cs_mutex_lock
+[__cs_mutex_lock.assertion.1] line 124 attempt to lock an uninitialized mutex: SUCCESS
+[__cs_mutex_lock.assertion.2] line 125 attempt to lock a destroyed mutex: SUCCESS
+
+examples/peterson_2.swarm/_cs_peterson_2__instance_0_s2.c function __cs_mutex_unlock
+[__cs_mutex_unlock.assertion.1] line 133 attempt to unlock an uninitialized mutex: SUCCESS
+[__cs_mutex_unlock.assertion.2] line 134 attempt to unlock a destroyed mutex: SUCCESS
+
+examples/peterson_2.swarm/_cs_peterson_2__instance_0_s2.c function thr1_0
+[thr1_0.assertion.1] line 320 assertion 0: SUCCESS
+
+examples/peterson_2.swarm/_cs_peterson_2__instance_0_s2.c function thr2_0
+[thr2_0.assertion.1] line 348 assertion 0: SUCCESS
+
+** 0 of 14 failed (1 iterations)
+VERIFICATION SUCCESSFUL

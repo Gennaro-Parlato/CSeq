@@ -4,4 +4,7 @@ debugpath = 'log'
 # default analysis
 defaultchain = 'assertionChecking'
 defaultDRchain = 'datarace'
-
+defaultDRchainMaster = 'dataraceMaster'
+defaultDRchainSlave = 'dataraceSlave'
+defaultchainMaster = 'assertionCheckingMaster'
+defaultchainSlave = 'assertionCheckingSlave'

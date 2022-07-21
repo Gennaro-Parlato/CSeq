@@ -8,4 +8,5 @@ reportpath = "reports"
 # Relative path to dependencies, calling environment
 relpath = {}
 relpath["preprocessor"] = ""
+relpath["translatorDistributed"] = "cseq-feeder-master-slave.py"
 relpath["translator"] = "cseq-feeder.py"

@@ -7,8 +7,8 @@ import os.path
 import sys
 import getopt
 
+from bin import config
 from bin import log_handler
-
 
 VERSION = "VeriSmart-1.0-2017.12.19"
 VERSION = "VeriSmart-1.1-2019.02.07"
@@ -18,7 +18,7 @@ VERSION = "VeriSmart-1.2-2021.02.11"
 
 Description:
 	Verification Smart, swarm verification
-	
+
 TODO:
 
 
@@ -51,24 +51,85 @@ Changelog:
 
 """
 
+
 def main(args):
-	cmd = args[0]
-	cmdline = os.path.dirname(sys.argv[0]) + "/"
-	from bin import config
-	cmdline += config.relpath["translator"]
-	cmdline += " --vs" 	
-	for argument in args[1:]:
-		if "-h" in argument:
-			os.system(cmdline + " -h")
-			sys.exit(0)
-		if "-H" in argument:	
-			os.system(cmdline + " -H")
-			sys.exit(0)
-		cmdline += " %s" % argument
-	#print(cmdline)
-	os.system(cmdline)
-	sys.exit(0)
+
+    cmdlinePrefixVerismart = os.path.dirname(sys.argv[0]) + "/" + config.relpath["translator"] + " --vs"
+
+    isDistributed = False
+    isGettingProcessorsNumber = False
+    numberProcess = ""
+
+    isCluster = False
+    isGettingHostfile = False
+    hostfile = ""
+
+    isDistributedSat = False
+    isGettingServerAddress = False
+    serverAddress = ""
+
+    cmdlineOptions = ""
+
+    for argument in args[1:]:
+        if "-h" == argument or "--help" == argument.lower():
+            os.system(cmdlinePrefixVerismart + " -h")
+            sys.exit(0)
+        elif "-H" == argument or "--detailedHelp" == argument.lower():
+            os.system(cmdlinePrefixVerismart + " -H")
+            sys.exit(0)
+        elif "--master-slave-processors" == argument.lower() or "-np" == argument.lower():
+            isDistributed = True
+            isGettingProcessorsNumber = True
+            continue
+        elif isGettingProcessorsNumber:
+            numberProcess = argument
+            isGettingProcessorsNumber = False
+            continue
+        elif "-hosts" == argument.lower():
+            isCluster = True
+            isGettingHostfile = True
+            continue
+        elif isGettingHostfile:
+            hostfile = argument
+            isGettingHostfile = False
+            continue
+        elif "--ompi-server" == argument.lower() or "-server" == argument.lower():
+            isDistributedSat = True
+            isGettingServerAddress = True
+            continue
+        elif isGettingServerAddress:
+            serverAddress = argument
+            isGettingServerAddress = False
+            continue
+        cmdlineOptions += " %s" % argument
+
+    cmdlinePrefixVerismartDistributed = "mpirun -np " + numberProcess + " --oversubscribe --quiet " + os.path.dirname(
+        sys.argv[0]) + "/" + config.relpath["translatorDistributed"] + " --vs"
+    cmdlinePrefixVerismartDistributedCluster = "mpirun -np " + numberProcess + " --oversubscribe -hostfile " + hostfile + " --quiet " + os.path.dirname(
+        sys.argv[0]) + "/" + config.relpath["translatorDistributed"] + " --vs"
+    cmdlinePrefixVerismartDistributedSat = "mpirun -np " + numberProcess + " --oversubscribe --ompi-server file:" + serverAddress + " --quiet " + os.path.dirname(
+        sys.argv[0]) + "/" + config.relpath["translatorDistributed"]
+    cmdlinePrefixVerismartDistributedSatCluster = "mpirun -np " + numberProcess + " --oversubscribe --ompi-server file:" + serverAddress + " -hostfile " + hostfile + " --quiet " + os.path.dirname(
+        sys.argv[0]) + "/" + config.relpath["translatorDistributed"]
+
+    if isDistributed and not isDistributedSat and not isCluster:
+        os.system(cmdlinePrefixVerismartDistributed + cmdlineOptions)
+        print(cmdlinePrefixVerismartDistributed + cmdlineOptions)
+    elif isDistributed and not isDistributedSat and isCluster:
+        os.system(cmdlinePrefixVerismartDistributedCluster + cmdlineOptions)
+        print(cmdlinePrefixVerismartDistributedCluster + cmdlineOptions)
+    elif isDistributed and isDistributedSat and not isCluster:
+        os.system(cmdlinePrefixVerismartDistributedSat + cmdlineOptions)
+        print(cmdlinePrefixVerismartDistributedSat + cmdlineOptions)
+    elif isDistributed and isDistributedSat and isCluster:
+        os.system(cmdlinePrefixVerismartDistributedSatCluster + cmdlineOptions)
+        print(cmdlinePrefixVerismartDistributedSatCluster + cmdlineOptions)
+    else:
+        os.system(cmdlinePrefixVerismart + cmdlineOptions)
+        # print(cmdlinePrefixVerismart + cmdlineOptions)
+
+    sys.exit(0)
 
 
 if __name__ == "__main__":
-	main(sys.argv[0:])
+    main(sys.argv[0:])
