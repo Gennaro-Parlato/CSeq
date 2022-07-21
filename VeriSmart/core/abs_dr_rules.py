@@ -570,7 +570,11 @@ class AbsDrRules:
     
     # Perform a visit using the visitor module, according to the enabled modes
     def visitor_visit(self, state, n, abs_mode, dr_mode, **kwargs):
-        return self.visitor.visit_with_absdr_args(state, n, abs_mode if self.abs_on else None, dr_mode if self.dr_on else None, full_statement=False, **kwargs).strip()
+        ans = self.visitor.visit_with_absdr_args(state, n, abs_mode if self.abs_on else None, dr_mode if self.dr_on else None, full_statement=False, **kwargs).strip()
+        if ans == "()":
+            return ""
+        else:
+            return ans
         
     # Perform a visit using the visitor module without any instrumentation
     def visitor_visit_noinstr(self, n):
