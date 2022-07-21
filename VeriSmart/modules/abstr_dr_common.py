@@ -46,6 +46,11 @@ def getType(node_info):
     return str(type(node_info)).split('.')[-1].replace('>', ' ').replace("'", '').replace(' ', '')
 
 class abstr_dr_common(lazyseqnewschedule.lazyseqnewschedule): 
+    def get_current_idx(self):
+        comm = MPI.COMM_WORLD
+        rank = comm.Get_rank()
+        return str(rank)
+        
     def init(self, abs_on, dr_on):
         super().init()
         #Instrument this node and its children
@@ -91,13 +96,14 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
         
         """
         
+        rank = self.get_current_idx()
         # Macro file name. TODO make it parametric (see abstraction_prep.loadfromstring)
-        self.macro_file_name = "macro_plain.h"
+        self.macro_file_name = "macro_plain_"+rank+".h"
         
         # Support file name. TODO make it parametric (see abstraction_prep.loadfromstring)
-        self.support_file_name = "support_file.c"
+        self.support_file_name = "support_file_"+rank+".c"
         # Support file name. TODO make it parametric (see abstraction_prep.loadfromstring)
-        self.support_file_runnable = "support_file"
+        self.support_file_runnable = "support_file_"+rank
         
         # set of arrays (they have a known address)
         self.program_arrays = []
