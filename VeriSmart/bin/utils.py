@@ -603,7 +603,7 @@ class ConfigGenerator():
 
 
 def findlength(threadsize, percent):
-	return int(threadsize * percent / 100)
+	return max(int(threadsize * percent / 100), min(1, threadsize))
 
 
 class ConfigGeneratorPercentage():

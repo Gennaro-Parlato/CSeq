@@ -7,6 +7,7 @@ from core import abs_dr_rules
 import os
 from core.support_file import SupportFileManager
 import copy
+from mpi4py import MPI
 
 '''
 Utility class that allows to set a field to a specific value in a block and restore it when left.

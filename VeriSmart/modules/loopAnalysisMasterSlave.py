@@ -195,7 +195,7 @@ class loopAnalysisMasterSlave(core.module.Translator):
 
             queue = multiprocessing.Queue()
 
-            if env.stop_on_fail:
+            if env.exit_on_error:
                 slaveAnalysisProcess = Process(target=self.slaveAnalysis, args=(seqcode, env, fill_only_fields, queue))
                 slaveAnalysisProcess.start()
 
@@ -435,7 +435,7 @@ class loopAnalysisMasterSlave(core.module.Translator):
         while True:
 
             jsonConfig = ""
-            if env.stop_on_fail == False:
+            if env.exit_on_error == False:
 
                 jsonConfig = comm.recv(source=server, status=status)
 
@@ -482,7 +482,7 @@ class loopAnalysisMasterSlave(core.module.Translator):
         comm.recv(source=MPI.ANY_SOURCE, status=status)
         tag = status.tag
         rankClient = status.Get_source()
-
+        
         if tag == StatusCode.UNSAFE.value:
             jsonConfigAnalyzed = hashtable[str(rankClient)]
             reportHashtable[str(jsonConfigAnalyzed)] = StatusCode.UNSAFE.value
@@ -491,7 +491,7 @@ class loopAnalysisMasterSlave(core.module.Translator):
                 self.foundtime = time.time() - env.starttime
                 self.isUnsafe = True
 
-                if env.stop_on_fail == True:
+                if env.exit_on_error == True:
 
                     totaltime = time.time() - env.starttime
                     self.printIsUnsafe(totaltime, self.foundtime, env.inputfile, env.isSwarm)
