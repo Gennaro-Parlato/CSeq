@@ -6,7 +6,7 @@
 # such that CSeq folder will be the shared folder among EC2 instances:
 
 #git clone https://github.com/Gennaro-Parlato/CSeq.git
-su - aldo -c "unzip CSeq.zip"
+#su - aldo -c "unzip CSeq.zip"
 
 sudo pip3 install -r /home/aldo/CSeq/VeriSmart/requirements.txt
 

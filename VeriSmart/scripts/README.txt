@@ -1,11 +1,10 @@
 
 CONFIGURE EACH EC2 MACHINE (BOTH MASTER AND SLAVES) WITH THIS USERDATA:
-sudo snap install amazon-ssm-agent --classic
-sudo systemctl start amazon-ssm-agent
-sudo systemctl enable amazon-ssm-agent
+enable_ssm_on_instances_master_slaves.sh
 
 MASTER:
-initialize_libraries.sh
+initialize_libraries_master.sh
+{CLONE VERISMART INSIDE MASTER}
 initialize_verismart_master.sh
 
 SLAVES:

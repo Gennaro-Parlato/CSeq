@@ -3,7 +3,7 @@
  * 
  *  instance version    {"thr1_0": [[2, 2]], "thr2_0": [[1, 1]], "main": [[1, 1]]}
  *
- *  2022-07-21 10:26:52
+ *  2022-07-26 11:23:39
  *
  *  params:
  *    --vs , -i examples/peterson.c, 

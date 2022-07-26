@@ -55,6 +55,7 @@ from mpi4py import MPI
 comm = MPI.COMM_WORLD
 rank = comm.Get_rank()
 numberProcess = comm.Get_size()
+machineAddress = MPI.Get_processor_name()
 server = 0
 
 isMaster = rank == 0
@@ -411,6 +412,8 @@ def main():
 
     cseqenv.cmdline = sys.argv
     cseqenv.starttime = time.time()  # save wall time
+
+    print(machineAddress)
 
     if isSlave:
         # Extract the configuration from the command-line or set it to the default.
