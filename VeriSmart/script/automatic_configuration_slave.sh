@@ -28,6 +28,8 @@ echo "10.0.0.119 slave1" | sudo tee -a /etc/hosts
 echo "10.0.0.72 slave2" | sudo tee -a /etc/hosts
 echo "10.0.0.120 slave3" | sudo tee -a /etc/hosts
 echo "10.0.0.36 slave4" | sudo tee -a /etc/hosts
+echo "10.0.0.64 slave5" | sudo tee -a /etc/hosts
+echo "10.0.0.182 slave6" | sudo tee -a /etc/hosts
 
 # CREATE USER IS MISSING
 sudo useradd -m -p $(echo "65536" | openssl passwd -1 -stdin) aldo
@@ -43,17 +45,25 @@ echo "PasswordAuthentication yes" | sudo tee -a /etc/ssh/sshd_config
 # restart the ssh server service which will have enabled the password authentication:
 sudo service ssh restart
 
-echo "65536" | sudo su - aldo -c "ssh-keygen -t rsa -f /home/aldo/.ssh/id_rsa -q -P "65536""
+sudo mkdir -m 777 /home/aldo/.ssh
 
-echo "65536" | sudo su - aldo -c "ssh-keyscan master > .ssh/known_hosts"
+#sudo touch /home/aldo/.ssh/id_rsa
 
-echo "65536" | sudo su - aldo -c "sshpass -p "65536" ssh-copy-id aldo@master"
+#sudo touch /home/aldo/.ssh/id_rsa.pub
 
-echo "65536" | sudo su - aldo -c "mkdir CSeq-master"
+sudo ssh-keygen -t rsa -f /home/aldo/.ssh/id_rsa -q -P '65536'
 
-echo "65536\n" | sudo -S mount -t nfs master:/home/aldo/CSeq-master /home/aldo/CSeq-master
+sudo ssh-keyscan master | sudo tee -a /home/aldo/.ssh/known_hosts
+
+#sudo sshpass -p '65536' ssh -o StrictHostKeyChecking=no aldo@slave6 "ssh-copy-id -f -i /home/aldo/.ssh/id_rsa aldo@master"
+
+sudo sshpass -p '65536' ssh-copy-id -f -i /home/aldo/.ssh/id_rsa aldo@master
+
+sudo mkdir /home/aldo/CSeq
+
+echo "65536\n" | sudo -S mount -t nfs master:/home/aldo/CSeq /home/aldo/CSeq
 
 #to avoid to manually mount the shared master directory every time you do a system reboot:
-echo "master:/home/aldo/CSeq-master /home/aldo/CSeq-master nfs" | sudo tee -a /etc/fstab
+echo "master:/home/aldo/CSeq /home/aldo/CSeq nfs" | sudo tee -a /etc/fstab
 
-sudo pip3 install -r /home/aldo/CSeq-master/VeriSmart/requirements.txt
+sudo pip3 install -r /home/aldo/CSeq/VeriSmart/requirements.txt
