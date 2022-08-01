@@ -574,6 +574,8 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
         if not self.any_instrument or not (self.dr_on or self.abs_on):
             return super().visit_ID(n)
         ans = super().visit_ID(n) # do the lazy... part
+        if n.name in ("__dr_nondet_main_data", "__dr_nondet_main_i"): # TODO needed for ldv-races where they pass around a local var pointer, making it a global variable
+            self._lazyseqnewschedule__globalMemoryAccessed = True
         if n.name in self.funcNames:
             # this is a function name or NULL: return verbatim
             return n.name
