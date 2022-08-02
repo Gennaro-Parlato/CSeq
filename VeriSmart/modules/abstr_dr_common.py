@@ -633,13 +633,22 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
         visited_subexprs_WSE = []
         bak_dr_mode = self.abs_dr_mode['dr_mode']
         if n.args is not None:
+            argsIdx = 0
             for expr in n.args.exprs:
                 self.abs_dr_mode['dr_mode'] = "TOP_ACCESS"
                 expr_TOP_ACCESS = self._visit_expr(expr)
+                
+                expr_InnerAccess = None
+                if fref in ("scanf",) and argsIdx >= 1: # those functions will touch the second argument
+                    expr_InnerAccess = self._visit_expr(c_ast.UnaryOp("*",expr))
+                
                 self.abs_dr_mode['dr_mode'] = "WSE"
                 expr_WSE = self._visit_expr(expr)
                 visited_subexprs.append(expr_TOP_ACCESS)
+                if expr_InnerAccess is not None:
+                    visited_subexprs.append(expr_InnerAccess)
                 visited_subexprs_WSE.append(expr_WSE)
+                argsIdx += 1
         self.expList = visited_subexprs_WSE.copy()
         args =  ', '.join(visited_subexprs)
         self.abs_dr_mode['dr_mode'] = bak_dr_mode
