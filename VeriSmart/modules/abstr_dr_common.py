@@ -908,6 +908,9 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
                 else:
                     assert(False, "This type condition is not expected: "+str(n))
                 
+                if type_of_n == 'ArrayDecl' and type_st == 'Struct' and n.name != 'main' and n.type != 'FuncDecl':
+                    self.interest_variables_list[n.name] = type_st
+                    self.program_arrays.append(n.name)
                 if type_of_n == 'ArrayDecl' and type_of_arrptr != None and n.name != 'main' and n.type != 'FuncDecl':
                     self.interest_variables_list[n.name] = type_of_arrptr
                     self.program_arrays.append(n.name)
