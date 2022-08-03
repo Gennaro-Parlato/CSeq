@@ -338,6 +338,13 @@ enum t_typename {
             ans += [self.cgenerator.visit(ncp)]
             if n.decl.type.args is not None:
                 ans += self.visit(n.decl.type.args)
+        elif type(n.decl.type.type.type) is IdentifierType and n.decl.type.type.type.names[0] == "int":
+            #int function
+            ncp = copy.copy(n)
+            ncp.body = Compound([Return(Constant("int","0"))])
+            ans += [self.cgenerator.visit(ncp)]
+            if n.decl.type.args is not None:
+                ans += self.visit(n.decl.type.args)
         else:
             ans += self.visit(n.decl)
         if n.param_decls:
