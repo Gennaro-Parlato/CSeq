@@ -356,17 +356,21 @@ class loopAnalysisMasterSlave(core.module.Translator):
     def substituteMainDriver(self, maxlabels, mainDriver):
         output = ''
         i = 0
-        # Implementare per quando ci sono piu di 9 thread
+        # Implementare per quando ci sono piu di 99 thread
         while i < len(mainDriver):
             if mainDriver[i:i + 3] == '@£@':
                 numthread = mainDriver[i + 5]
+                extralen = 0
+                if len(mainDriver) >= i+7 and mainDriver[i+6] in "0123456789":
+                    numthread += mainDriver[i+6]
+                    extralen = 1
                 # print("numthread: " + numthread)
                 tname = self.__threadName[int(numthread)]
                 if tname == 'main':
                     tname = 'main_thread'
                 maxthreadlabel = maxlabels[tname]
                 output += str(maxthreadlabel)
-                i += 6
+                i += 6+extralen
             else:
                 output += mainDriver[i]
                 i += 1
