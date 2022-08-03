@@ -628,6 +628,14 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
     def DRvisit_FuncCall(self, n):
         fref = n.name.name #self.frefVisit(n)
         
+        # dr test if fref is a function pointer
+        fptrVisit = None
+        if fref in self.program_pointers:
+            bak_dr_mode = self.abs_dr_mode['dr_mode']
+            self.abs_dr_mode['dr_mode'] = "ACCESS"
+            fptrVisit = self.visit_ID(n.name)
+            self.abs_dr_mode['dr_mode'] = bak_dr_mode
+        
         # Visiting arguments
         visited_subexprs = []
         visited_subexprs_WSE = []
@@ -738,7 +746,10 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
         #ret = fref + '(' + args + ')'
         #print("GMT: " + str(self.getGlobalMemoryTest() ))
         #print(ret)
-        return fref + '(' + args + ')'
+        if fptrVisit is None:
+            return fref + '(' + args + ')'
+        else:
+            return "("+fptrVisit+","+fref + "(" + args + "))"
         
     # TODO do it properly. Just there to make valid code for now
     def visit_FuncCall(self, n):
@@ -799,6 +810,8 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
             return super().visit_StructRef(n)
         else:
             extra_args = {}
+            if n.type == "." and type(n.name) is c_ast.UnaryOp and n.name.op == '*' :
+                n = c_ast.StructRef(n.name.expr, '->', n.field)
             if self.dr_on:
                 extra_args['dr_vp_state'] = self.abs_dr_vpstate
                 extra_args['atomic'] = self._lazyseqnewschedule__atomic or self.atomicLvl > 0
