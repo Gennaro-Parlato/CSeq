@@ -875,7 +875,7 @@ class AbsDrRules:
             else:
                 return self.ternary_expr(state, self.cp(state, "bav"), err, ok)
         else:
-            return ok()        
+            return ok(state)        
     
     def __structrefptr_bavtmp_abs(self, state, postExp, exp, **kwargs):
         # return (bal = bav) || get_sm_abs(&([[postExp,VALUE,WSE]]->exp))
