@@ -810,8 +810,8 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
             return super().visit_StructRef(n)
         else:
             extra_args = {}
-            if n.type == "." and type(n.name) is c_ast.UnaryOp and n.name.op == '*' :
-                n = c_ast.StructRef(n.name.expr, '->', n.field)
+            #if n.type == "." and type(n.name) is c_ast.UnaryOp and n.name.op == '*' :
+            #    n = c_ast.StructRef(n.name.expr, '->', n.field)
             if self.dr_on:
                 extra_args['dr_vp_state'] = self.abs_dr_vpstate
                 extra_args['atomic'] = self._lazyseqnewschedule__atomic or self.atomicLvl > 0
