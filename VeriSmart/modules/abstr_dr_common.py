@@ -788,11 +788,14 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
         if not self.any_instrument or n.subscript == '__cs_thread_index' or not (self.dr_on or self.abs_on):
             return super().visit_ArrayRef(n)
         else:
+            #if (type(n.subscript) == c_ast.ID and n.subscript.name == '__cs_thread_index'):
+            #    n.subscript = c_ast.Constant("int",self.fixArrayIndex(n.subscript.name))
+            #    #print(n)
             extra_args = {}
             if self.dr_on:
                 extra_args['dr_vp_state'] = self.abs_dr_vpstate
                 extra_args['atomic'] = self._lazyseqnewschedule__atomic or self.atomicLvl > 0
-            return self.abs_dr_rules.rule_ArrayRef(self.abs_dr_state, n, self.abs_dr_mode['abs_mode'], self.abs_dr_mode['dr_mode'], self.full_statement, **extra_args)
+            return self.abs_dr_rules.rule_ArrayRef(self.abs_dr_state, n, self.abs_dr_mode['abs_mode'], self.abs_dr_mode['dr_mode'], self.full_statement, **extra_args).replace("__cs_thread_index",self.fixArrayIndex("__cs_thread_index"))
 
 
     def visit_TernaryOp(self, n):

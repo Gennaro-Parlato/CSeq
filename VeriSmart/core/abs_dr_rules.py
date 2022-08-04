@@ -76,6 +76,9 @@ class MacroFile:
         if len(macro_content) < 15:
             # short content, won't generate a macro
             return macro_content
+        if "__cs_thread_index" in macro_content:
+            # don't generate macro, otherwise __cs_thread_index won't be replaced correctly
+            return macro_content
         if macro_content.startswith("EXPR_") and macro_content.endswith("()") and macro_content[5:-2].isdigit():
             # this is a known expression, just return it and save into conversions
             index = int(macro_content[5:-2])
@@ -1485,6 +1488,8 @@ class AbsDrRules:
             return self.decode(sid.name, sidType) 
         elif dr_mode == "WSE": # and implicitly abs is disabled
             return sid.name
+        elif sid.name == "__cs_thread_index":
+            return ""
         else:
             return self.store_content(full_statement,self.comma_expr(
                 self.if_dr(lambda: 

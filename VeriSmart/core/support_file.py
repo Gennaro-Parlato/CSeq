@@ -65,7 +65,14 @@ enum t_typename {
        TYPENAME_UNSIGNED_LONG_LONG,
        TYPENAME_OTHER
 };
-        
+
+#ifndef THREADS
+#define THREADS 2
+#endif        
+
+#ifndef __cs_thread_index
+#define __cs_thread_index 0
+#endif
                                                                                                                                                                                                                                                                                                             \
 #define typename(x) _Generic((x),                                                                                                                                                                                                                                                                           \
         char: TYPENAME_CHAR,                                                                                                                                                                                                                                                                                \
