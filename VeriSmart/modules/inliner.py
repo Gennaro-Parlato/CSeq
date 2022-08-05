@@ -702,7 +702,7 @@ class inliner(core.module.Translator):
                             #                n.name))  # S: original transf.  #S: n.name --> name
                             
                             #BUGFIX: static needs constant at init time. Fix is ok if var is never assigned NULL
-                            s += ' = NULL; %s = (%s %s) %s(sizeof(%s)*%s)' % (
+                            s += ' = 0; %s = (%s %s) %s(sizeof(%s)*%s)' % (
                                 name, vartype, stars, core.common.changeID['malloc'], vartype,
                                 self._totalSize(self.currentFunction[-1],
                                             n.name))  # S: original transf.  #S: n.name --> name
