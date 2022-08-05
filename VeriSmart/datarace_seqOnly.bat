@@ -1,5 +1,5 @@
 sourcedir=/home/salvatore/github/svcomp2020-concurrency-benchmarks/
-basedir=/home/salvatore/github/Experiments/Dec2021-30/
+basedir=/home/salvatore/github/Experiments/Jan2022-5/
 result=${basedir}results${1}R${2}U.out
 seqdir=${basedir}sequentialized${1}R${2}U/
 outdir=${basedir}output/

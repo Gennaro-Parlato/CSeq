@@ -142,9 +142,10 @@ void* thread(void* arg)
                 break;
         }
 
-        stack.array[elem].Value = idx;
+//        stack.array[elem].Value = idx;
 //        assert(stack.array[elem].Value == idx);
-//      the above is modified in the following if-else statement for DR detection test        
+//      the above is modified in the following three lines for DR detection test        
+	__VERIFIER_atomic_store(&stack.array[elem].Value, idx);
         if(stack.array[elem].Value != idx)
         	fake=1;
 //        else

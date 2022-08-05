@@ -1,4 +1,4 @@
-sourcedir=/home/salvatore/github/Experiments/Dec2021-30/
+sourcedir=/home/salvatore/github/Experiments/Jan2022-5/
 result=${sourcedir}resultscbmc${1}R${2}U.out
 seqdir=${sourcedir}sequentialized${1}R${2}U/
 

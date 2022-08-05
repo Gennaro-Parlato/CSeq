@@ -42,6 +42,9 @@ void *thread2(void *arg)
 
   *x = data;
   x = &S.ptop;
+  char tok[10];
+  char * tokens[10];
+  tokens[0] = "pluto";
 
 //  int i=1;
 //  p =  malloc(sizeof(int));

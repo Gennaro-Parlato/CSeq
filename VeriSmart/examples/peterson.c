@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <pthread.h>
+#include<assert.h>
 
 int flag1 = 0, flag2 = 0;
 int turn;
