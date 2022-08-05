@@ -693,19 +693,19 @@ class inliner(core.module.Translator):
                             #   s += '__cs_init_scalar(& %s, (sizeof(%s)*%s));' % (
                             #    name, vartype, self._totalSize(self.currentFunction[-1], n.name))  # S: n.name --> name
                             #elif self.init == 0:
-                            if self.local in range(0, 2):
-                                #s += name + ' = (%s %s) %s(sizeof(%s)*%s)' % ( #BUGFIX: name written twice at declaration time
-                                
-                                #s += ' = (%s %s) %s(sizeof(%s)*%s)' % (
-                                #vartype, stars, core.common.changeID['malloc'], vartype,
-                                #    self._totalSize(self.currentFunction[-1],
-                                #                n.name))  # S: original transf.  #S: n.name --> name
-                                
-                                #BUGFIX: static needs constant at init time. Fix is ok if var is never assigned NULL
-                                s += ' = NULL; %s = (%s %s) %s(sizeof(%s)*%s)' % (
-                                    name, vartype, stars, core.common.changeID['malloc'], vartype,
-                                    self._totalSize(self.currentFunction[-1],
-                                                n.name))  # S: original transf.  #S: n.name --> name
+                            #if self.local in range(0, 2):
+                            #s += name + ' = (%s %s) %s(sizeof(%s)*%s)' % ( #BUGFIX: name written twice at declaration time
+                            
+                            #s += ' = (%s %s) %s(sizeof(%s)*%s)' % (
+                            #vartype, stars, core.common.changeID['malloc'], vartype,
+                            #    self._totalSize(self.currentFunction[-1],
+                            #                n.name))  # S: original transf.  #S: n.name --> name
+                            
+                            #BUGFIX: static needs constant at init time. Fix is ok if var is never assigned NULL
+                            s += ' = NULL; %s = (%s %s) %s(sizeof(%s)*%s)' % (
+                                name, vartype, stars, core.common.changeID['malloc'], vartype,
+                                self._totalSize(self.currentFunction[-1],
+                                            n.name))  # S: original transf.  #S: n.name --> name
                                                 
             else:  # Anything else, Truc's modification
                 init = ''
