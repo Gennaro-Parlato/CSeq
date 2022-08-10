@@ -178,7 +178,8 @@ class feeder(core.module.BasicModule):
 		backendOpt['nan-check'] = env.nan_check
 		#True if self.getInputParamValue('nan-check') is not None else False
 		backendOpt['overflow-check'] =  True if self.getInputParamValue('overflow-check') is not None else False
-		backendOpt['nondet-static'] = True if env.local == 2 else False
+		#backendOpt['nondet-static'] = True if env.local == 2 else False
+		backendOpt["nondet-static-matching '.*_nondet_.*'"] = True if env.local == 2 else False
 
 		'''
 		if shutil.which(backendFilename[format]) is None:
