@@ -7,7 +7,6 @@ from core import abs_dr_rules
 import os
 from core.support_file import SupportFileManager
 import copy
-from mpi4py import MPI
 
 '''
 Utility class that allows to set a field to a specific value in a block and restore it when left.
@@ -48,9 +47,13 @@ def getType(node_info):
 
 class abstr_dr_common(lazyseqnewschedule.lazyseqnewschedule): 
     def get_current_idx(self):
-        comm = MPI.COMM_WORLD
-        rank = comm.Get_rank()
-        return str(rank)
+        try:
+            from mpi4py import MPI
+            comm = MPI.COMM_WORLD
+            rank = comm.Get_rank()
+            return str(rank)
+        except ImportError:
+            return "0"
         
     def init(self, abs_on, dr_on):
         super().init()
