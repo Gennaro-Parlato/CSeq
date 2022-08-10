@@ -215,6 +215,19 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
             with BakAndRestore(self, 'full_statement', full_statement):
                 ans = self.visit(n)
                 return ans
+                
+    def visit_Return(self, n):
+        if not self.any_instrument or not (self.dr_on or self.abs_on):
+            return super().visit_Return(n)
+        if self._lazyseqnewschedule__currentThread != '__CSEQ_assert' and self._lazyseqnewschedule__currentThread not in self.Parser.funcReferenced and not (self._lazyseqnewschedule__atomic or self.atomicLvl > 0):
+            self.error("error: %s: return statement in thread '%s'.\n" % (self.getname(), self._lazyseqnewschedule__currentThread))
+
+        s = 'return'
+        bakdrmode = self.abs_dr_mode['dr_mode']
+        self.abs_dr_mode['dr_mode'] = "TOP_ACCESS"
+        if n.expr: s += ' ' + self.visit(n.expr)
+        self.abs_dr_mode['dr_mode'] = bakdrmode
+        return s + ';'
         
     def visit_FileAST(self, n):
         if not self.any_instrument or not (self.dr_on or self.abs_on):

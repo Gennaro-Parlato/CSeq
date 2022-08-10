@@ -328,7 +328,7 @@ class AbsDrRules:
         if full_statement:
             return self.macroFile.store_macro(macro_content, node, abs_mode, dr_mode)
         else:
-            return macro_content
+            return macro_content #.replace("___fakeifvar___ = ","")
         
     def void0(self):
         return "(void) 0"
@@ -573,6 +573,8 @@ class AbsDrRules:
     
     # Perform a visit using the visitor module, according to the enabled modes
     def visitor_visit(self, state, n, abs_mode, dr_mode, **kwargs):
+        if type(n) is c_ast.FuncCall and self.dr_on and dr_mode != "WSE": #TODO check if abs & dr
+            return ""
         ans = self.visitor.visit_with_absdr_args(state, n, abs_mode if self.abs_on else None, dr_mode if self.dr_on else None, full_statement=False, **kwargs).strip()
         if ans == "()":
             return ""
