@@ -206,7 +206,6 @@ class AbsDrRules:
         self.bav1s = {}
         
         # abstraction: name field for dr
-        assert(dr_possible)
         self.sm_dr_all = "dr" if dr_possible else None
         self.sm_dr_noatomic = "dr_noatomic" if code_contains_atomic else None
         
