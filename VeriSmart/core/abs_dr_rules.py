@@ -1616,7 +1616,14 @@ class AbsDrRules:
             intVal = eval(value)
             mn = -2**(self.abstr_bits-1)
             mx = 2**(self.abstr_bits-1)-1
-            return "0" if mn <= intVal and intVal <= mx else "1"
+            mnU = 0
+            mxU = 2**(self.abstr_bits)-1
+            if mn <= intVal and intVal <= mx:
+                return "0" #inside bound normally
+            elif value.startswith("0") and mnU <= intVal and intVal <= mxU: 
+                return "0" #octal or binary, treat them as unsigned
+            else:
+                return "1"
         elif typ in self.abstrTypesUnsigned:
             intVal = eval(value)
             mn = 0
