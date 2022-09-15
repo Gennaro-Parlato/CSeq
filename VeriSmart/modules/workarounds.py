@@ -98,8 +98,15 @@ class workarounds(core.module.Translator):
             return '__cs_thread_local_' + n.name + '[__cs_thread_index]'
         else:
             return n.name
+            
+    def visit_FileAST(self, n):
+        return super().visit_FileAST(n) + "\n" + self.visit_FuncDef(self.mainNode, visitMain = True)
 
-    def visit_FuncDef(self, n):
+    def visit_FuncDef(self, n, visitMain = False):
+        if n.decl.name == "main" and not visitMain: # GG: ensure that main is the last method
+            self.mainNode = n
+            return ""
+            
         self.__parsingFunction = n.decl.name
 
         decl = self.visit(n.decl)
