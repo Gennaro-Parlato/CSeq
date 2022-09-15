@@ -1722,7 +1722,7 @@ class AbsDrRules:
             self.if_abs_or_dr(lambda: self.visitor_visit(state, assExp, "GET_VAL", "ACCESS", **kwargs)),
             self.if_abs(lambda:
                 # if self.is_abstractable(unExprType) and not self.is_abstractable(assExpType): means assigning pointers to an abstractable int => not ok for abstraction unless you have at least enough bits for an address. Unfortunately, it catches also floats, but anyway you have to check if the (int)assExp value would fit.
-                self.setsm("&("+self.visitor_visit(state, unExp, "LVALUE", "WSE", **kwargs)+")", self.sm_abs, "1") if self.is_abstractable(unExprType) and not self.is_abstractable(assExpType) and self.abstr_bits < min(self.abstrTypesSizeof[unExprType]*8, self.supportFile.addr_bits) else \
+                #self.setsm("&("+self.visitor_visit(state, unExp, "LVALUE", "WSE", **kwargs)+")", self.sm_abs, "1") if self.is_abstractable(unExprType) and not self.is_abstractable(assExpType) and self.abstr_bits < min(self.abstrTypesSizeof[unExprType]*8, self.supportFile.addr_bits) else \
                 self.ternary_expr(state,  
                     self.or_expr_prop(
                         self.cp(state, "bav"),
