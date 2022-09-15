@@ -130,7 +130,10 @@ enum t_typename {
         for line in result:
             lineparts = line.strip().split(",")
             if len(lineparts) > 1:
-                self.label_to_type[lineparts[0]] = self.types_map[int(lineparts[1].strip())]
+                if lineparts[0] == "ADDRBITS":
+                    self.addr_bits = int(lineparts[1].strip())
+                else:
+                    self.label_to_type[lineparts[0]] = self.types_map[int(lineparts[1].strip())]
     
     def get_type(self, n):
         n_expr = self.cgenerator.visit(n)
@@ -161,7 +164,7 @@ enum t_typename {
                 mainContent += self.visit(ext)
                 lastNode = ext
             
-        return "\n".join([self.boilerplate, "int main(){"]+mainContent+["return 0;","}"])
+        return "\n".join([self.boilerplate, "int main(){","printf(\"ADDRBITS, %lld\\n\",8*sizeof(int*));"]+mainContent+["return 0;","}"])
     
     def visit_Constant(self, n):
         if self.can_value:
@@ -226,6 +229,7 @@ enum t_typename {
             ans += self.bookNodeType(n)
         with self.set_can_value(True):
             ans += self.bookNodeType(n.lvalue)
+            ans += self.bookNodeType(n.rvalue)
             ans += self.visit(n.lvalue)
             ans += self.visit(n.rvalue)
         return ans
@@ -237,6 +241,8 @@ enum t_typename {
         ans = []
         if type(n.type) is TypeDecl and type(n.type.type) is Struct:
             struct_t_name = "struct "+n.type.type.name
+            if hasattr(n, 'quals') and len(getattr(n, 'quals')) >= 1 and getattr(n, 'quals')[0] == 'const':
+                ans += self.bookNodeType(n.name)
             for decl in self.knownDeclsStack[::-1]:
                 if struct_t_name in decl:
                     old_decl = n.type.type.decls

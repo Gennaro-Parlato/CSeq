@@ -220,6 +220,9 @@ class AbsDrRules:
         # removes redundant assignments into instrumented code 
         self.cleaner = Cleaner()
         
+        # SM setup for const declarations
+        self.abs_const_decl = []
+        
     # Needed by Cleaner to parse the expressions
     def addTypedef(self, txt):
         self.cleaner.addTypedef(txt)
@@ -275,7 +278,7 @@ class AbsDrRules:
             self.if_dr_possible(lambda: '__CPROVER_field_decl_global("'+self.sm_dr_all+'", (_Bool)0);'),
             self.if_dr_possible(lambda: '__CPROVER_field_decl_local("'+self.sm_dr_noatomic+'", (_Bool)0);' if self.code_contains_atomic else ""),
             self.if_dr_possible(lambda: '__CPROVER_field_decl_local("'+self.sm_dr_all+'", (_Bool)0);'),
-        ]))[0]
+        ]+self.abs_const_decl))[0]
         
     def getAbstractionMacros(self):
         if self.abs_on:
@@ -1701,12 +1704,15 @@ class AbsDrRules:
         unExp = assn.lvalue
         assExp = assn.rvalue
         op = assn.op
+        
         if abs_mode == "VALUE" or dr_mode == "WSE":
             ans = self.visitor_visit(state, unExp, "VALUE", "WSE", **kwargs)
             return self.store_content(full_statement,ans, assn, abs_mode, dr_mode)
         if op != "=":
             fullOp = lambda: self.visitor_visit(state, unExp, "VALUE", "WSE", **kwargs)+" "+op.replace("=","")+" "+self.visitor_visit(state, assExp, "VALUE", "WSE", **kwargs)
         unExprType = self.supportFile.get_type(unExp) #"int" #TODO proper type
+        #if unExp.name == "__cs_param_assume_abort_if_not_1_cond": print(assn, abs_mode, dr_mode, self.is_abstractable(unExprType))
+        assExpType = self.supportFile.get_type(assExp)
         ans = self.comma_expr(
             self.if_abs_or_dr(lambda: self.visitor_visit(state, unExp, "SET_VAL" if op == "=" else "UPD_VAL", "NO_ACCESS", **kwargs)),
             self.if_abs(lambda: self.__assignment_manual_bal_fail(state) if op == "=" else self.__assignment_manual_bav_fail(state)),
@@ -1715,6 +1721,8 @@ class AbsDrRules:
             self.if_dr(lambda: self.__assignment_manual_cp_p2(state, unExp, **kwargs)),
             self.if_abs_or_dr(lambda: self.visitor_visit(state, assExp, "GET_VAL", "ACCESS", **kwargs)),
             self.if_abs(lambda:
+                # if self.is_abstractable(unExprType) and not self.is_abstractable(assExpType): means assigning pointers to an abstractable int => not ok for abstraction unless you have at least enough bits for an address. Unfortunately, it catches also floats, but anyway you have to check if the (int)assExp value would fit.
+                self.setsm("&("+self.visitor_visit(state, unExp, "LVALUE", "WSE", **kwargs)+")", self.sm_abs, "1") if self.is_abstractable(unExprType) and not self.is_abstractable(assExpType) and self.abstr_bits < min(self.abstrTypesSizeof[unExprType]*8, self.supportFile.addr_bits) else \
                 self.ternary_expr(state,  
                     self.or_expr_prop(
                         self.cp(state, "bav"),
@@ -1739,6 +1747,14 @@ class AbsDrRules:
         )
         ans2= self.store_content(full_statement, ans, assn, abs_mode, dr_mode)
         return ans2
+        
+    def store_DeclConst(self, state, n, **kwargs):
+        if self.abs_on:
+            unExp = c_ast.ID(name=n.name)
+            assExp = n.init
+            unExprType = self.supportFile.get_type(unExp)
+            if self.is_abstractable(unExprType):
+                self.abs_const_decl += [self.setsm("&("+self.visitor_visit(state, unExp, "LVALUE", "WSE", **kwargs)+")", self.sm_abs, self.__assignment_bounds_failure(state, assExp, unExprType, **kwargs))+";"]
             
     def rule_SpecialFuncCall(self, state, fcall, abs_mode, dr_mode, full_statement, **kwargs):
         self.assertDisabledIIFModesAreNone(abs_mode, dr_mode, **kwargs)  

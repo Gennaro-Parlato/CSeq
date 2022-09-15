@@ -882,7 +882,8 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
                 
             elif type_of_n == 'TypeDecl': # Variable/Constant
                 if hasattr(n, 'quals') and len(getattr(n, 'quals')) >= 1 and getattr(n, 'quals')[0] == 'const':
-                    # costants
+                    # constants
+                    self.abs_dr_rules.store_DeclConst(self.abs_dr_state, n)
                     with self.no_any_instrument():
                         #print("NOINSTR5", n)
                         ans = super().visit_Decl(n)
@@ -970,7 +971,7 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
                 pass
             if n.init:
                 #TODO
-                if n.name == "__cs_local_reader_two_read":
+                if n.name == "SIGMA":
                     print(n)
                 init = ""
                 if type_of_n == 'ArrayDecl':
