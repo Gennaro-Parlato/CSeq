@@ -83,6 +83,7 @@ struct device {
         '''
         ret = ''
         for l in text.splitlines():
+            l = l.replace("@$$^*&","assert") # GG: fix for the assert redefinition. TODO: whe should handle those ternaries properly...
             if "({" in l:
                 m = re.match(r'^(.+)\({(.*)}\)(.+)$', l)
                 newline = ''
@@ -111,6 +112,8 @@ struct device {
         '''
         ret = ''
         for line in input.splitlines():
+            if not self.need_gnu_fix: # GG: fix for the assert redefinition. TODO: whe should handle those ternaries properly...
+                line = line.replace("@$$^*&","assert")
             line = re.sub(r'__thread unsigned int (.*);', r'unsigned int __cs_thread_local_\1[THREADS+1];', line)
             line = re.sub(r'__thread int (.*);', r'int __cs_thread_local_\1[THREADS+1];', line)
             line = line.replace('do { } while (0);', ';')
@@ -156,6 +159,9 @@ struct device {
 
             # fix for void; line
             line = re.sub(r'^void;', '', line)
+            
+            # GG: fix for the assert redefinition. TODO: whe should handle those ternaries properly...
+            line = line.replace("assert","@$$^*&")
 
             if not self.need_gnu_fix and "typeof" in line:
                 self.need_gnu_fix = True
