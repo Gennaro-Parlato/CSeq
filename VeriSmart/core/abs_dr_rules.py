@@ -124,6 +124,7 @@ class MacroFile:
             if self.dbg_visitor:
                 output += "/*"+" ; ".join("("+c[0]+","+c[1]+","+c[2]+")" for c in conv[1])+"*/"
             trans = clean_codes[conv[0][:-2]]
+            trans = trans.replace("(;)","((void)0)")
             if trans == ";":
                 output += "\n#define "+conv[0]+" "+trans
             else:
