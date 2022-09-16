@@ -161,7 +161,7 @@ struct device {
             line = re.sub(r'^void;', '', line)
             
             # GG: fix for the assert redefinition. TODO: whe should handle those ternaries properly...
-            if not line.startswith("#include"):
+            if not line.startswith("#include") and not line.startswith("#define") and not "atomic_assert" in line:
                 line = line.replace("assert","@$$^*&")
 
             if not self.need_gnu_fix and "typeof" in line:
