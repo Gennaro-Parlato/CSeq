@@ -28,6 +28,9 @@ class SupportFileManager(CGenerator):
         # True only when the declaration is global.
         self.global_decl = True 
         
+        # GG: ensure that those typedef appear only once
+        self.already_in = {'pthread_t':False, 'pthread_attr_t':False, 'size_t':False}
+        
         # Set of already printed declarations for the current scope
         self.knownDeclsStack = [set()]
         
@@ -303,7 +306,14 @@ enum t_typename {
         return ans
         
     def visit_Typedef(self, n):
-        return [self.cgenerator.visit(n)+";"]
+        if n.name in self.already_in:
+            if not self.already_in[n.name]:
+                self.already_in[n.name] = True
+                return [self.cgenerator.visit(n)+";"]
+            else:
+                return []
+        else:
+            return [self.cgenerator.visit(n)+";"]
         
     def visit_Cast(self, n):
         ans = []

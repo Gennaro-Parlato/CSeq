@@ -861,6 +861,8 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
             if type_of_n == 'FuncDecl':
                 assert(n.name != None, "Function declaration does not have a name")
                 # store it as function name
+                if n.name in ("pthread_create", "pthread_join", "malloc"):
+                    return ""
                 self.funcNames.append(n.name)
                 self.visit(n.type)
                 if hasattr(n.type.type.type, 'names'):
@@ -879,6 +881,11 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
                     
             elif type_of_n == 'Struct':
                 ans = self.visit_Struct(n.type)
+                    
+            elif type_of_n == 'Union':
+                with self.no_any_instrument():
+                    #print("NOINSTR4", n)
+                    ans = super().visit_Decl(n)
                 
             elif type_of_n == 'TypeDecl': # Variable/Constant
                 if hasattr(n, 'quals') and len(getattr(n, 'quals')) >= 1 and getattr(n, 'quals')[0] == 'const':
@@ -939,7 +946,10 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
                 elif hasattr(n.type.type, 'names'): #variable case
                     assert(False, "This type condition represents a variable in a PtrDecl/ArrayDecl, and it is not expected: "+str(n))
                 else:
-                    assert(False, "This type condition is not expected: "+str(n))
+                    with self.no_any_instrument():        
+                        #print("NOINSTR6", n)
+                        return super().visit(n)
+                    #assert(False, "This type condition is not expected: "+str(n))
                 
                 if type_of_n == 'ArrayDecl' and type_st == 'Struct' and n.name != 'main' and n.type != 'FuncDecl':
                     self.interest_variables_list[n.name] = type_st
@@ -971,8 +981,6 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
                 pass
             if n.init:
                 #TODO
-                if n.name == "SIGMA":
-                    print(n)
                 init = ""
                 if type_of_n == 'ArrayDecl':
                     init += ";"
