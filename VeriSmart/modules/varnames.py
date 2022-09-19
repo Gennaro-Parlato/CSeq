@@ -118,7 +118,7 @@ class varnames(core.module.Translator):
 		self.__init=n.init
 		self.__visitingDecl += 1
 		
-		if "static" in n.storage:
+		if "static" in n.storage and self.__currentFunction != '':
 			# use prefix for statics
 			prevStatic = self.visiting_static
 			self.visiting_static = True
@@ -135,6 +135,8 @@ class varnames(core.module.Translator):
 			varname_initcheck = self.staticinitprefix + varname_with_pfx[len(self.staticprefix):]
 			
 			initcheckdecl = "unsigned char "+varname_initcheck+" = 0;"
+			
+			print(n, varname_with_pfx, varname_initcheck)
 
 			s = ""
 			if n.init:
