@@ -201,6 +201,8 @@ class instrumenter(core.module.Translator):
 			return True
 		elif (vname.startswith("__cs_bav1_") or vname.startswith("__cs_cond_")) and vname.split("_")[-1].isdigit():
 			return True
+		elif (vname.startswith("__cs_staticlocalinit_")): # for static var initializer bits
+			return True
 		return False
 
 	def loadfromstring(self,string,env):

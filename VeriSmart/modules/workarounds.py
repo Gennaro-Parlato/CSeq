@@ -192,6 +192,9 @@ class workarounds(core.module.Translator):
 #            elif (n.quals and 'const' in n.quals):
 #                initType = 1
 #                assignmentStmt = ' = ' + self.visit(n.init)  
+            elif "static" in n.storage:
+                initType = 1
+                assignmentStmt = ' = ' + self.visit(n.init)
             else:
                 initType = 0
                 assignmentStmt = ' = ' + self.visit(n.init)

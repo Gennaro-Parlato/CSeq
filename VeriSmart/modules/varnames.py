@@ -57,6 +57,8 @@ class varnames(core.module.Translator):
 	nondetprefix = '__cs_nondet_'  # prefix for uninitialized local variables 
 	prefix = '__cs_local_'        # prefix for initialized local variables
 	paramprefix = '__cs_param_'   # prefix for function params
+	staticprefix = '__cs_staticlocal_'        # GG prefix for static local variables
+	staticinitprefix = '__cs_staticlocalinit_'        # GG prefix for static local variable init bits
 
 
 	newIDs = {}   # mapping of stacks containing maps of old variable names to new variable names, stack accounts for nested defs of same name
@@ -75,6 +77,9 @@ class varnames(core.module.Translator):
 	# DR
 	__noShadow = False
 	__enableDr = False
+	
+	static_vars = [] # GG static var declarations, and their initializer checks
+	visiting_static = False # GG true if visiting a static var
 
 	def init(self):
 		self.addOutputParam('varnamesmap')
@@ -90,6 +95,20 @@ class varnames(core.module.Translator):
 		super(varnames, self).loadfromstring(string, env, fill_only_fields=['varNames', 'funcName'])
 		self.setOutputParam('varnamesmap', self.varmap)
 		#print str(self.newIDs).replace(', ','\n')
+		
+	def visit_FileAST(self, n):
+		parts = ['','']
+		partsIdx = 0
+		for ext in n.ext:
+			if isinstance(ext, pycparser.c_ast.FuncDef):
+				parts[partsIdx] += self.visit(ext)
+			elif isinstance(ext, pycparser.c_ast.Pragma):
+				parts[partsIdx] += self.visit(ext) + '\n'
+			else:
+				parts[partsIdx] += self.visit(ext) + ';\n'
+				if isinstance(ext, pycparser.c_ast.Typedef) and ext.name == "_____STOPSTRIPPINGFROMHERE_____":
+					partsIdx = 1
+		return parts[0]+"\n"+"\n".join(self.static_vars) + "\n" + parts[1]
 
 
 	def visit_Decl(self, n, no_type=False):
@@ -98,21 +117,59 @@ class varnames(core.module.Translator):
 		#
 		self.__init=n.init
 		self.__visitingDecl += 1
+		
+		if "static" in n.storage:
+			# use prefix for statics
+			prevStatic = self.visiting_static
+			self.visiting_static = True
+			storage_cp = n.storage 
+			# generate decl without static, to be used as global
+			n.storage = [x for x in n.storage if x != "static"]
+			decl = self._generate_decl(n)
+			n.storage = storage_cp
+			self.visiting_static = prevStatic
+			
+			# varname with the prefix for statics
+			varname_with_pfx = self.visit(pycparser.c_ast.ID(n.name))
+			# varname for the initializer check
+			varname_initcheck = self.staticinitprefix + varname_with_pfx[len(self.staticprefix):]
+			
+			initcheckdecl = "unsigned char "+varname_initcheck+" = 0;"
 
-		s = n.name if no_type else self._generate_decl(n)
-
-		if n.bitsize: s += ' : ' + self.visit(n.bitsize)
-		if n.init:
-			if isinstance(n.init, pycparser.c_ast.InitList):
-				s += ' = {' + self.visit(n.init) + '}'
-			elif isinstance(n.init, pycparser.c_ast.ExprList):
-				s += ' = (' + self.visit(n.init) + ')'
+			s = ""
+			if n.init:
+				init = varname_with_pfx
+				if isinstance(n.init, pycparser.c_ast.InitList):
+					init += ' = {' + self.visit(n.init) + '}'
+				elif isinstance(n.init, pycparser.c_ast.ExprList):
+					init += ' = (' + self.visit(n.init) + ')'
+				else:
+					init += ' = ' + self.visit(n.init)
+				s = "("+varname_initcheck+" || ("+init+", "+varname_initcheck+" = 1))"
 			else:
-				s += ' = ' + self.visit(n.init)
+				s = varname_initcheck + " = 1"
+			self.static_vars.append(decl+";")
+			self.static_vars.append(initcheckdecl)
 
-		self.__visitingDecl -= 1
+			self.__visitingDecl -= 1
+			return s
+		else:
+			s = n.name if no_type else self._generate_decl(n)
 
-		return s
+			if n.bitsize: s += ' : ' + self.visit(n.bitsize)
+		    
+		        
+			if n.init:
+				if isinstance(n.init, pycparser.c_ast.InitList):
+					s += ' = {' + self.visit(n.init) + '}'
+				elif isinstance(n.init, pycparser.c_ast.ExprList):
+					s += ' = (' + self.visit(n.init) + ')'
+				else:
+					s += ' = ' + self.visit(n.init)
+
+			self.__visitingDecl -= 1
+
+			return s
 
 
 	def visit_FuncDef(self, n):
@@ -247,18 +304,27 @@ class varnames(core.module.Translator):
 				#n.declname = self.prefix + self.__currentFunction + '_' + n.declname if n.declname else ''
 				if self.__init: 
 					#self.newIDs[self.__currentFunction,n.declname] = self.prefix + self.__currentFunction + '_' +self.inlineInfix  #S:
+					if self.visiting_static:
+						prefixvar = self.staticprefix + self.__currentFunction + '_'
+					else:
+						prefixvar = self.prefix + self.__currentFunction + '_' + self.inlineInfix
 					if (self.__currentFunction,n.declname) in  self.newIDs:
-						self.newIDs[self.__currentFunction,n.declname].append((self.prefix + self.__currentFunction + '_' +self.inlineInfix,self.__visitingCompound))  #S:
+						self.newIDs[self.__currentFunction,n.declname].append((prefixvar,self.__visitingCompound))  #S:
 					else: 
-						self.newIDs[self.__currentFunction,n.declname] = [(self.prefix + self.__currentFunction + '_' +self.inlineInfix,self.__visitingCompound)]
-					n.declname = self.prefix + self.__currentFunction + '_' + self.inlineInfix + n.declname if n.declname else '' #S:
+						self.newIDs[self.__currentFunction,n.declname] = [(prefixvar,self.__visitingCompound)]
+					n.declname = prefixvar + n.declname if n.declname else '' #S:
 				else:
 					#self.newIDs[self.__currentFunction,n.declname] = self.nondetprefix + self.__currentFunction + '_' +self.inlineInfix  #S:
-					if (self.__currentFunction,n.declname) in  self.newIDs:
-						self.newIDs[self.__currentFunction,n.declname].append((self.nondetprefix + self.__currentFunction + '_' +self.inlineInfix,self.__visitingCompound))   #S:
+					if self.visiting_static:
+						prefixvar = self.staticprefix + self.__currentFunction + '_'
 					else:
-						self.newIDs[self.__currentFunction,n.declname] = [(self.nondetprefix + self.__currentFunction + '_' +self.inlineInfix,self.__visitingCompound)]
-					n.declname = self.nondetprefix + self.__currentFunction + '_' + self.inlineInfix + n.declname if n.declname else ''  #S:
+						prefixvar = self.nondetprefix + self.__currentFunction + '_' + self.inlineInfix
+					
+					if (self.__currentFunction,n.declname) in  self.newIDs:
+						self.newIDs[self.__currentFunction,n.declname].append((prefixvar,self.__visitingCompound))   #S:
+					else:
+						self.newIDs[self.__currentFunction,n.declname] = [(prefixvar,self.__visitingCompound)]
+					n.declname = prefixvar + n.declname if n.declname else ''  #S:
 									
 				#print n.declname
 				#print self.newIDs
