@@ -84,6 +84,8 @@ class workarounds(core.module.Translator):
 
     __parsingFunction = ''
     currentAnonStructsCount = 0  # counts the number of anonymous structures (used to assign consecutive names)
+    
+    mainNode = None
 
     def visit_Cast(self, n):
         ''' Remove cast to NULL pointer in C
@@ -100,7 +102,11 @@ class workarounds(core.module.Translator):
             return n.name
             
     def visit_FileAST(self, n):
-        return super().visit_FileAST(n) + "\n" + self.visit_FuncDef(self.mainNode, visitMain = True)
+        astNoMain = super().visit_FileAST(n)
+        if self.mainNode is None:
+            return astNoMain
+        else:
+            return astNoMain + "\n" + self.visit_FuncDef(self.mainNode, visitMain = True)
 
     def visit_FuncDef(self, n, visitMain = False):
         if n.decl.name == "main" and not visitMain: # GG: ensure that main is the last method
