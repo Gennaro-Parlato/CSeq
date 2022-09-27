@@ -14,10 +14,10 @@ sudo pip3 install -r /home/aldo/CSeq/VeriSmart/requirements.txt
 # create a nodes_list file where to store all the partecipants hostname which will partecipate in the execution:
 #add the list of hostnames of each node with default number of slots and maximum number of slots:
 echo "master slots=1" | sudo tee -a /home/aldo/CSeq/VeriSmart/nodes
-echo "slave1 slots=1" | sudo tee -a /home/aldo/CSeq/VeriSmart/nodes
-echo "slave2 slots=1" | sudo tee -a /home/aldo/CSeq/VeriSmart/nodes
-echo "slave3 slots=1" | sudo tee -a /home/aldo/CSeq/VeriSmart/nodes
-echo "slave4 slots=1" | sudo tee -a /home/aldo/CSeq/VeriSmart/nodes
+#echo "slave1 slots=1" | sudo tee -a /home/aldo/CSeq/VeriSmart/nodes
+#echo "slave2 slots=1" | sudo tee -a /home/aldo/CSeq/VeriSmart/nodes
+#echo "slave3 slots=1" | sudo tee -a /home/aldo/CSeq/VeriSmart/nodes
+#echo "slave4 slots=1" | sudo tee -a /home/aldo/CSeq/VeriSmart/nodes
 
 #master declares that will share the project folder with slaves:
 echo "/home/aldo/CSeq/VeriSmart *(rw,sync,no_root_squash,no_subtree_check)" | sudo tee -a /etc/exports
