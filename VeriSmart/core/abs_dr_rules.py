@@ -1422,7 +1422,7 @@ class AbsDrRules:
     def __assert_underapprox(self, state, exp, **kwargs):
         assert(self.underapprox and not self.dr_on)
         ans = self.comma_expr(self.assume_expr(self.and_expr_prop(self.not_cp(state, "bap"), 
-            self.or_expr_prop(self.visitor_visit(state, exp, "GET_VAL", "ACCESS", **kwargs),
+            self.comma_expr(self.visitor_visit(state, exp, "GET_VAL", "ACCESS", **kwargs),
                 self.not_cp(state, "bav")))),
             self.assert_expr(self.visitor_visit(state, exp, "VALUE", "WSE", **kwargs)))
         return ans
