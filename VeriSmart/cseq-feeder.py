@@ -163,6 +163,7 @@ class cseqenv:
     
     # Abstraction
     enableAbstraction = False
+    enableAbstrUnderapprox = False
     bit_width = 3
 
 
@@ -317,6 +318,7 @@ def usage(cmd, errormsg, showhelp=True, detail=False, isSwarm=False):
         print("   --local-vars                      0 for init with malloc (default), 1 wih memcopy, 2 with nondet-static option")
         print("bit abstraction option:")
         print("   --abstraction                     turn on abstraction module (default: 0 false)")
+        print("   --abstr_under                     turn on abstraction underapproximation (default: 0 false)")
         print("   --bit_width                       abstraction precision [3-32] bits (default: 3 bit)")
         print("   --macro-file                      macro file name for the over-approximation schema (default: macro_plain.h)")
         # Module-specific params for the given chain (or for the default one)
@@ -570,7 +572,7 @@ def main():
                     "sat-swarm",
                     
                     # Abstraction
-                    "abstraction","bit_width=","macro-file="]
+                    "abstraction","abstr_under","bit_width=","macro-file="]
 
         # add one command-line parameter for each module-specific parameter
         for p in cseqenv.params:
@@ -736,6 +738,8 @@ def main():
         # Abstraction
         elif o in ('--abstraction'):
             cseqenv.enableAbstraction = True
+        elif o in ('--abstr_under'):
+            cseqenv.enableAbstrUnderapprox = True
         elif o in ('--bit_width'):
             cseqenv.bit_width = int(a)
         elif o in ('--macro-file'):

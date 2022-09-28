@@ -64,6 +64,7 @@ class abstr_dr_common(lazyseqnewschedule.lazyseqnewschedule):
         self.dr_on = dr_on
         if dr_on:
             self.abs_dr_vpstate = None
+        self.elseLblProgr = 0 #used in underapproximation to do the jump between then and else
         
         # Antonio var. Don't touch those functions. Extend the following list when special function or void function are found during parsing
         self.funcCall_to_exclude = ['sscanf',
@@ -177,8 +178,9 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
         
     def loadfromstring(self, string, env):
         self.env = env  
+        self.underapprox = env.enableAbstrUnderapprox #underapproximation
         self.abs_bitwidth = env.bit_width
-        self.abs_dr_rules = abs_dr_rules.AbsDrRules(self, self.abs_on, self.dr_on, self.dr_on and self.codeContainsAtomic(), self.abs_bitwidth, SupportFileManager(), self.macro_file_name, debug=env.debug)
+        self.abs_dr_rules = abs_dr_rules.AbsDrRules(self, self.abs_on, self.dr_on, self.dr_on and self.codeContainsAtomic(), self.abs_bitwidth, SupportFileManager(), self.macro_file_name, underapprox=self.underapprox, debug=env.debug)
         
         # Instrumentation arguments: {'abs_mode':abs_mode, 'dr_mode':dr_mode} or {'abs_mode':'GET_VAL', 'dr_mode':'NO_ACCESS'} when translating a statement
         self.abs_dr_mode = {'abs_mode':'GET_VAL' if self.abs_on else None, 'dr_mode':'NO_ACCESS' if self.dr_on else None}
@@ -254,7 +256,7 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
             else:
                 s3 += self.visit(ext) + ';\n'
                 
-        s2 = self.abs_dr_rules.cond_vars_decl() + '\n' + self.abs_dr_rules.bav1_vars_decl()
+        s2 = self.abs_dr_rules.cond_vars_decl() + '\n' + self.abs_dr_rules.bav1_vars_decl() + '\n' + self.abs_dr_rules.bap1_vars_decl()
 
         #TODO check what it means
         #ris = self.faked_typedef_start \
@@ -844,6 +846,9 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
         self.abs_dr_rules.addTypedef(ans)
         return ans
         
+    def visit_Goto(self, n):
+        return ("__CPROVER_assume(!"+self.abs_dr_rules.bap+"); " if self.underapprox else "")+super().visit_Goto(n)
+        
     def visit_Decl(self, n, no_type=False):
         if not self.any_instrument or not (self.dr_on or self.abs_on):
             return super().visit_Decl(n, no_type)
@@ -1047,14 +1052,25 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
                 extra_args['dr_vp_state'] = self.abs_dr_vpstate
                 extra_args['atomic'] = self._lazyseqnewschedule__atomic or self.atomicLvl > 0
             #with BakAndRestore(self, 'full_statement', False):
-            condition = self.abs_dr_rules.rule_IfCond(self.abs_dr_state, n.cond, self.abs_dr_mode['abs_mode'], self.abs_dr_mode['dr_mode'], self.full_statement, **extra_args)
+            condition = self.abs_dr_rules.rule_IfCond(self.abs_dr_state, n, self.abs_dr_mode['abs_mode'], self.abs_dr_mode['dr_mode'], self.full_statement, **extra_args)
             s += condition
 
         s += ')\n'
         stateThen = self.abs_dr_state.copy()
         stateElse = self.abs_dr_state.copy()
         self.abs_dr_state = stateThen
-        s += self._generate_stmt(n.iftrue, add_indent=True)
+        thenblock = self._generate_stmt(n.iftrue, add_indent=True)
+        elseLbl = None
+        if self.underapprox:
+            if n.iffalse: #there is else
+                bav1 = self.abs_dr_rules.getBav1(n)
+                elseLbl = "else_lbl_"+str(self.elseLblProgr)
+                self.elseLblProgr += 1
+                thenblock = "{\n"+thenblock+"\nif("+bav1+") {\ngoto "+elseLbl+";\n}\n}\n"
+            else:
+                bap1 = self.abs_dr_rules.getBap1(n)
+                thenblock = "{\n"+thenblock+"\n"+self.abs_dr_rules.bap+" = "+bap1+";\n}\n"
+        s += thenblock
 
         ifEnd = self._lazyseqnewschedule__maxInCompound   # label for the last stmt in the if block:  if () { block; }
         nextLabelID = ifEnd+1
@@ -1062,6 +1078,9 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
         if n.iffalse:
             self.abs_dr_state = stateElse
             elseBlock = self._generate_stmt(n.iffalse, add_indent=True)
+            if self.underapprox:
+                bap1 = self.abs_dr_rules.getBap1(n)
+                elseBlock = "{\n"+elseLbl+":;"+"\n"+elseBlock+"\n"+self.abs_dr_rules.bap+" = "+bap1+";\n}\n"
 
             elseEnd = self._lazyseqnewschedule__maxInCompound   # label for the last stmt in the if_false block if () {...} else { block; }
 
