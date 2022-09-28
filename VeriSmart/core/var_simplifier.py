@@ -226,7 +226,7 @@ class HasSideEffects(CGenerator):
         return self.visit(n.field) or self.visit(n.name)
 
     def visit_FuncCall(self, n):
-        if n.name.name in ("__CPROVER_set_field", "__CSEQ_assert", "assert", "__CSEQ_assume", "assume"): #Add as needed
+        if n.name.name in ("__CPROVER_set_field", "__CSEQ_assert", "assert", "__CSEQ_assume", "__CPROVER_assume", "assume"): #Add as needed
             return True
         # assuming no side effects from the function itself at this point (we are using our own made functions)
         if n.args is None:

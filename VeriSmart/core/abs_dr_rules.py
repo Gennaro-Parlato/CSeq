@@ -1421,10 +1421,11 @@ class AbsDrRules:
                     
     def __assert_underapprox(self, state, exp, **kwargs):
         assert(self.underapprox and not self.dr_on)
-        return self.comma_expr(self.assume_expr(self.and_expr_prop(self.not_cp(state, "bap"), 
+        ans = self.comma_expr(self.assume_expr(self.and_expr_prop(self.not_cp(state, "bap"), 
             self.or_expr_prop(self.visitor_visit(state, exp, "GET_VAL", "ACCESS", **kwargs),
                 self.not_cp(state, "bav")))),
             self.assert_expr(self.visitor_visit(state, exp, "VALUE", "WSE", **kwargs)))
+        return ans
             
     def rule_Assert_Assume(self, state, fullExpr, abs_mode, dr_mode, full_statement, **kwargs):
         self.assertDisabledIIFModesAreNone(abs_mode, dr_mode, **kwargs) 
@@ -1472,7 +1473,7 @@ class AbsDrRules:
             self.assign_var(bap1, self.bap),
             self.visitor_visit(state, exp, "GET_VAL", "ACCESS", **kwargs),
             self.assign_var(bav1, self.bav),
-            self.assign_with_prop(state,"bav",self.or_expr_prop(self.cp(state,"bav"), self.cp(state,"bap"))),
+            self.assign_with_prop(state,"bap",self.or_expr_prop(self.cp(state,"bap"), self.cp(state,"bav"))),
             self.or_expr_prop(self.cp(state,"bav"), self.visitor_visit(state, exp, "VALUE", "WSE", **kwargs))
         )
             
