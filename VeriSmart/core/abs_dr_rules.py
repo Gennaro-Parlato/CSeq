@@ -1277,10 +1277,11 @@ class AbsDrRules:
             return self.store_content(full_statement,"!("+self.visitor_visit(state, castExp, None, None, **kwargs)+")", notop, abs_mode, dr_mode)
         elif abs_mode in ("GET_VAL",None) and dr_mode in ("ACCESS","PREFIX","NO_ACCESS",None):
             if self.underapprox:
-                trans = self.comma_expr(
+                value = self.getCondition(notop)
+                trans = self.assign_var(value, self.comma_expr(
                     self.visitor_visit(state, castExp, "GET_VAL", "ACCESS", **kwargs),
                     "!("+self.visitor_visit(state, castExp, "VALUE", "WSE", **kwargs)+")" 
-                )
+                ))
             else:
                 trans = self._not_getval(state, notop, **kwargs)
             return self.store_content(full_statement, trans, notop, abs_mode, dr_mode)
