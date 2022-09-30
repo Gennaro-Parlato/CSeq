@@ -1980,13 +1980,13 @@ class AbsDrRules:
             return self.ismin_type(self.visitor_visit(state, n.left, "VALUE", "WSE", **kwargs), unexprType)
         elif type(n) is c_ast.BinaryOp and n.op == "+" and n.right is c_ast.Constant and n.right.value == "1":
             return self.ismax_type(self.visitor_visit(state, n.left, "VALUE", "WSE", **kwargs), unexprType)
-        elif type(n) in (c_ast.ArrayRef, c_ast.Assignment, c_ast.StructRef, c_ast.ID, c_ast.BinaryOp, c_ast.TernaryOp, c_ast.UnaryOp, c_ast.FuncCall): 
+        elif type(n) in (c_ast.ArrayRef, c_ast.Assignment, c_ast.StructRef, c_ast.ID, c_ast.FuncCall): 
             if self.can_assign_unchecked(unExprType, assExpType):
                 return "0" # can do the assignments without checking, types are compatible
             else:
                 return self.bounds_failure(self.visitor_visit(state, n, "VALUE", "WSE", **kwargs), unExprType)
-        #elif type(n) in (c_ast.BinaryOp, c_ast.TernaryOp, c_ast.UnaryOp, c_ast.FuncCall):
-        #    return self.bounds_failure(self.visitor_visit(state, n, "VALUE", "WSE", **kwargs), unExprType)
+        elif type(n) in (c_ast.BinaryOp, c_ast.TernaryOp, c_ast.UnaryOp):
+            return self.bounds_failure(self.visitor_visit(state, n, "VALUE", "WSE", **kwargs), unExprType)
         elif type(n) is c_ast.ExprList:
             return self.__assignment_bounds_failure(state, n.exprs[-1], unExprType, assExpType, **kwargs)
         elif type(n) is c_ast.Cast:
