@@ -781,7 +781,7 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
             extra_args['dr_vp_state'] = self.abs_dr_vpstate
             extra_args['atomic'] = self._lazyseqnewschedule__atomic or self.atomicLvl > 0
             
-        if fref in ('__CSEQ_assert', '__CSEQ_assume', 'assert'):
+        if fref in ('__CSEQ_assert', '__CSEQ_assume', 'assert', 'assume_abort_if_not'):
             return self.abs_dr_rules.rule_Assert_Assume(self.abs_dr_state, n, self.abs_dr_mode['abs_mode'], self.abs_dr_mode['dr_mode'], self.full_statement, **extra_args)
         elif fref == 'sizeof':
             return self.abs_dr_rules.rule_Sizeof(self.abs_dr_state, n, self.abs_dr_mode['abs_mode'], self.abs_dr_mode['dr_mode'], self.full_statement, **extra_args)

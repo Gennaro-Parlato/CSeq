@@ -1446,7 +1446,7 @@ class AbsDrRules:
             fncName = "__CPROVER_assume"
         if abs_mode in ("GET_VAL",None) and dr_mode in ("NO_ACCESS",None):
             if self.underapprox:
-                if fncName == "__CPROVER_assume":
+                if fncName in ("__CPROVER_assume", "assume_abort_if_not"):
                     trans = self.__assume_underapprox(state, exp, **kwargs)
                 else:
                     trans = self.__assert_underapprox(state, exp, **kwargs)
