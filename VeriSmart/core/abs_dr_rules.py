@@ -1863,9 +1863,31 @@ class AbsDrRules:
         else:
             assert(False, "Invalid bav: "+str(state.cp_bav))'''
             
+    def evalValue(self, value):
+        if value[0] == "'" and value[-1] == "'":
+            if len(value) == 4:
+                vesc = value[2]
+                if vesc == "a": return 7
+                elif vesc == "b": return 8
+                elif vesc == "e": return 0x1b
+                elif vesc == "f": return 0xc
+                elif vesc == "n": return 0xa
+                elif vesc == "r": return 0xd
+                elif vesc == "t": return 9
+                elif vesc == "v": return 0xb
+                elif vesc == "\\": return 0x5c
+                elif vesc == "'": return 0x27
+                elif vesc == "\"": return 0x22
+                elif vesc == "?": return 0x3f
+                return ord(vesc)
+            else:
+                return ord(value[1])
+        else:
+            return eval(value)
+            
     def compileTimeBoundsFailure(self, typ, value):
         if typ in self.abstrTypesSigned:
-            intVal = eval(value)
+            intVal = self.evalValue(value)
             mn = -2**(self.abstr_bits-1)
             mx = 2**(self.abstr_bits-1)-1
             mnU = 0
@@ -1877,7 +1899,7 @@ class AbsDrRules:
             else:
                 return "1"
         elif typ in self.abstrTypesUnsigned:
-            intVal = eval(value)
+            intVal = self.evalValue(value)
             mn = 0
             mx = 2**(self.abstr_bits)-1
             return "0" if mn <= intVal and intVal <= mx else "1"
@@ -1885,6 +1907,10 @@ class AbsDrRules:
             assert(False)
             
     def is_numeric_constant(self, v):
+        if len(v) == 3 and v[0] == "'" and v[2] == "'" and v[1] != "\\":
+            return True # char
+        if len(v) == 4 and v[0] == "'" and v[3] == "'" and v[1] == "\\" and v[2] in "abefnrtv\\'\"?":
+            return True # escaped char
         v = v.strip().replace("'","")
         if v[-3:] in ("ULL", "ull"):
             v = v[:-3]
