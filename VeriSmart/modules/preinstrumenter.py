@@ -135,6 +135,8 @@ class preinstrumenter(core.module.Translator):
 
         if n.decl.name.startswith('__VERIFIER_atomic_'):
             decl = decl.replace('__VERIFIER_atomic_', '__CSEQ_atomic_', 1)
+        elif n.decl.name.startswith('__VERIFIER_nondet_'):  # GG: Transformation 5
+            decl = decl.replace('__VERIFIER_nondet_', '__CSEQ_nondet_', 1)
 
         self.indent_level = 0
         body = self.visit(n.body)
@@ -154,6 +156,8 @@ class preinstrumenter(core.module.Translator):
 
         if n.name and n.name.startswith('__VERIFIER_atomic_'):
             s = s.replace('__VERIFIER_atomic_', '__CSEQ_atomic_', 1)
+        elif n.name and n.name.startswith('__VERIFIER_nondet_'):  # GG: Transformation 5
+            s = s.replace('__VERIFIER_nondet_', '__CSEQ_nondet_', 1)
 
         if n.bitsize: s += ' : ' + self.visit(n.bitsize)
         if n.init:

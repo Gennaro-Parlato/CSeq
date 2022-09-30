@@ -241,6 +241,31 @@ class AbsDrRules:
         # SM setup for const declarations
         self.abs_const_decl = []
         
+    def get_type_bounds(self, tp):
+        sz = min(self.abstrTypesSizeof[tp], self.abstr_bits)
+        signed = tp in self.abstrTypesSigned
+        if signed:
+            return (-2**(sz-1), 2**(sz-1)-1)
+        else:
+            return (0, 2**sz-1)
+        
+    # Test whether we can assign a assExpType to an unExprType according to abstraction
+    def can_assign_unchecked(self, unExprType, assExpType):
+        if not self.abs_on:
+            return True
+        if unExprType == 'other' or assExpType == 'other':
+            return True
+            
+        signed_unExprType = unExprType in self.abstrTypesSigned
+        signed_assExpType = assExpType in self.abstrTypesSigned
+        sz_unExprType = self.abstrTypesSizeof[unExprType]*8
+        sz_assExpType = self.abstrTypesSizeof[assExpType]*8
+        
+        #if signed:=unsigned and bitwidth reduced for abstraction, mandate a check
+        if signed_unExprType and not signed_assExpType and (sz_unExprType > self.abstr_bits or sz_assExpType > self.abstr_bits):
+            return False
+        return True
+        
     # Needed by Cleaner to parse the expressions
     def addTypedef(self, txt):
         self.cleaner.addTypedef(txt)
@@ -745,7 +770,7 @@ class AbsDrRules:
                         self.or_expr_prop(
                             self.cp(state, "bav"),
                             self.if_ua(lambda: self.cp(state, "bap")),
-                            self.__assignment_bounds_failure(state, assignee, unExprType, **kwargs)
+                            self.__assignment_bounds_failure(state, assignee, unExprType, unExprType, **kwargs)
                         ),
                         lambda state: self.comma_expr(
                             self.assign(state, "bav", "1"),
@@ -819,7 +844,7 @@ class AbsDrRules:
                         self.or_expr_prop(
                             self.cp(state, "bav"),
                             self.if_ua(lambda: self.cp(state, "bap")),
-                            self.__assignment_bounds_failure(state, assignee, unExprType, **kwargs)
+                            self.__assignment_bounds_failure(state, assignee, unExprType, unExprType, **kwargs)
                         ),
                         lambda state: self.comma_expr(
                             self.assign(state, "bav", "1"),
@@ -1933,13 +1958,13 @@ class AbsDrRules:
                 return False
         else:
             return v.isnumeric()
-    
+        
     # Test whethrer we need to check a bounds failure: otherwise, return "" or a pre-computed value
-    def __assignment_bounds_failure(self, state, n, unExprType, **kwargs):
+    def __assignment_bounds_failure(self, state, n, unExprType, assExpType, **kwargs):
         #if not self.is_abstractable(unExprType):
         #    return ""
         #TODO check if bitwidth is compatible if vars have different abstraction bitwidths
-        if type(n) in (c_ast.ArrayRef, c_ast.Assignment, c_ast.Struct, c_ast.StructRef, c_ast.Union, c_ast.ID): 
+        if type(n) in (c_ast.Struct, c_ast.Union): 
             return "0"
         elif type(n) is c_ast.UnaryOp and n.op in ("+","-") and type(n.expr) is c_ast.Constant:
             if self.is_numeric_constant(n.expr.value):
@@ -1955,12 +1980,17 @@ class AbsDrRules:
             return self.ismin_type(self.visitor_visit(state, n.left, "VALUE", "WSE", **kwargs), unexprType)
         elif type(n) is c_ast.BinaryOp and n.op == "+" and n.right is c_ast.Constant and n.right.value == "1":
             return self.ismax_type(self.visitor_visit(state, n.left, "VALUE", "WSE", **kwargs), unexprType)
-        elif type(n) in (c_ast.BinaryOp, c_ast.TernaryOp, c_ast.UnaryOp, c_ast.FuncCall):
-            return self.bounds_failure(self.visitor_visit(state, n, "VALUE", "WSE", **kwargs), unExprType)
+        elif type(n) in (c_ast.ArrayRef, c_ast.Assignment, c_ast.StructRef, c_ast.ID, c_ast.BinaryOp, c_ast.TernaryOp, c_ast.UnaryOp, c_ast.FuncCall): 
+            if self.can_assign_unchecked(unExprType, assExpType):
+                return "0" # can do the assignments without checking, types are compatible
+            else:
+                return self.bounds_failure(self.visitor_visit(state, n, "VALUE", "WSE", **kwargs), unExprType)
+        #elif type(n) in (c_ast.BinaryOp, c_ast.TernaryOp, c_ast.UnaryOp, c_ast.FuncCall):
+        #    return self.bounds_failure(self.visitor_visit(state, n, "VALUE", "WSE", **kwargs), unExprType)
         elif type(n) is c_ast.ExprList:
-            return self.__assignment_bounds_failure(state, n.exprs[-1], unExprType, **kwargs)
+            return self.__assignment_bounds_failure(state, n.exprs[-1], unExprType, assExpType, **kwargs)
         elif type(n) is c_ast.Cast:
-            return self.__assignment_bounds_failure(state, n.expr, unExprType, **kwargs)
+            return self.__assignment_bounds_failure(state, n.expr, unExprType, assExpType, **kwargs)
         else:
             print(n)
             assert(False)
@@ -2005,7 +2035,7 @@ class AbsDrRules:
                         self.cp(state, "bav"),
                         self.if_ua(lambda: "" if isCondVar else self.cp(state, "bap")),
                         self.cp(state, "bav_lhs") if op != "=" else "",
-                        self.__assignment_bounds_failure(state, assExp, unExprType, **kwargs) if op == "=" and self.is_abstractable(unExprType) else "",
+                        self.__assignment_bounds_failure(state, assExp, unExprType, assExpType, **kwargs) if op == "=" and self.is_abstractable(unExprType) else "",
                         self.bounds_failure(fullOp(), unExprType) if op != "=" and self.is_abstractable(unExprType) else ""
                     ),
                     lambda state: self.comma_expr(
@@ -2015,8 +2045,8 @@ class AbsDrRules:
                     ), 
                     lambda state: self.comma_expr(
                         self.setsm("&("+self.visitor_visit(state, unExp, "LVALUE", "WSE", **kwargs)+")", self.sm_abs, "0"),
-                        self.visitor_visit(state, unExp, "LVALUE", "WSE", **kwargs)+" = "+self.encode(self.visitor_visit(state, assExp, "VALUE", "WSE", **kwargs), unExprType) if op == "=" else "",
-                        "" if op == "=" else self.visitor_visit(state, unExp, "LVALUE", "WSE", **kwargs)+" = "+self.encode(fullOp(), unExprType),
+                        self.visitor_visit(state, unExp, "LVALUE", "WSE", **kwargs)+" = ("+self.encode(self.visitor_visit(state, assExp, "VALUE", "WSE", **kwargs), unExprType)+")" if op == "=" else "",
+                        "" if op == "=" else self.visitor_visit(state, unExp, "LVALUE", "WSE", **kwargs)+" = ("+self.encode(fullOp(), unExprType)+")",
                         self.void0()
                     ))
             ),
@@ -2032,7 +2062,7 @@ class AbsDrRules:
             assExp = n.init
             unExprType = self.supportFile.get_type(unExp)
             if self.is_abstractable(unExprType):
-                self.abs_const_decl += [self.setsm("&("+self.visitor_visit(state, unExp, "LVALUE", "WSE", **kwargs)+")", self.sm_abs, self.__assignment_bounds_failure(state, assExp, unExprType, **kwargs))+";"]
+                self.abs_const_decl += [self.setsm("&("+self.visitor_visit(state, unExp, "LVALUE", "WSE", **kwargs)+")", self.sm_abs, self.__assignment_bounds_failure(state, assExp, unExprType, assExpType, **kwargs))+";"]
             
     def rule_SpecialFuncCall(self, state, fcall, abs_mode, dr_mode, full_statement, **kwargs):
         self.assertDisabledIIFModesAreNone(abs_mode, dr_mode, **kwargs)  
