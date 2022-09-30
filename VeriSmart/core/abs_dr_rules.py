@@ -1365,9 +1365,15 @@ class AbsDrRules:
         if not self.abs_on or state.cp_bav == 0:
             return ""
         elif state.cp_bav == 1:
-            return self.fail_expr()
+            if self.underapprox:
+                return self.assume_expr("0")
+            else:
+                return self.fail_expr()
         elif state.cp_bav is None:
-            return self.assert_expr("!"+self.bav)
+            if self.underapprox:
+                return self.assume_expr("!"+self.bav)
+            else:
+                return self.assert_expr("!"+self.bav)
         else:
             assert(False)
             
@@ -1811,9 +1817,15 @@ class AbsDrRules:
         if state.cp_bal == 0:
             return ""
         elif state.cp_bal == 1:
-            return fail_expr()
+            if self.underapprox:
+                return self.assume_expr("0")
+            else:
+                return fail_expr()
         elif state.cp_bal is None:
-            return self.assert_expr("!"+self.bal)
+            if self.underapprox:
+                return self.assume_expr("!"+self.bav)
+            else:
+                return self.assert_expr("!"+self.bal)
         else:
             assert(False)
         '''if state.cp_bal is None:
