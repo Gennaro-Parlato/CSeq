@@ -129,7 +129,7 @@ class Cleaner(CGenerator):
 
     def visit_BinaryOp(self, n, read=False, after=set()):
         visit_right = self.visit(n.right, read=True, after= after)
-        visit_left = self.visit(n.left, read=True, after = visit_right['read_IDs'])
+        visit_left = self.visit(n.left, read=True, after = visit_right['read_IDs']|after)
         read_IDs = visit_left['read_IDs'] | visit_right['read_IDs']
         return {'code': BinaryOp(n.op, visit_left['code'], visit_right['code']), 'read_IDs': read_IDs}
         
