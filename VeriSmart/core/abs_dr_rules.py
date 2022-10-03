@@ -1109,7 +1109,7 @@ class AbsDrRules:
         bav1 = self.getBav1(top)
         
         then = lambda state: self.comma_expr(self.visitor_visit(state, exp, "GET_VAL", "ACCESS", **kwargs), "!"+bav1)
-        els = lambda state: self.comma_expr(self.visitor_visit(state, exp, "GET_VAL", "ACCESS", **kwargs), 
+        els = lambda state: self.comma_expr(self.visitor_visit(state, condExp, "GET_VAL", "ACCESS", **kwargs), 
             self.assign_var(self.bap, bap1),
             self.assign_with_prop(state, "bav", self.or_expr_prop(self.cp(state, "bav"), bav1))
             )
