@@ -1180,7 +1180,7 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
         self.elseLblProgr += 1
         
         if n.iffalse: #there is else
-            jmpElse = self.macro_file_manager.expression(n.cond, ["if("+adr.getBav1(n)+") {\ngoto "+elseLbl+";\n}\n" if adr.underapprox else ";" for adr in self.conf_adr], passthrough=not self.full_statement, typlbl="JmpElse")
+            jmpElse = self.macro_file_manager.expression(n.cond, ["if("+adr.getBav1(n)+") {goto "+elseLbl+";}" if adr.underapprox else ";" for adr in self.conf_adr], passthrough=not self.full_statement, typlbl="JmpElse")
             thenblock = "{\n"+thenblock+"\n"+jmpElse+";}\n"
         else:
             resetBap = self.macro_file_manager.expression(n.cond, [adr.bap+" = "+adr.getBap1(n)+";\n" if adr.underapprox else ";" for adr in self.conf_adr], passthrough=not self.full_statement, typlbl="ResetBap")
@@ -1196,7 +1196,7 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
             assert(self.full_statement)
             elseBlock = self._generate_stmt(n.iffalse, add_indent=True)
             assert(self.full_statement)
-            resetBap = self.macro_file_manager.expression(n.cond, [adr.bap+" = "+adr.getBap1(n)+";\n" if adr.underapprox else ";" for adr in self.conf_adr], passthrough=not self.full_statement, typlbl="ResetBap")
+            resetBap = self.macro_file_manager.expression(n.cond, [adr.bap+" = "+adr.getBap1(n)+";" if adr.underapprox else ";" for adr in self.conf_adr], passthrough=not self.full_statement, typlbl="ResetBap")
             elseBlock = "{\n"+elseLbl+":;"+"\n"+elseBlock+"\n"+resetBap+";}\n"
 
             elseEnd = self._lazyseqnewschedule__maxInCompound   # label for the last stmt in the if_false block if () {...} else { block; }
