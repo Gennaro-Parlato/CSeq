@@ -122,6 +122,7 @@ class MacroFileManager:
             self.adrs[i].cleaner.do_clean_codes()
             clean_codes = self.adrs[i].cleaner.get_clean_codes()
             with open(self.get_macro_file_name(i), "w") as f:
+                print("#ifndef NULL\n#define NULL 0\n#endif\n#ifndef bool\n#define bool _Bool\n#endif\n", file=f)
                 print(self.adrs[i].getAbstractionMacros(), file=f)
                 for macro_name in self.macroToExprs.keys():
                     trans = clean_codes[macro_name] if self.macroToExprs[macro_name][i] != "" and macro_name != "AUXVARS" and "JmpElse" not in macro_name else self.macroToExprs[macro_name][i]
@@ -761,7 +762,6 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
         visit_ans = self.macro_file_manager.expression_comma(n, self.do_rule('rule_Comma', n, **extra_args), passthrough=not self.full_statement)
         self.expList = None if visit_ans[1] is None else visit_ans[1].copy()
         return visit_ans[0]
-        
         
     def DRvisit_FuncCall(self, n):
         fref = n.name.name #self.frefVisit(n)

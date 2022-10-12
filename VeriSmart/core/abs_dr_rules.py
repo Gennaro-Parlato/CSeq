@@ -2080,4 +2080,3 @@ class AbsDrRules:
         return self.comma_expr(
             self.if_abs(lambda: self.comma_expr(*[self.comma_expr(self.visitor_visit(state, x, "GET_VAL", "NO_ACCESS", **kwargs_nobavtest), self.__assignment_manual_bav_fail(state)) for x in kwargs["bavtest"]])),
             self.visitor_visit_noinstr(fcall))
-            
