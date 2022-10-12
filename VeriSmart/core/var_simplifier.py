@@ -169,7 +169,7 @@ class Cleaner(CGenerator):
             return {'code': Assignment(n.op, visit_lvalue['code'], visit_rvalue['code']), 'read_IDs': read_IDs}
 
     def visit_Cast(self, n, read=False, after=set()):
-        if type(n.to_type.type.type) is IdentifierType and "void" in n.to_type.type.type.names and n.expr.value == "0": # (void) 0 : do not remove it
+        if type(n.to_type.type.type) is IdentifierType and "void" in n.to_type.type.type.names and type(n.expr) is Constant and n.expr.value == "0": # (void) 0 : do not remove it
             return {'code': n, 'read_IDs': after}
         else:
             visit_expr = self.visit(n.expr, read=read, after = after)
