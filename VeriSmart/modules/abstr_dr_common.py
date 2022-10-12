@@ -907,7 +907,7 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
         elif fref == '__cs_safe_malloc':
             return self.macro_file_manager.expression(n, self.do_rule('rule_Malloc', n, **extra_args), passthrough=not self.full_statement)
         elif fref == '__CSEQ_nondet_int':
-            return self.macro_file_manager.expression(n, [self.abs_dr_rules.rule_Nondet(self.abs_dr_state, n, self.abs_dr_mode['abs_mode'], self.abs_dr_mode['dr_mode'], self.full_statement, **extra_args)], passthrough=not self.full_statement)
+            return self.macro_file_manager.expression(n, self.do_rule('rule_Nondet', n, **extra_args), passthrough=not self.full_statement)
             
         ## all functions are either instrumentation ones or thread functions. Anyways, don't instrument
         parts = []
