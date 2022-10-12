@@ -20,7 +20,10 @@ class Cleaner(CGenerator):
         self.typedefList.append(txt+";")
         
     def add_code_to_clean(self, key, code):
-        self.codes_to_clean[key] = code
+        if code.strip() in (";",""):
+            self.clean_codes[key] = code
+        else:
+            self.codes_to_clean[key] = code
         
     def do_clean_codes(self):
         if self.doClean:
@@ -34,9 +37,10 @@ class Cleaner(CGenerator):
             parsed = self.parser.parse(with_boilerplate)
             if parsed.ext[-1].body.block_items is not None:
                 for label_stmt in parsed.ext[-1].body.block_items:
-                    self.side_effects = HasSideEffects(keep_void0 = True)
-                    clean_ast = self.visit(label_stmt.stmt)['code']
-                    self.clean_codes[label_stmt.name] = self.generate.visit(clean_ast).replace("___fakeifvar___ = ","")
+                    if type(label_stmt) is not EmptyStatement:
+                        self.side_effects = HasSideEffects(keep_void0 = True)
+                        clean_ast = self.visit(label_stmt.stmt)['code']
+                        self.clean_codes[label_stmt.name] = self.generate.visit(clean_ast).replace("___fakeifvar___ = ","")
         else:
             for k in self.codes_to_clean:
                 self.clean_codes[k] = self.codes_to_clean[k].replace("___fakeifvar___ = ","")
@@ -60,7 +64,7 @@ class Cleaner(CGenerator):
     def interesting_vars(self, name):
         if name is None:
             return False
-        return name == "__cs_baL" or name.startswith("__cs_cond_") or name.startswith("__cs_baV")
+        return name == "__cs_baL" or name.startswith("__cs_cond_") or name.startswith("__cs_baV") or name.startswith("__cs_baP")
         
     def visit(self, node, read=False, after=set()):
         method = 'visit_' + node.__class__.__name__

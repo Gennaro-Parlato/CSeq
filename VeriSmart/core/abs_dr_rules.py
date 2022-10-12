@@ -233,7 +233,7 @@ class AbsDrRules:
         self.supportFile = supportFile
         
         # macro file with instrumented code
-        self.macroFile = MacroFile(macroFileName, self, debug)
+        #self.macroFile = MacroFile(macroFileName, self, debug)
         
         # removes redundant assignments into instrumented code 
         self.cleaner = Cleaner()
@@ -288,35 +288,35 @@ class AbsDrRules:
     def aux_vars_decl(self):
         #TODO use __CPROVER_bitvector
         return self.compound_expr("\n",*([
-            self.if_abs(lambda: "unsigned char "+self.bav+" = 0;"),
-            self.if_abs(lambda: "unsigned char "+self.bal+" = 0;"),
-            self.if_abs(lambda: "unsigned char "+self.bav_lhs+" = 0;"),
-            self.if_abs(lambda: "unsigned char "+self.bav_tmp+" = 0;"),
-            self.if_ua(lambda: "unsigned char "+self.bap+" = 0;"),
-            self.if_dr_possible(lambda: "unsigned char "+self.dr+" = 0;"),
-            self.if_dr_possible(lambda: "unsigned char "+self.wam+" = 0;"),
-            self.if_dr_possible(lambda: "unsigned char "+self.wkm+" = 0;"),
-            self.if_dr_possible(lambda: 'unsigned char __cs_dataraceDetectionStarted = 0;'),
-            self.if_dr_possible(lambda: 'unsigned char __cs_dataraceSecondThread = 0;'),
-            self.if_dr_possible(lambda: 'unsigned char __cs_dataraceNotDetected = 1;'),
-            self.if_dr_possible(lambda: 'unsigned char __cs_dataraceContinue = 1;'),
-            self.if_dr_possible(lambda: 'unsigned char __cs_dataraceActiveVP1 = 0;'),
-            self.if_dr_possible(lambda: 'unsigned char __cs_dataraceActiveVP2 = 0;'),
+            self.if_abs(lambda: "unsigned __CPROVER_bitvector[1] "+self.bav+" = 0;"),
+            self.if_abs(lambda: "unsigned __CPROVER_bitvector[1] "+self.bal+" = 0;"),
+            self.if_abs(lambda: "unsigned __CPROVER_bitvector[1] "+self.bav_lhs+" = 0;"),
+            self.if_abs(lambda: "unsigned __CPROVER_bitvector[1] "+self.bav_tmp+" = 0;"),
+            self.if_ua(lambda: "unsigned __CPROVER_bitvector[1] "+self.bap+" = 0;"),
+            self.if_dr_possible(lambda: "unsigned __CPROVER_bitvector[1] "+self.dr+" = 0;"),
+            self.if_dr_possible(lambda: "unsigned __CPROVER_bitvector[1] "+self.wam+" = 0;"),
+            self.if_dr_possible(lambda: "unsigned __CPROVER_bitvector[1] "+self.wkm+" = 0;"),
+            self.if_dr_possible(lambda: 'unsigned __CPROVER_bitvector[1] __cs_dataraceDetectionStarted = 0;'),
+            self.if_dr_possible(lambda: 'unsigned __CPROVER_bitvector[1] __cs_dataraceSecondThread = 0;'),
+            self.if_dr_possible(lambda: 'unsigned __CPROVER_bitvector[1] __cs_dataraceNotDetected = 1;'),
+            self.if_dr_possible(lambda: 'unsigned __CPROVER_bitvector[1] __cs_dataraceContinue = 1;'),
+            self.if_dr_possible(lambda: 'unsigned __CPROVER_bitvector[1] __cs_dataraceActiveVP1 = 0;'),
+            self.if_dr_possible(lambda: 'unsigned __CPROVER_bitvector[1] __cs_dataraceActiveVP2 = 0;'),
         ]+[
             self.if_abs(lambda: t+" __cs_bf_"+t.replace(" ","_")+" = ("+t+") 0;") for t in self.abstrTypesSigned
         ]))[0]
         
     def cond_vars_decl(self):
         #TODO use __CPROVER_bitvector
-        return self.compound_expr("\n",*(['unsigned char '+v+';' for v in self.conditions.values()]))[0]
+        return self.compound_expr("\n",*(['unsigned __CPROVER_bitvector[1] '+v+';' for v in self.conditions.values()]))[0]
         
     def bav1_vars_decl(self):
         #TODO use __CPROVER_bitvector
-        return self.compound_expr("\n",*(['unsigned char '+v+';' for v in self.bav1s.values()]))[0]
+        return self.compound_expr("\n",*(['unsigned __CPROVER_bitvector[1] '+v+';' for v in self.bav1s.values()]))[0]
         
     def bap1_vars_decl(self):
         #TODO use __CPROVER_bitvector
-        return self.compound_expr("\n",*(['unsigned char '+v+';' for v in self.bap1s.values()]))[0]
+        return self.compound_expr("\n",*(['unsigned __CPROVER_bitvector[1] '+v+';' for v in self.bap1s.values()]))[0]
         
     def sm_field_decl(self):
         return "#define FIELD_DECLS() "+self.compound_expr(" ",*([
@@ -375,6 +375,7 @@ class AbsDrRules:
     def store_content(self, full_statement, macro_content, node, abs_mode, dr_mode):
         # if full_statement -> compact macro, store it and return its code.
         # else -> return macro_content verbatim
+        return macro_content
         if full_statement:
             return self.macroFile.store_macro(macro_content, node, abs_mode, dr_mode)
         else:
@@ -654,7 +655,9 @@ class AbsDrRules:
     def visitor_visit(self, state, n, abs_mode, dr_mode, **kwargs):
         if type(n) is c_ast.FuncCall and self.dr_on and dr_mode != "WSE": #TODO check if abs & dr
             return ""
-        ans = self.visitor.visit_with_absdr_args(state, n, abs_mode if self.abs_on else None, dr_mode if self.dr_on else None, full_statement=False, **kwargs).strip()
+        ans = self.visitor.visit_with_absdr_args(state, n, self, abs_mode if self.abs_on else None, dr_mode if self.dr_on else None, full_statement=False, **kwargs)
+        if isinstance(ans, list): ans = ans[0] # TODO this should always happen!
+        ans = ans.strip()
         if ans == "()":
             return ""
         else:
@@ -662,7 +665,9 @@ class AbsDrRules:
         
     # Perform a visit using the visitor module without any instrumentation
     def visitor_visit_noinstr(self, n):
-        return self.visitor.visit_noinstr(n, full_statement=False)
+        ans = self.visitor.visit_noinstr(n, full_statement=False)
+        if isinstance(ans, list): ans = ans[0]
+        return ans
         
     def __preop_manual_cp_bal(self,state, unExpr, vpstate):
         # if abstraction is on:
@@ -996,7 +1001,7 @@ class AbsDrRules:
         if abs_mode in ("LVALUE", None) and dr_mode in ("WSE", None):
             return self.store_content(full_statement,self.visitor_visit(state, postExp, "VALUE", "WSE", **kwargs)+"->"+fid.name, srexp, abs_mode, dr_mode)
         elif abs_mode in ("VALUE",) and dr_mode in ("WSE", None):
-            srexpType = self.supportFile.get_type(srexp) #"int" #TODO get type from expression
+            srexpType = self.supportFile.get_type(srexp) 
             return self.store_content(full_statement,self.decode(self.visitor_visit(state, postExp, "VALUE", "WSE", **kwargs)+"->"+fid.name, srexpType), srexp, abs_mode, dr_mode)
             
         elif abs_mode in ("GET_VAL", "UPD_VAL", None) and dr_mode in ("ACCESS", "PREFIX", "NO_ACCESS", None):

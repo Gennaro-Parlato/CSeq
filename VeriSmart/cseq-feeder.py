@@ -162,9 +162,10 @@ class cseqenv:
     arrayNamesList = []  #here are annotated the names of the pointers that correspond to array names in the input program
     
     # Abstraction
-    enableAbstraction = False
-    enableAbstrUnderapprox = False
-    bit_width = 3
+    #enableAbstraction = False
+    #enableAbstrUnderapprox = False
+    #bit_width = 3
+    cases_abstr = ["plain"]
 
 
 def parseChainCommand(s):
@@ -317,9 +318,9 @@ def usage(cmd, errormsg, showhelp=True, detail=False, isSwarm=False):
         print("   -W,--wwDatarace                   requires that write-write datarace are on different written values")
         print("   --local-vars                      0 for init with malloc (default), 1 wih memcopy, 2 with nondet-static option")
         print("bit abstraction option:")
-        print("   --abstraction                     turn on abstraction module (default: 0 false)")
-        print("   --abstr_under                     turn on abstraction underapproximation (default: 0 false)")
-        print("   --bit_width                       abstraction precision [3-32] bits (default: 3 bit)")
+        print("   --abstr_cases                     turn on abstraction module with specific cases (comma separated)")
+        #print("   --abstr_under                     turn on abstraction underapproximation (default: 0 false)")
+        #print("   --bit_width                       abstraction precision [3-32] bits (default: 3 bit)")
         print("   --macro-file                      macro file name for the over-approximation schema (default: macro_plain.h)")
         # Module-specific params for the given chain (or for the default one)
         print("")
@@ -572,7 +573,7 @@ def main():
                     "sat-swarm",
                     
                     # Abstraction
-                    "abstraction","abstr_under","bit_width=","macro-file="]
+                    "abstr_cases=","macro-file="]
 
         # add one command-line parameter for each module-specific parameter
         for p in cseqenv.params:
@@ -736,14 +737,16 @@ def main():
             cseqenv.local = int(a)
             
         # Abstraction
-        elif o in ('--abstraction'):
-            cseqenv.enableAbstraction = True
-        elif o in ('--abstr_under'):
-            cseqenv.enableAbstrUnderapprox = True
-        elif o in ('--bit_width'):
-            cseqenv.bit_width = int(a)
+        #elif o in ('--abstraction'):
+        #    cseqenv.enableAbstraction = True
+        #elif o in ('--abstr_under'):
+        #    cseqenv.enableAbstrUnderapprox = True
+        #elif o in ('--bit_width'):
+        #    cseqenv.bit_width = int(a)
         elif o in ('--macro-file'):
             cseqenv.macro_file = a
+        elif o in ('--abstr_cases'):
+            cseqenv.cases_abstr = [k.strip() for k in a.split(",")]
             
         elif o in ('--sat-swarm'):
             cseqenv.sat_swarm = True
