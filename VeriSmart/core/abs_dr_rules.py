@@ -1826,7 +1826,7 @@ class AbsDrRules:
         elif abs_mode == "VALUE" or dr_mode == "WSE":
             return self.visitor_visit_noinstr(fnc)
         else:
-            return self.if_abs(lambda:self.assign_with_prop(state,"bav", "0"))
+            return self.if_abs(lambda:self.assign_with_prop(state,"bav", "1" if self.abstrTypesSizeof['int']*8 > self.abstr_bits else "0"))
             
     # helper function: returns "p1 && (set_sm_dr(&[[unexp, LVALUE]],1), WKM=1)" and manually applies const propagation
     def __assignment_manual_cp_p1(self, state, unExpr, **kwargs):
