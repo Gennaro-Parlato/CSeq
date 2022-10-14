@@ -177,7 +177,7 @@ class cseqenv:
     #enableAbstraction = False
     #enableAbstrUnderapprox = False
     #bit_width = 3
-    cases_abstr = ["plain"]
+    cases_abstr = ["plain"]+[ou+"_"+str(bw) for ou in ("over","under") for bw in (4,8,16)]
     
 
 

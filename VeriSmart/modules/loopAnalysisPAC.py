@@ -3,7 +3,9 @@ import os.path
 import signal
 
 import time, math
-from multiprocessing import Process
+from multiprocessing import Process, Queue
+from threading import Thread
+from queue import Empty
 
 from bin import utils
 import core.module
@@ -17,25 +19,55 @@ from enum import Enum
 
 
 class StatusCode(Enum):
-    READY = 0
     UNSAFE = 1
     SAFE = 2
     UNKNOWN = 3
     STOP = 4
     KILL = 5
     SOLVE = 6
-    FINISHED = "FINISHED"
+    READY = 7
+    FINISHED = 8
+    
+class AnalysisTask:
+    def __init__(self, lproc, confignumber, config):
+        self.q = Queue()
+        self.proc = lproc(self.q)
+        self.thr = Thread(target=lambda: self.doTask())
+        self.confignumber = confignumber
+        self.config = config
+        
+    def doTask(self):
+        self.proc.join()
+        try:
+            ans = self.q.get_nowait()
+            MPI.COMM_WORLD.send(ans[0], dest=0, tag=ans[1])
+        except Empty:
+            pass
+        
+    def start(self):
+        self.proc.start()
+        self.thr.start()
+        
+    def kill(self):
+        self.proc.kill()
+        self.printStopped(self.confignumber.replace("s", ""), config=self.config)
+        self.thr.join()
+        
+    def printStopped(self, index, config=""):
+        print("{0:20}{1:20}".format("[#" + str(index) + (" "+config if len(config) > 0 else "") + "]", utils.colors.BLUE + "STOPPED" + utils.colors.NO, ))
+        sys.stdout.flush()
+        
+    def join(self):
+        self.thr.join()
 
-
-comm = MPI.COMM_WORLD
-rank = comm.Get_rank()
-numberProcess = comm.Get_size()
+rank = MPI.COMM_WORLD.Get_rank()
+numberProcess = MPI.COMM_WORLD.Get_size()
 server = 0
 
 isMaster = rank == 0
 isSlave = rank > 0
 
-status = MPI.Status()
+
 
 hashtable = {}
 reportHashtable = {}
@@ -148,10 +180,6 @@ class loopAnalysisPAC(core.module.Translator):
             blkStart = blkEnd+1
         return out
         
-    def make_task_hashable(self, t):
-        # needed to use maps with t
-        pass
-        
     def splitWindow(self, conf, env):
         parts = env.rounds+1
         max_tlen = 0
@@ -166,8 +194,8 @@ class loopAnalysisPAC(core.module.Translator):
             parts = max_tlen
         out_wind = []
         for i in range(parts):
-            ow = {"s-1":{t:v for (t,v) in conf[newConfNumber].items() if t != max_tname}}
-            ow[newConfNumber][max_tname] = self.delete_vp(conf[confNumber][max_tname], i*max_tlen//parts, (i+1)*max_tlen//parts-1)
+            ow = {"s-1":{t:v for (t,v) in conf[confNumber].items() if t != max_tname}}
+            ow["s-1"][max_tname] = self.delete_vp(conf[confNumber][max_tname], i*max_tlen//parts, (i+1)*max_tlen//parts-1)
             out_wind.append(ow)
         return out_wind
         
@@ -192,9 +220,9 @@ class loopAnalysisPAC(core.module.Translator):
     def propagate_kill(self): #TODO verificare se gli slave possono effettivamente parlare tra di loro, altrimenti il master uccide tutti con messaggi diretti
         rank_to_kill = [(rank+1)*2-1, (rank+1)*2]
         if rank_to_kill[0] < numberProcess:
-            comm.send(StatusCode.KILL.value, dest=rank_to_kill[0], tag=StatusCode.KILL.value)
+            MPI.COMM_WORLD.send(StatusCode.KILL.value, dest=rank_to_kill[0], tag=StatusCode.KILL.value)
             if rank_to_kill[1] < numberProcess:
-                comm.send(StatusCode.KILL.value, dest=rank_to_kill[1], tag=StatusCode.KILL.value)
+                MPI.COMM_WORLD.send(StatusCode.KILL.value, dest=rank_to_kill[1], tag=StatusCode.KILL.value)
                 
     def stop_filter(self, t, w, bmax, underapprox, overapprox, plain):
         if t[self.getConfigNumber(t)] != w:
@@ -210,12 +238,25 @@ class loopAnalysisPAC(core.module.Translator):
             
             
     def stop(self, w, bmax, underapprox=False, overapprox=False, plain=False):
-        self.Q = collections.deque([t for t in self.Q if not self.stop_filter(t, w, bmax, underapprox, overapprox, plain)])
+        newq = []
+        for t in self.Q:
+            if self.stop_filter(t, w, bmax, underapprox, overapprox, plain):
+                conf = "?"
+                if 'bit_width' not in t:
+                    conf = "plain"
+                else:
+                    bw = str(t['bit_width'])
+                    ou = 'under' if 'abstr_under' in t and t['abstr_under'] else 'over'
+                    conf = ou + "_" + bw
+                self.printSkipped(self.getConfigNumber(t), config=conf)
+            else:
+                newq.append(t)
+        self.Q = collections.deque(newq)
         newJ = {}
         for slaveid in self.J:
             t = self.J[slaveid]
             if self.stop_filter(t, w, bmax, underapprox, overapprox, plain):
-                comm.send(StatusCode.STOP.value, dest=slaveid, tag=StatusCode.STOP.value)
+                MPI.COMM_WORLD.send(StatusCode.STOP.value, dest=slaveid, tag=StatusCode.STOP.value)
             else:
                 newJ[slaveid] = t
         self.J = newJ
@@ -254,6 +295,7 @@ class loopAnalysisPAC(core.module.Translator):
                 self.__ctrlVarDefs.append('unsigned int %s();' % fname)
 
         if isMaster:
+            status = MPI.Status()
             try:
                 self.Qthr = 2000 # it must be > number of slaves
                 self.W = collections.deque([self.firstWindow()])
@@ -262,7 +304,10 @@ class loopAnalysisPAC(core.module.Translator):
                 self.S = collections.deque()
                 
                 while len(self.W) > 0 or len(self.Q) > 0 or len(self.J) > 0:
-                    info = comm.recv(source=MPI.ANY_SOURCE, status=status)
+                    status = MPI.Status()
+                    #print("listening",status)
+                    info = MPI.COMM_WORLD.recv(source=MPI.ANY_SOURCE, tag=MPI.ANY_TAG, status=status)
+                    #print("got", status.tag, status.Get_source(), info)
                     m = status.tag
                     slaveId = status.Get_source()
                     self.S.append(slaveId)
@@ -282,15 +327,15 @@ class loopAnalysisPAC(core.module.Translator):
                                 totaltime = time.time() - env.starttime
                                 self.printIsUnsafe(totaltime, self.foundtime, env.inputfile, env.isSwarm)
                                 print("Rank: ", rank, " - Master terminates its execution")
-                                comm.Abort()
+                                MPI.COMM_WORLD.Abort()
                                 MPI.Finalize()
                                 sys.exit(0)
                         elif m == StatusCode.UNKNOWN.value:
                             noformula = info # TODO use this info somehow (raise timeout?)
-                        if (m != StatusCode.SAFE.value or self.is_underapprox(t)) and self.wont_conclude(t[t_confNbr]):
-                            self.W.extend(self.splitWindow(t[t_confNbr],env))
                         if slaveId in self.J:
                             del self.J[slaveId]
+                        if (m != StatusCode.SAFE.value or self.is_underapprox(t)) and self.wont_conclude(t[t_confNbr]):
+                            self.W.extend(self.splitWindow(t,env))
                     while len(self.W) > 0 and len(self.Q) <= self.Qthr:
                         w = self.W.popleft()
                         self.Q.extend(self.variations(w))
@@ -298,12 +343,13 @@ class loopAnalysisPAC(core.module.Translator):
                         s = self.S.popleft()
                         t = self.Q.popleft()
                         self.J[s] = t
-                        comm.send(json.dumps(t), dest=s, tag=StatusCode.SOLVE.value)
+                        #print("sending", s)
+                        MPI.COMM_WORLD.send(json.dumps(t), dest=s, tag=StatusCode.SOLVE.value)
                 self.propagate_kill()
                 totaltime = time.time() - env.starttime
                 self.printIsSafe(totaltime, env.inputfile, env.isSwarm)
                 print("Rank: ", rank, " - Master terminates its execution")
-                comm.Abort()
+                MPI.COMM_WORLD.Abort()
                 MPI.Finalize()
                 sys.exit(0)
             except KeyboardInterrupt as e:
@@ -311,12 +357,15 @@ class loopAnalysisPAC(core.module.Translator):
                 sys.exit(1)
                 
         elif isSlave:
+            task = None
+            status = MPI.Status()
             dirname, filename = os.path.split(os.path.abspath(env.inputfile))
             swarmdirname = dirname + "/" + filename[:-2] + '.swarm%s/' % env.suffix
-            comm.send(StatusCode.READY.value, dest=server, tag=StatusCode.READY.value)
-            slaveAnalysisProcess = None
+            MPI.COMM_WORLD.send(StatusCode.READY.value, dest=server, tag=StatusCode.READY.value)
             while True:
-                jsonConfig = comm.recv(source=server, status=status)
+                #print("sl listening")
+                jsonConfig = MPI.COMM_WORLD.recv(source=server, status=status)
+                #print("sl got")
                 tag = status.tag
                 if tag == StatusCode.SOLVE.value:
                     jsonConfigDict = json.loads(jsonConfig)
@@ -329,6 +378,13 @@ class loopAnalysisPAC(core.module.Translator):
                     output = []
                     i = 0
                     startIndex = 0
+                    conf = ""
+                    if 'bit_width' not in jsonConfigDict:
+                        conf = "plain"
+                    else:
+                        bw = str(jsonConfigDict['bit_width'])
+                        ou = 'under' if 'abstr_under' in jsonConfigDict and jsonConfigDict['abstr_under'] else 'over'
+                        conf = ou + "_" + bw
 
                     while i < len(self.__threadName):
                         tName = self.__threadName[i]
@@ -346,15 +402,16 @@ class loopAnalysisPAC(core.module.Translator):
                         stemp = ''.join(s for s in self.__ctrlVarDefs)
                         output.insert(0, stemp)
                     instanceGenerated = ''.join(t for t in output)
+                    instanceGenerated = instanceGenerated.replace('plain.h"',conf+'.h"')
                     
-                    slaveAnalysisProcess = Process(target=self.backendAndReport, args=(env, instanceGenerated, configNumber, configintervals, swarmdirname, filename[:-2], timeout))
-                    slaveAnalysisProcess.start()
+                    task = AnalysisTask(lambda q:Process(target=self.backendAndReport, args=(env, instanceGenerated, configNumber, configintervals, swarmdirname, filename[:-2], timeout, q, conf)), configNumber, conf)
+                    task.start()
                     
                 elif tag == StatusCode.STOP.value:
-                    slaveAnalysisProcess.kill()
-                    comm.send(StatusCode.READY.value, dest=server, tag=StatusCode.READY.value)
+                    task.kill()
+                    MPI.COMM_WORLD.send(StatusCode.READY.value, dest=server, tag=StatusCode.READY.value)
                 elif tag == StatusCode.KILL.value:
-                    slaveAnalysisProcess.kill()
+                    task.kill()
                     self.propagate_kill()
                     print("Rank: ", rank, " - Slave terminates its execution")
                     sys.exit(0)
@@ -362,122 +419,135 @@ class loopAnalysisPAC(core.module.Translator):
                     print("Rank: ", rank, " - received an invalid tag",tag,"arg",jsonConfig)
                     
             sys.exit(0)
+        
+        ''''
             
-                
-            ########################################################################################################
-            # Generating configuration file
-            if env.config_file == "":
-                if not env.automatic:
-                    print("Please set -A option if you want to automatically generate instances")
-                env.config_file = env.inputfile[:-2] + \
-                                  "_auto_config%s.json" % env.suffix
+        ########################################################################################################
+        # Generating configuration file
+        if env.config_file == "":
+            if not env.automatic:
+                print("Please set -A option if you want to automatically generate instances")
+            env.config_file = env.inputfile[:-2] + \
+                              "_auto_config%s.json" % env.suffix
 
-            configFile = env.config_file
+        configFile = env.config_file
 
-            if env.automatic:
-                if env.isSwarm:
-                    print("Generating configurations...")
-            else:
-                print("Loading configurations...")
+        if env.automatic:
+            if env.isSwarm:
+                print("Generating configurations...")
+        else:
+            print("Loading configurations...")
 
-            configIterator = self.masterGeneratesConfigIterator(
-                env, cs, configFile, env.inputfile, env.percentage)
+        configIterator = self.masterGeneratesConfigIterator(
+            env, cs, configFile, env.inputfile, env.percentage)
 
-            if env.config_only:
-                MPI.Finalize()
-                sys.exit(0)
+        if env.config_only:
+            MPI.Finalize()
+            sys.exit(0)
 
-            # Generating instances
-            if env.automatic:
-                if env.isSwarm:
-                    if env.instances_limit == 0:
-                        print("Generating instances with no limit")
-                    else:
-                        print("Generating instances with limit %s" %
-                              env.instances_limit)
-
-        dirname, filename = os.path.split(os.path.abspath(env.inputfile))
-        swarmdirname = dirname + "/" + filename[:-2] + '.swarm%s/' % env.suffix
-
-        if isMaster:
-
-            try:
-                for config in configIterator:
-                    with open(config[0], "r") as config:
-                        jsonConfig = json.load(config)
-
-                        # distributed verismart:        mpirun -np 4 --oversubscribe --quiet python3 ./verismart.py -i peterson.c --master-slave --stop-on-fail
-                        # distributed cbmc verismart:      mpirun -np 1 --ompi-server file:address_ompi_server python3 ./verismart.py -i peterson.c
-                        # print(str(jsonConfig).replace("\'", "\""))
-                        # encoded_string = str(jsonConfig).replace("\'", "\"").encode()
-                        # byte_array = bytearray(encoded_string)
-                        # inter_comm.Send([byte_array, MPI.CHAR], dest=0)
-
-                        self.masterSendTile(env, jsonConfig)
-
-                        # MPI.Unpublish_name(service_name, port_name)
-                        # MPI.Close_port(port_name)
-                        # inter_comm.Disconnect()
-
-                self.masterKillSlaves()
-
-                totaltime = time.time() - env.starttime
-
-                if self.isUnsafe:
-                    self.printIsUnsafe(totaltime, self.foundtime, env.inputfile, env.isSwarm)
-                elif self.isUnknown:
-                    self.printError(totaltime, env.inputfile, env.isSwarm)
+        # Generating instances
+        if env.automatic:
+            if env.isSwarm:
+                if env.instances_limit == 0:
+                    print("Generating instances with no limit")
                 else:
-                    self.printIsSafe(totaltime, env.inputfile, env.isSwarm)
+                    print("Generating instances with limit %s" %
+                          env.instances_limit)
 
-                for jsonConfigTmp, result in reportHashtable.items():
-                    print(jsonConfigTmp, result)
+    dirname, filename = os.path.split(os.path.abspath(env.inputfile))
+    swarmdirname = dirname + "/" + filename[:-2] + '.swarm%s/' % env.suffix
 
-                print("Rank: ", rank, " - Master terminates its execution")
-                comm.Abort()
-                MPI.Finalize()
-                sys.exit(0)
+    if isMaster:
 
-            except KeyboardInterrupt as e:
-                print("Interrupted by user")
-                sys.exit(1)
+        try:
+            for config in configIterator:
+                with open(config[0], "r") as config:
+                    jsonConfig = json.load(config)
 
-        elif isSlave:
+                    # distributed verismart:        mpirun -np 4 --oversubscribe --quiet python3 ./verismart.py -i peterson.c --master-slave --stop-on-fail
+                    # distributed cbmc verismart:      mpirun -np 1 --ompi-server file:address_ompi_server python3 ./verismart.py -i peterson.c
+                    # print(str(jsonConfig).replace("\'", "\""))
+                    # encoded_string = str(jsonConfig).replace("\'", "\"").encode()
+                    # byte_array = bytearray(encoded_string)
+                    # inter_comm.Send([byte_array, MPI.CHAR], dest=0)
 
-            queue = multiprocessing.Queue()
+                    self.masterSendTile(env, jsonConfig)
 
-            if env.exit_on_error:
-                slaveAnalysisProcess = Process(target=self.slaveAnalysis, args=(seqcode, env, fill_only_fields, queue))
-                slaveAnalysisProcess.start()
+                    # MPI.Unpublish_name(service_name, port_name)
+                    # MPI.Close_port(port_name)
+                    # inter_comm.Disconnect()
 
-                while True:
-                    jsonConfig = comm.recv(source=server, status=status)
-                    tag = status.tag
-                    if tag == StatusCode.KILL.value:
-                        while not queue.empty():
-                            queue.get()
-                        queue.close()
-                        queue.join_thread()
-                        slaveAnalysisProcess.kill()
-                        print("Rank: ", rank, " - Slave terminates its execution")
-                        sys.exit(0)
-                    else:
-                        queue.put(jsonConfig)
+            self.masterKillSlaves()
 
-            self.slaveAnalysis(seqcode, env, fill_only_fields)
-            return
+            totaltime = time.time() - env.starttime
+
+            if self.isUnsafe:
+                self.printIsUnsafe(totaltime, self.foundtime, env.inputfile, env.isSwarm)
+            elif self.isUnknown:
+                self.printError(totaltime, env.inputfile, env.isSwarm)
+            else:
+                self.printIsSafe(totaltime, env.inputfile, env.isSwarm)
+
+            for jsonConfigTmp, result in reportHashtable.items():
+                print(jsonConfigTmp, result)
+
+            print("Rank: ", rank, " - Master terminates its execution")
+            comm.Abort()
+            MPI.Finalize()
+            sys.exit(0)
+
+        except KeyboardInterrupt as e:
+            print("Interrupted by user")
+            sys.exit(1)
+
+    elif isSlave:
+
+        queue = multiprocessing.Queue()
+
+        if env.exit_on_error:
+            slaveAnalysisProcess = Process(target=self.slaveAnalysis, args=(seqcode, env, fill_only_fields, queue))
+            slaveAnalysisProcess.start()
+
+            while True:
+                jsonConfig = comm.recv(source=server, status=status)
+                tag = status.tag
+                if tag == StatusCode.KILL.value:
+                    while not queue.empty():
+                        queue.get()
+                    queue.close()
+                    queue.join_thread()
+                    slaveAnalysisProcess.kill()
+                    print("Rank: ", rank, " - Slave terminates its execution")
+                    sys.exit(0)
+                else:
+                    queue.put(jsonConfig)
+
+        self.slaveAnalysis(seqcode, env, fill_only_fields)
+        return'''
             
-    def backendAndReport(self, env, instance, confignumber, configintervals, swarmdirname, filename, timeout):
+    def backendAndReport(self, env, instance, confignumber, configintervals, swarmdirname, filename, timeout, aa, config):
+        #print("A")
         self.setOutputParam('time', timeout)
-        out = self.backendChain(env, instance, confignumber, configintervals, swarmdirname, filename)
+        #print("backend in")
+        out = self.backendChain(env, instance, confignumber, configintervals, swarmdirname, filename, config)
+        #print("backend out")
         if out == True:
-            comm.send(StatusCode.SAFE.value, dest=server, tag=StatusCode.SAFE.value)
-        if out == False:
-            comm.send(StatusCode.UNSAFE.value, dest=server, tag=StatusCode.UNSAFE.value)
-        if out.startswith("ERROR"):
+            #print("send safe",StatusCode.SAFE.value, server, StatusCode.SAFE.value)
+            #MPI.COMM_WORLD.send(StatusCode.SAFE.value, dest=server, tag=StatusCode.SAFE.value)
+            aa.put((StatusCode.SAFE.value, StatusCode.SAFE.value))
+            #print("sent safe")
+        elif out == False:
+            #print("send unsafe")
+            #MPI.COMM_WORLD.send(StatusCode.UNSAFE.value, dest=server, tag=StatusCode.UNSAFE.value)
+            aa.put((StatusCode.UNSAFE.value, StatusCode.UNSAFE.value))
+        elif out.startswith("ERROR"):
             error = True
             noformula = "NOFORMULA" in out
-            comm.send(noformula, dest=server, tag=StatusCode.UNKNOWN.value)
+            #print("send err ",noformula)
+            #MPI.COMM_WORLD.send(noformula, dest=server, tag=StatusCode.UNKNOWN.value)
+            aa.put((noformula, StatusCode.UNKNOWN.value))
+        #print("B")
+        return out
 
     def substitute(self, seqCode, list, tName, startIndex, maxlabels):
         self.__threadIndex["main_thread"] = self.__threadIndex["main"]
@@ -704,7 +774,7 @@ class loopAnalysisPAC(core.module.Translator):
             jsonConfig = ""
             if env.exit_on_error == False:
 
-                jsonConfig = comm.recv(source=server, status=status)
+                #jsonConfig = comm.recv(source=server, status=status)
 
                 tag = status.tag
 
@@ -746,7 +816,7 @@ class loopAnalysisPAC(core.module.Translator):
 
     def masterSendTile(self, env, jsonConfig):
 
-        comm.recv(source=MPI.ANY_SOURCE, status=status)
+        #comm.recv(source=MPI.ANY_SOURCE, status=status)
         tag = status.tag
         rankClient = status.Get_source()
         
@@ -791,7 +861,7 @@ class loopAnalysisPAC(core.module.Translator):
 
         for slave in range(1, numberProcess):
 
-            comm.recv(source=MPI.ANY_SOURCE, status=status)
+            #comm.recv(source=MPI.ANY_SOURCE, status=status)
             tag = status.tag
             rankClient = status.Get_source()
 
@@ -929,7 +999,7 @@ class loopAnalysisPAC(core.module.Translator):
         queue.task_done()
         return
 
-    def backendChain(self, env, instance, confignumber, configintervals, swarmdirname, filename):
+    def backendChain(self, env, instance, confignumber, configintervals, swarmdirname, filename, config):
         output = instance
         analysistime = time.time()
         # print (env.transforms)
@@ -984,12 +1054,12 @@ class loopAnalysisPAC(core.module.Translator):
         if processedResult == "TRUE":
             if env.isSwarm:
                 self.printNoFoundBug(confignumber.replace(
-                    "s", ""), memsize, analysistime)
+                    "s", ""), memsize, analysistime, config=config)
             return True
         elif processedResult == "FALSE":
             if env.isSwarm:
                 self.printFoundBug(confignumber.replace(
-                    "s", ""), memsize, analysistime)
+                    "s", ""), memsize, analysistime, config=config)
             # controesempio è in errorTrace se cex settata, salvare in file per swarm e stampare a video per noSwarm
             return False
 
@@ -997,22 +1067,26 @@ class loopAnalysisPAC(core.module.Translator):
             noformula = "NOFORMULA" in processedResult
             if env.isSwarm:
                 self.printUnknown(confignumber.replace(
-                    "s", ""),noformula=noformula)
+                    "s", ""),noformula=noformula, config=config)
             return "ERROR" + (" NOFORMULA" if noformula else "")
         sys.stdout.flush()
 
-    def printUnknown(self, index, noformula=False):
-        print("{0:10}{1:20}".format("[#" + str(index) + "]", utils.colors.YELLOW + "UNKNOWN" + (" NOFORMULA" if noformula else "") + utils.colors.NO, ))
+    def printUnknown(self, index, noformula=False, config=""):
+        print("{0:20}{1:20}".format("[#" + str(index) + (" "+config if len(config) > 0 else "") + "]", utils.colors.YELLOW + "UNKNOWN" + (" NOFORMULA" if noformula else "") + utils.colors.NO, ))
         sys.stdout.flush()
 
-    def printNoFoundBug(self, index, memsize, analysistime):
-        print("{0:10}{1:20}{2:10}{3:10}".format("[#" + str(index) + "]", utils.colors.GREEN + "SAFE" + utils.colors.NO,
+    def printNoFoundBug(self, index, memsize, analysistime, config=""):
+        print("{0:20}{1:20}{2:10}{3:10}".format("[#" + str(index) + (" "+config if len(config) > 0 else "") + "]", utils.colors.GREEN + "SAFE" + utils.colors.NO,
                                                 "%0.2fs " % analysistime, self.calcMem(memsize)))
         sys.stdout.flush()
 
-    def printFoundBug(self, index, memsize, analysistime):
-        print("{0:10}{1:20}{2:10}{3:10}".format("[#" + str(index) + "]", utils.colors.RED + "UNSAFE" + utils.colors.NO,
+    def printFoundBug(self, index, memsize, analysistime, config=""):
+        print("{0:20}{1:20}{2:10}{3:10}".format("[#" + str(index) + (" "+config if len(config) > 0 else "") + "]", utils.colors.RED + "UNSAFE" + utils.colors.NO,
                                                 "%0.2fs " % analysistime, self.calcMem(memsize)))
+        sys.stdout.flush()
+        
+    def printSkipped(self, index, config=""):
+        print("{0:20}{1:20}".format("[#" + str(index) + (" "+config if len(config) > 0 else "") + "]", utils.colors.BLUE + "SKIPPED" + utils.colors.NO, ))
         sys.stdout.flush()
 
     def printIsSafe(self, totalTime, inputfile, isSwarm):

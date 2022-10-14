@@ -73,7 +73,7 @@ class MacroFileManager:
             assert(len(transs)==1)
             return transs[0]
         else:
-            #assert(len(transs)>1)
+            assert(len(transs)>1)
             tp = typlbl if typlbl is not None else str(type(n)).split(".")[-1][:-2]
             exprsJoin = ";".join(transs)
             if exprsJoin in self.exprsToMacro:
@@ -117,6 +117,7 @@ class MacroFileManager:
     def save(self):
         for i in range(len(self.config)):
             for (macro_name, transs) in self.macroToExprs.items():
+                #print(transs, self.config)
                 if transs[i] != "" and macro_name != "AUXVARS" and "JmpElse" not in macro_name:
                     self.adrs[i].cleaner.add_code_to_clean(macro_name, transs[i])
             self.adrs[i].cleaner.do_clean_codes()
@@ -613,8 +614,9 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
         if func_name.startswith('__cs_') or func_name == 'assume_abort_if_not':
             # those functions are made by us: won't touch them
             with self.no_any_instrument():
-                #print("NOINSTR2", n)
-                ans = super().visit_FuncDef(n)
+                with BakAndRestore(self, 'full_statement', False):
+                    #print("NOINSTR2", n)
+                    ans = super().visit_FuncDef(n)
             return ans
         else: # thread functions
             ans = super().visit_FuncDef(n)
@@ -1009,16 +1011,18 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
                     self.visit(n.type.args)
                 # Do not instrument func declarations (func declarations != func bodies)
                 with self.no_any_instrument():
-                    #print("NOINSTR4", n)
-                    ans = super().visit_Decl(n)
+                    with BakAndRestore(self, 'full_statement', False):
+                        #print("NOINSTR4", n)
+                        ans = super().visit_Decl(n)
                     
             elif type_of_n == 'Struct':
                 ans = self.visit_Struct(n.type)
                     
             elif type_of_n == 'Union':
                 with self.no_any_instrument():
-                    #print("NOINSTR4", n)
-                    ans = super().visit_Decl(n)
+                    with BakAndRestore(self, 'full_statement', False):
+                        #print("NOINSTR4", n)
+                        ans = super().visit_Decl(n)
                 
             elif type_of_n == 'TypeDecl': # Variable/Constant
                 if hasattr(n, 'quals') and len(getattr(n, 'quals')) >= 1 and getattr(n, 'quals')[0] == 'const':
@@ -1026,8 +1030,9 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
                     for i in range(len(self.conf_adr)):
                         self.conf_adr[i].store_DeclConst(self.abs_dr_state[i], n)
                     with self.no_any_instrument():
-                        #print("NOINSTR5", n)
-                        ans = super().visit_Decl(n)
+                        with BakAndRestore(self, 'full_statement', False):
+                            #print("NOINSTR5", n)
+                            ans = super().visit_Decl(n)
                         return ans #do not do anything else (they are ready now). This to avoid setting global consts in main
                 else:
                     # Antonio's comment: struct when no typedef is specified
@@ -1080,9 +1085,10 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
                 elif hasattr(n.type.type, 'names'): #variable case
                     assert(False, "This type condition represents a variable in a PtrDecl/ArrayDecl, and it is not expected: "+str(n))
                 else:
-                    with self.no_any_instrument():        
-                        #print("NOINSTR6", n)
-                        return super().visit(n)
+                    with self.no_any_instrument():     
+                        with BakAndRestore(self, 'full_statement', False):   
+                            #print("NOINSTR6", n)
+                            return super().visit(n)
                     #assert(False, "This type condition is not expected: "+str(n))
                 
                 if type_of_n == 'ArrayDecl' and type_st == 'Struct' and n.name != 'main' and n.type != 'FuncDecl':
@@ -1098,15 +1104,17 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
                     self.program_pointers.append(n.name)
                 
                 if self.scope == 'global':
-                    with self.no_any_instrument():        
-                        #print("NOINSTR6", n)
-                        ans = super().visit_Decl(n)
+                    with self.no_any_instrument(): 
+                        with BakAndRestore(self, 'full_statement', False):       
+                            #print("NOINSTR6", n)
+                            ans = super().visit_Decl(n)
                 else:
-                    with self.no_any_instrument():   
-                        #print("NOINSTR7", n)
-                        n_copy = copy.copy(n)
-                        n_copy.init = None
-                        ans = super().visit_Decl(n_copy)
+                    with self.no_any_instrument(): 
+                        with BakAndRestore(self, 'full_statement', False):  
+                            #print("NOINSTR7", n)
+                            n_copy = copy.copy(n)
+                            n_copy.init = None
+                            ans = super().visit_Decl(n_copy)
             else:
                 assert(False, "Unknown declaration type: "+type_of_n)
             
