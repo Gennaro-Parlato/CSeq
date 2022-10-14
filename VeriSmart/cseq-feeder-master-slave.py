@@ -178,6 +178,7 @@ class cseqenv:
     #enableAbstrUnderapprox = False
     #bit_width = 3
     cases_abstr = ["plain"]+[ou+"_"+str(bw) for ou in ("over","under") for bw in (4,8,16)]
+    timeout_instance = 10
     
 
 
@@ -335,6 +336,7 @@ def usage(cmd, errormsg, showhelp=True, detail=False, isSwarm=False):
             "   --local-vars                      0 for init with malloc (default), 1 wih memcopy, 2 with nondet-static option")
         print("bit abstraction option:")
         print("   --abstr_cases                     turn on abstraction module with specific cases (comma separated)")
+        print("   --timeout_instance                timeout (sec) for each instance (default: 10)")
         #print("   --abstraction                     turn on abstraction module (default: 0 false)")
         #print("   --abstr_under                     turn on abstraction underapproximation (default: 0 false)")
         #print("   --bit_width                       abstraction precision [3-32] bits (default: 3 bit)")
@@ -607,7 +609,7 @@ def main():
                     "sat-swarm",
 
                     # Abstraction
-                    "abstr_cases=", "macro-file="]
+                    "abstr_cases=", "macro-file=", "timeout_instance="]
 
         # add one command-line parameter for each module-specific parameter
         for p in cseqenv.params:
@@ -781,6 +783,8 @@ def main():
             cseqenv.macro_file = a
         elif o in ('--abstr_cases'):
             cseqenv.cases_abstr = [k.strip() for k in a.split(",")]
+        elif o in ('--timeout_instance'):
+            cseqenv.timeout_instance = int(a)
 
         elif o in ('--sat-swarm'):
             cseqenv.sat_swarm = True

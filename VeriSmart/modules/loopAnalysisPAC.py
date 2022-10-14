@@ -209,7 +209,7 @@ class loopAnalysisPAC(core.module.Translator):
         return 'abstr_under' not in t and 'bit_width' not in t
         
     def variations(self, conf):
-        timeout = 10 # TODO
+        timeout = self.timeout_instance
         vrs = []
         for b in (4,8,16):
             vrs.append({self.getNewConfigNumber():conf["s-1"], 'abstr_under': True, 'bit_width':b, 'timeout':timeout})
@@ -277,6 +277,7 @@ class loopAnalysisPAC(core.module.Translator):
         self.__threadIndex = self.getInputParamValue('threadIndex')
         self.__threadBound = len(self.__threadName)
         self.__satSwarm = env.sat_swarm
+        self.timeout_instance = env.timeout_instance
         # print(self.__lines)
         # print(self.__threadName)
         # print(self.__threadBound)
