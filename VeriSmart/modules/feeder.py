@@ -66,7 +66,7 @@ backendFilename['uautomizer'] = './Ultimate.py'
 cmdLineOptions = {}
 cmdLineOptions['esbmc'] = ' --unwind 1 --no-unwinding-assertions --32 --clang-frontend -I core/include/esbmc/ '
 #cmdLineOptions['cbmc'] = '  --unwind 1 --no-unwinding-assertions --32 ' # For the competition
-cmdLineOptions['cbmc'] = "  --unwind 1 --no-unwinding-assertions --32 --stop-on-fail --copy-shadow-memory --nondet-static-matching '.*_nondet_.*'"
+cmdLineOptions['cbmc'] = "  --unwind 1 --no-unwinding-assertions --32 --stop-on-fail --copy-shadow-memory --nondet-static-matching '.*_nondet_.*' "
 cmdLineOptions['llbmc'] = ' -no-max-function-call-depth-checks -no-memory-free-checks -no-shift-checks -no-memcpy-disjoint-checks -no-memory-access-checks -no-memory-allocation-checks --max-loop-iterations=1 --no-max-loop-iterations-checks --ignore-missing-function-bodies -no-overflow-checks -no-div-by-zero-checks'
 cmdLineOptions['blitz'] = '  --terminate-on-firstbug '
 cmdLineOptions['satabs'] = ' '
