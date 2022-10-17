@@ -647,8 +647,8 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
             return self.cGen_original.visit(n.lvalue) + " = " + \
                     self.abs_dr_rules.rule_SpecialFuncCall(self.abs_dr_state, n.rvalue, self.abs_dr_mode['abs_mode'], self.abs_dr_mode['dr_mode'], self.full_statement, **extra_args_r)'''
         if rvalue_noinstr.startswith("__cs_") and not rvalue_noinstr.startswith("__cs_local") and not rvalue_noinstr.startswith("__cs_staticlocal") and not rvalue_noinstr.startswith("__cs_retval") and not rvalue_noinstr.startswith("__cs_param"):
-            lvalue_ni = self.visit_noinstr(n.lvalue, self.full_statement)
-            rvalue_ni = self.visit_noinstr(n.rvalue, self.full_statement)
+            lvalue_ni = self.visit_noinstr(n.lvalue, False)
+            rvalue_ni = self.visit_noinstr(n.rvalue, False)
             return lvalue_ni + " " + n.op + " " + rvalue_ni
         extra_args = {}
         if self.dr_on:
