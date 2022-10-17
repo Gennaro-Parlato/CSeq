@@ -412,7 +412,8 @@ class loopAnalysisPAC(core.module.Translator):
                     task.kill()
                     MPI.COMM_WORLD.send(StatusCode.READY.value, dest=server, tag=StatusCode.READY.value)
                 elif tag == StatusCode.KILL.value:
-                    task.kill()
+                    if task is not None:
+                        task.kill()
                     self.propagate_kill()
                     print("Rank: ", rank, " - Slave terminates its execution")
                     sys.exit(0)
