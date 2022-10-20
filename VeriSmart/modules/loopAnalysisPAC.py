@@ -192,6 +192,8 @@ class loopAnalysisPAC(core.module.Translator):
                 max_tname = tname
         if parts > max_tlen:
             parts = max_tlen
+        if max_tlen < 2:
+            return []
         out_wind = []
         for i in range(parts):
             ow = {"s-1":{t:v for (t,v) in conf[confNumber].items() if t != max_tname}}
@@ -342,10 +344,13 @@ class loopAnalysisPAC(core.module.Translator):
                         vrs = self.variations(w)
                         self.Q.extend(vrs)
                         # TODO test: if mode == FIND_WSIZE
-                        self.W.append(self.splitWindow(vrs[0], env)[0])
+                        splitw = self.splitWindow(vrs[0], env)
+                        if len(splitw) > 0:
+                            print(splitw[0])
+                            self.W.append(splitw[0])
                     while len(self.Q) > 0 and len(self.S) > 0:
                         s = self.S.popleft()
-                        t = self.Q.pop() #.popleft()
+                        t = self.Q.popleft()
                         self.J[s] = t
                         #print("sending", s)
                         MPI.COMM_WORLD.send(json.dumps(t), dest=s, tag=StatusCode.SOLVE.value)
