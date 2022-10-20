@@ -215,9 +215,9 @@ class loopAnalysisPAC(core.module.Translator):
     def variations(self, conf):
         timeout = self.timeout_instance
         vrs = []
-        for b in (4,8,16):
-            vrs.append({self.getNewConfigNumber():conf["s-1"], 'abstr_under': True, 'bit_width':b, 'timeout':timeout, 'lvl':conf["lvl"]})
-            vrs.append({self.getNewConfigNumber():conf["s-1"], 'bit_width':b, 'timeout':timeout, 'lvl':conf["lvl"]})
+        #for b in (4,8,16):
+        #    vrs.append({self.getNewConfigNumber():conf["s-1"], 'abstr_under': True, 'bit_width':b, 'timeout':timeout, 'lvl':conf["lvl"]})
+        #    vrs.append({self.getNewConfigNumber():conf["s-1"], 'bit_width':b, 'timeout':timeout, 'lvl':conf["lvl"]})
         vrs.append({self.getNewConfigNumber():conf["s-1"], 'timeout':timeout, 'lvl':conf["lvl"]})
         return vrs
         
