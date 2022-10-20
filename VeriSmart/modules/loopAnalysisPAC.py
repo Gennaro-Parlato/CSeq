@@ -342,7 +342,7 @@ class loopAnalysisPAC(core.module.Translator):
                         vrs = self.variations(w)
                         self.Q.extend(vrs)
                         # TODO test: if mode == FIND_WSIZE
-                        self.W.append(self.splitWindow(vts[0], env)[0])
+                        self.W.append(self.splitWindow(vrs[0], env)[0])
                     while len(self.Q) > 0 and len(self.S) > 0:
                         s = self.S.popleft()
                         t = self.Q.pop() #.popleft()
