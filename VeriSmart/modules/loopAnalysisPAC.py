@@ -342,7 +342,7 @@ class loopAnalysisPAC(core.module.Translator):
                         self.Q.extend(self.variations(w))
                     while len(self.Q) > 0 and len(self.S) > 0:
                         s = self.S.popleft()
-                        t = self.Q.popleft()
+                        t = self.Q.pop()#.popleft()
                         self.J[s] = t
                         #print("sending", s)
                         MPI.COMM_WORLD.send(json.dumps(t), dest=s, tag=StatusCode.SOLVE.value)
