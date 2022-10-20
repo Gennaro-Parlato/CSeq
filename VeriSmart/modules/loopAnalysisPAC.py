@@ -335,14 +335,17 @@ class loopAnalysisPAC(core.module.Translator):
                             noformula = info # TODO use this info somehow (raise timeout?)
                         if slaveId in self.J:
                             del self.J[slaveId]
-                        if (m != StatusCode.SAFE.value or self.is_underapprox(t)) and self.wont_conclude(t[t_confNbr]):
-                            self.W.extend(self.splitWindow(t,env))
+                        #TODO test if (m != StatusCode.SAFE.value or self.is_underapprox(t)) and self.wont_conclude(t[t_confNbr]):
+                        #    self.W.extend(self.splitWindow(t,env))
                     while len(self.W) > 0 and len(self.Q) <= self.Qthr:
                         w = self.W.popleft()
-                        self.Q.extend(self.variations(w))
+                        vrs = self.variations(w)
+                        self.Q.extend(vrs)
+                        # TODO test: if mode == FIND_WSIZE
+                        self.W.append(self.splitWindow(vts[0], env)[0])
                     while len(self.Q) > 0 and len(self.S) > 0:
                         s = self.S.popleft()
-                        t = self.Q.pop()#.popleft()
+                        t = self.Q.pop() #.popleft()
                         self.J[s] = t
                         #print("sending", s)
                         MPI.COMM_WORLD.send(json.dumps(t), dest=s, tag=StatusCode.SOLVE.value)
