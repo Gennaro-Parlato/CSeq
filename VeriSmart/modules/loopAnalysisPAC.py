@@ -127,7 +127,8 @@ class loopAnalysisPAC(core.module.Translator):
         
     def firstWindow(self):
         conf = {
-            "s-1": {}
+            "s-1": {},
+            "lvl": 0
         }
         for t in self.__lines:
             conf["s-1"][t] = [[1, self.__lines[t] - self.__compulsoryVPs[t]]]
@@ -185,6 +186,7 @@ class loopAnalysisPAC(core.module.Translator):
         max_tlen = 0
         max_tname = None
         confNumber = self.getConfigNumber(conf)
+        lvl = int(conf['lvl']) + 1
         for tname in conf[confNumber]:
             tlen = self.thread_VP_count(conf[confNumber][tname])
             if tlen > max_tlen:
@@ -196,7 +198,7 @@ class loopAnalysisPAC(core.module.Translator):
             return []
         out_wind = []
         for i in range(parts):
-            ow = {"s-1":{t:v for (t,v) in conf[confNumber].items() if t != max_tname}}
+            ow = {"s-1":{t:v for (t,v) in conf[confNumber].items() if t != max_tname}, 'lvl':lvl}
             ow["s-1"][max_tname] = self.delete_vp(conf[confNumber][max_tname], i*max_tlen//parts, (i+1)*max_tlen//parts-1)
             out_wind.append(ow)
         return out_wind
@@ -214,9 +216,9 @@ class loopAnalysisPAC(core.module.Translator):
         timeout = self.timeout_instance
         vrs = []
         for b in (4,8,16):
-            vrs.append({self.getNewConfigNumber():conf["s-1"], 'abstr_under': True, 'bit_width':b, 'timeout':timeout})
-            vrs.append({self.getNewConfigNumber():conf["s-1"], 'bit_width':b, 'timeout':timeout})
-        vrs.append({self.getNewConfigNumber():conf["s-1"], 'timeout':timeout})
+            vrs.append({self.getNewConfigNumber():conf["s-1"], 'abstr_under': True, 'bit_width':b, 'timeout':timeout, 'lvl':conf["lvl"]})
+            vrs.append({self.getNewConfigNumber():conf["s-1"], 'bit_width':b, 'timeout':timeout, 'lvl':conf["lvl"]})
+        vrs.append({self.getNewConfigNumber():conf["s-1"], 'timeout':timeout, 'lvl':conf["lvl"]})
         return vrs
         
     def propagate_kill(self): #TODO verificare se gli slave possono effettivamente parlare tra di loro, altrimenti il master uccide tutti con messaggi diretti
@@ -346,7 +348,6 @@ class loopAnalysisPAC(core.module.Translator):
                         # TODO test: if mode == FIND_WSIZE
                         splitw = self.splitWindow(vrs[0], env)
                         if len(splitw) > 0:
-                            print(splitw[0])
                             self.W.append(splitw[0])
                     while len(self.Q) > 0 and len(self.S) > 0:
                         s = self.S.popleft()
@@ -387,6 +388,7 @@ class loopAnalysisPAC(core.module.Translator):
                     output = []
                     i = 0
                     startIndex = 0
+                    configlvl = jsonConfigDict['lvl']
                     conf = ""
                     if 'bit_width' not in jsonConfigDict:
                         conf = "plain"
@@ -413,7 +415,7 @@ class loopAnalysisPAC(core.module.Translator):
                     instanceGenerated = ''.join(t for t in output)
                     instanceGenerated = instanceGenerated.replace('plain.h"',conf+'.h"')
                     
-                    task = AnalysisTask(lambda q:Process(target=self.backendAndReport, args=(env, instanceGenerated, configNumber, configintervals, swarmdirname, filename[:-2], timeout, q, conf)), configNumber, conf)
+                    task = AnalysisTask(lambda q:Process(target=self.backendAndReport, args=(env, instanceGenerated, configNumber, configintervals, swarmdirname, filename[:-2], timeout, q, conf, configlvl)), configNumber, conf)
                     task.start()
                     
                 elif tag == StatusCode.STOP.value:
@@ -535,11 +537,11 @@ class loopAnalysisPAC(core.module.Translator):
         self.slaveAnalysis(seqcode, env, fill_only_fields)
         return'''
             
-    def backendAndReport(self, env, instance, confignumber, configintervals, swarmdirname, filename, timeout, aa, config):
+    def backendAndReport(self, env, instance, confignumber, configintervals, swarmdirname, filename, timeout, aa, config, configlvl):
         #print("A")
         self.setOutputParam('time', timeout)
         #print("backend in")
-        out = self.backendChain(env, instance, confignumber, configintervals, swarmdirname, filename, config)
+        out = self.backendChain(env, instance, confignumber, configintervals, swarmdirname, filename, config, configlvl)
         #print("backend out")
         if out == True:
             #print("send safe",StatusCode.SAFE.value, server, StatusCode.SAFE.value)
@@ -1009,7 +1011,7 @@ class loopAnalysisPAC(core.module.Translator):
         queue.task_done()
         return
 
-    def backendChain(self, env, instance, confignumber, configintervals, swarmdirname, filename, config):
+    def backendChain(self, env, instance, confignumber, configintervals, swarmdirname, filename, config, configlvl):
         output = instance
         analysistime = time.time()
         # print (env.transforms)
@@ -1064,12 +1066,12 @@ class loopAnalysisPAC(core.module.Translator):
         if processedResult == "TRUE":
             if env.isSwarm:
                 self.printNoFoundBug(confignumber.replace(
-                    "s", ""), memsize, analysistime, config=config)
+                    "s", ""), memsize, analysistime, config=config, configlvl=configlvl)
             return True
         elif processedResult == "FALSE":
             if env.isSwarm:
                 self.printFoundBug(confignumber.replace(
-                    "s", ""), memsize, analysistime, config=config)
+                    "s", ""), memsize, analysistime, config=config, configlvl=configlvl)
             # controesempio è in errorTrace se cex settata, salvare in file per swarm e stampare a video per noSwarm
             return False
 
@@ -1077,21 +1079,21 @@ class loopAnalysisPAC(core.module.Translator):
             noformula = "NOFORMULA" in processedResult
             if env.isSwarm:
                 self.printUnknown(confignumber.replace(
-                    "s", ""),noformula=noformula, config=config)
+                    "s", ""),noformula=noformula, config=config, configlvl=configlvl)
             return "ERROR" + (" NOFORMULA" if noformula else "")
         sys.stdout.flush()
 
-    def printUnknown(self, index, noformula=False, config=""):
-        print("{0:20}{1:20}".format("[#" + str(index) + (" "+config if len(config) > 0 else "") + "]", utils.colors.YELLOW + "UNKNOWN" + (" NOFORMULA" if noformula else "") + utils.colors.NO, ))
+    def printUnknown(self, index, noformula=False, config="", configlvl=""):
+        print("{0:20}{1:20}".format("[#" + str(index) + (" "+config+" "+str(configlvl) if len(config) > 0 else "") + "]", utils.colors.YELLOW + "UNKNOWN" + (" NOFORMULA" if noformula else "") + utils.colors.NO, ))
         sys.stdout.flush()
 
-    def printNoFoundBug(self, index, memsize, analysistime, config=""):
-        print("{0:20}{1:20}{2:10}{3:10}".format("[#" + str(index) + (" "+config if len(config) > 0 else "") + "]", utils.colors.GREEN + "SAFE" + utils.colors.NO,
+    def printNoFoundBug(self, index, memsize, analysistime, config="", configlvl=""):
+        print("{0:20}{1:20}{2:10}{3:10}".format("[#" + str(index) + (" "+config+" "+str(configlvl) if len(config) > 0 else "") + "]", utils.colors.GREEN + "SAFE" + utils.colors.NO,
                                                 "%0.2fs " % analysistime, self.calcMem(memsize)))
         sys.stdout.flush()
 
-    def printFoundBug(self, index, memsize, analysistime, config=""):
-        print("{0:20}{1:20}{2:10}{3:10}".format("[#" + str(index) + (" "+config if len(config) > 0 else "") + "]", utils.colors.RED + "UNSAFE" + utils.colors.NO,
+    def printFoundBug(self, index, memsize, analysistime, config="", configlvl=""):
+        print("{0:20}{1:20}{2:10}{3:10}".format("[#" + str(index) + (" "+config+" "+str(configlvl) if len(config) > 0 else "") + "]", utils.colors.RED + "UNSAFE" + utils.colors.NO,
                                                 "%0.2fs " % analysistime, self.calcMem(memsize)))
         sys.stdout.flush()
         
