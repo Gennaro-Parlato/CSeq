@@ -874,10 +874,6 @@ class loopAnalysisPolipa(core.module.Translator):
         print("{0:20}{1:20}".format("[#" + str(index) + "]", utils.colors.BLUE + "SKIPPED" + utils.colors.NO, ))
         sys.stdout.flush()
 
-    def printUnknown(self, index):
-        print("{0:10}{1:20}".format("[#" + str(index) + "]", utils.colors.YELLOW + "UNKNOWN" + utils.colors.NO,))
-        sys.stdout.flush()
-
     def printIsSafe(self, totalTime, inputfile, isSwarm):
         if isSwarm:
             print("======================================================")
