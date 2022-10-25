@@ -253,9 +253,9 @@ class loopAnalysisPolipa(core.module.Translator):
                 
                 while self.W.has_next() or len(self.Q) > 0 or len(self.J) > 0:
                     status = MPI.Status()
-                    #print("listening",status)
+                    print("Master listening")
                     info = MPI.COMM_WORLD.recv(source=MPI.ANY_SOURCE, tag=MPI.ANY_TAG, status=status)
-                    #print("got", status.tag, status.Get_source(), info)
+                    print("Master got", status.tag, status.Get_source(), info)
                     m = status.tag
                     slaveId = status.Get_source()
                     self.S.append(slaveId)
@@ -310,9 +310,9 @@ class loopAnalysisPolipa(core.module.Translator):
             swarmdirname = dirname + "/" + filename[:-2] + '.swarm%s/' % env.suffix
             MPI.COMM_WORLD.send(StatusCode.READY.value, dest=server, tag=StatusCode.READY.value)
             while True:
-                #print("sl listening")
+                print("sl listening")
                 jsonConfig = MPI.COMM_WORLD.recv(source=server, status=status)
-                #print("sl got")
+                print("sl got")
                 tag = status.tag
                 if tag == StatusCode.SOLVE.value:
                     jsonConfigDict = json.loads(jsonConfig)
