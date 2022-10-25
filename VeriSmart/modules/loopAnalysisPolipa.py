@@ -271,6 +271,7 @@ class loopAnalysisPolipa(core.module.Translator):
                             if self.is_overapprox(t):
                                 self.stop(t[t_confNbr], t['bit_width'], overapprox=True)
                             else:
+                                self.foundtime = time.time() - env.starttime
                                 self.propagate_kill()
                                 totaltime = time.time() - env.starttime
                                 self.printIsUnsafe(totaltime, self.foundtime, env.inputfile, env.isSwarm)
