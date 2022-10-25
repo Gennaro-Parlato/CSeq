@@ -60,17 +60,18 @@ class StatusCode(Enum):
     FINISHED = 8
     
 class AnalysisTask:
-    def __init__(self, lproc, confignumber, config):
+    def __init__(self, lproc, confignumber, config, s):
         self.q = Queue()
         self.proc = lproc(self.q)
-        self.thr = Thread(target=lambda: self.doTask())
+        self.thr = Thread(target=lambda: self.doTask(s))
         self.confignumber = confignumber
         self.config = config
         
-    def doTask(self):
+    def doTask(self, s):
         self.proc.join()
         try:
             ans = self.q.get_nowait()
+            s.activeTask = False
             MPI.COMM_WORLD.send(ans[0], dest=0, tag=ans[1])
         except Empty:
             pass
@@ -306,6 +307,7 @@ class loopAnalysisPolipa(core.module.Translator):
                 sys.exit(1)
         elif isSlave:
             task = None
+            self.activeTask = False
             status = MPI.Status()
             dirname, filename = os.path.split(os.path.abspath(env.inputfile))
             swarmdirname = dirname + "/" + filename[:-2] + '.swarm%s/' % env.suffix
@@ -316,6 +318,8 @@ class loopAnalysisPolipa(core.module.Translator):
                 #print("sl got")
                 tag = status.tag
                 if tag == StatusCode.SOLVE.value:
+                    assert(not self.activeTask)
+                    self.activeTask = True
                     jsonConfigDict = json.loads(jsonConfig)
                     configNumber = self.getConfigNumber(jsonConfigDict)
                     timeout = jsonConfigDict['timeout']
@@ -352,13 +356,15 @@ class loopAnalysisPolipa(core.module.Translator):
                     instanceGenerated = ''.join(t for t in output)
                     instanceGenerated = instanceGenerated.replace('plain.h"',conf+'.h"')
                     
-                    task = AnalysisTask(lambda q:Process(target=self.backendAndReport, args=(env, instanceGenerated, configNumber, configintervals, swarmdirname, filename[:-2], timeout, q, conf)), configNumber, conf)
+                    task = AnalysisTask(lambda q:Process(target=self.backendAndReport, args=(env, instanceGenerated, configNumber, configintervals, swarmdirname, filename[:-2], timeout, q, conf)), configNumber, conf, self)
                     task.start()
                     
                 elif tag == StatusCode.STOP.value:
+                    self.activeTask = False
                     task.kill()
                     MPI.COMM_WORLD.send(StatusCode.READY.value, dest=server, tag=StatusCode.READY.value)
                 elif tag == StatusCode.KILL.value:
+                    self.activeTask = False
                     if task is not None:
                         task.kill()
                     self.propagate_kill()
@@ -951,17 +957,23 @@ class loopAnalysisPolipa(core.module.Translator):
         if result != "":
             backendAnswer = result if format != "klee" else "err"
             if format in ("cbmc", "esbmc",):
+                didGenerateFormula = False
                 for line in backendAnswer.splitlines():
                     if " variables, " in line:
                         splitline = line.split()
                         variables = splitline[0]
                         clauses = splitline[2]
+                        didGenerateFormula = True
+                    if "Runtime Symex" in line:
+                        didGenerateFormula = True
                     if verificationOK[format] in line:
                         outcome = "TRUE"
                         break
                     elif verificationFAIL[format] in line:
                         outcome = "FALSE"
                         break
+                if len(outcome) == 0 and not didGenerateFormula:
+                    outcome = "NOFORMULA"
         else:
             outcome = "UNKNOWN"
         return outcome
