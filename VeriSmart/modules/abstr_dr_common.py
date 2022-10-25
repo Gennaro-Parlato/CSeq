@@ -73,7 +73,7 @@ class MacroFileManager:
             assert(len(transs)==1)
             return transs[0]
         else:
-            assert(len(transs)>1)
+            #assert(len(transs)>1)
             tp = typlbl if typlbl is not None else str(type(n)).split(".")[-1][:-2]
             exprsJoin = ";".join(transs)
             if exprsJoin in self.exprsToMacro:
