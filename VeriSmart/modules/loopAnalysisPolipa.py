@@ -72,6 +72,7 @@ class AnalysisTask:
         try:
             ans = self.q.get_nowait()
             s.activeTask = False
+            #print("sl",rank,"send",ans[0],ans[1])
             MPI.COMM_WORLD.send(ans[0], dest=0, tag=ans[1])
         except Empty:
             pass
@@ -179,6 +180,7 @@ class loopAnalysisPolipa(core.module.Translator):
         for slaveid in self.J:
             t = self.J[slaveid]
             if self.stop_filter(t, w, bmax, underapprox, overapprox, plain):
+                #print("master","send",StatusCode.STOP.value)
                 MPI.COMM_WORLD.send(StatusCode.STOP.value, dest=slaveid, tag=StatusCode.STOP.value)
             else:
                 newJ[slaveid] = t
@@ -246,7 +248,7 @@ class loopAnalysisPolipa(core.module.Translator):
             instanceIterator = self.generateInstanceIterator(env, configIterator, seqcode)
             status = MPI.Status()
             try:
-                self.Qthr = 2000 # it must be > number of slaves
+                self.Qthr = numberProcess*2 # it must be > number of slaves
                 self.W = ItrWithHasNext(instanceIterator)
                 self.Q = collections.deque()
                 self.J = dict()
@@ -262,6 +264,8 @@ class loopAnalysisPolipa(core.module.Translator):
                     self.S.append(slaveId)
                     if m != StatusCode.READY.value and slaveId in self.J:
                         t = self.J[slaveId]
+                        if slaveId in self.J:
+                            del self.J[slaveId]
                         t_confNbr = self.getConfigNumber(t)
                         if m == StatusCode.SAFE.value:
                             if self.is_underapprox(t):
@@ -282,18 +286,17 @@ class loopAnalysisPolipa(core.module.Translator):
                                 sys.exit(0)
                         elif m == StatusCode.UNKNOWN.value:
                             noformula = info # TODO use this info somehow (raise timeout?)
-                        if slaveId in self.J:
-                            del self.J[slaveId]
                     while self.W.has_next() and len(self.Q) <= self.Qthr:
                         code_wnbr_config = next(self.W)
                         w = {code_wnbr_config[1]:code_wnbr_config[2]}
                         vrs = self.variations(w)
                         self.Q.extend(vrs)
+                    #print("M1", len(self.Q), len(self.S))
                     while len(self.Q) > 0 and len(self.S) > 0:
                         s = self.S.popleft()
                         t = self.Q.popleft()
                         self.J[s] = t
-                        #print("sending", s)
+                        #print("master sending", s)
                         MPI.COMM_WORLD.send(json.dumps(t), dest=s, tag=StatusCode.SOLVE.value)
                 self.propagate_kill()
                 totaltime = time.time() - env.starttime
@@ -311,12 +314,13 @@ class loopAnalysisPolipa(core.module.Translator):
             status = MPI.Status()
             dirname, filename = os.path.split(os.path.abspath(env.inputfile))
             swarmdirname = dirname + "/" + filename[:-2] + '.swarm%s/' % env.suffix
+            #print("sl",rank,"send",StatusCode.READY.value)
             MPI.COMM_WORLD.send(StatusCode.READY.value, dest=server, tag=StatusCode.READY.value)
             while True:
-                #print("sl listening")
+                #print("sl",rank,"listening")
                 jsonConfig = MPI.COMM_WORLD.recv(source=server, status=status)
-                #print("sl got")
                 tag = status.tag
+                #print("sl",rank,"got",tag)
                 if tag == StatusCode.SOLVE.value:
                     assert(not self.activeTask)
                     self.activeTask = True
@@ -362,6 +366,7 @@ class loopAnalysisPolipa(core.module.Translator):
                 elif tag == StatusCode.STOP.value:
                     self.activeTask = False
                     task.kill()
+                    #print("sl",rank,"send",StatusCode.READY.value)
                     MPI.COMM_WORLD.send(StatusCode.READY.value, dest=server, tag=StatusCode.READY.value)
                 elif tag == StatusCode.KILL.value:
                     self.activeTask = False
