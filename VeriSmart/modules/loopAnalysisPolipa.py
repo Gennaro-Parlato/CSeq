@@ -143,10 +143,10 @@ class loopAnalysisPolipa(core.module.Translator):
         timeout = self.timeout_instance
         w_nbr = self.getConfigNumber(w)
         vrs = []
-        #for b in (4,8,16):
-        #    vrs.append({w_nbr+"_under_"+str(b):w[w_nbr], 'abstr_under': True, 'bit_width':b, 'timeout':timeout})
-        #    vrs.append({w_nbr+"_over_"+str(b):w[w_nbr], 'bit_width':b, 'timeout':timeout})
-        vrs.append({w_nbr+"_plain":w[w_nbr], 'timeout':timeout})
+        for b in (4,):
+            vrs.append({w_nbr+"_under_"+str(b):w[w_nbr], 'abstr_under': True, 'bit_width':b, 'timeout':timeout})
+            vrs.append({w_nbr+"_over_"+str(b):w[w_nbr], 'bit_width':b, 'timeout':timeout})
+        #vrs.append({w_nbr+"_plain":w[w_nbr], 'timeout':timeout})
         return vrs
         
     def propagate_kill(self): #TODO verificare se gli slave possono effettivamente parlare tra di loro, altrimenti il master uccide tutti con messaggi diretti
