@@ -137,13 +137,13 @@ class loopAnalysisPolipa(core.module.Translator):
     def getConfigNumber(self, dct):
         return [k for k in dct.keys() if len(k)>1 and k[0]=='s' and k.split("_")[0][1:].isnumeric()][0]
         
-    def variations(self, w): #TODO
+    def variations(self, w):
         timeout = self.timeout_instance
         w_nbr = self.getConfigNumber(w)
         vrs = []
-        for b in (4,8,16):
-            vrs.append({w_nbr+"_under_"+str(b):w[w_nbr], 'abstr_under': True, 'bit_width':b, 'timeout':timeout})
-            vrs.append({w_nbr+"_over_"+str(b):w[w_nbr], 'bit_width':b, 'timeout':timeout})
+        #for b in (4,8,16):
+        #    vrs.append({w_nbr+"_under_"+str(b):w[w_nbr], 'abstr_under': True, 'bit_width':b, 'timeout':timeout})
+        #    vrs.append({w_nbr+"_over_"+str(b):w[w_nbr], 'bit_width':b, 'timeout':timeout})
         vrs.append({w_nbr+"_plain":w[w_nbr], 'timeout':timeout})
         return vrs
         
