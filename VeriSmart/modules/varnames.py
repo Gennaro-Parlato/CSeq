@@ -118,7 +118,7 @@ class varnames(core.module.Translator):
 		self.__init=n.init
 		self.__visitingDecl += 1
 		
-		if "static" in n.storage and self.__currentFunction != '':
+		if "static" in n.storage and self.__currentFunction != '' and not n.name.startswith('__cs_switch_cond_'):
 			# use prefix for statics
 			prevStatic = self.visiting_static
 			self.visiting_static = True
@@ -130,7 +130,7 @@ class varnames(core.module.Translator):
 			self.visiting_static = prevStatic
 			
 			# varname with the prefix for statics
-			varname_with_pfx = self.visit(pycparser.c_ast.ID(n.name))
+			varname_with_pfx = self.visit(pycparser.c_ast.ID(n.name))# 
 			# varname for the initializer check
 			varname_initcheck = self.staticinitprefix + varname_with_pfx[len(self.staticprefix):]
 			

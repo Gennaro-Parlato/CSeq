@@ -639,6 +639,7 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
         #if not self.any_instrument or not (self.dr_on or self.abs_on):
         #    return self.macro_file_manager.expression(n, [super().visit_Assignment(n)], passthrough=not self.full_statement)
         rvalue_noinstr = self.cGen_original.visit(n.rvalue)
+        lvalue_noinstr = self.cGen_original.visit(n.lvalue)
         '''if rvalue_noinstr.startswith("__cs_create("):
             # I should check whether the first argument has a valid bav
             extra_args_r = {"bavtest": n.rvalue.args.exprs[0]}
@@ -646,7 +647,7 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
                 extra_args_r['dr_vp_state'] = self.abs_dr_vpstate
             return self.cGen_original.visit(n.lvalue) + " = " + \
                     self.abs_dr_rules.rule_SpecialFuncCall(self.abs_dr_state, n.rvalue, self.abs_dr_mode['abs_mode'], self.abs_dr_mode['dr_mode'], self.full_statement, **extra_args_r)'''
-        if rvalue_noinstr.startswith("__cs_") and not rvalue_noinstr.startswith("__cs_local") and not rvalue_noinstr.startswith("__cs_staticlocal") and not rvalue_noinstr.startswith("__cs_retval") and not rvalue_noinstr.startswith("__cs_param"):
+        if lvalue_noinstr.startswith("__cs_staticlocalinit_") or (rvalue_noinstr.startswith("__cs_") and not rvalue_noinstr.startswith("__cs_local") and not rvalue_noinstr.startswith("__cs_staticlocal") and not rvalue_noinstr.startswith("__cs_retval") and not rvalue_noinstr.startswith("__cs_param")):
             lvalue_ni = self.visit_noinstr(n.lvalue, False)
             rvalue_ni = self.visit_noinstr(n.rvalue, False)
             return lvalue_ni + " " + n.op + " " + rvalue_ni
