@@ -40,9 +40,11 @@ class drace(abstr_dr_common.abstr_dr_common):
         return s
 
     def alternateCode(self, n):
-        self.abs_dr_rules.disableDr()
+        for adr in self.conf_adr: 
+            adr.disableDr()
         s = self.visit(n)
-        self.abs_dr_rules.enableDr()
+        for adr in self.conf_adr: 
+            adr.enableDr()
         return s
       
     def codeContainsAtomic(self):
@@ -204,7 +206,7 @@ class drace(abstr_dr_common.abstr_dr_common):
         ##main +="             __cs_noportest=0;\n"  #POR
         #main +="             __cs_main_thread();\n"
         #main +="           }\n"
-        main +="     __CPROVER_assert(!"+self.abs_dr_rules.dr+",\"Data race failure\");\n"
+        main +="     __CPROVER_assert(!"+self.conf_adr[0].dr+",\"Data race failure\");\n"
         main += "    return 0;\n"
         main += "}\n\n"
 
