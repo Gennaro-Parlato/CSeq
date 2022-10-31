@@ -1104,7 +1104,7 @@ class AbsDrRules:
         #   condchoice = (cond = bav||[lorExpr, GETVAL]) {so that you do both then and else if lorExpr was not ok}
         #   then = ([expr, GETVAL], !bav1) {so that you fall though to else if lorExpr was not ok}
         #   else = ([condExpr, GETVAL], bap=bap1, bav=bav||bav1)
-        assert(self.underapprox and not self.dr) # dr still not ready
+        #assert(self.underapprox and not self.dr) # dr still not ready
         lorExp = top.cond
         exp = top.iftrue
         condExp = top.iffalse
@@ -1450,7 +1450,8 @@ class AbsDrRules:
             assert(False)'''
             
     def __assume_underapprox(self, state, exp, **kwargs):
-        assert(self.underapprox and not self.dr_on)
+        #assert(self.underapprox and not  self.dr_on)
+        assert(self.underapprox)
         return self.assume_expr(self.and_expr_prop(self.not_cp(state, "bap"), 
             self.or_expr_prop(self.visitor_visit(state, exp, "GET_VAL", "ACCESS", **kwargs),
                 self.and_expr_prop(self.not_cp(state, "bav"), 
@@ -1502,7 +1503,7 @@ class AbsDrRules:
         return self.assign_var("___fakeifvar___", n)
         
     def __ifcond_underapprox(self, state, n, **kwargs):
-        assert(self.underapprox and not self.dr_on)
+        #assert(self.underapprox and not self.dr_on)
         exp = n.cond
         bav1 = self.getBav1(n)
         bap1 = self.getBap1(n)
@@ -1614,7 +1615,7 @@ class AbsDrRules:
         # where
         #   part1 = ([exp1,GETVAL], bav1 =bav, (!bav&&[exp1,VALUE])) {so that you fall though to part2 if exp1 was not ok}
         #   part2 = (bap1=bap, bap=bap||bav, [exp2,GETVAL], bap=bap1, [exp2,VALUE] || (bav=bav||bav1,0)) {so that you don't set bav when exp2 == 1}
-        assert(self.underapprox and not self.dr) # dr still not ready
+        #assert(self.underapprox and not self.dr) # dr still not ready
         exp1 = fullOp.left
         exp2 = fullOp.right
         value = self.getCondition(fullOp)
