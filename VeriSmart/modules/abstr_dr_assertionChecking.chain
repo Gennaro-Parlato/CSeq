@@ -5,18 +5,17 @@
 workarounds
 functiontracker
 
-preinstrumenter
+dr_preinstrumenter
 constants
 spinlock
 
 # program simplification
 switchtransformer
 dowhileconverter
-condwaitconverter
 conditionextractor
 #shortcircuitconverter
 
-varnames
+dr_varnames
 
 # program flattening
 inliner
@@ -24,6 +23,7 @@ unroller
 duplicator
 
 # sequentialization
+condwaitconverter
 abstr_and_drace
 loopAnalysis
 
