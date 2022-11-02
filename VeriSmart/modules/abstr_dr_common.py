@@ -130,6 +130,8 @@ class MacroFileManager:
                     trans = trans.replace("(;)","((void)0)")
                     if trans != ";" and macro_name != "AUXVARS" and "JmpElse" not in macro_name:
                         trans = "("+trans+")"
+                    if trans == "()":
+                        trans = ";"
                     if self.dbg_visitor and self.macroToExprs[macro_name][i] != "" and macro_name != "AUXVARS" and "JmpElse" not in macro_name:
                         print("/*"+" ; ".join("("+c+")" for c in self.macroToNodes[macro_name])+"*/", file=f)
                     print("#define "+macro_name+"() "+trans, file=f)
