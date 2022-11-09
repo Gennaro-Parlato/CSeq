@@ -393,6 +393,7 @@ def listmodulechains():
 
 
 def main():
+    sys.setrecursionlimit(10000)
     """                   """
     """ I. Initialisation """
     """                   """

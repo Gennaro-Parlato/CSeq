@@ -702,10 +702,16 @@ class inliner(core.module.Translator):
                             #                n.name))  # S: original transf.  #S: n.name --> name
                             
                             #BUGFIX: static needs constant at init time. Fix is ok if var is never assigned NULL
+                            dims = []
+                            nn = n
+                            while hasattr(nn,'type') and type(nn.type) is c_ast.ArrayDecl:
+                                dims.append("("+self.visit(nn.type.dim)+")")
+                                nn = nn.type
                             s += ' = 0; %s = (%s %s) %s(sizeof(%s)*%s)' % (
                                 name, vartype, stars, core.common.changeID['malloc'], vartype,
-                                self._totalSize(self.currentFunction[-1],
-                                            n.name))  # S: original transf.  #S: n.name --> name
+                                #self._totalSize(self.currentFunction[-1],
+                                #            n.name))  # S: original transf.  #S: n.name --> name GG fix for vars in square brackets
+                                '*'.join(dims))
                                                 
             else:  # Anything else, Truc's modification
                 init = ''
@@ -1081,7 +1087,7 @@ class inliner(core.module.Translator):
 
             size = 10*(expr)*30;
     '''
-
+    
     def _totalSize(self, f, v):
         sizeExpression = ''
         for i in range(0, self.Parser.varArity[f, v]):

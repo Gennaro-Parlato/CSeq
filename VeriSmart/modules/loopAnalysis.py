@@ -36,9 +36,10 @@ class loopAnalysis(core.module.Translator):
 		self.addOutputParam('bitwidth')
 
 	def loadfromstring(self, seqcode, env, fill_only_fields=None):
-		self.__lines = self.getInputParamValue('lines')
+		self.isSeqCode = self.getInputParamValue('isSeqCode')
+		self.__lines = [] if self.isSeqCode else self.getInputParamValue('lines')
 		self.__compulsoryVPs = self.getInputParamValue('compulsoryVPs')
-		self.__threadName = self.getInputParamValue('threadNames')
+		self.__threadName = [] if self.isSeqCode else self.getInputParamValue('threadNames')
 		self.__threadIndex = self.getInputParamValue('threadIndex')
 		self.__threadBound = len(self.__threadName)
 		self.__satSwarm = env.sat_swarm
@@ -190,7 +191,7 @@ class loopAnalysis(core.module.Translator):
 
 	def substitute(self, seqCode, list, tName, startIndex, maxlabels):
 		self.__threadIndex["main_thread"] = self.__threadIndex["main"]
-		if tName == 'main':
+		if tName == 'main' and not self.isSeqCode:
 			tName = 'main_thread'
 		output = []
 		i = int(seqCode[startIndex:].index(tName)) + startIndex
@@ -421,10 +422,18 @@ class loopAnalysis(core.module.Translator):
 					listToStr = ''.join(s for s in l)
 					output.append(listToStr)
 					i += 1
-				maindriver = self.substituteMainDriver(maxlabels, seqCode[startIndex:])
+				if self.isSeqCode:
+					tName = "main"
+					startIndex, l = self.substitute(
+                                                seqCode, [[1, 1]], tName, startIndex, maxlabels)
+					listToStr = ''.join(s for s in l)
+					output.append(listToStr)
+					i += 1
+				maindriver = seqCode[startIndex:] if self.isSeqCode else self.substituteMainDriver(maxlabels, seqCode[startIndex:])
 				output.append(maindriver)
 
-				output[0] = self.substituteThreadLines(output[0], maxlabels)
+				if not self.isSeqCode: 
+					output[0] = self.substituteThreadLines(output[0], maxlabels)
 			if (self.__satSwarm):
 				stemp = ''.join(s for s in self.__ctrlVarDefs)
 				output.insert(0,stemp)

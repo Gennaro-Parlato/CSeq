@@ -358,7 +358,7 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
 
         s = 'return'
         with self.dr_mode_set("TOP_ACCESS"):
-            with BakAndRestore(self, 'full_statement', False):
+            with BakAndRestore(self, 'full_statement', True):
                 if n.expr: s += ' ' + self.visit(n.expr)
         return s + ';'
         
@@ -1091,7 +1091,7 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
                     with self.no_any_instrument():     
                         with BakAndRestore(self, 'full_statement', False):   
                             #print("NOINSTR6", n)
-                            return super().visit(n)
+                            return super().visit_Decl(n)
                     #assert(False, "This type condition is not expected: "+str(n))
                 
                 if type_of_n == 'ArrayDecl' and type_st == 'Struct' and n.name != 'main' and n.type != 'FuncDecl':
@@ -1195,7 +1195,7 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
             jmpElse = self.macro_file_manager.expression(n.cond, ["if("+adr.getBav1(n)+") {goto "+elseLbl+";}" if adr.underapprox else ";" for adr in self.conf_adr], passthrough=not self.full_statement, typlbl="JmpElse")
             thenblock = "{\n"+thenblock+"\n"+jmpElse+";}\n"
         else:
-            resetBap = self.macro_file_manager.expression(n.cond, [adr.bap+" = "+adr.getBap1(n)+";\n" if adr.underapprox else ";" for adr in self.conf_adr], passthrough=not self.full_statement, typlbl="ResetBap")
+            resetBap = self.macro_file_manager.expression(n.cond, [adr.bap+" = "+adr.getBap1(n) if adr.underapprox else "(void) 0" for adr in self.conf_adr], passthrough=not self.full_statement, typlbl="ResetBap")
             thenblock = "{\n"+thenblock+"\n"+resetBap+";}\n"
             
         s += thenblock
@@ -1208,7 +1208,7 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
             assert(self.full_statement)
             elseBlock = self._generate_stmt(n.iffalse, add_indent=True)
             assert(self.full_statement)
-            resetBap = self.macro_file_manager.expression(n.cond, [adr.bap+" = "+adr.getBap1(n)+";" if adr.underapprox else ";" for adr in self.conf_adr], passthrough=not self.full_statement, typlbl="ResetBap")
+            resetBap = self.macro_file_manager.expression(n.cond, [adr.bap+" = "+adr.getBap1(n) if adr.underapprox else "(void) 0" for adr in self.conf_adr], passthrough=not self.full_statement, typlbl="ResetBap")
             elseBlock = "{\n"+elseLbl+":;"+"\n"+elseBlock+"\n"+resetBap+";}\n"
 
             elseEnd = self._lazyseqnewschedule__maxInCompound   # label for the last stmt in the if_false block if () {...} else { block; }

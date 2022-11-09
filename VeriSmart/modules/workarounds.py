@@ -36,7 +36,7 @@ VERSION = 'workaround-0.1-2016.11.13'
           (there are few exceptions see in the code, serach for initType)
 
 
-        - remove  if(!1) { .. }  and  if(0) { .. }
+        - remove  if(!1) { .. }  and  if(0) { .. } GG unless it contains a label (there might be a goto to there)
 
         - assign a name to anonymous structures:
             struct { int f1; char f2; ... }    -->   struct __anon_0 { int f1; char f2; ... }
@@ -86,6 +86,8 @@ class workarounds(core.module.Translator):
     currentAnonStructsCount = 0  # counts the number of anonymous structures (used to assign consecutive names)
     
     mainNode = None
+    
+    anyLabel = False # found any label in code
 
     def visit_Cast(self, n):
         ''' Remove cast to NULL pointer in C
@@ -252,14 +254,19 @@ class workarounds(core.module.Translator):
 
         # Eliminate dead code
         processedCond = core.utils.remove_line_markers(cond)
-        if processedCond == '0' or processedCond == '!1':
+
+        bakAnyLabel = self.anyLabel
+        self.anyLabel = False
+        t = self._generate_stmt(n.iftrue, add_indent=True)
+        labelInTrue = self.anyLabel
+        self.anyLabel = self.anyLabel or bakAnyLabel
+        
+        if not labelInTrue and (processedCond == '0' or processedCond == '!1'):
             return ''
 
         # Eliminate redundant code
         if processedCond == '1':
-            return self._generate_stmt(n.iftrue, add_indent=True)
-
-        t = self._generate_stmt(n.iftrue, add_indent=True)
+            return t
 
         # if not t.startswith(self._make_indent()+ ('{\n')):   # always add brackets when missing
         if not self._checkStartBrace(t):  # always add brackets when missing
@@ -278,6 +285,10 @@ class workarounds(core.module.Translator):
             s += e
 
         return s
+        
+    def visit_Label(self, n):
+        self.anyLabel = True
+        return super().visit_Label(n)
 
     def visit_For(self, n):
         ''' MEMCACHED

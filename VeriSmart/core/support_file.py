@@ -166,7 +166,6 @@ enum t_typename {
             else:
                 mainContent += self.visit(ext)
                 lastNode = ext
-            
         return "\n".join([self.boilerplate, "int main(){","printf(\"ADDRBITS, %lld\\n\",8*sizeof(int*));"]+mainContent+["return 0;","}"])
     
     def visit_Constant(self, n):
@@ -277,7 +276,32 @@ enum t_typename {
                     with self.set_can_value(True):
                         ans += self.visit(n.init)
         else:
-            if self.global_decl and (type(n.type) is not FuncDecl or n.name != "main"):
+            if self.global_decl and (type(n.type) is FuncDecl and n.name != "main"):
+                ncp = copy.deepcopy(n)
+                if ncp.type.args is not None:
+                    for i in range(len(ncp.type.args.params)):
+                        if type(ncp.type.args.params[i]) is Typename:
+                            tdf = ncp.type.args.params[i]
+                            if not(type(tdf.type) is TypeDecl and type(tdf.type.type) is IdentifierType and tdf.type.type.names == ["void"]):
+                                ncp.type.args.params[i] = Decl(None, tdf.quals, [], [], tdf.type, None, None)
+                                type_ptr = ncp.type.args.params[i].type #that might be a pointer: recur until you find a typedecl, for which you can assign the name; IdentifierType block the chain (it should only appear with void, or inside a typedecl)
+                                while type(type_ptr) not in (TypeDecl, IdentifierType) :
+                                    type_ptr = type_ptr.type
+                                if type(type_ptr) is TypeDecl:
+                                    type_ptr.declname = "p"+str(i)
+                        else:
+                            type_ptr = ncp.type.args.params[i].type #that might be a pointer: recur until you find a typedecl, for which you can assign the name; IdentifierType block the chain (it should only appear with void, or inside a typedecl)
+                            while type(type_ptr) not in (TypeDecl, IdentifierType) :
+                                type_ptr = type_ptr.type
+                            if type(type_ptr) is TypeDecl:
+                                type_ptr.declname = "p"+str(i)
+                        #else:
+                        #    ncp.type.args.params[i].name = "p"+str(i)
+                fbody = "{}"
+                if type(n.type.type.type) is IdentifierType and n.type.type.type.names[0] == "int": # int fnc
+                    fbody = "{return 01;}"
+                ans += [self.cgenerator.visit(ncp)+fbody]
+            elif self.global_decl and (type(n.type) is not FuncDecl or n.name != "main"):
                 ans += [self.cgenerator.visit(n)+";"]
             if type(n.type) is FuncDecl and n.type.args is not None:
                 ans += self.visit(n.type.args)
@@ -292,12 +316,16 @@ enum t_typename {
                 with self.inner_decl():
                     with self.set_can_value(True):
                         ans += self.visit(n.init)
-        strans = "\n".join(ans)
-        for decl in self.knownDeclsStack[::-1]:
-            if strans in decl:
-                return []
-        self.knownDeclsStack[-1].add(strans)
-        return ans
+        #strans = "\n".join(ans)
+        ans_no_dup = []
+        for strans in ans:
+            for decl in self.knownDeclsStack[::-1]:
+                if strans in decl:
+                    break
+            else:
+                ans_no_dup.append(strans)
+                self.knownDeclsStack[-1].add(strans)
+        return ans_no_dup
         
     def visit_DeclList(self, n):
         ans = []
@@ -356,16 +384,17 @@ enum t_typename {
         ans = []
         if type(n.decl.type.type.type) is IdentifierType and n.decl.type.type.type.names[0] == "void":
             #void function
-            ncp = copy.copy(n)
-            ncp.body = Compound([])
-            ans += [self.cgenerator.visit(ncp)]
+            #ncp = copy.copy(n)
+            #ncp.body = Compound([])
+            #ans += [self.cgenerator.visit(ncp)]
+            ans += self.visit(n.decl)
             if n.decl.type.args is not None:
                 ans += self.visit(n.decl.type.args)
         elif type(n.decl.type.type.type) is IdentifierType and n.decl.type.type.type.names[0] == "int":
             #int function
-            ncp = copy.copy(n)
-            ncp.body = Compound([Return(Constant("int","0"))])
-            ans += [self.cgenerator.visit(ncp)]
+            #ncp = copy.copy(n)
+            #ncp.body = Compound([Return(Constant("int","0"))])
+            ans += self.visit(n.decl)
             if n.decl.type.args is not None:
                 ans += self.visit(n.decl.type.args)
         else:

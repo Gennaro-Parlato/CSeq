@@ -96,6 +96,7 @@ class lazyseqnewschedule(core.module.Translator):
 	__inReference = False            # True iff within & scope
 	expList = []     #assigned with  the list of the expressions of an ExprList node
 	__enableDR = False
+	isSeqCode = False # GG: sequential code, i.e., no main driver, main function stays the same, no visible points, no program counter...
 
 	def init(self):
 		self.addInputParam('rounds', 'round-robin schedules', 'r', '1', False)
@@ -140,6 +141,8 @@ class lazyseqnewschedule(core.module.Translator):
         
 		threads = int(self.getInputParamValue('threads'))
 		#print(threads)
+		self.isSeqCode = threads == 0
+		self.setOutputParam('isSeqCode', self.isSeqCode)
 		rounds = env.rounds  #int(self.getInputParamValue('rounds'))
 		backend = self.getInputParamValue('backend')
 
@@ -180,153 +183,157 @@ class lazyseqnewschedule(core.module.Translator):
 		if backend == 'cbmc' or backend is None:
 			self.__extra_nondet = ''
 
-		if backend == 'klee':    # specific main for klee
-			# Only use round robin style for klee
-			if self.__decomposepc:
-				self.output += self.__createMainKLEERoundRobinDecomposePC(rounds)
-			elif self.__one_pc_cs:
-				self.output += self.__createMainKLEERoundRobinOnePCCS(rounds)
-			else:
-				self.output += self.__createMainKLEERoundRobin(rounds)
+		if self.isSeqCode:
+			header = core.utils.printFile('modules/lazyseqBnewschedule_seqcode.c')
+			self.setOutputParam('header', header)
 		else:
-			# Add the new main().
-			if self.__roundrobin:
-				if self.__decomposepc:
-					self.output += self.__createMainRoundRobinDecomposePC(rounds)
-				elif self.__one_pc_cs:
-					self.output += self.__createMainRoundRobinOnePCCS(rounds)
-				else:
-					#print(self.__class__)
-					#print(self.output)
-					#mainFunc=self.__createMainRoundRobin(rounds)
-					#print(mainFunc)
-					#sys.exit(0)
-					self.output += self.createMainRoundRobin(rounds)    #name changed form __createMainRoundRobin since this would not ovverride
-			else:
-				if self.__decomposepc:
-					self.output += self.__createMainDecomposePC(rounds)
-				elif self.__one_pc_cs:
-					self.output += self.__createMainOnePCCS(rounds)
-				else:
-					self.output += self.__createMain(rounds)
+		    if backend == 'klee':    # specific main for klee
+			    # Only use round robin style for klee
+			    if self.__decomposepc:
+				    self.output += self.__createMainKLEERoundRobinDecomposePC(rounds)
+			    elif self.__one_pc_cs:
+				    self.output += self.__createMainKLEERoundRobinOnePCCS(rounds)
+			    else:
+				    self.output += self.__createMainKLEERoundRobin(rounds)
+		    else:
+			    # Add the new main().
+			    if self.__roundrobin:
+				    if self.__decomposepc:
+					    self.output += self.__createMainRoundRobinDecomposePC(rounds)
+				    elif self.__one_pc_cs:
+					    self.output += self.__createMainRoundRobinOnePCCS(rounds)
+				    else:
+					    #print(self.__class__)
+					    #print(self.output)
+					    #mainFunc=self.__createMainRoundRobin(rounds)
+					    #print(mainFunc)
+					    #sys.exit(0)
+					    self.output += self.createMainRoundRobin(rounds)    #name changed form __createMainRoundRobin since this would not ovverride
+			    else:
+				    if self.__decomposepc:
+					    self.output += self.__createMainDecomposePC(rounds)
+				    elif self.__one_pc_cs:
+					    self.output += self.__createMainOnePCCS(rounds)
+				    else:
+					    self.output += self.__createMain(rounds)
 
-		# Insert the thread sizes (i.e. number of visible statements).
-		lines = ''
+		    # Insert the thread sizes (i.e. number of visible statements).
+		    lines = ''
 
-		i = maxsize = 0
+		    i = maxsize = 0
 
-		for t in self.__threadName:
-			if i <= self.__threadbound:
-				if i>0: lines += ', '
-				lines += str(self.__lines[t])
-				maxsize = max(int(maxsize), int(self.__lines[t]))
-				#print "CONFRONTO %s %s " % (int(maxsize), int(self.__lines[t]))
-			i += 1
-		if env.debug: print ("thread lines: {%s}" % lines),
-		ones = ''
-		if i <= self.__threadbound:
-			if i>0: ones += ', '
-			ones += '-1'
-		i += 1
+		    for t in self.__threadName:
+			    if i <= self.__threadbound:
+				    if i>0: lines += ', '
+				    lines += str(self.__lines[t])
+				    maxsize = max(int(maxsize), int(self.__lines[t]))
+				    #print "CONFRONTO %s %s " % (int(maxsize), int(self.__lines[t]))
+			    i += 1
+		    if env.debug: print ("thread lines: {%s}" % lines),
+		    ones = ''
+		    if i <= self.__threadbound:
+			    if i>0: ones += ', '
+			    ones += '-1'
+		    i += 1
 
-		# Generate the header.
-		#
-		# the first part is not parsable (contains macros)
-		# so it is passed to next module as a header...
+		    # Generate the header.
+		    #
+		    # the first part is not parsable (contains macros)
+		    # so it is passed to next module as a header...
 
-		if self.__decomposepc:
-			header = core.utils.printFile('modules/lazyseqAdecomposepc.c')
-		elif self.__one_pc_cs:
-			header = core.utils.printFile('modules/lazyseqAonepccs.c')
-		else:
-			header = core.utils.printFile('modules/lazyseqA.c')
-		header = header.replace('<insert-maxthreads-here>',str(threads))
-		header = header.replace('<insert-maxrounds-here>',str(rounds))
-		self.setOutputParam('header', header)
-
-
-		i = 0
-		pc_decls = ''
-		pc_cs_decls = ''
-		join_replace = ''
-		thread_restart = ''
-		for t in self.__threadName:
-			if i <= self.__threadbound:
-				threadsize = self.__lines[t]
-				k = int(math.floor(math.log(threadsize,2)))+1
-				pc_decls += 'unsigned int __cs_pc_%s;\n' % i
-				self._bitwidth['','__cs_pc_%s' % i] = k
-				pc_cs_decls += 'unsigned int __cs_pc_cs_%s;\n' % i
-				self._bitwidth['','__cs_pc_cs_%s' % i] = k + 1
-				join_replace += 'if (__cs_id == %s) __CSEQ_assume(__cs_pc_%s == __cs_thread_lines[%s]);\n' % (i, i, i)
-				thread_restart += 'if (__cs_thread_index == %s) __cs_pc_cs_%s = 0;\n' % (i, i)
-			i += 1
-		join_replace += 'if (__cs_id >= %s) __CSEQ_assume(0);\n' % (i)
-		thread_restart += 'if (__cs_thread_index >= %s) __CSEQ_assume(0);\n' % (i)
-
-		# ..this is parsable and is added on top of the output code,
-		# as next module is able to parse it.
-		if self.__decomposepc:
-			if not self._deadlockcheck:
-				header = core.utils.printFile('modules/lazyseqBnewscheduledecomposepc.c').replace('<insert-threadsizes-here>',lines)
-			else:
-				header = core.utils.printFile('modules/lazyseqBdeadlocknewscheduledecomposepc.c').replace('<insert-threadsizes-here>',lines)
-			header = header.replace('<insert-pc-decls-here>', pc_decls + pc_cs_decls )
-			header = header.replace('<insert-join_replace-here>', join_replace)
-			header = header.replace('<insert-thread_restart-here>', thread_restart)
-			header = header.replace('<insert-numthreads-here>', str(threads+1))
-		elif self.__one_pc_cs:
-			if not self._deadlockcheck:
-				header = core.utils.printFile('modules/lazyseqBnewscheduleonepccs.c').replace('<insert-threadsizes-here>',lines)
-			else:
-				header = core.utils.printFile('modules/lazyseqBdeadlocknewscheduleonepccs.c').replace('<insert-threadsizes-here>',lines)
-			header = header.replace('<insert-numthreads-here>', str(threads+1))
-		else:
-			if not self._deadlockcheck:
-				if env.isSwarm:
-					header = lazyseqnewschedule.initHeaderSwarm(env)
-				else: 
-					header = lazyseqnewschedule.initHeader(env,lines)
-			else:
-				header = core.utils.printFile('modules/lazyseqBdeadlocknewschedule.c').replace('<insert-threadsizes-here>',lines)
-			header = header.replace('<insert-numthreads-here>', str(threads+1))
-
-		header += self.additionalDefs()	
-
-		self.insertheader(header)
-
-		# Calculate exact bitwidth size for a few integer control variables of the seq. schema,
-		# good in case the backend handles bitvectors.
-		self._bitwidth['','__cs_active_thread'] = 1
-		k = int(math.floor(math.log(maxsize,2)))+1
-		if self.__decomposepc is False:
-			self._bitwidth['','__cs_pc'] = k
-			self._bitwidth['','__cs_pc_cs'] = k+1
-
-		self._bitwidth['','__cs_thread_lines'] = k
-
-		k = int(math.floor(math.log(self.__threadbound,2)))+1
-		self._bitwidth['','__cs_last_thread'] = k
-		self._bitwidth[core.common.changeID['pthread_mutex_lock'],'__cs_thread_index'] = k
-		self._bitwidth[core.common.changeID['pthread_mutex_unlock'],'__cs_thread_index'] = k
-
-		# self.setOutputParam('__cs_bitwidth', self._bitwidth)
-
-		# Fix gotos by inserting ASS_GOTO(..) blocks before each goto,
-		# excluding gotos which destination is the line below.
-		for (a,b) in self.__labelLine:
-			if (a,b) in self.__gotoLine and (self.__labelLine[a,b] == self.__gotoLine[a,b]+1):
-				self.output = self.output.replace('<%s,%s>' % (a,b), '')
-			else:
-				self.output = self.output.replace('<%s,%s>' % (a,b), 'ASS_GOTO(%s)' % self.__labelLine[a,b])
-
-		self.setOutputParam('bitwidth', self._bitwidth)
+		    if self.__decomposepc:
+			    header = core.utils.printFile('modules/lazyseqAdecomposepc.c')
+		    elif self.__one_pc_cs:
+			    header = core.utils.printFile('modules/lazyseqAonepccs.c')
+		    else:
+			    header = core.utils.printFile('modules/lazyseqA.c')
+		    header = header.replace('<insert-maxthreads-here>',str(threads))
+		    header = header.replace('<insert-maxrounds-here>',str(rounds))
+		    self.setOutputParam('header', header)
 
 
-		self.setOutputParam('lines', self.__lines)
-		self.setOutputParam('compulsoryVPs',self.__compulsoryVP)
-		self.setOutputParam('threadNames', self.__threadName)
-		self.setOutputParam('threadIndex', self.__threadIndex)
+		    i = 0
+		    pc_decls = ''
+		    pc_cs_decls = ''
+		    join_replace = ''
+		    thread_restart = ''
+		    for t in self.__threadName:
+			    if i <= self.__threadbound:
+				    threadsize = self.__lines[t]
+				    k = int(math.floor(math.log(threadsize,2)))+1
+				    pc_decls += 'unsigned int __cs_pc_%s;\n' % i
+				    self._bitwidth['','__cs_pc_%s' % i] = k
+				    pc_cs_decls += 'unsigned int __cs_pc_cs_%s;\n' % i
+				    self._bitwidth['','__cs_pc_cs_%s' % i] = k + 1
+				    join_replace += 'if (__cs_id == %s) __CSEQ_assume(__cs_pc_%s == __cs_thread_lines[%s]);\n' % (i, i, i)
+				    thread_restart += 'if (__cs_thread_index == %s) __cs_pc_cs_%s = 0;\n' % (i, i)
+			    i += 1
+		    join_replace += 'if (__cs_id >= %s) __CSEQ_assume(0);\n' % (i)
+		    thread_restart += 'if (__cs_thread_index >= %s) __CSEQ_assume(0);\n' % (i)
+
+		    # ..this is parsable and is added on top of the output code,
+		    # as next module is able to parse it.
+		    if self.__decomposepc:
+			    if not self._deadlockcheck:
+				    header = core.utils.printFile('modules/lazyseqBnewscheduledecomposepc.c').replace('<insert-threadsizes-here>',lines)
+			    else:
+				    header = core.utils.printFile('modules/lazyseqBdeadlocknewscheduledecomposepc.c').replace('<insert-threadsizes-here>',lines)
+			    header = header.replace('<insert-pc-decls-here>', pc_decls + pc_cs_decls )
+			    header = header.replace('<insert-join_replace-here>', join_replace)
+			    header = header.replace('<insert-thread_restart-here>', thread_restart)
+			    header = header.replace('<insert-numthreads-here>', str(threads+1))
+		    elif self.__one_pc_cs:
+			    if not self._deadlockcheck:
+				    header = core.utils.printFile('modules/lazyseqBnewscheduleonepccs.c').replace('<insert-threadsizes-here>',lines)
+			    else:
+				    header = core.utils.printFile('modules/lazyseqBdeadlocknewscheduleonepccs.c').replace('<insert-threadsizes-here>',lines)
+			    header = header.replace('<insert-numthreads-here>', str(threads+1))
+		    else:
+			    if not self._deadlockcheck:
+				    if env.isSwarm:
+					    header = lazyseqnewschedule.initHeaderSwarm(env)
+				    else: 
+					    header = lazyseqnewschedule.initHeader(env,lines)
+			    else:
+				    header = core.utils.printFile('modules/lazyseqBdeadlocknewschedule.c').replace('<insert-threadsizes-here>',lines)
+			    header = header.replace('<insert-numthreads-here>', str(threads+1))
+
+		    header += self.additionalDefs()	
+
+		    self.insertheader(header)
+
+		    # Calculate exact bitwidth size for a few integer control variables of the seq. schema,
+		    # good in case the backend handles bitvectors.
+		    self._bitwidth['','__cs_active_thread'] = 1
+		    k = int(math.floor(math.log(maxsize,2)))+1
+		    if self.__decomposepc is False:
+			    self._bitwidth['','__cs_pc'] = k
+			    self._bitwidth['','__cs_pc_cs'] = k+1
+
+		    self._bitwidth['','__cs_thread_lines'] = k
+
+		    k = int(math.floor(math.log(self.__threadbound,2)))+1
+		    self._bitwidth['','__cs_last_thread'] = k
+		    self._bitwidth[core.common.changeID['pthread_mutex_lock'],'__cs_thread_index'] = k
+		    self._bitwidth[core.common.changeID['pthread_mutex_unlock'],'__cs_thread_index'] = k
+
+		    # self.setOutputParam('__cs_bitwidth', self._bitwidth)
+
+		    # Fix gotos by inserting ASS_GOTO(..) blocks before each goto,
+		    # excluding gotos which destination is the line below.
+		    for (a,b) in self.__labelLine:
+			    if (a,b) in self.__gotoLine and (self.__labelLine[a,b] == self.__gotoLine[a,b]+1):
+				    self.output = self.output.replace('<%s,%s>' % (a,b), '')
+			    else:
+				    self.output = self.output.replace('<%s,%s>' % (a,b), 'ASS_GOTO(%s)' % self.__labelLine[a,b])
+
+		    self.setOutputParam('bitwidth', self._bitwidth)
+
+
+		    self.setOutputParam('lines', self.__lines)
+		    self.setOutputParam('compulsoryVPs',self.__compulsoryVP)
+		    self.setOutputParam('threadNames', self.__threadName)
+		    self.setOutputParam('threadIndex', self.__threadIndex)
 
 	def visit_Decl(self,n,no_type=False):
 		# no_type is used when a Decl is part of a DeclList, where the type is
@@ -516,6 +523,7 @@ class lazyseqnewschedule(core.module.Translator):
 
 	def visit_FuncDef(self, n):
 		if (n.decl.name.startswith('__CSEQ_atomic_') or
+			self.isSeqCode or #no need for vps if sequential
 			#n.decl.name.startswith(core.common.funcPrefixChange['__CSEQ_atomic']) or
 			n.decl.name == '__CSEQ_assert' or
 			n.decl.name in self.Parser.funcReferenced ):   # <--- functions called through pointers are not inlined yet
@@ -525,10 +533,14 @@ class lazyseqnewschedule(core.module.Translator):
 			#ret = self.otherparser.visit(n)
 			oldatomic = self.__atomic
 			self.__atomic = True
-			decl = self.visit(n.decl)
-			body = self.visit(n.body)
+			if self.isSeqCode and n.decl.name == "main" and hasattr(self, 'any_instrument') and self.any_instrument:
+				body = self.visit(n.body)
+				s = 'int main(void) {\nFIELD_DECLS();\n' + body + '}\n'
+			else:
+				decl = self.visit(n.decl)
+				body = self.visit(n.body)
+				s = decl + '\n' + body + '\n'
 			self.__atomic = oldatomic
-			s = decl + '\n' + body + '\n'
 			self.__currentThread = ''
 			self.__visit_funcReference = False
 			return s
@@ -569,8 +581,9 @@ class lazyseqnewschedule(core.module.Translator):
 		# Remove arguments (if any) for main() and transform them into local variables in main_thread.
 		# TODO re-implement seriously.
 		if self.__currentThread == 'main':
-			f = '%s main_thread(void)\n' % self.Parser.funcBlockOut[
-				self.__currentThread]
+			main_fnc_name = "main" if self.isSeqCode else "main_thread"
+			f = '%s %s(void)\n' % (self.Parser.funcBlockOut[
+				self.__currentThread], main_fnc_name)
 			main_args = self.Parser.funcBlockIn['main']
 			args = ''
 			if main_args.find('void') != -1 or main_args == '':

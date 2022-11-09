@@ -13,7 +13,7 @@ VERSION = 'merger-0.0-2015.10.20'
 """
 Purpose of this module:
 
-    - input sanitising (e.g. __thread_local workaround, removing non-standard C extensions, ...)
+    - input sanitising (e.g. __thread_local workaround, removing non-standard C extensions, removing nonstandard definitions of reach_error, ...)
     - merge all the input files into one
 
     NOTE: the line mapping mechanism is very different from the other modules
@@ -163,6 +163,11 @@ struct device {
 
             if not self.need_gnu_fix and "typeof" in line:
                 self.need_gnu_fix = True
+                
+                
+            # GG: remove nonstandard definition of reach_error(): void reach_error() { ((void) sizeof ((0) ? 1 : 0), __extension__ ({ if (0) ; else __assert_fail ("0", ".*", 3, __extension__ __PRETTY_FUNCTION__); })); }
+            if line.startswith("void reach_error() { ((void) sizeof ((0) ? 1 : 0), __extension__ ({ if (0) ; else"):
+                line = 'void reach_error() { @$$^*&(0); }'
 
             text += line+'\n'
 
