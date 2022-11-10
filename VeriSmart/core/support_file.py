@@ -34,6 +34,8 @@ class SupportFileManager(CGenerator):
         # Set of already printed declarations for the current scope
         self.knownDeclsStack = [set()]
         
+        self.store_def_in_stack = True
+        
         self.types_map = {
             6: ('unsigned', 'unsigned char'),
             1: ('signed', 'char'),
@@ -118,7 +120,7 @@ enum t_typename {
         compile_out = process.communicate()[0].decode('utf-8').split('\n')
         if process.wait() != 0:
             print("Problems while compiling support file")
-            print(compile_out)
+            print("\n".join([str(x) for x in compile_out]))
             assert(False)
         
         run_command = "./"+runnable_fname
@@ -127,7 +129,7 @@ enum t_typename {
         process.wait()
         if process.wait() != 0:
             print("Problems while running support file")
-            print(result)
+            print("\n".join([str(x) for x in result]))
             assert(False)
         
         for line in result:
@@ -253,12 +255,16 @@ enum t_typename {
                     n.type.type.decls = old_decl
                     break
             else:
-                self.knownDeclsStack[-1].add(struct_t_name)
+                if self.store_def_in_stack:
+                    self.knownDeclsStack[-1].add(struct_t_name)
                 ans += [self.cgenerator.visit(n)+";"]
             if n.init is not None:
                 with self.inner_decl():
                     with self.set_can_value(True):
+                        oldsdis = self.store_def_in_stack
+                        self.store_def_in_stack = False
                         ans += self.visit(n.init)
+                        self.store_def_in_stack = oldsdis
         elif type(n.type) is PtrDecl and type(n.type.type) is TypeDecl and type(n.type.type.type) is Struct:
             struct_t_name = "struct "+n.type.type.type.name
             for decl in self.knownDeclsStack[::-1]:
@@ -269,12 +275,16 @@ enum t_typename {
                     n.type.type.type.decls = old_decl
                     break
             else:
-                self.knownDeclsStack[-1].add(struct_t_name)
+                if self.store_def_in_stack:
+                    self.knownDeclsStack[-1].add(struct_t_name)
                 ans += [self.cgenerator.visit(n)+";"]
             if n.init is not None:
                 with self.inner_decl():
                     with self.set_can_value(True):
+                        oldsdis = self.store_def_in_stack
+                        self.store_def_in_stack = False
                         ans += self.visit(n.init)
+                        self.store_def_in_stack = oldsdis
         else:
             if self.global_decl and (type(n.type) is FuncDecl and n.name != "main"):
                 ncp = copy.deepcopy(n)
@@ -304,7 +314,10 @@ enum t_typename {
             elif self.global_decl and (type(n.type) is not FuncDecl or n.name != "main"):
                 ans += [self.cgenerator.visit(n)+";"]
             if type(n.type) is FuncDecl and n.type.args is not None:
+                oldsdis = self.store_def_in_stack
+                self.store_def_in_stack = False
                 ans += self.visit(n.type.args)
+                self.store_def_in_stack = oldsdis
             if n.init is not None:
                 type_of_n = self.__getType(n.type)
                 if type_of_n == 'ArrayDecl':
@@ -315,7 +328,10 @@ enum t_typename {
                         
                 with self.inner_decl():
                     with self.set_can_value(True):
+                        oldsdis = self.store_def_in_stack
+                        self.store_def_in_stack = False
                         ans += self.visit(n.init)
+                        self.store_def_in_stack = oldsdis
         #strans = "\n".join(ans)
         ans_no_dup = []
         for strans in ans:
@@ -324,7 +340,8 @@ enum t_typename {
                     break
             else:
                 ans_no_dup.append(strans)
-                self.knownDeclsStack[-1].add(strans)
+                if self.store_def_in_stack:
+                    self.knownDeclsStack[-1].add(strans)
         return ans_no_dup
         
     def visit_DeclList(self, n):
@@ -400,7 +417,7 @@ enum t_typename {
         else:
             ans += self.visit(n.decl)
         if n.param_decls:
-            self.visit(n.param_decls)
+            ans += self.visit(n.param_decls)
         ans += self.visit(n.body)
         return ans
         
