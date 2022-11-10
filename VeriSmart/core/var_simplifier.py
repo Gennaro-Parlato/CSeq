@@ -7,7 +7,7 @@ import copy
 class Cleaner(CGenerator):
     # remove useless assignments, i.e., x = 0 or x = getsm... where x is an interesting_var
     
-    def __init__(self, doClean = True):
+    def __init__(self, doClean = False):
         self.parser = CParser()
         self.generate = CGenerator()
         self.doClean = doClean
@@ -39,14 +39,12 @@ class Cleaner(CGenerator):
             parsed = self.parser.parse(with_boilerplate) # 6 sec
             print("B")
             if parsed.ext[-1].body.block_items is not None:
-                #print("C", len(parsed.ext[-1].body.block_items))
                 for label_stmt in parsed.ext[-1].body.block_items:
                     if type(label_stmt) is not EmptyStatement:
+                        print("#", len(parsed.ext[-1].body.block_items), label_stmt.name, self.generate.visit(label_stmt.stmt))
                         clean_ast = self.visit(label_stmt.stmt)['code']
-                        #self.clean_codes[label_stmt.name] = self.generate.visit(clean_ast).replace("___fakeifvar___ = ","")
-                #print("X")
-            for k in self.codes_to_clean:
-                self.clean_codes[k] = self.codes_to_clean[k].replace("___fakeifvar___ = ","")
+                        print("*")
+                        self.clean_codes[label_stmt.name] = self.generate.visit(clean_ast).replace("___fakeifvar___ = ","")
         else:
             for k in self.codes_to_clean:
                 self.clean_codes[k] = self.codes_to_clean[k].replace("___fakeifvar___ = ","")
@@ -181,12 +179,13 @@ class Cleaner(CGenerator):
                 if n.op == "=": 
                     # nname is overwritten without reading it. This value is discarded for the newly assigned one
                     acctable1.pop(nname, None)
-                return {'code': EmptyStatement(), 'acctable': acctable1, 'posright': posright-1}
+                ans = {'code': EmptyStatement(), 'acctable': acctable1, 'posright': posright-1}
+                return ans
             else:
                 return {'code': visit_rvalue['code'], 'acctable': acctable2, 'posright': posright-1}
         else:
             #visit_rvalue_without_after = self.visit(n.rvalue, read=not(self.interesting_vars(nname) and nname not in after), after=set())
-            if n.op == "=" and self.interesting_vars(nname) and not self.isRead(acctable1, nname, posright1):
+            if n.op == "=" and self.interesting_vars(nname) and not self.isRead(acctable2, nname, posright1):
                 # nname will be overwritten without reading its value: consider it as not being read
                 acctable.pop(nname, None)
             return {'code': Assignment(n.op, visit_lvalue['code'], visit_rvalue['code']), 'acctable': acctable, 'posright': posright-1}
@@ -210,9 +209,8 @@ class Cleaner(CGenerator):
                 acctable = acctable_prev
             else:
                 # this value is readable or has side effects: keep it
-                #stats = [expr_i['code']] + stats
+                stats = [expr_i['code']] + stats
                 #read_IDs = expr_i['read_IDs']
-                pass
         if len(stats) > 0:
             return {'code': ExprList(stats), 'acctable': acctable, 'posright': posright-1}
         else:
