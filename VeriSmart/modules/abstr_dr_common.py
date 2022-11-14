@@ -248,6 +248,7 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
         self.atomicLvl = 0 # this counts how much nesting in __CSEQ_atomic_ functions we are. If =0: we are not in an atomic function; otherwise that's atomic and we need to disable Visible Points
         
     def insertGlobalVarInit(self, x):
+        print("@@@")
         return x.replace("int main(void) {", "int main(void) {\n"+self.global_var_initializations, 1)
     def __createMainKLEERoundRobinDecomposePC(self, rounds):
         return self.insertGlobalVarInit(super().__createMainKLEERoundRobinDecomposePC(rounds))
@@ -385,7 +386,7 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
             else:
                 s3 += self.visit(ext) + ';\n'
                 
-        s += self.macro_file_manager.auxvars(['\n'.join([auxvars1[adr], adr.cond_vars_decl(), adr.bav1_vars_decl(), adr.bap1_vars_decl()]) for adr in self.conf_adr])
+        s += self.macro_file_manager.auxvars(['\n'.join([auxvars1[adr], adr.cond_vars_decl(), adr.bav1_vars_decl(), adr.bap1_vars_decl(), adr.nondet_vars_decl()]) for adr in self.conf_adr])
 
         #TODO check what it means
         #ris = self.faked_typedef_start \

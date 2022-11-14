@@ -520,6 +520,11 @@ class lazyseqnewschedule(core.module.Translator):
 		listToStr = ''.join(stmt for stmt in compoundList)
 		return listToStr
 
+	def insertGlobalVarInit(self, s):
+		return s
+
+	def insertFieldDecl(self, s):
+		return s
 
 	def visit_FuncDef(self, n):
 		if (n.decl.name.startswith('__CSEQ_atomic_') or
@@ -535,7 +540,8 @@ class lazyseqnewschedule(core.module.Translator):
 			self.__atomic = True
 			if self.isSeqCode and n.decl.name == "main" and hasattr(self, 'any_instrument') and self.any_instrument:
 				body = self.visit(n.body)
-				s = 'int main(void) {\nFIELD_DECLS();\n' + body + '}\n'
+				s = 'int main(void) { \n' + body + '}\n'
+				s = self.insertFieldDecl(self.insertGlobalVarInit(s))
 			else:
 				decl = self.visit(n.decl)
 				body = self.visit(n.body)

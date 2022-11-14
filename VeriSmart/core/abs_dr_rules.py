@@ -218,6 +218,8 @@ class AbsDrRules:
         
         # condition expressions, used in ifs and ternary ops
         self.conditions = {}
+        # for nondet expressions
+        self.nondetvars = {}
         # bav1 expressions
         self.bav1s = {}
         # bap1 expressions
@@ -309,6 +311,9 @@ class AbsDrRules:
     def cond_vars_decl(self):
         #TODO use __CPROVER_bitvector
         return self.compound_expr("\n",*(['unsigned __CPROVER_bitvector[1] '+v+';' for v in self.conditions.values()]))[0]
+        
+    def nondet_vars_decl(self):
+        return self.compound_expr("\n",*([v[0]+' '+v[1]+';' for v in self.nondetvars.values()]))[0]
         
     def bav1_vars_decl(self):
         #TODO use __CPROVER_bitvector
@@ -1087,6 +1092,11 @@ class AbsDrRules:
             self.conditions[cond] = "__cs_cond_"+str(len(self.conditions))
         return self.conditions[cond]
         
+    def getNondetvar(self, ndfnc, typ="int"):
+        if ndfnc not in self.nondetvars:
+            self.nondetvars[ndfnc] = [typ, "__cs_nondetv_"+str(len(self.nondetvars))]
+        return self.nondetvars[ndfnc][1]
+        
     def getBav1(self, bop):
         if bop not in self.bav1s:
             self.bav1s[bop] = "__cs_bav1_"+str(len(self.bav1s))
@@ -1823,11 +1833,15 @@ class AbsDrRules:
                 )), fnc, abs_mode, dr_mode)
         assert(abs_mode not in ("SET_VAL", "GET_ADDR"), "Invalid: cannot get address or set the value of constants")
         if not self.abs_on and not self.dr_on:
-            return self.visitor_visit_noinstr(fnc)
+            return self.getNondetvar(fnc) #self.visitor_visit_noinstr(fnc)
         elif abs_mode == "VALUE" or dr_mode == "WSE":
-            return self.visitor_visit_noinstr(fnc)
+            return self.getNondetvar(fnc) #self.visitor_visit_noinstr(fnc)
         else:
-            return self.if_abs(lambda:self.assign_with_prop(state,"bav", "1" if self.abstrTypesSizeof['int']*8 > self.abstr_bits else "0"))
+            typ="int" # TODO something more clever?
+            return self.if_abs(lambda:self.comma_expr(
+                self.assign_var(self.getNondetvar(fnc, typ=typ), self.visitor_visit_noinstr(fnc)), 
+                self.assign_with_prop(state,"bav", self.bounds_failure(self.getNondetvar(fnc), typ))
+                )) # "1" if self.abstrTypesSizeof['int']*8 > self.abstr_bits else "0"))
             
     # helper function: returns "p1 && (set_sm_dr(&[[unexp, LVALUE]],1), WKM=1)" and manually applies const propagation
     def __assignment_manual_cp_p1(self, state, unExpr, **kwargs):
