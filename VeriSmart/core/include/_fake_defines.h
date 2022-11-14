@@ -59,4 +59,6 @@
 #define BZ_CONFIG_ERROR      (-9)
 #define BZ_EXTERN            extern
 
+#define LARGE_INT 1000000
+
 #endif
