@@ -360,8 +360,18 @@ class varnames(core.module.Translator):
 			return self._generate_type(n.type)
 		elif typ == pycparser.c_ast.IdentifierType:
 			return ' '.join(n.names) + ' '
-		elif typ in (pycparser.c_ast.ArrayDecl, pycparser.c_ast.PtrDecl, pycparser.c_ast.FuncDecl):
+		elif typ in (pycparser.c_ast.ArrayDecl, pycparser.c_ast.PtrDecl):
 			return self._generate_type(n.type, modifiers + [n])
+		elif typ in (pycparser.c_ast.FuncDecl,):
+			typ = n
+			while not hasattr(typ,'declname'):
+			    typ = typ.type
+			pr_cf = self.__currentFunction
+			if self.__currentFunction == "":
+			    self.__currentFunction = typ.declname
+			ans = self._generate_type(n.type, modifiers + [n])
+			self.__currentFunction = pr_cf
+			return ans
 		else:
 			return self.visit(n)
 
