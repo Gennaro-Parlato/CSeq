@@ -86,7 +86,7 @@ class switchtransformer(core.module.Translator):
             self.__switchFreshId += 1
             self.__currentSwitchCount = self.__switchFreshId
             currSwitchCount = self.__currentSwitchCount
-            switchCondVar = '__cs_switch_cond_%s_%s' % (self.__currentFunction, self.__currentSwitchCount)
+            switchCondVar = '__cz_switch_cond_%s_%s' % (self.__currentFunction, self.__currentSwitchCount)
             self.__currentSwitchVar.append(switchCondVar)
             self.__caseCount[self.__currentSwitchCount] = 0
             self.__currentSwitchExprALL.append([])
@@ -95,8 +95,8 @@ class switchtransformer(core.module.Translator):
             self.__currentSwitchCount = currSwitchCount
             s = s[s.find('{') + 1:s.rfind('}')]
             endCaseNumber = self.__caseCount[self.__currentSwitchCount] + 1
-            switchEndLabel = '__cs_switch_%s_%s_case_%s' % (self.__currentFunction, self.__currentSwitchCount, endCaseNumber)
-            switchEndLabelFinal = '__cs_switch_%s_%s_exit' % (self.__currentFunction, self.__currentSwitchCount)
+            switchEndLabel = '__cz_switch_%s_%s_case_%s' % (self.__currentFunction, self.__currentSwitchCount, endCaseNumber)
+            switchEndLabelFinal = '__cz_switch_%s_%s_exit' % (self.__currentFunction, self.__currentSwitchCount)
             s += self._make_indent() + switchEndLabel + ':;'
             breakLabel = '<case-break-of-switch-%s_%s>' % (self.__currentFunction, self.__currentSwitchCount)
             self.__currentSwitchExprALL.pop()
@@ -120,7 +120,7 @@ class switchtransformer(core.module.Translator):
         self.indent_level += 1
         # Make a label for this case here
         if self.__caseCount[self.__currentSwitchCount] > 1:
-            s += self._make_indent() + '__cs_switch_%s_%s_case_%s:;\n' % (
+            s += self._make_indent() + '__cz_switch_%s_%s_case_%s:;\n' % (
                 self.__currentFunction, self.__currentSwitchCount, caseNumber)
         hasBreak = False
         for i in range(0, len(n.stmts)):

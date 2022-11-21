@@ -739,7 +739,7 @@ class lazyseqnewschedule(core.module.Translator):
 		# or to a pointer...
 		#
 		if ((self._isGlobal(self.__currentThread, n.name) or self._isPointer(self.__currentThread, n.name)) and not
-			n.name.startswith('__cs_thread_local_')):
+			n.name.startswith('__cz_thread_local_')):
 			#print "variable %s in %s is global\n" % (n.name, self.__currentThread)
 			self.__globalMemoryAccessed = True
 
@@ -900,7 +900,7 @@ class lazyseqnewschedule(core.module.Translator):
 				main += "         if (__cs_active_thread[%s]) {\n" % (i)
 				main += "             __cs_pc_cs_%s = __cs_tmp_t%s_r0;\n" % (i, i)
 				main += "             __CSEQ_assume(__cs_pc_cs_%s <= %s);\n" % (i, self.__lines[t])
-				main += "             %s(__cs_threadargs[%s]);\n" % (t, i)
+				main += "             %s(__cz_threadargs[%s]);\n" % (t, i)
 				main += "             __cs_pc_%s = __cs_pc_cs_%s;\n" % (i, i)
 				main += "         }\n\n"
 				i += 1
@@ -937,7 +937,7 @@ class lazyseqnewschedule(core.module.Translator):
 						main += "             __cs_pc_cs_%s = __cs_pc_%s + __cs_tmp_t%s_r%s;\n" % (i, i, i, round)
 					main += "             __CSEQ_assume(__cs_pc_cs_%s >= __cs_pc_%s);\n" % (i, i)
 					main += "             __CSEQ_assume(__cs_pc_cs_%s <= %s);\n" % (i, self.__lines[t])
-					main += "             %s(__cs_threadargs[%s]);\n" % (t, i)
+					main += "             %s(__cz_threadargs[%s]);\n" % (t, i)
 					main += "             __cs_pc_%s = __cs_pc_cs_%s;\n" % (i, i)
 					main += "         }\n\n"
 					i += 1
@@ -1007,7 +1007,7 @@ class lazyseqnewschedule(core.module.Translator):
 				main += "         if (__cs_active_thread[%s]) {\n" % (i)
 				main += "             __cs_pc_cs = __cs_tmp_t%s_r0;\n" % (i)
 				main += "             __CSEQ_assume(__cs_pc_cs <= %s);\n" % (i, self.__lines[t])
-				main += "             %s(__cs_threadargs[%s]);\n" % (t, i)
+				main += "             %s(__cz_threadargs[%s]);\n" % (t, i)
 				main += "             __cs_pc[%s] = __cs_pc_cs;\n" % (i)
 				main += "         }\n\n"
 				i += 1
@@ -1044,7 +1044,7 @@ class lazyseqnewschedule(core.module.Translator):
 						main += "             __cs_pc_cs = __cs_pc[%s] + __cs_tmp_t%s_r%s;\n" % (i, i, round)
 					main += "             __CSEQ_assume(__cs_pc_cs >= __cs_pc[%s]);\n" % (i)
 					main += "             __CSEQ_assume(__cs_pc_cs <= %s);\n" % (self.__lines[t])
-					main += "             %s(__cs_threadargs[%s]);\n" % (t, i)
+					main += "             %s(__cz_threadargs[%s]);\n" % (t, i)
 					main += "             __cs_pc[%s] = __cs_pc_cs;\n" % (i)
 					main += "         }\n\n"
 					i += 1
@@ -1113,7 +1113,7 @@ class lazyseqnewschedule(core.module.Translator):
 				main += "         if (__cs_run_t%s_r0) {\n" % (i)
 				main += "             __cs_pc_cs_%s = __cs_tmp_t%s_r0;\n" % (i, i)
 				main += "             __CSEQ_assume(__cs_pc_cs_%s <= %s);\n" % (i, self.__lines[t])
-				main += "             %s(__cs_threadargs[%s]);\n" % (t, i)
+				main += "             %s(__cz_threadargs[%s]);\n" % (t, i)
 				main += "             __cs_last_thread = %s;\n" % (i)
 				main += "             __cs_pc_%s = __cs_pc_cs_%s;\n" % (i, i)
 				main += "         }\n\n"
@@ -1160,7 +1160,7 @@ class lazyseqnewschedule(core.module.Translator):
 						main += "             __cs_pc_cs_%s = __cs_pc_%s + __cs_tmp_t%s_r%s;\n" % (i, i, i, round)
 					main += "             __CSEQ_assume(__cs_pc_cs_%s >= __cs_pc_%s);\n" % (i, i)
 					main += "             __CSEQ_assume(__cs_pc_cs_%s <= %s);\n" % (i, self.__lines[t])
-					main += "             %s(__cs_threadargs[%s]);\n" % (t, i)
+					main += "             %s(__cz_threadargs[%s]);\n" % (t, i)
 					main += "             __cs_last_thread = %s;\n" % (i)
 					main += "             __cs_pc_%s = __cs_pc_cs_%s;\n" % (i, i)
 					main += "         }\n\n"
@@ -1237,7 +1237,7 @@ class lazyseqnewschedule(core.module.Translator):
 				main += "         if (__cs_run_t%s_r0) {\n" % (i)
 				main += "             __cs_pc_cs = __cs_tmp_t%s_r0;\n" % (i)
 				main += "             __CSEQ_assume(__cs_pc_cs_%s <= %s);\n" % (i, self.__lines[t])
-				main += "             %s(__cs_threadargs[%s]);\n" % (t, i)
+				main += "             %s(__cz_threadargs[%s]);\n" % (t, i)
 				main += "             __cs_last_thread = %s;\n" % (i)
 				main += "             __cs_pc[%s] = __cs_pc_cs;\n" % (i)
 				main += "         }\n\n"
@@ -1284,7 +1284,7 @@ class lazyseqnewschedule(core.module.Translator):
 						main += "             __cs_pc_cs = __cs_pc_%s + __cs_tmp_t%s_r%s;\n" % ( i, i, round)
 					main += "             __CSEQ_assume(__cs_pc_cs >= __cs_pc_%s);\n" % (i)
 					main += "             __CSEQ_assume(__cs_pc_cs <= %s);\n" % (self.__lines[t])
-					main += "             %s(__cs_threadargs[%s]);\n" % (t, i)
+					main += "             %s(__cz_threadargs[%s]);\n" % (t, i)
 					main += "             __cs_last_thread = %s;\n" % (i)
 					main += "             __cs_pc[%s] = __cs_pc_cs;\n" % (i)
 					main += "         }\n\n"
@@ -1353,7 +1353,7 @@ class lazyseqnewschedule(core.module.Translator):
 				main += "         if (__cs_active_thread[%s]) {\n" % (i)
 				main += "             __cs_pc_cs[%s] = __cs_tmp_t%s_r0;\n" % (i, i)
 				main += "             __CSEQ_assume(__cs_pc_cs[%s] <= %s);\n" % (i, "@£@ML" + str(self.Parser.threadOccurenceIndex[t]))
-				main += "             %s(__cs_threadargs[%s]);\n" % (t, i)
+				main += "             %s(__cz_threadargs[%s]);\n" % (t, i)
 				main += "             __cs_pc[%s] = __cs_pc_cs[%s];\n" % (i, i)
 				main += "         }\n\n"
 				i += 1
@@ -1390,7 +1390,7 @@ class lazyseqnewschedule(core.module.Translator):
 						main += "             __cs_pc_cs[%s] = __cs_pc[%s] + __cs_tmp_t%s_r%s;\n" % (i, i, i, round)
 					main += "             __CSEQ_assume(__cs_pc_cs[%s] >= __cs_pc[%s]);\n" % (i, i)
 					main += "             __CSEQ_assume(__cs_pc_cs[%s] <= %s);\n" % (i, "@£@ML" + str(self.Parser.threadOccurenceIndex[t]))
-					main += "             %s(__cs_threadargs[%s]);\n" % (t, i)
+					main += "             %s(__cz_threadargs[%s]);\n" % (t, i)
 					main += "             __cs_pc[%s] = __cs_pc_cs[%s];\n" % (i, i)
 					main += "         }\n\n"
 					i += 1
@@ -1458,7 +1458,7 @@ class lazyseqnewschedule(core.module.Translator):
 				main += "         if (__cs_run_t%s_r0) {\n" % (i)
 				main += "             __cs_pc_cs[%s] = __cs_tmp_t%s_r0;\n" % (i, i)
 				main += "             __CSEQ_assume(__cs_pc_cs[%s] <= %s);\n" % (i, "@£@ML" + str(self.Parser.threadOccurenceIndex[t]))
-				main += "             %s(__cs_threadargs[%s]);\n" % (t, i)
+				main += "             %s(__cz_threadargs[%s]);\n" % (t, i)
 				main += "             __cs_last_thread = %s;\n" % (i)
 				main += "             __cs_pc[%s] = __cs_pc_cs[%s];\n" % (i, i)
 				main += "         }\n\n"
@@ -1503,7 +1503,7 @@ class lazyseqnewschedule(core.module.Translator):
 						main += "             __cs_pc_cs[%s] = __cs_pc[%s] + __cs_tmp_t%s_r%s;\n" % (i, i, i, round)
 					main += "             __CSEQ_assume(__cs_pc_cs[%s] >= __cs_pc[%s]);\n" % (i, i)
 					main += "             __CSEQ_assume(__cs_pc_cs[%s] <= %s);\n" % (i,"@£@ML" + str(self.Parser.threadOccurenceIndex[t]))
-					main += "             %s(__cs_threadargs[%s]);\n" % (t, i)
+					main += "             %s(__cz_threadargs[%s]);\n" % (t, i)
 					main += "             __cs_last_thread = %s;\n" % (i)
 					main += "             __cs_pc[%s] = __cs_pc_cs[%s];\n" % (i, i)
 					main += "         }\n\n"
@@ -1562,7 +1562,7 @@ class lazyseqnewschedule(core.module.Translator):
 				main += "__CSEQ_rawline(\"    /* %s */\");\n" % t
 				main += "         if (__cs_active_thread[%s]) {\n" % (i)
 				main += "             __cs_pc_cs_%s = klee_range(0, %s, \"__cs_pc_cs_%s\");\n" % (i, self.__lines[t] + 1, i)
-				main += "             %s(__cs_threadargs[%s]);\n" % (t, i)
+				main += "             %s(__cz_threadargs[%s]);\n" % (t, i)
 				main += "             __cs_pc_%s = __cs_pc_cs_%s;\n" % (i, i)
 				main += "         }\n\n"
 				i += 1
@@ -1587,7 +1587,7 @@ class lazyseqnewschedule(core.module.Translator):
 					main += "__CSEQ_rawline(\"    /* %s */\");\n" % t
 					main += "         if (__cs_active_thread[%s]) {\n" % (i)
 					main += "             __cs_pc_cs_%s = klee_range(__cs_pc_%s, %s, \"__cs_pc_cs_%s\");\n" % (i, i, self.__lines[t] + 1, i)
-					main += "             %s(__cs_threadargs[%s]);\n" % (t, i)
+					main += "             %s(__cz_threadargs[%s]);\n" % (t, i)
 					main += "             __cs_pc_%s = __cs_pc_cs_%s;\n" % (i, i)
 					main += "         }\n\n"
 					i += 1
@@ -1630,7 +1630,7 @@ class lazyseqnewschedule(core.module.Translator):
 				main += "__CSEQ_rawline(\"    /* %s */\");\n" % t
 				main += "         if (__cs_active_thread[%s]) {\n" % (i)
 				main += "             __cs_pc_cs = klee_range(0, %s, \"__cs_pc_cs\");\n" % (self.__lines[t] + 1)
-				main += "             %s(__cs_threadargs[%s]);\n" % (t, i)
+				main += "             %s(__cz_threadargs[%s]);\n" % (t, i)
 				main += "             __cs_pc[%s] = __cs_pc_cs;\n" % (i)
 				main += "         }\n\n"
 				i += 1
@@ -1655,7 +1655,7 @@ class lazyseqnewschedule(core.module.Translator):
 					main += "__CSEQ_rawline(\"    /* %s */\");\n" % t
 					main += "         if (__cs_active_thread[%s]) {\n" % (i)
 					main += "             __cs_pc_cs = klee_range(__cs_pc[%s], %s, \"__cs_pc_cs\");\n" % (i, self.__lines[t] + 1)
-					main += "             %s(__cs_threadargs[%s]);\n" % (t, i)
+					main += "             %s(__cz_threadargs[%s]);\n" % (t, i)
 					main += "             __cs_pc[%s] = __cs_pc_cs;\n" % (i)
 					main += "         }\n\n"
 					i += 1
@@ -1698,7 +1698,7 @@ class lazyseqnewschedule(core.module.Translator):
 				main += "__CSEQ_rawline(\"    /* %s */\");\n" % t
 				main += "         if (__cs_active_thread[%s]) {\n" % (i)
 				main += "             __cs_pc_cs[%s] = klee_range(0, %s, \"__cs_pc_cs[%s]\");\n" % (i, self.__lines[t] + 1, i)
-				main += "             %s(__cs_threadargs[%s]);\n" % (t, i)
+				main += "             %s(__cz_threadargs[%s]);\n" % (t, i)
 				main += "             __cs_pc[%s] = __cs_pc_cs[%s];\n" % (i, i)
 				main += "         }\n\n"
 				i += 1
@@ -1723,7 +1723,7 @@ class lazyseqnewschedule(core.module.Translator):
 					main += "__CSEQ_rawline(\"    /* %s */\");\n" % t
 					main += "         if (__cs_active_thread[%s]) {\n" % (i)
 					main += "             __cs_pc_cs[%s] = klee_range(__cs_pc[%s], %s, \"__cs_pc_cs[%s]\");\n" % (i, i, self.__lines[t] + 1, i)
-					main += "             %s(__cs_threadargs[%s]);\n" % (t, i)
+					main += "             %s(__cz_threadargs[%s]);\n" % (t, i)
 					main += "             __cs_pc[%s] = __cs_pc_cs[%s];\n" % (i, i)
 					main += "         }\n\n"
 					i += 1

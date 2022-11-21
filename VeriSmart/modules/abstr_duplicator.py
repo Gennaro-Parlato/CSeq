@@ -54,7 +54,7 @@ class abstr_duplicator(duplicator.duplicator):
             
     def visit_FuncDef(self, n):
         #print(self.Parser.threadName, n.decl.name, n.decl)
-        # int __cs_create(__cs_t *__cs_new_thread_id, void *__cs_attr, void *(*__cs_thread_function)(void *), void *__cs_arg, int __cs_threadID)
+        # int __cs_create(__cs_t *__cs_new_thread_id, void *__cs_attr, void *(*__cs_thread_function)(void *), void *__cz_arg, int __cs_threadID)
         #print(n.decl)
         if n.decl.name == core.common.changeID['pthread_create']:
             #print(n)

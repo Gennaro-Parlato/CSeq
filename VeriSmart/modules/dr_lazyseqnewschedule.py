@@ -841,7 +841,7 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 				#main +="             __cs_noportest=0;\n"   #POR
 				if ts <= maxts :   #DR
 					  main +="             if(__cs_dr_ts == %s) __cs_dataraceDetectionStarted=1;\n" % ts #DR
-				main +="             %s(__cs_threadargs[%s]);\n" % (t, i)
+				main +="             %s(__cz_threadargs[%s]);\n" % (t, i)
 				main +="             if(__cs_dataraceSecondThread & (__cs_tmp_t%s_r0 > 0)) __cs_dataraceContinue=0;\n" % i #DR
 				if ts <= maxts :   #DR
 					  main +="             if(__cs_dataraceDetectionStarted) __cs_dataraceSecondThread=1;\n"  #DR
@@ -901,7 +901,7 @@ class dr_lazyseqnewschedule(lazyseqnewschedule.lazyseqnewschedule):
 					#main +="             __cs_noportest=0;\n"  #POR
 					if ts <= maxts :   #DR
 						 main +="             if(__cs_dr_ts == %s) __cs_dataraceDetectionStarted=1;\n" %  ts #DR
-					main +="             %s(__cs_threadargs[%s]);\n" % (t, i)
+					main +="             %s(__cz_threadargs[%s]);\n" % (t, i)
 					main +="             if(__cs_dataraceSecondThread & (__cs_tmp_t%s_r%s > 0)) __cs_dataraceContinue=0;\n" % (i,round) #DR
 					if ts <= maxts :   #DR
 						 main +="             if(__cs_dataraceDetectionStarted) __cs_dataraceSecondThread=1;\n"  #DR

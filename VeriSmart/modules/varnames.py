@@ -28,8 +28,8 @@ VERSION = 'varnames-0.0-2015.07.08'
 		}
 
 	into:
-		int f(int __cs_f_P) {
-			int __cs_f_L;
+		int f(int __cz_f_P) {
+			int __cz_f_L;
 		}
 
 TODO:
@@ -54,10 +54,10 @@ class varnames(core.module.Translator):
 	__debug = False
 	__visitingStructRef = False   # to avoid considering struct fields as local variables
 
-	nondetprefix = '__cs_nondet_'  # prefix for uninitialized local variables 
-	prefix = '__cs_local_'        # prefix for initialized local variables
-	paramprefix = '__cs_param_'   # prefix for function params
-	staticprefix = '__cs_staticlocal_'        # GG prefix for static local variables
+	nondetprefix = '__cz_nondet_'  # prefix for uninitialized local variables 
+	prefix = '__cz_local_'        # prefix for initialized local variables
+	paramprefix = '__cz_param_'   # prefix for function params
+	staticprefix = '__cz_staticlocal_'        # GG prefix for static local variables
 	staticinitprefix = '__cs_staticlocalinit_'        # GG prefix for static local variable init bits
 
 
@@ -118,7 +118,7 @@ class varnames(core.module.Translator):
 		self.__init=n.init
 		self.__visitingDecl += 1
 		
-		if "static" in n.storage and self.__currentFunction != '' and not n.name.startswith('__cs_switch_cond_'):
+		if "static" in n.storage and self.__currentFunction != '' and not n.name.startswith('__cz_switch_cond_'):
 			# use prefix for statics
 			prevStatic = self.visiting_static
 			self.visiting_static = True

@@ -238,7 +238,7 @@ class inliner(core.module.Translator):
         # or to a pointer...
         #
         if (self.__isGlobal(self.currentFunction[-1], n.name) and not
-        n.name.startswith('__cs_thread_local_')):
+        n.name.startswith('__cz_thread_local_')):
             self.__globalMemoryAccessed = True
 
         name = self.updateName(n.name)
@@ -387,15 +387,15 @@ class inliner(core.module.Translator):
                 if reachBound:
                     index = len(self.functionStack) - 2 - ((self.functionStack[:-1])[::-1]).index(fref)
                     #    tempIndex = '_%s_%s' % (fref, self.funcInlinedCount[fref] - 1)
-                    #    s = '__cs_retval_%s' % tempIndex
+                    #    s = '__cz_retval_%s' % tempIndex
                     #    # reset inline count
                     #    #self.funcInlinedCount[fref] =0  #S: replaced by decreasing counter on returning
-                    s = '__cs_retval_%s_%s' % (fref, self.indexStack[
+                    s = '__cz_retval_%s_%s' % (fref, self.indexStack[
                         index])  # S: this is needed if function is not void, and is a fake assignment, will never occur and choice of var to assign is safe in the sense that it is of the same type of the return value and is certainly declared at this point.
                     self.funcInlinedCount[fref] -= 1  # S: decrease by 1 the counter since this call is not done
 
                 else:
-                    s = '__cs_retval_%s_%s' % (self.functionStack[-1], self.indexStack[-1])
+                    s = '__cz_retval_%s_%s' % (self.functionStack[-1], self.indexStack[-1])
             self.indexStack.pop()
             self.functionStack.pop()
             self.funcInlinedLevel[fref] -= 1  # S: decrease  such that we unwind for levels and not occurences of calls
@@ -424,7 +424,7 @@ class inliner(core.module.Translator):
             if self.Parser.funcIsVoid[self.currentFunction[-1]]:
                 return 'goto __exit_%s_%s;' % (self.functionStack[-1], self.indexStack[-1])  # void
             else:
-                return '__cs_retval_%s_%s = %s; goto __exit_%s_%s;' % (
+                return '__cz_retval_%s_%s = %s; goto __exit_%s_%s;' % (
                 self.functionStack[-1], self.indexStack[-1], self.visit(n.expr), self.functionStack[-1],
                 self.indexStack[-1])  # non-void
 
@@ -527,11 +527,11 @@ class inliner(core.module.Translator):
         return False
 
     def _needInit(self, varname):
-        if ('__cs_switch_cond' in varname or  # from switchtransformer.py
-                '__cs_tmp_if_cond_' in varname or  # from extractor.py
-                '__cs_tmp_while_cond_' in varname or  # from extractor.py
-                '__cs_tmp_for_cond_' in varname or  # from extractor.py
-                '__cs_dowhile_onetime_' in varname or  # from remover.py
+        if ('__cz_switch_cond' in varname or  # from switchtransformer.py
+                '__cz_tmp_if_cond_' in varname or  # from extractor.py
+                '__cz_tmp_while_cond_' in varname or  # from extractor.py
+                '__cz_tmp_for_cond_' in varname or  # from extractor.py
+                '__cz_dowhile_onetime_' in varname or  # from remover.py
                 self._hasBeenAssignedLater(varname)):
             return False
         return True
@@ -998,7 +998,7 @@ class inliner(core.module.Translator):
         #
 
         if not self.Parser.funcIsVoid[fref]:
-            fOutput = 'static %s __cs_retval_%s_%s;\n' % (
+            fOutput = 'static %s __cz_retval_%s_%s;\n' % (
             self.Parser.funcBlockOut[fref], self.functionStack[-1], self.indexStack[-1])
         else:  # simple function call without assignment (e.g. f(x);)
             fOutput = ''

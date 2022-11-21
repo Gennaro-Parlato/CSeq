@@ -21,14 +21,14 @@ void __CSEQ_message(char *__cs_message) { ; }
 
 typedef int __cs_t;
 
-void *__cs_threadargs[THREADS+1];
+void *__cz_threadargs[THREADS+1];
 void *__cs_thread_joinargs[THREADS+1];
 
-int __cs_create(__cs_t *__cs_id, void *__cs_attr, void *(*__cs_thread_function)(void*), void *__cs_arg, int __cs_threadID) {
+int __cs_create(__cs_t *__cs_id, void *__cs_attr, void *(*__cs_thread_function)(void*), void *__cz_arg, int __cs_threadID) {
 	if (__cs_threadID > THREADS) return 0;
 	*__cs_id = __cs_threadID;
 	__cs_active_thread[__cs_threadID] = 1;
-	__cs_threadargs[__cs_threadID] = __cs_arg;
+	__cz_threadargs[__cs_threadID] = __cz_arg;
 	__CSEQ_message("thread spawned");
 	return 0;
 }

@@ -2030,7 +2030,7 @@ class AbsDrRules:
         assExp = assn.rvalue
         op = assn.op
         
-        isCondVar = type(unExp) is c_ast.ID and any(["__cs_tmp_"+x+"_cond_" in unExp.name for x in ["while","for","if"]]) # this assignment is used in if/loop conditions: do not consider it dirty only because baP=1
+        isCondVar = type(unExp) is c_ast.ID and any(["__cz_tmp_"+x+"_cond_" in unExp.name for x in ["while","for","if"]]) # this assignment is used in if/loop conditions: do not consider it dirty only because baP=1
         
         if abs_mode == "VALUE" or dr_mode == "WSE":
             ans = self.visitor_visit(state, unExp, "VALUE", "WSE", **kwargs)

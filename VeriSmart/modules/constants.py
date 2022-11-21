@@ -102,10 +102,10 @@ class constants(core.module.Translator):
                 self.__getType(self.__currentFunction, lval_str) != "UNKNOWN"
         ):
             self.__temp_var_no += 1  # Declare a temporary variable for this statement
-            ret = '; %s __cs_temporary_%s = 0; __cs_temporary_%s = %s; ' % (
+            ret = '; %s __cz_temporary_%s = 0; __cz_temporary_%s = %s; ' % (
             self.__getType(self.__currentFunction, lval_str), self.__temp_var_no, self.__temp_var_no, lval_str)
             newrval_str = " " + rval_str + " "
-            newrval_str = newrval_str.replace(" %s " % lval_str, ' __cs_temporary_%s ' % self.__temp_var_no, 1).strip()
+            newrval_str = newrval_str.replace(" %s " % lval_str, ' __cz_temporary_%s ' % self.__temp_var_no, 1).strip()
             ret += '%s %s %s' % (lval_str, n.op, newrval_str)
         else:
             ret = '%s %s %s' % (lval_str, n.op, rval_str)
@@ -118,7 +118,7 @@ class constants(core.module.Translator):
         #
         if ((self.__isGlobal(self.__currentFunction, n.name) or self.__isPointer(self.__currentFunction,
                                                                                  n.name)) and not n.name.startswith(
-                '__cs_thread_local_')):
+                '__cz_thread_local_')):
             self.__globalMemoryAccessed = True
         return n.name
 

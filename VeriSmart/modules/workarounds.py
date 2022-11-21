@@ -50,7 +50,7 @@ VERSION = 'workaround-0.1-2016.11.13'
         structure->field->field     -->   (*(*structure).field).field    TODO: test/check this one properly
 
     Transformation 5:
-        __cs_thread_local_variablename --> variablename[pthread_self()]
+        __cz_thread_local_variablename --> variablename[pthread_self()]
 
     Transformation 6:
         remove auto,inline,volatile,register from beginning of declarations.
@@ -99,7 +99,7 @@ class workarounds(core.module.Translator):
 
     def visit_ID(self, n):
         if n.name in self.__threadLocals:
-            return '__cs_thread_local_' + n.name + '[__cs_thread_index]'
+            return '__cz_thread_local_' + n.name + '[__cs_thread_index]'
         else:
             return n.name
             
@@ -220,8 +220,8 @@ class workarounds(core.module.Translator):
         # Split the declaration statement from initialization statement.
         #
         # Remember thread-local variables
-        if (n.name is not None) and (n.name.startswith('__cs_thread_local_')):
-            self.__threadLocals.append(n.name.replace('__cs_thread_local_', ''))
+        if (n.name is not None) and (n.name.startswith('__cz_thread_local_')):
+            self.__threadLocals.append(n.name.replace('__cz_thread_local_', ''))
 
         '''   OMAROMAROMAR   '''
         if self.__parsingFunction != '' and n.init:

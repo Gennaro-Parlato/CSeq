@@ -82,7 +82,7 @@ class dowhileconverter(core.module.Translator):
 
     def visit_DoWhile(self, n):
         self.__currentLoop += 1;
-        var = '__cs_dowhile_onetime_%s' % self.__currentLoop
+        var = '__cz_dowhile_onetime_%s' % self.__currentLoop
 
         self.__visit_jump_stack.append(False)
         self.indent_level =-1

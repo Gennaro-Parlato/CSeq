@@ -28,5 +28,5 @@ class abstr(abstr_dr_common.abstr_dr_common):
         
     def loadfromstring(self, string, env):
         super().loadfromstring(string, env)
-        self.output = self.output.replace("int __cs_create(__cs_t *__cs_new_thread_id, void *__cs_attr, void *(*__cs_thread_function)(void*), void *__cs_arg, int __cs_threadID)", "int __cs_create(__cs_t *__cs_new_thread_id, void *__cs_attr, void *(*__cs_thread_function)(char*), char *__cs_arg, int __cs_threadID)")
-        self.output = self.output.replace("void *__cs_threadargs[", "char *__cs_threadargs[")
+        self.output = self.output.replace("int __cs_create(__cs_t *__cs_new_thread_id, void *__cs_attr, void *(*__cs_thread_function)(void*), void *__cz_arg, int __cs_threadID)", "int __cs_create(__cs_t *__cs_new_thread_id, void *__cs_attr, void *(*__cs_thread_function)(char*), char *__cz_arg, int __cs_threadID)")
+        self.output = self.output.replace("void *__cz_threadargs[", "char *__cz_threadargs[")

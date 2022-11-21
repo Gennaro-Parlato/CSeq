@@ -111,10 +111,10 @@ struct device {
         '''
         ret = ''
         for line in input.splitlines():
-            line = re.sub(r'__thread unsigned int (.*);', r'unsigned int __cs_thread_local_\1[THREADS+1];', line)
-            line = re.sub(r'unsigned int __thread (.*);', r'unsigned int __cs_thread_local_\1[THREADS+1];', line)
-            line = re.sub(r'__thread int (.*);', r'int __cs_thread_local_\1[THREADS+1];', line)
-            line = re.sub(r'int __thread (.*);', r'int __cs_thread_local_\1[THREADS+1];', line)
+            line = re.sub(r'__thread unsigned int (.*);', r'unsigned int __cz_thread_local_\1[THREADS+1];', line)
+            line = re.sub(r'unsigned int __thread (.*);', r'unsigned int __cz_thread_local_\1[THREADS+1];', line)
+            line = re.sub(r'__thread int (.*);', r'int __cz_thread_local_\1[THREADS+1];', line)
+            line = re.sub(r'int __thread (.*);', r'int __cz_thread_local_\1[THREADS+1];', line)
             line = line.replace('do { } while (0);', ';')
             ret += line + '\n'
 
@@ -151,8 +151,8 @@ struct device {
         text = ''
 
         for line in input.splitlines():
-            line = re.sub(r'__thread _Bool (.*) = 0', r'_Bool __cs_thread_local_\1[THREADS+1] ', line)
-            line = re.sub(r'_Thread_local _Bool (.*) = 0', r'_Bool __cs_thread_local_\1[THREADS+1] ', line)
+            line = re.sub(r'__thread _Bool (.*) = 0', r'_Bool __cz_thread_local_\1[THREADS+1] ', line)
+            line = re.sub(r'_Thread_local _Bool (.*) = 0', r'_Bool __cz_thread_local_\1[THREADS+1] ', line)
 
             #line = re.sub(r'__const', r'const', line)	
 
@@ -228,7 +228,9 @@ struct device {
         cmdline = 'gcc %s -nostdinc %s -E - ' % (macros,includestring) # hyphen at the end forces input from stdin
         #print(cmdline)
         p = subprocess.Popen(shlex.split(cmdline), stdout=subprocess.PIPE, stdin=subprocess.PIPE, stderr=subprocess.PIPE)
-        string = (p.communicate(input=string.encode())[0]).decode()
+        ans = p.communicate(input=string.encode())
+        string = (ans[0]).decode()
+        print(ans[1].decode())
 
         if self.need_gnu_fix:
             string = self._gnu_extension_fix(string)
