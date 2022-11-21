@@ -159,8 +159,8 @@ class varnames(core.module.Translator):
 			s = n.name if no_type else self._generate_decl(n)
 
 			if n.bitsize: s += ' : ' + self.visit(n.bitsize)
-		    
-		        
+			
+				
 			if n.init:
 				if isinstance(n.init, pycparser.c_ast.InitList):
 					s += ' = {' + self.visit(n.init) + '}'
@@ -297,6 +297,7 @@ class varnames(core.module.Translator):
 			elif (self.__visitingParam == 0 and                    # case 2
 					self.__visitFuncDef == 0 and
 					n.declname not in self.Parser.funcName and
+					#n.declname not in self.Parser.funcDecl and
 					#n.declname not in self.Parser.varNames[''] and
 					self.__currentFunction != '' and
 					self.__visitStructUnionEnum == 0):
@@ -363,12 +364,12 @@ class varnames(core.module.Translator):
 		elif typ in (pycparser.c_ast.ArrayDecl, pycparser.c_ast.PtrDecl):
 			return self._generate_type(n.type, modifiers + [n])
 		elif typ in (pycparser.c_ast.FuncDecl,):
-			typ = n
-			while not hasattr(typ,'declname'):
-			    typ = typ.type
+			tyz = n
+			while not hasattr(tyz,'declname'):
+				tyz = tyz.type
 			pr_cf = self.__currentFunction
 			if self.__currentFunction == "":
-			    self.__currentFunction = typ.declname
+				self.__currentFunction = tyz.declname
 			ans = self._generate_type(n.type, modifiers + [n])
 			self.__currentFunction = pr_cf
 			return ans

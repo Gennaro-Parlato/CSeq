@@ -248,7 +248,6 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
         self.atomicLvl = 0 # this counts how much nesting in __CSEQ_atomic_ functions we are. If =0: we are not in an atomic function; otherwise that's atomic and we need to disable Visible Points
         
     def insertGlobalVarInit(self, x):
-        print("@@@")
         return x.replace("int main(void) {", "int main(void) {\n"+self.global_var_initializations, 1)
     def __createMainKLEERoundRobinDecomposePC(self, rounds):
         return self.insertGlobalVarInit(super().__createMainKLEERoundRobinDecomposePC(rounds))

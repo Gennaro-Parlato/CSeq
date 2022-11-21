@@ -310,7 +310,10 @@ enum t_typename {
                 fbody = "{}"
                 if type(n.type.type.type) is IdentifierType and n.type.type.type.names[0] == "int": # int fnc
                     fbody = "{return 01;}"
-                ans += [self.cgenerator.visit(ncp)+fbody]
+                visitNcp = self.cgenerator.visit(ncp)
+                if visitNcp.endswith("(void)"):
+                    visitNcp = visitNcp[:-6]+"()"
+                ans += [visitNcp+fbody]
             elif self.global_decl and (type(n.type) is not FuncDecl or n.name != "main"):
                 ans += [self.cgenerator.visit(n)+";"]
             if type(n.type) is FuncDecl and n.type.args is not None:
