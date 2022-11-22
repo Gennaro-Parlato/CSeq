@@ -630,7 +630,7 @@ class abstr_inliner(core.module.Translator):
                             vartype = self.Parser.varType[self.currentFunction[-1], n.name]
                             if "{" in vartype:
                                 vartype = vartype[:vartype.find("{")]
-                            s += '; __cz_init_scalar(&%s, sizeof(%s))' % (
+                            s += '; __cs_init_scalar(&%s, sizeof(%s))' % (
                                 name, vartype)
 
             #            elif (self.__isScalar(self.currentFunction[-1], n.name) and
