@@ -932,7 +932,6 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
             ans = self.DRvisit_FuncCall(n) #visit_with_absdr_args(state, n, abs_mode if self.abs_on else None, dr_mode if self.dr_on else None, full_statement=False, **kwargs)
             #else:
             #    ans = super().visit_FuncCall(n)
-        print(fref, "atomic", self._lazyseqnewschedule__atomic)
         for (adr,abs_on) in adr_abs_on_bak.items():
             adr.abs_on = abs_on
         return ans
