@@ -538,7 +538,7 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
                             (type(stmt) == pycparser.c_ast.FuncCall and stmt.name.name == core.common.changeID['pthread_create']) or
                             (type(stmt) == pycparser.c_ast.FuncCall and stmt.name.name == core.common.changeID['pthread_join']) or
                             (type(stmt) == pycparser.c_ast.FuncCall and stmt.name.name.startswith('__CSEQ_atomic') and not stmt.name.name == '__CSEQ_atomic_end') or
-                            (type(stmt) == pycparser.c_ast.FuncCall and (stmt.name.name.startswith('__CSEQ_assume') or (False and stmt.name.name.startswith('__CPROVER_assume')))) or
+                            (type(stmt) == pycparser.c_ast.FuncCall and (stmt.name.name.startswith('__CSEQ_assume') or (stmt.name.name.startswith('__CPROVER_assume')))) or
                             (type(stmt) == pycparser.c_ast.FuncCall and stmt.name.name == '__cs_cond_wait_2')
                             )
                         )
