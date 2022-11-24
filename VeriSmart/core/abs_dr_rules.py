@@ -2128,7 +2128,7 @@ class AbsDrRules:
             assExp = n.init
             unExprType = self.supportFile.get_type(unExp)
             if self.is_abstractable(unExprType):
-                self.abs_const_decl += [self.setsm("&("+self.visitor_visit(state, unExp, "LVALUE", "WSE", **kwargs)+")", self.sm_abs, self.__assignment_bounds_failure(state, assExp, unExprType, assExpType, **kwargs))+";"]
+                self.abs_const_decl += [self.setsm("&("+self.visitor_visit(state, unExp, "LVALUE", "WSE", **kwargs)+")", self.sm_abs, self.__assignment_bounds_failure(state, assExp, unExprType, unExprType, **kwargs))+";"]
             
     def rule_SpecialFuncCall(self, state, fcall, abs_mode, dr_mode, full_statement, **kwargs):
         self.assertDisabledIIFModesAreNone(abs_mode, dr_mode, **kwargs)  
