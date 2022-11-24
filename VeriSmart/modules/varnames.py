@@ -135,8 +135,6 @@ class varnames(core.module.Translator):
 			varname_initcheck = self.staticinitprefix + varname_with_pfx[len(self.staticprefix):]
 			
 			initcheckdecl = "unsigned char "+varname_initcheck+" = 0;"
-			
-			print(n, varname_with_pfx, varname_initcheck)
 
 			s = ""
 			if n.init:
