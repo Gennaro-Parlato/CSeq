@@ -590,7 +590,8 @@ class AbsDrRules:
         assert(self.abs_on)
         if self.is_abstractable(xtype):
             xtype_nospaces = xtype.replace(" ","_")
-            return "DECODE_"+xtype_nospaces+"(("+xtype+")("+x+"))"
+            #return "DECODE_"+xtype_nospaces+"(("+xtype+")("+x+"))"
+            return "DECODE_"+xtype_nospaces+"(("+x+"))"
         else:
             return x
         
@@ -598,7 +599,8 @@ class AbsDrRules:
         assert(self.abs_on)
         if self.is_abstractable(xtype):
             xtype_nospaces = xtype.replace(" ","_")
-            return "ENCODE_"+xtype_nospaces+"(("+xtype+")("+x+"))"
+            #return "ENCODE_"+xtype_nospaces+"(("+xtype+")("+x+"))"
+            return "ENCODE_"+xtype_nospaces+"(("+x+"))"
         else:
             return "("+x+")"
         
@@ -2018,6 +2020,41 @@ class AbsDrRules:
     #def isPlusPlus(self, assn):
     #    if type(assn.rvalue) is c_ast.BinaryOp and assn.rvalue.op == "+" left
     #    return assn.lvalue################################################################################################################################################
+    
+    def assignment_encode(self, inner, xtype):
+        # return encode(inner) avoiding "ENCODE_t(DECODE_t(" constructs
+        if self.is_abstractable(xtype):
+            brackets = 0
+            idxLeft = 0
+            foundDecode = False
+            while idxLeft < len(inner):
+                if inner[idxLeft] == " ":
+                    idxLeft += 1
+                elif inner[idxLeft] == "(":
+                    brackets += 1
+                    idxLeft += 1
+                elif inner[idxLeft] == "D" and inner.startswith("DECODE_"+xtype, idxLeft):
+                    idxLeft += len("DECODE_"+xtype)
+                    foundDecode = True
+                    break
+                else:
+                    break
+            if foundDecode:
+                idxRight = len(inner) - 1
+                if brackets == 0:
+                    return inner[idxLeft:idxRight+1]
+                while idxRight >= 0:
+                    if inner[idxRight] == " ":
+                        idxRight -= 1
+                    elif inner[idxRight] == ")":
+                        brackets -= 1
+                        idxRight -= 1
+                        if brackets == 0:
+                            return inner[idxLeft:idxRight+1]
+                    else:
+                        break
+        return self.encode(inner, xtype)
+        
         
     def rule_Assignment(self, state, assn, abs_mode, dr_mode, full_statement, **kwargs):
         self.assertDisabledIIFModesAreNone(abs_mode, dr_mode, **kwargs)  
@@ -2065,7 +2102,7 @@ class AbsDrRules:
                     ), 
                     lambda state: self.comma_expr(
                         self.setsm("&("+self.visitor_visit(state, unExp, "LVALUE", "WSE", **kwargs)+")", self.sm_abs, "0"),
-                        self.visitor_visit(state, unExp, "LVALUE", "WSE", **kwargs)+" = ("+self.encode(self.visitor_visit(state, assExp, "VALUE", "WSE", **kwargs), unExprType)+")" if op == "=" else "",
+                        self.visitor_visit(state, unExp, "LVALUE", "WSE", **kwargs)+" = ("+self.assignment_encode(self.visitor_visit(state, assExp, "VALUE", "WSE", **kwargs), unExprType)+")" if op == "=" else "",
                         "" if op == "=" else self.visitor_visit(state, unExp, "LVALUE", "WSE", **kwargs)+" = ("+self.encode(fullOp(), unExprType)+")",
                         self.void0()
                     ))
