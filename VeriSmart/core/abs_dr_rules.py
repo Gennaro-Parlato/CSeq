@@ -2021,9 +2021,18 @@ class AbsDrRules:
     #    if type(assn.rvalue) is c_ast.BinaryOp and assn.rvalue.op == "+" left
     #    return assn.lvalue################################################################################################################################################
     
-    def assignment_encode(self, inner, xtype):
+    def assignment_encode_simpl_possible(self, n):
+        if type(n) is c_ast.Cast:
+            return self.assignment_encode_simpl_possible(n.expr)
+        elif type(n) is c_ast.UnaryOp and n.op == "*":
+            return True
+        elif type(n) in (c_ast.ArrayRef, c_ast.StructRef, c_ast.ID):
+            return True
+        else:
+            return False
+    def assignment_encode(self, inner,assExp, xtype):
         # return encode(inner) avoiding "ENCODE_t(DECODE_t(" constructs
-        if self.is_abstractable(xtype):
+        if self.is_abstractable(xtype) and self.assignment_encode_simpl_possible(assExp):
             brackets = 0
             idxLeft = 0
             foundDecode = False
@@ -2102,7 +2111,7 @@ class AbsDrRules:
                     ), 
                     lambda state: self.comma_expr(
                         self.setsm("&("+self.visitor_visit(state, unExp, "LVALUE", "WSE", **kwargs)+")", self.sm_abs, "0"),
-                        self.visitor_visit(state, unExp, "LVALUE", "WSE", **kwargs)+" = ("+self.assignment_encode(self.visitor_visit(state, assExp, "VALUE", "WSE", **kwargs), unExprType)+")" if op == "=" else "",
+                        self.visitor_visit(state, unExp, "LVALUE", "WSE", **kwargs)+" = ("+self.assignment_encode(self.visitor_visit(state, assExp, "VALUE", "WSE", **kwargs),assExp, unExprType)+")" if op == "=" else "",
                         "" if op == "=" else self.visitor_visit(state, unExp, "LVALUE", "WSE", **kwargs)+" = ("+self.encode(fullOp(), unExprType)+")",
                         self.void0()
                     ))
