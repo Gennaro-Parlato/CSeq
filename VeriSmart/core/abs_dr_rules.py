@@ -2042,11 +2042,8 @@ class AbsDrRules:
                 elif inner[idxLeft] == "(":
                     brackets += 1
                     idxLeft += 1
-                elif inner[idxLeft] == "D" and inner.startswith("DECODE_", idxLeft):
-                    idxLeft += len("DECODE_")
-                    while inner[idxLeft] != "(":
-                        idxLeft += 1
-                    idxLeft -= 1
+                elif inner[idxLeft] == "D" and inner.startswith("DECODE_"+xtype, idxLeft):
+                    idxLeft += len("DECODE_"+xtype)
                     foundDecode = True
                     break
                 else:
