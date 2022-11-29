@@ -590,8 +590,8 @@ class AbsDrRules:
         assert(self.abs_on)
         if self.is_abstractable(xtype):
             xtype_nospaces = xtype.replace(" ","_")
-            #return "DECODE_"+xtype_nospaces+"(("+xtype+")("+x+"))"
-            return "DECODE_"+xtype_nospaces+"(("+x+"))"
+            return "DECODE_"+xtype_nospaces+"(("+xtype+")("+x+"))"
+            #return "DECODE_"+xtype_nospaces+"(("+x+"))"
         else:
             return x
         
@@ -599,8 +599,8 @@ class AbsDrRules:
         assert(self.abs_on)
         if self.is_abstractable(xtype):
             xtype_nospaces = xtype.replace(" ","_")
-            #return "ENCODE_"+xtype_nospaces+"(("+xtype+")("+x+"))"
-            return "ENCODE_"+xtype_nospaces+"(("+x+"))"
+            return "ENCODE_"+xtype_nospaces+"(("+xtype+")("+x+"))"
+            #return "ENCODE_"+xtype_nospaces+"(("+x+"))"
         else:
             return "("+x+")"
         
@@ -1096,7 +1096,13 @@ class AbsDrRules:
         
     def getNondetvar(self, ndfnc, typ="int"):
         if ndfnc not in self.nondetvars:
-            self.nondetvars[ndfnc] = [typ, "__cs_nondetv_"+str(len(self.nondetvars))]
+            self.nondetvars[ndfnc] = [typ, "__cs_nondetv__"+str(len(self.nondetvars))]
+        return self.nondetvars[ndfnc][1]
+        
+    def getNondetvarBv(self, ndfnc, nbits):
+        # nondeterministic bitvector. If nbits = uXX -> unsigned bv[XX], else bv[XX]. This will be replaced in instrumenter to avoid cparser issues
+        if ndfnc not in self.nondetvars:
+            self.nondetvars[ndfnc] = ["char", "__cs_nondetv_bv"+nbits+"_"+str(len(self.nondetvars))]
         return self.nondetvars[ndfnc][1]
         
     def getBav1(self, bop):
@@ -1503,7 +1509,7 @@ class AbsDrRules:
             else:
                 trans = fncName+"("+ \
                     self.comma_expr(
-                        self.visitor_visit(state, exp, "GET_VAL", "ACCESS", **kwargs),
+                        self.if_abs(lambda: self.visitor_visit(state, exp, "GET_VAL", "ACCESS", **kwargs)),
                         self.__assert_assume_inner(state, exp, **kwargs)
                     ) \
                 +")"
@@ -1531,11 +1537,13 @@ class AbsDrRules:
         exp = n.cond
         if self.underapprox:
             trans = self.__ifcond_underapprox(state, n, **kwargs)
+        elif not self.abs_on:
+            trans = self.visitor_visit(state, exp, "VALUE", "WSE", **kwargs)
         else:
             exp_getval = self.visitor_visit(state, exp, "GET_VAL", "ACCESS", **kwargs)
             exp_val = lambda state: self.visitor_visit(state, exp, "VALUE", "WSE", **kwargs)
             
-            if not self.abs_on or state.cp_bav == 0:
+            if state.cp_bav == 0:
                 trans = self.comma_expr(exp_getval, exp_val(state))
             elif state.cp_bav == 1:
                 trans = self.comma_expr(exp_getval, self.nondet())
@@ -1844,6 +1852,25 @@ class AbsDrRules:
                 self.assign_var(self.getNondetvar(fnc, typ=typ), self.visitor_visit_noinstr(fnc)), 
                 self.assign_with_prop(state,"bav", self.bounds_failure(self.getNondetvar(fnc), typ))
                 )) # "1" if self.abstrTypesSizeof['int']*8 > self.abstr_bits else "0"))
+                
+    # nondeterministic returning function. Treat as a constant
+    def rule_NondetBool(self, state, fnc, abs_mode, dr_mode, full_statement, **kwargs):      
+        self.assertDisabledIIFModesAreNone(abs_mode, dr_mode, **kwargs)  
+        if dr_mode == "TOP_ACCESS":
+            return self.store_content(full_statement, self.fakeIfAssignment(self.comma_expr(
+                    self.visitor_visit(state, fnc, abs_mode, "ACCESS", **kwargs),
+                    self.visitor_visit(state, fnc, abs_mode, "WSE", **kwargs)
+                )), fnc, abs_mode, dr_mode)
+        assert(abs_mode not in ("SET_VAL", "GET_ADDR"), "Invalid: cannot get address or set the value of constants")
+        if not self.abs_on and not self.dr_on:
+            return self.getNondetvar(fnc) #self.visitor_visit_noinstr(fnc)
+        elif abs_mode == "VALUE" or dr_mode == "WSE":
+            return self.getNondetvar(fnc) #self.visitor_visit_noinstr(fnc)
+        else:
+            return self.if_abs(lambda:self.comma_expr(
+                self.assign_var(self.getNondetvar(fnc, typ="_Bool"), self.visitor_visit_noinstr(fnc)), 
+                self.assign_with_prop(state,"bav", "0")
+                )) # "1" if self.abstrTypesSizeof['int']*8 > self.abstr_bits else "0"))
             
     # helper function: returns "p1 && (set_sm_dr(&[[unexp, LVALUE]],1), WKM=1)" and manually applies const propagation
     def __assignment_manual_cp_p1(self, state, unExpr, **kwargs):
@@ -2031,6 +2058,7 @@ class AbsDrRules:
         else:
             return False
     def assignment_encode(self, inner,assExp, xtype):
+        return self.encode(inner, xtype)
         # return encode(inner) avoiding "ENCODE_t(DECODE_t(" constructs
         if self.is_abstractable(xtype) and self.assignment_encode_simpl_possible(assExp):
             brackets = 0

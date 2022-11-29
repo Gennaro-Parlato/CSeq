@@ -204,6 +204,19 @@ class instrumenter(core.module.Translator):
 		elif (vname.startswith("__cs_staticlocalinit_")): # for static var initializer bits
 			return True
 		return False
+		
+	def is_bitvector_var(self, l):
+		lstrip = l.strip()
+		if not lstrip.startswith("char "):
+			return None
+		vname = lstrip.split(";")[0].split("=")[0].split()[1]
+		if vname.startswith("__cs_nondetv_bv"):
+			bits_tp = vname[len("__cs_nondetv_bv"):].split("_")[0]
+			if bits_tp.starstwith("u"):
+				return "unsigned __CPROVER_bitvector["+bits_tp[1:]+"]"
+			else:
+				return "__CPROVER_bitvector["+bits_tp+"]"
+		return None
 
 	def loadfromstring(self,string,env):
 		self.env = env
@@ -258,8 +271,12 @@ class instrumenter(core.module.Translator):
 		newstring = ''
 
 		for l in self.output.splitlines():
+			l = l.replace("REMOVESEMICOLON());",")")
+			bv_type = self.is_bitvector_var(l)
 			if l.endswith(_rawlinemarker+';'):
 				newstring += l[:-len(_rawlinemarker+';')].lstrip() + '\n'
+			elif bv_type is not None:
+				newstring += ' '*(maxlinemarkerlen)+l.replace("char","bv_type")+'\n'
 			elif self.is_bw1_abstr_var(l):
 				newstring += ' '*(maxlinemarkerlen)+l.replace("char","__CPROVER_bitvector[1]")+'\n'
 			else:
