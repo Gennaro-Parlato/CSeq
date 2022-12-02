@@ -4,6 +4,7 @@ import copy
 import os
 import subprocess
 import shlex
+import sys
 
 class BakAndRestore:
     def __init__(self, obj, field, tmpval):
@@ -115,7 +116,10 @@ enum t_typename {
         code = self.visit(ast)
         with open(support_fname, "w") as f:
             f.write(code)
-        compile_command = "gcc --std=c11 %s -o %s" % (support_fname, runnable_fname)
+        compiler = "gcc"
+        if sys.platform.startswith('darwin'):
+            compiler = "gcc-11"
+        compile_command = "%s --std=c11 %s -o %s" % (compiler, support_fname, runnable_fname)
         process = subprocess.Popen(shlex.split(compile_command), stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
         compile_out = process.communicate()[0].decode('utf-8').split('\n')
         if process.wait() != 0:
