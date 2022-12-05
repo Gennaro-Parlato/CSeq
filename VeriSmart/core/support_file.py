@@ -22,6 +22,7 @@ class SupportFileManager(CGenerator):
         super().__init__()
         self.expr_to_label = dict()
         self.label_to_type = dict()
+        self.test_struct = dict()
         self.progLbl = 0
         self.cgenerator = CGenerator()
         # True only when it might me evaluated in VALUE mode.
@@ -55,6 +56,7 @@ class SupportFileManager(CGenerator):
 #include <errno.h>
 #include \""""+os.path.abspath(os.getcwd())+"""/modules/pthread_defs.c\"
 #define PRINT_DT(E,ID, EXP) printf("%s_%d, %d\\n",EXP,ID,typename(E) )
+#define PRINT_IS(E,ID, EXP) printf("%s_%d, %d\\n",EXP,ID,sizeof(E)>8 )
 void __CPROVER_get_field(void *a, char field[100] ){return;}
 void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}        
 void *__cs_safe_malloc(int __cs_size);
@@ -108,6 +110,7 @@ enum t_typename {
             label = "TYPE_"+str(idx)
             self.expr_to_label[n_expr] = label
             print_line = 'PRINT_DT(('+n_expr+'),'+str(idx)+', "TYPE");'
+            print_line += '\nPRINT_IS(('+n_expr+'),'+str(idx)+', "STRC");'
             return [print_line]
         else:
             return []
@@ -138,12 +141,22 @@ enum t_typename {
         
         for line in result:
             lineparts = line.strip().split(",")
+            print(lineparts)
             if len(lineparts) > 1:
                 if lineparts[0] == "ADDRBITS":
                     self.addr_bits = int(lineparts[1].strip())
+                elif lineparts[0].startswith("STRC"):
+                    self.test_struct[lineparts[0]] = int(lineparts[1].strip()) != 0
                 else:
                     self.label_to_type[lineparts[0]] = self.types_map[int(lineparts[1].strip())]
     
+    def is_struct(self, n):
+        n_expr = self.cgenerator.visit(n)
+        assert(n_expr in self.expr_to_label, "Expression '"+n_expr+"' was not considered for evaluation by support file")
+        label = self.expr_to_label[n_expr]
+        assert(("STRC"+label[4:]) in self.test_struct, "Expression '"+n_expr+"' was considered for evaluation by support file, but didn't produce a type evaluation")
+        return self.test_struct["STRC"+label[4:]]
+
     def get_type(self, n):
         n_expr = self.cgenerator.visit(n)
         assert(n_expr in self.expr_to_label, "Expression '"+n_expr+"' was not considered for evaluation by support file")
@@ -319,6 +332,9 @@ enum t_typename {
                     visitNcp = visitNcp[:-6]+"()"
                 ans += [visitNcp+fbody]
             elif self.global_decl and (type(n.type) is not FuncDecl or n.name != "main"):
+                if type(n.type) is Struct:
+                    n = copy.deepcopy(n)
+                    self.bump_size_struct(n.type)
                 ans += [self.cgenerator.visit(n)+";"]
             if type(n.type) is FuncDecl and n.type.args is not None:
                 oldsdis = self.store_def_in_stack
@@ -356,15 +372,37 @@ enum t_typename {
         for d in n.decls:
             ans += self.visit(d)
         return ans
+
+    def bump_size_struct(self, n):
+        # add fake fields so as its size is bigger than 8 (pointer size)
+        if n.decls is None:
+            return
+        for i in range(9):
+            n.decls.append(Decl(name='__cs_bump_struct_size'+str(i),
+                                              quals=[],
+                                              storage=[],
+                                              funcspec=[],
+                                              type=TypeDecl(declname='__cs_bump_struct_size'+str(i),
+                                                            quals=[],
+                                                            type=IdentifierType(names=['int'])),
+                                              init=None,
+                                              bitsize=None
+                                              ))
         
     def visit_Typedef(self, n):
         if n.name in self.already_in:
             if not self.already_in[n.name]:
                 self.already_in[n.name] = True
+                if type(n.type.type) is Struct: 
+                    n = copy.deepcopy(n)
+                    self.bump_size_struct(n.type.type)
                 return [self.cgenerator.visit(n)+";"]
             else:
                 return []
         else:
+            if type(n.type.type) is Struct: 
+                n = copy.deepcopy(n)
+                self.bump_size_struct(n.type.type)
             return [self.cgenerator.visit(n)+";"]
         
     def visit_Cast(self, n):

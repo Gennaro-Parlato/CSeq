@@ -2169,3 +2169,50 @@ class AbsDrRules:
         return self.comma_expr(
             self.if_abs(lambda: self.comma_expr(*[self.comma_expr(self.visitor_visit(state, x, "GET_VAL", "NO_ACCESS", **kwargs_nobavtest), self.__assignment_manual_bav_fail(state)) for x in kwargs["bavtest"]])),
             self.visitor_visit_noinstr(fcall))
+
+
+    def smpass_getPassaroundNameVar(self, funcname, idx, field):
+        return "__cs_smpass__"+funcname+"__" + str(idx) + "__" + field
+
+    def rule_SMpassDef(self, state, funcdef, abs_mode, dr_mode, full_statement, **kwargs):
+        if self.abs_on or self.dr_on:
+            out = ["main(void);"]
+            for (i, param) in enumerate(funcdef.type.args.params):
+                pname = param.name
+                isstr = self.supportFile.is_struct(c_ast.ID(pname))
+                passaround_type = self.supportFile.get_type(c_ast.ID(pname)) if isstr else "char" #TODO will become unsigned bv[1]
+                if self.abs_on:
+                    out.append(passaround_type+" "+self.smpass_getPassaroundNameVar(funcdef.name, i, self.sm_abs)+";")
+                #if self.dr_on: # TODO: pensarci bene
+                #    out.append(passaround_type+" "+self.smpass_getPassaroundNameVar(funcdef.name.name, i, self.sm_dr_all)+";")
+                #    out.append(passaround_type+" "+self.smpass_getPassaroundNameVar(funcdef.name.name, i, self.sm_dr_noatomic)+";")
+            return " ".join(out)[:-1]
+        else:
+            return "main(void)"
+    def rule_SMpassAssignInFunc(self, state, funcdef, abs_mode, dr_mode, full_statement, **kwargs):
+        if self.abs_on or self.dr_on:
+            out = []
+            for (i, param) in enumerate(funcdef.type.args.params):
+                pname = param.name
+                isstr = self.supportFile.is_struct(c_ast.ID(pname))
+                passaround_type = self.supportFile.get_type(c_ast.ID(pname)) if isstr else "char" #TODO will become unsigned bv[1]
+                orig_varname = self.visitor_visit(state, c_ast.ID(pname), "LVALUE", "WSE")
+                if self.abs_on:
+                    pa_varname = self.smpass_getPassaroundNameVar(funcdef.name, i, self.sm_abs)
+                    if isstr:
+                        out.append(orig_varname + " = " + pa_varname + ";")
+                    else:
+                        out.append(self.setsm("&("+orig_varname+")", self.sm_abs, pa_varname)+";")
+                if self.dr_on:
+                    assert(False, "Not implemented") # TODO è un assegnamento fuori atomic (a meno di essere già in atomic)
+            return " ".join(out)
+        else:
+            return ""
+
+    def rule_FuncCall(self, state, fnccall, abs_mode, dr_mode, full_statement, **kwargs):
+        # GETVAL:
+        # (setup_sm_arg, [a,GETVAL] for a in args, retval=fnccall([a, LVALUE] for a in args), setup_sm_retval)
+
+        # LVALUE:
+        # (retval)
+        pass

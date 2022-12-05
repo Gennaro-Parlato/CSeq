@@ -371,7 +371,7 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
             ans = []
             for i in range(len(self.conf_adr)):
                 skip = self.skip_on_plain and self.abs_dr_mode[i]['abs_mode'] is None and self.abs_dr_mode[i]['dr_mode'] is None
-                if rule == "rule_IfCond" or self.conf_adr[i].dr_on or self.conf_adr[i].abs_on or self.conf_adr[i].underapprox:
+                if rule in ("rule_IfCond","rule_SMpassDef","rule_SMpassAssignInFunc") or self.conf_adr[i].dr_on or self.conf_adr[i].abs_on or self.conf_adr[i].underapprox:
                     ans.append("" if skip else getattr(self.conf_adr[i], rule)(self.abs_dr_state[i], n, self.abs_dr_mode[i]['abs_mode'], self.abs_dr_mode[i]['dr_mode'], self.full_statement, **extra_args))
                 else:
                     typ = str(type(n)).split(".")[-1][:-2]
@@ -651,6 +651,22 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
                     #print("NOINSTR2", n)
                     ans = super().visit_FuncDef(n)
             return ans
+        elif n.decl.name.startswith('__CSEQ_atomic_'):
+            self._lazyseqnewschedule__currentThread = n.decl.name
+            self._lazyseqnewschedule__visit_funcReference = True
+            #ret = self.otherparser.visit(n)
+            oldatomic = self._lazyseqnewschedule__atomic
+            self._lazyseqnewschedule__atomic = True
+            decl = self.visit(n.decl)
+            body = self.visit(n.body)
+            passdef = "int "+self.macro_file_manager.expression(n.decl, self.do_rule('rule_SMpassDef',n.decl), passthrough=False, brackets=False)+";"
+            passassn = self.macro_file_manager.expression(n.decl, self.do_rule('rule_SMpassAssignInFunc',n.decl), passthrough=False, brackets=False, with_semic=True)
+            body = "{" + passassn + "\n" + body.strip()[1:]
+            s = passdef+"\n"+decl + '\n' + body + '\n'
+            self._lazyseqnewschedule__atomic = oldatomic
+            self._lazyseqnewschedule__currentThread = ''
+            self._lazyseqnewschedule__visit_funcReference = False
+            return s
         else: # thread functions
             ans = super().visit_FuncDef(n)
             return ans
