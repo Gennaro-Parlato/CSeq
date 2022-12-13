@@ -231,15 +231,18 @@ class feeder(core.module.BasicModule):
 		
 		#Caledem
 		if backend == "cbmc":
-			if env.enableDR:
-				if env.no_shadow:
-					exe = "cbmc" #"./cbmc-v5.10-static"
-				else:
-					exe = "./cbmc-SM"	
-			elif env.local == 2:
-				exe = "./cbmc-SM"
+			if sys.platform.startswith('darwin'):
+				exe = "./cbmc-SM-mac"
 			else:
-				exe = "./cbmc-SM" #"cbmc" #"./cbmc-v5.10-static" TODO for Polipa
+				if env.enableDR:
+					if env.no_shadow:
+						exe = "cbmc" #"./cbmc-v5.10-static"
+					else:
+						exe = "./cbmc-SM"	
+				elif env.local == 2:
+					exe = "./cbmc-SM"
+				else:
+					exe = "./cbmc-SM" #"cbmc" #"./cbmc-v5.10-static" TODO for Polipa
 
 		currentpath = os.getcwd()
 		# currentworkingdir = os.path.dirname(sys.argv[0])

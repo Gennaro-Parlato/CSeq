@@ -270,17 +270,25 @@ class instrumenter(core.module.Translator):
 
 		newstring = ''
 
+		is_Faketypedefs = False
+
 		for l in self.output.splitlines():
-			l = l.replace("REMOVESEMICOLON());",")")
-			bv_type = self.is_bitvector_var(l)
-			if l.endswith(_rawlinemarker+';'):
-				newstring += l[:-len(_rawlinemarker+';')].lstrip() + '\n'
-			elif bv_type is not None:
-				newstring += ' '*(maxlinemarkerlen)+l.replace("char","bv_type")+'\n'
-			elif self.is_bw1_abstr_var(l):
-				newstring += ' '*(maxlinemarkerlen)+l.replace("char","__CPROVER_bitvector[1]")+'\n'
-			else:
-				newstring += ' '*(maxlinemarkerlen)+l+'\n'
+			lstrip = l.strip()
+			if lstrip.startswith("typedef char FAKETYPEDEFSIN;"):
+				is_Faketypedefs = True
+			elif lstrip.startswith("typedef char FAKETYPEDEFSOUT;"):
+				is_Faketypedefs = False
+			if not is_Faketypedefs:
+				l = l.replace("REMOVESEMICOLON());",")")
+				bv_type = self.is_bitvector_var(l)
+				if l.endswith(_rawlinemarker+';'):
+					newstring += l[:-len(_rawlinemarker+';')].lstrip() + '\n'
+				elif bv_type is not None:
+					newstring += ' '*(maxlinemarkerlen)+l.replace("char","bv_type")+'\n'
+				elif self.is_bw1_abstr_var(l):
+					newstring += ' '*(maxlinemarkerlen)+l.replace("char","__CPROVER_bitvector[1]")+'\n'
+				else:
+					newstring += ' '*(maxlinemarkerlen)+l+'\n'
 
 		self.output = newstring
 		

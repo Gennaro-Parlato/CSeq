@@ -75,6 +75,12 @@ class MacroFileManager:
             self.macro_with_brackets["AUXVARS"] = False
             self.macroToExprs["AUXVARS"] = ["main(void); "+t.strip().replace("\n"," \\\n") for t in transs]
             return "int AUXVARS();"
+
+    def fake_typedef_bits(self):
+        return "\n".join(["typedef char "+x+";" for x in ["FAKETYPEDEFSIN", self.adrs[0].unsigned_bits, 
+            self.adrs[0].signed_bits, self.adrs[0].unsigned_bits_1, self.adrs[0].signed_bits_1,
+            self.adrs[0].unsigned_bits_2x, self.adrs[0].signed_bits_2x,self.adrs[0].unsigned_1]+
+            [k for k in self.adrs[0].unsigned_mul.values()]+[k for k in self.adrs[0].unsigned_mul_1.values()]+["FAKETYPEDEFSOUT"]])
     
     def expression(self, n, transs, passthrough, typlbl=None, with_semic=False, brackets=True):
         if passthrough:
@@ -371,7 +377,7 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
             ans = []
             for i in range(len(self.conf_adr)):
                 skip = self.skip_on_plain and self.abs_dr_mode[i]['abs_mode'] is None and self.abs_dr_mode[i]['dr_mode'] is None
-                if rule == "rule_IfCond" or self.conf_adr[i].dr_on or self.conf_adr[i].abs_on or self.conf_adr[i].underapprox:
+                if rule in ("rule_IfCond","rule_SMpassDef","rule_SMpassAssignInFunc") or self.conf_adr[i].dr_on or self.conf_adr[i].abs_on or self.conf_adr[i].underapprox:
                     ans.append("" if skip else getattr(self.conf_adr[i], rule)(self.abs_dr_state[i], n, self.abs_dr_mode[i]['abs_mode'], self.abs_dr_mode[i]['dr_mode'], self.full_statement, **extra_args))
                 else:
                     typ = str(type(n)).split(".")[-1][:-2]
@@ -415,7 +421,8 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
             else:
                 s3 += self.visit(ext) + ';\n'
                 
-        s += self.macro_file_manager.auxvars(['\n'.join([auxvars1[adr], adr.cond_vars_decl(), adr.bav1_vars_decl(), adr.bap1_vars_decl(), adr.nondet_vars_decl()]) for adr in self.conf_adr])
+        s += self.macro_file_manager.fake_typedef_bits()
+        s += self.macro_file_manager.auxvars(['\n'.join([auxvars1[adr], adr.extra_vars_decl(), adr.cond_vars_decl(), adr.bav1_vars_decl(), adr.bap1_vars_decl(), adr.nondet_vars_decl()]) for adr in self.conf_adr])
 
         #TODO check what it means
         #ris = self.faked_typedef_start \
@@ -651,6 +658,22 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
                     #print("NOINSTR2", n)
                     ans = super().visit_FuncDef(n)
             return ans
+        elif n.decl.name.startswith('__CSEQ_atomic_'):
+            self._lazyseqnewschedule__currentThread = n.decl.name
+            self._lazyseqnewschedule__visit_funcReference = True
+            #ret = self.otherparser.visit(n)
+            oldatomic = self._lazyseqnewschedule__atomic
+            self._lazyseqnewschedule__atomic = True
+            decl = self.visit(n.decl)
+            body = self.visit(n.body)
+            passdef = "int "+self.macro_file_manager.expression(n.decl, self.do_rule('rule_SMpassDef',n.decl), passthrough=False, brackets=False)+";"
+            passassn = self.macro_file_manager.expression(n.decl, self.do_rule('rule_SMpassAssignInFunc',n.decl), passthrough=False, brackets=False, with_semic=True)
+            body = "{" + passassn + "\n" + body.strip()[1:]
+            s = passdef+"\n"+decl + '\n' + body + '\n'
+            self._lazyseqnewschedule__atomic = oldatomic
+            self._lazyseqnewschedule__currentThread = ''
+            self._lazyseqnewschedule__visit_funcReference = False
+            return s
         else: # thread functions
             ans = super().visit_FuncDef(n)
             return ans
@@ -1249,9 +1272,9 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
             assert(self.full_statement)
             elseBlock = self._generate_stmt(n.iffalse, add_indent=True)
             assert(self.full_statement)
-            elseLblMacro = self.macro_file_manager.expression(n.cond, [elseLbl+":" if adr.underapprox else "" for adr in self.conf_adr], passthrough=not self.full_statement, typlbl="ElseLbl",with_semic=True, brackets=not self.full_statement)
+            elseBlock = elseBlock.strip()[1:-1].strip()
+            elseLblMacro = self.macro_file_manager.expression(n.cond, [elseLbl+":"+(";" if elseBlock.startswith("static ") else "") if adr.underapprox else "" for adr in self.conf_adr], passthrough=not self.full_statement, typlbl="ElseLbl",with_semic=True, brackets=not self.full_statement)
             resetBap = self.macro_file_manager.expression(n.cond, [adr.bap+" = "+adr.getBap1(n)+";" if adr.underapprox else "" for adr in self.conf_adr], passthrough=not self.full_statement, typlbl="ResetBap",with_semic=True, brackets=not self.full_statement)
-            elseBlock = elseBlock.strip()[1:-1]
             elseBlock = "{\n"+elseLblMacro+"\n"+elseBlock+"\n"+resetBap+"}\n"
 
             elseEnd = self._lazyseqnewschedule__maxInCompound   # label for the last stmt in the if_false block if () {...} else { block; }
