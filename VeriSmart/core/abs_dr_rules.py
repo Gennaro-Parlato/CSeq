@@ -208,8 +208,8 @@ class AbsDrRules:
         self.abstr_bits = abstr_bits
 
         # bitvector types for multiplication
-        self.unsigned_mul = dict() if abstr_bits is None else {k:"eint"+str(k*8-abstr_bits) for k in [1,2,4,8] if 8*k < 2*abstr_bits}
-        self.unsigned_mul_1 = dict() if abstr_bits is None else {k:"eint"+str(k*8-abstr_bits+1) for k in [1,2,4,8] if 8*k < 2*abstr_bits}
+        self.unsigned_mul = dict() if abstr_bits is None else {k:"eint"+str(k*8-abstr_bits) for k in [1,2,4,8] if 8*k < 2*abstr_bits and abstr_bits < 8*k}
+        self.unsigned_mul_1 = dict() if abstr_bits is None else {k:"eint"+str(k*8-abstr_bits+1) for k in [1,2,4,8] if 8*k < 2*abstr_bits and abstr_bits < 8*k}
 
         # abstraction: name field for abstraction
         self.sm_abs = "abstr" if abs_on else None
@@ -1677,6 +1677,8 @@ class AbsDrRules:
         if op in ("+", "-"):
             if not self.is_abstractable(e1_op_e2_type):
                 return ""
+            elif self.abstr_bits >= 8 * self.abstrTypesSizeof[e1_op_e2_type]:
+                return ""
             elif type(exp1) is c_ast.Constant and exp1.value == "1":
                 vl_e2 = self.visitor_visit(state, exp2, "VALUE", "WSE", **kwargs)
                 if e1_op_e2_type in self.abstrTypesSigned:
@@ -1703,6 +1705,8 @@ class AbsDrRules:
         elif op == "/":
             if not self.is_abstractable(e1_op_e2_type) or e1_op_e2_type not in self.abstrTypesSigned:
                 return ""
+            elif self.abstr_bits >= 8 * self.abstrTypesSizeof[e1_op_e2_type]:
+                return ""
             minval_1 = str(-2**(self.abstr_bits-1))
             runtime_check_1 = lambda: "("+self.visitor_visit(state, exp1, "VALUE", "WSE", **kwargs)+") == (("+self.signed_bits+")("+minval_1+"))"
             check_1 = None # None: do check runtime; True: is not minval_1 static; False: is minval_1 static
@@ -1725,6 +1729,8 @@ class AbsDrRules:
                 return "(("+self.unsigned_1+")("+runtime_check_2()+"))"
         elif op == "*":
             if not self.is_abstractable(e1_op_e2_type):
+                return ""
+            elif self.abstr_bits >= 8 * self.abstrTypesSizeof[e1_op_e2_type]:
                 return ""
             if e1_op_e2_type in self.abstrTypesSigned:
                 if 2 * self.abstr_bits > 8 * self.abstrTypesSizeof[e1_op_e2_type]:
@@ -1767,6 +1773,8 @@ class AbsDrRules:
                     )
         elif op == "<<":
             if not self.is_abstractable(e1_op_e2_type):
+                return ""
+            elif self.abstr_bits >= 8 * self.abstrTypesSizeof[e1_op_e2_type]:
                 return ""
             if e1_op_e2_type in self.abstrTypesSigned:
                 a = self.visitor_visit(state, exp1, "VALUE", "WSE", **kwargs)
