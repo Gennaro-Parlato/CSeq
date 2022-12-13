@@ -230,16 +230,20 @@ enum t_typename {
     
     def visit_UnaryOp(self, n):
         ans = []
-        if self.can_value:
+        if self.can_value or n.op in ("-","--","++","p++","p--",'+','-','~'):
             ans += self.bookNodeType(n)
         with self.set_can_value(self.can_value or n.op in ("--","++","p++","p--",'+','-','~','!','*')):
             ans += self.visit(n.expr)
+            if n.op in ("++", "p++"):
+                ans += self.bookNodeType(BinaryOp("+", n.expr, Constant("int","1")))
+            elif n.op in ("--", "p--"):
+                ans += self.bookNodeType(BinaryOp("-", n.expr, Constant("int","1")))
         return ans
     
     def visit_BinaryOp(self, n):
         ans = []
+        ans += self.bookNodeType(n)
         with self.set_can_value(True):
-            ans += self.bookNodeType(n)
             ans += self.visit(n.left)
             ans += self.visit(n.right)
         return ans
@@ -248,6 +252,8 @@ enum t_typename {
         ans = []
         if self.can_value:
             ans += self.bookNodeType(n)
+        if n.op != "=":
+            ans += self.bookNodeType(BinaryOp(n.op.replace("=",""), n.lvalue, n.rvalue))
         with self.set_can_value(True):
             ans += self.bookNodeType(n.lvalue)
             ans += self.bookNodeType(n.rvalue)

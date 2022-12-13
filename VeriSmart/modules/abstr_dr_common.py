@@ -75,6 +75,12 @@ class MacroFileManager:
             self.macro_with_brackets["AUXVARS"] = False
             self.macroToExprs["AUXVARS"] = ["main(void); "+t.strip().replace("\n"," \\\n") for t in transs]
             return "int AUXVARS();"
+
+    def fake_typedef_bits(self):
+        return "\n".join(["typedef char "+x+";" for x in ["FAKETYPEDEFSIN", self.adrs[0].unsigned_bits, 
+            self.adrs[0].signed_bits, self.adrs[0].unsigned_bits_1, self.adrs[0].signed_bits_1,
+            self.adrs[0].unsigned_bits_2x, self.adrs[0].signed_bits_2x,self.adrs[0].unsigned_1]+
+            [k for k in self.adrs[0].unsigned_mul.values()]+[k for k in self.adrs[0].unsigned_mul_1.values()]+["FAKETYPEDEFSOUT"]])
     
     def expression(self, n, transs, passthrough, typlbl=None, with_semic=False, brackets=True):
         if passthrough:
@@ -415,7 +421,8 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
             else:
                 s3 += self.visit(ext) + ';\n'
                 
-        s += self.macro_file_manager.auxvars(['\n'.join([auxvars1[adr], adr.cond_vars_decl(), adr.bav1_vars_decl(), adr.bap1_vars_decl(), adr.nondet_vars_decl()]) for adr in self.conf_adr])
+        s += self.macro_file_manager.fake_typedef_bits()
+        s += self.macro_file_manager.auxvars(['\n'.join([auxvars1[adr], adr.extra_vars_decl(), adr.cond_vars_decl(), adr.bav1_vars_decl(), adr.bap1_vars_decl(), adr.nondet_vars_decl()]) for adr in self.conf_adr])
 
         #TODO check what it means
         #ris = self.faked_typedef_start \
@@ -1265,9 +1272,9 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
             assert(self.full_statement)
             elseBlock = self._generate_stmt(n.iffalse, add_indent=True)
             assert(self.full_statement)
-            elseLblMacro = self.macro_file_manager.expression(n.cond, [elseLbl+":" if adr.underapprox else "" for adr in self.conf_adr], passthrough=not self.full_statement, typlbl="ElseLbl",with_semic=True, brackets=not self.full_statement)
+            elseBlock = elseBlock.strip()[1:-1].strip()
+            elseLblMacro = self.macro_file_manager.expression(n.cond, [elseLbl+":"+(";" if elseBlock.startswith("static ") else "") if adr.underapprox else "" for adr in self.conf_adr], passthrough=not self.full_statement, typlbl="ElseLbl",with_semic=True, brackets=not self.full_statement)
             resetBap = self.macro_file_manager.expression(n.cond, [adr.bap+" = "+adr.getBap1(n)+";" if adr.underapprox else "" for adr in self.conf_adr], passthrough=not self.full_statement, typlbl="ResetBap",with_semic=True, brackets=not self.full_statement)
-            elseBlock = elseBlock.strip()[1:-1]
             elseBlock = "{\n"+elseLblMacro+"\n"+elseBlock+"\n"+resetBap+"}\n"
 
             elseEnd = self._lazyseqnewschedule__maxInCompound   # label for the last stmt in the if_false block if () {...} else { block; }

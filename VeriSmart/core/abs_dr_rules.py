@@ -206,6 +206,11 @@ class AbsDrRules:
                                    'unsigned long long int': 8}
         # abstraction: nr of bits for abstracted vars
         self.abstr_bits = abstr_bits
+
+        # bitvector types for multiplication
+        self.unsigned_mul = dict() if abstr_bits is None else {k:"eint"+str(k*8-abstr_bits) for k in [1,2,4,8] if 8*k < 2*abstr_bits}
+        self.unsigned_mul_1 = dict() if abstr_bits is None else {k:"eint"+str(k*8-abstr_bits+1) for k in [1,2,4,8] if 8*k < 2*abstr_bits}
+
         # abstraction: name field for abstraction
         self.sm_abs = "abstr" if abs_on else None
         
@@ -242,6 +247,35 @@ class AbsDrRules:
         
         # SM setup for const declarations
         self.abs_const_decl = []
+
+        # types for abstraction
+        self.unsigned_bits = "uintb"
+        self.signed_bits = "intb"
+        self.unsigned_bits_1 = "uintb1" # + 1 bit
+        self.signed_bits_1 = "intb1" # + 1 bit
+        self.unsigned_bits_2x = "uint2b" # 2x bit
+        self.signed_bits_2x = "int2b" # 2x bit
+        self.unsigned_1 = "uint1"
+
+        # extra vars for multiplications
+        self.extra_var_types = dict()
+
+    def get_intb1_var(self):
+        return "__cs_intb1_tmp"
+    def get_uintb1_var(self):
+        return "__cs_uintb1_tmp"
+
+    def cast(self, expr, typ):
+        if typ is None:
+            return expr
+        else:
+            return "(("+typ+")("+expr+"))"
+
+    def cast_type(self, typ):
+        if typ in self.abstrTypesSizeof and self.abstrTypesSizeof[typ]*8 > self.abstr_bits:
+            return "intb" if typ in self.abstrTypesSigned else "uintb"
+        else:
+            return None
         
     def get_type_bounds(self, tp):
         sz = min(self.abstrTypesSizeof[tp], self.abstr_bits)
@@ -294,6 +328,15 @@ class AbsDrRules:
             self.if_abs(lambda: "unsigned __CPROVER_bitvector[1] "+self.bal+" = 0;"),
             self.if_abs(lambda: "unsigned __CPROVER_bitvector[1] "+self.bav_lhs+" = 0;"),
             self.if_abs(lambda: "unsigned __CPROVER_bitvector[1] "+self.bav_tmp+" = 0;"),
+            self.if_abs(lambda: "typedef unsigned __CPROVER_bitvector[1] "+self.unsigned_1+";"),
+            self.if_abs(lambda: "typedef unsigned __CPROVER_bitvector["+str(self.abstr_bits)+"] "+self.unsigned_bits+";"),
+            self.if_abs(lambda: "typedef __CPROVER_bitvector["+str(self.abstr_bits)+"] "+self.signed_bits+";"),
+            self.if_abs(lambda: "typedef unsigned __CPROVER_bitvector["+str(self.abstr_bits-1)+"] "+self.unsigned_bits_1+";"),
+            self.if_abs(lambda: "typedef __CPROVER_bitvector["+str(self.abstr_bits-1)+"] "+self.signed_bits_1+";"),
+            self.if_abs(lambda: "typedef unsigned __CPROVER_bitvector["+str(self.abstr_bits*2)+"] "+self.unsigned_bits_2x+";"),
+            self.if_abs(lambda: "typedef __CPROVER_bitvector["+str(self.abstr_bits*2)+"] "+self.signed_bits_2x+";"),
+            self.if_abs(lambda: self.signed_bits_1+" "+self.get_intb1_var()+" = 0;"),
+            self.if_abs(lambda: self.unsigned_bits_1+" "+self.get_uintb1_var()+" = 0;"),
             self.if_ua(lambda: "unsigned __CPROVER_bitvector[1] "+self.bap+" = 0;"),
             self.if_dr_possible(lambda: "unsigned __CPROVER_bitvector[1] "+self.dr+" = 0;"),
             self.if_dr_possible(lambda: "unsigned __CPROVER_bitvector[1] "+self.wam+" = 0;"),
@@ -306,8 +349,19 @@ class AbsDrRules:
             self.if_dr_possible(lambda: 'unsigned __CPROVER_bitvector[1] __cs_dataraceActiveVP2 = 0;'),
         ]+[
             self.if_abs(lambda: t+" __cs_bf_"+t.replace(" ","_")+" = ("+t+") 0;") for t in self.abstrTypesSigned
+        ] + [
+            "typedef unsigned __CPROVER_bitvector["+self.unsigned_mul[k][4:]+"] "+self.unsigned_mul[k]+";" for k in self.unsigned_mul
+        ] + [
+            "typedef unsigned __CPROVER_bitvector["+self.unsigned_mul_1[k][4:]+"] "+self.unsigned_mul_1[k]+";" for k in self.unsigned_mul_1
         ]))[0]
         
+    def get_extra_var_type(self, typ):
+        if typ in self.extra_var_types:
+            return self.extra_var_types[typ]
+        else:
+            self.extra_var_types[typ] = "__cs_helpvar_"+typ.replace(" ","_")
+            return self.extra_var_types[typ]
+
     def cond_vars_decl(self):
         #TODO use __CPROVER_bitvector
         return self.compound_expr("\n",*(['unsigned __CPROVER_bitvector[1] '+v+';' for v in self.conditions.values()]))[0]
@@ -322,6 +376,10 @@ class AbsDrRules:
     def bap1_vars_decl(self):
         #TODO use __CPROVER_bitvector
         return self.compound_expr("\n",*(['unsigned __CPROVER_bitvector[1] '+v+';' for v in self.bap1s.values()]))[0]
+
+    def extra_vars_decl(self):
+        return self.compound_expr("\n",*([t+' '+self.extra_var_types[t]+';' for t in self.extra_var_types]))[0]
+        
         
     def sm_field_decl(self):
         return "#define FIELD_DECLS() "+self.compound_expr(" ",*([
@@ -341,28 +399,31 @@ class AbsDrRules:
             mask_t_1 = hex(2**(self.abstr_bits-1)-1)
             return self.compound_expr("\n",*([
                 self.sm_field_decl(),
-            ]+["#define MASK_"+t.replace(" ","_")+"_"+bitstr+" (("+t+") "+mask_t+")" for t in self.abstrTypesSigned]+
-              ["#define MASK_"+t.replace(" ","_")+"_"+bitstr_1+" (("+t+") "+mask_t_1+")" for t in self.abstrTypesSigned]+
-              #["#define BOUNDS_FAILURE_"+t.replace(" ","_")+"(exp) ((((exp)&~MASK_"+t.replace(" ","_")+"_"+bitstr_1+")!=(~MASK_"+t.replace(" ","_")+"_"+bitstr_1+")) && ((exp)&~MASK_"+t.replace(" ","_")+"_"+bitstr_1+"))" for t in self.abstrTypesSigned]+
-              ["#define BOUNDS_FAILURE_"+t.replace(" ","_")+"(exp) (((__cs_bf_"+t.replace(" ","_")+"=((exp)&~MASK_"+t.replace(" ","_")+"_"+bitstr_1+"))!=(~MASK_"+t.replace(" ","_")+"_"+bitstr_1+")) && __cs_bf_"+t.replace(" ","_")+")" for t in self.abstrTypesSigned]+
-              ["#define ENCODE_"+t.replace(" ","_")+"(exp) ((exp)&MASK_"+t.replace(" ","_")+"_"+bitstr+")" for t in self.abstrTypesSigned]+
-              ["#define DECODE_"+t.replace(" ","_")+"(exp) (("+t+")((signed __CPROVER_bitvector["+bitstr+"]) (exp)))" for t in self.abstrTypesSigned]+
-              ["#define MIN_"+t.replace(" ","_")+" "+("((~(("+t+")0)) << "+bitstr_1+")" if self.abstr_bits < self.abstrTypesSizeof[t]*8 else "((~(("+t+")0)) << "+str(self.abstrTypesSizeof[t]*8-1)+")") for t in self.abstrTypesSigned]+
-              ["#define MAX_"+t.replace(" ","_")+" "+"(~(MIN_"+t.replace(" ","_")+"))" for t in self.abstrTypesSigned]+
-              ["#define ISMIN_"+t.replace(" ","_")+"(exp) "+"((exp) == MIN_"+t.replace(" ","_")+")" for t in self.abstrTypesSigned]+
-              ["#define ISMAX_"+t.replace(" ","_")+"(exp) "+"((exp) == MAX_"+t.replace(" ","_")+")" for t in self.abstrTypesSigned]+
-              
-              
-             
-              ["#define MASK_"+t.replace(" ","_")+"_"+bitstr+" (("+t+") "+mask_t+")" for t in self.abstrTypesUnsigned]+
-              #["#define MASK_"+t.replace(" ","_")+"_"+bitstr_1+" (("+t+") "+mask_t_1+")" for t in self.abstrTypesUnsigned]+
-              ["#define BOUNDS_FAILURE_"+t.replace(" ","_")+"(exp) ((exp)&~MASK_"+t.replace(" ","_")+"_"+bitstr+")" for t in self.abstrTypesUnsigned]+
-              ["#define ENCODE_"+t.replace(" ","_")+"(exp) ((exp)&MASK_"+t.replace(" ","_")+"_"+bitstr+")" for t in self.abstrTypesUnsigned]+
-              ["#define DECODE_"+t.replace(" ","_")+"(exp) (("+t+")((unsigned __CPROVER_bitvector["+bitstr+"]) (exp)))" for t in self.abstrTypesUnsigned]+
-              ["#define MIN_"+t.replace(" ","_")+" (("+t+")0)" for t in self.abstrTypesUnsigned]+
-              ["#define MAX_"+t.replace(" ","_")+" "+("(~((~(("+t+")0)) << "+bitstr+"))" if self.abstr_bits < self.abstrTypesSizeof[t]*8 else "(~(("+t+")0))") for t in self.abstrTypesUnsigned]+
-              ["#define ISMIN_"+t.replace(" ","_")+"(exp) "+"((exp) == MIN_"+t.replace(" ","_")+")" for t in self.abstrTypesUnsigned]+
-              ["#define ISMAX_"+t.replace(" ","_")+"(exp) "+"((exp) == MAX_"+t.replace(" ","_")+")" for t in self.abstrTypesUnsigned]
+            ]
+            # +["#define MASK_"+t.replace(" ","_")+"_"+bitstr+" (("+t+") "+mask_t+")" for t in self.abstrTypesSigned]+
+            #  ["#define MASK_"+t.replace(" ","_")+"_"+bitstr_1+" (("+t+") "+mask_t_1+")" for t in self.abstrTypesSigned]+
+            #  ["#define BOUNDS_FAILURE_"+t.replace(" ","_")+"(exp) (((__cs_bf_"+t.replace(" ","_")+"=((exp)&~MASK_"+t.replace(" ","_")+"_"+bitstr_1+"))!=(~MASK_"+t.replace(" ","_")+"_"+bitstr_1+")) && __cs_bf_"+t.replace(" ","_")+")" for t in self.abstrTypesSigned]+
+            #  ["#define ENCODE_"+t.replace(" ","_")+"(exp) ((exp)&MASK_"+t.replace(" ","_")+"_"+bitstr+")" for t in self.abstrTypesSigned]+
+            #  #["#define ENCODE_"+t.replace(" ","_")+"(exp) (("+t+")((signed __CPROVER_bitvector["+bitstr+"]) (exp)))" for t in self.abstrTypesSigned]+
+            #  ["#define DECODE_"+t.replace(" ","_")+"(exp) (("+t+")((signed __CPROVER_bitvector["+bitstr+"]) (exp)))" for t in self.abstrTypesSigned]+
+            #  #["#define DECODE_"+t.replace(" ","_")+"(exp) (exp)" for t in self.abstrTypesSigned]+
+            #  ["#define MIN_"+t.replace(" ","_")+" "+("((~(("+t+")0)) << "+bitstr_1+")" if self.abstr_bits < self.abstrTypesSizeof[t]*8 else "((~(("+t+")0)) << "+str(self.abstrTypesSizeof[t]*8-1)+")") for t in self.abstrTypesSigned]+
+            #  ["#define MAX_"+t.replace(" ","_")+" "+"(~(MIN_"+t.replace(" ","_")+"))" for t in self.abstrTypesSigned]+
+            #  ["#define ISMIN_"+t.replace(" ","_")+"(exp) "+"((exp) == MIN_"+t.replace(" ","_")+")" for t in self.abstrTypesSigned]+
+            #  ["#define ISMAX_"+t.replace(" ","_")+"(exp) "+"((exp) == MAX_"+t.replace(" ","_")+")" for t in self.abstrTypesSigned]+
+            #  
+            #  
+            # 
+            #  ["#define MASK_"+t.replace(" ","_")+"_"+bitstr+" (("+t+") "+mask_t+")" for t in self.abstrTypesUnsigned]+
+            #  ["#define BOUNDS_FAILURE_"+t.replace(" ","_")+"(exp) ((exp)&~MASK_"+t.replace(" ","_")+"_"+bitstr+")" for t in self.abstrTypesUnsigned]+
+            #  ["#define ENCODE_"+t.replace(" ","_")+"(exp) ((exp)&MASK_"+t.replace(" ","_")+"_"+bitstr+")" for t in self.abstrTypesUnsigned]+
+            #  #["#define ENCODE_"+t.replace(" ","_")+"(exp) (("+t+")((unsigned __CPROVER_bitvector["+bitstr+"]) (exp)))" for t in self.abstrTypesUnsigned]+
+            #  ["#define DECODE_"+t.replace(" ","_")+"(exp) (("+t+")((unsigned __CPROVER_bitvector["+bitstr+"]) (exp)))" for t in self.abstrTypesUnsigned]+
+            #  #["#define DECODE_"+t.replace(" ","_")+"(exp) (exp)" for t in self.abstrTypesUnsigned]+
+            #  ["#define MIN_"+t.replace(" ","_")+" (("+t+")0)" for t in self.abstrTypesUnsigned]+
+            #  ["#define MAX_"+t.replace(" ","_")+" "+("(~((~(("+t+")0)) << "+bitstr+"))" if self.abstr_bits < self.abstrTypesSizeof[t]*8 else "(~(("+t+")0))") for t in self.abstrTypesUnsigned]+
+            #  ["#define ISMIN_"+t.replace(" ","_")+"(exp) "+"((exp) == MIN_"+t.replace(" ","_")+")" for t in self.abstrTypesUnsigned]+
+            #  ["#define ISMAX_"+t.replace(" ","_")+"(exp) "+"((exp) == MAX_"+t.replace(" ","_")+")" for t in self.abstrTypesUnsigned]
               ))[0]
         else:
             return self.compound_expr("\n",*([self.sm_field_decl()]))[0]
@@ -586,7 +647,7 @@ class AbsDrRules:
                                    'unsigned long long int') #TODO fill it properly
         return ans
         
-    def decode(self, x, xtype):
+    '''def decode(self, x, xtype):
         assert(self.abs_on)
         if self.is_abstractable(xtype):
             xtype_nospaces = xtype.replace(" ","_")
@@ -602,7 +663,7 @@ class AbsDrRules:
             return "ENCODE_"+xtype_nospaces+"(("+xtype+")("+x+"))"
             #return "ENCODE_"+xtype_nospaces+"(("+x+"))"
         else:
-            return "("+x+")"
+            return "("+x+")"'''
         
     def ismin_type(self, x, xtype):
         # returns "ISMIN_xtype(x)"
@@ -767,11 +828,11 @@ class AbsDrRules:
         unExp = preop.expr
         op = preop.op
         assert(op in ("--","++"))
+        unExprType = self.supportFile.get_type(unExp) if self.abs_on else None#"int" #TODO proper type
         assignee = c_ast.BinaryOp(op[-1], unExp, c_ast.Constant("int", "1"))
-        fullOp = lambda: self.visitor_visit(state, unExp, "VALUE", "WSE", **kwargs)+" "+op[-1]+" 1"
         if abs_mode in ("GET_VAL", None) and dr_mode in ("ACCESS", "PREFIX", "NO_ACCESS", None):
+            fullOp = lambda: self.cast(self.visitor_visit(state, unExp, "VALUE", "WSE", **kwargs)+" "+op[-1]+" 1", self.cast_type(unExprType))
             intop = op[-1]
-            unExprType = self.supportFile.get_type(unExp)#"int" #TODO proper type
             ans = self.comma_expr(
                 self.if_abs_or_dr(lambda: self.visitor_visit(state, unExp, "UPD_VAL", "NO_ACCESS", **kwargs)),
                 self.if_abs(lambda: self.__assignment_manual_bav_fail(state)),
@@ -782,7 +843,8 @@ class AbsDrRules:
                         self.or_expr_prop(
                             self.cp(state, "bav"),
                             self.if_ua(lambda: self.cp(state, "bap")),
-                            self.__assignment_bounds_failure(state, assignee, unExprType, unExprType, **kwargs)
+                            self.__binaryop_checks(state, unExp, c_ast.Constant("int","1"), intop, unExprType, **kwargs)
+                            #self.__assignment_bounds_failure(state, assignee, unExprType, unExprType, **kwargs)
                         ),
                         lambda state: self.comma_expr(
                             self.assign(state, "bav", "1"),
@@ -790,7 +852,7 @@ class AbsDrRules:
                             self.void0()
                         ), 
                         lambda state: self.comma_expr(
-                            self.visitor_visit(state, unExp, "LVALUE", "WSE", **kwargs)+" = "+self.encode(fullOp(), unExprType),
+                            self.visitor_visit(state, unExp, "LVALUE", "WSE", **kwargs)+" = "+fullOp(),
                             self.void0()
                         )) if self.is_abstractable(unExprType) else self.comma_expr(intop+intop+self.visitor_visit(state, unExp, "LVALUE", "WSE", **kwargs))
                 ),
@@ -799,7 +861,7 @@ class AbsDrRules:
             #print(preop, kwargs)
             return self.store_content(full_statement,ans, preop, abs_mode, dr_mode)
         elif abs_mode in ("VALUE", None) and dr_mode in ("WSE", None) and (abs_mode is not None or dr_mode is not None):
-            return self.store_content(full_statement,self.visitor_visit(state, unExp, "VALUE", "WSE", **kwargs), preop, abs_mode, dr_mode)
+            return self.store_content(full_statement,self.cast(self.visitor_visit(state, unExp, "VALUE", "WSE", **kwargs), self.cast_type(unExprType)), preop, abs_mode, dr_mode)
         else:
             assert(False, "Invalid mode for preOp: abs_mode = "+str(abs_mode)+"; dr_mode = "+str(dr_mode))
         
@@ -842,10 +904,11 @@ class AbsDrRules:
         op = preop.op
         assert(op in ("p--","p++"))
         assignee = c_ast.BinaryOp(op[-1], unExp, c_ast.Constant("int", "1"))
-        fullOp = lambda: self.visitor_visit(state, unExp, "VALUE", "WSE", **kwargs)+" "+op[-1]+" 1"
+        unExprType = self.supportFile.get_type(unExp) if self.abs_on else None #"int" #TODO proper type
+        fullOp = lambda: self.cast(self.visitor_visit(state, unExp, "VALUE", "WSE", **kwargs)+" "+op[-1]+" 1", self.cast_type(unExprType))
         if abs_mode in ("GET_VAL", None) and dr_mode in ("ACCESS", "PREFIX", "NO_ACCESS", None):
             intop = op[-1]
-            unExprType = self.supportFile.get_type(unExp)#"int" #TODO proper type
+            
             ans = self.comma_expr(
                 self.if_abs_or_dr(lambda: self.visitor_visit(state, unExp, "UPD_VAL", "NO_ACCESS", **kwargs)),
                 self.if_abs(lambda: self.__assignment_manual_bav_fail(state)),
@@ -856,7 +919,8 @@ class AbsDrRules:
                         self.or_expr_prop(
                             self.cp(state, "bav"),
                             self.if_ua(lambda: self.cp(state, "bap")),
-                            self.__assignment_bounds_failure(state, assignee, unExprType, unExprType, **kwargs)
+                            self.__binaryop_checks(state, unExp, c_ast.Constant("int","1"), intop, unExprType, **kwargs)
+                            #self.__assignment_bounds_failure(state, assignee, unExprType, unExprType, **kwargs)
                         ),
                         lambda state: self.comma_expr(
                             self.assign(state, "bav", "1"),
@@ -864,7 +928,7 @@ class AbsDrRules:
                             self.void0()
                         ), 
                         lambda state: self.comma_expr(
-                            self.visitor_visit(state, unExp, "LVALUE", "WSE", **kwargs)+" = "+self.encode(fullOp(), unExprType),
+                            self.visitor_visit(state, unExp, "LVALUE", "WSE", **kwargs)+" = "+fullOp(),
                             self.void0()
                         )) if self.is_abstractable(unExprType) else self.comma_expr(self.visitor_visit(state, unExp, "LVALUE", "WSE", **kwargs)+intop+intop)
                 ),
@@ -874,7 +938,7 @@ class AbsDrRules:
         elif abs_mode in ("VALUE", None) and dr_mode in ("WSE", None) and (abs_mode is not None or dr_mode is not None):
             intop = op[-1]
             invertOp = "+" if intop == "-" else "-" #invert the operator to get access to the value before op
-            return self.store_content(full_statement,self.visitor_visit(state, unExp, "VALUE", "WSE", **kwargs)+" "+invertOp+" 1", preop, abs_mode, dr_mode)
+            return self.store_content(full_statement,self.cast(self.visitor_visit(state, unExp, "VALUE", "WSE", **kwargs)+" "+invertOp+" 1", self.cast_type(unExprType)), preop, abs_mode, dr_mode)
         else:
             assert(False, "Invalid mode for postOp: abs_mode = "+str(abs_mode)+"; dr_mode = "+str(dr_mode))
             
@@ -934,8 +998,8 @@ class AbsDrRules:
                 arrexp, abs_mode, dr_mode)
         elif abs_mode in ("VALUE",) and dr_mode in ("WSE", None):
             arrexpType = self.supportFile.get_type(arrexp) #"int" #TODO get type from expression
-            return self.store_content(full_statement,self.decode(self.visitor_visit(state, postExp, "VALUE", "WSE", **kwargs)+"["+self.visitor_visit(state, exp, "VALUE", "WSE", **kwargs)+"]", \
-                arrexpType), arrexp, abs_mode, dr_mode)
+            return self.store_content(full_statement,self.cast(self.visitor_visit(state, postExp, "VALUE", "WSE", **kwargs)+"["+self.visitor_visit(state, exp, "VALUE", "WSE", **kwargs)+"]", \
+                self.cast_type(arrexpType)), arrexp, abs_mode, dr_mode)
         elif abs_mode in ("GET_VAL", "UPD_VAL", None) and dr_mode in ("ACCESS", "PREFIX", "NO_ACCESS", None):
             return self.store_content(full_statement,self.comma_expr(
                 self.if_abs_or_dr(lambda: self.visitor_visit(state, postExp, "GET_VAL", "PREFIX", **kwargs)),
@@ -1009,7 +1073,7 @@ class AbsDrRules:
             return self.store_content(full_statement,self.visitor_visit(state, postExp, "VALUE", "WSE", **kwargs)+"->"+fid.name, srexp, abs_mode, dr_mode)
         elif abs_mode in ("VALUE",) and dr_mode in ("WSE", None):
             srexpType = self.supportFile.get_type(srexp) 
-            return self.store_content(full_statement,self.decode(self.visitor_visit(state, postExp, "VALUE", "WSE", **kwargs)+"->"+fid.name, srexpType), srexp, abs_mode, dr_mode)
+            return self.store_content(full_statement,self.cast(self.visitor_visit(state, postExp, "VALUE", "WSE", **kwargs)+"->"+fid.name, self.cast_type(srexpType)), srexp, abs_mode, dr_mode)
             
         elif abs_mode in ("GET_VAL", "UPD_VAL", None) and dr_mode in ("ACCESS", "PREFIX", "NO_ACCESS", None):
             return self.store_content(full_statement,self.comma_expr(
@@ -1075,7 +1139,7 @@ class AbsDrRules:
             return self.store_content(full_statement,self.brackets(self.visitor_visit(state, postExp, "LVALUE", "WSE", **kwargs))+"."+fid.name, srexp, abs_mode, dr_mode)
         elif abs_mode in ("VALUE",) and dr_mode in ("WSE", None):
             srexpType = self.supportFile.get_type(srexp) #"int" #TODO get type from expression
-            return self.store_content(full_statement,self.decode(self.brackets(self.visitor_visit(state, postExp, "LVALUE", "WSE", **kwargs))+"."+fid.name, srexpType), srexp, abs_mode, dr_mode)
+            return self.store_content(full_statement,self.cast(self.brackets(self.visitor_visit(state, postExp, "LVALUE", "WSE", **kwargs))+"."+fid.name, self.cast_type(srexpType)), srexp, abs_mode, dr_mode)
             
         elif abs_mode in ("GET_VAL", "UPD_VAL", None) and dr_mode in ("ACCESS", "PREFIX", "NO_ACCESS", None):
             return self.store_content(full_statement,self.comma_expr(
@@ -1259,7 +1323,7 @@ class AbsDrRules:
             return self.store_content(full_statement,"*("+self.visitor_visit(state, castExp, "VALUE", "WSE", **kwargs)+")", ptrop, abs_mode, dr_mode)
         elif abs_mode in ("VALUE", None) and dr_mode in ("WSE",None):
             castExpType = self.supportFile.get_type(castExp) #"int" # TODO type
-            return self.store_content(full_statement,self.decode("*("+self.visitor_visit(state, castExp, "VALUE", "WSE", **kwargs)+")", castExpType), ptrop, abs_mode, dr_mode)
+            return self.store_content(full_statement,self.cast("*("+self.visitor_visit(state, castExp, "VALUE", "WSE", **kwargs)+")", self.cast_type(castExpType)), ptrop, abs_mode, dr_mode)
         else:
             assert(False)
             
@@ -1338,6 +1402,21 @@ class AbsDrRules:
         else:
             assert(False)
             
+    def __unop_check_minus(self, state, castExp, **kwargs):
+        castExprType = self.supportFile.get_type(castExp)
+        if not self.is_abstractable(castExprType):
+            return ""
+        if 8*self.abstrTypesSizeof[castExprType] <= self.abstr_bits:
+            return ""
+        elif castExprType in self.abstrTypesSigned:
+            a = self.visitor_visit(state, castExp, "VALUE", "WSE", **kwargs)
+            minval = str(-2**(self.abstr_bits-1))
+            check = "("+self.unsigned_1+")((("+self.signed_bits+")("+a+")) == (("+self.signed_bits+")("+minval+")))"
+        else:
+            a = self.visitor_visit(state, castExp, "VALUE", "WSE", **kwargs)
+            check = "("+self.unsigned_1+")((("+self.unsigned_bits+")("+a+")) != 0)"
+        return self.assign_with_prop(state,"bav",self.or_expr_prop(self.cp(state,"bav"), check))
+
     def rule_UnOp(self, state, unop, abs_mode, dr_mode, full_statement, **kwargs):
         self.assertDisabledIIFModesAreNone(abs_mode, dr_mode, **kwargs)
         if dr_mode == "TOP_ACCESS":
@@ -1352,9 +1431,11 @@ class AbsDrRules:
             return self.store_content(full_statement,unOp+"("+self.visitor_visit(state, castExp, None, None, **kwargs)+")", unop, abs_mode, dr_mode)
         elif abs_mode in ("GET_VAL",None) and dr_mode in ("ACCESS","PREFIX","NO_ACCESS",None):
             return self.store_content(full_statement,self.comma_expr(
-                self.visitor_visit(state, castExp, "GET_VAL", "ACCESS", **kwargs)), unop, abs_mode, dr_mode)
+                self.visitor_visit(state, castExp, "GET_VAL", "ACCESS", **kwargs),
+                self.__unop_check_minus(state, castExp, **kwargs) if unop.op == "-" else ""), unop, abs_mode, dr_mode)
         elif abs_mode in ("VALUE", None) and dr_mode in ("WSE",None):
-            return self.store_content(full_statement,unOp+"("+self.visitor_visit(state, castExp, "VALUE", "WSE", **kwargs)+")", unop, abs_mode, dr_mode)
+            castExprType = self.supportFile.get_type(castExp) if self.abs_on else None
+            return self.store_content(full_statement,self.cast(unOp+"("+self.visitor_visit(state, castExp, "VALUE", "WSE", **kwargs)+")", self.cast_type(castExprType)), unop, abs_mode, dr_mode)
         else:
             assert(False)
             
@@ -1372,7 +1453,8 @@ class AbsDrRules:
         elif abs_mode in ("GET_VAL",None) and dr_mode in ("ACCESS","NO_ACCESS",None):
             return self.store_content(full_statement,self.if_abs(lambda: self.assign_with_prop(state, "bav", "0")), sizeof, abs_mode, dr_mode)
         elif abs_mode in ("VALUE", None) and dr_mode in ("WSE",None):
-            ans = "sizeof("+self.visitor_visit_noinstr(unexp_type)+")"
+            typ = "char"
+            ans = self.cast("sizeof("+self.visitor_visit_noinstr(unexp_type)+")", self.cast_type(typ))
             return self.store_content(full_statement,ans, sizeof, abs_mode, dr_mode)
         else:
             assert(False)
@@ -1564,16 +1646,152 @@ class AbsDrRules:
         unExpr = cast.expr
         toType = cast.to_type
         if abs_mode in ("VALUE", None) and dr_mode in ("WSE",None):
-            ans = "("+self.visitor_visit_noinstr(toType)+") "+ \
+            dest_tp = self.visitor_visit_noinstr(toType)
+            cast_dest_tp = self.cast_type(dest_tp)
+            if cast_dest_tp is not None:
+                dest_tp = cast_dest_tp
+            ans = "("+dest_tp+") "+ \
                 self.visitor_visit(state, unExpr, "VALUE", "WSE", **kwargs)
             return self.store_content(full_statement, ans, cast, abs_mode, dr_mode)
         elif abs_mode in ("GET_VAL",None) and dr_mode in ("ACCESS","NO_ACCESS",'PREFIX',None):
             return self.store_content(full_statement,self.visitor_visit(state, unExpr, "GET_VAL", "NO_ACCESS" if dr_mode == "NO_ACCESS" else "ACCESS", **kwargs), cast, abs_mode, dr_mode)
         else:
             assert(False)
+
+    def __binaryop_testbf(self, exp1, exp2, op):
+        # returns 1 if (exp1 op exp2) overflows
+        #op in '|','^','&','==','!=','<','<=','>','>=','<<','>>','+','-','*','/','%'
+        # remaining '<<','>>','+','-','*'
+        e1_op_e2_type = self.supportFile.get_type(fullOp)
+        e1_type = self.supportFile.get_type(exp1)
+        e2_type = self.supportFile.get_type(exp2)
+        assume(self.is_abstractable(e1_op_e2_type))
+        if op in ('|','^','&','==','!=','<','<=','>','>=','/','%'):
+            return ""
+        if op == "+":
+            return "()" #str(self.abstr_bits)
+        return ""
+
+    def __binaryop_checks(self, state, exp1, exp2, op, e1_op_e2_type, **kwargs):
+        # check if you can do the operation, assuming that exp1 and exp2 are ok (i.e., their bav is 0)
+        if op in ("+", "-"):
+            if not self.is_abstractable(e1_op_e2_type):
+                return ""
+            elif type(exp1) is c_ast.Constant and exp1.value == "1":
+                vl_e2 = self.visitor_visit(state, exp2, "VALUE", "WSE", **kwargs)
+                if e1_op_e2_type in self.abstrTypesSigned:
+                    extremeval = str(2**(self.abstr_bits-1)-1) if op == "+" else str(-2**(self.abstr_bits-1))
+                    return "("+self.unsigned_1+")(("+vl_e2+"==("+self.signed_bits+")("+extremeval+")))"
+                else:
+                    extremeval = str(2**(self.abstr_bits)-1) if op == "+" else "0"
+                    return "("+self.unsigned_1+")(("+vl_e2+"==("+self.unsigned_bits+")("+extremeval+")))"
+            elif type(exp2) is c_ast.Constant and exp2.value == "1":
+                vl_e1 = self.visitor_visit(state, exp1, "VALUE", "WSE", **kwargs)
+                if e1_op_e2_type in self.abstrTypesSigned:
+                    extremeval = str(2**(self.abstr_bits-1)-1) if op == "+" else str(-2**(self.abstr_bits-1))
+                    return "("+self.unsigned_1+")(("+vl_e1+"==("+self.signed_bits+")("+extremeval+")))"
+                else:
+                    extremeval = str(2**(self.abstr_bits)-1) if op == "+" else "0"
+                    return "("+self.unsigned_1+")(("+vl_e1+"==("+self.unsigned_bits+")("+extremeval+")))"
+            else:
+                typ1 = self.signed_bits_1 if e1_op_e2_type in self.abstrTypesSigned else self.unsigned_bits_1
+                sm = self.get_intb1_var() if e1_op_e2_type in self.abstrTypesSigned else self.get_uintb1_var()
+                return self.comma_expr(
+                    sm + " = " + self.cast("("+self.cast(self.visitor_visit(state, exp1, "VALUE", "WSE", **kwargs),typ1)+" "+op+" "+
+                        self.cast(self.visitor_visit(state, exp2, "VALUE", "WSE", **kwargs),typ1)+")", typ1),
+                    "("+self.unsigned_1+")(("+sm+" >> ("+str(self.abstr_bits)+")) ^ ("+sm+" >> ("+str(self.abstr_bits-1)+")))")
+        elif op == "/":
+            if not self.is_abstractable(e1_op_e2_type) or e1_op_e2_type not in self.abstrTypesSigned:
+                return ""
+            minval_1 = str(-2**(self.abstr_bits-1))
+            runtime_check_1 = lambda: "("+self.visitor_visit(state, exp1, "VALUE", "WSE", **kwargs)+") == (("+self.signed_bits+")("+minval_1+"))"
+            check_1 = None # None: do check runtime; True: is not minval_1 static; False: is minval_1 static
+            if type(exp1) is c_ast.Constant and self.is_numeric_constant(exp1.value):
+                check_1 = exp1.value != minval_1
+            check_2 = None # None: do check runtime; True: is not -1 static; False: is -1 static
+            runtime_check_2 = lambda: "("+self.visitor_visit(state, exp2, "VALUE", "WSE", **kwargs)+") == (("+self.signed_bits+")(-1))"
+            if type(exp2) is c_ast.Constant and self.is_numeric_constant(exp2.value):
+                check_2 = exp2.value != "-1"
+
+            if check_1 is None and check_2 is None:
+                return "(("+self.unsigned_1+")(("+runtime_check_1()+") && ("+runtime_check_2()+")))"
+            elif check_1 is True or check_2 is True:
+                return ""
+            elif check_1 is False and check_2 is False:
+                return "(("+self.unsigned_1+")1)"
+            elif check_1 is None:
+                return "(("+self.unsigned_1+")("+runtime_check_1()+"))"
+            else:
+                return "(("+self.unsigned_1+")("+runtime_check_2()+"))"
+        elif op == "*":
+            if not self.is_abstractable(e1_op_e2_type):
+                return ""
+            if e1_op_e2_type in self.abstrTypesSigned:
+                if 2 * self.abstr_bits > 8 * self.abstrTypesSizeof[e1_op_e2_type]:
+                    # do it using (8*self.abstrTypesSizeof[e1_op_e2_type]) bits
+                    mul = self.get_extra_var_type(e1_op_e2_type)
+                    bv_extra = self.unsigned_mul_1[self.abstrTypesSizeof[e1_op_e2_type]]
+                    return self.comma_expr(
+                        mul + " = (" + self.visitor_visit(state, exp1, "VALUE", "WSE", **kwargs) + " * " +
+                            self.visitor_visit(state, exp2, "VALUE", "WSE", **kwargs) + ")",
+                        "("+self.unsigned_1+")((("+bv_extra+")(" + mul + " >> " + str(self.abstr_bits-1) + ")) && " + 
+                        "("+bv_extra+")(~(("+bv_extra+")(" + mul + ">>" + str(self.abstr_bits-1) + "))))"
+                    )
+                else:
+                    # do it using (2 * self.abstr_bits) bits
+                    mul = self.get_extra_var_type(self.signed_bits_2x)
+                    bv_extra = self.unsigned_bits_1
+                    return self.comma_expr(
+                        mul + " = ("+self.signed_bits_2x+")(" + self.visitor_visit(state, exp1, "VALUE", "WSE", **kwargs) + " * " +
+                            self.visitor_visit(state, exp2, "VALUE", "WSE", **kwargs) + ")",
+                        "("+self.unsigned_1+")((("+bv_extra+")(" + mul + " >> " + str(self.abstr_bits-1) + ")) && " + 
+                        "("+bv_extra+")(~(("+bv_extra+")(" + mul + ">>" + str(self.abstr_bits-1) + "))))"
+                    )
+            else:
+                if 2 * self.abstr_bits > 8 * self.abstrTypesSizeof[e1_op_e2_type]:
+                    # do it using (8*self.abstrTypesSizeof[e1_op_e2_type]) bits
+                    mul = self.get_extra_var_type(e1_op_e2_type)
+                    bv_extra = self.unsigned_mul[self.abstrTypesSizeof[e1_op_e2_type]]
+                    return self.comma_expr(
+                        mul + " = (" + self.visitor_visit(state, exp1, "VALUE", "WSE", **kwargs) + " * " +
+                            self.visitor_visit(state, exp2, "VALUE", "WSE", **kwargs) + ")",
+                        "("+self.unsigned_1+")((("+bv_extra+")(" + mul + " >> " + str(self.abstr_bits) + "))!=0)"
+                    )
+                else:
+                    # do it using (2 * self.abstr_bits) bits
+                    mul = self.get_extra_var_type(self.signed_bits_2x)
+                    return self.comma_expr(
+                        mul + " = ("+self.signed_bits_2x+")(" + self.visitor_visit(state, exp1, "VALUE", "WSE", **kwargs) + " * " +
+                            self.visitor_visit(state, exp2, "VALUE", "WSE", **kwargs) + ")",
+                        "("+self.unsigned_1+")(((" + mul + " >> " + str(self.abstr_bits) + "))!=0)"
+                    )
+        elif op == "<<":
+            if not self.is_abstractable(e1_op_e2_type):
+                return ""
+            if e1_op_e2_type in self.abstrTypesSigned:
+                a = self.visitor_visit(state, exp1, "VALUE", "WSE", **kwargs)
+                b = self.visitor_visit(state, exp2, "VALUE", "WSE", **kwargs)
+                a_shl_b = "("+a+"<<"+b+")"
+                sz_expr = self.abstrTypesSizeof[e1_op_e2_type] * 8
+                mask1 = "((1 << ("+str(self.abstr_bits+1)+"+("+b+")))-1)" #((1 << (BITS+b+1))-1)
+                mask2_bin = (("1"*sz_expr) + ("0"*(self.abstr_bits-1)))[-sz_expr:] # (~((1 << BITS-1)-1))
+                mask2 = "0x%x"%int(mask2_bin,2)
+                mask1_2 = "("+mask1+"&"+mask2+")" # mask1 & mask2
+                part1 = a_shl_b + "&" + mask1_2
+                part2 = "(~" + a_shl_b + ")&" + mask1_2
+                print("("+self.unsigned_1+")(("+part1+")&&("+part2+"))")
+                return "("+self.unsigned_1+")(("+part1+")&&("+part2+"))"
+            else:
+                a = self.visitor_visit(state, exp1, "VALUE", "WSE", **kwargs)
+                b = self.visitor_visit(state, exp2, "VALUE", "WSE", **kwargs)
+                a_shl_b = "("+a+"<<"+b+")"
+                asb_shr_bits = "("+a_shl_b+">>"+str(self.abstr_bits)+")"
+                return "("+self.unsigned_1+")("+asb_shr_bits+" != 0)"
+        else:
+            return ""
     
     def __binaryop_bav(self, state, exp1, exp2, op, fullOp, **kwargs):
-        # returns bav = bav1 || bav
+        # returns bav = bav1 || bav || (exp1 op exp2 fails)
         # using constant propagation     
         assert(self.abs_on)
         bav1 = self.getBav1(fullOp)
@@ -1585,14 +1803,15 @@ class AbsDrRules:
         e1_op_e2_type = self.supportFile.get_type(fullOp) #"int" # TODO
         e1_op_e2 = lambda: "("+self.visitor_visit(state, exp1, "VALUE", "WSE", **kwargs)+" "+op+" "+self.visitor_visit(state, exp2, "VALUE", "WSE", **kwargs)+")"
         isAbs = self.is_abstractable(e1_op_e2_type)
+        chk = self.__binaryop_checks(state, exp1, exp2, op, e1_op_e2_type, **kwargs)
         if cp[0] == 0 and cp[1] == 0: #(False, False)
-            return ""
+            return "" if chk == "" else self.assign(state, "bav", chk)
         if cp[0] == 0: #(False, ?)
-            return self.assign(state, "bav", bav1)
+            return self.assign(state, "bav", self.or_expr(bav1, chk))
         if cp[1] == 0: #(?, False)
-            return ""
+            return "" if chk == "" else self.assign(state, "bav", chk)
         if cp[0] is None and cp[1] is None: #(?,?)
-            return self.assign(state, "bav",self.or_expr(bav1 ,self.cp(state,"bav")))
+            return self.assign(state, "bav",self.or_expr(bav1 ,self.cp(state,"bav"), chk))
         assert(False)
     
     '''        
@@ -1748,8 +1967,8 @@ class AbsDrRules:
         assert(op in ('|','^','&','==','!=','<','<=','>','>=','<<','>>','+','-','*','/','%'))
         
         if abs_mode in ("VALUE", None) and dr_mode in ("WSE",None):
-            ans = "(("+self.visitor_visit(state, exp1, "VALUE", "WSE", **kwargs)+") "+op+" ("+ \
-                self.visitor_visit(state, exp2, "VALUE", "WSE", **kwargs)+"))"
+            ans = self.cast("(("+self.visitor_visit(state, exp1, "VALUE", "WSE", **kwargs)+") "+op+" ("+ \
+                self.visitor_visit(state, exp2, "VALUE", "WSE", **kwargs)+"))", self.cast_type(self.supportFile.get_type(fullOp)))
             return self.store_content(full_statement, ans, fullOp, abs_mode, dr_mode)
         elif abs_mode in ("GET_VAL",None) and dr_mode in ("ACCESS","NO_ACCESS",'PREFIX',None):
             bav1 = self.getBav1(fullOp)
@@ -1776,7 +1995,7 @@ class AbsDrRules:
             return sid.name
         elif abs_mode == "VALUE" :
             sidType = self.supportFile.get_type(sid) #"int" # TODO get type of ID from abstr
-            return self.decode(sid.name, sidType) 
+            return self.cast(sid.name, self.cast_type(sidType)) 
         elif dr_mode == "WSE": # and implicitly abs is disabled
             return sid.name
         elif sid.name == "__cs_thread_index":
@@ -1828,10 +2047,14 @@ class AbsDrRules:
         assert(abs_mode not in ("SET_VAL", "GET_ADDR"), "Invalid: cannot get address or set the value of constants")
         if not self.abs_on and not self.dr_on:
             return con.value
-        elif abs_mode == "VALUE" or dr_mode == "WSE":
+        elif abs_mode == "VALUE":
+            cv_typ = self.supportFile.get_type(con)
+            return self.cast(con.value, self.cast_type(cv_typ))
+        elif dr_mode == "WSE":
             return con.value
         else:
-            return self.if_abs(lambda:self.assign_with_prop(state,"bav", "0"))
+            cv_typ = self.supportFile.get_type(con)
+            return self.if_abs(lambda:self.assign_with_prop(state,"bav", self.compileTimeBoundsFailure(cv_typ, con.value)))
             
     # nondeterministic returning function. Treat as a constant
     def rule_Nondet(self, state, fnc, abs_mode, dr_mode, full_statement, **kwargs):      
@@ -1845,7 +2068,8 @@ class AbsDrRules:
         if not self.abs_on and not self.dr_on:
             return self.getNondetvar(fnc) #self.visitor_visit_noinstr(fnc)
         elif abs_mode == "VALUE" or dr_mode == "WSE":
-            return self.getNondetvar(fnc) #self.visitor_visit_noinstr(fnc)
+            nvtyp = self.cast_type(self.supportFile.get_type(fnc))
+            return self.cast(self.getNondetvar(fnc), nvtyp) #self.visitor_visit_noinstr(fnc)
         else:
             typ="int" # TODO something more clever?
             return self.if_abs(lambda:self.comma_expr(
@@ -2111,6 +2335,7 @@ class AbsDrRules:
             return self.store_content(full_statement,ans, assn, abs_mode, dr_mode)
         if op != "=":
             fullOp = lambda: self.visitor_visit(state, unExp, "VALUE", "WSE", **kwargs)+" "+op.replace("=","")+" "+self.visitor_visit(state, assExp, "VALUE", "WSE", **kwargs)
+            fullOpNode = lambda: BinaryOp(op.replace("=",""), unExp, assExp)
         unExprType = self.supportFile.get_type(unExp) #"int" #TODO proper type
         #if unExp.name == "__cs_param_assume_abort_if_not_1_cond": print(assn, abs_mode, dr_mode, self.is_abstractable(unExprType))
         assExpType = self.supportFile.get_type(assExp)
@@ -2129,8 +2354,9 @@ class AbsDrRules:
                         self.cp(state, "bav"),
                         self.if_ua(lambda: "" if isCondVar else self.cp(state, "bap")),
                         self.cp(state, "bav_lhs") if op != "=" else "",
-                        self.__assignment_bounds_failure(state, assExp, unExprType, assExpType, **kwargs) if op == "=" and self.is_abstractable(unExprType) else "",
-                        self.bounds_failure(fullOp(), unExprType) if op != "=" and self.is_abstractable(unExprType) else ""
+                        #self.__assignment_bounds_failure(state, assExp, unExprType, assExpType, **kwargs) if op == "=" and self.is_abstractable(unExprType) else "",
+                        self.__binaryop_checks(state, unExp, assExp, op.replace("=",""), unExprType, **kwargs) if op != "=" and self.is_abstractable(unExprType) else ""
+                        #self.bounds_failure(fullOp(), unExprType) if op != "=" and self.is_abstractable(unExprType) else ""
                     ),
                     lambda state: self.comma_expr(
                         self.assign(state, "bav", "1"),
@@ -2139,8 +2365,8 @@ class AbsDrRules:
                     ), 
                     lambda state: self.comma_expr(
                         self.setsm("&("+self.visitor_visit(state, unExp, "LVALUE", "WSE", **kwargs)+")", self.sm_abs, "0"),
-                        self.visitor_visit(state, unExp, "LVALUE", "WSE", **kwargs)+" = ("+self.assignment_encode(self.visitor_visit(state, assExp, "VALUE", "WSE", **kwargs),assExp, unExprType)+")" if op == "=" else "",
-                        "" if op == "=" else self.visitor_visit(state, unExp, "LVALUE", "WSE", **kwargs)+" = ("+self.encode(fullOp(), unExprType)+")",
+                        self.visitor_visit(state, unExp, "LVALUE", "WSE", **kwargs)+" = ("+self.visitor_visit(state, assExp, "VALUE", "WSE", **kwargs)+")" if op == "=" else "",
+                        "" if op == "=" else self.visitor_visit(state, unExp, "LVALUE", "WSE", **kwargs)+" = ("+(self.visitor_visit(state, fullOpNode(), "VALUE", "WSE", **kwargs))+")",
                         self.void0()
                     ))
             ),
