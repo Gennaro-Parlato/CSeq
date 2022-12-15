@@ -1160,7 +1160,7 @@ class abstr_inliner(core.module.Translator):
             b = True
         return (b or
                 (f in self.Parser.funcName and  # defined functions need to be inlined when called (if at all)
-                 not f.startswith('__CSEQ_atomic') and 
+                 #not f.startswith('__CSEQ_atomic') and 
                  not f == '__CSEQ_assert' and
                  f != '' and
                  f != 'main'))
