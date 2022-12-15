@@ -1529,7 +1529,7 @@ class AbsDrRules:
         #assert(self.underapprox and not  self.dr_on)
         assert(self.underapprox)
         return self.assume_expr(self.and_expr_prop(self.not_cp(state, "bap"), 
-            self.or_expr_prop(self.visitor_visit(state, exp, "GET_VAL", "ACCESS", **kwargs),
+            self.comma_expr(self.visitor_visit(state, exp, "GET_VAL", "ACCESS", **kwargs),
                 self.and_expr_prop(self.not_cp(state, "bav"), 
                     self.visitor_visit(state, exp, "VALUE", "WSE", **kwargs)))))
                     
@@ -2097,10 +2097,10 @@ class AbsDrRules:
         if not self.abs_on and not self.dr_on:
             return self.getNondetvar(fnc) #self.visitor_visit_noinstr(fnc)
         elif abs_mode == "VALUE" or dr_mode == "WSE":
-            nvtyp = self.cast_type(self.supportFile.get_type(fnc))
+            nvtyp = self.cast_type(kwargs['ndtype'])
             return self.cast(self.getNondetvar(fnc), nvtyp) #self.visitor_visit_noinstr(fnc)
         else:
-            typ="int" # TODO something more clever?
+            typ=kwargs['ndtype']
             return self.if_abs(lambda:self.comma_expr(
                 self.assign_var(self.getNondetvar(fnc, typ=typ), self.visitor_visit_noinstr(fnc)), 
                 self.assign_with_prop(state,"bav", self.bounds_failure(self.getNondetvar(fnc), typ))
@@ -2230,6 +2230,8 @@ class AbsDrRules:
             mn = 0
             mx = 2**(self.abstr_bits)-1
             return "0" if mn <= intVal and intVal <= mx else "1"
+        elif value == "NULL":
+            return "0"
         else:
             assert(False)
             

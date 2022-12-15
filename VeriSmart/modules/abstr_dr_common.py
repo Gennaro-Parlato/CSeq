@@ -973,10 +973,30 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
             return self.macro_file_manager.expression(n, self.do_rule('rule_Sizeof', n, **extra_args), passthrough=not self.full_statement, brackets=not self.full_statement)
         elif fref == '__cs_safe_malloc':
             return self.macro_file_manager.expression(n, self.do_rule('rule_Malloc', n, **extra_args), passthrough=not self.full_statement, brackets=not self.full_statement)
-        elif fref == '__CSEQ_nondet_int':
-            return self.macro_file_manager.expression(n, self.do_rule('rule_Nondet', n, **extra_args), passthrough=not self.full_statement, brackets=not self.full_statement)
         elif fref == '__CSEQ_nondet_bool':
             return self.macro_file_manager.expression(n, self.do_rule('rule_NondetBool', n, **extra_args), passthrough=not self.full_statement, brackets=not self.full_statement)
+        elif fref.startswith('__CSEQ_nondet_'):
+            tp = fref[len('__CSEQ_nondet_'):]
+            ndtp = "int"
+            if tp == "int":
+                ndtp = "int"
+            elif tp == "uint":
+                ndtp = "unsigned int"
+            elif tp == "short":
+                ndtp = "short"
+            elif tp == "ushort":
+                ndtp = "unsigned short"
+            elif tp == "char":
+                ndtp = "char"
+            elif tp == "uchar":
+                ndtp = "unsigned char"
+            elif tp == "long":
+                ndtp = "long"
+            elif tp == "ulong":
+                ndtp = "unsigned long"
+            extra_args['ndtype'] = ndtp
+            return self.macro_file_manager.expression(n, self.do_rule('rule_Nondet', n, **extra_args), passthrough=not self.full_statement, brackets=not self.full_statement)
+            extra_args['ndtype'] = None
             
         ## all functions are either instrumentation ones or thread functions. Anyways, don't instrument
         parts = []
