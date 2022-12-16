@@ -334,8 +334,8 @@ class AbsDrRules:
             self.if_abs(lambda: "typedef unsigned __CPROVER_bitvector[1] "+self.unsigned_1+";"),
             self.if_abs(lambda: "typedef unsigned __CPROVER_bitvector["+str(self.abstr_bits)+"] "+self.unsigned_bits+";"),
             self.if_abs(lambda: "typedef __CPROVER_bitvector["+str(self.abstr_bits)+"] "+self.signed_bits+";"),
-            self.if_abs(lambda: "typedef unsigned __CPROVER_bitvector["+str(self.abstr_bits-1)+"] "+self.unsigned_bits_1+";"),
-            self.if_abs(lambda: "typedef __CPROVER_bitvector["+str(self.abstr_bits-1)+"] "+self.signed_bits_1+";"),
+            self.if_abs(lambda: "typedef unsigned __CPROVER_bitvector["+str(self.abstr_bits+1)+"] "+self.unsigned_bits_1+";"),
+            self.if_abs(lambda: "typedef __CPROVER_bitvector["+str(self.abstr_bits+1)+"] "+self.signed_bits_1+";"),
             self.if_abs(lambda: "typedef unsigned __CPROVER_bitvector["+str(self.abstr_bits*2)+"] "+self.unsigned_bits_2x+";"),
             self.if_abs(lambda: "typedef __CPROVER_bitvector["+str(self.abstr_bits*2)+"] "+self.signed_bits_2x+";"),
             self.if_abs(lambda: self.signed_bits_1+" "+self.get_intb1_var()+" = 0;"),
@@ -723,6 +723,9 @@ class AbsDrRules:
         
     def fail_expr(self):
         return self.assert_expr("0")
+        
+    def cast_sign_check(self, v):
+        return self.cast("("+v + " >> " + str(self.abstr_bits-1)+") & 1", self.unsigned_1)
         
     def assertDisabledIIFModesAreNone(self, abs_mode, dr_mode, **kwargs):
         impl = lambda a,b : not a or b
@@ -1832,13 +1835,17 @@ class AbsDrRules:
                 return self.comma_expr(self.assign_var(value_var, "("+self.visitor_visit(state, exp1, "VALUE", "WSE", **kwargs)+" "+op+" "+self.visitor_visit(state, exp2, "VALUE", "WSE", **kwargs)+")"), "0")
             else:
                 typ = self.signed_bits if e1_op_e2_type in self.abstrTypesSigned else self.unsigned_bits
-                #a = self.cast(self.visitor_visit(state, exp1, "VALUE", "WSE", **kwargs), typ)
+                #a = self.cast(self.visitor_visit(state, exp1, "VALUE", "WSE", **kwargs), typ) #self.cast_sign_check(exp)
                 #b = self.cast(self.visitor_visit(state, exp2, "VALUE", "WSE", **kwargs), typ)
+                not_same_signedness = (1 if e1_type in self.abstrTypesSigned else 0) + (1 if e2_type in self.abstrTypesSigned else 0) == 1
+                compare_op = op in ("<","<=",">",">=","!=","==")
                 a = self.visitor_visit(state, exp1, "VALUE", "WSE", **kwargs)
                 b = self.visitor_visit(state, exp2, "VALUE", "WSE", **kwargs)
                 value_var = self.get_value_var_node(node, typ)
                 vl_tot = self.cast(a+" "+op+" "+b, typ)
-                return self.comma_expr(self.assign_var(value_var, vl_tot), "0")
+                return self.comma_expr(
+                    self.assign_var(value_var, vl_tot), 
+                    self.or_expr(self.cast_sign_check(a), self.cast_sign_check(b)) if compare_op and not_same_signedness else "0")
     
     def __binaryop_bav_and_val(self, state, exp1, exp2, op, fullOp, **kwargs):
         # returns bav = bav1 || bav || (value_var = exp1 op exp2, exp1 op exp2 fails)
