@@ -486,13 +486,14 @@ class AbsDrRules:
         
     # join parts to form a compound expression
     def compound_expr(self, jn, *items):
-        clean_items = [x for x in items if x != "" and x is not None]
+        clean_items = [x.strip() for x in items if x is not None and x.strip() != ""]
         joined = jn.join(clean_items)
         return joined, len(clean_items)
         
     # join parts to form a compound expression with lambda functions
     def compound_expr_lambda(self, jn, *items):
-        parts = [x() for x in items]
+        allParts = [x() for x in items]
+        parts = [x.strip() for x in allParts if x is not None and x.strip() != ""]
         return self.compound_expr(jn, *parts)
             
     # join parts to form a comma expression
@@ -710,7 +711,7 @@ class AbsDrRules:
                 expr_then = "((void)0)"
             if expr_els in ("()",""):
                 expr_els = "((void)0)"
-            ans = "(" + cond + "?" + expr_then + ":" + expr_els + ")"
+            ans = "((" + cond + ")?(" + expr_then + "):(" + expr_els + "))"
             state.doMerge(stateThen, stateEls)
             return ans
         
@@ -907,7 +908,7 @@ class AbsDrRules:
                 )
             return self.store_content(full_statement,ans, preop, abs_mode, dr_mode)
         elif abs_mode in ("VALUE", None) and dr_mode in ("WSE", None) and (abs_mode is not None or dr_mode is not None):
-            if self.abs_on:
+            if self.abs_on and self.is_abstractable(self.supportFile.get_type(unExprType)):
                 ans = self.get_value_var_node(preop, None)
             else:
                 intop = op[-1]
@@ -1568,12 +1569,11 @@ class AbsDrRules:
                 else:
                     trans = self.__assert_underapprox(state, exp, **kwargs)
             else:
-                trans = fncName+"("+ \
-                    self.comma_expr(
+                ce = self.comma_expr(
                         self.if_abs(lambda: self.visitor_visit(state, exp, "GET_VAL", "ACCESS", **kwargs)),
                         self.__assert_assume_inner(state, exp, **kwargs)
-                    ) \
-                +")"
+                    )
+                trans = fncName+"("+ ce +")"
             return self.store_content(full_statement, trans, fullExpr, abs_mode, dr_mode)
         else:
             assert(False)
@@ -1656,7 +1656,9 @@ class AbsDrRules:
         #value_var = self.get_value_var_node(node, e1_op_e2_type)
         
         if op in ("+", "-"):
-            if (not self.is_abstractable(e1_op_e2_type)) or self.abstr_bits >= 8 * self.abstrTypesSizeof[e1_op_e2_type]:
+            if not self.is_abstractable(e1_op_e2_type):
+                return "0"
+            elif self.abstr_bits >= 8 * self.abstrTypesSizeof[e1_op_e2_type]:
                 value_var = self.get_value_var_node(node, e1_op_e2_type)
                 return self.comma_expr(self.assign_var(value_var, "("+self.visitor_visit(state, exp1, "VALUE", "WSE", **kwargs)+" "+op+" "+self.visitor_visit(state, exp2, "VALUE", "WSE", **kwargs)+")"), "0")
             elif type(exp1) is c_ast.Constant and exp1.value == "1":
@@ -1704,7 +1706,9 @@ class AbsDrRules:
                     self.cast("(("+sm+" >> ("+str(self.abstr_bits)+")) ^ ("+sm+" >> ("+str(self.abstr_bits-1)+")))", self.unsigned_1)
                     )
         elif op == "/":
-            if (not self.is_abstractable(e1_op_e2_type)) or self.abstr_bits >= 8 * self.abstrTypesSizeof[e1_op_e2_type]:
+            if not self.is_abstractable(e1_op_e2_type):
+                return "0"
+            if self.abstr_bits >= 8 * self.abstrTypesSizeof[e1_op_e2_type]:
                 value_var = self.get_value_var_node(node, e1_op_e2_type)
                 return self.comma_expr(self.assign_var(value_var, "("+self.visitor_visit(state, exp1, "VALUE", "WSE", **kwargs)+" "+op+" "+self.visitor_visit(state, exp2, "VALUE", "WSE", **kwargs)+")"), "0")
             elif e1_op_e2_type not in self.abstrTypesSigned:
@@ -1737,6 +1741,8 @@ class AbsDrRules:
             else:
                 return self.comma_expr(assign_vl_tot, self.cast(runtime_check_2(), self.unsigned_1))
         elif op == "*":
+            if not self.is_abstractable(e1_op_e2_type):
+                return "0"
             if (not self.is_abstractable(e1_op_e2_type)) or self.abstr_bits >= 8 * self.abstrTypesSizeof[e1_op_e2_type]:
                 value_var = self.get_value_var_node(node, e1_op_e2_type)
                 return self.comma_expr(self.assign_var(value_var, "("+self.visitor_visit(state, exp1, "VALUE", "WSE", **kwargs)+" "+op+" "+self.visitor_visit(state, exp2, "VALUE", "WSE", **kwargs)+")"), "0")
@@ -1837,6 +1843,7 @@ class AbsDrRules:
                 typ = self.signed_bits if e1_op_e2_type in self.abstrTypesSigned else self.unsigned_bits
                 #a = self.cast(self.visitor_visit(state, exp1, "VALUE", "WSE", **kwargs), typ) #self.cast_sign_check(exp)
                 #b = self.cast(self.visitor_visit(state, exp2, "VALUE", "WSE", **kwargs), typ)
+                both_abstractable = self.is_abstractable(e1_type) and self.is_abstractable(e2_type)
                 not_same_signedness = (1 if e1_type in self.abstrTypesSigned else 0) + (1 if e2_type in self.abstrTypesSigned else 0) == 1
                 compare_op = op in ("<","<=",">",">=","!=","==")
                 a = self.visitor_visit(state, exp1, "VALUE", "WSE", **kwargs)
@@ -1845,7 +1852,7 @@ class AbsDrRules:
                 vl_tot = self.cast(a+" "+op+" "+b, typ)
                 return self.comma_expr(
                     self.assign_var(value_var, vl_tot), 
-                    self.or_expr(self.cast_sign_check(a), self.cast_sign_check(b)) if compare_op and not_same_signedness else "0")
+                    self.or_expr(self.cast_sign_check(a), self.cast_sign_check(b)) if both_abstractable and compare_op and not_same_signedness else "0")
     
     def __binaryop_bav_and_val(self, state, exp1, exp2, op, fullOp, **kwargs):
         # returns bav = bav1 || bav || (value_var = exp1 op exp2, exp1 op exp2 fails)
@@ -2006,7 +2013,7 @@ class AbsDrRules:
         assert(op in ('|','^','&','==','!=','<','<=','>','>=','<<','>>','+','-','*','/','%'))
         
         if abs_mode in ("VALUE", None) and dr_mode in ("WSE",None):
-            if self.abs_on:
+            if self.abs_on and self.is_abstractable(self.supportFile.get_type(fullOp)):
                 ans = self.get_value_var_node(fullOp, None)
             else:
                 ans = "(("+self.visitor_visit(state, exp1, "VALUE", "WSE", **kwargs)+") "+op+" ("+ \
@@ -2222,10 +2229,15 @@ class AbsDrRules:
                 return ord(vesc)
             else:
                 return ord(value[1])
+        elif value[-1] == "u":
+            return eval(value[:-1])
         else:
             return eval(value)
             
+            
     def compileTimeBoundsFailure(self, typ, value):
+        if value[0] == "E":
+            return self.bounds_failure(value, typ)
         if typ in self.abstrTypesSigned:
             intVal = self.evalValue(value)
             mn = -2**(self.abstr_bits-1)
@@ -2244,6 +2256,8 @@ class AbsDrRules:
             mx = 2**(self.abstr_bits)-1
             return "0" if mn <= intVal and intVal <= mx else "1"
         elif value == "NULL":
+            return "0"
+        elif "." in value:
             return "0"
         else:
             assert(False)

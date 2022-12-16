@@ -122,7 +122,7 @@ class MacroFileManager:
             anySecondArg = ([t[1] for t in transs if t[1] is not None]+[None])[0]
             tp = str(type(n)).split(".")[-1][:-2]
             if all(transs[i] == transs[0] for i in range(1, len(transs))):
-                return [transs[0].replace("___fakeifvar___ = ",""), anySecondArg]
+                return [transs[0][0].replace("___fakeifvar___ = ",""), anySecondArg]
             exprsJoin = "expr£"+";".join(transs)+" @@ brackets£"+str(brackets)
             if exprsJoin in self.exprsToMacro:
                 self.macroToNodes[self.exprsToMacro[exprsJoin]].add(self.dbg_visitor.visit(n))
@@ -963,7 +963,7 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
             extra_args['dr_vp_state'] = self.abs_dr_vpstate
             extra_args['atomic'] = self._lazyseqnewschedule__atomic or self.atomicLvl > 0
             
-        if fref in ('__CSEQ_assert', '__CSEQ_assume', 'assert', 'assume_abort_if_not'):
+        if fref in ('__CSEQ_assert', '__CSEQ_assume', "__CPROVER_assume", 'assert', 'assume_abort_if_not'):
             if fref in ("__CSEQ_assume",):
                 n.name.name = "__CPROVER_assume"
             if fref in ("__CSEQ_assert",):
