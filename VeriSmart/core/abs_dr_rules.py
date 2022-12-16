@@ -832,7 +832,7 @@ class AbsDrRules:
                         self.or_expr_prop(
                             self.cp(state, "bav"),
                             self.if_ua(lambda: self.cp(state, "bap")),
-                            self.__binaryop_checks_and_val(state, assignee, unExp, c_ast.Constant("int","1"), intop, unExprType, **kwargs) #TODO precalcola VALUE comunque, mentre nella vecchia versione lo fa nella ternaria solo se bav = 0
+                            self.__binaryop_checks_and_val(state, assignee, unExp, c_ast.Constant("int","1"), intop, unExprType, unExprType, unExprType, **kwargs) #TODO precalcola VALUE comunque, mentre nella vecchia versione lo fa nella ternaria solo se bav = 0
                             #self.__assignment_bounds_failure(state, assignee, unExprType, unExprType, **kwargs)
                         ),
                         lambda state: self.comma_expr(
@@ -886,7 +886,7 @@ class AbsDrRules:
                         self.or_expr_prop(
                             self.cp(state, "bav"),
                             self.if_ua(lambda: self.cp(state, "bap")),
-                            self.__binaryop_checks_and_val(state, assignee, unExp, c_ast.Constant("int","1"), intop, unExprType, **kwargs)
+                            self.__binaryop_checks_and_val(state, assignee, unExp, c_ast.Constant("int","1"), intop, unExprType, unExprType, unExprType, **kwargs)
                             #self.__assignment_bounds_failure(state, assignee, unExprType, unExprType, **kwargs)
                         ),
                         lambda state: self.comma_expr(
@@ -1648,9 +1648,10 @@ class AbsDrRules:
             return "()" #str(self.abstr_bits)
         return ""
 
-    def __binaryop_checks_and_val(self, state, node, exp1, exp2, op, e1_op_e2_type, **kwargs):
+    def __binaryop_checks_and_val(self, state, node, exp1, exp2, op, e1_op_e2_type, e1_type, e2_type, **kwargs):
         # return (assign to value_var the value, 0 iif you can do the operation) assuming that exp1 and exp2 are ok (i.e., their bav is 0)
         #value_var = self.get_value_var_node(node, e1_op_e2_type)
+        
         if op in ("+", "-"):
             if (not self.is_abstractable(e1_op_e2_type)) or self.abstr_bits >= 8 * self.abstrTypesSizeof[e1_op_e2_type]:
                 value_var = self.get_value_var_node(node, e1_op_e2_type)
@@ -1697,7 +1698,8 @@ class AbsDrRules:
                 return self.comma_expr(
                     self.assign_var(sm, vl_tot_1),
                     self.assign_var(value_var, self.cast(sm, typ)),
-                    self.cast("(("+sm+" >> ("+str(self.abstr_bits)+")) ^ ("+sm+" >> ("+str(self.abstr_bits-1)+")))", self.unsigned_1))
+                    self.cast("(("+sm+" >> ("+str(self.abstr_bits)+")) ^ ("+sm+" >> ("+str(self.abstr_bits-1)+")))", self.unsigned_1)
+                    )
         elif op == "/":
             if (not self.is_abstractable(e1_op_e2_type)) or self.abstr_bits >= 8 * self.abstrTypesSizeof[e1_op_e2_type]:
                 value_var = self.get_value_var_node(node, e1_op_e2_type)
@@ -1707,8 +1709,8 @@ class AbsDrRules:
                 vl_tot = self.cast(self.visitor_visit(state, exp1, "VALUE", "WSE", **kwargs)+" "+op+" "+self.visitor_visit(state, exp2, "VALUE", "WSE", **kwargs), self.unsigned_bits)
                 return self.comma_expr(self.assign_var(value_var, vl_tot), "0")
             value_var = self.get_value_var_node(node, self.signed_bits)
-            vl_e1 = self.cast(self.visitor_visit(state, exp1, "VALUE", "WSE", **kwargs), self.signed_bits)
-            vl_e2 = self.cast(self.visitor_visit(state, exp2, "VALUE", "WSE", **kwargs), self.signed_bits)
+            vl_e1 = self.visitor_visit(state, exp1, "VALUE", "WSE", **kwargs)
+            vl_e2 = self.visitor_visit(state, exp2, "VALUE", "WSE", **kwargs)
             vl_tot = self.cast(vl_e1+" "+op+" "+vl_e2, self.signed_bits)
             minval_1 = str(-2**(self.abstr_bits-1))
             runtime_check_1 = lambda: "("+vl_e1+" == " + self.cast(minval_1, self.signed_bits)+")"
@@ -1830,8 +1832,10 @@ class AbsDrRules:
                 return self.comma_expr(self.assign_var(value_var, "("+self.visitor_visit(state, exp1, "VALUE", "WSE", **kwargs)+" "+op+" "+self.visitor_visit(state, exp2, "VALUE", "WSE", **kwargs)+")"), "0")
             else:
                 typ = self.signed_bits if e1_op_e2_type in self.abstrTypesSigned else self.unsigned_bits
-                a = self.cast(self.visitor_visit(state, exp1, "VALUE", "WSE", **kwargs), typ)
-                b = self.cast(self.visitor_visit(state, exp2, "VALUE", "WSE", **kwargs), typ)
+                #a = self.cast(self.visitor_visit(state, exp1, "VALUE", "WSE", **kwargs), typ)
+                #b = self.cast(self.visitor_visit(state, exp2, "VALUE", "WSE", **kwargs), typ)
+                a = self.visitor_visit(state, exp1, "VALUE", "WSE", **kwargs)
+                b = self.visitor_visit(state, exp2, "VALUE", "WSE", **kwargs)
                 value_var = self.get_value_var_node(node, typ)
                 vl_tot = self.cast(a+" "+op+" "+b, typ)
                 return self.comma_expr(self.assign_var(value_var, vl_tot), "0")
@@ -1842,7 +1846,9 @@ class AbsDrRules:
         # using constant propagation     
         assert(self.abs_on)
         bav1 = self.getBav1(fullOp)
-        e1_op_e2_type = self.supportFile.get_type(fullOp) #"int" # TODO
+        e1_op_e2_type = self.supportFile.get_type(fullOp) 
+        e1_type = self.supportFile.get_type(fullOp.left) 
+        e2_type = self.supportFile.get_type(fullOp.right) 
         cp = (state.cp_bav, state.cp_bav1[bav1]) #(bav, bav_1) as const propagation
         if cp[0] == 1: #(True, x)
             value_var = self.get_value_var_node_fake(fullOp)
@@ -1852,7 +1858,7 @@ class AbsDrRules:
             return self.assign_with_prop(state, "bav", "1")
         #e1_op_e2 = lambda: "("+self.visitor_visit(state, exp1, "VALUE", "WSE", **kwargs)+" "+op+" "+self.visitor_visit(state, exp2, "VALUE", "WSE", **kwargs)+")"
         isAbs = self.is_abstractable(e1_op_e2_type)
-        chk = self.__binaryop_checks_and_val(state, fullOp, exp1, exp2, op, e1_op_e2_type, **kwargs)
+        chk = self.__binaryop_checks_and_val(state, fullOp, exp1, exp2, op, e1_op_e2_type, e1_type, e2_type, **kwargs)
         if cp[0] == 0 and cp[1] == 0: #(False, False)
             return self.assign(state, "bav", chk)
         if cp[0] == 0: #(False, ?)
@@ -2386,7 +2392,7 @@ class AbsDrRules:
                         self.if_ua(lambda: "" if isCondVar else self.cp(state, "bap")),
                         self.cp(state, "bav_lhs") if op != "=" else "",
                         #self.__assignment_bounds_failure(state, assExp, unExprType, assExpType, **kwargs) if op == "=" and self.is_abstractable(unExprType) else "",
-                        self.__binaryop_checks_and_val(state, fullOpNode, unExp, assExp, op.replace("=",""), unExprType, **kwargs) if op != "=" and self.is_abstractable(unExprType) else ""
+                        self.__binaryop_checks_and_val(state, fullOpNode, unExp, assExp, op.replace("=",""), unExprType,unExprType,assExpType, **kwargs) if op != "=" and self.is_abstractable(unExprType) else ""
                         #self.bounds_failure(fullOp(), unExprType) if op != "=" and self.is_abstractable(unExprType) else ""
                     ),
                     lambda state: self.comma_expr(

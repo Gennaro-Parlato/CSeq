@@ -141,7 +141,6 @@ enum t_typename {
         
         for line in result:
             lineparts = line.strip().split(",")
-            print(lineparts)
             if len(lineparts) > 1:
                 if lineparts[0] == "ADDRBITS":
                     self.addr_bits = int(lineparts[1].strip())
@@ -243,6 +242,8 @@ enum t_typename {
     def visit_BinaryOp(self, n):
         ans = []
         ans += self.bookNodeType(n)
+        ans += self.bookNodeType(n.left)
+        ans += self.bookNodeType(n.right)
         with self.set_can_value(True):
             ans += self.visit(n.left)
             ans += self.visit(n.right)
