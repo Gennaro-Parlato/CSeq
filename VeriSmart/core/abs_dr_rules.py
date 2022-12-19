@@ -845,7 +845,7 @@ class AbsDrRules:
                             self.void0()
                         ), 
                         lambda state: self.comma_expr(
-                            self.visitor_visit(state, unExp, "LVALUE", "WSE", **kwargs)+" = "+self.visitor_visit(state, assignee, "VALUE", "WSE", **kwargs), #fullOp(),
+                            self.visitor_visit(state, unExp, "LVALUE", "WSE", **kwargs)+" = "+self.visitor_visit(state, assignee, "VALUE", "WSE", **kwargs)+self.and_mask_type(unExprType), #fullOp(),
                             self.void0()
                         )) if self.is_abstractable(unExprType) else self.comma_expr(intop+intop+self.visitor_visit(state, unExp, "LVALUE", "WSE", **kwargs))
                 ),
@@ -900,7 +900,7 @@ class AbsDrRules:
                         ), 
                         lambda state: self.comma_expr(
                             self.assign_var(value_var, self.cast(self.visitor_visit(state, unExp, "VALUE", "WSE", **kwargs), self.cast_type(unExprType))),
-                            self.visitor_visit(state, unExp, "LVALUE", "WSE", **kwargs)+" = "+self.visitor_visit(state, assignee, "VALUE", "WSE", **kwargs), #+fullOp(),
+                            self.visitor_visit(state, unExp, "LVALUE", "WSE", **kwargs)+" = "+self.visitor_visit(state, assignee, "VALUE", "WSE", **kwargs)+self.and_mask_type(unExprType), #+fullOp(),
                             self.void0()
                         )) if self.is_abstractable(unExprType) else self.comma_expr(self.visitor_visit(state, unExp, "LVALUE", "WSE", **kwargs)+intop+intop)
                 ),
@@ -2423,8 +2423,8 @@ class AbsDrRules:
                     ), 
                     lambda state: self.comma_expr(
                         self.setsm("&("+self.visitor_visit(state, unExp, "LVALUE", "WSE", **kwargs)+")", self.sm_abs, "0"),
-                        self.visitor_visit(state, unExp, "LVALUE", "WSE", **kwargs)+" = ("+self.visitor_visit(state, assExp, "VALUE", "WSE", **kwargs)+")" if op == "=" else "",
-                        "" if op == "=" else self.visitor_visit(state, unExp, "LVALUE", "WSE", **kwargs)+" = ("+(self.visitor_visit(state, fullOpNode, "VALUE", "WSE", **kwargs))+")",
+                        self.visitor_visit(state, unExp, "LVALUE", "WSE", **kwargs)+" = ("+self.visitor_visit(state, assExp, "VALUE", "WSE", **kwargs)+")"+self.and_mask_type(unExprType) if op == "=" else "",
+                        "" if op == "=" else self.visitor_visit(state, unExp, "LVALUE", "WSE", **kwargs)+" = ("+(self.visitor_visit(state, fullOpNode, "VALUE", "WSE", **kwargs))+")"+self.and_mask_type(unExprType),
                         self.void0()
                     ))
             ),
@@ -2433,6 +2433,12 @@ class AbsDrRules:
         )
         ans2= self.store_content(full_statement, ans, assn, abs_mode, dr_mode)
         return ans2
+        
+    def and_mask_type(self, typ):
+        if self.is_abstractable(typ) and self.abstr_bits < 8 * self.abstrTypesSizeof[typ]:
+            return "& "+str(2**self.abstr_bits-1)
+        else:
+            return ""
         
     def store_DeclConst(self, state, n, **kwargs):
         if self.abs_on:
