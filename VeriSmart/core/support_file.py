@@ -416,6 +416,7 @@ enum t_typename {
         ans = []
         if self.can_value:
             ans += self.bookNodeType(n)
+            ans += self.visit(n.to_type)
         ans += self.visit(n.expr)
         return ans
 
