@@ -80,7 +80,7 @@ class MacroFileManager:
         return "\n".join(["typedef char "+x+";" for x in ["FAKETYPEDEFSIN", self.adrs[0].unsigned_bits, 
             self.adrs[0].signed_bits, self.adrs[0].unsigned_bits_1, self.adrs[0].signed_bits_1,
             self.adrs[0].unsigned_bits_2x, self.adrs[0].signed_bits_2x,self.adrs[0].unsigned_1]+
-            [k for k in self.adrs[0].unsigned_mul.values()]+[k for k in self.adrs[0].unsigned_mul_1.values()]+["FAKETYPEDEFSOUT"]])
+            [k for k in self.adrs[0].unsigned_mul.values()]+self.adrs[0].fake_abstr_types()+[k for k in self.adrs[0].unsigned_mul_1.values()]+["FAKETYPEDEFSOUT"]])
     
     def expression(self, n, transs, passthrough, typlbl=None, with_semic=False, brackets=True):
         if passthrough:
@@ -1098,7 +1098,7 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
                 with self.no_any_instrument():
                     with BakAndRestore(self, 'full_statement', False):
                         #print("NOINSTR4", n)
-                        ans = super().visit_Decl(n)
+                        ans = self.LZvisit_Decl(n)
                     
             elif type_of_n == 'Struct':
                 ans = self.visit_Struct(n.type)
@@ -1107,7 +1107,7 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
                 with self.no_any_instrument():
                     with BakAndRestore(self, 'full_statement', False):
                         #print("NOINSTR4", n)
-                        ans = super().visit_Decl(n)
+                        ans = self.LZvisit_Decl(n)
                 
             elif type_of_n == 'TypeDecl': # Variable/Constant
                 if hasattr(n, 'quals') and len(getattr(n, 'quals')) >= 1 and getattr(n, 'quals')[0] == 'const':
@@ -1117,7 +1117,7 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
                     with self.no_any_instrument():
                         with BakAndRestore(self, 'full_statement', False):
                             #print("NOINSTR5", n)
-                            ans = super().visit_Decl(n)
+                            ans = self.LZvisit_Decl(n)
                         return ans #do not do anything else (they are ready now). This to avoid setting global consts in main
                 else:
                     # Antonio's comment: struct when no typedef is specified
@@ -1143,7 +1143,7 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
                     else:
                         assert(False, "This type condition is not expected in a TypeDecl: "+str(n)) #TODO it might be possible
                     with BakAndRestore(n,"init", None):
-                        ans = super().visit_Decl(n)
+                        ans = self.LZvisit_Decl(n)
             elif type_of_n in ('PtrDecl', 'ArrayDecl') :
                 type_st = getType(n.type.type.type) if n.type.type.type else None
                 #print(n, getType(n.type), getType(n.type.type), getType(n.type.type.type), getType(n.type.type.type.type))
@@ -1173,7 +1173,7 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
                     with self.no_any_instrument():     
                         with BakAndRestore(self, 'full_statement', False):   
                             #print("NOINSTR6", n)
-                            return super().visit_Decl(n)
+                            return self.LZvisit_Decl(n)
                     #assert(False, "This type condition is not expected: "+str(n))
                 
                 if type_of_n == 'ArrayDecl' and type_st == 'Struct' and n.name != 'main' and n.type != 'FuncDecl':
@@ -1192,14 +1192,14 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
                     with self.no_any_instrument(): 
                         with BakAndRestore(self, 'full_statement', False):       
                             #print("NOINSTR6", n)
-                            ans = super().visit_Decl(n)
+                            ans = self.LZvisit_Decl(n)
                 else:
                     with self.no_any_instrument(): 
                         with BakAndRestore(self, 'full_statement', False):  
                             #print("NOINSTR7", n)
                             n_copy = copy.copy(n)
                             n_copy.init = None
-                            ans = super().visit_Decl(n_copy)
+                            ans = self.LZvisit_Decl(n_copy)
             else:
                 assert(False, "Unknown declaration type: "+type_of_n)
             
@@ -1244,6 +1244,43 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
                     ans = ans + init
                     
             return ans
+            
+    def LZvisit_Decl(self,n,no_type=False):
+        print("LZZZ", n)
+        # no_type is used when a Decl is part of a DeclList, where the type is
+        # explicitly only for the first declaration in a list.
+        #
+        s = n.name if no_type else self._generate_decl(n)
+        
+        print("LZ2", s)
+
+        if 'scalar' in self._lazyseqnewschedule__preanalysis and n.name in self._lazyseqnewschedule__preanalysis['scalar']:
+            self._bitwidth[self._lazyseqnewschedule__currentThread, n.name] = self._lazyseqnewschedule__preanalysis['scalar'][n.name]
+
+        if 'pointer' in self._lazyseqnewschedule__preanalysis and n.name in self._lazyseqnewschedule__preanalysis['pointer']:
+            self._bitwidth[self._lazyseqnewschedule__currentThread, n.name] = self._lazyseqnewschedule__preanalysis['pointer'][n.name]
+
+        if 'array' in self._lazyseqnewschedule__preanalysis and n.name in self._lazyseqnewschedule__preanalysis['array']:
+            self._bitwidth[self._lazyseqnewschedule__currentThread, n.name] = self._lazyseqnewschedule__preanalysis['array'][n.name]
+
+        if (self._lazyseqnewschedule__visiting_struct and
+                'struct' in self._lazyseqnewschedule__preanalysis and
+                self._lazyseqnewschedule__struct_stack[-1] in self._lazyseqnewschedule__preanalysis['struct'] and
+                n.name in self._lazyseqnewschedule__preanalysis['struct'][self._lazyseqnewschedule__struct_stack[-1]]
+                ):
+            # TODO: remember that for a field in struct, only multiple of 8bits is acceptable
+            numbit = self._lazyseqnewschedule__preanalysis['struct'][self._lazyseqnewschedule__struct_stack[-1]][n.name]
+            self._bitwidth[self._lazyseqnewschedule__struct_stack[-1], n.name] = numbit
+
+        if n.bitsize: s += ' : ' + self.visit(n.bitsize)
+        if n.init:
+            s += ' = ' + self._visit_expr(n.init)
+        return s
+            
+    def visit_IdentifierType(self, n):
+        typ_txt = " ".join(n.names)
+        print("typ", typ_txt)
+        return self.macro_file_manager.expression(n, self.do_rule('rule_Type', n, typ_txt=typ_txt), passthrough=not self.full_statement, brackets=False)
          
     # TODO integrate into lazy...    #self.macro_file_manager.expression(n, [], passthrough=not self.full_statement)
     def visit_If(self, n):
