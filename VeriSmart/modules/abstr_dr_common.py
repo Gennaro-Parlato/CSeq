@@ -65,7 +65,9 @@ class MacroFileManager:
         self.do_inline = do_inline
         self.dbg_visitor = CGenerator() if debug else None
         self.macro_with_brackets = dict()
+        self.macro_name_with_brackets = dict()
         self.common_defines = "#ifndef NULL\n#define NULL 0\n#endif\n#ifndef bool\n#define bool _Bool\n#endif\n#ifndef __CSEQ_nondet_bool\n#define __CSEQ_nondet_bool nondet_bool\n#endif\n#ifndef __CSEQ_nondet_int\n#define __CSEQ_nondet_int nondet_int\n#endif\n"
+        self.macro_name_types = [] # those macro represent types: declare them with typedef so as cparser is happy
         
     def auxvars(self, transs):
         if self.do_inline:
@@ -73,6 +75,7 @@ class MacroFileManager:
             return "int main(void); "+transs[0].strip().replace("\n"," \\\n")
         else:
             self.macro_with_brackets["AUXVARS"] = False
+            self.macro_name_with_brackets["AUXVARS"] = True
             self.macroToExprs["AUXVARS"] = ["main(void); "+t.strip().replace("\n"," \\\n") for t in transs]
             return "int AUXVARS();"
 
@@ -80,9 +83,9 @@ class MacroFileManager:
         return "\n".join(["typedef char "+x+";" for x in ["FAKETYPEDEFSIN", self.adrs[0].unsigned_bits, 
             self.adrs[0].signed_bits, self.adrs[0].unsigned_bits_1, self.adrs[0].signed_bits_1,
             self.adrs[0].unsigned_bits_2x, self.adrs[0].signed_bits_2x,self.adrs[0].unsigned_1]+
-            [k for k in self.adrs[0].unsigned_mul.values()]+self.adrs[0].fake_abstr_types()+[k for k in self.adrs[0].unsigned_mul_1.values()]+["FAKETYPEDEFSOUT"]])
+            [k for k in self.adrs[0].unsigned_mul.values()]+self.adrs[0].fake_abstr_types()+[k for k in self.adrs[0].unsigned_mul_1.values()]+self.macro_name_types+["FAKETYPEDEFSOUT"]])
     
-    def expression(self, n, transs, passthrough, typlbl=None, with_semic=False, brackets=True):
+    def expression(self, n, transs, passthrough, typlbl=None, with_semic=False, brackets=True, macro_name_brackets=True):
         if passthrough:
             assert(len(transs)==1)
             return transs[0]
@@ -94,21 +97,30 @@ class MacroFileManager:
             tp = typlbl if typlbl is not None else str(type(n)).split(".")[-1][:-2]
             if all(transs[i] == transs[0] for i in range(1, len(transs))):
                 return transs[0].replace("___fakeifvar___ = ","");
-            exprsJoin = "expr£"+";".join(transs)+" @@ brackets£"+str(brackets)
+            exprsJoin = "expr£"+";".join(transs)+" @@ brackets£"+str(brackets)+" @@ macro_name_brackets£"+str(macro_name_brackets)
             if exprsJoin in self.exprsToMacro:
                 self.macroToNodes[self.exprsToMacro[exprsJoin]].add(self.dbg_visitor.visit(n))
-                return self.exprsToMacro[exprsJoin]+("(REMOVESEMICOLON());" if with_semic else "()")
+                if macro_name_brackets:
+                    return self.exprsToMacro[exprsJoin]+("(REMOVESEMICOLON());" if with_semic else "()")
+                else:
+                    return self.exprsToMacro[exprsJoin]+("REMOVESEMICOLON();" if with_semic else "")
             else:
                 macro_name = "EXPR_"+tp+"_"+str(self.progr)
+                if type(n) is c_ast.IdentifierType:
+                    self.macro_name_types.append(macro_name)
                 self.progr += 1
                 self.listOfMacro.append(macro_name)
                 self.macroToExprs[macro_name] = transs[:]
                 self.macroToNodes[macro_name] = {self.dbg_visitor.visit(n)}
                 self.exprsToMacro[exprsJoin] = macro_name
-                self.macro_with_brackets[macro_name] = brackets
-                return macro_name+("(REMOVESEMICOLON());" if with_semic else "()")
+                self.macro_with_brackets[macro_name] = brackets # brackets around expression
+                self.macro_name_with_brackets[macro_name] = macro_name_brackets # brackets after name of macro
+                if macro_name_brackets:
+                    return macro_name+("(REMOVESEMICOLON());" if with_semic else "()")
+                else:
+                    return macro_name+("REMOVESEMICOLON();" if with_semic else "")
 
-    def expression_comma(self, n, transs, passthrough, with_semic=False, brackets=True):
+    def expression_comma(self, n, transs, passthrough, with_semic=False, brackets=True, macro_name_brackets=True):
         if passthrough:
             assert(len(transs)==1)
             return transs[0]
@@ -123,10 +135,13 @@ class MacroFileManager:
             tp = str(type(n)).split(".")[-1][:-2]
             if all(transs[i] == transs[0] for i in range(1, len(transs))):
                 return [transs[0][0].replace("___fakeifvar___ = ",""), anySecondArg]
-            exprsJoin = "expr£"+";".join(transs)+" @@ brackets£"+str(brackets)
+            exprsJoin = "expr£"+";".join(transs)+" @@ brackets£"+str(brackets)+" @@ macro_name_brackets£"+str(macro_name_brackets)
             if exprsJoin in self.exprsToMacro:
                 self.macroToNodes[self.exprsToMacro[exprsJoin]].add(self.dbg_visitor.visit(n))
-                return [self.exprsToMacro[exprsJoin]+("(REMOVESEMICOLON());" if with_semic else "()"), anySecondArg]
+                if macro_name_brackets:
+                    return [self.exprsToMacro[exprsJoin]+("(REMOVESEMICOLON());" if with_semic else "()"), anySecondArg]
+                else:
+                    return [self.exprsToMacro[exprsJoin]+("REMOVESEMICOLON();" if with_semic else ""), anySecondArg]
             else:
                 macro_name = "EXPR_"+tp+"_"+str(self.progr)
                 self.progr += 1
@@ -134,8 +149,12 @@ class MacroFileManager:
                 self.macroToExprs[macro_name] = firstArgs
                 self.macroToNodes[macro_name] = {self.dbg_visitor.visit(n)}
                 self.exprsToMacro[exprsJoin] = macro_name
-                self.macro_with_brackets[macro_name] = brackets
-                return [macro_name+("(REMOVESEMICOLON());" if with_semic else "()"), anySecondArg]
+                self.macro_with_brackets[macro_name] = brackets # brackets around expression
+                self.macro_name_with_brackets[macro_name] = macro_name_brackets # brackets after name of macro
+                if macro_name_brackets:
+                    return [macro_name+("(REMOVESEMICOLON());" if with_semic else "()"), anySecondArg]
+                else:
+                    return [macro_name+("REMOVESEMICOLON();" if with_semic else ""), anySecondArg]
                 
     def get_macro_file_name(self, i):
         if self.do_inline:
@@ -168,7 +187,8 @@ class MacroFileManager:
                             trans = trans.replace("\n", "\\\n")
                         if self.dbg_visitor and self.macroToExprs[macro_name][i] != "" and macro_name != "AUXVARS" and "JmpElse" not in macro_name:
                             print("/*"+" ; ".join("("+c+")" for c in self.macroToNodes[macro_name])+"*/", file=f)
-                        print("#define "+macro_name+"() "+trans, file=f)
+                        brk = "()" if self.macro_name_with_brackets[macro_name] else ""
+                        print("#define "+macro_name+brk+" "+trans, file=f)
 
 class abstr_dr_common(lazyseqnewschedule.lazyseqnewschedule): 
     def get_current_idx(self):
@@ -359,7 +379,7 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
                 
     def visit_noinstr(self, n, full_statement):
         with self.no_any_instrument():
-            #print("NOINSTR1", n)
+            #print("_TR1", n)
             with BakAndRestore(self, 'full_statement', full_statement):
                 ans = self.visit(n)
                 return ans
@@ -1189,10 +1209,10 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
                     self.program_pointers.append(n.name)
                 
                 if self.scope == 'global':
-                    with self.no_any_instrument(): 
-                        with BakAndRestore(self, 'full_statement', False):       
-                            #print("NOINSTR6", n)
-                            ans = self.LZvisit_Decl(n)
+                    #with self.no_any_instrument(): 
+                    with BakAndRestore(self, 'full_statement', False):       
+                        #print("NOINSTR6", n)
+                        ans = self.LZvisit_Decl(n)
                 else:
                     with self.no_any_instrument(): 
                         with BakAndRestore(self, 'full_statement', False):  
@@ -1200,6 +1220,7 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
                             n_copy = copy.copy(n)
                             n_copy.init = None
                             ans = self.LZvisit_Decl(n_copy)
+                            if "char" in ans: print(n, ans)
             else:
                 assert(False, "Unknown declaration type: "+type_of_n)
             
@@ -1273,10 +1294,76 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
         if n.init:
             s += ' = ' + self._visit_expr(n.init)
         return s
+        
+    def _generate_type(self, n, modifiers=[], emit_declname = True):
+        """ Recursive generation from a type node. n is the type node.
+            modifiers collects the PtrDecl, ArrayDecl and FuncDecl modifiers
+            encountered on the way down to a TypeDecl, to allow proper
+            generation from it.
+        """
+        typ = type(n)
+        #~ print(n, modifiers)
+
+        if typ == c_ast.TypeDecl:
+            s = ''
+            if n.quals: s += ' '.join(n.quals) + ' '
+            s += self.visit(n.type)
+            print("ZZZ", s, n.type, len(self.conf_adr))
+
+            nstr = n.declname if n.declname and emit_declname else ''
+            # Resolve modifiers.
+            # Wrap in parens to distinguish pointer to array and pointer to
+            # function syntax.
+            #
+            for i, modifier in enumerate(modifiers):
+                if isinstance(modifier, c_ast.ArrayDecl):
+                    if (i != 0 and
+                        isinstance(modifiers[i - 1], c_ast.PtrDecl)):
+                            nstr = '(' + nstr + ')'
+                    nstr += '['
+                    if modifier.dim_quals:
+                        nstr += ' '.join(modifier.dim_quals) + ' '
+                    with self.no_any_instrument():
+                        nstr += self.visit(modifier.dim) + ']'
+                elif isinstance(modifier, c_ast.FuncDecl):
+                    if (i != 0 and
+                        isinstance(modifiers[i - 1], c_ast.PtrDecl)):
+                            nstr = '(' + nstr + ')'
+                    nstr += '(' + self.visit(modifier.args) + ')'
+                elif isinstance(modifier, c_ast.PtrDecl):
+                    if modifier.quals:
+                        nstr = '* %s%s' % (' '.join(modifier.quals),
+                                           ' ' + nstr if nstr else '')
+                    else:
+                        nstr = '*' + nstr
+            if nstr: s += ' ' + nstr
+            print("GTTT", n, modifiers, s)
+            return s
+        elif typ == c_ast.Decl:
+            ans = self._generate_decl(n.type)
+            print("GTTT", n, modifiers, ans)
+            return ans
+        elif typ == c_ast.Typename:
+            ans= self._generate_type(n.type, emit_declname = emit_declname)
+            print("GTTT", n, modifiers, ans)
+            return ans
+        elif typ == c_ast.IdentifierType:
+            ans= self.visit_IdentifierType(n) + ' '
+            print("GTTT", n, modifiers, ans)
+            return ans
+        elif typ in (c_ast.ArrayDecl, c_ast.PtrDecl, c_ast.FuncDecl):
+            ans= self._generate_type(n.type, modifiers + [n],
+                                       emit_declname = emit_declname)
+            print("GTTT", n, modifiers, ans)
+            return ans
+        else:
+            ans= self.visit(n)
+            print("GTTT", n, modifiers, ans)
+            return ans
             
     def visit_IdentifierType(self, n):
         typ_txt = " ".join(n.names)
-        return self.macro_file_manager.expression(n, self.do_rule('rule_Type', n, typ_txt=typ_txt), passthrough=not self.full_statement, brackets=False)
+        return self.macro_file_manager.expression(n, self.do_rule('rule_Type', n, typ_txt=typ_txt), passthrough=not self.full_statement, brackets=False, macro_name_brackets=False)
          
     # TODO integrate into lazy...    #self.macro_file_manager.expression(n, [], passthrough=not self.full_statement)
     def visit_If(self, n):

@@ -513,7 +513,8 @@ class abstr_inliner(core.module.Translator):
 
         else:
             #s = '__cs_init_scalar(&%s, sizeof(%s))' % (varName, varType)
-            s = '__cs_init_scalar(&%s, sizeof(%s))' % (varName, varTypeUnExpanded)
+            ##s = '__cs_init_scalar(&%s, sizeof(%s))' % (varName, varTypeUnExpanded)
+            s = '&%s = (%s)(__CSEQ_nondet_uint())' % (varName, varTypeUnExpanded) # TODO provvisorio, rendi nome variabile contenente _nondet_
         return s
 
     def _hasBeenAssignedLater(self, varname):
@@ -630,7 +631,9 @@ class abstr_inliner(core.module.Translator):
                             vartype = self.Parser.varType[self.currentFunction[-1], n.name]
                             if "{" in vartype:
                                 vartype = vartype[:vartype.find("{")]
-                            s += '; __cs_init_scalar(&%s, sizeof(%s))' % (
+                            ##s += '; __cs_init_scalar(&%s, sizeof(%s))' % (
+                            ##    name, vartype) TODO nome variabile dovrebbe contenere _nondet_
+                            s += '; %s = (%s)(__CSEQ_nondet_uint())' % (
                                 name, vartype)
 
             #            elif (self.__isScalar(self.currentFunction[-1], n.name) and
@@ -733,7 +736,10 @@ class abstr_inliner(core.module.Translator):
                             s = 'static ' + s + '; %s' % name + init  # S: n.name --> name
                     else:
                         if self.local in range(0, 2):
-                            s = 'static ' + s + '; __cs_init_scalar(&%s, sizeof(%s))' % (
+                            
+                            #s = 'static ' + s + '; __cs_init_scalar(&%s, sizeof(%s))' % ( TODO mettere _nondet_ nel nome
+                            #    name, self.Parser.varType[self.currentFunction[-1], n.name])  # S: n.name --> name
+                            s = 'static ' + s + '; %s = (%s)(__CSEQ_nondet_uint())' % (
                                 name, self.Parser.varType[self.currentFunction[-1], n.name])  # S: n.name --> name
 
         # Global variables and already static variables

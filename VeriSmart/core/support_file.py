@@ -200,8 +200,7 @@ enum t_typename {
         
     def visit_ArrayRef(self, n):
         ans = []
-        if self.can_value:
-            ans += self.bookNodeType(n)
+        ans += self.bookNodeType(n)
         with self.set_can_value(True):
             ans += self.visit(n.name)
             ans += self.visit(n.subscript)
@@ -209,8 +208,7 @@ enum t_typename {
         
     def visit_StructRef(self, n):
         ans = []
-        if self.can_value:
-            ans += self.bookNodeType(n)
+        ans += self.bookNodeType(n)
         with self.set_can_value(n.type == "->"):
             ans += self.visit(n.name)
         return ans
@@ -229,8 +227,7 @@ enum t_typename {
     
     def visit_UnaryOp(self, n):
         ans = []
-        if self.can_value or n.op in ("-","--","++","p++","p--",'+','-','~'):
-            ans += self.bookNodeType(n)
+        ans += self.bookNodeType(n)
         with self.set_can_value(self.can_value or n.op in ("--","++","p++","p--",'+','-','~','!','*')):
             ans += self.visit(n.expr)
             if n.op in ("++", "p++"):
