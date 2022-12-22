@@ -1246,13 +1246,10 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
             return ans
             
     def LZvisit_Decl(self,n,no_type=False):
-        print("LZZZ", n)
         # no_type is used when a Decl is part of a DeclList, where the type is
         # explicitly only for the first declaration in a list.
         #
         s = n.name if no_type else self._generate_decl(n)
-        
-        print("LZ2", s)
 
         if 'scalar' in self._lazyseqnewschedule__preanalysis and n.name in self._lazyseqnewschedule__preanalysis['scalar']:
             self._bitwidth[self._lazyseqnewschedule__currentThread, n.name] = self._lazyseqnewschedule__preanalysis['scalar'][n.name]
@@ -1279,7 +1276,6 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
             
     def visit_IdentifierType(self, n):
         typ_txt = " ".join(n.names)
-        print("typ", typ_txt)
         return self.macro_file_manager.expression(n, self.do_rule('rule_Type', n, typ_txt=typ_txt), passthrough=not self.full_statement, brackets=False)
          
     # TODO integrate into lazy...    #self.macro_file_manager.expression(n, [], passthrough=not self.full_statement)
