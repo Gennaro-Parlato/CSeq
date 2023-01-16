@@ -23,6 +23,8 @@ class SupportFileManager(CGenerator):
         self.expr_to_label = dict()
         self.label_to_type = dict()
         self.test_struct = dict()
+        self.has_side_effects = dict()
+        self.child_has_side_effect = None
         self.progLbl = 0
         self.cgenerator = CGenerator()
         # True only when it might me evaluated in VALUE mode.
@@ -187,12 +189,14 @@ enum t_typename {
         return "\n".join([self.boilerplate, "int main(){","printf(\"ADDRBITS, %lld\\n\",8*sizeof(int*));"]+mainContent+["return 0;","}"])
     
     def visit_Constant(self, n):
+        self.child_has_side_effect = False
         if self.can_value:
             return self.bookNodeType(n)
         else:
             return []
     
     def visit_ID(self, n):
+        self.child_has_side_effect = False
         if self.can_value:
             return self.bookNodeType(n)
         else:
@@ -203,7 +207,9 @@ enum t_typename {
         ans += self.bookNodeType(n)
         with self.set_can_value(True):
             ans += self.visit(n.name)
+            left_se = self.child_has_side_effect
             ans += self.visit(n.subscript)
+            self.child_has_side_effect = self.child_has_side_effect or left_se
         return ans
         
     def visit_StructRef(self, n):
@@ -214,6 +220,7 @@ enum t_typename {
         return ans
         
     def visit_FuncCall(self, n):
+        self.child_has_side_effect = True
         ans = []
         if n.name.name in ("__cs_safe_malloc", "__CSEQ_assert", "assert", "__CSEQ_assume", "assume_abort_if_not"):
             with self.set_can_value(True):
@@ -230,6 +237,7 @@ enum t_typename {
         ans += self.bookNodeType(n)
         with self.set_can_value(self.can_value or n.op in ("--","++","p++","p--",'+','-','~','!','*')):
             ans += self.visit(n.expr)
+            self.child_has_side_effect = self.child_has_side_effect or n.op in ("--","++","p++","p--") #TODO unsure about ("*","&") 
             if n.op in ("++", "p++"):
                 ans += self.bookNodeType(BinaryOp("+", n.expr, Constant("int","1")))
             elif n.op in ("--", "p--"):
@@ -243,7 +251,11 @@ enum t_typename {
         ans += self.bookNodeType(n.right)
         with self.set_can_value(True):
             ans += self.visit(n.left)
+            left_se = self.child_has_side_effect
             ans += self.visit(n.right)
+            if n.op in ("&&","||"):
+                self.has_side_effects[n.right] = self.child_has_side_effect
+            self.child_has_side_effect = self.child_has_side_effect or left_se
         return ans
         
     def visit_Assignment(self, n):
@@ -257,6 +269,7 @@ enum t_typename {
             ans += self.bookNodeType(n.rvalue)
             ans += self.visit(n.lvalue)
             ans += self.visit(n.rvalue)
+            self.child_has_side_effect = True
         return ans
     
     def __getType(self, node_info):
@@ -419,10 +432,13 @@ enum t_typename {
 
     def visit_ExprList(self, n):
         ans = []
+        any_se = False
         with self.set_can_value(False):
             for expr in n.exprs[:-1]:
                 ans += self.visit(expr)
+                any_se = any_se or self.child_has_side_effect
         ans += self.visit(n.exprs[-1])
+        self.child_has_side_effect = self.child_has_side_effect or any_se
         return ans
         
     def visit_InitList(self, n):
@@ -430,6 +446,8 @@ enum t_typename {
         with self.set_can_value(True):
             for expr in n.exprs:
                 ans += self.visit(expr)
+                any_se = any_se or self.child_has_side_effect
+        self.child_has_side_effect = any_se
         return ans
 
     def visit_Enum(self, n):
@@ -487,6 +505,7 @@ enum t_typename {
         return self.visit(n.init)
     
     def visit_EmptyStatement(self, n):
+        self.child_has_side_effect = False
         return []
         
     def __cleanParamDecl(self, n):
@@ -522,8 +541,13 @@ enum t_typename {
     def visit_TernaryOp(self, n):
         ans = []
         ans += self.visit(n.cond)
+        any_se = self.child_has_side_effect
         ans += self.visit(n.iftrue)
+        self.has_side_effects[n.iftrue] = self.child_has_side_effect
+        any_se = self.child_has_side_effect or any_se
         ans += self.visit(n.iffalse)
+        self.has_side_effects[n.iffalse] = self.child_has_side_effect
+        self.child_has_side_effect = self.child_has_side_effect or any_se
         return ans
 
     def visit_If(self, n):

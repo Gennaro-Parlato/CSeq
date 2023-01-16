@@ -369,6 +369,8 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
     #        return NoBaks()
             
     def clean_cp_state(self): 
+        for adr in self.conf_adr:
+            adr.end_of_statement()
         return BakAndRestore(self, 'abs_dr_state', [abs_dr_rules.CPState() for adr in self.conf_adr])
         
     def visit_with_absdr_args(self, state, n, adr, abs_mode, dr_mode, full_statement, **kwargs):
@@ -397,7 +399,7 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
             ans = []
             for i in range(len(self.conf_adr)):
                 skip = self.skip_on_plain and self.abs_dr_mode[i]['abs_mode'] is None and self.abs_dr_mode[i]['dr_mode'] is None
-                if rule in ("rule_IfCond","rule_SMpassDef","rule_SMpassAssignInFunc") or self.conf_adr[i].dr_on or self.conf_adr[i].abs_on or self.conf_adr[i].underapprox:
+                if rule in ("rule_IfCond","rule_SMpassDef","rule_SMpassAssignInFunc","rule_ElseCond") or self.conf_adr[i].dr_on or self.conf_adr[i].abs_on or self.conf_adr[i].underapprox:
                     ans.append("" if skip else getattr(self.conf_adr[i], rule)(self.abs_dr_state[i], n, self.abs_dr_mode[i]['abs_mode'], self.abs_dr_mode[i]['dr_mode'], self.full_statement, **extra_args))
                 else:
                     typ = str(type(n)).split(".")[-1][:-2]
@@ -1308,7 +1310,6 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
             s = ''
             if n.quals: s += ' '.join(n.quals) + ' '
             s += self.visit(n.type)
-            print("ZZZ", s, n.type, len(self.conf_adr))
 
             nstr = n.declname if n.declname and emit_declname else ''
             # Resolve modifiers.
@@ -1337,28 +1338,22 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
                     else:
                         nstr = '*' + nstr
             if nstr: s += ' ' + nstr
-            print("GTTT", n, modifiers, s)
             return s
         elif typ == c_ast.Decl:
             ans = self._generate_decl(n.type)
-            print("GTTT", n, modifiers, ans)
             return ans
         elif typ == c_ast.Typename:
             ans= self._generate_type(n.type, emit_declname = emit_declname)
-            print("GTTT", n, modifiers, ans)
             return ans
         elif typ == c_ast.IdentifierType:
             ans= self.visit_IdentifierType(n) + ' '
-            print("GTTT", n, modifiers, ans)
             return ans
         elif typ in (c_ast.ArrayDecl, c_ast.PtrDecl, c_ast.FuncDecl):
             ans= self._generate_type(n.type, modifiers + [n],
                                        emit_declname = emit_declname)
-            print("GTTT", n, modifiers, ans)
             return ans
         else:
             ans= self.visit(n)
-            print("GTTT", n, modifiers, ans)
             return ans
             
     def visit_IdentifierType(self, n):
@@ -1394,11 +1389,12 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
         self.elseLblProgr += 1
         
         if n.iffalse: #there is else
-            jmpElse = self.macro_file_manager.expression(n.cond, ["if("+adr.getBav1(n)+") {goto "+elseLbl+";}" if adr.underapprox else "" for adr in self.conf_adr], passthrough=not self.full_statement, typlbl="JmpElse",with_semic=True, brackets=not self.full_statement)
+            pass
+            '''jmpElse = self.macro_file_manager.expression(n.cond, ["if("+adr.getBav1(n)+") {goto "+elseLbl+";}" if adr.underapprox else "" for adr in self.conf_adr], passthrough=not self.full_statement, typlbl="JmpElse",with_semic=True, brackets=not self.full_statement)
             thenblock = thenblock.strip()[1:-1]
-            thenblock = "{\n"+thenblock+"\n"+jmpElse+"}\n"
+            thenblock = "{\n"+thenblock+"\n"+jmpElse+"}\n"'''
         else:
-            resetBap = self.macro_file_manager.expression(n.cond, [adr.bap+" = "+adr.getBap1(n)+";" if adr.underapprox else "" for adr in self.conf_adr], passthrough=not self.full_statement, typlbl="ResetBap",with_semic=True, brackets=not self.full_statement)
+            resetBap = self.macro_file_manager.expression(n.cond, [adr.bap+" = "+adr.getBap1If(n)+";" if adr.underapprox else "" for adr in self.conf_adr], passthrough=not self.full_statement, typlbl="ResetBap",with_semic=True, brackets=not self.full_statement)
             thenblock = thenblock.strip()[1:-1]
             thenblock = "{\n"+thenblock+"\n"+resetBap+"}\n"
             
@@ -1413,9 +1409,10 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
             elseBlock = self._generate_stmt(n.iffalse, add_indent=True)
             assert(self.full_statement)
             elseBlock = elseBlock.strip()[1:-1].strip()
-            elseLblMacro = self.macro_file_manager.expression(n.cond, [elseLbl+":"+(";" if elseBlock.startswith("static ") else "") if adr.underapprox else "" for adr in self.conf_adr], passthrough=not self.full_statement, typlbl="ElseLbl",with_semic=True, brackets=not self.full_statement)
-            resetBap = self.macro_file_manager.expression(n.cond, [adr.bap+" = "+adr.getBap1(n)+";" if adr.underapprox else "" for adr in self.conf_adr], passthrough=not self.full_statement, typlbl="ResetBap",with_semic=True, brackets=not self.full_statement)
-            elseBlock = "{\n"+elseLblMacro+"\n"+elseBlock+"\n"+resetBap+"}\n"
+            #elseLblMacro = self.macro_file_manager.expression(n.cond, [elseLbl+":"+(";" if elseBlock.startswith("static ") else "") if adr.underapprox else "" for adr in self.conf_adr], passthrough=not self.full_statement, typlbl="ElseLbl",with_semic=True, brackets=not self.full_statement)
+            resetBap = self.macro_file_manager.expression(n.cond, [adr.bap+" = "+adr.getBap1If(n)+";" if adr.underapprox else "" for adr in self.conf_adr], passthrough=not self.full_statement, typlbl="ResetBap",with_semic=True, brackets=not self.full_statement)
+            #elseBlock = "{\n"+elseLblMacro+"\n"+elseBlock+"\n"+resetBap+"}\n"
+            elseBlock = "{\n"+elseBlock+"\n"+resetBap+"}\n"
 
             elseEnd = self._lazyseqnewschedule__maxInCompound   # label for the last stmt in the if_false block if () {...} else { block; }
 
@@ -1439,7 +1436,10 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
                 elseHeader = ''
 
             nextLabelID = elseEnd+1
-            s += self._make_indent() + 'else\n'
+            #s += self._make_indent() + 'else\n'
+            
+            elseCond = self.macro_file_manager.expression(n.cond, self.do_rule('rule_ElseCond', n.cond, **extra_args), passthrough=False, typlbl="ElseCond",with_semic=True, brackets=False)
+            s += self._make_indent() + elseCond + '\n' #TODO experiment
 
             elseBlock = elseBlock.replace('{', '{ '+elseHeader, 1)
             s += elseBlock
@@ -1476,4 +1476,7 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
             else: header = ''
         '''
         assert(self.full_statement)
+        for adr in self.conf_adr:
+            if adr.underapprox:
+                adr.releaseBap1If(n)
         return header + s + self._make_indent() + footer
