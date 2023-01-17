@@ -104,15 +104,17 @@ enum t_typename {
     def inner_decl(self):
         return BakAndRestore(self, 'global_decl', False)
         
-    def bookNodeType(self, n):
+    def bookNodeType(self, n, expr_to_evaluate=None):
         n_expr = self.cgenerator.visit(n)
+        if expr_to_evaluate is None:
+            expr_to_evaluate = n_expr
         if n_expr not in self.expr_to_label:
             idx = self.progLbl
             self.progLbl += 1
             label = "TYPE_"+str(idx)
             self.expr_to_label[n_expr] = label
-            print_line = 'PRINT_DT(('+n_expr+'),'+str(idx)+', "TYPE");'
-            print_line += '\nPRINT_IS(('+n_expr+'),'+str(idx)+', "STRC");'
+            print_line = 'PRINT_DT(('+expr_to_evaluate+'),'+str(idx)+', "TYPE");'
+            print_line += '\nPRINT_IS(('+expr_to_evaluate+'),'+str(idx)+', "STRC");'
             return [print_line]
         else:
             return []
@@ -426,6 +428,8 @@ enum t_typename {
         ans = []
         if self.can_value:
             ans += self.bookNodeType(n)
+            ans+=[self.cgenerator.visit(n.to_type)+' __cs_typeofcast_'+str(self.progLbl)+';']
+            ans += self.bookNodeType(n.to_type, '__cs_typeofcast_'+str(self.progLbl))
             ans += self.visit(n.to_type)
         ans += self.visit(n.expr)
         return ans

@@ -1807,9 +1807,11 @@ class AbsDrRules:
         toType = cast.to_type
         if abs_mode in ("VALUE", None) and dr_mode in ("WSE",None):
             dest_tp = self.visitor_visit_noinstr(toType)
-            cast_dest_tp = self.cast_type(dest_tp) if self.abs_on else None
-            if cast_dest_tp is not None:
-                dest_tp = cast_dest_tp
+            sfType = self.supportFile.get_type(toType)
+            
+            if sfType in self.abstrTypesSizeof and self.abstrTypesSizeof[sfType]*8 > self.abstr_bits:
+                dest_tp = "intb" if sfType in self.abstrTypesSigned else "uintb"
+
             ans = "("+dest_tp+") "+ \
                 self.visitor_visit(state, unExpr, "VALUE", "WSE", **kwargs)
             return self.store_content(full_statement, ans, cast, abs_mode, dr_mode)

@@ -1168,7 +1168,7 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
                         ans = self.LZvisit_Decl(n)
             elif type_of_n in ('PtrDecl', 'ArrayDecl') :
                 type_st = getType(n.type.type.type) if n.type.type.type else None
-                #print(n, getType(n.type), getType(n.type.type), getType(n.type.type.type), getType(n.type.type.type.type))
+                #print(n, getType(n.type), getType(n.type.type), getType(n.type.type.type))
                 if type_st == 'Struct':
                     if n.type.type.type.name in self.integral_type_list:
                         #known struct type, don't declare content
@@ -1216,13 +1216,13 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
                         #print("NOINSTR6", n)
                         ans = self.LZvisit_Decl(n)
                 else:
-                    with self.no_any_instrument(): 
-                        with BakAndRestore(self, 'full_statement', False):  
-                            #print("NOINSTR7", n)
-                            n_copy = copy.copy(n)
-                            n_copy.init = None
-                            ans = self.LZvisit_Decl(n_copy)
-                            if "char" in ans: print(n, ans)
+                    #with self.no_any_instrument(): 
+                    with BakAndRestore(self, 'full_statement', False):  
+                        #print("NOINSTR7", n)
+                        n_copy = copy.copy(n)
+                        n_copy.init = None
+                        ans = self.LZvisit_Decl(n_copy)
+                        #if "char" in ans: print(n, ans)
             else:
                 assert(False, "Unknown declaration type: "+type_of_n)
             
