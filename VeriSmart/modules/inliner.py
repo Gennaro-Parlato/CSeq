@@ -48,6 +48,7 @@ TODO:
 
 
 Changelog:
+    2023.01.18  put _nondet_ in variables that are nondeterministic in the setup. Removed _cs_init_scalar().
     2017.08.17  preserve return arguments and pthread_exit arguments for thread
     2016.12.20  accomplish todo 3 - rename labels (& corresponding gotos) in inlined blocks of code to avoid label duplication
     2016.12.02  add option to keep parameter passing atomically
@@ -110,6 +111,9 @@ class inliner(core.module.Translator):
     __canbemerged = {}
 
     __nondet_static = False
+    
+    # stores the variable names that are initialized with nondet, and maps them to their name (with _nondet_)
+    __nondet_varname = dict()
 
     # Keep return and pthread_exit of each thread
     __exit_args = {}
@@ -227,6 +231,8 @@ class inliner(core.module.Translator):
     # S: added to handle var renaming in each inlining of functions
     def updateName(self, name):
         newname = ''
+        if name in self.__nondet_varname:
+            name = self.__nondet_varname[name]
         if self.indexStack:
             newname = name.replace(self.inlineInfix, str(self.indexStack[-1]) + '_')
         else:
@@ -483,37 +489,6 @@ class inliner(core.module.Translator):
 
             return s
 
-    @staticmethod
-    def _initVar(varType, varName, varTypeUnExpanded):
-        s = ''
-        if varType == 'int':
-            s = '%s = __CSEQ_nondet_int()' % varName
-        elif varType == 'unsigned int':
-            s = '%s = __CSEQ_nondet_uint()' % varName
-        elif varType == '_Bool' or varType == 'bool':
-            s = '%s = __CSEQ_nondet_bool()' % varName
-        elif varType == 'char':
-            s = '%s = __CSEQ_nondet_char()' % varName
-        elif varType == 'unsigned char':
-            s = '%s = __CSEQ_nondet_uchar()' % varName
-        elif varType == 'unsigned long':
-            s = '%s = __CSEQ_nondet_uint()' % varName
-        elif varType == '__cs_t':
-            s = ''
-        elif varType == '__cs_mutex_t':
-            s = ''
-        elif varType == '__cs_cond_t':
-            s = ''
-        elif varType == '__cs_barrier_t':
-            s = ''
-        elif varType == '__cs_attr_t':
-            s = ''
-
-        else:
-            #s = '__cs_init_scalar(&%s, sizeof(%s))' % (varName, varType)
-            s = '__cs_init_scalar(&%s, sizeof(%s))' % (varName, varTypeUnExpanded)
-        return s
-
     def _hasBeenAssignedLater(self, varname):
         # There is case where a variable does not need an nondet assignment
         # 1. There is an immediate assign statement after the declaration of variable
@@ -543,6 +518,7 @@ class inliner(core.module.Translator):
 
         s = n.name if no_type else self._generate_decl(n)
         # S: added to handle var renaming in each inlining of functions
+        pre_updateName = s
         s = self.updateName(s)
         name = self.updateName(str(n.name))
 
@@ -613,9 +589,10 @@ class inliner(core.module.Translator):
                     if self.__isScalar(self.currentFunction[-1], n.name):
                         varType = self.Parser.varType[self.currentFunction[-1], n.name]
                         varTypeUnExpanded = self.Parser.varTypeUnExpanded[self.currentFunction[-1], n.name]
-                        initialStmt = '; ' + self._initVar(varType, name, varTypeUnExpanded) if self._needInit(
-                            n.name) and self.local in range(0, 2) else ''  # S: n.name --> name
-                        s += initialStmt
+                        if self._needInit(n.name) and self.local in range(0, 2):
+                            self.__nondet_varname[pre_updateName] = pre_updateName +"_nondet_"
+                            s = s.replace(name, self.updateName(name))
+                        s = s + ";"
                     #                   elif self.__isStruct(self.currentFunction[-1], n.name):
                     #                       s += ''
                     else:  ## what can it be?
@@ -628,8 +605,8 @@ class inliner(core.module.Translator):
                             vartype = self.Parser.varType[self.currentFunction[-1], n.name]
                             if "{" in vartype:
                                 vartype = vartype[:vartype.find("{")]
-                            s += '; __cs_init_scalar(&%s, sizeof(%s))' % (
-                                name, vartype)
+                            self.__nondet_varname[pre_updateName] = pre_updateName +"_nondet_"
+                            s = s.replace(name, self.updateName(name))+";"
 
             #            elif (self.__isScalar(self.currentFunction[-1], n.name) and
             #                    # Do not believe this check, it is not always true???
@@ -737,8 +714,9 @@ class inliner(core.module.Translator):
                             s = 'static ' + s + '; %s' % name + init  # S: n.name --> name
                     else:
                         if self.local in range(0, 2):
-                            s = 'static ' + s + '; __cs_init_scalar(&%s, sizeof(%s))' % (
-                                name, self.Parser.varType[self.currentFunction[-1], n.name])  # S: n.name --> name
+                            self.__nondet_varname[pre_updateName] = pre_updateName +"_nondet_"
+                            s = 'static ' + s + ';'
+                            s = s.replace(name, self.updateName(name))
 
         # Global variables and already static variables
         if n.init and not processInit:
