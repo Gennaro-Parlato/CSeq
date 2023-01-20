@@ -1482,7 +1482,6 @@ class AbsDrRules:
         elif abs_mode in ("VALUE", None) and dr_mode in ("WSE",None):
             return self.store_content(full_statement,"&("+self.visitor_visit(state, castExp, "LVALUE", "WSE", **kwargs)+")", addrop, abs_mode, dr_mode)
         else:
-            print(addrop, abs_mode, dr_mode)
             assert(False)
             
     def _not_getval(self, state, notop, **kwargs):
