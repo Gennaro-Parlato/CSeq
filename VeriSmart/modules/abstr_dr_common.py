@@ -1404,7 +1404,7 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
         ifEnd = self._lazyseqnewschedule__maxInCompound   # label for the last stmt in the if block:  if () { block; }
         nextLabelID = ifEnd+1
 
-        if n.iffalse and not (isinstance(n.iffalse, c_ast.Compound) and n.iffalse.block_items is None):
+        if n.iffalse: # and not (isinstance(n.iffalse, c_ast.Compound) and n.iffalse.block_items is None):
             self.abs_dr_state = stateElse
             assert(self.full_statement)
             elseBlock = self._generate_stmt(n.iffalse, add_indent=True)

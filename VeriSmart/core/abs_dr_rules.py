@@ -1771,7 +1771,7 @@ class AbsDrRules:
         exp = n.cond
         if self.underapprox:
             trans = self.__ifcond_underapprox(state, n, **kwargs)
-        elif not self.abs_on:
+        elif not self.abs_on and not self.dr_on:
             trans = self.visitor_visit(state, exp, "VALUE", "WSE", **kwargs)
         else:
             exp_getval = self.visitor_visit(state, exp, "GET_VAL", "ACCESS", **kwargs)
