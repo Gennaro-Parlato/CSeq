@@ -26,6 +26,7 @@ class SupportFileManager(CGenerator):
         self.has_side_effects = dict()
         self.child_has_side_effect = None
         self.progLbl = 0
+        self.typecastLbl = 0
         self.cgenerator = CGenerator()
         # True only when it might me evaluated in VALUE mode.
         self.can_value = False 
@@ -431,8 +432,9 @@ enum t_typename {
         ans = []
         if self.can_value:
             ans += self.bookNodeType(n)
-            ans+=[self.cgenerator.visit(n.to_type)+' __cs_typeofcast_'+str(self.progLbl)+';']
-            ans += self.bookNodeType(n.to_type, '__cs_typeofcast_'+str(self.progLbl))
+            ans+=[self.cgenerator.visit(n.to_type)+' __cs_typeofcast_'+str(self.typecastLbl)+';']
+            ans += self.bookNodeType(n.to_type, '__cs_typeofcast_'+str(self.typecastLbl))
+            self.typecastLbl+=1
             ans += self.visit(n.to_type)
         ans += self.visit(n.expr)
         return ans
