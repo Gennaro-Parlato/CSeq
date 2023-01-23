@@ -134,6 +134,7 @@ class abstr_inliner(core.module.Translator):
 
         if self.getInputParamValue('atomicparameter') is not None:
             self.atomicparameter = True
+        self.no_inline_atomic = env.no_inline_atomic
 
         #if 'unwind' in env.paramvalues:
         #    self.recursivebound = int(env.paramvalues['unwind'])
@@ -152,6 +153,7 @@ class abstr_inliner(core.module.Translator):
 
         env.arrayNamesList = self.__arrayNamesList
         #print( env.arrayNamesList)
+        
 
 
     ''' Check whether or not the input source code has been fully inlined,
@@ -1166,7 +1168,7 @@ class abstr_inliner(core.module.Translator):
             b = True
         return (b or
                 (f in self.Parser.funcName and  # defined functions need to be inlined when called (if at all)
-                 #not f.startswith('__CSEQ_atomic') and 
+                 not (self.no_inline_atomic and f.startswith('__CSEQ_atomic')) and 
                  not f == '__CSEQ_assert' and
                  f != '' and
                  f != 'main'))
