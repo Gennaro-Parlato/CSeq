@@ -218,7 +218,7 @@ enum t_typename {
     def visit_StructRef(self, n):
         ans = []
         ans += self.bookNodeType(n)
-        with self.set_can_value(n.type == "->"):
+        with self.set_can_value(True):
             ans += self.visit(n.name)
         return ans
         
