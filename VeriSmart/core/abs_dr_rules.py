@@ -1414,10 +1414,11 @@ class AbsDrRules:
         else:
             return ok(state)   
             
-    def __ptrop_abs(self, state, castExp, castExprType, **kwargs):
+    def __ptrop_abs(self, state, castExp, castExprType, ptropType, **kwargs):
         # return (bal = bav) || bav = get_sm_abs([[castExp,VALUE,WSE]])
         assert(self.abs_on)
-        getsm = lambda: self.brackets(self.assign(state, "bav", self.getsm("&(("+self.visitor_visit(state, castExp, "VALUE", "WSE", **kwargs)+")"+("->o" if self.is_abstractable(castExprType) else "")+")", self.sm_abs)))
+        visit_val = lambda: self.visitor_visit(state, castExp, "VALUE", "WSE", **kwargs)
+        getsm = lambda: self.brackets(self.assign(state, "bav", self.getsm(("&(("+visit_val()+")->o)" if self.is_abstractable(ptropType) else "&("+visit_val()+")"), self.sm_abs)))
         cp = (state.cp_bal, state.cp_bav) #(bal, bav) as const propagation
         if cp[0] == 0 and cp[1] == 0: #bal = False, bav = False
             return getsm()
@@ -1445,10 +1446,11 @@ class AbsDrRules:
             return self.store_content(full_statement,"*("+self.visitor_visit(state, castExp, None, None, **kwargs)+")", ptrop, abs_mode, dr_mode)
         elif abs_mode in ("GET_VAL","UPD_VAL",None) and dr_mode in ("ACCESS","NO_ACCESS","PREFIX",None):
             castExpType = self.supportFile.get_type(castExp) #"int" # TODO type
+            ptropType = self.supportFile.get_type(ptrop)
             return self.store_content(full_statement,self.brackets(self.comma_expr(
                 self.visitor_visit(state, castExp, "GET_VAL", "ACCESS", **kwargs),
                 self.if_dr(lambda:self.__ptrop_dr(state, dr_mode, castExp, castExpType, **kwargs)),
-                self.if_abs(lambda:self.__ptrop_abs(state, castExp, castExpType, **kwargs))
+                self.if_abs(lambda:self.__ptrop_abs(state, castExp, castExpType, ptropType, **kwargs))
             )), ptrop, abs_mode, dr_mode)
         elif abs_mode in ("SET_VAL","GET_ADDR") and dr_mode in ("ACCESS","NO_ACCESS","PREFIX",None):
             return self.store_content(full_statement,self.comma_expr(
@@ -1456,10 +1458,13 @@ class AbsDrRules:
                 self.assign_with_prop(state, "bal", self.cp(state, "bav"))
             ), ptrop, abs_mode, dr_mode)
         elif abs_mode in ("LVALUE", None) and dr_mode in ("WSE",None):
-            return self.store_content(full_statement,"*("+self.visitor_visit(state, castExp, "VALUE", "WSE", **kwargs)+")", ptrop, abs_mode, dr_mode)
+            return self.store_content(full_statement,"(*("+self.visitor_visit(state, castExp, "VALUE", "WSE", **kwargs)+"))", ptrop, abs_mode, dr_mode)
         elif abs_mode in ("VALUE", None) and dr_mode in ("WSE",None):
             castExpType = self.supportFile.get_type(castExp) #"int" # TODO type
-            return self.store_content(full_statement,self.cast("*("+self.visitor_visit(state, castExp, "VALUE", "WSE", **kwargs)+")", self.cast_type(castExpType)), ptrop, abs_mode, dr_mode)
+            ptropType = self.supportFile.get_type(ptrop)
+            visit_val = lambda: self.visitor_visit(state, castExp, "VALUE", "WSE", **kwargs)
+            
+            return self.store_content(full_statement,self.cast(("(("+visit_val()+")->v)" if self.is_abstractable(ptropType) else "*("+visit_val()+")"), self.cast_type(castExpType)), ptrop, abs_mode, dr_mode)
         else:
             assert(False)
             

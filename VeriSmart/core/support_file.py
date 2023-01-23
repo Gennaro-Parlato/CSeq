@@ -227,6 +227,9 @@ enum t_typename {
         if n.name.name in ("__cs_safe_malloc", "__CSEQ_assert", "assert", "__CSEQ_assume", "assume_abort_if_not"):
             with self.set_can_value(True):
                 ans += self.visit(n.args.exprs[0])
+        elif n.name.name in ("__cs_create"):
+            with self.set_can_value(True):
+                ans += self.visit(n.args.exprs[3])
         '''if self.can_value:
             ans += self.bookNodeType(n)
         # TODO might have to visit n.name for function pointers?
