@@ -1489,7 +1489,7 @@ class AbsDrRules:
         # and applies constant propagation
         castExp = notop.expr
         ok = lambda state: "!("+self.visitor_visit(state, castExp, "VALUE", "WSE", **kwargs)+")" 
-        err = lambda state: self.nondet()
+        err = lambda state: self.getNondetvarBv(notop, "u1") # self.nondet()
         value = self.getCondition(notop)
         castexp_getval = self.visitor_visit(state, castExp, "GET_VAL", "ACCESS", **kwargs)
         if not self.abs_on:
@@ -1780,9 +1780,9 @@ class AbsDrRules:
             if state.cp_bav == 0:
                 trans = self.comma_expr(exp_getval, exp_val(state))
             elif state.cp_bav == 1:
-                trans = self.comma_expr(exp_getval, self.nondet())
+                trans = self.comma_expr(exp_getval, self.getNondetvarBv(n, "u1"))
             elif state.cp_bav is None:
-                texp = self.ternary_expr(state, self.cp(state, "bav"),lambda state: self.nondet(), exp_val)
+                texp = self.ternary_expr(state, self.cp(state, "bav"),lambda state: self.getNondetvarBv(n, "u1"), exp_val)
                 trans = self.comma_expr(exp_getval, texp)
             else:
                 assert(False)
@@ -2113,9 +2113,9 @@ class AbsDrRules:
         if not self.abs_on or state.cp_bav == 0:
             return self.comma_expr(expr_getval, expr_val(state))
         elif state.cp_bav == 1:
-            return self.comma_expr(expr_getval, self.nondet())
+            return self.comma_expr(expr_getval, self.getNondetvarBv(expr, "u1"))#self.nondet())
         elif state.cp_bav is None:
-            return self.ternary_expr(state, self.comma_expr(expr_getval,self.cp(state, "bav")), lambda state: self.nondet(), expr_val)
+            return self.ternary_expr(state, self.comma_expr(expr_getval,self.cp(state, "bav")), lambda state: self.getNondetvarBv(expr, "u1"), expr_val) #self.nondet(), expr_val)
         
     def __or_underapprox(self, state, fullOp, **kwargs):
         # returns value = part1 || part2
@@ -2178,13 +2178,14 @@ class AbsDrRules:
         #part2 = [self.and_expr_prop(part2a, part2b)]
         part2 = [self.visitor_visit(state, exp2, "GET_VAL", "ACCESS", **kwargs)] 
         part3 = [
-            self.assign_var(bap1, self.cp(state, "bap")),
+            #self.assign_var(bap1, self.cp(state, "bap")),
+            self.assign_with_prop(state, "bap", bap1),
             self.assign_with_prop(state, "bav", self.and_expr_prop(self.or_expr_prop(self.cp(state, "bav"), bav1), self.or_expr_prop(bav1, self.visitor_visit(state, exp1, "VALUE", "WSE", **kwargs)), self.or_expr_prop(self.cp(state, "bav"), self.visitor_visit(state, exp2, "VALUE", "WSE", **kwargs)))),
             self.assign_var(value, self.and_expr_prop(self.visitor_visit(state, exp1, "VALUE", "WSE", **kwargs), self.visitor_visit(state, exp2, "VALUE", "WSE", **kwargs)))
         ]
         return self.comma_expr(*(part1+part2+part3))
         
-    def __and_underapprox(self, state, fullOp, **kwargs):
+    def __and_underapproxX(self, state, fullOp, **kwargs):
         # returns part1, part2, part3
         # where
         #   part1 = [exp1,GETVAL], bav1 =bav, bap1=bap, bap=bap||bav
@@ -2212,11 +2213,40 @@ class AbsDrRules:
         state.doMerge(stateTillPart2a, statePart2b)
         part2 = [self.and_expr_prop(part2a, part2b)]
         part3 = [
-            self.assign_var(bap1, self.cp(state, "bap")),
+            #self.assign_var(bap1, self.cp(state, "bap")),
+            self.assign_with_prop(state, "bap", bap1),
             self.assign_with_prop(state, "bav", self.or_expr_prop(self.cp(state, "bav"), self.and_expr_prop(bav1, self.visitor_visit(state, exp2, "VALUE", "WSE", **kwargs)))),
             self.assign_var(value, self.and_expr_prop(self.visitor_visit(state, exp1, "VALUE", "WSE", **kwargs), self.visitor_visit(state, exp2, "VALUE", "WSE", **kwargs)))
         ]
         return self.comma_expr(*(part1+part2+part3))
+        
+    def __and_underapprox(self, state, fullOp, **kwargs):
+        # returns value = (part1 && part2), part3
+        # where
+        #   part1 = ([exp1,GETVAL], bav1 =bav, bap1=bap, bap=bap||bav, bav) ? 1 : [exp1,VALUE]
+        #   part2 = ([exp2,GETVAL], bav) ? 1 : [exp2,VALUE]
+        #   part3 = (bap=bap1, bav = bav || (bav1 && value))
+        exp1 = fullOp.left
+        exp2 = fullOp.right
+        value = self.getCondition(fullOp)
+        bav1 = self.getBav1(fullOp)
+        bap1 = self.getBap1(fullOp)
+        part1cond = self.comma_expr(
+            self.visitor_visit(state, exp1, "GET_VAL", "ACCESS", **kwargs),
+            self.assign_var(bav1, self.cp(state, "bav")),
+            self.assign_var(bap1, self.cp(state, "bap")),
+            self.assign_with_prop(state, "bap", self.or_expr_prop(self.cp(state, "bap"), self.cp(state, "bav"))), 
+            self.cp(state, "bav")
+        )
+        part1 = self.or_expr_prop(part1cond, self.visitor_visit(state, exp1, "VALUE", "WSE", **kwargs))
+        part2cond = self.comma_expr(
+            self.visitor_visit(state, exp2, "GET_VAL", "ACCESS", **kwargs), 
+            self.cp(state, "bav")
+        )
+        part2 = self.or_expr_prop(part2cond, self.visitor_visit(state, exp2, "VALUE", "WSE", **kwargs))
+        val_p1_and_p2 = self.assign_var(value, self.and_expr_prop(part1, part2))
+        part3 = self.assign_with_prop(state, "bav", self.or_expr_prop(self.cp(state, "bav"), self.and_expr_prop(bav1, value)))
+        return self.comma_expr(val_p1_and_p2, self.assign_with_prop(state, "bap", bap1), part3)
         
     def __and_underapproxOldest(self, state, fullOp, **kwargs):
         # returns value = part1 && part2
@@ -2258,6 +2288,22 @@ class AbsDrRules:
         
         return self.assign_var(value, self.and_expr_prop(part1, part2))
         
+    def __and_overapproxNoSeRight(self, state, fullOp, **kwargs):
+        exp1 = fullOp.left
+        exp2 = fullOp.right
+        value = self.getCondition(fullOp)
+        bav1 = self.getBav1(fullOp)
+        part1 = [
+            self.visitor_visit(state, exp1, "GET_VAL", "ACCESS", **kwargs),
+            self.assign_var(bav1, self.cp(state, "bav"))
+        ]
+        part2 = [self.visitor_visit(state, exp2, "GET_VAL", "ACCESS", **kwargs)] 
+        part3 = [
+            self.assign_with_prop(state, "bav", self.and_expr_prop(self.or_expr_prop(self.cp(state, "bav"), bav1), self.or_expr_prop(bav1, self.visitor_visit(state, exp1, "VALUE", "WSE", **kwargs)), self.or_expr_prop(self.cp(state, "bav"), self.visitor_visit(state, exp2, "VALUE", "WSE", **kwargs)))),
+            self.assign_var(value, self.and_expr_prop(self.visitor_visit(state, exp1, "VALUE", "WSE", **kwargs), self.visitor_visit(state, exp2, "VALUE", "WSE", **kwargs)))
+        ]
+        return self.comma_expr(*(part1+part2+part3))
+        
         
     def rule_OrAnd(self, state, fullOp, abs_mode, dr_mode, full_statement, **kwargs):
         self.assertDisabledIIFModesAreNone(abs_mode, dr_mode, **kwargs)
@@ -2281,6 +2327,8 @@ class AbsDrRules:
                     trans = self.__or_underapprox(state, fullOp, **kwargs)
                 else:
                     trans = self.__and_underapprox(state, fullOp, **kwargs)
+            #elif self.abs_on and fullOp.op == "&&":
+            #    trans = self.__and_overapproxNoSeRight(state, fullOp, **kwargs)
             else:
                 value = self.getCondition(fullOp)
                 exp1_tr = self.__binaryShortCircuit_internal(state, exp1, **kwargs)

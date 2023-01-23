@@ -1388,31 +1388,32 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
         elseLbl = "else_lbl_"+str(self.elseLblProgr)
         self.elseLblProgr += 1
         
+        resetBap = self.macro_file_manager.expression(n.cond, [adr.bap+" = "+adr.getBap1If(n)+";" if adr.underapprox else "" for adr in self.conf_adr], passthrough=not self.full_statement, typlbl="ResetBap",with_semic=True, brackets=not self.full_statement)
         if n.iffalse: #there is else
             pass
             '''jmpElse = self.macro_file_manager.expression(n.cond, ["if("+adr.getBav1(n)+") {goto "+elseLbl+";}" if adr.underapprox else "" for adr in self.conf_adr], passthrough=not self.full_statement, typlbl="JmpElse",with_semic=True, brackets=not self.full_statement)
             thenblock = thenblock.strip()[1:-1]
             thenblock = "{\n"+thenblock+"\n"+jmpElse+"}\n"'''
         else:
-            resetBap = self.macro_file_manager.expression(n.cond, [adr.bap+" = "+adr.getBap1If(n)+";" if adr.underapprox else "" for adr in self.conf_adr], passthrough=not self.full_statement, typlbl="ResetBap",with_semic=True, brackets=not self.full_statement)
-            thenblock = thenblock.strip()[1:-1]
-            thenblock = "{\n"+thenblock+"\n"+resetBap+"}\n"
+            pass
+            '''thenblock = thenblock.strip()[1:-1]
+            thenblock = "{\n"+thenblock+"\n"+resetBap+"}\n"'''
             
         s += thenblock
 
         ifEnd = self._lazyseqnewschedule__maxInCompound   # label for the last stmt in the if block:  if () { block; }
         nextLabelID = ifEnd+1
 
-        if n.iffalse:
+        if n.iffalse and not (isinstance(n.iffalse, c_ast.Compound) and n.iffalse.block_items is None):
             self.abs_dr_state = stateElse
             assert(self.full_statement)
             elseBlock = self._generate_stmt(n.iffalse, add_indent=True)
             assert(self.full_statement)
-            elseBlock = elseBlock.strip()[1:-1].strip()
+            '''elseBlock = elseBlock.strip()[1:-1].strip()
             #elseLblMacro = self.macro_file_manager.expression(n.cond, [elseLbl+":"+(";" if elseBlock.startswith("static ") else "") if adr.underapprox else "" for adr in self.conf_adr], passthrough=not self.full_statement, typlbl="ElseLbl",with_semic=True, brackets=not self.full_statement)
             resetBap = self.macro_file_manager.expression(n.cond, [adr.bap+" = "+adr.getBap1If(n)+";" if adr.underapprox else "" for adr in self.conf_adr], passthrough=not self.full_statement, typlbl="ResetBap",with_semic=True, brackets=not self.full_statement)
             #elseBlock = "{\n"+elseLblMacro+"\n"+elseBlock+"\n"+resetBap+"}\n"
-            elseBlock = "{\n"+elseBlock+"\n"+resetBap+"}\n"
+            elseBlock = "{\n"+elseBlock+"\n"+resetBap+"}\n"'''
 
             elseEnd = self._lazyseqnewschedule__maxInCompound   # label for the last stmt in the if_false block if () {...} else { block; }
 
@@ -1443,6 +1444,8 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
 
             elseBlock = elseBlock.replace('{', '{ '+elseHeader, 1)
             s += elseBlock
+            
+            s += resetBap
             
             self.abs_dr_state = [stateThen[i].doMerge(stateThen[i], stateElse[i]) for i in range(len(stateThen))]
 
