@@ -34,7 +34,7 @@ class SupportFileManager(CGenerator):
         self.global_decl = True 
         
         # GG: ensure that those typedef appear only once
-        self.already_in = {'pthread_t':False, 'pthread_attr_t':False, 'size_t':False}
+        self.already_in = {'pthread_t':False, 'pthread_attr_t':False, 'size_t':False, '__cs_t':True}
         
         # Set of already printed declarations for the current scope
         self.knownDeclsStack = [set()]
@@ -63,6 +63,7 @@ class SupportFileManager(CGenerator):
 void __CPROVER_get_field(void *a, char field[100] ){return;}
 void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}        
 void *__cs_safe_malloc(int __cs_size);
+typedef struct {int x1;int x2;int x3;int x4;int x5;int x6;int x7;int x8;int x9;} __cs_t;
 enum t_typename {
        TYPENAME_INT,
        TYPENAME_CHAR,
@@ -225,10 +226,10 @@ enum t_typename {
     def visit_FuncCall(self, n):
         self.child_has_side_effect = True
         ans = []
-        if n.name.name in ("__cs_safe_malloc", "__CSEQ_assert", "assert", "__CSEQ_assume", "assume_abort_if_not"):
+        if n.name.name in ("__cs_safe_malloc", "__CSEQ_assert", "assert", "__CSEQ_assume", "assume_abort_if_not", "__cs_join"):
             with self.set_can_value(True):
                 ans += self.visit(n.args.exprs[0])
-        elif n.name.name in ("__cs_create"):
+        elif n.name.name in ("__cs_create",):
             with self.set_can_value(True):
                 ans += self.visit(n.args.exprs[3])
         '''if self.can_value:

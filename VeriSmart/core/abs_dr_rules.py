@@ -1680,6 +1680,48 @@ class AbsDrRules:
         else:
             assert(False)
             
+    def rule_FuncCall(self, state, fullExpr, abs_mode, dr_mode, full_statement, **kwargs):
+        self.assertDisabledIIFModesAreNone(abs_mode, dr_mode, **kwargs) 
+        if dr_mode == "TOP_ACCESS":
+            return self.store_content(full_statement, self.fakeIfAssignment(self.comma_expr(
+                    self.visitor_visit(state, fullExpr, abs_mode, "ACCESS", **kwargs),
+                    self.visitor_visit(state, fullExpr, abs_mode, "WSE", **kwargs)
+                )), fullExpr, abs_mode, dr_mode)
+        exp = fullExpr.args
+        fncName = fullExpr.name.name
+        if abs_mode in ("VALUE", None) and dr_mode in ("WSE",None):
+            ans = self.auxvars.read(fullExpr)
+            return self.store_content(full_statement,ans, \
+                fullExpr, abs_mode, dr_mode)
+        
+        elif abs_mode in ("GET_VAL",None) and dr_mode in ("NO_ACCESS","ACCESS","PREFIX",None):
+            ret_type = "int" #TODO type
+            if self.is_abstractable(ret_type) and ret_type in self.abstrTypesSizeof and self.abstrTypesSizeof[ret_type]*8 > self.abstr_bits:
+                ret_type = "intb" if ret_type in self.abstrTypesSigned else "uintb"
+            self.auxvars.create(fullExpr, ret_type)
+            
+            #this allows to setup a different argument calling scheme (e.g, the extra arg of _cs_create), if argMap[i] is int, the i-th argument will be [[exp.exprs[i],VALUE]], else the i-th argument will be argMap[i].
+            argMap = kwargs['argMap'] if 'argMap' in kwargs and kwargs['argMap'] is not None else [i for i in range(len(exp.exprs))]
+            bav1 = self.getBav1(full_statement)
+            statements = []
+            statements.append(self.assign_var(bav1, "0"))
+            for aid in argMap:
+                if isinstance(aid, int):
+                    statements.append(self.visitor_visit(state, exp.exprs[aid], "GET_VAL", "ACCESS", **kwargs)) #TODO is ACCESS ok?
+                    statements.append(self.assign_var(bav1, self.or_expr_prop(bav1, self.cp(state, "bav"))))
+            statements.append(self.assign_with_prop(state,"bav", bav1))
+            statements.append(self.__malloc_inner(state, **kwargs))
+            statements.append(self.auxvars.write(fullExpr, fncName+"("+",".join([self.visitor_visit(state, exp.exprs[aid], "VALUE", "WSE", **kwargs) if isinstance(aid, int) else aid for aid in argMap])+")"))
+            # force it to be stored TODO do it properly with a sideEffects argument
+            self.auxvars.read(fullExpr)
+            self.auxvars.read(fullExpr)
+            
+            return self.store_content(full_statement, \
+                self.comma_expr(*statements) \
+            , fullExpr, abs_mode, dr_mode)
+        else:
+            assert(False)
+            
     '''
     def rule_FuncCall(self, state, fullExpr, abs_mode, dr_mode, full_statement, **kwargs):
         self.assertDisabledIIFModesAreNone(abs_mode, dr_mode, **kwargs) 
@@ -2860,14 +2902,6 @@ class AbsDrRules:
             return " ".join(out)
         else:
             return ""
-
-    def rule_FuncCall(self, state, fnccall, abs_mode, dr_mode, full_statement, **kwargs):
-        # GETVAL:
-        # (setup_sm_arg, [a,GETVAL] for a in args, retval=fnccall([a, LVALUE] for a in args), setup_sm_retval)
-
-        # LVALUE:
-        # (retval)
-        pass
         
     def rule_Type(self, state, typ, abs_mode, dr_mode, full_statement, **kwargs):
         typ_txt = kwargs['typ_txt']

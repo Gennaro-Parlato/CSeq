@@ -405,7 +405,7 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
                     typ = str(type(n)).split(".")[-1][:-2]
                     with self.no_any_instrument():
                         if typ == "ExprList":
-                            ans.append("" if skip else (getattr(super(), "visit_"+typ)(n),None))
+                            ans.append("" if skip else (getattr(super(), "visit_"+typ)(n),self.expList.copy()))
                         else:
                             ans.append("" if skip else getattr(super(), "visit_"+typ)(n))
             return ans
@@ -697,7 +697,8 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
             self._lazyseqnewschedule__visit_funcReference = False
             return s
         else: # thread functions
-            ans = super().visit_FuncDef(n)
+            argc_tp = self.macro_file_manager.expression(c_ast.IdentifierType(names=['int']), self.do_rule('rule_Type',c_ast.IdentifierType(names=['int']),typ_txt="int"), passthrough=False, brackets=False)
+            ans = super().visit_FuncDef(n).replace("int __cz_param_main_argc;",argc_tp+" __cz_param_main_argc;") #TODO solve later
             return ans
             
     def saveDeclarationIntoTypeGeneration(self, type, node): 
@@ -725,7 +726,7 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
                 extra_args_r['dr_vp_state'] = self.abs_dr_vpstate
             return self.cGen_original.visit(n.lvalue) + " = " + \
                     self.abs_dr_rules.rule_SpecialFuncCall(self.abs_dr_state, n.rvalue, self.abs_dr_mode['abs_mode'], self.abs_dr_mode['dr_mode'], self.full_statement, **extra_args_r)'''
-        if lvalue_noinstr.startswith("__cs_staticlocalinit_") or ((rvalue_noinstr.startswith("__cs_") or rvalue_noinstr.startswith("__cz_")) and not rvalue_noinstr.startswith("__cz_local") and not rvalue_noinstr.startswith("__cs_staticlocal") and not rvalue_noinstr.startswith("__cz_retval") and not rvalue_noinstr.startswith("__cz_param")):
+        if lvalue_noinstr.startswith("__cs_staticlocalinit_") or ((rvalue_noinstr.startswith("__cs_") or rvalue_noinstr.startswith("__cz_")) and not rvalue_noinstr.startswith("__cz_local") and not rvalue_noinstr.startswith("__cs_staticlocal") and not rvalue_noinstr.startswith("__cz_retval") and not rvalue_noinstr.startswith("__cz_param") and not rvalue_noinstr.startswith("__cs_mutex_init") and not rvalue_noinstr.startswith("__cs_create") and not rvalue_noinstr.startswith("__cs_join")):
             lvalue_ni = self.visit_noinstr(n.lvalue, False)
             rvalue_ni = self.visit_noinstr(n.rvalue, False)
             return lvalue_ni + " " + n.op + " " + rvalue_ni
@@ -979,6 +980,7 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
         
     def visit_FuncCall(self, n):
         fref = self.cGen_original._parenthesize_unless_simple(n.name)
+        overridingAns = None # used to return the result of the abstraction, while running all the inherited shenanigans (lazy...'s visit_FuncCall and so on) 
         
         extra_args = {}
         if self.dr_on:
@@ -997,6 +999,20 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
             return self.macro_file_manager.expression(n, self.do_rule('rule_Malloc', n, **extra_args), passthrough=not self.full_statement, brackets=not self.full_statement)
         elif fref == '__CSEQ_nondet_bool':
             return self.macro_file_manager.expression(n, self.do_rule('rule_NondetBool', n, **extra_args), passthrough=not self.full_statement, brackets=not self.full_statement)
+        elif fref in ('__cs_mutex_init', "__cs_create", "__cs_join"):
+            self.expList = []
+            with self.abs_dr_mode_set("VALUE","WSE"):
+                for e in n.args:
+                    self.expList.append(self._visit_expr(e))
+            argMap = None
+            if fref == "__cs_create":
+                self._lazyseqnewschedule__firstThreadCreate = True
+                fName = self.expList[2]
+                fName = fName.strip()
+                fName = fName.strip('()&')
+                threadId = str(self.Parser.threadOccurenceIndex[fName])
+                argMap = [0,1,2,3,threadId]
+            return self.macro_file_manager.expression(n, self.do_rule('rule_FuncCall', n, argMap=argMap, **extra_args), passthrough=not self.full_statement, brackets=not self.full_statement)
         elif fref.startswith('__CSEQ_nondet_'):
             tp = fref[len('__CSEQ_nondet_'):]
             ndtp = "int"
@@ -1035,7 +1051,10 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
             #    ans = super().visit_FuncCall(n)
         for (adr,abs_on) in adr_abs_on_bak.items():
             adr.abs_on = abs_on
-        return ans
+        if overridingAns is not None:
+            return overridingAns
+        else:
+            return ans
         #return self.macro_file_manager.expression(n, parts, passthrough=not self.full_statement)
         
 
