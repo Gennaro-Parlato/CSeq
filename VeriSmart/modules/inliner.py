@@ -113,6 +113,8 @@ class inliner(core.module.Translator):
 
     # Keep return and pthread_exit of each thread
     __exit_args = {}
+    
+    nondet_var_names = dict() # variables that have nondeterministic initialization -> put nondet in their name
 
     local = 0  # S: added to handle different versions of init of local vars
     inlineInfix = ''  # S: added to copy inlineInfix from env passed in loadfromstring
@@ -226,6 +228,8 @@ class inliner(core.module.Translator):
 
     # S: added to handle var renaming in each inlining of functions
     def updateName(self, name):
+        if name in self.nondet_var_names:
+            name = self.nondet_var_names[name]
         newname = ''
         if self.indexStack:
             newname = name.replace(self.inlineInfix, str(self.indexStack[-1]) + '_')
@@ -544,6 +548,7 @@ class inliner(core.module.Translator):
 
         s = n.name if no_type else self._generate_decl(n)
         # S: added to handle var renaming in each inlining of functions
+        pre_update_name = s
         s = self.updateName(s)
         name = self.updateName(str(n.name))
 
@@ -614,8 +619,12 @@ class inliner(core.module.Translator):
                     if self.__isScalar(self.currentFunction[-1], n.name):
                         varType = self.Parser.varType[self.currentFunction[-1], n.name]
                         varTypeUnExpanded = self.Parser.varTypeUnExpanded[self.currentFunction[-1], n.name]
-                        initialStmt = '; ' + self._initVar(varType, name, varTypeUnExpanded) if self._needInit(
-                            n.name) and self.local in range(0, 2) else ''  # S: n.name --> name
+                        if self._needInit(n.name) and self.local in range(0, 2) :
+                            self.nondet_var_names[pre_update_name] = pre_update_name + "_nondet_"
+                            s = s.replace(pre_update_name, self.nondet_var_names[pre_update_name])
+                        initialStmt = '; '
+                        #initialStmt = '; ' + self._initVar(varType, name, varTypeUnExpanded) if self._needInit(
+                        #    n.name) and self.local in range(0, 2) else ''  # S: n.name --> name
                         s += initialStmt
                     #                   elif self.__isStruct(self.currentFunction[-1], n.name):
                     #                       s += ''
@@ -631,8 +640,10 @@ class inliner(core.module.Translator):
                                 vartype = vartype[:vartype.find("{")]
                             #s += '; __cs_init_scalar(&%s, sizeof(%s))' % (
                             #    name, vartype)
-                            s += '; %s = (%s)(__CSEQ_nondet_uint())' % (
-                                name, vartype) # TODO provvisorio, rendi nome variabile contenente _nondet_
+                            self.nondet_var_names[pre_update_name] = pre_update_name + "_nondet_"
+                            s = s.replace(pre_update_name, self.nondet_var_names[pre_update_name]) + ";"
+                            #s += '; %s = (%s)(__CSEQ_nondet_uint())' % (
+                            #    name, vartype) # TODO provvisorio, rendi nome variabile contenente _nondet_
 
             #            elif (self.__isScalar(self.currentFunction[-1], n.name) and
             #                    # Do not believe this check, it is not always true???
@@ -742,8 +753,10 @@ class inliner(core.module.Translator):
                         if self.local in range(0, 2):
                             #s = 'static ' + s + '; __cs_init_scalar(&%s, sizeof(%s))' % (
                             #    name, self.Parser.varType[self.currentFunction[-1], n.name])  # S: n.name --> name
-                            s = 'static ' + s + '; %s = (%s)(__CSEQ_nondet_uint())' % (
-                                name, self.Parser.varType[self.currentFunction[-1], n.name])  # S: n.name --> name # TODO provvisorio, rendi nome variabile contenente _nondet_
+                            self.nondet_var_names[pre_update_name] = pre_update_name + "_nondet_"
+                            s = s.replace(pre_update_name, self.nondet_var_names[pre_update_name]) + ";"
+                            #s = 'static ' + s + '; %s = (%s)(__CSEQ_nondet_uint())' % (
+                            #    name, self.Parser.varType[self.currentFunction[-1], n.name])  # S: n.name --> name # TODO provvisorio, rendi nome variabile contenente _nondet_
                                 
                                 
 
