@@ -457,6 +457,7 @@ enum t_typename {
         
     def visit_InitList(self, n):
         ans = []
+        any_se = False
         with self.set_can_value(True):
             for expr in n.exprs:
                 ans += self.visit(expr)
