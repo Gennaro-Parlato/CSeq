@@ -624,7 +624,9 @@ class inliner(core.module.Translator):
                         if self._needInit(n.name) and varType not in ('__cs_t','__cs_mutex_t','__cs_cond_t','__cs_barrier_t','__cs_attr_t') and self.local in range(0, 2) and pre_update_name not in self.nondet_var_names: 
                             self.nondet_var_names[pre_update_name] = pre_update_name + "_nondet_"
                             s = s.replace(name, self.updateName(pre_update_name))
-                        initialStmt = '; '
+                            initialStmt = '; '
+                        else:
+                            initialStmt = ''
                         #initialStmt = '; ' + self._initVar(varType, name, varTypeUnExpanded) if self._needInit(
                         #    n.name) and self.local in range(0, 2) else ''  # S: n.name --> name
                         s += initialStmt
