@@ -549,10 +549,12 @@ class abstr_inliner(core.module.Translator):
         # no_type is used when a Decl is part of a DeclList, where the type is
         # explicitly only for the first delaration in a list.
         #
-
+        
         s = n.name if no_type else self._generate_decl(n)
+        if n.name in self.nondet_var_names:
+            s = s.replace(n.name, self.nondet_var_names[n.name])
         # S: added to handle var renaming in each inlining of functions
-        pre_update_name = s
+        pre_update_name = str(n.name)
         s = self.updateName(s)
         name = self.updateName(str(n.name))
 
@@ -623,9 +625,9 @@ class abstr_inliner(core.module.Translator):
                     if self.__isScalar(self.currentFunction[-1], n.name):
                         varType = self.Parser.varType[self.currentFunction[-1], n.name]
                         varTypeUnExpanded = self.Parser.varTypeUnExpanded[self.currentFunction[-1], n.name]
-                        if self._needInit(n.name) and self.local in range(0, 2) :
+                        if self._needInit(n.name) and self.local in range(0, 2) and pre_update_name not in self.nondet_var_names: 
                             self.nondet_var_names[pre_update_name] = pre_update_name + "_nondet_"
-                            s = s.replace(pre_update_name, self.nondet_var_names[pre_update_name])
+                            s = s.replace(name, self.updateName(pre_update_name))
                         initialStmt = '; '
                         #initialStmt = '; ' + self._initVar(varType, name, varTypeUnExpanded) if self._needInit(
                         #    n.name) and self.local in range(0, 2) else ''  # S: n.name --> name
@@ -646,8 +648,11 @@ class abstr_inliner(core.module.Translator):
                             ##    name, vartype) TODO nome variabile dovrebbe contenere _nondet_
                             #s += '; %s = (%s)(__CSEQ_nondet_uint())' % (
                             #    name, vartype)
-                            self.nondet_var_names[pre_update_name] = pre_update_name + "_nondet_"
-                            s = s.replace(pre_update_name, self.nondet_var_names[pre_update_name]) + ";"
+                            if pre_update_name not in self.nondet_var_names: 
+                                self.nondet_var_names[pre_update_name] = pre_update_name + "_nondet_"
+                                s = s.replace(name, self.updateName(pre_update_name)) + ";"
+                            else:
+                                s = s + ";"
 
             #            elif (self.__isScalar(self.currentFunction[-1], n.name) and
             #                    # Do not believe this check, it is not always true???
@@ -754,8 +759,11 @@ class abstr_inliner(core.module.Translator):
                             #    name, self.Parser.varType[self.currentFunction[-1], n.name])  # S: n.name --> name
                             #s = 'static ' + s + '; %s = (%s)(__CSEQ_nondet_uint())' % (
                             #    name, self.Parser.varType[self.currentFunction[-1], n.name])  # S: n.name --> name
-                            self.nondet_var_names[pre_update_name] = pre_update_name + "_nondet_"
-                            s = s.replace(pre_update_name, self.nondet_var_names[pre_update_name]) + ";"
+                            if pre_update_name not in self.nondet_var_names: 
+                                self.nondet_var_names[pre_update_name] = pre_update_name + "_nondet_"
+                                s = 'static ' + s.replace(name, self.updateName(pre_update_name)) + ";"
+                            else:
+                                s = 'static ' + s + ";"
 
         # Global variables and already static variables
         if n.init and not processInit:
