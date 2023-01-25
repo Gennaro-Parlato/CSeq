@@ -646,9 +646,7 @@ class inliner(core.module.Translator):
                             #    name, vartype)
                             if pre_update_name not in self.nondet_var_names: 
                                 self.nondet_var_names[pre_update_name] = pre_update_name + "_nondet_"
-                                s = s.replace(name, self.updateName(pre_update_name)) + ";"
-                            else:
-                                s = s + ";"
+                                s = s.replace(name, self.updateName(pre_update_name))
                             #s += '; %s = (%s)(__CSEQ_nondet_uint())' % (
                             #    name, vartype) # TODO provvisorio, rendi nome variabile contenente _nondet_
 
@@ -762,9 +760,9 @@ class inliner(core.module.Translator):
                             #    name, self.Parser.varType[self.currentFunction[-1], n.name])  # S: n.name --> name
                             if pre_update_name not in self.nondet_var_names: 
                                 self.nondet_var_names[pre_update_name] = pre_update_name + "_nondet_"
-                                s = 'static ' + s.replace(name, self.updateName(pre_update_name)) + ";"
+                                s = 'static ' + s.replace(name, self.updateName(pre_update_name))
                             else:
-                                s = 'static ' + s + ";"
+                                s = 'static ' + s
                             #s = 'static ' + s + '; %s = (%s)(__CSEQ_nondet_uint())' % (
                             #    name, self.Parser.varType[self.currentFunction[-1], n.name])  # S: n.name --> name # TODO provvisorio, rendi nome variabile contenente _nondet_
                                 
