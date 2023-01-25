@@ -993,26 +993,22 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
             if fref in ("__CSEQ_assert",):
                 n.name.name = "assert"
             return self.macro_file_manager.expression(n, self.do_rule('rule_Assert_Assume', n, **extra_args), passthrough=not self.full_statement, brackets=not self.full_statement)
+        elif fref == '__CSEQ_atomic_begin':
+            if not self._lazyseqnewschedule__visit_funcReference:
+                self._lazyseqnewschedule__atomic = True
+            return ''
+        elif fref == '__CSEQ_atomic_end':
+            if not self._lazyseqnewschedule__visit_funcReference:
+                self._lazyseqnewschedule__atomic = False
+            return ''
         elif fref == 'sizeof':
             return self.macro_file_manager.expression(n, self.do_rule('rule_Sizeof', n, **extra_args), passthrough=not self.full_statement, brackets=not self.full_statement)
         elif fref == '__cs_safe_malloc':
             return self.macro_file_manager.expression(n, self.do_rule('rule_Malloc', n, **extra_args), passthrough=not self.full_statement, brackets=not self.full_statement)
         elif fref == '__CSEQ_nondet_bool':
             return self.macro_file_manager.expression(n, self.do_rule('rule_NondetBool', n, **extra_args), passthrough=not self.full_statement, brackets=not self.full_statement)
-        elif fref in ('__cs_mutex_init', "__cs_create", "__cs_join"):
-            self.expList = []
-            with self.abs_dr_mode_set("VALUE","WSE"):
-                for e in n.args:
-                    self.expList.append(self._visit_expr(e))
-            argMap = None
-            if fref == "__cs_create":
-                self._lazyseqnewschedule__firstThreadCreate = True
-                fName = self.expList[2]
-                fName = fName.strip()
-                fName = fName.strip('()&')
-                threadId = str(self.Parser.threadOccurenceIndex[fName])
-                argMap = [0,1,2,3,threadId]
-            return self.macro_file_manager.expression(n, self.do_rule('rule_FuncCall', n, argMap=argMap, **extra_args), passthrough=not self.full_statement, brackets=not self.full_statement)
+        elif fref.startswith('__CSEQ_atomic_'): # so that atomic functions aren't catched by my code TODO this will go with proper implementation of function calls that use shadow memory
+            self._lazyseqnewschedule__globalMemoryAccessed = True
         elif fref.startswith('__CSEQ_nondet_'):
             tp = fref[len('__CSEQ_nondet_'):]
             ndtp = "int"
@@ -1035,6 +1031,31 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
             extra_args['ndtype'] = ndtp
             return self.macro_file_manager.expression(n, self.do_rule('rule_Nondet', n, **extra_args), passthrough=not self.full_statement, brackets=not self.full_statement)
             extra_args['ndtype'] = None
+        elif fref in (core.common.changeID['pthread_create'], core.common.changeID['pthread_exit'], core.common.changeID['pthread_join'], core.common.changeID['pthread_mutex_lock'], core.common.changeID['pthread_mutex_unlock'], core.common.changeID['pthread_mutex_init']):
+            self.expList = []
+            with self.abs_dr_mode_set("VALUE","WSE"):
+                if n.args is not None:
+                    for e in n.args:
+                        self.expList.append(self._visit_expr(e))
+            argMap = None
+            if fref == core.common.changeID['pthread_create']:
+                self._lazyseqnewschedule__firstThreadCreate = True
+                fName = self.expList[2]
+                fName = fName.strip()
+                fName = fName.strip('()&')
+                threadId = str(self.Parser.threadOccurenceIndex[fName])
+                argMap = [0,1,2,3,threadId]
+            elif ((fref == core.common.changeID['pthread_mutex_lock'] ) or (fref == core.common.changeID['pthread_mutex_unlock']) or
+                fref.startswith('__cs_cond_wait_')):
+                threadIndex= self.Parser.threadOccurenceIndex[self._lazyseqnewschedule__currentThread] if self._lazyseqnewschedule__currentThread in self.Parser.threadOccurenceIndex else 0
+                argMap = [i for i in range(len(self.expList))]+[str(threadIndex)]
+            elif fref == core.common.changeID['pthread_exit']:
+                threadIndex = self.Parser.threadOccurenceIndex[self._lazyseqnewschedule__currentThread] if self._lazyseqnewschedule__currentThread in self.Parser.threadOccurenceIndex else 0
+                argMap = [i for i in range(len(self.expList))]+[str(threadIndex)]
+            elif fref.startswith('__CSEQ_atomic_'):
+                self._lazyseqnewschedule__globalMemoryAccessed = True
+            return self.macro_file_manager.expression(n, self.do_rule('rule_FuncCall', n, argMap=argMap, **extra_args), passthrough=not self.full_statement, brackets=not self.full_statement)
+        
             
         ## all functions are either instrumentation ones or thread functions. Anyways, don't instrument
         parts = []

@@ -1701,7 +1701,7 @@ class AbsDrRules:
             self.auxvars.create(fullExpr, ret_type)
             
             #this allows to setup a different argument calling scheme (e.g, the extra arg of _cs_create), if argMap[i] is int, the i-th argument will be [[exp.exprs[i],VALUE]], else the i-th argument will be argMap[i].
-            argMap = kwargs['argMap'] if 'argMap' in kwargs and kwargs['argMap'] is not None else [i for i in range(len(exp.exprs))]
+            argMap = kwargs['argMap'] if 'argMap' in kwargs and kwargs['argMap'] is not None else ([i for i in range(len(exp.exprs))] if exp is not None else [])
             bav1 = self.getBav1(full_statement)
             statements = []
             statements.append(self.assign_var(bav1, "0"))

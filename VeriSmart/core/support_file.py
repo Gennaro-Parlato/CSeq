@@ -226,13 +226,14 @@ enum t_typename {
     def visit_FuncCall(self, n):
         self.child_has_side_effect = True
         ans = []
-        if n.name.name in ("__cs_safe_malloc", "__CSEQ_assert", "assert", "__CSEQ_assume", "assume_abort_if_not"):
+        if n.name.name in ("__cs_safe_malloc", "__CSEQ_assert", "assert", "__CSEQ_assume", "assume_abort_if_not", "__cs_mutex_lock", "__cs_mutex_unlock"):
             with self.set_can_value(True):
                 ans += self.visit(n.args.exprs[0])
         elif n.name.name in ("__cs_create",):
             with self.set_can_value(True):
+                ans += self.visit(n.args.exprs[0])
                 ans += self.visit(n.args.exprs[3])
-        elif n.name.name in ("__cs_join",):
+        elif n.name.name in ("__cs_join", "__cs_mutex_init"):
             with self.set_can_value(True):
                 ans += self.visit(n.args.exprs[0])
                 ans += self.visit(n.args.exprs[1])
