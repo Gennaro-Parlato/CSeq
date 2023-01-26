@@ -2209,7 +2209,7 @@ class AbsDrRules:
         #   part2 = part2a && part2b
         #       part2a = (bav||[exp1,VALUE])
         #       part2b = [exp2,GETVAL]
-        #   part3 = bap=bap1, bav=bav||(bav1&&[exp2,VALUE]), value = [exp1,VALUE] && [exp2,VALUE]
+        #   part3 = bap=bap1, bav=(bav||bav1) && (bav1||[exp1,VALUE]) && (bav||[exp2,VALUE]), value = [exp1,VALUE] && [exp2,VALUE]
         exp1 = fullOp.left
         exp2 = fullOp.right
         value = self.getCondition(fullOp)
@@ -2221,15 +2221,8 @@ class AbsDrRules:
             self.assign_var(bap1, self.cp(state, "bap")),
             self.assign_with_prop(state, "bap", self.or_expr_prop(self.cp(state, "bap"), self.cp(state, "bav")))
         ]
-        #part2a = self.or_expr_prop(self.cp(state, "bav"), self.visitor_visit(state, exp1, "VALUE", "WSE", **kwargs))
-        #stateTillPart2a = state.copy()
-        #statePart2b = state.copy()
-        #part2b = self.visitor_visit(statePart2b, exp2, "GET_VAL", "ACCESS", **kwargs)
-        #state.doMerge(stateTillPart2a, statePart2b)
-        #part2 = [self.and_expr_prop(part2a, part2b)]
         part2 = [self.visitor_visit(state, exp2, "GET_VAL", "ACCESS", **kwargs)] 
         part3 = [
-            #self.assign_var(bap1, self.cp(state, "bap")),
             self.assign_with_prop(state, "bap", bap1),
             self.assign_with_prop(state, "bav", self.and_expr_prop(self.or_expr_prop(self.cp(state, "bav"), bav1), self.or_expr_prop(bav1, self.visitor_visit(state, exp1, "VALUE", "WSE", **kwargs)), self.or_expr_prop(self.cp(state, "bav"), self.visitor_visit(state, exp2, "VALUE", "WSE", **kwargs)))),
             self.assign_var(value, self.and_expr_prop(self.visitor_visit(state, exp1, "VALUE", "WSE", **kwargs), self.visitor_visit(state, exp2, "VALUE", "WSE", **kwargs)))
@@ -2264,7 +2257,6 @@ class AbsDrRules:
         state.doMerge(stateTillPart2a, statePart2b)
         part2 = [self.and_expr_prop(part2a, part2b)]
         part3 = [
-            #self.assign_var(bap1, self.cp(state, "bap")),
             self.assign_with_prop(state, "bap", bap1),
             self.assign_with_prop(state, "bav", self.or_expr_prop(self.cp(state, "bav"), self.and_expr_prop(bav1, self.visitor_visit(state, exp2, "VALUE", "WSE", **kwargs)))),
             self.assign_var(value, self.and_expr_prop(self.visitor_visit(state, exp1, "VALUE", "WSE", **kwargs), self.visitor_visit(state, exp2, "VALUE", "WSE", **kwargs)))
@@ -2276,7 +2268,7 @@ class AbsDrRules:
         # where
         #   part1 = [exp1,GETVAL], bav1 =bav, bap1=bap, bap=bap||bav
         #   part2 = [exp2,GETVAL]
-        #   part3 = bap=bap1, bav=bav||(bav1&&![exp2,VALUE]), value = [exp1,VALUE] || [exp2,VALUE]
+        #   part3 = bap=bap1, bav=(bav||bav1) && (bav1||![exp1,VALUE]) && (bav||![exp2,VALUE]), value = [exp1,VALUE] || [exp2,VALUE]
         exp1 = fullOp.left
         exp2 = fullOp.right
         value = self.getCondition(fullOp)
@@ -2291,8 +2283,8 @@ class AbsDrRules:
         part2 = [self.visitor_visit(state, exp2, "GET_VAL", "ACCESS", **kwargs)] 
         part3 = [
             self.assign_with_prop(state, "bap", bap1),
-            self.assign_with_prop(state, "bav", self.and_expr_prop(self.or_expr_prop(self.cp(state, "bav"), bav1), self.or_expr_prop(bav1, self.visitor_visit(state, exp1, "VALUE", "WSE", **kwargs)), self.or_expr_prop(self.cp(state, "bav"), "!("+self.visitor_visit(state, exp2, "VALUE", "WSE", **kwargs)+")"))),
-            self.assign_var(value, self.and_expr_prop(self.visitor_visit(state, exp1, "VALUE", "WSE", **kwargs), self.visitor_visit(state, exp2, "VALUE", "WSE", **kwargs)))
+            self.assign_with_prop(state, "bav", self.and_expr_prop(self.or_expr_prop(self.cp(state, "bav"), bav1), self.or_expr_prop(bav1, "!("+self.visitor_visit(state, exp1, "VALUE", "WSE", **kwargs)+")"), self.or_expr_prop(self.cp(state, "bav"), "!("+self.visitor_visit(state, exp2, "VALUE", "WSE", **kwargs)+")"))),
+            self.assign_var(value, self.or_expr_prop(self.visitor_visit(state, exp1, "VALUE", "WSE", **kwargs), self.visitor_visit(state, exp2, "VALUE", "WSE", **kwargs)))
         ]
         return self.comma_expr(*(part1+part2+part3))
         
@@ -2627,7 +2619,7 @@ class AbsDrRules:
                 return fail_expr()
         elif state.cp_bal is None:
             if self.underapprox:
-                return self.assume_expr("!"+self.bav)
+                return self.assume_expr("!"+self.bal)
             else:
                 return self.assert_expr("!"+self.bal)
         else:
