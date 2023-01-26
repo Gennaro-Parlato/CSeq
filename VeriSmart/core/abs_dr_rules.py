@@ -2168,7 +2168,7 @@ class AbsDrRules:
         elif state.cp_bav is None:
             return self.ternary_expr(state, self.comma_expr(expr_getval,self.cp(state, "bav")), lambda state: self.getNondetvarBv(expr, "u1"), expr_val) #self.nondet(), expr_val)
         
-    def __or_underapprox(self, state, fullOp, **kwargs):
+    def __or_underapproxOld(self, state, fullOp, **kwargs):
         # returns value = part1 || part2
         # where
         #   part1 = ([exp1,GETVAL], bav1 =bav, (!bav&&[exp1,VALUE])) {so that you fall though to part2 if exp1 was not ok}
@@ -2236,7 +2236,7 @@ class AbsDrRules:
         ]
         return self.comma_expr(*(part1+part2+part3))
         
-    def __and_underapproxX(self, state, fullOp, **kwargs):
+    def __and_underapprox(self, state, fullOp, **kwargs):
         # returns part1, part2, part3
         # where
         #   part1 = [exp1,GETVAL], bav1 =bav, bap1=bap, bap=bap||bav
@@ -2271,7 +2271,66 @@ class AbsDrRules:
         ]
         return self.comma_expr(*(part1+part2+part3))
         
-    def __and_underapprox(self, state, fullOp, **kwargs):
+    def __or_underapproxNoSeRight(self, state, fullOp, **kwargs):
+        # returns part1, part2, part3
+        # where
+        #   part1 = [exp1,GETVAL], bav1 =bav, bap1=bap, bap=bap||bav
+        #   part2 = [exp2,GETVAL]
+        #   part3 = bap=bap1, bav=bav||(bav1&&![exp2,VALUE]), value = [exp1,VALUE] || [exp2,VALUE]
+        exp1 = fullOp.left
+        exp2 = fullOp.right
+        value = self.getCondition(fullOp)
+        bav1 = self.getBav1(fullOp)
+        bap1 = self.getBap1(fullOp)
+        part1 = [
+            self.visitor_visit(state, exp1, "GET_VAL", "ACCESS", **kwargs),
+            self.assign_var(bav1, self.cp(state, "bav")),
+            self.assign_var(bap1, self.cp(state, "bap")),
+            self.assign_with_prop(state, "bap", self.or_expr_prop(self.cp(state, "bap"), self.cp(state, "bav")))
+        ]
+        part2 = [self.visitor_visit(state, exp2, "GET_VAL", "ACCESS", **kwargs)] 
+        part3 = [
+            self.assign_with_prop(state, "bap", bap1),
+            self.assign_with_prop(state, "bav", self.and_expr_prop(self.or_expr_prop(self.cp(state, "bav"), bav1), self.or_expr_prop(bav1, self.visitor_visit(state, exp1, "VALUE", "WSE", **kwargs)), self.or_expr_prop(self.cp(state, "bav"), "!("+self.visitor_visit(state, exp2, "VALUE", "WSE", **kwargs)+")"))),
+            self.assign_var(value, self.and_expr_prop(self.visitor_visit(state, exp1, "VALUE", "WSE", **kwargs), self.visitor_visit(state, exp2, "VALUE", "WSE", **kwargs)))
+        ]
+        return self.comma_expr(*(part1+part2+part3))
+        
+    def __or_underapprox(self, state, fullOp, **kwargs):
+        # returns part1, part2, part3
+        # where
+        #   part1 = [exp1,GETVAL], bav1 =bav, bap1=bap, bap=bap||bav
+        #   part2 = part2a && part2b
+        #       part2a = (!bav&&[exp1,VALUE])
+        #       part2b = [exp2,GETVAL]
+        #   part3 = bap=bap1, bav=bav||(bav1&&![exp2,VALUE]), value = [exp1,VALUE] || [exp2,VALUE]
+        exp1 = fullOp.left
+        exp2 = fullOp.right
+        if not self.supportFile.has_side_effects[exp2]:
+            return self.__or_underapproxNoSeRight(state, fullOp, **kwargs)
+        value = self.getCondition(fullOp)
+        bav1 = self.getBav1(fullOp)
+        bap1 = self.getBap1(fullOp)
+        part1 = [
+            self.visitor_visit(state, exp1, "GET_VAL", "ACCESS", **kwargs),
+            self.assign_var(bav1, self.cp(state, "bav")),
+            self.assign_var(bap1, self.cp(state, "bap")),
+            self.assign_with_prop(state, "bap", self.or_expr_prop(self.cp(state, "bap"), self.cp(state, "bav")))
+        ]
+        part2a = self.and_expr_prop(self.not_cp(state, "bav"), self.visitor_visit(state, exp1, "VALUE", "WSE", **kwargs))
+        stateTillPart2a = state.copy()
+        statePart2b = state.copy()
+        part2b = self.visitor_visit(statePart2b, exp2, "GET_VAL", "ACCESS", **kwargs)
+        state.doMerge(stateTillPart2a, statePart2b)
+        part2 = [self.and_expr_prop(part2a, part2b)]
+        part3 = [
+            self.assign_with_prop(state, "bap", bap1),
+            self.assign_with_prop(state, "bav", self.or_expr_prop(self.cp(state, "bav"), self.and_expr_prop(bav1, "!("+self.visitor_visit(state, exp2, "VALUE", "WSE", **kwargs)+")"))),
+            self.assign_var(value, self.or_expr_prop(self.visitor_visit(state, exp1, "VALUE", "WSE", **kwargs), self.visitor_visit(state, exp2, "VALUE", "WSE", **kwargs)))
+        ]
+        return self.comma_expr(*(part1+part2+part3))
+        
+    def __and_underapproxZ(self, state, fullOp, **kwargs):
         # returns value = (part1 && part2), part3
         # where
         #   part1 = ([exp1,GETVAL], bav1 =bav, bap1=bap, bap=bap||bav, bav) ? 1 : [exp1,VALUE]
