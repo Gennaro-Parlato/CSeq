@@ -942,7 +942,7 @@ class AbsDrRules:
             
             ans1 = [
                 self.if_abs_or_dr(lambda: self.visitor_visit(state, unExp, "UPD_VAL", "NO_ACCESS", **kwargs)),
-                self.if_abs(lambda: self.__assignment_manual_bav_fail(state)),
+                self.if_abs(lambda: self.__assignment_manual_bal_fail(state)),
                 self.if_dr(lambda: self.__assignment_manual_cp_p1(state, unExp,unExprType, **kwargs)),
                 self.if_dr(lambda: self.__assignment_manual_cp_p2(state, unExp,unExprType, **kwargs))
             ]
@@ -1011,7 +1011,7 @@ class AbsDrRules:
             
             ans1 = [
                 self.if_abs_or_dr(lambda: self.visitor_visit(state, unExp, "UPD_VAL", "NO_ACCESS", **kwargs)),
-                self.if_abs(lambda: self.__assignment_manual_bav_fail(state)),
+                self.if_abs(lambda: self.__assignment_manual_bal_fail(state)),
                 self.if_dr(lambda: self.__assignment_manual_cp_p1(state, unExp,unExprType, **kwargs)),
                 self.if_dr(lambda: self.__assignment_manual_cp_p2(state, unExp,unExprType, **kwargs))
             ]
@@ -2861,7 +2861,7 @@ class AbsDrRules:
         
         ans1=[
             self.if_abs_or_dr(lambda: self.visitor_visit(state, unExp, "SET_VAL" if op == "=" else "UPD_VAL", "NO_ACCESS", **kwargs)),
-            self.if_abs(lambda: self.__assignment_manual_bal_fail(state) if op == "=" else self.__assignment_manual_bav_fail(state)),
+            self.if_abs(lambda: self.__assignment_manual_bal_fail(state)), # if op == "=" else self.__assignment_manual_bav_fail(state)),
             "" if op == "=" else self.if_abs(lambda: self.assign_with_prop(state,"bav_lhs", self.cp(state,"bav"))),
             self.if_dr(lambda: self.__assignment_manual_cp_p1(state, unExp, **kwargs)),
             self.if_dr(lambda: self.__assignment_manual_cp_p2(state, unExp,unExprType, **kwargs)),
