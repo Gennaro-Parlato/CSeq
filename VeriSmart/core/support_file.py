@@ -450,7 +450,8 @@ enum t_typename {
             ans += self.bookNodeType(n.to_type, '__cs_typeofcast_'+str(self.typecastLbl))
             self.typecastLbl+=1
             ans += self.visit(n.to_type)
-        ans += self.visit(n.expr)
+        with self.set_can_value(True):
+            ans += self.visit(n.expr)
         return ans
 
     def visit_ExprList(self, n):
