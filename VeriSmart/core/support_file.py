@@ -226,7 +226,7 @@ enum t_typename {
     def visit_FuncCall(self, n):
         self.child_has_side_effect = True
         ans = []
-        if n.name.name in ("__cs_safe_malloc", "__CSEQ_assert", "assert", "__CSEQ_assume", "assume_abort_if_not", "__cs_mutex_lock", "__cs_mutex_unlock"):
+        '''if n.name.name in ("__cs_safe_malloc", "__CSEQ_assert", "assert", "__CSEQ_assume", "assume_abort_if_not", "__cs_mutex_lock", "__cs_mutex_unlock", "__cs_attr_init"):
             with self.set_can_value(True):
                 ans += self.visit(n.args.exprs[0])
         elif n.name.name in ("__cs_create",):
@@ -237,6 +237,14 @@ enum t_typename {
             with self.set_can_value(True):
                 ans += self.visit(n.args.exprs[0])
                 ans += self.visit(n.args.exprs[1])
+        else:'''
+        if n.name.name in ("__CSEQ_ROWLINE"):
+            return ans
+        with self.set_can_value(True):
+            ans += self.bookNodeType(n)
+            if n.args is not None:
+                for a in n.args.exprs:
+                    ans += self.visit(a)
         '''if self.can_value:
             ans += self.bookNodeType(n)
         # TODO might have to visit n.name for function pointers?

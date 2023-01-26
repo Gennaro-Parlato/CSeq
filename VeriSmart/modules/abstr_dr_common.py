@@ -726,7 +726,7 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
                 extra_args_r['dr_vp_state'] = self.abs_dr_vpstate
             return self.cGen_original.visit(n.lvalue) + " = " + \
                     self.abs_dr_rules.rule_SpecialFuncCall(self.abs_dr_state, n.rvalue, self.abs_dr_mode['abs_mode'], self.abs_dr_mode['dr_mode'], self.full_statement, **extra_args_r)'''
-        if lvalue_noinstr.startswith("__cs_staticlocalinit_") or ((rvalue_noinstr.startswith("__cs_") or rvalue_noinstr.startswith("__cz_")) and not rvalue_noinstr.startswith("__cz_local") and not rvalue_noinstr.startswith("__cs_staticlocal") and not rvalue_noinstr.startswith("__cz_retval") and not rvalue_noinstr.startswith("__cz_param") and not rvalue_noinstr.startswith("__cs_mutex_init") and not rvalue_noinstr.startswith("__cs_create") and not rvalue_noinstr.startswith("__cs_join")):
+        if lvalue_noinstr.startswith("__cs_staticlocalinit_") or ((rvalue_noinstr.startswith("__cs_") or rvalue_noinstr.startswith("__cz_")) and not rvalue_noinstr.startswith("__cz_local") and not rvalue_noinstr.startswith("__cs_staticlocal") and not rvalue_noinstr.startswith("__cz_retval") and not rvalue_noinstr.startswith("__cz_param") and not rvalue_noinstr.startswith("__cs_mutex_") and not rvalue_noinstr.startswith("__cs_create") and not rvalue_noinstr.startswith("__cs_join") and not rvalue_noinstr.startswith("__cs_attr_")):
             lvalue_ni = self.visit_noinstr(n.lvalue, False)
             rvalue_ni = self.visit_noinstr(n.rvalue, False)
             return lvalue_ni + " " + n.op + " " + rvalue_ni
@@ -813,7 +813,7 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
             #return n.name
         if n.name == "NULL":
             return self.macro_file_manager.expression(n, [self.visit(c_ast.Constant("void*", "NULL"))], passthrough=not self.full_statement, brackets=not self.full_statement)
-        if n.name[0] == "E" and n.name in ("EPERM", "ENOENT", "ESRCH", "EINTR", "EIO", "ENXIO", "E2BIG", "ENOEXEC", "EBADF", "ECHILD", "EAGAIN", "ENOMEM", "EACCES", "EFAULT", "ENOTBLK", "EBUSY", "EEXIST", "EXDEV", "ENODEV", "ENOTDIR", "EISDIR", "EINVAL", "ENFILE", "EMFILE", "ENOTTY", "ETXTBSY", "EFBIG", "ENOSPC", "ESPIPE", "EROFS", "EMLINK", "EPIPE", "EDOM", "ERANGE", "EDEADLK", "ENAMETOOLONG", "ENOLCK", "ENOSYS", "ENOTEMPTY", "ELOOP", "ENOMSG", "EIDRM", "ECHRNG", "EL2NSYNC", "EL3HLT", "EL3RST", "ELNRNG", "EUNATCH", "ENOCSI", "EL2HLT", "EBADE", "EBADR", "EXFULL", "ENOANO", "EBADRQC", "EBADSLT", "EBFONT", "ENOSTR", "ENODATA", "ETIME", "ENOSR", "ENONET", "ENOPKG", "EREMOTE", "ENOLINK", "EADV", "ESRMNT", "ECOMM", "EPROTO", "EMULTIHOP", "EDOTDOT", "EBADMSG", "EOVERFLOW", "ENOTUNIQ", "EBADFD", "EREMCHG", "ELIBACC", "ELIBBAD", "ELIBSCN", "ELIBMAX", "ELIBEXEC", "EILSEQ", "ERESTART", "ESTRPIPE", "EUSERS", "ENOTSOCK", "EDESTADDRREQ", "EMSGSIZE", "EPROTOTYPE", "ENOPROTOOPT", "EPROTONOSUPPORT", "ESOCKTNOSUPPORT", "EOPNOTSUPP", "EPFNOSUPPORT", "EAFNOSUPPORT", "EADDRINUSE", "EADDRNOTAVAIL", "ENETDOWN", "ENETUNREACH", "ENETRESET", "ECONNABORTED", "ECONNRESET", "ENOBUFS", "EISCONN", "ENOTCONN", "ESHUTDOWN", "ETOOMANYREFS", "ETIMEDOUT", "ECONNREFUSED", "EHOSTDOWN", "EHOSTUNREACH", "EALREADY", "EINPROGRESS", "ESTALE", "EUCLEAN", "ENOTNAM", "ENAVAIL", "EISNAM", "EREMOTEIO", "EDQUOT", "ENOMEDIUM", "EMEDIUMTYPE", "ECANCELED", "ENOKEY", "EKEYEXPIRED", "EKEYREVOKED", "EKEYREJECTED", "EOWNERDEAD", "ENOTRECOVERABLE"):
+        if (n.name[0] == "E" and n.name in ("EPERM", "ENOENT", "ESRCH", "EINTR", "EIO", "ENXIO", "E2BIG", "ENOEXEC", "EBADF", "ECHILD", "EAGAIN", "ENOMEM", "EACCES", "EFAULT", "ENOTBLK", "EBUSY", "EEXIST", "EXDEV", "ENODEV", "ENOTDIR", "EISDIR", "EINVAL", "ENFILE", "EMFILE", "ENOTTY", "ETXTBSY", "EFBIG", "ENOSPC", "ESPIPE", "EROFS", "EMLINK", "EPIPE", "EDOM", "ERANGE", "EDEADLK", "ENAMETOOLONG", "ENOLCK", "ENOSYS", "ENOTEMPTY", "ELOOP", "ENOMSG", "EIDRM", "ECHRNG", "EL2NSYNC", "EL3HLT", "EL3RST", "ELNRNG", "EUNATCH", "ENOCSI", "EL2HLT", "EBADE", "EBADR", "EXFULL", "ENOANO", "EBADRQC", "EBADSLT", "EBFONT", "ENOSTR", "ENODATA", "ETIME", "ENOSR", "ENONET", "ENOPKG", "EREMOTE", "ENOLINK", "EADV", "ESRMNT", "ECOMM", "EPROTO", "EMULTIHOP", "EDOTDOT", "EBADMSG", "EOVERFLOW", "ENOTUNIQ", "EBADFD", "EREMCHG", "ELIBACC", "ELIBBAD", "ELIBSCN", "ELIBMAX", "ELIBEXEC", "EILSEQ", "ERESTART", "ESTRPIPE", "EUSERS", "ENOTSOCK", "EDESTADDRREQ", "EMSGSIZE", "EPROTOTYPE", "ENOPROTOOPT", "EPROTONOSUPPORT", "ESOCKTNOSUPPORT", "EOPNOTSUPP", "EPFNOSUPPORT", "EAFNOSUPPORT", "EADDRINUSE", "EADDRNOTAVAIL", "ENETDOWN", "ENETUNREACH", "ENETRESET", "ECONNABORTED", "ECONNRESET", "ENOBUFS", "EISCONN", "ENOTCONN", "ESHUTDOWN", "ETOOMANYREFS", "ETIMEDOUT", "ECONNREFUSED", "EHOSTDOWN", "EHOSTUNREACH", "EALREADY", "EINPROGRESS", "ESTALE", "EUCLEAN", "ENOTNAM", "ENAVAIL", "EISNAM", "EREMOTEIO", "EDQUOT", "ENOMEDIUM", "EMEDIUMTYPE", "ECANCELED", "ENOKEY", "EKEYEXPIRED", "EKEYREVOKED", "EKEYREJECTED", "EOWNERDEAD", "ENOTRECOVERABLE")) or n.name == "__cs_CREATE_JOINABLE":
             return self.macro_file_manager.expression(n, [self.visit(c_ast.Constant("int", n.name))], passthrough=not self.full_statement, brackets=not self.full_statement)
         extra_args = {}
         if self.dr_on:
@@ -1031,12 +1031,13 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
             extra_args['ndtype'] = ndtp
             return self.macro_file_manager.expression(n, self.do_rule('rule_Nondet', n, **extra_args), passthrough=not self.full_statement, brackets=not self.full_statement)
             extra_args['ndtype'] = None
-        elif fref in (core.common.changeID['pthread_create'], core.common.changeID['pthread_exit'], core.common.changeID['pthread_join'], core.common.changeID['pthread_mutex_lock'], core.common.changeID['pthread_mutex_unlock'], core.common.changeID['pthread_mutex_init']):
+        else: # fref in [core.common.changeID[x] for x in ('pthread_create', 'pthread_exit', 'pthread_join', 'pthread_mutex_lock', 'pthread_mutex_unlock', 'pthread_mutex_init', 'pthread_attr_init', 'pthread_attr_setdetachstate')]:
             self.expList = []
-            with self.abs_dr_mode_set("VALUE","WSE"):
-                if n.args is not None:
-                    for e in n.args:
-                        self.expList.append(self._visit_expr(e))
+            with self.no_any_instrument():
+                with self.abs_dr_mode_set("VALUE","WSE"):
+                    if n.args is not None:
+                        for e in n.args:
+                            self.expList.append(self._visit_expr(e))
             argMap = None
             if fref == core.common.changeID['pthread_create']:
                 self._lazyseqnewschedule__firstThreadCreate = True
@@ -1060,18 +1061,19 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
         ## all functions are either instrumentation ones or thread functions. Anyways, don't instrument
         parts = []
         #with BakAndRestore(self, 'full_statement', False): ???
-        adr_abs_on_bak = {adr:adr.abs_on for adr in self.conf_adr}
-        abs_dr_mode_bak = self.abs_dr_mode
-        new_abs_dr_mode = [{'abs_mode':None, 'dr_mode':"ACCESS" if adr.dr_on else None} for adr in self.conf_adr]
-        for adr in self.conf_adr:
-            adr.abs_on = False
-        with BakAndRestore(self, 'abs_dr_mode', new_abs_dr_mode):
+        
+        #adr_abs_on_bak = {adr:adr.abs_on for adr in self.conf_adr}
+        #abs_dr_mode_bak = self.abs_dr_mode
+        #new_abs_dr_mode = [{'abs_mode':None, 'dr_mode':"ACCESS" if adr.dr_on else None} for adr in self.conf_adr]
+        #for adr in self.conf_adr:
+        #    adr.abs_on = False
+        #with BakAndRestore(self, 'abs_dr_mode', new_abs_dr_mode):
             #if adr.dr_on:
-            ans = self.DRvisit_FuncCall(n) #visit_with_absdr_args(state, n, abs_mode if self.abs_on else None, dr_mode if self.dr_on else None, full_statement=False, **kwargs)
+        ans = self.DRvisit_FuncCall(n) #visit_with_absdr_args(state, n, abs_mode if self.abs_on else None, dr_mode if self.dr_on else None, full_statement=False, **kwargs)
             #else:
             #    ans = super().visit_FuncCall(n)
-        for (adr,abs_on) in adr_abs_on_bak.items():
-            adr.abs_on = abs_on
+        #for (adr,abs_on) in adr_abs_on_bak.items():
+        #    adr.abs_on = abs_on
         if overridingAns is not None:
             return overridingAns
         else:

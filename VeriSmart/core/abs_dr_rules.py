@@ -78,8 +78,8 @@ class AuxVars:
         self.value_var_nodes = dict()
         self.all_vv = []
         
-    def create(self, ast_node, typ):
-        aux = AuxVars.AuxVar("__cs_valuevar_"+str(len(self.all_vv)), typ=typ)
+    def create(self, ast_node, typ, with_side_effect=False):
+        aux = AuxVars.AuxVar("__cs_valuevar_"+str(len(self.all_vv)), typ=typ, with_side_effect=with_side_effect)
         self.all_vv.append(aux)
         self.value_var_nodes[ast_node] = aux
         
@@ -88,11 +88,17 @@ class AuxVars:
         self.all_vv.append(aux)
         self.value_var_nodes[ast_node] = aux
         
-    def write(self, ast_node, value, set_if_read=None, set_if_not_read="((void) 0)"):
+    def write(self, ast_node, value, set_if_read=None, set_if_not_read=None):
         assert(ast_node in self.value_var_nodes)
+        nd = self.value_var_nodes[ast_node]
         if set_if_read is None:
             set_if_read = lambda name, x: name+" = ("+x+")"
-        return self.value_var_nodes[ast_node].write(value, set_if_read, set_if_not_read)
+        if set_if_not_read is None:
+            if nd.with_side_effect:
+                set_if_not_read = lambda x: x
+            else:
+                set_if_not_read = lambda x: "((void) 0)"
+        return nd.write(value, set_if_read, set_if_not_read)
         
     def read(self, ast_node):
         assert(ast_node in self.value_var_nodes)
@@ -105,13 +111,14 @@ class AuxVars:
         return [l for v in self.all_vv for l in v.get_macro_decls()]
         
     class AuxVar:
-        def __init__(self, name, typ=None, fake=False, value=None):
+        def __init__(self, name, typ=None, fake=False, value=None, with_side_effect=False):
             self.name = name
             self.typ = typ
             self.fake = fake
             self.value = value
             self.is_written = value is not None
             self.reads = 0
+            self.with_side_effect = with_side_effect
             
         def write(self, val, set_if_read, set_if_not_read):
             #print(val, "previously", self.value)
@@ -120,7 +127,7 @@ class AuxVars:
             self.value = val
             self.is_written = True
             self.set_if_read = set_if_read(self.name,"x")
-            self.set_if_not_read = set_if_not_read
+            self.set_if_not_read = set_if_not_read("x")
             return "SET_"+self.name+"("+val+")"
             
         def read(self):
@@ -131,7 +138,7 @@ class AuxVars:
                 return self.name
             
         def get_var_decls(self):
-            if not self.fake and self.is_written and self.reads >= 2:
+            if not self.fake and ((self.is_written and self.reads >= 2) or (self.with_side_effect and self.reads >= 1)):
                 return [self.typ+" "+self.name+";"]
             else: 
                 return []
@@ -142,7 +149,7 @@ class AuxVars:
             elif self.is_written:
                 if self.reads == 0:
                     return ["#define SET_"+self.name+"(x) "+self.set_if_not_read]
-                elif self.reads == 1:
+                elif self.reads == 1 and not self.with_side_effect:
                     return ["#define SET_"+self.name+"(x) "+self.set_if_not_read, "#define "+self.name+" ("+self.value+")"]
                 else:
                     return ["#define SET_"+self.name+"(x) "+self.set_if_read]
@@ -1695,10 +1702,10 @@ class AbsDrRules:
                 fullExpr, abs_mode, dr_mode)
         
         elif abs_mode in ("GET_VAL",None) and dr_mode in ("NO_ACCESS","ACCESS","PREFIX",None):
-            ret_type = "int" #TODO type
+            ret_type = self.supportFile.get_type(fullExpr)
             if self.is_abstractable(ret_type) and ret_type in self.abstrTypesSizeof and self.abstrTypesSizeof[ret_type]*8 > self.abstr_bits:
                 ret_type = "intb" if ret_type in self.abstrTypesSigned else "uintb"
-            self.auxvars.create(fullExpr, ret_type)
+            self.auxvars.create(fullExpr, ret_type, with_side_effect=True)
             
             #this allows to setup a different argument calling scheme (e.g, the extra arg of _cs_create), if argMap[i] is int, the i-th argument will be [[exp.exprs[i],VALUE]], else the i-th argument will be argMap[i].
             argMap = kwargs['argMap'] if 'argMap' in kwargs and kwargs['argMap'] is not None else ([i for i in range(len(exp.exprs))] if exp is not None else [])
@@ -1712,9 +1719,6 @@ class AbsDrRules:
             statements.append(self.assign_with_prop(state,"bav", bav1))
             statements.append(self.__malloc_inner(state, **kwargs))
             statements.append(self.auxvars.write(fullExpr, fncName+"("+",".join([self.visitor_visit(state, exp.exprs[aid], "VALUE", "WSE", **kwargs) if isinstance(aid, int) else aid for aid in argMap])+")"))
-            # force it to be stored TODO do it properly with a sideEffects argument
-            self.auxvars.read(fullExpr)
-            self.auxvars.read(fullExpr)
             
             return self.store_content(full_statement, \
                 self.comma_expr(*statements) \
@@ -2631,6 +2635,8 @@ class AbsDrRules:
     def compileTimeBoundsFailure(self, typ, value):
         if value[0] == "E":
             return self.bounds_failure(value, typ)
+        if value == "__cs_CREATE_JOINABLE":
+            return "0"
         if typ in self.abstrTypesSigned:
             intVal = self.evalValue(value)
             mn = -2**(self.abstr_bits-1)
@@ -2651,6 +2657,8 @@ class AbsDrRules:
         elif value == "NULL":
             return "0"
         elif "." in value:
+            return "0"
+        elif len(value) > 0 and value[0] == '"' and value[-1] == '"':
             return "0"
         else:
             assert(False)
