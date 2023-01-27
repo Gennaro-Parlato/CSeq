@@ -43,6 +43,11 @@ class loopAnalysis(core.module.Translator):
 		self.__threadIndex = self.getInputParamValue('threadIndex')
 		self.__threadBound = len(self.__threadName)
 		self.__satSwarm = env.sat_swarm
+		resetaux = self.getInputParamValue('resetaux')
+		if resetaux is None:
+		    self.resetaux_call = ''
+		else:
+		    self.resetaux_call = '__CSEQ_rawline("'+resetaux+'"); '
 		#print(self.__lines)
 		#print(self.__threadName)
 		#print(self.__threadBound)
@@ -260,8 +265,8 @@ class loopAnalysis(core.module.Translator):
                                                 	m += 1	
 
 						for sub in (
-							("@£@I1", '__CSEQ_rawline("t%s_%s:"); __CSEQ_rawline("IF(%s,%s,t%s_%s)");' % (tName, count, self.__threadIndex[tName], l1, tName, count + 1 )),
-							("@£@J1", '__CSEQ_rawline("t%s_%s:"); __CSEQ_rawline("IF(%s,%s,t%s_%s)");' % (tName, count, self.__threadIndex[tName], l1, tName, count + 1 )),
+							("@£@I1", '__CSEQ_rawline("t%s_%s:"); %s __CSEQ_rawline("IF(%s,%s,t%s_%s)");' % (tName, count, self.resetaux_call, self.__threadIndex[tName], l1, tName, count + 1 )),
+							("@£@J1", '__CSEQ_rawline("t%s_%s:"); %s __CSEQ_rawline("IF(%s,%s,t%s_%s)");' % (tName, count, self.resetaux_call, self.__threadIndex[tName], l1, tName, count + 1 )),
 							("@£@L1", str(count)),
 							("@£@L2", str(count)),
 							("@£@I2", ''), 
@@ -314,7 +319,7 @@ class loopAnalysis(core.module.Translator):
 
 				# Last statement of thread
 				else:
-					s = seqCode[j:i] + '__CSEQ_rawline("t%s_%s: ");' % (tName, count)
+					s = seqCode[j:i] + '__CSEQ_rawline("t%s_%s: "); %s' % (tName, count,self.resetaux_call)
 					output.append(s)
 					i += 4
 					done = True

@@ -107,6 +107,9 @@ class AuxVars:
     def get_var_decls(self):
         return [l for v in self.all_vv for l in v.get_var_decls()]
         
+    def get_var_list(self):
+        return [l for v in self.all_vv for l in v.get_var_list()]
+        
     def get_macro_decls(self):
         return [l for v in self.all_vv for l in v.get_macro_decls()]
         
@@ -140,6 +143,12 @@ class AuxVars:
         def get_var_decls(self):
             if not self.fake and ((self.is_written and self.reads >= 2) or (self.with_side_effect and self.reads >= 1)):
                 return [self.typ+" "+self.name+";"]
+            else: 
+                return []
+                
+        def get_var_list(self):
+            if not self.fake and ((self.is_written and self.reads >= 2) or (self.with_side_effect and self.reads >= 1)):
+                return [self.name]
             else: 
                 return []
                 
@@ -313,6 +322,7 @@ class AbsDrRules:
         # bav1 expressions
         self.bav1s = {}
         self.bav1s_max = 0
+        
         # bap1 expressions
         self.bap1s = {}
         self.bap1s_max = 0
@@ -361,6 +371,11 @@ class AbsDrRules:
         #self.bap1s_if = {} bap1s for ifs are kept between statements, can't reset automatically
         self.bap1s = {}
         self.conditions = {}
+        
+    def end_of_thread_function(self):
+        self.bap1s_if = {} 
+        self.bap1s_if_free = deque()
+        self.bap1s_if_max = 0
 
     def get_help_var(self, typ):
         if typ not in self.helpvar_cnt:
@@ -444,7 +459,7 @@ class AbsDrRules:
             self.if_abs(lambda: "typedef unsigned __CPROVER_bitvector["+str(self.abstr_bits*2)+"] "+self.unsigned_bits_2x+";"),
             self.if_abs(lambda: "typedef __CPROVER_bitvector["+str(self.abstr_bits*2)+"] "+self.signed_bits_2x+";"),
             #self.if_abs(lambda: self.unsigned_bits_1+" "+self.get_uintb1_var()+" = 0;"),
-            self.if_ua(lambda: "unsigned __CPROVER_bitvector[1] "+self.bap+" = 0;"),
+            #self.if_ua(lambda: "unsigned __CPROVER_bitvector[1] "+self.bap+" = 0;"),
             self.if_dr_possible(lambda: "unsigned __CPROVER_bitvector[1] "+self.dr+" = 0;"),
             self.if_dr_possible(lambda: "unsigned __CPROVER_bitvector[1] "+self.wam+" = 0;"),
             self.if_dr_possible(lambda: "unsigned __CPROVER_bitvector[1] "+self.wkm+" = 0;"),
@@ -490,13 +505,24 @@ class AbsDrRules:
         return self.compound_expr("\n",*(['unsigned __CPROVER_bitvector[1] __cs_bav1_'+str(v)+';' for v in range(self.bav1s_max)]))[0]
         
     def bap1_vars_decl(self):
-        return self.compound_expr("\n",*(['unsigned __CPROVER_bitvector[1] __cs_bap1_'+str(v)+';' for v in range(self.bap1s_max)]+
-            ['unsigned __CPROVER_bitvector[1] __cs_bap1_if_'+str(v)+';' for v in range(self.bap1s_if_max)]))[0]
+        return self.compound_expr("\n",*(['unsigned __CPROVER_bitvector[1] __cs_bap1_'+str(v)+';' for v in range(self.bap1s_max)]#+
+            #['unsigned __CPROVER_bitvector[1] __cs_bap1_if_'+str(v)+';' for v in range(self.bap1s_if_max)]
+            ))[0]
 
     def extra_vars_decl(self):
         return self.compound_expr("\n",*(
             self.auxvars.get_var_decls()+
             [typ+" __cs_"+typ.replace(" ","_")+"_tmp_"+str(k)+";" for (typ, mx) in self.helpvar_max.items() for k in range(mx)]))[0]
+            
+    def reset_vars_stmt(self):
+        return " = ".join(
+            ["__cs_bap1_"+str(v) for v in range(self.bap1s_max)]+
+            ["__cs_cond_"+str(v) for v in range(self.conds_max)]+
+            ["__cs_bav1_"+str(v) for v in range(self.bav1s_max)]+
+            ([self.bav, self.bal, self.bav_lhs, self.bav_tmp] if self.abs_on else [])+
+            self.auxvars.get_var_list()+
+            ["__cs_"+typ.replace(" ","_")+"_tmp_"+str(k) for (typ, mx) in self.helpvar_max.items() for k in range(mx)]+
+            ["0"])+";"
         
             
         #[vvn[1]+" "+vvn[0]+" = 0;" for vvn in self.value_var_nodes.values() if vvn[1] is not None]))[0]
@@ -2972,3 +2998,9 @@ class AbsDrRules:
         return [
             "typedef "+t+" abstr_"+t.replace(" ","_")+";" for t in self.abstrTypesSizeof
         ]
+        
+    def rule_FunctionLocalDecls(self, state, fnc, abs_mode, dr_mode, full_statement, **kwargs):
+        return self.if_ua(lambda: "static "+self.unsigned_1+" "+", ".join([self.bap]+["__cs_bap1_if_"+str(v) for v in range(self.bap1s_if_max)])+"; RESETAUX();")
+        
+    def rule_ResetAux(self, state, fnc, abs_mode, dr_mode, full_statement, **kwargs):
+        return self.if_abs(lambda: "RESETAUX()")

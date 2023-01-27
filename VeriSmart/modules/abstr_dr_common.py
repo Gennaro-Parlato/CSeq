@@ -78,6 +78,11 @@ class MacroFileManager:
             self.macro_name_with_brackets["AUXVARS"] = True
             self.macroToExprs["AUXVARS"] = ["main(void); "+t.strip().replace("\n"," \\\n") for t in transs]
             return "int AUXVARS();"
+            
+    def resetvars(self, transs):
+        self.macro_with_brackets["RESETAUX"] = False
+        self.macro_name_with_brackets["RESETAUX"] = True
+        self.macroToExprs["RESETAUX"] = transs
 
     def fake_typedef_bits(self):
         return "\n".join(["typedef char "+x+";" for x in ["FAKETYPEDEFSIN", self.adrs[0].unsigned_bits, 
@@ -167,7 +172,7 @@ class MacroFileManager:
             for i in range(len(self.config)):
                 for (macro_name, transs) in self.macroToExprs.items():
                     #print(transs, self.config)
-                    if transs[i] != "" and macro_name != "AUXVARS" and "JmpElse" not in macro_name:
+                    if transs[i] != "" and macro_name not in ("AUXVARS","RESETAUX") and "JmpElse" not in macro_name:
                         self.adrs[i].cleaner.add_code_to_clean(macro_name, transs[i])
                 self.adrs[i].cleaner.do_clean_codes()
                 clean_codes = self.adrs[i].cleaner.get_clean_codes()
@@ -175,7 +180,7 @@ class MacroFileManager:
                     print(self.common_defines, file=f)
                     print(self.adrs[i].getAbstractionMacros(), file=f)
                     for macro_name in self.macroToExprs.keys():
-                        trans = clean_codes[macro_name] if self.macroToExprs[macro_name][i] != "" and macro_name != "AUXVARS" and "JmpElse" not in macro_name else self.macroToExprs[macro_name][i]
+                        trans = clean_codes[macro_name] if self.macroToExprs[macro_name][i] != "" and macro_name not in ("AUXVARS","RESETAUX") and "JmpElse" not in macro_name else self.macroToExprs[macro_name][i]
                         #print(macro_name, trans)
                         trans = trans.replace("(;)","((void)0)")
                         has_brackets = self.macro_with_brackets[macro_name]
@@ -183,9 +188,9 @@ class MacroFileManager:
                             trans = "("+trans+")"
                         if trans == "()":
                             trans = ";"
-                        if macro_name != "AUXVARS":
+                        if macro_name not in ("AUXVARS","RESETAUX"):
                             trans = trans.replace("\n", "\\\n")
-                        if self.dbg_visitor and self.macroToExprs[macro_name][i] != "" and macro_name != "AUXVARS" and "JmpElse" not in macro_name:
+                        if self.dbg_visitor and self.macroToExprs[macro_name][i] != "" and macro_name not in ("AUXVARS","RESETAUX") and "JmpElse" not in macro_name:
                             print("/*"+" ; ".join("("+c+")" for c in self.macroToNodes[macro_name])+"*/", file=f)
                         brk = "()" if self.macro_name_with_brackets[macro_name] else ""
                         print("#define "+macro_name+brk+" "+trans, file=f)
@@ -399,7 +404,7 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
             ans = []
             for i in range(len(self.conf_adr)):
                 skip = self.skip_on_plain and self.abs_dr_mode[i]['abs_mode'] is None and self.abs_dr_mode[i]['dr_mode'] is None
-                if rule in ("rule_IfCond","rule_SMpassDef","rule_SMpassAssignInFunc","rule_ElseCond") or self.conf_adr[i].dr_on or self.conf_adr[i].abs_on or self.conf_adr[i].underapprox:
+                if rule in ("rule_IfCond","rule_SMpassDef","rule_SMpassAssignInFunc","rule_ElseCond","rule_ResetAux") or self.conf_adr[i].dr_on or self.conf_adr[i].abs_on or self.conf_adr[i].underapprox:
                     ans.append("" if skip else getattr(self.conf_adr[i], rule)(self.abs_dr_state[i], n, self.abs_dr_mode[i]['abs_mode'], self.abs_dr_mode[i]['dr_mode'], self.full_statement, **extra_args))
                 else:
                     typ = str(type(n)).split(".")[-1][:-2]
@@ -445,6 +450,14 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
                 
         s += self.macro_file_manager.fake_typedef_bits()
         s += self.macro_file_manager.auxvars(['\n'.join([auxvars1[adr], adr.extra_vars_decl(), adr.cond_vars_decl(), adr.bav1_vars_decl(), adr.bap1_vars_decl(), adr.nondet_vars_decl()]) for adr in self.conf_adr])
+        self.macro_file_manager.resetvars([adr.reset_vars_stmt() for adr in self.conf_adr])
+        
+        old_SOP = self.skip_on_plain
+        self.skip_on_plain = True
+        self.setOutputParam("resetaux", self.macro_file_manager.expression(c_ast.EmptyStatement(), self.do_rule('rule_ResetAux',c_ast.EmptyStatement()), passthrough=False, brackets=False))
+        self.skip_on_plain = old_SOP
+        
+        
 
         #TODO check what it means
         #ris = self.faked_typedef_start \
@@ -699,6 +712,11 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
         else: # thread functions
             argc_tp = self.macro_file_manager.expression(c_ast.IdentifierType(names=['int']), self.do_rule('rule_Type',c_ast.IdentifierType(names=['int']),typ_txt="int"), passthrough=False, brackets=False)
             ans = super().visit_FuncDef(n).replace("int __cz_param_main_argc;",argc_tp+" __cz_param_main_argc;") #TODO solve later
+            #insert function local declarations (i.e., bav and bav_if)
+            body_begin = ans.find("{")
+            ans = ans[:body_begin+1] + self.macro_file_manager.expression(c_ast.EmptyStatement(), self.do_rule('rule_FunctionLocalDecls',c_ast.EmptyStatement()), passthrough=False, brackets=False) + ans[body_begin+1:]
+            for i in range(len(self.conf_adr)):
+                self.conf_adr[i].end_of_thread_function()
             return ans
             
     def saveDeclarationIntoTypeGeneration(self, type, node): 
@@ -1304,7 +1322,7 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
                     assert(False, "Unexpected initializer for variable "+n.name+" with type_of_n = "+type_of_n)
                     
                 if self.scope == 'global' and n.name != 'main':
-                    self.global_var_initializations += init
+                    self.global_var_initializations += init.replace("__cs_baP", "0") # remove bap as it is not relevant, that's a global declaration
                 elif self.scope == 'local':
                     ans = ans + init
                     
