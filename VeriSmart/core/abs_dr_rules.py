@@ -522,7 +522,7 @@ class AbsDrRules:
             ([self.bav, self.bal, self.bav_lhs, self.bav_tmp] if self.abs_on else [])+
             self.auxvars.get_var_list()+
             ["__cs_"+typ.replace(" ","_")+"_tmp_"+str(k) for (typ, mx) in self.helpvar_max.items() for k in range(mx)]+
-            ["0"])+";"
+            [" z 0"])+";"
         
             
         #[vvn[1]+" "+vvn[0]+" = 0;" for vvn in self.value_var_nodes.values() if vvn[1] is not None]))[0]
@@ -3003,4 +3003,17 @@ class AbsDrRules:
         return self.if_ua(lambda: "static "+self.unsigned_1+" "+", ".join([self.bap]+["__cs_bap1_if_"+str(v) for v in range(self.bap1s_if_max)])+"; RESETAUX();")
         
     def rule_ResetAux(self, state, fnc, abs_mode, dr_mode, full_statement, **kwargs):
-        return self.if_abs(lambda: "RESETAUX()")
+        return "RESETAUX()"
+        
+    def rule_ChangeResetAux(self, state, fnc, abs_mode, dr_mode, full_statement, **kwargs):
+        if not self.underapprox:
+            return ""
+            
+        #self.bap1s_if_max is the first unassigned bap1_if and they are all free from that number on
+        unused_bap1s_if = [x+" = " for x in self.bap1s_if_free] + ["__cs_bap1_if_"+str(i)+" = " for i in range(self.bap1s_if_max, kwargs['max_nesting'])]
+        
+        if "__cs_bap1_if_0 = " in unused_bap1s_if:
+            unused_bap1s_if = [self.bap+" = "] + unused_bap1s_if
+        
+        arg = "".join(unused_bap1s_if)
+        return "RESETAUX_ARGS("+arg+")"

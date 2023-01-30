@@ -79,10 +79,10 @@ class MacroFileManager:
             self.macroToExprs["AUXVARS"] = ["main(void); "+t.strip().replace("\n"," \\\n") for t in transs]
             return "int AUXVARS();"
             
-    def resetvars(self, transs):
-        self.macro_with_brackets["RESETAUX"] = False
-        self.macro_name_with_brackets["RESETAUX"] = True
-        self.macroToExprs["RESETAUX"] = transs
+    def resetaux_args_def(self, transs):
+        self.macro_with_brackets["RESETAUX_ARGS"] = False
+        self.macro_name_with_brackets["RESETAUX_ARGS"] = True
+        self.macroToExprs["RESETAUX_ARGS"] = transs
 
     def fake_typedef_bits(self):
         return "\n".join(["typedef char "+x+";" for x in ["FAKETYPEDEFSIN", self.adrs[0].unsigned_bits, 
@@ -172,7 +172,7 @@ class MacroFileManager:
             for i in range(len(self.config)):
                 for (macro_name, transs) in self.macroToExprs.items():
                     #print(transs, self.config)
-                    if transs[i] != "" and macro_name not in ("AUXVARS","RESETAUX") and "JmpElse" not in macro_name:
+                    if transs[i] != "" and macro_name not in ("AUXVARS","RESETAUX_ARGS","RESETAUX") and "JmpElse" not in macro_name:
                         self.adrs[i].cleaner.add_code_to_clean(macro_name, transs[i])
                 self.adrs[i].cleaner.do_clean_codes()
                 clean_codes = self.adrs[i].cleaner.get_clean_codes()
@@ -180,7 +180,7 @@ class MacroFileManager:
                     print(self.common_defines, file=f)
                     print(self.adrs[i].getAbstractionMacros(), file=f)
                     for macro_name in self.macroToExprs.keys():
-                        trans = clean_codes[macro_name] if self.macroToExprs[macro_name][i] != "" and macro_name not in ("AUXVARS","RESETAUX") and "JmpElse" not in macro_name else self.macroToExprs[macro_name][i]
+                        trans = clean_codes[macro_name] if self.macroToExprs[macro_name][i] != "" and macro_name not in ("AUXVARS","RESETAUX_ARGS","RESETAUX") and "JmpElse" not in macro_name else self.macroToExprs[macro_name][i]
                         #print(macro_name, trans)
                         trans = trans.replace("(;)","((void)0)")
                         has_brackets = self.macro_with_brackets[macro_name]
@@ -188,11 +188,11 @@ class MacroFileManager:
                             trans = "("+trans+")"
                         if trans == "()":
                             trans = ";"
-                        if macro_name not in ("AUXVARS","RESETAUX"):
+                        if macro_name not in ("AUXVARS","RESETAUX_ARGS","RESETAUX"):
                             trans = trans.replace("\n", "\\\n")
-                        if self.dbg_visitor and self.macroToExprs[macro_name][i] != "" and macro_name not in ("AUXVARS","RESETAUX") and "JmpElse" not in macro_name:
+                        if self.dbg_visitor and self.macroToExprs[macro_name][i] != "" and macro_name not in ("AUXVARS","RESETAUX_ARGS","RESETAUX") and "JmpElse" not in macro_name:
                             print("/*"+" ; ".join("("+c+")" for c in self.macroToNodes[macro_name])+"*/", file=f)
-                        brk = "()" if self.macro_name_with_brackets[macro_name] else ""
+                        brk = "(z)"if macro_name == "RESETAUX_ARGS" else ("()" if self.macro_name_with_brackets[macro_name] else "")
                         print("#define "+macro_name+brk+" "+trans, file=f)
 
 class abstr_dr_common(lazyseqnewschedule.lazyseqnewschedule): 
@@ -307,6 +307,8 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
         
         self.atomicLvl = 0 # this counts how much nesting in __CSEQ_atomic_ functions we are. If =0: we are not in an atomic function; otherwise that's atomic and we need to disable Visible Points
         
+        self.current_function = None # name of the function being translated
+        
     def insertGlobalVarInit(self, x):
         return x.replace("int main(void) {", "int main(void) {\n"+self.global_var_initializations, 1)
     def __createMainKLEERoundRobinDecomposePC(self, rounds):
@@ -404,7 +406,7 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
             ans = []
             for i in range(len(self.conf_adr)):
                 skip = self.skip_on_plain and self.abs_dr_mode[i]['abs_mode'] is None and self.abs_dr_mode[i]['dr_mode'] is None
-                if rule in ("rule_IfCond","rule_SMpassDef","rule_SMpassAssignInFunc","rule_ElseCond","rule_ResetAux") or self.conf_adr[i].dr_on or self.conf_adr[i].abs_on or self.conf_adr[i].underapprox:
+                if rule in ("rule_IfCond","rule_SMpassDef","rule_SMpassAssignInFunc","rule_ElseCond","rule_ResetAux","rule_ChangeResetAux") or self.conf_adr[i].dr_on or self.conf_adr[i].abs_on or self.conf_adr[i].underapprox:
                     ans.append("" if skip else getattr(self.conf_adr[i], rule)(self.abs_dr_state[i], n, self.abs_dr_mode[i]['abs_mode'], self.abs_dr_mode[i]['dr_mode'], self.full_statement, **extra_args))
                 else:
                     typ = str(type(n)).split(".")[-1][:-2]
@@ -450,7 +452,7 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
                 
         s += self.macro_file_manager.fake_typedef_bits()
         s += self.macro_file_manager.auxvars(['\n'.join([auxvars1[adr], adr.extra_vars_decl(), adr.cond_vars_decl(), adr.bav1_vars_decl(), adr.bap1_vars_decl(), adr.nondet_vars_decl()]) for adr in self.conf_adr])
-        self.macro_file_manager.resetvars([adr.reset_vars_stmt() for adr in self.conf_adr])
+        self.macro_file_manager.resetaux_args_def([adr.reset_vars_stmt() for adr in self.conf_adr])
         
         old_SOP = self.skip_on_plain
         self.skip_on_plain = True
@@ -686,38 +688,44 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
         #    return super().visit_FuncDef(n)
         self.scope = 'local'
         func_name = n.decl.name
-        if func_name.startswith('__cs_') or func_name == 'assume_abort_if_not':
-            # those functions are made by us: won't touch them
-            with self.no_any_instrument():
-                with BakAndRestore(self, 'full_statement', False):
-                    #print("NOINSTR2", n)
-                    ans = super().visit_FuncDef(n)
-            return ans
-        elif n.decl.name.startswith('__CSEQ_atomic_'):
-            self._lazyseqnewschedule__currentThread = n.decl.name
-            self._lazyseqnewschedule__visit_funcReference = True
-            #ret = self.otherparser.visit(n)
-            oldatomic = self._lazyseqnewschedule__atomic
-            self._lazyseqnewschedule__atomic = True
-            decl = self.visit(n.decl)
-            body = self.visit(n.body)
-            passdef = "int "+self.macro_file_manager.expression(n.decl, self.do_rule('rule_SMpassDef',n.decl), passthrough=False, brackets=False)+";"
-            passassn = self.macro_file_manager.expression(n.decl, self.do_rule('rule_SMpassAssignInFunc',n.decl), passthrough=False, brackets=False, with_semic=True)
-            body = "{" + passassn + "\n" + body.strip()[1:]
-            s = passdef+"\n"+decl + '\n' + body + '\n'
-            self._lazyseqnewschedule__atomic = oldatomic
-            self._lazyseqnewschedule__currentThread = ''
-            self._lazyseqnewschedule__visit_funcReference = False
-            return s
-        else: # thread functions
-            argc_tp = self.macro_file_manager.expression(c_ast.IdentifierType(names=['int']), self.do_rule('rule_Type',c_ast.IdentifierType(names=['int']),typ_txt="int"), passthrough=False, brackets=False)
-            ans = super().visit_FuncDef(n).replace("int __cz_param_main_argc;",argc_tp+" __cz_param_main_argc;") #TODO solve later
-            #insert function local declarations (i.e., bav and bav_if)
-            body_begin = ans.find("{")
-            ans = ans[:body_begin+1] + self.macro_file_manager.expression(c_ast.EmptyStatement(), self.do_rule('rule_FunctionLocalDecls',c_ast.EmptyStatement()), passthrough=False, brackets=False) + ans[body_begin+1:]
-            for i in range(len(self.conf_adr)):
-                self.conf_adr[i].end_of_thread_function()
-            return ans
+        with BakAndRestore(self, 'current_function', func_name):
+            max_nesting = self.support_file_mgr.if_nesting_level[self.current_function]
+            if func_name.startswith('__cs_') or func_name == 'assume_abort_if_not':
+                # those functions are made by us: won't touch them
+                with self.no_any_instrument():
+                    with BakAndRestore(self, 'full_statement', False):
+                        #print("NOINSTR2", n)
+                        ans = super().visit_FuncDef(n)
+                return ans
+            elif n.decl.name.startswith('__CSEQ_atomic_'):
+                self._lazyseqnewschedule__currentThread = n.decl.name
+                self._lazyseqnewschedule__visit_funcReference = True
+                #ret = self.otherparser.visit(n)
+                oldatomic = self._lazyseqnewschedule__atomic
+                self._lazyseqnewschedule__atomic = True
+                decl = self.visit(n.decl)
+                with BakAndRestore(self, 'skip_on_plain', True):
+                    resetaux = '__CSEQ_rawline("#define RESETAUX() '+self.macro_file_manager.expression(n.cond, self.do_rule('rule_ChangeResetAux', n, max_nesting=max_nesting, **extra_args), passthrough=False, brackets=False)+'");'
+                body = self.visit(n.body)
+                passdef = "int "+self.macro_file_manager.expression(n.decl, self.do_rule('rule_SMpassDef',n.decl), passthrough=False, brackets=False)+";"
+                passassn = self.macro_file_manager.expression(n.decl, self.do_rule('rule_SMpassAssignInFunc',n.decl), passthrough=False, brackets=False, with_semic=True)
+                body = "{" + resetaux + '\n' + passassn + "\n" + body.strip()[1:]
+                s = passdef+"\n"+decl + '\n' + body + '\n'
+                self._lazyseqnewschedule__atomic = oldatomic
+                self._lazyseqnewschedule__currentThread = ''
+                self._lazyseqnewschedule__visit_funcReference = False
+                return s
+            else: # thread functions
+                argc_tp = self.macro_file_manager.expression(c_ast.IdentifierType(names=['int']), self.do_rule('rule_Type',c_ast.IdentifierType(names=['int']),typ_txt="int"), passthrough=False, brackets=False)
+                ans = super().visit_FuncDef(n).replace("int __cz_param_main_argc;",argc_tp+" __cz_param_main_argc;") #TODO solve later
+                #insert function local declarations (i.e., bav and bav_if)
+                with BakAndRestore(self, 'skip_on_plain', True):
+                    resetaux = '__CSEQ_rawline("#define RESETAUX() '+self.macro_file_manager.expression(n, self.do_rule('rule_ChangeResetAux', n, max_nesting=max_nesting), passthrough=False, brackets=False)+'");'
+                body_begin = ans.find("{")
+                ans = ans[:body_begin+1] + resetaux + "\n" + self.macro_file_manager.expression(c_ast.EmptyStatement(), self.do_rule('rule_FunctionLocalDecls',c_ast.EmptyStatement()), passthrough=False, brackets=False) + ans[body_begin+1:]
+                for i in range(len(self.conf_adr)):
+                    self.conf_adr[i].end_of_thread_function()
+                return ans
             
     def saveDeclarationIntoTypeGeneration(self, type, node): 
         #old checkForWriting in Antonio's code. Now it writes the struct declarations in the type file
@@ -1426,6 +1434,8 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
         #if not self.any_instrument or not (self.dr_on or self.abs_on):
         #    return super().visit_If(n)
         ifStart = self._lazyseqnewschedule__maxInCompound   # label where the if stmt begins
+        
+        max_nesting = self.support_file_mgr.if_nesting_level[self.current_function]
 
         s = 'if ('
 
@@ -1449,6 +1459,8 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
         self.elseLblProgr += 1
         
         resetBap = self.macro_file_manager.expression(n.cond, [adr.bap+" = "+adr.getBap1If(n)+";" if adr.underapprox else "" for adr in self.conf_adr], passthrough=not self.full_statement, typlbl="ResetBap",with_semic=True, brackets=not self.full_statement)
+        with BakAndRestore(self, 'skip_on_plain', True):
+            s = '__CSEQ_rawline("#define RESETAUX() '+self.macro_file_manager.expression(n.cond, self.do_rule('rule_ChangeResetAux', n, max_nesting=max_nesting, **extra_args), passthrough=False, brackets=False)+'");\n' + s
         if n.iffalse: #there is else
             pass
             '''jmpElse = self.macro_file_manager.expression(n.cond, ["if("+adr.getBav1(n)+") {goto "+elseLbl+";}" if adr.underapprox else "" for adr in self.conf_adr], passthrough=not self.full_statement, typlbl="JmpElse",with_semic=True, brackets=not self.full_statement)
@@ -1542,4 +1554,6 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
         for adr in self.conf_adr:
             if adr.underapprox:
                 adr.releaseBap1If(n)
+        with BakAndRestore(self, 'skip_on_plain', True):
+            s += '__CSEQ_rawline("#define RESETAUX() '+self.macro_file_manager.expression(n.cond, self.do_rule('rule_ChangeResetAux', n, max_nesting=max_nesting, **extra_args), passthrough=False, brackets=False)+'");\n'
         return header + s + self._make_indent() + footer

@@ -24,6 +24,9 @@ class SupportFileManager(CGenerator):
         self.label_to_type = dict()
         self.test_struct = dict()
         self.has_side_effects = dict()
+        self.if_nesting_level = dict() #function -> deepest if level
+        self.current_nesting_level = None
+        self.max_nesting_level = None
         self.child_has_side_effect = None
         self.progLbl = 0
         self.typecastLbl = 0
@@ -511,7 +514,12 @@ enum t_typename {
             ans += self.visit(n.decl)
         if n.param_decls:
             ans += self.visit(n.param_decls)
+        self.current_nesting_level = 0
+        self.max_nesting_level = 0
         ans += self.visit(n.body)
+        self.if_nesting_level[n.decl.name] = self.max_nesting_level
+        self.current_nesting_level = None
+        self.max_nesting_level = None
         return ans
         
     def visit_Compound(self, n):
@@ -577,10 +585,13 @@ enum t_typename {
 
     def visit_If(self, n):
         ans = []
+        self.current_nesting_level += 1
+        self.max_nesting_level = max(self.max_nesting_level, self.current_nesting_level)
         with self.set_can_value(True):
             ans += self.visit(n.cond)
         ans += self.visit(n.iftrue)
         ans += self.visit(n.iffalse)
+        self.current_nesting_level -= 1
         return ans
 
     def visit_For(self, n):
