@@ -1808,15 +1808,16 @@ class AbsDrRules:
     def rule_SMpassDef(self, state, funcdef, abs_mode, dr_mode, full_statement, **kwargs):
         if self.abs_on or self.dr_on:
             out = ["main(void);"]
-            for (i, param) in enumerate(funcdef.type.args.params):
-                pname = param.name
-                isstr = self.supportFile.is_struct(c_ast.ID(pname))
-                passaround_type = self.supportFile.get_type(c_ast.ID(pname)) if isstr else self.unsigned_1
-                if self.abs_on:
-                    out.append(passaround_type+" "+self.smpass_getPassaroundNameVar(funcdef.name, i, self.sm_abs,isstr)+";")
-                #if self.dr_on: # TODO: pensarci bene
-                #    out.append(passaround_type+" "+self.smpass_getPassaroundNameVar(funcdef.name.name, i, self.sm_dr_all)+";")
-                #    out.append(passaround_type+" "+self.smpass_getPassaroundNameVar(funcdef.name.name, i, self.sm_dr_noatomic)+";")
+            if funcdef.type.args is not None:
+                for (i, param) in enumerate(funcdef.type.args.params):
+                    pname = param.name
+                    isstr = self.supportFile.is_struct(c_ast.ID(pname))
+                    passaround_type = self.supportFile.get_type(c_ast.ID(pname)) if isstr else self.unsigned_1
+                    if self.abs_on:
+                        out.append(passaround_type+" "+self.smpass_getPassaroundNameVar(funcdef.name, i, self.sm_abs,isstr)+";")
+                    #if self.dr_on: # TODO: pensarci bene
+                    #    out.append(passaround_type+" "+self.smpass_getPassaroundNameVar(funcdef.name.name, i, self.sm_dr_all)+";")
+                    #    out.append(passaround_type+" "+self.smpass_getPassaroundNameVar(funcdef.name.name, i, self.sm_dr_noatomic)+";")
             return " ".join(out)[:-1]
         else:
             return "main(void)"
@@ -1825,19 +1826,20 @@ class AbsDrRules:
             out = []
             if self.underapprox:
                 out.append(self.bap + " = " + self.bap_passaround + ";")
-            for (i, param) in enumerate(funcdef.type.args.params):
-                pname = param.name
-                isstr = self.supportFile.is_struct(c_ast.ID(pname))
-                passaround_type = self.supportFile.get_type(c_ast.ID(pname)) if isstr else "char" #TODO will become unsigned bv[1]
-                orig_varname = self.visitor_visit(state, c_ast.ID(pname), "LVALUE", "WSE")
-                if self.abs_on:
-                    pa_varname = self.smpass_getPassaroundNameVar(funcdef.name, i, self.sm_abs,isstr)
-                    if isstr:
-                        out.append(orig_varname + " = " + pa_varname + ";")
-                    else:
-                        out.append(self.setsm("&("+orig_varname+")", self.sm_abs, pa_varname)+";")
-                if self.dr_on:
-                    assert(False, "Not implemented") # TODO è un assegnamento fuori atomic (a meno di essere già in atomic)
+            if funcdef.type.args is not None:
+                for (i, param) in enumerate(funcdef.type.args.params):
+                    pname = param.name
+                    isstr = self.supportFile.is_struct(c_ast.ID(pname))
+                    passaround_type = self.supportFile.get_type(c_ast.ID(pname)) if isstr else "char" #TODO will become unsigned bv[1]
+                    orig_varname = self.visitor_visit(state, c_ast.ID(pname), "LVALUE", "WSE")
+                    if self.abs_on:
+                        pa_varname = self.smpass_getPassaroundNameVar(funcdef.name, i, self.sm_abs,isstr)
+                        if isstr:
+                            out.append(orig_varname + " = " + pa_varname + ";")
+                        else:
+                            out.append(self.setsm("&("+orig_varname+")", self.sm_abs, pa_varname)+";")
+                    if self.dr_on:
+                        assert(False, "Not implemented") # TODO è un assegnamento fuori atomic (a meno di essere già in atomic)
             return " ".join(out)
         else:
             return ""
