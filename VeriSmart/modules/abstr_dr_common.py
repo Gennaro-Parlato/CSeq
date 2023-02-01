@@ -705,15 +705,19 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
                 self._lazyseqnewschedule__atomic = True
                 decl = self.visit(n.decl)
                 with BakAndRestore(self, 'skip_on_plain', True):
-                    resetaux = '__CSEQ_rawline("#define RESETAUX() '+self.macro_file_manager.expression(n.cond, self.do_rule('rule_ChangeResetAux', n, max_nesting=max_nesting, **extra_args), passthrough=False, brackets=False)+'");'
+                    resetaux = '__CSEQ_rawline("#define RESETAUX() '+self.macro_file_manager.expression(n, self.do_rule('rule_ChangeResetAux', n, max_nesting=max_nesting), passthrough=False, brackets=False)+'");'
                 body = self.visit(n.body)
                 passdef = "int "+self.macro_file_manager.expression(n.decl, self.do_rule('rule_SMpassDef',n.decl), passthrough=False, brackets=False)+";"
                 passassn = self.macro_file_manager.expression(n.decl, self.do_rule('rule_SMpassAssignInFunc',n.decl), passthrough=False, brackets=False, with_semic=True)
-                body = "{" + resetaux + '\n' + passassn + "\n" + body.strip()[1:]
-                s = passdef+"\n"+decl + '\n' + body + '\n'
+                
                 self._lazyseqnewschedule__atomic = oldatomic
                 self._lazyseqnewschedule__currentThread = ''
                 self._lazyseqnewschedule__visit_funcReference = False
+                funclocal_decls = self.macro_file_manager.expression(c_ast.EmptyStatement(), self.do_rule('rule_FunctionLocalDecls',c_ast.EmptyStatement()), passthrough=False, brackets=False) #bap
+                body = "{" + resetaux + '\n' + funclocal_decls + '\n' + passassn + "\n" + body.strip()[1:]
+                s = passdef+"\n"+decl + '\n' + body + '\n'
+                for i in range(len(self.conf_adr)):
+                    self.conf_adr[i].end_of_thread_function()
                 return s
             else: # thread functions
                 argc_tp = self.macro_file_manager.expression(c_ast.IdentifierType(names=['int']), self.do_rule('rule_Type',c_ast.IdentifierType(names=['int']),typ_txt="int"), passthrough=False, brackets=False)
@@ -1033,8 +1037,8 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
             return self.macro_file_manager.expression(n, self.do_rule('rule_Malloc', n, **extra_args), passthrough=not self.full_statement, brackets=not self.full_statement)
         elif fref == '__CSEQ_nondet_bool':
             return self.macro_file_manager.expression(n, self.do_rule('rule_NondetBool', n, **extra_args), passthrough=not self.full_statement, brackets=not self.full_statement)
-        elif fref.startswith('__CSEQ_atomic_'): # so that atomic functions aren't catched by my code TODO this will go with proper implementation of function calls that use shadow memory
-            self._lazyseqnewschedule__globalMemoryAccessed = True
+        #elif fref.startswith('__CSEQ_atomic_'): # so that atomic functions aren't catched by my code TODO this will go with proper implementation of function calls that use shadow memory
+        #    self._lazyseqnewschedule__globalMemoryAccessed = True
         elif fref.startswith('__CSEQ_nondet_'):
             tp = fref[len('__CSEQ_nondet_'):]
             ndtp = "int"
@@ -1058,6 +1062,7 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
             return self.macro_file_manager.expression(n, self.do_rule('rule_Nondet', n, **extra_args), passthrough=not self.full_statement, brackets=not self.full_statement)
             extra_args['ndtype'] = None
         else: # fref in [core.common.changeID[x] for x in ('pthread_create', 'pthread_exit', 'pthread_join', 'pthread_mutex_lock', 'pthread_mutex_unlock', 'pthread_mutex_init', 'pthread_attr_init', 'pthread_attr_setdetachstate')]:
+            pass_sm = False
             self.expList = []
             with self.no_any_instrument():
                 with self.abs_dr_mode_set("VALUE","WSE"):
@@ -1081,7 +1086,8 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
                 argMap = [i for i in range(len(self.expList))]+[str(threadIndex)]
             elif fref.startswith('__CSEQ_atomic_'):
                 self._lazyseqnewschedule__globalMemoryAccessed = True
-            return self.macro_file_manager.expression(n, self.do_rule('rule_FuncCall', n, argMap=argMap, **extra_args), passthrough=not self.full_statement, brackets=not self.full_statement)
+                pass_sm = True
+            return self.macro_file_manager.expression(n, self.do_rule('rule_FuncCall', n, argMap=argMap, pass_sm=pass_sm, **extra_args), passthrough=not self.full_statement, brackets=not self.full_statement)
         
             
         ## all functions are either instrumentation ones or thread functions. Anyways, don't instrument
@@ -1184,11 +1190,14 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
                 assert(('void' in function_type) or n.name.startswith('__cs_'), "At this point in the chain, all functions are expected to be void or __cs...: "+n.name)
                 if n.name.startswith('__CSEQ_atomic'):
                     self.visit(n.type.args)
-                # Do not instrument func declarations (func declarations != func bodies)
-                with self.no_any_instrument():
                     with BakAndRestore(self, 'full_statement', False):
-                        #print("NOINSTR4", n)
                         ans = self.LZvisit_Decl(n)
+                else:
+                    # Do not instrument func declarations (func declarations != func bodies)
+                    with self.no_any_instrument():
+                        with BakAndRestore(self, 'full_statement', False):
+                            #print("NOINSTR4", n)
+                            ans = self.LZvisit_Decl(n)
                     
             elif type_of_n == 'Struct':
                 ans = self.visit_Struct(n.type)

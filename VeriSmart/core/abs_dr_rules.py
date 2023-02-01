@@ -261,6 +261,7 @@ class AbsDrRules:
         self.bav_tmp = "__cs_baV_tmp" if abs_on else None
         # underapprox: bit abstraction Path
         self.bap = "__cs_baP" if self.underapprox else None
+        self.bap_passaround = "__cs_baP_passaround" if self.underapprox else None
         
         # abstraction: signed types for which abstraction is enabled
         self.abstrTypesSigned = ['int','signed','signed int','char','signed char','short','short int','signed short','signed short int',
@@ -459,7 +460,7 @@ class AbsDrRules:
             self.if_abs(lambda: "typedef unsigned __CPROVER_bitvector["+str(self.abstr_bits*2)+"] "+self.unsigned_bits_2x+";"),
             self.if_abs(lambda: "typedef __CPROVER_bitvector["+str(self.abstr_bits*2)+"] "+self.signed_bits_2x+";"),
             #self.if_abs(lambda: self.unsigned_bits_1+" "+self.get_uintb1_var()+" = 0;"),
-            #self.if_ua(lambda: "unsigned __CPROVER_bitvector[1] "+self.bap+" = 0;"),
+            self.if_ua(lambda: "unsigned __CPROVER_bitvector[1] "+self.bap_passaround+" = 0;"),
             self.if_dr_possible(lambda: "unsigned __CPROVER_bitvector[1] "+self.dr+" = 0;"),
             self.if_dr_possible(lambda: "unsigned __CPROVER_bitvector[1] "+self.wam+" = 0;"),
             self.if_dr_possible(lambda: "unsigned __CPROVER_bitvector[1] "+self.wkm+" = 0;"),
@@ -951,6 +952,7 @@ class AbsDrRules:
                 return self.or_expr(self.cp(state,"bav"),unexpr_op_op())
             
     def rule_preOp(self, state, preop, abs_mode, dr_mode, full_statement, **kwargs): # --x, ++x
+        is_func_arg = kwargs.pop("func_arg", False)
         self.assertDisabledIIFModesAreNone(abs_mode, dr_mode, **kwargs)  
         if dr_mode == "TOP_ACCESS":
             return self.store_content(full_statement, self.fakeIfAssignment(self.comma_expr(
@@ -1007,7 +1009,7 @@ class AbsDrRules:
             ans = self.comma_expr(*(ans1 + ans2))
             return self.store_content(full_statement,ans, preop, abs_mode, dr_mode)
         elif abs_mode in ("VALUE", None) and dr_mode in ("WSE", None) and (abs_mode is not None or dr_mode is not None):
-            return self.store_content(full_statement,self.cast(self.visitor_visit(state, unExp, "VALUE", "WSE", **kwargs), self.cast_type(unExprType)), preop, abs_mode, dr_mode)
+            return self.store_content(full_statement,self.cast(self.visitor_visit(state, unExp, "VALUE", "WSE", func_arg = is_func_arg, **kwargs), self.cast_type(unExprType)), preop, abs_mode, dr_mode)
         else:
             assert(False, "Invalid mode for preOp: abs_mode = "+str(abs_mode)+"; dr_mode = "+str(dr_mode))
             
@@ -1133,6 +1135,7 @@ class AbsDrRules:
         
             
     def rule_ArrayRef(self, state, arrexp, abs_mode, dr_mode, full_statement, **kwargs): # postExp[exp]
+        is_func_arg = kwargs.pop("func_arg", False)
         self.assertDisabledIIFModesAreNone(abs_mode, dr_mode, **kwargs)  
         if dr_mode == "TOP_ACCESS":
             return self.store_content(full_statement, self.fakeIfAssignment(self.comma_expr(
@@ -1146,7 +1149,7 @@ class AbsDrRules:
                 arrexp, abs_mode, dr_mode)
         elif abs_mode in ("VALUE",) and dr_mode in ("WSE", None):
             arrexpType = self.supportFile.get_type(arrexp) #"int" #TODO get type from expression
-            return self.store_content(full_statement,self.cast(self.visitor_visit(state, postExp, "VALUE", "WSE", **kwargs)+"["+self.visitor_visit(state, exp, "VALUE", "WSE", **kwargs)+"]"+(".v" if self.is_abstractable(arrexpType) else ""), \
+            return self.store_content(full_statement,self.cast(self.visitor_visit(state, postExp, "VALUE", "WSE", **kwargs)+"["+self.visitor_visit(state, exp, "VALUE", "WSE", **kwargs)+"]"+(".v" if self.is_abstractable(arrexpType) and not is_func_arg else ""), \
                 self.cast_type(arrexpType)), arrexp, abs_mode, dr_mode)
         elif abs_mode in ("GET_VAL", "UPD_VAL", None) and dr_mode in ("ACCESS", "PREFIX", "NO_ACCESS", None):
             arrexpType = self.supportFile.get_type(arrexp) #"int" #TODO get type from expression
@@ -1209,6 +1212,7 @@ class AbsDrRules:
             assert(False)
             
     def rule_StructRefPtr(self, state, srexp, abs_mode, dr_mode, full_statement, **kwargs): # postExp->exp
+        is_func_arg = kwargs.pop("func_arg", False)
         self.assertDisabledIIFModesAreNone(abs_mode, dr_mode, **kwargs)  
         if dr_mode == "TOP_ACCESS":
             return self.store_content(full_statement, self.fakeIfAssignment(self.comma_expr(
@@ -1222,7 +1226,7 @@ class AbsDrRules:
             return self.store_content(full_statement,self.visitor_visit(state, postExp, "VALUE", "WSE", **kwargs)+"->"+fid.name, srexp, abs_mode, dr_mode)
         elif abs_mode in ("VALUE",) and dr_mode in ("WSE", None):
             srexpType = self.supportFile.get_type(srexp) 
-            return self.store_content(full_statement,self.cast(self.visitor_visit(state, postExp, "VALUE", "WSE", **kwargs)+"->"+fid.name+(".v" if self.is_abstractable(srexpType) else ""), self.cast_type(srexpType)), srexp, abs_mode, dr_mode)
+            return self.store_content(full_statement,self.cast(self.visitor_visit(state, postExp, "VALUE", "WSE", **kwargs)+"->"+fid.name+(".v" if self.is_abstractable(srexpType) and not is_func_arg else ""), self.cast_type(srexpType)), srexp, abs_mode, dr_mode)
             
         elif abs_mode in ("GET_VAL", "UPD_VAL", None) and dr_mode in ("ACCESS", "PREFIX", "NO_ACCESS", None):
             srexpType = self.supportFile.get_type(srexp) 
@@ -1276,6 +1280,7 @@ class AbsDrRules:
             assert(False)
             
     def rule_StructRefVar(self, state, srexp, abs_mode, dr_mode, full_statement, **kwargs): # postExp->exp
+        is_func_arg = kwargs.pop("func_arg", False)
         self.assertDisabledIIFModesAreNone(abs_mode, dr_mode, **kwargs)  
         if dr_mode == "TOP_ACCESS":
             return self.store_content(full_statement, self.fakeIfAssignment(self.comma_expr(
@@ -1289,7 +1294,7 @@ class AbsDrRules:
             return self.store_content(full_statement,self.brackets(self.visitor_visit(state, postExp, "LVALUE", "WSE", **kwargs))+"."+fid.name, srexp, abs_mode, dr_mode)
         elif abs_mode in ("VALUE",) and dr_mode in ("WSE", None):
             srexpType = self.supportFile.get_type(srexp) #"int" #TODO get type from expression
-            return self.store_content(full_statement,self.cast(self.brackets(self.visitor_visit(state, postExp, "LVALUE", "WSE", **kwargs))+"."+fid.name+(".v" if self.is_abstractable(srexpType) else ""), self.cast_type(srexpType)), srexp, abs_mode, dr_mode)
+            return self.store_content(full_statement,self.cast(self.brackets(self.visitor_visit(state, postExp, "LVALUE", "WSE", **kwargs))+"."+fid.name+(".v" if self.is_abstractable(srexpType) and not is_func_arg else ""), self.cast_type(srexpType)), srexp, abs_mode, dr_mode)
             
         elif abs_mode in ("GET_VAL", "UPD_VAL", None) and dr_mode in ("ACCESS", "PREFIX", "NO_ACCESS", None):
             srexpType = self.supportFile.get_type(srexp) #"int" #TODO get type from expression
@@ -1467,6 +1472,7 @@ class AbsDrRules:
             assert(False)     
                     
     def rule_PtrOp(self, state, ptrop, abs_mode, dr_mode, full_statement, **kwargs):
+        is_func_arg = kwargs.pop("func_arg", False)
         self.assertDisabledIIFModesAreNone(abs_mode, dr_mode, **kwargs)
         if dr_mode == "TOP_ACCESS":
             return self.store_content(full_statement, self.fakeIfAssignment(self.comma_expr(
@@ -1497,7 +1503,7 @@ class AbsDrRules:
             ptropType = self.supportFile.get_type(ptrop)
             visit_val = lambda: self.visitor_visit(state, castExp, "VALUE", "WSE", **kwargs)
             
-            return self.store_content(full_statement,self.cast(("(("+visit_val()+")->v)" if self.is_abstractable(ptropType) else "*("+visit_val()+")"), self.cast_type(castExpType)), ptrop, abs_mode, dr_mode)
+            return self.store_content(full_statement,self.cast(("(("+visit_val()+")->v)" if self.is_abstractable(ptropType) and not is_func_arg else "*("+visit_val()+")"), self.cast_type(castExpType)), ptrop, abs_mode, dr_mode)
         else:
             assert(False)
             
@@ -1551,6 +1557,7 @@ class AbsDrRules:
             
             
     def rule_NotOp(self, state, notop, abs_mode, dr_mode, full_statement, **kwargs):
+        is_func_arg = kwargs.pop("func_arg", False)
         self.assertDisabledIIFModesAreNone(abs_mode, dr_mode, **kwargs)
         if dr_mode == "TOP_ACCESS":
             return self.store_content(full_statement, self.fakeIfAssignment(self.comma_expr(
@@ -1738,19 +1745,102 @@ class AbsDrRules:
             bav1 = self.getBav1(full_statement)
             statements = []
             statements.append(self.assign_var(bav1, "0"))
-            for aid in argMap:
+            for (arg_idx, aid) in enumerate(argMap):
                 if isinstance(aid, int):
                     statements.append(self.visitor_visit(state, exp.exprs[aid], "GET_VAL", "ACCESS", **kwargs)) #TODO is ACCESS ok?
+                    if 'pass_sm' in kwargs and kwargs['pass_sm'] and (self.abs_on or self.dr_on):
+                        isstr = self.supportFile.is_struct(exp.exprs[aid])
+                        if self.abs_on:
+                            pa_varname = self.smpass_getPassaroundNameVar(fncName, arg_idx, self.sm_abs, isstr)
+                            if isstr:
+                                statements.append(pa_varname + " = " + self.visitor_visit(state, exp.exprs[aid], "VALUE", "WSE", **kwargs))
+                            else:
+                                statements.append(pa_varname + " = " + self.cp(state, "bav"))
+                        if self.dr_on:
+                            assert(False, "Not implemented") # TODO è un assegnamento fuori atomic (a meno di essere già in atomic)
                     statements.append(self.assign_var(bav1, self.or_expr_prop(bav1, self.cp(state, "bav"))))
+                else:
+                    if 'pass_sm' in kwargs and kwargs['pass_sm'] and (self.abs_on or self.dr_on):
+                        if self.abs_on:
+                            pa_varname = self.smpass_getPassaroundNameVar(fncName, arg_idx, self.sm_abs, False)
+                            statements.append(pa_varname + " = 0")
+                        if self.dr_on:
+                            assert(False, "Not implemented") # TODO è un assegnamento fuori atomic (a meno di essere già in atomic)
             statements.append(self.assign_with_prop(state,"bav", bav1))
             statements.append(self.__malloc_inner(state, **kwargs))
-            statements.append(self.auxvars.write(fullExpr, fncName+"("+",".join([self.visitor_visit(state, exp.exprs[aid], "VALUE", "WSE", **kwargs) if isinstance(aid, int) else aid for aid in argMap])+")"))
+            if 'pass_sm' in kwargs and kwargs['pass_sm'] and (self.abs_on or self.dr_on):
+                args = []
+                for aid in argMap:
+                    if isinstance(aid, int):
+                        isstr = self.supportFile.is_struct(exp.exprs[aid])
+                        arg_tp = self.supportFile.get_type(exp.exprs[aid])
+                        if isstr:
+                            args.append(self.smpass_getPassaroundNameVar(fncName, arg_idx, self.sm_abs, True))
+                        elif not self.is_abstractable(arg_tp) or self.abstrTypesSizeof[arg_tp] * 8 <= self.abstr_bits:
+                            args.append(self.visitor_visit(state, exp.exprs[aid], "VALUE", "WSE", **kwargs))
+                        elif type(exp.exprs[aid]) in (c_ast.ArrayRef, c_ast.StructRef, c_ast.Constant, c_ast.ID, c_ast.Assignment) or (type(exp.exprs[aid]) is c_ast.UnaryOp and exp.exprs[aid].op in ('*', '--','++')):
+                            argtr = self.visitor_visit(state, exp.exprs[aid], "VALUE", "WSE", func_arg=True, **kwargs)
+                            if argtr.endswith(".v"):
+                                argtr = argtr[:-2]
+                            elif argtr.endswith("->v"):
+                                argtr = argtr[:-3]
+                            args.append(argtr)
+                        else:
+                            helpvar_tp = self.rule_Type(None, None, None, None, None, typ_txt = arg_tp)
+                            helpvar = self.get_help_var(helpvar_tp)
+                            statements.append(helpvar+".v = "+self.visitor_visit(state, exp.exprs[aid], "VALUE", "WSE", **kwargs))
+                            args.append(helpvar)
+                    else:
+                        args.append(aid)
+            else:
+                args = [self.visitor_visit(state, exp.exprs[aid], "VALUE", "WSE", **kwargs) if isinstance(aid, int) else aid for aid in argMap]
+            statements.append(self.auxvars.write(fullExpr, fncName+"("+",".join(args)+")"))
             
             return self.store_content(full_statement, \
                 self.comma_expr(*statements) \
             , fullExpr, abs_mode, dr_mode)
         else:
             assert(False)
+            
+    def smpass_getPassaroundNameVar(self, funcname, idx, field,with_sm):
+        return "__"+("cz" if with_sm else "cs")+"_smpass__"+funcname+"__" + str(idx) + "__" + field
+
+    def rule_SMpassDef(self, state, funcdef, abs_mode, dr_mode, full_statement, **kwargs):
+        if self.abs_on or self.dr_on:
+            out = ["main(void);"]
+            for (i, param) in enumerate(funcdef.type.args.params):
+                pname = param.name
+                isstr = self.supportFile.is_struct(c_ast.ID(pname))
+                passaround_type = self.supportFile.get_type(c_ast.ID(pname)) if isstr else self.unsigned_1
+                if self.abs_on:
+                    out.append(passaround_type+" "+self.smpass_getPassaroundNameVar(funcdef.name, i, self.sm_abs,isstr)+";")
+                #if self.dr_on: # TODO: pensarci bene
+                #    out.append(passaround_type+" "+self.smpass_getPassaroundNameVar(funcdef.name.name, i, self.sm_dr_all)+";")
+                #    out.append(passaround_type+" "+self.smpass_getPassaroundNameVar(funcdef.name.name, i, self.sm_dr_noatomic)+";")
+            return " ".join(out)[:-1]
+        else:
+            return "main(void)"
+    def rule_SMpassAssignInFunc(self, state, funcdef, abs_mode, dr_mode, full_statement, **kwargs):
+        if self.abs_on or self.dr_on:
+            out = []
+            if self.underapprox:
+                out.append(self.bap + " = " + self.bap_passaround + ";")
+            for (i, param) in enumerate(funcdef.type.args.params):
+                pname = param.name
+                isstr = self.supportFile.is_struct(c_ast.ID(pname))
+                passaround_type = self.supportFile.get_type(c_ast.ID(pname)) if isstr else "char" #TODO will become unsigned bv[1]
+                orig_varname = self.visitor_visit(state, c_ast.ID(pname), "LVALUE", "WSE")
+                if self.abs_on:
+                    pa_varname = self.smpass_getPassaroundNameVar(funcdef.name, i, self.sm_abs,isstr)
+                    if isstr:
+                        out.append(orig_varname + " = " + pa_varname + ";")
+                    else:
+                        out.append(self.setsm("&("+orig_varname+")", self.sm_abs, pa_varname)+";")
+                if self.dr_on:
+                    assert(False, "Not implemented") # TODO è un assegnamento fuori atomic (a meno di essere già in atomic)
+            return " ".join(out)
+        else:
+            return ""
             
     '''
     def rule_FuncCall(self, state, fullExpr, abs_mode, dr_mode, full_statement, **kwargs):
@@ -2505,6 +2595,7 @@ class AbsDrRules:
         
         
     def rule_ID(self, state, sid, abs_mode, dr_mode, full_statement, **kwargs):
+        is_func_arg = kwargs.pop("func_arg", False)
         self.assertDisabledIIFModesAreNone(abs_mode, dr_mode, **kwargs)
         if dr_mode == "TOP_ACCESS":
             return self.store_content(full_statement, self.fakeIfAssignment(self.comma_expr(
@@ -2517,7 +2608,7 @@ class AbsDrRules:
             return sid.name
         elif abs_mode == "VALUE" :
             sidType = self.supportFile.get_type(sid)
-            return sid.name+(".v" if self.is_abstractable(sidType) else "")
+            return sid.name+(".v" if self.is_abstractable(sidType) and not is_func_arg else "")
         elif dr_mode == "WSE": # and implicitly abs is disabled
             return sid.name
         elif sid.name == "__cs_thread_index":
@@ -2561,6 +2652,7 @@ class AbsDrRules:
             ), sid, abs_mode, dr_mode)
                     
     def rule_Constant(self, state, con, abs_mode, dr_mode, full_statement, **kwargs):      
+        is_func_arg = kwargs.pop("func_arg", False)
         self.assertDisabledIIFModesAreNone(abs_mode, dr_mode, **kwargs)  
         if dr_mode == "TOP_ACCESS":
             return self.store_content(full_statement, self.fakeIfAssignment(self.comma_expr(
@@ -2854,6 +2946,7 @@ class AbsDrRules:
         
         
     def rule_Assignment(self, state, assn, abs_mode, dr_mode, full_statement, **kwargs):
+        is_func_arg = kwargs.pop("func_arg", False)
         self.assertDisabledIIFModesAreNone(abs_mode, dr_mode, **kwargs)  
         if dr_mode == "TOP_ACCESS":
             return self.store_content(full_statement, self.fakeIfAssignment(self.comma_expr(
@@ -2867,7 +2960,7 @@ class AbsDrRules:
         isCondVar = type(unExp) is c_ast.ID and any(["__cz_tmp_"+x+"_cond_" in unExp.name for x in ["while","for","if"]]) # this assignment is used in if/loop conditions: do not consider it dirty only because baP=1
         
         if abs_mode == "VALUE" or dr_mode == "WSE":
-            ans = self.visitor_visit(state, unExp, "VALUE", "WSE", **kwargs)
+            ans = self.visitor_visit(state, unExp, "VALUE", "WSE", func_arg = is_func_arg, **kwargs)
             return self.store_content(full_statement,ans, assn, abs_mode, dr_mode)
         if op != "=":
             fullOp = lambda: self.visitor_visit(state, unExp, "VALUE", "WSE", **kwargs)+" "+op.replace("=","")+" "+self.visitor_visit(state, assExp, "VALUE", "WSE", **kwargs)
@@ -2948,45 +3041,6 @@ class AbsDrRules:
         return self.comma_expr(
             self.if_abs(lambda: self.comma_expr(*[self.comma_expr(self.visitor_visit(state, x, "GET_VAL", "NO_ACCESS", **kwargs_nobavtest), self.__assignment_manual_bav_fail(state)) for x in kwargs["bavtest"]])),
             self.visitor_visit_noinstr(fcall))
-
-
-    def smpass_getPassaroundNameVar(self, funcname, idx, field):
-        return "__cs_smpass__"+funcname+"__" + str(idx) + "__" + field
-
-    def rule_SMpassDef(self, state, funcdef, abs_mode, dr_mode, full_statement, **kwargs):
-        if self.abs_on or self.dr_on:
-            out = ["main(void);"]
-            for (i, param) in enumerate(funcdef.type.args.params):
-                pname = param.name
-                isstr = self.supportFile.is_struct(c_ast.ID(pname))
-                passaround_type = self.supportFile.get_type(c_ast.ID(pname)) if isstr else "char" #TODO will become unsigned bv[1]
-                if self.abs_on:
-                    out.append(passaround_type+" "+self.smpass_getPassaroundNameVar(funcdef.name, i, self.sm_abs)+";")
-                #if self.dr_on: # TODO: pensarci bene
-                #    out.append(passaround_type+" "+self.smpass_getPassaroundNameVar(funcdef.name.name, i, self.sm_dr_all)+";")
-                #    out.append(passaround_type+" "+self.smpass_getPassaroundNameVar(funcdef.name.name, i, self.sm_dr_noatomic)+";")
-            return " ".join(out)[:-1]
-        else:
-            return "main(void)"
-    def rule_SMpassAssignInFunc(self, state, funcdef, abs_mode, dr_mode, full_statement, **kwargs):
-        if self.abs_on or self.dr_on:
-            out = []
-            for (i, param) in enumerate(funcdef.type.args.params):
-                pname = param.name
-                isstr = self.supportFile.is_struct(c_ast.ID(pname))
-                passaround_type = self.supportFile.get_type(c_ast.ID(pname)) if isstr else "char" #TODO will become unsigned bv[1]
-                orig_varname = self.visitor_visit(state, c_ast.ID(pname), "LVALUE", "WSE")
-                if self.abs_on:
-                    pa_varname = self.smpass_getPassaroundNameVar(funcdef.name, i, self.sm_abs)
-                    if isstr:
-                        out.append(orig_varname + " = " + pa_varname + ";")
-                    else:
-                        out.append(self.setsm("&("+orig_varname+")", self.sm_abs, pa_varname)+";")
-                if self.dr_on:
-                    assert(False, "Not implemented") # TODO è un assegnamento fuori atomic (a meno di essere già in atomic)
-            return " ".join(out)
-        else:
-            return ""
         
     def rule_Type(self, state, typ, abs_mode, dr_mode, full_statement, **kwargs):
         typ_txt = kwargs['typ_txt']
@@ -3010,7 +3064,7 @@ class AbsDrRules:
             return ""
             
         #self.bap1s_if_max is the first unassigned bap1_if and they are all free from that number on
-        unused_bap1s_if = [x+" = " for x in self.bap1s_if_free] + ["__cs_bap1_if_"+str(i)+" = " for i in range(self.bap1s_if_max, kwargs['max_nesting'])]
+        unused_bap1s_if = [self.bap_passaround+" = "] + [x+" = " for x in self.bap1s_if_free] + ["__cs_bap1_if_"+str(i)+" = " for i in range(self.bap1s_if_max, kwargs['max_nesting'])]
         
         if "__cs_bap1_if_0 = " in unused_bap1s_if:
             unused_bap1s_if = [self.bap+" = "] + unused_bap1s_if
