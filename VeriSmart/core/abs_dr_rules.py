@@ -79,6 +79,7 @@ class AuxVars:
         self.all_vv = []
         
     def create(self, ast_node, typ, with_side_effect=False):
+        assert(typ != "other")
         aux = AuxVars.AuxVar("__cs_valuevar_"+str(len(self.all_vv)), typ=typ, with_side_effect=with_side_effect)
         self.all_vv.append(aux)
         self.value_var_nodes[ast_node] = aux
@@ -270,7 +271,7 @@ class AbsDrRules:
         
         # abstraction: unsigned types for which abstraction is enabled
         self.abstrTypesUnsigned = ['unsigned','unsigned int','unsigned char','unsigned short','unsigned short int','unsigned long', 
-            'unsigned long int','unsigned long long int'] if abs_on else []
+            'unsigned long int','unsigned long long int','size_t'] if abs_on else []
         
         # abstraction: sizeof of each abstractable type. TODO: use auxiliary file to get such values
         self.abstrTypesSizeof = {'int': 4,
@@ -297,7 +298,8 @@ class AbsDrRules:
                                    'signed long long int': 8,
                                    'unsigned long': 4,
                                    'unsigned long int': 4,
-                                   'unsigned long long int': 8}
+                                   'unsigned long long int': 8,
+                                   'size_t':2}
         # abstraction: nr of bits for abstracted vars
         self.abstr_bits = abstr_bits
 
@@ -365,6 +367,8 @@ class AbsDrRules:
         # helpvars for operations, eg + - *, to check if there's overflow
         self.helpvar_cnt = {}
         self.helpvar_max = {}
+        
+        self.any_size_t = False # true if size_t appears somewhere
         
     def end_of_statement(self):
         self.helpvar_cnt = {}
@@ -446,7 +450,6 @@ class AbsDrRules:
         return kwargs['dr_vp_state']
         
     def aux_vars_decl(self):
-        #TODO use __CPROVER_bitvector
         return self.compound_expr("\n",*([
             self.if_abs(lambda: "unsigned __CPROVER_bitvector[1] "+self.bav+" = 0;"),
             self.if_abs(lambda: "unsigned __CPROVER_bitvector[1] "+self.bal+" = 0;"),
@@ -480,7 +483,7 @@ class AbsDrRules:
         ] + [
             "typedef union {intb v; "+t+" o;} abstr_"+t.replace(" ","_")+";" for t in self.abstrTypesSigned if self.abstrTypesSizeof[t] * 8 > self.abstr_bits
         ] + [
-            "typedef union {uintb v; "+t+" o;} abstr_"+t.replace(" ","_")+";" for t in self.abstrTypesUnsigned if self.abstrTypesSizeof[t] * 8 > self.abstr_bits
+            "typedef union {uintb v; "+t+" o;} abstr_"+t.replace(" ","_")+";" for t in self.abstrTypesUnsigned if self.abstrTypesSizeof[t] * 8 > self.abstr_bits and (t != "size_t" or self.any_size_t)
         ]))[0]
             
     '''def get_value_var_node_fake(self, node):
@@ -522,7 +525,7 @@ class AbsDrRules:
             ["__cs_bav1_"+str(v) for v in range(self.bav1s_max)]+
             ([self.bav, self.bal, self.bav_lhs, self.bav_tmp] if self.abs_on else [])+
             self.auxvars.get_var_list()+
-            ["__cs_"+typ.replace(" ","_")+"_tmp_"+str(k) for (typ, mx) in self.helpvar_max.items() for k in range(mx)]+
+            ["__cs_"+typ.replace(" ","_")+"_tmp_"+str(k)+(".v" if typ.startswith("abstr_") else "") for (typ, mx) in self.helpvar_max.items() for k in range(mx)]+
             [" z 0"])+";"
         
             
@@ -799,7 +802,8 @@ class AbsDrRules:
                                    'signed long long int',
                                    'unsigned long',
                                    'unsigned long int',
-                                   'unsigned long long int') #TODO fill it properly
+                                   'unsigned long long int',
+                                   'size_t') #TODO fill it properly
         return ans
         
     '''def decode(self, x, xtype):
@@ -1503,7 +1507,7 @@ class AbsDrRules:
             ptropType = self.supportFile.get_type(ptrop)
             visit_val = lambda: self.visitor_visit(state, castExp, "VALUE", "WSE", **kwargs)
             
-            return self.store_content(full_statement,self.cast(("(("+visit_val()+")->v)" if self.is_abstractable(ptropType) and not is_func_arg else "*("+visit_val()+")"), self.cast_type(castExpType)), ptrop, abs_mode, dr_mode)
+            return self.store_content(full_statement,self.cast(("("+visit_val()+")->v" if self.is_abstractable(ptropType) and not is_func_arg else "*("+visit_val()+")"), self.cast_type(castExpType)), ptrop, abs_mode, dr_mode)
         else:
             assert(False)
             
@@ -1720,6 +1724,31 @@ class AbsDrRules:
         else:
             assert(False)
             
+    def rule_Return(self, state, fullExpr, abs_mode, dr_mode, full_statement, **kwargs):
+        self.assertDisabledIIFModesAreNone(abs_mode, dr_mode, **kwargs) 
+        assert(not self.dr_on, "Not implemented, see abstr_dr_common")
+        if abs_mode in ("GET_VAL",None) and dr_mode in ("TOP_ACCESS", "ACCESS", None):
+            if fullExpr.expr:
+                getval = self.visitor_visit(state, fullExpr.expr, "GET_VAL", "ACCESS", **kwargs)
+                
+                ret_tp = self.supportFile.get_type(fullExpr.expr)
+                print("r", fullExpr.expr, ret_tp)
+                if type(fullExpr.expr) in (c_ast.ArrayRef, c_ast.StructRef, c_ast.Constant, c_ast.ID, c_ast.Assignment) or (type(fullExpr.expr) is c_ast.UnaryOp and fullExpr.expr.op in ('*', '--','++')):
+                    val = self.visitor_visit(state, fullExpr.expr, "VALUE", "WSE", func_arg=True, **kwargs)
+                    if val.endswith(".v"):
+                        val = val[:-2]
+                    elif val.endswith("->v"):
+                        val = "*("+val[:-3]+")"
+                else:
+                    helpvar_tp = self.rule_Type(None, None, None, None, None, typ_txt = ret_tp)
+                    helpvar = self.get_help_var(helpvar_tp)
+                    val = (helpvar+".v = "+self.visitor_visit(state, fullExpr.expr, "VALUE", "WSE", **kwargs))
+                return "return "+self.comma_expr(getval, val)
+            else:
+                return "return"
+        else:
+            assert(False)
+            
     def rule_FuncCall(self, state, fullExpr, abs_mode, dr_mode, full_statement, **kwargs):
         self.assertDisabledIIFModesAreNone(abs_mode, dr_mode, **kwargs) 
         if dr_mode == "TOP_ACCESS":
@@ -1738,6 +1767,8 @@ class AbsDrRules:
             ret_type = self.supportFile.get_type(fullExpr)
             if self.is_abstractable(ret_type) and ret_type in self.abstrTypesSizeof and self.abstrTypesSizeof[ret_type]*8 > self.abstr_bits:
                 ret_type = "intb" if ret_type in self.abstrTypesSigned else "uintb"
+            elif ret_type == "other":
+                ret_type = kwargs['func_types'][fncName] if fncName in kwargs['func_types'] else "void"
             self.auxvars.create(fullExpr, ret_type, with_side_effect=True)
             
             #this allows to setup a different argument calling scheme (e.g, the extra arg of _cs_create), if argMap[i] is int, the i-th argument will be [[exp.exprs[i],VALUE]], else the i-th argument will be argMap[i].
@@ -1778,12 +1809,12 @@ class AbsDrRules:
                             args.append(self.smpass_getPassaroundNameVar(fncName, arg_idx, self.sm_abs, True))
                         elif not self.is_abstractable(arg_tp) or self.abstrTypesSizeof[arg_tp] * 8 <= self.abstr_bits:
                             args.append(self.visitor_visit(state, exp.exprs[aid], "VALUE", "WSE", **kwargs))
-                        elif type(exp.exprs[aid]) in (c_ast.ArrayRef, c_ast.StructRef, c_ast.Constant, c_ast.ID, c_ast.Assignment) or (type(exp.exprs[aid]) is c_ast.UnaryOp and exp.exprs[aid].op in ('*', '--','++')):
+                        elif type(exp.exprs[aid]) in (c_ast.ArrayRef, c_ast.StructRef, c_ast.ID, c_ast.Assignment) or (type(exp.exprs[aid]) is c_ast.UnaryOp and exp.exprs[aid].op in ('*', '--','++')):
                             argtr = self.visitor_visit(state, exp.exprs[aid], "VALUE", "WSE", func_arg=True, **kwargs)
                             if argtr.endswith(".v"):
                                 argtr = argtr[:-2]
                             elif argtr.endswith("->v"):
-                                argtr = argtr[:-3]
+                                argtr = "*("+argtr[:-3]+")"
                             args.append(argtr)
                         else:
                             helpvar_tp = self.rule_Type(None, None, None, None, None, typ_txt = arg_tp)
@@ -1794,7 +1825,7 @@ class AbsDrRules:
                         args.append(aid)
             else:
                 args = [self.visitor_visit(state, exp.exprs[aid], "VALUE", "WSE", **kwargs) if isinstance(aid, int) else aid for aid in argMap]
-            statements.append(self.auxvars.write(fullExpr, fncName+"("+",".join(args)+")"))
+            statements.append(self.auxvars.write(fullExpr, fncName+"("+",".join(args)+")"+(".v" if ret_type in ("intb", "uintb") and fncName.startswith("__CSEQ_atomic") else "")))
             
             return self.store_content(full_statement, \
                 self.comma_expr(*statements) \
@@ -1824,8 +1855,6 @@ class AbsDrRules:
     def rule_SMpassAssignInFunc(self, state, funcdef, abs_mode, dr_mode, full_statement, **kwargs):
         if self.abs_on or self.dr_on:
             out = []
-            if self.underapprox:
-                out.append(self.bap + " = " + self.bap_passaround + ";")
             if funcdef.type.args is not None:
                 for (i, param) in enumerate(funcdef.type.args.params):
                     pname = param.name
@@ -3047,16 +3076,21 @@ class AbsDrRules:
     def rule_Type(self, state, typ, abs_mode, dr_mode, full_statement, **kwargs):
         typ_txt = kwargs['typ_txt']
         if self.abs_on and typ_txt in self.abstrTypesSizeof and self.abstrTypesSizeof[typ_txt] * 8 > self.abstr_bits:
+            if typ_txt == "size_t" : 
+                self.any_size_t = True
             return "abstr_"+typ_txt.replace(" ","_")
         return typ_txt
         
     def fake_abstr_types(self):
         return [
-            "typedef "+t+" abstr_"+t.replace(" ","_")+";" for t in self.abstrTypesSizeof
+            "typedef "+(t if t != "size_t" else "char")+" abstr_"+t.replace(" ","_")+";" for t in self.abstrTypesSizeof
         ]
         
     def rule_FunctionLocalDecls(self, state, fnc, abs_mode, dr_mode, full_statement, **kwargs):
-        return self.if_ua(lambda: "static "+self.unsigned_1+" "+", ".join([self.bap]+["__cs_bap1_if_"+str(v) for v in range(self.bap1s_if_max)])+"; RESETAUX();")
+        return self.if_ua(
+            lambda: "static "+self.unsigned_1+" "+", ".join([self.bap]+["__cs_bap1_if_"+str(v) for v in range(self.bap1s_if_max)])+"; "+
+                (self.bap + " = " + self.bap_passaround + "; " if 'read_bap_passthrough' in kwargs and kwargs['read_bap_passthrough'] else " ")+
+                "RESETAUX();")
         
     def rule_ResetAux(self, state, fnc, abs_mode, dr_mode, full_statement, **kwargs):
         return "RESETAUX()"

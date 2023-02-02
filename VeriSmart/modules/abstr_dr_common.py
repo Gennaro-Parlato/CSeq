@@ -88,7 +88,7 @@ class MacroFileManager:
         return "\n".join(["typedef char "+x+";" for x in ["FAKETYPEDEFSIN", self.adrs[0].unsigned_bits, 
             self.adrs[0].signed_bits, self.adrs[0].unsigned_bits_1, self.adrs[0].signed_bits_1,
             self.adrs[0].unsigned_bits_2x, self.adrs[0].signed_bits_2x,self.adrs[0].unsigned_1]+
-            [k for k in self.adrs[0].unsigned_mul.values()]+self.adrs[0].fake_abstr_types()+[k for k in self.adrs[0].unsigned_mul_1.values()]+self.macro_name_types+["FAKETYPEDEFSOUT"]])
+            [k for k in self.adrs[0].unsigned_mul.values()]+[k for k in self.adrs[0].unsigned_mul_1.values()]]+self.macro_name_types+self.adrs[0].fake_abstr_types()+["typedef char FAKETYPEDEFSOUT;"])
     
     def expression(self, n, transs, passthrough, typlbl=None, with_semic=False, brackets=True, macro_name_brackets=True):
         if passthrough:
@@ -308,6 +308,7 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
         self.atomicLvl = 0 # this counts how much nesting in __CSEQ_atomic_ functions we are. If =0: we are not in an atomic function; otherwise that's atomic and we need to disable Visible Points
         
         self.current_function = None # name of the function being translated
+        self.function_types = dict()
         
     def insertGlobalVarInit(self, x):
         return x.replace("int main(void) {", "int main(void) {\n"+self.global_var_initializations, 1)
@@ -420,12 +421,19 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
     def visit_Return(self, n):
         if self._lazyseqnewschedule__currentThread != '__CSEQ_assert' and self._lazyseqnewschedule__currentThread not in self.Parser.funcReferenced and not (self._lazyseqnewschedule__atomic or self.atomicLvl > 0):
             self.error("error: %s: return statement in thread '%s'.\n" % (self.getname(), self._lazyseqnewschedule__currentThread))
-
-        s = 'return'
-        with self.dr_mode_set("TOP_ACCESS"):
+        return self.macro_file_manager.expression(n, self.do_rule('rule_Return',n), passthrough=False, brackets=False)+";"
+        '''s = 'return'
+        if n.expr:
             with BakAndRestore(self, 'full_statement', True):
-                if n.expr: s += ' ' + self.visit(n.expr)
-        return s + ';'
+                with self.abs_dr_mode_set("GET_VAL","TOP_ACCESS"):
+                    old_SOP = self.skip_on_plain
+                    self.skip_on_plain = True
+                    expr_GET_VAL = self._visit_expr(n.expr)
+                    self.skip_on_plain = old_SOP
+                with self.abs_dr_mode_set("VALUE","WSE"):
+                    expr_VALUE = self._visit_expr(n.expr)
+                s += ' ' + ",".join(([expr_GET_VAL] if expr_GET_VAL != "" else []) + ([expr_VALUE] if expr_VALUE != "" else []))
+        return s + ';' '''
         
     def visit_FileAST(self, n):
         #if not self.any_instrument or not (self.dr_on or self.abs_on):
@@ -438,8 +446,6 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
 
         s = ''
         
-        auxvars1 = {adr: "" if adr is None else adr.aux_vars_decl() for adr in self.conf_adr}
-
         s3 = ''
         for ext in n.ext:
             if isinstance(ext, c_ast.FuncDef):
@@ -449,6 +455,8 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
                 s3 += self.visit(ext) + '\n'
             else:
                 s3 += self.visit(ext) + ';\n'
+                
+        auxvars1 = {adr: "" if adr is None else adr.aux_vars_decl() for adr in self.conf_adr}
                 
         s += self.macro_file_manager.fake_typedef_bits()
         s += self.macro_file_manager.auxvars(['\n'.join([auxvars1[adr], adr.extra_vars_decl(), adr.cond_vars_decl(), adr.bav1_vars_decl(), adr.bap1_vars_decl(), adr.nondet_vars_decl()]) for adr in self.conf_adr])
@@ -713,7 +721,7 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
                 self._lazyseqnewschedule__atomic = oldatomic
                 self._lazyseqnewschedule__currentThread = ''
                 self._lazyseqnewschedule__visit_funcReference = False
-                funclocal_decls = self.macro_file_manager.expression(c_ast.EmptyStatement(), self.do_rule('rule_FunctionLocalDecls',c_ast.EmptyStatement()), passthrough=False, brackets=False) #bap
+                funclocal_decls = self.macro_file_manager.expression(c_ast.EmptyStatement(), self.do_rule('rule_FunctionLocalDecls',c_ast.EmptyStatement(), read_bap_passthrough=True), passthrough=False, brackets=False) #bap
                 body = "{" + resetaux + '\n' + funclocal_decls + '\n' + passassn + "\n" + body.strip()[1:]
                 s = passdef+"\n"+decl + '\n' + body + '\n'
                 for i in range(len(self.conf_adr)):
@@ -1087,7 +1095,7 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
             elif fref.startswith('__CSEQ_atomic_'):
                 self._lazyseqnewschedule__globalMemoryAccessed = True
                 pass_sm = True
-            return self.macro_file_manager.expression(n, self.do_rule('rule_FuncCall', n, argMap=argMap, pass_sm=pass_sm, **extra_args), passthrough=not self.full_statement, brackets=not self.full_statement)
+            return self.macro_file_manager.expression(n, self.do_rule('rule_FuncCall', n, argMap=argMap, pass_sm=pass_sm, func_types=self.function_types, **extra_args), passthrough=not self.full_statement, brackets=not self.full_statement)
         
             
         ## all functions are either instrumentation ones or thread functions. Anyways, don't instrument
@@ -1187,6 +1195,7 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
                     function_type = ' '.join(n.type.type.type.type.names)
                 else:
                     assert(False, "Invalid function type: "+n.name)
+                self.function_types[n.name] = function_type
                 assert(('void' in function_type) or n.name.startswith('__cs_'), "At this point in the chain, all functions are expected to be void or __cs...: "+n.name)
                 if n.name.startswith('__CSEQ_atomic'):
                     self.visit(n.type.args)
