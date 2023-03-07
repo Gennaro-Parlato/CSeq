@@ -1773,13 +1773,14 @@ class AbsDrRules:
             
             #this allows to setup a different argument calling scheme (e.g, the extra arg of _cs_create), if argMap[i] is int, the i-th argument will be [[exp.exprs[i],VALUE]], else the i-th argument will be argMap[i].
             argMap = kwargs['argMap'] if 'argMap' in kwargs and kwargs['argMap'] is not None else ([i for i in range(len(exp.exprs))] if exp is not None else [])
-            bav1 = self.getBav1(full_statement)
+            bav1 = self.getBav1(full_statement) if not fncName.startswith("__CSEQ_atomic") else None
             statements = []
-            statements.append(self.assign_var(bav1, "0"))
+            if not fncName.startswith("__CSEQ_atomic"): 
+                statements.append(self.assign_var(bav1, "0"))
             for (arg_idx, aid) in enumerate(argMap):
                 if isinstance(aid, int):
                     statements.append(self.visitor_visit(state, exp.exprs[aid], "GET_VAL", "ACCESS", **kwargs)) #TODO is ACCESS ok?
-                    if 'pass_sm' in kwargs and kwargs['pass_sm'] and (self.abs_on or self.dr_on):
+                    '''if 'pass_sm' in kwargs and kwargs['pass_sm'] and (self.abs_on or self.dr_on):
                         isstr = self.supportFile.is_struct(exp.exprs[aid])
                         if self.abs_on:
                             pa_varname = self.smpass_getPassaroundNameVar(fncName, arg_idx, self.sm_abs, isstr)
@@ -1789,18 +1790,23 @@ class AbsDrRules:
                                 statements.append(pa_varname + " = " + self.cp(state, "bav"))
                         if self.dr_on:
                             assert(False, "Not implemented") # TODO è un assegnamento fuori atomic (a meno di essere già in atomic)
-                    statements.append(self.assign_var(bav1, self.or_expr_prop(bav1, self.cp(state, "bav"))))
+                    '''
+                    if not fncName.startswith("__CSEQ_atomic"): 
+                        statements.append(self.assign_var(bav1, self.or_expr_prop(bav1, self.cp(state, "bav"))))
                 else:
-                    if 'pass_sm' in kwargs and kwargs['pass_sm'] and (self.abs_on or self.dr_on):
+                    pass
+                    '''if 'pass_sm' in kwargs and kwargs['pass_sm'] and (self.abs_on or self.dr_on):
                         if self.abs_on:
                             pa_varname = self.smpass_getPassaroundNameVar(fncName, arg_idx, self.sm_abs, False)
                             statements.append(pa_varname + " = 0")
                         if self.dr_on:
                             assert(False, "Not implemented") # TODO è un assegnamento fuori atomic (a meno di essere già in atomic)
-            statements.append(self.assign_with_prop(state,"bav", bav1))
-            statements.append(self.__malloc_inner(state, **kwargs))
-            if self.underapprox:
-                statements.append(self.assume_expr("!"+self.bap))
+                    '''
+            if not fncName.startswith("__CSEQ_atomic"): 
+                statements.append(self.assign_with_prop(state,"bav", bav1))
+                statements.append(self.__malloc_inner(state, **kwargs))
+                if self.underapprox:
+                    statements.append(self.assume_expr("!"+self.bap))
             if 'pass_sm' in kwargs and kwargs['pass_sm'] and (self.abs_on or self.dr_on):
                 args = []
                 for aid in argMap:

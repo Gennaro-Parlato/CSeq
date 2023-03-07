@@ -715,8 +715,10 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
                 with BakAndRestore(self, 'skip_on_plain', True):
                     resetaux = '__CSEQ_rawline("#define RESETAUX() '+self.macro_file_manager.expression(n, self.do_rule('rule_ChangeResetAux', n, max_nesting=max_nesting), passthrough=False, brackets=False)+'");'
                 body = self.visit(n.body)
-                passdef = "int "+self.macro_file_manager.expression(n.decl, self.do_rule('rule_SMpassDef',n.decl), passthrough=False, brackets=False)+";"
-                passassn = self.macro_file_manager.expression(n.decl, self.do_rule('rule_SMpassAssignInFunc',n.decl), passthrough=False, brackets=False, with_semic=True)
+                #passdef = "int "+self.macro_file_manager.expression(n.decl, self.do_rule('rule_SMpassDef',n.decl), passthrough=False, brackets=False)+";"
+                #passassn = self.macro_file_manager.expression(n.decl, self.do_rule('rule_SMpassAssignInFunc',n.decl), passthrough=False, brackets=False, with_semic=True)
+                passdef = ""
+                passassn = ""
                 
                 self._lazyseqnewschedule__atomic = oldatomic
                 self._lazyseqnewschedule__currentThread = ''
