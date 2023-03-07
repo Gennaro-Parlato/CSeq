@@ -1799,6 +1799,8 @@ class AbsDrRules:
                             assert(False, "Not implemented") # TODO è un assegnamento fuori atomic (a meno di essere già in atomic)
             statements.append(self.assign_with_prop(state,"bav", bav1))
             statements.append(self.__malloc_inner(state, **kwargs))
+            if self.underapprox:
+                statements.append(self.assume_expr("!"+self.bap))
             if 'pass_sm' in kwargs and kwargs['pass_sm'] and (self.abs_on or self.dr_on):
                 args = []
                 for aid in argMap:
