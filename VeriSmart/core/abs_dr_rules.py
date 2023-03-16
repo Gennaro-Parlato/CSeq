@@ -525,7 +525,7 @@ class AbsDrRules:
             ["__cs_bav1_"+str(v) for v in range(self.bav1s_max)]+
             ([self.bav, self.bal, self.bav_lhs, self.bav_tmp] if self.abs_on else [])+
             self.auxvars.get_var_list()+
-            ["__cs_"+typ.replace(" ","_")+"_tmp_"+str(k)+(".v" if typ.startswith("abstr_") else "") for (typ, mx) in self.helpvar_max.items() for k in range(mx)]+
+            ["__cs_"+typ.replace(" ","_")+"_tmp_"+str(k) for (typ, mx) in self.helpvar_max.items() for k in range(mx)]+
             [" z 0"])+";"
         
             
@@ -935,7 +935,7 @@ class AbsDrRules:
         if abstr_type:
             mint = lambda: self.ismin_type(self.visitor_visit(state, unExpr, "VALUE", "WSE", **kwargs), unexprType) if op == '-' else self.ismax_type(self.visitor_visit(state, unExpr, "VALUE", "WSE", **kwargs), unexprType)
             cond = self.or_expr_prop(self.cp(state, "bav"), self.if_ua(lambda: self.cp(state, "bap")), mint())
-            setsm_1 = lambda state: self.setsm("&(("+self.visitor_visit(state, unExpr, "LVALUE", "WSE", **kwargs)+").o)", self.sm_abs, "1")
+            setsm_1 = lambda state: self.setsm("&(("+self.visitor_visit(state, unExpr, "LVALUE", "WSE", **kwargs)+"))", self.sm_abs, "1")
             err = lambda state: setsm_1(state) if state.cp_bal == 0 else ( "" if state.cp_bal == 1 else self.or_expr(self.cp(state,"bal"), setsm_1(state)))
             ok = lambda state: self.brackets(self.visitor_visit(state, unExpr, "LVALUE", "WSE", **kwargs)+" = "+self.encode(self.visitor_visit(state, unExpr, "VALUE", "WSE", **kwargs)+" "+op+" 1", unexprType))
         
@@ -1002,8 +1002,8 @@ class AbsDrRules:
                         #    )) if self.is_abstractable(unExprType) else self.comma_expr(intop+intop+self.visitor_visit(state, unExp, "LVALUE", "WSE", **kwargs))
                         bop_checks_val['val'],
                         self.assign(state, "bav", self.or_expr_prop(*bavSetParts)),
-                        self.setsm("&(("+self.visitor_visit(state, unExp, "LVALUE", "WSE", **kwargs)+").o)", self.sm_abs, self.cp(state, "bav")),
-                        self.visitor_visit(state, unExp, "LVALUE", "WSE", **kwargs)+".v = "+self.visitor_visit(state, assignee, "VALUE", "WSE", **kwargs)
+                        self.setsm("&(("+self.visitor_visit(state, unExp, "LVALUE", "WSE", **kwargs)+"))", self.sm_abs, self.cp(state, "bav")),
+                        self.visitor_visit(state, unExp, "LVALUE", "WSE", **kwargs)+" = "+self.visitor_visit(state, assignee, "VALUE", "WSE", **kwargs)
                     ]
                 else:
                     ans2 = [intop+intop+self.visitor_visit(state, unExp, "LVALUE", "WSE", **kwargs)]
@@ -1073,9 +1073,9 @@ class AbsDrRules:
                         #    )) if self.is_abstractable(unExprType) else self.comma_expr(self.visitor_visit(state, unExp, "LVALUE", "WSE", **kwargs)+intop+intop)
                         bop_checks_val['val'],
                         self.assign(state, "bav", self.or_expr_prop(*bavSetParts)),
-                        self.setsm("&(("+self.visitor_visit(state, unExp, "LVALUE", "WSE", **kwargs)+").o)", self.sm_abs, self.cp(state, "bav")),
+                        self.setsm("&(("+self.visitor_visit(state, unExp, "LVALUE", "WSE", **kwargs)+"))", self.sm_abs, self.cp(state, "bav")),
                         self.auxvars.write(preop, self.cast(self.visitor_visit(state, unExp, "VALUE", "WSE", **kwargs), self.cast_type(unExprType))),
-                        self.visitor_visit(state, unExp, "LVALUE", "WSE", **kwargs)+".v = "+self.visitor_visit(state, assignee, "VALUE", "WSE", **kwargs), #+fullOp(),
+                        self.visitor_visit(state, unExp, "LVALUE", "WSE", **kwargs)+" = "+self.visitor_visit(state, assignee, "VALUE", "WSE", **kwargs), #+fullOp(),
                     ]
                 else:
                     ans2 = [self.visitor_visit(state, unExp, "LVALUE", "WSE", **kwargs)+intop+intop]
@@ -1104,7 +1104,7 @@ class AbsDrRules:
         # return p2&&dr=(dr||wam||get_sm_dr(&[[postExp,WSE]][ [[exp,WSE]] ]))
         assert(self.dr_on)
         ok = lambda state: self.and_expr(self.p2code(self.getVpstate(**kwargs)), self.brackets(self.assign_with_prop(state, "dr", self.or_expr_prop(self.cp(state, "dr"), self.cp(state, "wam"), 
-            self.getsm("&(("+self.brackets(self.visitor_visit(state, postExp, "VALUE", "WSE", **kwargs))+"["+self.visitor_visit(state, exp, "VALUE", "WSE", **kwargs)+"])"+(".o" if self.is_abstractable(arrexpType) else "")+")", self.getsm_dr(kwargs))))))
+            self.getsm("&("+self.brackets(self.visitor_visit(state, postExp, "VALUE", "WSE", **kwargs))+"["+self.visitor_visit(state, exp, "VALUE", "WSE", **kwargs)+"])", self.getsm_dr(kwargs))))))
         err = lambda state: self.and_expr(self.p2code(self.getVpstate(**kwargs)), self.brackets(self.assign_with_prop(state, "dr", self.or_expr_prop(self.cp(state, "dr"), self.cp(state, "wam"), self.cp(state, "wkm")))))
         if dr_mode in ("NO_ACCESS", "PREFIX"):
             return ""
@@ -1126,7 +1126,7 @@ class AbsDrRules:
     def __arrayref_bavtmp_abs(self, state, postExp, exp, arrexpType, **kwargs):
         # return bav = ((bal = (bav_tmp || bav)) || get_sm_abs(&[[postExp,VALUE,WSE]] [ [[exp,VALUE,WSE]] ]))
         assert(self.abs_on)
-        getsm = lambda: self.getsm("&(("+self.brackets(self.visitor_visit(state, postExp, "VALUE", "WSE", **kwargs))+"["+self.visitor_visit(state, exp, "VALUE", "WSE", **kwargs)+"])"+(".o" if self.is_abstractable(arrexpType) else "")+")", self.sm_abs)
+        getsm = lambda: self.getsm("&("+self.brackets(self.visitor_visit(state, postExp, "VALUE", "WSE", **kwargs))+"["+self.visitor_visit(state, exp, "VALUE", "WSE", **kwargs)+"])", self.sm_abs)
         tmp_bav_cp = (state.cp_bav_tmp, state.cp_bav) #(bav_tmp || bav) as const propagation
         if tmp_bav_cp[1] == 1: # x || True
             return self.assign_with_prop(state, "bal", "1") 
@@ -1153,7 +1153,7 @@ class AbsDrRules:
                 arrexp, abs_mode, dr_mode)
         elif abs_mode in ("VALUE",) and dr_mode in ("WSE", None):
             arrexpType = self.supportFile.get_type(arrexp) #"int" #TODO get type from expression
-            return self.store_content(full_statement,self.cast(self.visitor_visit(state, postExp, "VALUE", "WSE", **kwargs)+"["+self.visitor_visit(state, exp, "VALUE", "WSE", **kwargs)+"]"+(".v" if self.is_abstractable(arrexpType) and not is_func_arg else ""), \
+            return self.store_content(full_statement,self.cast(self.visitor_visit(state, postExp, "VALUE", "WSE", **kwargs)+"["+self.visitor_visit(state, exp, "VALUE", "WSE", **kwargs)+"]", \
                 self.cast_type(arrexpType)), arrexp, abs_mode, dr_mode)
         elif abs_mode in ("GET_VAL", "UPD_VAL", None) and dr_mode in ("ACCESS", "PREFIX", "NO_ACCESS", None):
             arrexpType = self.supportFile.get_type(arrexp) #"int" #TODO get type from expression
@@ -1183,7 +1183,7 @@ class AbsDrRules:
         # return p2&&dr=(dr||wam||get_sm_dr(&([[postExp,WSE]]->exp)]))
         assert(self.dr_on)
         ok = lambda state: self.and_expr(self.p2code(self.getVpstate(**kwargs)), self.brackets(self.assign_with_prop(state, "dr", self.or_expr_prop(self.cp(state, "dr"), self.cp(state, "wam"), 
-            self.getsm("&(("+self.brackets(self.visitor_visit(state, postExp, "VALUE", "WSE", **kwargs))+"->"+exp.name+")"+(".o" if self.is_abstractable(srexprType) else "")+")", self.getsm_dr(kwargs))))))
+            self.getsm("&("+self.brackets(self.visitor_visit(state, postExp, "VALUE", "WSE", **kwargs))+"->"+exp.name+")", self.getsm_dr(kwargs))))))
         err = lambda state: self.and_expr(self.p2code(self.getVpstate(**kwargs)), self.brackets(self.assign_with_prop(state, "dr", self.or_expr_prop(self.cp(state, "dr"), self.cp(state, "wam"), self.cp(state, "wkm")))))
         if dr_mode in ("NO_ACCESS", "PREFIX"):
             return ""
@@ -1200,7 +1200,7 @@ class AbsDrRules:
     def __structrefptr_bavtmp_abs(self, state, postExp, exp, srexprType, **kwargs):
         # return (bal = bav) || get_sm_abs(&([[postExp,VALUE,WSE]]->exp))
         assert(self.abs_on)
-        getsm = lambda: self.getsm("&(("+self.brackets(self.visitor_visit(state, postExp, "VALUE", "WSE", **kwargs))+"->"+exp.name+")"+(".o" if self.is_abstractable(srexprType) else "")+")", self.sm_abs)
+        getsm = lambda: self.getsm("&("+self.brackets(self.visitor_visit(state, postExp, "VALUE", "WSE", **kwargs))+"->"+exp.name+")", self.sm_abs)
         cp = (state.cp_bal, state.cp_bav) #(bal, bav) as const propagation
         if cp[0] == 0 and cp[1] == 0: #bal = False, bav = False
             return getsm()
@@ -1230,7 +1230,7 @@ class AbsDrRules:
             return self.store_content(full_statement,self.visitor_visit(state, postExp, "VALUE", "WSE", **kwargs)+"->"+fid.name, srexp, abs_mode, dr_mode)
         elif abs_mode in ("VALUE",) and dr_mode in ("WSE", None):
             srexpType = self.supportFile.get_type(srexp) 
-            return self.store_content(full_statement,self.cast(self.visitor_visit(state, postExp, "VALUE", "WSE", **kwargs)+"->"+fid.name+(".v" if self.is_abstractable(srexpType) and not is_func_arg else ""), self.cast_type(srexpType)), srexp, abs_mode, dr_mode)
+            return self.store_content(full_statement,self.cast(self.visitor_visit(state, postExp, "VALUE", "WSE", **kwargs)+"->"+fid.name, self.cast_type(srexpType)), srexp, abs_mode, dr_mode)
             
         elif abs_mode in ("GET_VAL", "UPD_VAL", None) and dr_mode in ("ACCESS", "PREFIX", "NO_ACCESS", None):
             srexpType = self.supportFile.get_type(srexp) 
@@ -1256,7 +1256,7 @@ class AbsDrRules:
         # return p2&&dr=(dr||wam||get_sm_dr(&([[postExp,WSE]].exp)))
         assert(self.dr_on)
         ok = lambda state: self.and_expr(self.p2code(self.getVpstate(**kwargs)), self.brackets(self.assign_with_prop(state, "dr", self.or_expr_prop(self.cp(state, "dr"), self.cp(state, "wam"), 
-            self.getsm("&(("+self.brackets(self.visitor_visit(state, postExp, "LVALUE", "WSE", **kwargs))+"."+exp.name+")"+(".o" if self.is_abstractable(srexprType) else "")+")", self.getsm_dr(kwargs))))))
+            self.getsm("&("+self.brackets(self.visitor_visit(state, postExp, "LVALUE", "WSE", **kwargs))+"."+exp.name+")", self.getsm_dr(kwargs))))))
         err = lambda state: self.and_expr(self.p2code(self.getVpstate(**kwargs)), self.brackets(self.assign_with_prop(state, "dr", self.or_expr_prop(self.cp(state, "dr"), self.cp(state, "wam"), self.cp(state, "wkm")))))
         if dr_mode in ("NO_ACCESS", "PREFIX"):
             return ""
@@ -1273,7 +1273,7 @@ class AbsDrRules:
     def __structrefvar_bav_abs(self, state, postExp, exp, srexprType, **kwargs):
         # return (bal || bav = get_sm_abs(&([[postExp,VALUE,WSE]]->exp))) && (bav=1)
         assert(self.abs_on)
-        getsm = lambda: self.getsm("&(("+self.brackets(self.visitor_visit(state, postExp, "LVALUE", "WSE", **kwargs))+"."+exp.name+")"+(".o" if self.is_abstractable(srexprType) else "")+")", self.sm_abs)
+        getsm = lambda: self.getsm("&("+self.brackets(self.visitor_visit(state, postExp, "LVALUE", "WSE", **kwargs))+"."+exp.name+")", self.sm_abs)
         if state.cp_bal == 1:
             return self.assign_with_prop(state, "bav", "1")
         elif state.cp_bal == 0:
@@ -1298,7 +1298,7 @@ class AbsDrRules:
             return self.store_content(full_statement,self.brackets(self.visitor_visit(state, postExp, "LVALUE", "WSE", **kwargs))+"."+fid.name, srexp, abs_mode, dr_mode)
         elif abs_mode in ("VALUE",) and dr_mode in ("WSE", None):
             srexpType = self.supportFile.get_type(srexp) #"int" #TODO get type from expression
-            return self.store_content(full_statement,self.cast(self.brackets(self.visitor_visit(state, postExp, "LVALUE", "WSE", **kwargs))+"."+fid.name+(".v" if self.is_abstractable(srexpType) and not is_func_arg else ""), self.cast_type(srexpType)), srexp, abs_mode, dr_mode)
+            return self.store_content(full_statement,self.cast(self.brackets(self.visitor_visit(state, postExp, "LVALUE", "WSE", **kwargs))+"."+fid.name, self.cast_type(srexpType)), srexp, abs_mode, dr_mode)
             
         elif abs_mode in ("GET_VAL", "UPD_VAL", None) and dr_mode in ("ACCESS", "PREFIX", "NO_ACCESS", None):
             srexpType = self.supportFile.get_type(srexp) #"int" #TODO get type from expression
@@ -1442,7 +1442,7 @@ class AbsDrRules:
         # return p2&&dr=(dr||wam||get_sm_dr(*[[castExp,VALUE,WSE]])
         assert(self.dr_on)
         ok = lambda state: self.and_expr(self.p2code(self.getVpstate(**kwargs)), self.brackets(self.assign_with_prop(state, "dr", self.or_expr_prop(self.cp(state, "dr"), self.cp(state, "wam"), 
-            self.getsm("&(("+self.visitor_visit(state, castExp, "VALUE", "WSE", **kwargs)+")"+("->o" if self.is_abstractable(castExprType) else "")+")", self.getsm_dr(kwargs))))))
+            self.getsm("&("+self.visitor_visit(state, castExp, "VALUE", "WSE", **kwargs)+")", self.getsm_dr(kwargs))))))
         err = lambda state: self.and_expr(self.p2code(self.getVpstate(**kwargs)), self.brackets(self.assign_with_prop(state, "dr", self.or_expr_prop(self.cp(state, "dr"), self.cp(state, "wam"), self.cp(state, "wkm")))))
         if dr_mode in ("NO_ACCESS", "PREFIX"):
             return ""
@@ -1460,7 +1460,7 @@ class AbsDrRules:
         # return (bal = bav) || bav = get_sm_abs([[castExp,VALUE,WSE]])
         assert(self.abs_on)
         visit_val = lambda: self.visitor_visit(state, castExp, "VALUE", "WSE", **kwargs)
-        getsm = lambda: self.brackets(self.assign(state, "bav", self.getsm(("&(("+visit_val()+")->o)" if self.is_abstractable(ptropType) else "&("+visit_val()+")"), self.sm_abs)))
+        getsm = lambda: self.brackets(self.assign(state, "bav", self.getsm(("&("+visit_val()+")" if self.is_abstractable(ptropType) else "&("+visit_val()+")"), self.sm_abs)))
         cp = (state.cp_bal, state.cp_bav) #(bal, bav) as const propagation
         if cp[0] == 0 and cp[1] == 0: #bal = False, bav = False
             return getsm()
@@ -1507,7 +1507,7 @@ class AbsDrRules:
             ptropType = self.supportFile.get_type(ptrop)
             visit_val = lambda: self.visitor_visit(state, castExp, "VALUE", "WSE", **kwargs)
             
-            return self.store_content(full_statement,self.cast(("("+visit_val()+")->v" if self.is_abstractable(ptropType) and not is_func_arg else "*("+visit_val()+")"), self.cast_type(castExpType)), ptrop, abs_mode, dr_mode)
+            return self.store_content(full_statement,self.cast(("("+visit_val()+")" if self.is_abstractable(ptropType) and not is_func_arg else "*("+visit_val()+")"), self.cast_type(castExpType)), ptrop, abs_mode, dr_mode)
         else:
             assert(False)
             
@@ -1735,14 +1735,10 @@ class AbsDrRules:
                 print("r", fullExpr.expr, ret_tp)
                 if type(fullExpr.expr) in (c_ast.ArrayRef, c_ast.StructRef, c_ast.Constant, c_ast.ID, c_ast.Assignment) or (type(fullExpr.expr) is c_ast.UnaryOp and fullExpr.expr.op in ('*', '--','++')):
                     val = self.visitor_visit(state, fullExpr.expr, "VALUE", "WSE", func_arg=True, **kwargs)
-                    if val.endswith(".v"):
-                        val = val[:-2]
-                    elif val.endswith("->v"):
-                        val = "*("+val[:-3]+")"
                 else:
                     helpvar_tp = self.rule_Type(None, None, None, None, None, typ_txt = ret_tp)
                     helpvar = self.get_help_var(helpvar_tp)
-                    val = (helpvar+".v = "+self.visitor_visit(state, fullExpr.expr, "VALUE", "WSE", **kwargs))
+                    val = (helpvar+" = "+self.visitor_visit(state, fullExpr.expr, "VALUE", "WSE", **kwargs))
                 return "return "+self.comma_expr(getval, val)
             else:
                 return "return"
@@ -1819,21 +1815,17 @@ class AbsDrRules:
                             args.append(self.visitor_visit(state, exp.exprs[aid], "VALUE", "WSE", **kwargs))
                         elif type(exp.exprs[aid]) in (c_ast.ArrayRef, c_ast.StructRef, c_ast.ID, c_ast.Assignment) or (type(exp.exprs[aid]) is c_ast.UnaryOp and exp.exprs[aid].op in ('*', '--','++')):
                             argtr = self.visitor_visit(state, exp.exprs[aid], "VALUE", "WSE", func_arg=True, **kwargs)
-                            if argtr.endswith(".v"):
-                                argtr = argtr[:-2]
-                            elif argtr.endswith("->v"):
-                                argtr = "*("+argtr[:-3]+")"
                             args.append(argtr)
                         else:
                             helpvar_tp = self.rule_Type(None, None, None, None, None, typ_txt = arg_tp)
                             helpvar = self.get_help_var(helpvar_tp)
-                            statements.append(helpvar+".v = "+self.visitor_visit(state, exp.exprs[aid], "VALUE", "WSE", **kwargs))
+                            statements.append(helpvar+" = "+self.visitor_visit(state, exp.exprs[aid], "VALUE", "WSE", **kwargs))
                             args.append(helpvar)
                     else:
                         args.append(aid)
             else:
                 args = [self.visitor_visit(state, exp.exprs[aid], "VALUE", "WSE", **kwargs) if isinstance(aid, int) else aid for aid in argMap]
-            statements.append(self.auxvars.write(fullExpr, fncName+"("+",".join(args)+")"+(".v" if ret_type in ("intb", "uintb") and fncName.startswith("__CSEQ_atomic") else "")))
+            statements.append(self.auxvars.write(fullExpr, fncName+"("+",".join(args)+")"))
             
             return self.store_content(full_statement, \
                 self.comma_expr(*statements) \
@@ -2646,8 +2638,7 @@ class AbsDrRules:
         elif abs_mode == "LVALUE":
             return sid.name
         elif abs_mode == "VALUE" :
-            sidType = self.supportFile.get_type(sid)
-            return sid.name+(".v" if self.is_abstractable(sidType) and not is_func_arg else "")
+            return sid.name
         elif dr_mode == "WSE": # and implicitly abs is disabled
             return sid.name
         elif sid.name == "__cs_thread_index":
@@ -2658,10 +2649,10 @@ class AbsDrRules:
                 self.if_dr(lambda: 
                     self.and_expr(
                         self.p2code(self.getVpstate(**kwargs)), 
-                        self.brackets(self.assign_with_prop(state,"dr", self.or_expr_prop(self.cp(state, "dr"), self.cp(state, "wam"), self.getsm("&("+sid.name+(".o" if self.is_abstractable(sidType) else "")+")", self.getsm_dr(kwargs)))))
+                        self.brackets(self.assign_with_prop(state,"dr", self.or_expr_prop(self.cp(state, "dr"), self.cp(state, "wam"), self.getsm("&("+sid.name+")", self.getsm_dr(kwargs)))))
                     ) if dr_mode != "NO_ACCESS" else ""),
                 self.if_abs(lambda: self.assign_with_prop(state,"bal","0")),
-                self.if_abs(lambda: (self.assign_with_prop(state,"bav",self.getsm("&("+sid.name+(".o" if self.is_abstractable(sidType) else "")+")", self.sm_abs)) if abs_mode in ("GET_VAL", "UPD_VAL") else ""))
+                self.if_abs(lambda: (self.assign_with_prop(state,"bav",self.getsm("&("+sid.name+")", self.sm_abs)) if abs_mode in ("GET_VAL", "UPD_VAL") else ""))
             ), sid, abs_mode, dr_mode)
     
     def rule_ArrayID(self, state, sid, abs_mode, dr_mode, full_statement, **kwargs):   
@@ -2754,15 +2745,15 @@ class AbsDrRules:
     def __assignment_manual_cp_p1(self, state, unExpr, **kwargs):
         return self.and_expr(self.p1code(self.getVpstate(**kwargs)),
             self.comma_expr(
-                self.setsm("&(("+self.visitor_visit(state, unExpr, "LVALUE", "WSE", **kwargs)+").o)", self.sm_dr_all, "1"),  
-                self.setsm("&(("+self.visitor_visit(state, unExpr, "LVALUE", "WSE", **kwargs)+").o)", self.sm_dr_noatomic, "1") if self.code_contains_atomic and not kwargs['atomic'] else "",
+                self.setsm("&(("+self.visitor_visit(state, unExpr, "LVALUE", "WSE", **kwargs)+"))", self.sm_dr_all, "1"),  
+                self.setsm("&(("+self.visitor_visit(state, unExpr, "LVALUE", "WSE", **kwargs)+"))", self.sm_dr_noatomic, "1") if self.code_contains_atomic and not kwargs['atomic'] else "",
                 self.assign(state, "wkm", "1")))
             
     # helper function: returns "p2 && (DR = DR || WAM || get_sm_dr(&[[unexp, LVALUE]]))" and manually applies const propagation
     def __assignment_manual_cp_p2(self, state, unExpr, unExprType, **kwargs):
         return self.and_expr(self.p2code(self.getVpstate(**kwargs)),
             self.brackets(self.assign(state, "dr", self.or_expr_prop(self.cp(state, "dr"), self.cp(state, "wam"), 
-                self.getsm("&("+self.visitor_visit(state, unExpr, "LVALUE", "WSE", **kwargs)+(".o" if self.is_abstractable(unExprType) else "")+")", self.getsm_dr(kwargs)))))
+                self.getsm("&("+self.visitor_visit(state, unExpr, "LVALUE", "WSE", **kwargs)+")", self.getsm_dr(kwargs)))))
             )
     
     # helper function: returns "bal && fail()" and manually applies const propagation    
@@ -3050,9 +3041,9 @@ class AbsDrRules:
                     self.assign_with_prop(state, "bav", self.or_expr_prop(
                         *bavSetParts
                     )),
-                    self.setsm("&(("+self.visitor_visit(state, unExp, "LVALUE", "WSE", **kwargs)+")"+(".o" if self.is_abstractable(unExprType) else "")+")", self.sm_abs, self.cp(state, "bav")),
+                    self.setsm("&("+self.visitor_visit(state, unExp, "LVALUE", "WSE", **kwargs)+")", self.sm_abs, self.cp(state, "bav")),
                     "" if self.cp(state, "bav") == "1" else (
-                    self.visitor_visit(state, unExp, "LVALUE", "WSE", **kwargs)+(".v" if self.is_abstractable(unExprType) else "")+" = ("+self.visitor_visit(state, assExp, "VALUE", "WSE", **kwargs)+")" if op == "=" else self.visitor_visit(state, unExp, "LVALUE", "WSE", **kwargs)+".v = ("+(self.visitor_visit(state, fullOpNode, "VALUE", "WSE", **kwargs))+")")
+                    self.visitor_visit(state, unExp, "LVALUE", "WSE", **kwargs)+" = ("+self.visitor_visit(state, assExp, "VALUE", "WSE", **kwargs)+")" if op == "=" else self.visitor_visit(state, unExp, "LVALUE", "WSE", **kwargs)+" = ("+(self.visitor_visit(state, fullOpNode, "VALUE", "WSE", **kwargs))+")")
             ]
         else:
             ans2=[self.visitor_visit(state, unExp, None, "WSE", **kwargs)+" = "+self.visitor_visit(state, assExp, None, "WSE", **kwargs) if op == "=" \
@@ -3083,16 +3074,10 @@ class AbsDrRules:
         
     def rule_Type(self, state, typ, abs_mode, dr_mode, full_statement, **kwargs):
         typ_txt = kwargs['typ_txt']
-        if self.abs_on and typ_txt in self.abstrTypesSizeof and self.abstrTypesSizeof[typ_txt] * 8 > self.abstr_bits:
-            if typ_txt == "size_t" : 
-                self.any_size_t = True
-            return "abstr_"+typ_txt.replace(" ","_")
         return typ_txt
         
     def fake_abstr_types(self):
-        return [
-            "typedef "+(t if t != "size_t" else "char")+" abstr_"+t.replace(" ","_")+";" for t in self.abstrTypesSizeof
-        ]
+        return []
         
     def rule_FunctionLocalDecls(self, state, fnc, abs_mode, dr_mode, full_statement, **kwargs):
         return self.if_ua(
