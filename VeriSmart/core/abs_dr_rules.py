@@ -77,15 +77,16 @@ class AuxVars:
     def __init__(self):
         self.value_var_nodes = dict()
         self.all_vv = []
+        self.concrete_vars = TypedHelperVars("__cs_typedvar_")
         
     def create(self, ast_node, typ, with_side_effect=False):
         assert(typ != "other")
-        aux = AuxVars.AuxVar("__cs_valuevar_"+str(len(self.all_vv)), typ=typ, with_side_effect=with_side_effect)
+        aux = AuxVars.AuxVar("__cs_valuevar_"+str(len(self.all_vv)), self.concrete_vars, typ=typ, with_side_effect=with_side_effect)
         self.all_vv.append(aux)
         self.value_var_nodes[ast_node] = aux
         
     def create_fake(self, ast_node, value):
-        aux = AuxVars.AuxVar("__cs_valuevar_"+str(len(self.all_vv)), fake=True, value=value)
+        aux = AuxVars.AuxVar("__cs_valuevar_"+str(len(self.all_vv)), self.concrete_vars, fake=True, value=value)
         self.all_vv.append(aux)
         self.value_var_nodes[ast_node] = aux
         
@@ -106,16 +107,19 @@ class AuxVars:
         return self.value_var_nodes[ast_node].read()
         
     def get_var_decls(self):
-        return [l for v in self.all_vv for l in v.get_var_decls()]
+        return [typ + " " + ", ".join(vrs)+";" for typ, vrs in self.concrete_vars.list_all().items()]
         
     def get_var_list(self):
-        return [l for v in self.all_vv for l in v.get_var_list()]
+        return [v for vrs in self.concrete_vars.list_all().values() for v in vrs]
         
     def get_macro_decls(self):
         return [l for v in self.all_vv for l in v.get_macro_decls()]
         
+    def end_of_statement(self):
+        self.concrete_vars.release_all_vars()
+        
     class AuxVar:
-        def __init__(self, name, typ=None, fake=False, value=None, with_side_effect=False):
+        def __init__(self, name, concrete_vars, typ=None, fake=False, value=None, with_side_effect=False):
             self.name = name
             self.typ = typ
             self.fake = fake
@@ -123,6 +127,7 @@ class AuxVars:
             self.is_written = value is not None
             self.reads = 0
             self.with_side_effect = with_side_effect
+            self.concrete_vars = concrete_vars
             
         def write(self, val, set_if_read, set_if_not_read):
             #print(val, "previously", self.value)
@@ -130,7 +135,8 @@ class AuxVars:
             assert(not self.is_written)
             self.value = val
             self.is_written = True
-            self.set_if_read = set_if_read(self.name,"x")
+            self.did_replace_set_if_read = False
+            self.set_if_read = set_if_read("@@@@","x")
             self.set_if_not_read = set_if_not_read("x")
             return "SET_"+self.name+"("+val+")"
             
@@ -139,17 +145,22 @@ class AuxVars:
                 return self.value
             else:
                 self.reads += 1
+                if not self.did_replace_set_if_read and ((self.is_written and self.reads >= 2) or (self.with_side_effect and self.reads >= 1)):
+                    self.this_var = self.concrete_vars.acquire(self.typ)
+                    self.set_if_read = self.set_if_read.replace("@@@@", self.this_var)
+                    self.did_replace_set_if_read = True
                 return self.name
             
         def get_var_decls(self):
             if not self.fake and ((self.is_written and self.reads >= 2) or (self.with_side_effect and self.reads >= 1)):
-                return [self.typ+" "+self.name+";"]
+                print(self.name, self.fake, self.is_written, self.reads, self.with_side_effect)
+                return [self.typ+" "+self.this_var+";"]
             else: 
                 return []
                 
         def get_var_list(self):
             if not self.fake and ((self.is_written and self.reads >= 2) or (self.with_side_effect and self.reads >= 1)):
-                return [self.name]
+                return [self.this_var]
             else: 
                 return []
                 
@@ -161,8 +172,8 @@ class AuxVars:
                     return ["#define SET_"+self.name+"(x) "+self.set_if_not_read]
                 elif self.reads == 1 and not self.with_side_effect:
                     return ["#define SET_"+self.name+"(x) "+self.set_if_not_read, "#define "+self.name+" ("+self.value+")"]
-                else:
-                    return ["#define SET_"+self.name+"(x) "+self.set_if_read]
+                else:   
+                    return ["#define SET_"+self.name+"(x) "+self.set_if_read, "#define "+self.name+" ("+self.this_var+")"]
             else: 
                 assert(self.reads == 0)
                 return []
@@ -273,6 +284,51 @@ class HelperVars:
         
     def list_all(self):
         return [self.prefix + str(i) for i in range(self.firstUnused)]
+        
+class TypedHelperVars: #TODO unire queste due classi
+    class Inner:
+        def __init__(self, hv, typ):
+            self.hv = hv
+            self.typ = typ
+            
+        def __enter__(self):
+            self.vname = self.hv.acquire(typ)
+            return self.vname
+            
+        def __exit__(self, *args):
+            self.hv.release(self.vname, self.typ)
+            
+    def __init__(self, prefix):
+        self.prefix = prefix
+        self.firstUnused = {}
+        self.firstUnusedAbsolute = {}
+        self.free = {}
+        
+    def acquire(self, typ):
+        if typ not in self.free:
+            self.free[typ] = deque()
+            self.firstUnused[typ] = 0
+            self.firstUnusedAbsolute[typ] = 0
+        if len(self.free[typ]) > 0:
+            return self.free[typ].pop()
+        else:
+            name = self.prefix + typ.replace(" ","_") + "_" + str(self.firstUnused[typ])
+            self.firstUnused[typ] += 1
+            self.firstUnusedAbsolute[typ] = max(self.firstUnusedAbsolute[typ], self.firstUnused[typ])
+            return name
+            
+    def release(self, name, typ):
+        self.free[typ].append(name)
+            
+    def __call__(self, typ):
+        return TypedHelperVars.Inner(self, typ)
+        
+    def list_all(self):
+        return {typ:[self.prefix + typ.replace(" ","_") + "_" + str(i) for i in range(self.firstUnusedAbsolute[typ])] for typ in self.firstUnusedAbsolute}
+        
+    def release_all_vars(self):
+        self.free = {typ: deque() for typ in self.free}
+        self.firstUnused = {typ: 0 for typ in self.firstUnused}
         
         
 class AbsDrRules:            
@@ -415,6 +471,7 @@ class AbsDrRules:
         #self.bap1s_if = {} bap1s for ifs are kept between statements, can't reset automatically
         self.bap1s = {}
         self.conditions = {}
+        self.auxvars.end_of_statement()
         
     def end_of_thread_function(self):
         self.bap1s_if = {} 
@@ -515,17 +572,17 @@ class AbsDrRules:
             self.if_dr_possible(lambda: 'unsigned __CPROVER_bitvector[1] __cs_dataraceContinue = 1;'),
             self.if_dr_possible(lambda: 'unsigned __CPROVER_bitvector[1] __cs_dataraceActiveVP1 = 0;'),
             self.if_dr_possible(lambda: 'unsigned __CPROVER_bitvector[1] __cs_dataraceActiveVP2 = 0;'),
-        ]+#[
+        #+[
         #    self.if_abs(lambda: t+" __cs_bf_"+t.replace(" ","_")+" = ("+t+") 0;") for t in self.abstrTypesSigned
         #] + 
-        [
-            "typedef unsigned __CPROVER_bitvector["+self.unsigned_mul[k][4:]+"] "+self.unsigned_mul[k]+";" for k in self.unsigned_mul
-        ] + [
-            "typedef unsigned __CPROVER_bitvector["+self.unsigned_mul_1[k][4:]+"] "+self.unsigned_mul_1[k]+";" for k in self.unsigned_mul_1
-        ] + [
-            "typedef union {intb v; "+t+" o;} abstr_"+t.replace(" ","_")+";" for t in self.abstrTypesSigned if self.abstrTypesSizeof[t] * 8 > self.abstr_bits
-        ] + [
-            "typedef union {uintb v; "+t+" o;} abstr_"+t.replace(" ","_")+";" for t in self.abstrTypesUnsigned if self.abstrTypesSizeof[t] * 8 > self.abstr_bits and (t != "size_t" or self.any_size_t)
+        #[
+        #    "typedef unsigned __CPROVER_bitvector["+self.unsigned_mul[k][4:]+"] "+self.unsigned_mul[k]+";" for k in self.unsigned_mul
+        #] + [
+        #    "typedef unsigned __CPROVER_bitvector["+self.unsigned_mul_1[k][4:]+"] "+self.unsigned_mul_1[k]+";" for k in self.unsigned_mul_1
+        #] + [
+        #    "typedef union {intb v; "+t+" o;} abstr_"+t.replace(" ","_")+";" for t in self.abstrTypesSigned if self.abstrTypesSizeof[t] * 8 > self.abstr_bits
+        #] + [
+        #    "typedef union {uintb v; "+t+" o;} abstr_"+t.replace(" ","_")+";" for t in self.abstrTypesUnsigned if self.abstrTypesSizeof[t] * 8 > self.abstr_bits and (t != "size_t" or self.any_size_t)
         ]))[0]
             
     '''def get_value_var_node_fake(self, node):
@@ -951,15 +1008,15 @@ class AbsDrRules:
     # reduced bitwidth operations
          
     def binary_op_of(self, a, op, b, dest, of):
-        binary_ops = {'+':'add', '-':'sub', '*':'mul', '-':'div', '<<':'shl'}
+        binary_ops = {'+':'add', '-':'sub', '*':'mul', '/':'div', '<<':'shl'}
         return "__CPROVER_"+binary_ops[op]+"_bits_overflow("+a+", "+b+", "+dest+", "+of+", "+str(self.abstr_bits)+")"
         
     def binary_op_only_of(self,a, op, b, of):
-        binary_ops = {'+':'add', '-':'sub', '*':'mul', '-':'div', '<<':'shl'}
+        binary_ops = {'+':'add', '-':'sub', '*':'mul', '/':'div', '<<':'shl'}
         return "__CPROVER_"+binary_ops[op]+"_bits_overflow_only("+a+", "+b+", "+of+", "+str(self.abstr_bits)+")"
         
     def binary_op_no_of(self, a, op, b, dest):
-        binary_ops = {'+':'add', '-':'sub', '*':'mul', '-':'div', '<<':'shl', '|':'or', '^':'xor', '&':'and', '==':'eq', '!=':'neq', '<':'lt', '<=':'le', '>':'gt', '>=':'ge', '>>':'shr', '%':'mod'}
+        binary_ops = {'+':'add', '-':'sub', '*':'mul', '/':'div', '<<':'shl', '|':'or', '^':'xor', '&':'and', '==':'eq', '!=':'neq', '<':'lt', '<=':'le', '>':'gt', '>=':'ge', '>>':'shr', '%':'mod'}
         return "__CPROVER_"+binary_ops[op]+"_bits("+a+", "+b+", "+dest+", "+str(self.abstr_bits)+")"
         
         
@@ -976,10 +1033,10 @@ class AbsDrRules:
         return "__CPROVER_"+unary_ops[op]+"_bits_overflow_only("+a+", "+of+", "+str(self.abstr_bits)+")"
         
     def assign_abstr(self, name, val):
-        return "__CPROVER_assign_bits_overflow("+val+", &("+name+"), "+str(self.abstr_bits)+")"
+        return "__CPROVER_assign_bits("+val+", &("+name+"), "+str(self.abstr_bits)+")"
         
     def assign_abstr_1(self, name, val):
-        return "__CPROVER_assign_bits_overflow("+val+", &("+name+"), 1)"
+        return "__CPROVER_assign_bits("+val+", &("+name+"), 1)"
         
     def cut(self, expr):
         return "__CPROVER_cut_bits("+expr+", "+str(self.abstr_bits)+")"
@@ -1602,11 +1659,19 @@ class AbsDrRules:
             ans = [self.visitor_visit(state, castExp, "GET_VAL", "ACCESS", **kwargs)]
             castExprType = self.supportFile.get_type(castExp)
             if self.abs_on and self.is_abstractable(castExprType) and unOp == "-":
-                with self.bavH() as bav1:
+                castexp_visit = self.visitor_visit(state, castExp, "VALUE", "WSE", **kwargs)
+                if self.cp(state,"bav") == "1":
+                    #broken
+                    self.auxvars.create_fake(unop, "0")
+                elif self.cp(state,"bav") == "0":
+                    #always ok
                     self.auxvars.create(unop, self.cast_type(castExprType), True)
-                    castexp_visit = self.visitor_visit(state, castExp, "VALUE", "WSE", **kwargs)
-                    ans.append(self.auxvars.write(unop, bav1, lambda valuevar, of: self.unary_op_of(unOp, castexp_visit, "&"+valuevar, "&"+of), lambda of: self.unary_op_only_of(unOp, castexp_visit, "&"+of)))
-                    ans.append(self.assign(state, "bav", self.or_expr_prop(self.cp(state,"bav"), bav1)))
+                    ans.append(self.auxvars.write(unop, self.bav, lambda valuevar, of: self.unary_op_of(unOp, castexp_visit, "&"+valuevar, "&"+of), lambda of: self.unary_op_only_of(unOp, castexp_visit, "&"+of)))
+                else:
+                    with self.bavH() as bav1:
+                        self.auxvars.create(unop, self.cast_type(castExprType), True)
+                        ans.append(self.auxvars.write(unop, bav1, lambda valuevar, of: self.unary_op_of(unOp, castexp_visit, "&"+valuevar, "&"+of), lambda of: self.unary_op_only_of(unOp, castexp_visit, "&"+of)))
+                        ans.append(self.assign(state, "bav", self.or_expr_prop(self.cp(state,"bav"), bav1)))
             return self.store_content(full_statement,self.comma_expr(*ans), unop, abs_mode, dr_mode)
         elif abs_mode in ("VALUE", None) and dr_mode in ("WSE",None):
             castExprType = self.supportFile.get_type(castExp)
@@ -1732,7 +1797,6 @@ class AbsDrRules:
                 getval = self.visitor_visit(state, fullExpr.expr, "GET_VAL", "ACCESS", **kwargs)
                 
                 ret_tp = self.supportFile.get_type(fullExpr.expr)
-                print("r", fullExpr.expr, ret_tp)
                 if type(fullExpr.expr) in (c_ast.ArrayRef, c_ast.StructRef, c_ast.Constant, c_ast.ID, c_ast.Assignment) or (type(fullExpr.expr) is c_ast.UnaryOp and fullExpr.expr.op in ('*', '--','++')):
                     val = self.visitor_visit(state, fullExpr.expr, "VALUE", "WSE", func_arg=True, **kwargs)
                 else:
@@ -1758,11 +1822,15 @@ class AbsDrRules:
         
         elif abs_mode in ("GET_VAL",None) and dr_mode in ("NO_ACCESS","ACCESS","PREFIX",None):
             ret_type = self.supportFile.get_type(fullExpr)
+            auxvar_type = None
             if self.is_abstractable(ret_type) and ret_type in self.abstrTypesSizeof and self.abstrTypesSizeof[ret_type]*8 > self.abstr_bits:
-                ret_type = "intb" if ret_type in self.abstrTypesSigned else "uintb"
+                auxvar_type = "intb" if ret_type in self.abstrTypesSigned else "uintb"
             elif ret_type == "other":
                 ret_type = kwargs['func_types'][fncName] if fncName in kwargs['func_types'] else "void"
-            self.auxvars.create(fullExpr, ret_type, with_side_effect=True)
+                if ret_type != "void":
+                    auxvar_type = ret_type
+            if auxvar_type is not None:
+                self.auxvars.create(fullExpr, auxvar_type, with_side_effect=True)
             
             #this allows to setup a different argument calling scheme (e.g, the extra arg of _cs_create), if argMap[i] is int, the i-th argument will be [[exp.exprs[i],VALUE]], else the i-th argument will be argMap[i].
             argMap = kwargs['argMap'] if 'argMap' in kwargs and kwargs['argMap'] is not None else ([i for i in range(len(exp.exprs))] if exp is not None else [])
@@ -1784,7 +1852,7 @@ class AbsDrRules:
                         if self.dr_on:
                             assert(False, "Not implemented") # TODO è un assegnamento fuori atomic (a meno di essere già in atomic)
                     '''
-                    if not fncName.startswith("__CSEQ_atomic"): 
+                    if not fncName.startswith("__CSEQ_atomic") and self.cp(state, "bav") != "0": 
                         statements.append(self.assign_var(bav1, self.or_expr_prop(bav1, self.cp(state, "bav"))))
                 else:
                     pass
@@ -1821,8 +1889,14 @@ class AbsDrRules:
                     else:
                         args.append(aid)
             else:'''
-            args = [self.visitor_visit(state, exp.exprs[aid], "VALUE", "WSE", **kwargs) if isinstance(aid, int) else aid for aid in argMap]
-            statements.append(self.auxvars.write(fullExpr, fncName+"("+",".join(args)+")"))
+            args = [self.visit_cut(state, exp.exprs[aid], "VALUE", "WSE", **kwargs) if isinstance(aid, int) else aid for aid in argMap]
+            fncCallCode = fncName+"("+",".join(args)+")"
+            if auxvar_type is None:
+                statements.append(fncCallCode)
+            elif (not self.is_abstractable(ret_type)) or self.abstr_bits >= 8 * self.abstrTypesSizeof[ret_type]:
+                statements.append(self.auxvars.write(fullExpr, fncCallCode))
+            else:
+                statements.append(self.auxvars.write(fullExpr, fncCallCode, self.assign_abstr))
             
             return self.store_content(full_statement, \
                 self.comma_expr(*statements) \
@@ -2034,19 +2108,19 @@ class AbsDrRules:
         # assign to value_var the value, and set of accordingly
         assert(op in ('|','^','&','==','!=','<','<=','>','>=','<<','>>','+','-','*','/','%'))
         if op in ('==','!=','<','<=','>','>='):
-            visit1 = self.visit_nz(state, exp1, "VALUE", "WSE", **kwargs)
-            visit2 = self.visit_nz(state, exp2, "VALUE", "WSE", **kwargs)
-            self.auxvars.create(node, self.unsigned_1)
+            visit1 = self.visit_cut(state, exp1, "VALUE", "WSE", **kwargs)
+            visit2 = self.visit_cut(state, exp2, "VALUE", "WSE", **kwargs)
+            self.auxvars.create(node, self.unsigned_1, with_side_effect=True)
             return (self.auxvars.write(node, "0", lambda valuevar, ofv: self.binary_op_no_of(visit1, op, visit2, "&"+valuevar)))
         elif self.__binaryop_op_can_overflow(op):
             visit1 = self.visit_cut(state, exp1, "VALUE", "WSE", **kwargs)
             visit2 = self.visit_cut(state, exp2, "VALUE", "WSE", **kwargs)
-            self.auxvars.create(node, self.cast_type(e1_op_e2_type))
+            self.auxvars.create(node, self.cast_type(e1_op_e2_type), with_side_effect=True)
             return (self.auxvars.write(node, of, lambda valuevar, ofv: self.binary_op_of(visit1, op, visit2, "&"+valuevar, "&"+ofv), lambda ofv: self.binary_op_only_of(visit1, op, visit2, "&"+ofv)))
         else:
             visit1 = self.visit_cut(state, exp1, "VALUE", "WSE", **kwargs)
             visit2 = self.visit_cut(state, exp2, "VALUE", "WSE", **kwargs)
-            self.auxvars.create(node, self.cast_type(e1_op_e2_type))
+            self.auxvars.create(node, self.cast_type(e1_op_e2_type), with_side_effect=True)
             return (self.auxvars.write(node, "0", lambda valuevar, ofv: self.binary_op_no_of(visit1, op, visit2, "&"+valuevar)))
              
 
@@ -3083,7 +3157,7 @@ class AbsDrRules:
                 bav_or_test.append(self.cp(state, "bap"))
             if not isCondVar and is_unExprType_abs and not is_assExpType_abs:
                 helpvar = self.get_help_var(unExprType)
-                stmts.append(helpvar + " = ("+unExprType+") ("+self.visitor_visit(state, assExp, "VALUE", "WSE", **kwargs)+")")
+                stmts.append(helpvar + " = ("+self.visitor_visit(state, assExp, "VALUE", "WSE", **kwargs)+")")
                 bav_or_test.append(self.bounds_failure(helpvar, unExprType))
             if len(bav_or_test) > 1:
                 stmts.append(self.assign_with_prop(state,"bav",self.or_expr_prop(*bav_or_test)))
