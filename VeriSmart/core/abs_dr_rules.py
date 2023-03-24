@@ -1053,12 +1053,24 @@ class AbsDrRules:
         return "__CPROVER_nz_bits("+expr+", "+str(self.abstr_bits)+")"
         
     def visit_nz(self, state, expr, abs_mode, dr_mode, **kwargs):
+        if "negate" in kwargs and kwargs["negate"]:
+            kwargs = kwargs.copy()
+            del kwargs["negate"]
+            isNeg = True
+        else:
+            isNeg = False
         typ = self.supportFile.get_type(expr)
         val = self.visitor_visit(state, expr, abs_mode, dr_mode, **kwargs)
         if self.is_abstractable(typ):
-            return self.nz(val)
+            if isNeg:
+                return "~("+self.nz(val)+")"
+            else:
+                return self.nz(val)
         else:
-            return val
+            if isNeg:
+                return "!("+val+")"
+            else:
+                return val
         
     def visit_nz_cond(self, state, expr, abs_mode, dr_mode, **kwargs):
         if self.is_cond_var(expr) and self.abs_on:
@@ -1592,7 +1604,9 @@ class AbsDrRules:
         # returns value = (([[castExp, GET_VAL, ACCESS]], bav) ? nondetbool(), :![[castexp, VALUE, WSE]]), bav = 0
         # and applies constant propagation
         castExp = notop.expr
-        ok = lambda state: "!("+self.visit_nz(state, castExp, "VALUE", "WSE", **kwargs)+")" 
+        kw2 = kwargs.copy()
+        kw2["negate"] = True
+        ok = lambda state: self.visit_nz(state, castExp, "VALUE", "WSE", **kw2) 
         err = lambda state: self.getNondetvarBv(notop, "u1") # self.nondet()
         value = self.getCondition(notop)
         castexp_getval = self.visitor_visit(state, castExp, "GET_VAL", "ACCESS", **kwargs)
@@ -1631,9 +1645,11 @@ class AbsDrRules:
         elif abs_mode in ("GET_VAL",None) and dr_mode in ("ACCESS","PREFIX","NO_ACCESS",None):
             if self.underapprox:
                 value = self.getCondition(notop)
+                kw2 = kwargs.copy()
+                kw2["negate"] = True
                 trans = self.assign_var(value, self.comma_expr(
                     self.visitor_visit(state, castExp, "GET_VAL", "ACCESS", **kwargs),
-                    "!("+self.visitor_visit(state, castExp, "VALUE", "WSE", **kwargs)+")" 
+                    self.visit_nz(state, castExp, "VALUE", "WSE", **kw2) 
                 ))
             else:
                 trans = self._not_getval(state, notop, **kwargs)
@@ -2697,33 +2713,38 @@ class AbsDrRules:
         exp2 = fullOp.right
         op = fullOp.op
         
+        e1_op_e2_type = self.supportFile.get_type(fullOp) 
+        e1_type = self.supportFile.get_type(fullOp.left) 
+        e2_type = self.supportFile.get_type(fullOp.right) 
+        isNotAbs_e1_op_e2_type = (not self.is_abstractable(e1_op_e2_type)) or self.abstr_bits >= 8 * self.abstrTypesSizeof[e1_op_e2_type]
+        isNotAbs_e1_type = (not self.is_abstractable(e1_type)) or self.abstr_bits >= 8 * self.abstrTypesSizeof[e1_type]
+        isNotAbs_e2_type = (not self.is_abstractable(e2_type)) or self.abstr_bits >= 8 * self.abstrTypesSizeof[e2_type]
+        
         assert(op in ('|','^','&','==','!=','<','<=','>','>=','<<','>>','+','-','*','/','%'))
         
         if abs_mode in ("VALUE", None) and dr_mode in ("WSE",None):
-            if self.abs_on and self.is_abstractable(self.supportFile.get_type(fullOp)) and self.abstr_bits < 8 * self.abstrTypesSizeof[self.supportFile.get_type(fullOp)]:
-                #ans = self.get_value_var_node(fullOp, None)
-                ans = self.auxvars.read(fullOp)
+            if not self.abs_on or isNotAbs_e1_op_e2_type:
+                ans = "(("+self.visit_cut(state, exp1, "VALUE", "WSE", **kwargs)+") "+op+" ("+ self.visit_cut(state, exp2, "VALUE", "WSE", **kwargs)+"))"
+            elif isNotAbs_e2_type or isNotAbs_e1_type:
+                ans = self.cut("("+self.visit_cut(state, exp1, "VALUE", "WSE", **kwargs)+") "+op+" ("+ self.visit_cut(state, exp2, "VALUE", "WSE", **kwargs)+")")
             else:
-                ans = "(("+self.visit_cut(state, exp1, "VALUE", "WSE", **kwargs)+") "+op+" ("+ \
-                    self.visit_cut(state, exp2, "VALUE", "WSE", **kwargs)+"))"
+                ans = self.auxvars.read(fullOp)
             return self.store_content(full_statement, ans, fullOp, abs_mode, dr_mode)
         elif abs_mode in ("GET_VAL",None) and dr_mode in ("ACCESS","NO_ACCESS",'PREFIX',None):
-            e1_op_e2_type = self.supportFile.get_type(fullOp) 
-            e1_type = self.supportFile.get_type(fullOp.left) 
-            e2_type = self.supportFile.get_type(fullOp.right) 
             stmts = []
             stmts.append(self.visitor_visit(state, exp1, "GET_VAL", "ACCESS", **kwargs))
-            if not self.abs_on or self.cp(state, "bav") == "1":
+            if not self.abs_on:
+                stmts.append(self.visitor_visit(state, exp2, "GET_VAL", "ACCESS", **kwargs))
+            elif self.cp(state, "bav") == "1":
                 # broken: the whole expression is not ok: evaluate exp2 and create a valuevar with a fake value
                 stmts.append(self.visitor_visit(state, exp2, "GET_VAL", "ACCESS", **kwargs))
-                if self.abs_on and self.cp(state, "bav") != "1":
+                if self.cp(state, "bav") != "1":
                     stmts.append(self.assign_with_prop(state,"bav","1"))
-                if self.abs_on:
-                    self.auxvars.create_fake(fullOp, "1")
+                self.auxvars.create_fake(fullOp, "1")
             elif self.cp(state, "bav") == "0":
                 # first bav was always ok: compute exp2 directly using the original bav
                 stmts.append(self.visitor_visit(state, exp2, "GET_VAL", "ACCESS", **kwargs))
-                if (not self.is_abstractable(e1_op_e2_type)) or self.abstr_bits >= 8 * self.abstrTypesSizeof[e1_op_e2_type]:
+                if isNotAbs_e1_op_e2_type or isNotAbs_e1_type or isNotAbs_e2_type:
                     # no abstraction: [VALUE] will compute the result
                     pass
                 elif self.cp(state, "bav") == "1":
