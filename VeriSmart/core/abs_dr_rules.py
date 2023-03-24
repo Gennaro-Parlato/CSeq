@@ -1487,7 +1487,7 @@ class AbsDrRules:
                 condvar = self.getCondition(top)
                 trans = self.comma_expr(
                     self.visitor_visit(state, lorExp, "GET_VAL", "ACCESS", **kwargs),
-                    self.if_abs(lambda: self.assign_var(condvar, self.ternary_expr(state, self.cp(state, "bav"), self.getNondetvarBv(top, "u1"), self.visit_nz(state, lorExp, "VALUE", "WSE", **kwargs)))),
+                    self.if_abs(lambda: self.assign_var(condvar, self.ternary_expr(state, self.cp(state, "bav"), lambda state: self.getNondetvarBv(top, "u1"), lambda state: self.visit_nz(state, lorExp, "VALUE", "WSE", **kwargs)))),
                     self.if_no_abs(lambda: self.assign_var(condvar, self.visitor_visit(state, lorExp, "VALUE", "WSE", **kwargs))),
                     self.ternary_expr(state, condvar, 
                         lambda state: self.brackets(self.visitor_visit(state, exp, "GET_VAL", "ACCESS", **kwargs)), 
