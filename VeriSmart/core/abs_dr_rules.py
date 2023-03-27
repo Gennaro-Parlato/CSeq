@@ -608,8 +608,7 @@ class AbsDrRules:
         return self.compound_expr("\n",*(['unsigned __CPROVER_bitvector[1] __cs_bav1_'+str(v)+';' for v in range(self.bav1s_max)]+['unsigned __CPROVER_bitvector[1] '+x+';' for x in self.bavH.list_all()]))[0]
         
     def bap1_vars_decl(self):
-        return self.compound_expr("\n",*(['unsigned __CPROVER_bitvector[1] __cs_bap1_'+str(v)+';' for v in range(self.bap1s_max)]#+
-            #['unsigned __CPROVER_bitvector[1] __cs_bap1_if_'+str(v)+';' for v in range(self.bap1s_if_max)]
+        return self.compound_expr("\n",*(['unsigned __CPROVER_bitvector[1] __cs_bap1_'+str(v)+';' for v in range(self.bap1s_max)]+['unsigned __CPROVER_bitvector[1] '+x+';' for x in self.bapH.list_all()]
             ))[0]
 
     def extra_vars_decl(self):
@@ -2034,6 +2033,27 @@ class AbsDrRules:
                         self.__assert_assume_inner(state, exp, fullExpr, **kwargs)
                     )
                 trans = fncName+"("+ ce +")"
+            return self.store_content(full_statement, trans, fullExpr, abs_mode, dr_mode)
+        else:
+            assert(False)
+            
+    def rule_Fail(self, state, fullExpr, abs_mode, dr_mode, full_statement, **kwargs):
+        self.assertDisabledIIFModesAreNone(abs_mode, dr_mode, **kwargs) 
+        if dr_mode == "TOP_ACCESS":
+            return self.store_content(full_statement, self.fakeIfAssignment(self.comma_expr(
+                    self.visitor_visit(state, fullExpr, abs_mode, "ACCESS", **kwargs),
+                    self.visitor_visit(state, fullExpr, abs_mode, "WSE", **kwargs)
+                )), fullExpr, abs_mode, dr_mode)
+        exp = fullExpr.args
+        fncName = "assert"
+        if abs_mode in ("GET_VAL",None) and dr_mode in ("NO_ACCESS",None):
+            if self.underapprox:
+                trans = self.comma_expr(
+                    self.assume_expr(self.not_cp(state, "bap")),
+                    self.assume_expr(self.not_cp(state, "bav")),
+                    self.assert_expr("0"))
+            else:
+                trans = self.assert_expr("0")
             return self.store_content(full_statement, trans, fullExpr, abs_mode, dr_mode)
         else:
             assert(False)

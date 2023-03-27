@@ -1033,6 +1033,8 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
             if fref in ("__CSEQ_assert",):
                 n.name.name = "assert"
             return self.macro_file_manager.expression(n, self.do_rule('rule_Assert_Assume', n, **extra_args), passthrough=not self.full_statement, brackets=not self.full_statement)
+        if fref == "__assert_fail":
+            return self.macro_file_manager.expression(n, self.do_rule('rule_Fail', n, **extra_args), passthrough=not self.full_statement, brackets=not self.full_statement)
         elif fref == '__CSEQ_atomic_begin':
             if not self._lazyseqnewschedule__visit_funcReference:
                 self._lazyseqnewschedule__atomic = True
