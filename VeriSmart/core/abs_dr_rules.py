@@ -1681,6 +1681,7 @@ class AbsDrRules:
                 elif self.cp(state,"bav") == "0":
                     #always ok
                     self.auxvars.create(unop, self.cast_type(castExprType), True)
+                    state.cp_bav = None
                     ans.append(self.auxvars.write(unop, self.bav, lambda valuevar, of: self.unary_op_of(unOp, castexp_visit, "&"+valuevar, "&"+of), lambda of: self.unary_op_only_of(unOp, castexp_visit, "&"+of)))
                 else:
                     with self.bavH() as bav1:
@@ -2152,6 +2153,8 @@ class AbsDrRules:
             visit1 = self.visit_cut(state, exp1, "VALUE", "WSE", **kwargs)
             visit2 = self.visit_cut(state, exp2, "VALUE", "WSE", **kwargs)
             self.auxvars.create(node, self.cast_type(e1_op_e2_type), with_side_effect=True)
+            if of == self.bav:
+                state.cp_bav = None
             return (self.auxvars.write(node, of, lambda valuevar, ofv: self.binary_op_of(visit1, op, visit2, "&"+valuevar, "&"+ofv), lambda ofv: self.binary_op_only_of(visit1, op, visit2, "&"+ofv)))
         else:
             visit1 = self.visit_cut(state, exp1, "VALUE", "WSE", **kwargs)
