@@ -136,8 +136,9 @@ class AuxVars:
             self.value = val
             self.is_written = True
             self.did_replace_set_if_read = False
-            self.set_if_read = set_if_read("@@@@","x")
-            self.set_if_not_read = set_if_not_read("x")
+            self.macrovname = "xxxxxxxxxx"
+            self.set_if_read = set_if_read("@@@@",self.macrovname)
+            self.set_if_not_read = set_if_not_read(self.macrovname)
             return "SET_"+self.name+"("+val+")"
             
         def read(self):
@@ -169,11 +170,11 @@ class AuxVars:
                 return []
             elif self.is_written:
                 if self.reads == 0:
-                    return ["#define SET_"+self.name+"(x) "+self.set_if_not_read]
+                    return ["#define SET_"+self.name+"("+self.macrovname+") "+self.set_if_not_read]
                 elif self.reads == 1 and not self.with_side_effect:
-                    return ["#define SET_"+self.name+"(x) "+self.set_if_not_read, "#define "+self.name+" ("+self.value+")"]
+                    return ["#define SET_"+self.name+"("+self.macrovname+") "+self.set_if_not_read, "#define "+self.name+" ("+self.value+")"]
                 else:   
-                    return ["#define SET_"+self.name+"(x) "+self.set_if_read, "#define "+self.name+" ("+self.this_var+")"]
+                    return ["#define SET_"+self.name+"("+self.macrovname+") "+self.set_if_read, "#define "+self.name+" ("+self.this_var+")"]
             else: 
                 assert(self.reads == 0)
                 return []
