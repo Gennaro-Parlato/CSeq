@@ -2587,15 +2587,19 @@ class AbsDrRules:
                     self.assign_var(bap1, self.cp(state, "bap")),
                     self.assign_with_prop(state, "bap", self.or_expr_prop(self.cp(state, "bap"), self.cp(state, "bav")))
                 ]
-                part2a = self.and_expr_prop(self.not_cp(state, "bav"), self.visit_nz(state, exp1, "VALUE", "WSE", **kwargs))
+                kwneg = kwargs.copy()
+                kwneg['negate'] = True
+                part2a = self.and_expr_prop(self.not_cp(state, "bav"), self.visit_nz(state, exp1, "VALUE", "WSE", **kwneg))
                 stateTillPart2a = state.copy()
                 statePart2b = state.copy()
                 part2b = self.visitor_visit(statePart2b, exp2, "GET_VAL", "ACCESS", **kwargs)
                 state.doMerge(stateTillPart2a, statePart2b)
                 part2 = [self.and_expr_prop(part2a, part2b)]
+                kwneg2 = kwargs.copy()
+                kwneg2['negate'] = True
                 part3 = [
                     self.assign_with_prop(state, "bap", bap1),
-                    self.assign_with_prop(state, "bav", self.or_expr_prop(self.cp(state, "bav"), self.and_expr_prop(bav1, "!("+self.visit_nz(state, exp2, "VALUE", "WSE", **kwargs)+")"))),
+                    self.assign_with_prop(state, "bav", self.or_expr_prop(self.cp(state, "bav"), self.and_expr_prop(bav1, self.visit_nz(state, exp2, "VALUE", "WSE", **kwneg2)))),
                     self.assign_var(value, self.or_expr_prop(self.visit_nz(state, exp1, "VALUE", "WSE", **kwargs), self.visit_nz(state, exp2, "VALUE", "WSE", **kwargs)))
                 ]
         return self.comma_expr(*(part1+part2+part3))
