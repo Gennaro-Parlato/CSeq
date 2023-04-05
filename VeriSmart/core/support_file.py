@@ -66,6 +66,7 @@ class SupportFileManager(CGenerator):
 void __CPROVER_get_field(void *a, char field[100] ){return;}
 void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}        
 void *__cs_safe_malloc(int __cs_size);
+void *__cs_getspecific(int key){return 0;}
 typedef struct {int x1;int x2;int x3;int x4;int x5;int x6;int x7;int x8;int x9;} __cs_t;
 enum t_typename {
        TYPENAME_INT,

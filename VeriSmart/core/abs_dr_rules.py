@@ -313,7 +313,7 @@ class TypedHelperVars: #TODO unire queste due classi
         if len(self.free[typ]) > 0:
             return self.free[typ].pop()
         else:
-            name = self.prefix + typ.replace(" ","_") + "_" + str(self.firstUnused[typ])
+            name = self.prefix + typ.replace(" ","_").replace("*","_") + "_" + str(self.firstUnused[typ])
             self.firstUnused[typ] += 1
             self.firstUnusedAbsolute[typ] = max(self.firstUnusedAbsolute[typ], self.firstUnused[typ])
             return name
@@ -325,7 +325,7 @@ class TypedHelperVars: #TODO unire queste due classi
         return TypedHelperVars.Inner(self, typ)
         
     def list_all(self):
-        return {typ:[self.prefix + typ.replace(" ","_") + "_" + str(i) for i in range(self.firstUnusedAbsolute[typ])] for typ in self.firstUnusedAbsolute}
+        return {typ:[self.prefix + typ.replace(" ","_").replace("*","_") + "_" + str(i) for i in range(self.firstUnusedAbsolute[typ])] for typ in self.firstUnusedAbsolute}
         
     def release_all_vars(self):
         self.free = {typ: deque() for typ in self.free}

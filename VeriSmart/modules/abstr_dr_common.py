@@ -308,7 +308,7 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
         self.atomicLvl = 0 # this counts how much nesting in __CSEQ_atomic_ functions we are. If =0: we are not in an atomic function; otherwise that's atomic and we need to disable Visible Points
         
         self.current_function = None # name of the function being translated
-        self.function_types = dict()
+        self.function_types = {'__cs_getspecific':'void*'}
         
     def insertGlobalVarInit(self, x):
         return x.replace("int main(void) {", "int main(void) {\n"+self.global_var_initializations, 1)
