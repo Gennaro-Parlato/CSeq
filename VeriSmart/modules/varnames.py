@@ -145,7 +145,7 @@ class varnames(core.module.Translator):
 					init += ' = (' + self.visit(n.init) + ')'
 				else:
 					init += ' = ' + self.visit(n.init)
-				s = "("+varname_initcheck+" || ("+init+", "+varname_initcheck+" = 1))"
+				s = "("+varname_initcheck+" || ("+init+"), "+varname_initcheck+" = 1)"
 			else:
 				s = varname_initcheck + " = 1"
 			self.static_vars.append(decl+";")
