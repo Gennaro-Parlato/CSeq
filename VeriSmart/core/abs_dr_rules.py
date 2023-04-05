@@ -1063,7 +1063,7 @@ class AbsDrRules:
         val = self.visitor_visit(state, expr, abs_mode, dr_mode, **kwargs)
         if self.is_abstractable(typ):
             if isNeg:
-                return "~("+self.nz(val)+")"
+                return "!("+self.nz(val)+")"
             else:
                 return self.nz(val)
         else:
@@ -1739,7 +1739,7 @@ class AbsDrRules:
             return (self.store_content(full_statement,'('+', '.join([p if p != "" else "(void)0" for p in parts])+')', comma, abs_mode, dr_mode), parts) #This should be the only place where you need the second argument
         elif abs_mode in ("GET_VAL",None) and dr_mode in ("ACCESS","NO_ACCESS",'PREFIX',None):
             parts = [self.visitor_visit(state, x, "GET_VAL", "NO_ACCESS", **kwargs) for x in exps[:-1]] + \
-                [self.visitor_visit(state, exps[-1], "GET_VAL", "NO_ACCESS" if dr_mode == "NO_ACCESS" else "ACCESS", **kwargs)]
+                [self.visitor_visit(state, exps[-1], "GET_VAL", ("NO_ACCESS" if dr_mode == "NO_ACCESS" else "ACCESS"), **kwargs)]
             return (self.store_content(full_statement,'('+', '.join([p if p != "" else "(void)0" for p in parts])+')', comma, abs_mode, dr_mode), None)
         elif abs_mode in ("VALUE", None) and dr_mode in ("WSE",None):
             return (self.store_content(full_statement,self.visitor_visit(state, exps[-1], "VALUE", "WSE", **kwargs), comma, abs_mode, dr_mode), None)
@@ -2531,7 +2531,7 @@ class AbsDrRules:
                 part2a = self.or_expr_prop(self.cp(state, "bav"), self.visit_nz(state, exp1, "VALUE", "WSE", **kwargs))
                 stateTillPart2a = state.copy()
                 statePart2b = state.copy()
-                part2b = self.visitor_visit(statePart2b, exp2, "GET_VAL", "ACCESS", **kwargs)
+                part2b = "("+self.visitor_visit(statePart2b, exp2, "GET_VAL", "ACCESS", **kwargs)+")"
                 state.doMerge(stateTillPart2a, statePart2b)
                 part2 = [self.and_expr_prop(part2a, part2b)]
                 part3 = [
@@ -2576,6 +2576,12 @@ class AbsDrRules:
         #   part3 = bap=bap1, bav=bav||(bav1&&![exp2,VALUE]), value = [exp1,VALUE] || [exp2,VALUE]
         exp1 = fullOp.left
         exp2 = fullOp.right
+        is_staticlocalinit = (type(exp1) == c_ast.ID and "staticlocalinit" in exp1.name)
+        if is_staticlocalinit:
+            exp2ForVal = fullOp.right.lvalue
+        else:
+            exp2ForVal = exp2
+        #ID(name='__cz_staticlocal_writer_fn_mutex')
         if not self.supportFile.has_side_effects[exp2]:
             return self.__or_underapproxNoSeRight(state, fullOp, **kwargs)
         value = self.getCondition(fullOp)
@@ -2592,15 +2598,15 @@ class AbsDrRules:
                 part2a = self.and_expr_prop(self.not_cp(state, "bav"), self.visit_nz(state, exp1, "VALUE", "WSE", **kwneg))
                 stateTillPart2a = state.copy()
                 statePart2b = state.copy()
-                part2b = self.visitor_visit(statePart2b, exp2, "GET_VAL", "ACCESS", **kwargs)
+                part2b = "("+self.visitor_visit(statePart2b, exp2, "GET_VAL", "ACCESS", **kwargs)+")"
                 state.doMerge(stateTillPart2a, statePart2b)
                 part2 = [self.and_expr_prop(part2a, part2b)]
                 kwneg2 = kwargs.copy()
                 kwneg2['negate'] = True
                 part3 = [
                     self.assign_with_prop(state, "bap", bap1),
-                    self.assign_with_prop(state, "bav", self.or_expr_prop(self.cp(state, "bav"), self.and_expr_prop(bav1, self.visit_nz(state, exp2, "VALUE", "WSE", **kwneg2)))),
-                    self.assign_var(value, self.or_expr_prop(self.visit_nz(state, exp1, "VALUE", "WSE", **kwargs), self.visit_nz(state, exp2, "VALUE", "WSE", **kwargs)))
+                    self.assign_with_prop(state, "bav", self.or_expr_prop(self.cp(state, "bav"), self.and_expr_prop(bav1, self.visit_nz(state, exp2ForVal, "VALUE", "WSE", **kwneg2)))),
+                    self.assign_var(value, self.or_expr_prop(self.visit_nz(state, exp1, "VALUE", "WSE", **kwargs), self.visit_nz(state, exp2ForVal, "VALUE", "WSE", **kwargs)))
                 ]
         return self.comma_expr(*(part1+part2+part3))
         
