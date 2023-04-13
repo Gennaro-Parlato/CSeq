@@ -3282,6 +3282,22 @@ class AbsDrRules:
             unExprType = self.supportFile.get_type(unExp)
             if self.is_abstractable(unExprType):
                 self.abs_const_decl += [self.setsm("&("+self.visitor_visit(state, unExp, "LVALUE", "WSE", **kwargs)+")", self.sm_abs, self.__assignment_bounds_failure(state, assExp, unExprType, unExprType, **kwargs))+";"]
+                
+    def rule_CheckInit(self, state, n, abs_mode, dr_mode, full_statement, **kwargs):
+        ans = "((void)0)"
+        if self.abs_on:
+            unExp = c_ast.ID(name=n.name)
+            unExprType = self.supportFile.get_type(unExp)
+            if self.is_abstractable(unExprType):
+                ans = self.setsm("&("+self.visitor_visit(state, unExp, "LVALUE", "WSE", **kwargs)+")", self.sm_abs, self.bounds_failure(self.visitor_visit(state, unExp, "LVALUE", "WSE", **kwargs), unExprType))
+        return ans
+        
+    def rule_InitCondvar(self, state, n, abs_mode, dr_mode, full_statement, **kwargs):
+        if self.abs_on:
+            return n.name + " = 0"
+        else:
+            return "((void)0)"
+                
             
     def rule_SpecialFuncCall(self, state, fcall, abs_mode, dr_mode, full_statement, **kwargs):
         self.assertDisabledIIFModesAreNone(abs_mode, dr_mode, **kwargs)  
@@ -3304,7 +3320,7 @@ class AbsDrRules:
         
     def rule_FunctionLocalDecls(self, state, fnc, abs_mode, dr_mode, full_statement, **kwargs):
         return self.if_ua(
-            lambda: "static "+self.unsigned_1+" "+", ".join([self.bap]+["__cs_bap1_if_"+str(v) for v in range(self.bap1s_if_max)])+"; "+
+            lambda: ("static " if kwargs['staticbap'] else "")+self.unsigned_1+" "+", ".join([self.bap]+["__cs_bap1_if_"+str(v) for v in range(self.bap1s_if_max)])+"; "+
                 (self.bap + " = " + self.bap_passaround + "; " if 'read_bap_passthrough' in kwargs and kwargs['read_bap_passthrough'] else " ")+
                 "RESETAUX();")
         

@@ -121,6 +121,8 @@ class inliner(core.module.Translator):
 
     currFuncPtrParamMap = {}  # keeps the value in the current call of the function parameters of type function pointer
     __arrayNamesList = []  # list of pinters that replace local arrays
+    
+    makeStaticVars = True
 
     # we remove such parameters and inline the corresponding functions
     def init(self):
@@ -283,7 +285,10 @@ class inliner(core.module.Translator):
 
         decl = self.visit(n.decl)
         self.indent_level = 0
+        makeStaticVarsBak = self.makeStaticVars
+        self.makeStaticVars = (n.decl.name in self.Parser.threadName or n.decl.name == "main")
         body = self.visit(n.body)
+        self.makeStaticVars = makeStaticVarsBak
 
         # At the bottom of each thread, add a pthread_exit() statement
         #
@@ -621,14 +626,17 @@ class inliner(core.module.Translator):
                     if self.__isScalar(self.currentFunction[-1], n.name):
                         varType = self.Parser.varType[self.currentFunction[-1], n.name]
                         varTypeUnExpanded = self.Parser.varTypeUnExpanded[self.currentFunction[-1], n.name]
-                        if self._needInit(n.name) and varType not in ('__cs_t','__cs_mutex_t','__cs_cond_t','__cs_barrier_t','__cs_attr_t') and self.local in range(0, 2) and pre_update_name not in self.nondet_var_names: 
-                            self.nondet_var_names[pre_update_name] = pre_update_name + "_nondet_"
-                            s = s.replace(name, self.updateName(pre_update_name))
-                            initialStmt = '; '
+                        if self.makeStaticVars:
+                            if self._needInit(n.name) and varType not in ('__cs_t','__cs_mutex_t','__cs_cond_t','__cs_barrier_t','__cs_attr_t') and self.local in range(0, 2) and pre_update_name not in self.nondet_var_names: 
+                                self.nondet_var_names[pre_update_name] = pre_update_name + "_nondet_"
+                                s = s.replace(name, self.updateName(pre_update_name))
+                                initialStmt = '; '
+                            else:
+                                initialStmt = ''
                         else:
-                            initialStmt = ''
-                        #initialStmt = '; ' + self._initVar(varType, name, varTypeUnExpanded) if self._needInit(
-                        #    n.name) and self.local in range(0, 2) else ''  # S: n.name --> name
+                            s = s[len("static "):] #remove static
+                            initialStmt = ";"
+                            #initialStmt = '; ' + self._initVar(varType, name, varTypeUnExpanded) if self._needInit(n.name) and self.local in range(0, 2) else ''  # S: n.name --> name
                         s += initialStmt
                     #                   elif self.__isStruct(self.currentFunction[-1], n.name):
                     #                       s += ''
@@ -644,11 +652,13 @@ class inliner(core.module.Translator):
                                 vartype = vartype[:vartype.find("{")]
                             #s += '; __cs_init_scalar(&%s, sizeof(%s))' % (
                             #    name, vartype)
-                            if pre_update_name not in self.nondet_var_names: 
-                                self.nondet_var_names[pre_update_name] = pre_update_name + "_nondet_"
-                                s = s.replace(name, self.updateName(pre_update_name))
-                            #s += '; %s = (%s)(__CSEQ_nondet_uint())' % (
-                            #    name, vartype) # TODO provvisorio, rendi nome variabile contenente _nondet_
+                            if self.makeStaticVars:
+                                if pre_update_name not in self.nondet_var_names: 
+                                    self.nondet_var_names[pre_update_name] = pre_update_name + "_nondet_"
+                                    s = s.replace(name, self.updateName(pre_update_name))
+                            else:
+                                s = s[len("static "):] #remove static
+                                s += ";" #s += '; %s = (%s)(__CSEQ_nondet_uint())' % (name, vartype) # TODO provvisorio, rendi nome variabile contenente _nondet_
 
             #            elif (self.__isScalar(self.currentFunction[-1], n.name) and
             #                    # Do not believe this check, it is not always true???
@@ -758,13 +768,16 @@ class inliner(core.module.Translator):
                         if self.local in range(0, 2):
                             #s = 'static ' + s + '; __cs_init_scalar(&%s, sizeof(%s))' % (
                             #    name, self.Parser.varType[self.currentFunction[-1], n.name])  # S: n.name --> name
-                            if pre_update_name not in self.nondet_var_names: 
-                                self.nondet_var_names[pre_update_name] = pre_update_name + "_nondet_"
-                                s = 'static ' + s.replace(name, self.updateName(pre_update_name))
+                            
+                            if self.makeStaticVars:
+                                if pre_update_name not in self.nondet_var_names: 
+                                    self.nondet_var_names[pre_update_name] = pre_update_name + "_nondet_"
+                                    s = 'static ' + s.replace(name, self.updateName(pre_update_name))
+                                else:
+                                    s = 'static ' + s
                             else:
-                                s = 'static ' + s
-                            #s = 'static ' + s + '; %s = (%s)(__CSEQ_nondet_uint())' % (
-                            #    name, self.Parser.varType[self.currentFunction[-1], n.name])  # S: n.name --> name # TODO provvisorio, rendi nome variabile contenente _nondet_
+                                s += ";"
+                                #s = 'static ' + s + '; %s = (%s)(__CSEQ_nondet_uint())' % (name, self.Parser.varType[self.currentFunction[-1], n.name])  # S: n.name --> name # TODO provvisorio, rendi nome variabile contenente _nondet_
                                 
                                 
 

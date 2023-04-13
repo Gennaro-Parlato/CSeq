@@ -444,22 +444,25 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
         #Print on macro file, the first set of variables,define and so on...
         # TODO self.transformation_rule.utility.printFirsMacroSet(self.support_variables)
 
-        s = ''
+        s_parts = ['','','','']
         
-        s3 = ''
+        idx = 1
+        
         for ext in n.ext:
             if isinstance(ext, c_ast.FuncDef):
-                s3 += self.visit(ext)
+                if idx == 1:
+                    idx = 3
+                s_parts[idx] += self.visit(ext)
                 self.scope = 'global'
             elif isinstance(ext, c_ast.Pragma):
-                s3 += self.visit(ext) + '\n'
+                s_parts[idx] += self.visit(ext) + '\n'
             else:
-                s3 += self.visit(ext) + ';\n'
+                s_parts[idx] += self.visit(ext) + ';\n'
                 
         auxvars1 = {adr: "" if adr is None else adr.aux_vars_decl() for adr in self.conf_adr}
                 
-        s += self.macro_file_manager.fake_typedef_bits()
-        s += self.macro_file_manager.auxvars(['\n'.join([auxvars1[adr], adr.extra_vars_decl(), adr.cond_vars_decl(), adr.bav1_vars_decl(), adr.bap1_vars_decl(), adr.nondet_vars_decl()]) for adr in self.conf_adr])
+        s_parts[0] += self.macro_file_manager.fake_typedef_bits()
+        s_parts[2] += self.macro_file_manager.auxvars(['\n'.join([auxvars1[adr], adr.extra_vars_decl(), adr.cond_vars_decl(), adr.bav1_vars_decl(), adr.bap1_vars_decl(), adr.nondet_vars_decl()]) for adr in self.conf_adr])
         self.macro_file_manager.resetaux_args_def([adr.reset_vars_stmt() for adr in self.conf_adr])
         
         old_SOP = self.skip_on_plain
@@ -476,7 +479,7 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
         #      + self.faked_typedef_end \
         #      + '\n' \
         #      + s
-        ris = s + s3
+        ris = s_parts[0] + s_parts[1] + s_parts[2] + s_parts[3]
 
         #self.addOutputParam('abstraction')
         #self.setOutputParam('abstraction', self)
@@ -723,7 +726,7 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
                 self._lazyseqnewschedule__atomic = oldatomic
                 self._lazyseqnewschedule__currentThread = ''
                 self._lazyseqnewschedule__visit_funcReference = False
-                funclocal_decls = self.macro_file_manager.expression(c_ast.EmptyStatement(), self.do_rule('rule_FunctionLocalDecls',c_ast.EmptyStatement(), read_bap_passthrough=True), passthrough=False, brackets=False) #bap
+                funclocal_decls = self.macro_file_manager.expression(c_ast.EmptyStatement(), self.do_rule('rule_FunctionLocalDecls',c_ast.EmptyStatement(), read_bap_passthrough=True,staticbap=False), passthrough=False, brackets=False) #bap
                 body = "{" + resetaux + '\n' + funclocal_decls + '\n' + passassn + "\n" + body.strip()[1:]
                 s = passdef+"\n"+decl + '\n' + body + '\n'
                 for i in range(len(self.conf_adr)):
@@ -736,7 +739,7 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
                 with BakAndRestore(self, 'skip_on_plain', True):
                     resetaux = '__CSEQ_rawline("#define RESETAUX() '+self.macro_file_manager.expression(n, self.do_rule('rule_ChangeResetAux', n, max_nesting=max_nesting), passthrough=False, brackets=False)+'");'
                 body_begin = ans.find("{")
-                ans = ans[:body_begin+1] + resetaux + "\n" + self.macro_file_manager.expression(c_ast.EmptyStatement(), self.do_rule('rule_FunctionLocalDecls',c_ast.EmptyStatement()), passthrough=False, brackets=False) + ans[body_begin+1:]
+                ans = ans[:body_begin+1] + resetaux + "\n" + self.macro_file_manager.expression(c_ast.EmptyStatement(), self.do_rule('rule_FunctionLocalDecls',c_ast.EmptyStatement(),staticbap=True), passthrough=False, brackets=False) + ans[body_begin+1:]
                 for i in range(len(self.conf_adr)):
                     self.conf_adr[i].end_of_thread_function()
                 return ans
@@ -1199,6 +1202,8 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
                     function_type = ' '.join(n.type.type.type.type.names)
                 else:
                     assert(False, "Invalid function type: "+n.name)
+                if type(n.type.type) is c_ast.PtrDecl:
+                    function_type += "*"
                 self.function_types[n.name] = function_type
                 assert(('void' in function_type) or n.name.startswith('__cs_'), "At this point in the chain, all functions are expected to be void or __cs...: "+n.name)
                 if n.name.startswith('__CSEQ_atomic'):
@@ -1355,6 +1360,15 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
                     self.global_var_initializations += init.replace("__cs_baP", "0") # remove bap as it is not relevant, that's a global declaration
                 elif self.scope == 'local':
                     ans = ans + init
+            elif type_of_n == 'TypeDecl':
+                if ("_if_cond_" in n.name or "_while_cond_" in n.name or "_for_cond_" in n.name) and (not hasattr(n, "storage") or "static" not in n.storage):
+                    ans += " = 0;\n"
+                elif "_nondet_" in n.name:
+                    initcheck = self.macro_file_manager.expression(n, self.do_rule('rule_CheckInit', n), passthrough=not self.full_statement, brackets=False, macro_name_brackets=False)
+                    if self.scope == 'global':
+                        self.global_var_initializations += initcheck +";"
+                    elif self.scope == 'local':
+                        ans += ";" + initcheck + ";\n"
                     
             return ans
             
