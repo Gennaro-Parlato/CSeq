@@ -1332,48 +1332,55 @@ class lazyseqnewschedule(core.module.Translator):
 		'''
 		round = 0
 		# Main thread
+		cs_pc_cs_size = max(self._bitwidth.values()) + 1
+		
+		bw_tMain_r0 = self._bitwidth[('main', "__cs_tmp_t%s_r0"%(self.Parser.threadOccurenceIndex['main']))]
 		main += "__CSEQ_rawline(\"/* round  %s */\");\n" % round
 		main += "__CSEQ_rawline(\"    /* main */\");\n"
 		#caledem
 		main += "__cs_active_thread[%s] = 1;\n" % self.Parser.threadOccurenceIndex['main']
 		main += "          unsigned int __cs_tmp_t%s_r0 %s;\n" % (self.Parser.threadOccurenceIndex['main'], self.__extra_nondet)
-		main += "          __cs_pc_cs[%s] = __cs_tmp_t%s_r0;\n" % (self.Parser.threadOccurenceIndex['main'], self.Parser.threadOccurenceIndex['main'])
-		main += "          __CSEQ_assume(__cs_pc_cs[%s] > 0);\n" % self.Parser.threadOccurenceIndex['main']
-		main += "          __CSEQ_assume(__cs_pc_cs[%s] <= %s);\n" % (self.Parser.threadOccurenceIndex['main'], "@£@ML" + str(self.Parser.threadOccurenceIndex['main']))
+		main += "          __CPROVER_assign_bits(__cs_tmp_t%s_r0, &__cs_pc_cs[%s], %d);\n" % (self.Parser.threadOccurenceIndex['main'], self.Parser.threadOccurenceIndex['main'], bw_tMain_r0)
+		main += "          __CSEQ_assume(__CPROVER_ugt_bits(__cs_pc_cs[%s], 0, %d));\n" % (self.Parser.threadOccurenceIndex['main'], bw_tMain_r0)
+		main += "          __CSEQ_assume(__CPROVER_ule_bits(__cs_pc_cs[%s], %s, %d));\n" % (self.Parser.threadOccurenceIndex['main'], "@£@ML" + str(self.Parser.threadOccurenceIndex['main']), bw_tMain_r0)
 		main += "          main_thread();\n"
-		main += "          __cs_pc[%s] = __cs_pc_cs[%s];\n" % (self.Parser.threadOccurenceIndex['main'], self.Parser.threadOccurenceIndex['main'])
+		main += "          __CPROVER_assign_bits(__cs_pc_cs[%s], &__cs_pc[%s], %d);\n" % (self.Parser.threadOccurenceIndex['main'], self.Parser.threadOccurenceIndex['main'], bw_tMain_r0)
 		main += "\n"
 		# Other threads
 		i = 0
 		for t in self.__threadName:
 			if t == 'main': continue
 			if i <= self.__threadbound:
+				bw_ti_r0 = self._bitwidth[('main', "__cs_tmp_t%s_r0"%(i))]
 				main += "__CSEQ_rawline(\"    /* %s */\");\n" % t
 				main += "         unsigned int __cs_tmp_t%s_r0 %s;\n" % (i, self.__extra_nondet)
 				main += "         if (__cs_active_thread[%s]) {\n" % (i)
-				main += "             __cs_pc_cs[%s] = __cs_tmp_t%s_r0;\n" % (i, i)
-				main += "             __CSEQ_assume(__cs_pc_cs[%s] <= %s);\n" % (i, "@£@ML" + str(self.Parser.threadOccurenceIndex[t]))
+				main += "             __CPROVER_assign_bits(__cs_tmp_t%s_r0, &__cs_pc_cs[%s], %d);\n" % (i, i, bw_ti_r0)
+				main += "             __CSEQ_assume(__CPROVER_ule_bits(__cs_pc_cs[%s], %s, %d));\n" % (i, "@£@ML" + str(self.Parser.threadOccurenceIndex[t]), bw_ti_r0)
 				main += "             %s(__cz_threadargs[%s]);\n" % (t, i)
-				main += "             __cs_pc[%s] = __cs_pc_cs[%s];\n" % (i, i)
+				main += "             __CPROVER_assign_bits(__cs_pc_cs[%s], &__cs_pc[%s], %d);\n" % (i, i, bw_ti_r0)
 				main += "         }\n\n"
 				i += 1
 
 		''' Other rounds
 		'''
 		for round in range(1, ROUNDS):
+			bw_tMain_rnd = self._bitwidth[('main', "__cs_tmp_t%s_r%s"%(self.Parser.threadOccurenceIndex['main'], round))]
 			main += "__CSEQ_rawline(\"/* round  %s */\");\n" % round
 			# For main thread
 			main += "__CSEQ_rawline(\"    /* main */\");\n"
 			main += "          unsigned int __cs_tmp_t%s_r%s %s;\n" % (self.Parser.threadOccurenceIndex['main'], round, self.__extra_nondet)
 			main += "          if (__cs_active_thread[%s]) {\n" % self.Parser.threadOccurenceIndex['main']
 			if self.__guess_cs_only:
-				main += "             __cs_pc_cs[%s] = __cs_tmp_t%s_r%s;\n" % (self.Parser.threadOccurenceIndex['main'], self.Parser.threadOccurenceIndex['main'], round)
+				main += "             __CPROVER_assign_bits(__cs_tmp_t%s_r%s, &__cs_pc_cs[%s], %d);\n" % (self.Parser.threadOccurenceIndex['main'], round, self.Parser.threadOccurenceIndex['main'], bw_tMain_rnd)
+				cmp_bits_tMain_rnd = bw_tMain_rnd
 			else:
-				main += "             __cs_pc_cs[%s] = __cs_pc[%s] + __cs_tmp_t%s_r%s;\n" % (self.Parser.threadOccurenceIndex['main'], self.Parser.threadOccurenceIndex['main'], self.Parser.threadOccurenceIndex['main'], round)
-			main += "             __CSEQ_assume(__cs_pc_cs[%s] >= __cs_pc[%s]);\n" % (self.Parser.threadOccurenceIndex['main'], self.Parser.threadOccurenceIndex['main'])
-			main += "             __CSEQ_assume(__cs_pc_cs[%s] <= %s);\n" % (self.Parser.threadOccurenceIndex['main'], "@£@ML" + str(self.Parser.threadOccurenceIndex['main']))
+				main += "              __CPROVER_add_bits(__cs_pc[%s], __cs_tmp_t%s_r%s, &__cs_pc_cs[%s], %d);\n" % (self.Parser.threadOccurenceIndex['main'], self.Parser.threadOccurenceIndex['main'], round, self.Parser.threadOccurenceIndex['main'], bw_tMain_rnd + 1)
+				cmp_bits_tMain_rnd = bw_tMain_rnd + 1
+			main += "             __CSEQ_assume(__CPROVER_uge_bits(__cs_pc_cs[%s], __cs_pc[%s], %d));\n" % (self.Parser.threadOccurenceIndex['main'], self.Parser.threadOccurenceIndex['main'], cmp_bits_tMain_rnd)
+			main += "             __CSEQ_assume(__CPROVER_ule_bits(__cs_pc_cs[%s], %s, %d));\n" % (self.Parser.threadOccurenceIndex['main'], "@£@ML" + str(self.Parser.threadOccurenceIndex['main']), cmp_bits_tMain_rnd)
 			main += "             main_thread();\n"
-			main += "             __cs_pc[%s] = __cs_pc_cs[%s];\n" % (self.Parser.threadOccurenceIndex['main'], self.Parser.threadOccurenceIndex['main'])
+			main += "             __CPROVER_assign_bits(__cs_pc_cs[%s], &__cs_pc[%s], %d);\n" % (self.Parser.threadOccurenceIndex['main'], self.Parser.threadOccurenceIndex['main'], bw_tMain_rnd)
 			main += "          }\n\n"
 			main += "\n"
 			# For other threads
@@ -1381,17 +1388,20 @@ class lazyseqnewschedule(core.module.Translator):
 			for t in self.__threadName:
 				if t == 'main': continue
 				if i <= self.__threadbound:
+					bw_ti_rnd = self._bitwidth[('main', "__cs_tmp_t%s_r%s"%(i, round))]
 					main += "__CSEQ_rawline(\"    /* %s */\");\n" % t
 					main += "         unsigned int __cs_tmp_t%s_r%s %s;\n" % (i, round, self.__extra_nondet)
 					main += "         if (__cs_active_thread[%s]) {\n" % (i)
 					if self.__guess_cs_only:
-						main += "             __cs_pc_cs[%s] = __cs_tmp_t%s_r%s;\n" % (i, i, round)
+						main += "             __CPROVER_assign_bits(__cs_tmp_t%s_r%s, &__cs_pc_cs[%s], %d);\n" % (i, round, i, bw_ti_rnd)
+						cmp_bits_ti_rnd = bw_ti_rnd
 					else:
-						main += "             __cs_pc_cs[%s] = __cs_pc[%s] + __cs_tmp_t%s_r%s;\n" % (i, i, i, round)
-					main += "             __CSEQ_assume(__cs_pc_cs[%s] >= __cs_pc[%s]);\n" % (i, i)
-					main += "             __CSEQ_assume(__cs_pc_cs[%s] <= %s);\n" % (i, "@£@ML" + str(self.Parser.threadOccurenceIndex[t]))
+						main += "             __CPROVER_add_bits(__cs_pc[%s], __cs_tmp_t%s_r%s, &__cs_pc_cs[%s], %d);\n" % (i, i, round, i, bw_ti_rnd + 1)
+						cmp_bits_ti_rnd = bw_ti_rnd + 1
+					main += "             __CSEQ_assume(__CPROVER_uge_bits(__cs_pc_cs[%s], __cs_pc[%s], %d));\n" % (i, i, cmp_bits_ti_rnd)
+					main += "             __CSEQ_assume(__CPROVER_ule_bits(__cs_pc_cs[%s], %s, %d));\n" % (i, "@£@ML" + str(self.Parser.threadOccurenceIndex[t]), cmp_bits_ti_rnd)
 					main += "             %s(__cz_threadargs[%s]);\n" % (t, i)
-					main += "             __cs_pc[%s] = __cs_pc_cs[%s];\n" % (i, i)
+					main += "             __CPROVER_assign_bits(__cs_pc_cs[%s], &__cs_pc[%s], %d);\n" % (i, i, bw_ti_rnd)
 					main += "         }\n\n"
 					i += 1
 
@@ -1403,13 +1413,16 @@ class lazyseqnewschedule(core.module.Translator):
 		k = int(math.floor(math.log(self.__lines['main'],2)))+1
 		main += "          unsigned int __cs_tmp_t%s_r%s %s;\n" % (self.Parser.threadOccurenceIndex['main'], ROUNDS, self.__extra_nondet)
 		self._bitwidth['main','__cs_tmp_t%s_r%s' % (self.Parser.threadOccurenceIndex['main'], ROUNDS)] = k
+		bw_tMain_rlast = k
 		main += "           if (__cs_active_thread[%s] == 1) {\n" % self.Parser.threadOccurenceIndex['main']
 		if self.__guess_cs_only:
-			main += "             __cs_pc_cs[%s] = __cs_tmp_t%s_r%s;\n" % (self.Parser.threadOccurenceIndex['main'], self.Parser.threadOccurenceIndex['main'], ROUNDS)
+			main += "             __CPROVER_assign_bits(__cs_tmp_t%s_r%s, &__cs_pc_cs[%s], %d);\n" % (self.Parser.threadOccurenceIndex['main'], ROUNDS, self.Parser.threadOccurenceIndex['main'], bw_tMain_rlast)
+			cmp_bits_tMain_rlast = bw_tMain_rlast
 		else:
-			main += "             __cs_pc_cs[%s] = __cs_pc[%s] + __cs_tmp_t%s_r%s;\n" % (self.Parser.threadOccurenceIndex['main'], self.Parser.threadOccurenceIndex['main'], self.Parser.threadOccurenceIndex['main'], ROUNDS)
-		main += "             __CSEQ_assume(__cs_pc_cs[%s] >= __cs_pc[%s]);\n" % (self.Parser.threadOccurenceIndex['main'], self.Parser.threadOccurenceIndex['main'])
-		main += "             __CSEQ_assume(__cs_pc_cs[%s] <= %s);\n" % (self.Parser.threadOccurenceIndex['main'], "@£@ML" + str(self.Parser.threadOccurenceIndex['main']))
+			main += "             __CPROVER_add_bits(__cs_pc[%s], __cs_tmp_t%s_r%s, &__cs_pc_cs[%s], %d);\n" % (self.Parser.threadOccurenceIndex['main'], self.Parser.threadOccurenceIndex['main'], ROUNDS, self.Parser.threadOccurenceIndex['main'], bw_tMain_rlast+1)
+			cmp_bits_tMain_rlast = bw_tMain_rlast + 1
+		main += "             __CSEQ_assume(__CPROVER_uge_bits(__cs_pc_cs[%s], __cs_pc[%s], %d));\n" % (self.Parser.threadOccurenceIndex['main'], self.Parser.threadOccurenceIndex['main'], cmp_bits_tMain_rlast)
+		main += "             __CSEQ_assume(__CPROVER_ule_bits(__cs_pc_cs[%s], %s, %d));\n" % (self.Parser.threadOccurenceIndex['main'], "@£@ML" + str(self.Parser.threadOccurenceIndex['main']), cmp_bits_tMain_rlast)
 		main += "             main_thread();\n"
 		main += "           }\n"
 		main += "    return 0;\n"

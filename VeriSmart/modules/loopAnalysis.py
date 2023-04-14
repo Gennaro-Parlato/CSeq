@@ -196,6 +196,7 @@ class loopAnalysis(core.module.Translator):
 
 	def substitute(self, seqCode, list, tName, startIndex, maxlabels):
 		self.__threadIndex["main_thread"] = self.__threadIndex["main"]
+		bw_cs_pc = int(math.floor(math.log(max(1,self.__lines[tName]),2)))+1
 		if tName == 'main' and not self.isSeqCode:
 			tName = 'main_thread'
 		output = []
@@ -235,8 +236,8 @@ class loopAnalysis(core.module.Translator):
                                                 	m += 1	
 
 						for sub in (
-							("@£@I1",'__CSEQ_rawline("IF(%s,%s,t%s_%s)");' % (self.__threadIndex[tName], l1, tName, count+1)),
-							("@£@J1",'__CSEQ_rawline("IF(%s,%s,t%s_%s)");' % (self.__threadIndex[tName], l1, tName, count+1)),
+							("@£@I1",'__CSEQ_rawline("IF(%s,%s,t%s_%s,%d)");' % (self.__threadIndex[tName], l1, tName, count+1, bw_cs_pc)),
+							("@£@J1",'__CSEQ_rawline("IF(%s,%s,t%s_%s,%d)");' % (self.__threadIndex[tName], l1, tName, count+1, bw_cs_pc)),
 							("@£@L1", str(count)),
 							("@£@L2", str(count)),
 							("@£@I2", ''), 
@@ -265,8 +266,8 @@ class loopAnalysis(core.module.Translator):
                                                 	m += 1	
 
 						for sub in (
-							("@£@I1", '__CSEQ_rawline("t%s_%s:"); %s __CSEQ_rawline("IF(%s,%s,t%s_%s)");' % (tName, count, self.resetaux_call, self.__threadIndex[tName], l1, tName, count + 1 )),
-							("@£@J1", '__CSEQ_rawline("t%s_%s:"); %s __CSEQ_rawline("IF(%s,%s,t%s_%s)");' % (tName, count, self.resetaux_call, self.__threadIndex[tName], l1, tName, count + 1 )),
+							("@£@I1", '__CSEQ_rawline("t%s_%s:"); %s __CSEQ_rawline("IF(%s,%s,t%s_%s,%d)");' % (tName, count, self.resetaux_call, self.__threadIndex[tName], l1, tName, count + 1, bw_cs_pc)),
+							("@£@J1", '__CSEQ_rawline("t%s_%s:"); %s __CSEQ_rawline("IF(%s,%s,t%s_%s,%d)");' % (tName, count, self.resetaux_call, self.__threadIndex[tName], l1, tName, count + 1, bw_cs_pc)),
 							("@£@L1", str(count)),
 							("@£@L2", str(count)),
 							("@£@I2", ''), 
@@ -311,8 +312,8 @@ class loopAnalysis(core.module.Translator):
 
 				# Guard label
 				elif seqCode[i + 3] == 'G':
-					s = seqCode[j:i] + '__CSEQ_assume( __cs_pc_cs[%s] >= %s );' % (
-						self.__threadIndex[tName], count)
+					s = seqCode[j:i] + '__CSEQ_assume(__CPROVER_uge_bits(__cs_pc_cs[%s], %s, %d));' % (
+						self.__threadIndex[tName], count, bw_cs_pc)
 					output.append(s)
 					i += 4
 					j = i
