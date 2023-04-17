@@ -1814,10 +1814,10 @@ class AbsDrRules:
                 getval = self.visitor_visit(state, fullExpr.expr, "GET_VAL", "ACCESS", **kwargs)
                 
                 ret_tp = self.supportFile.get_type(fullExpr.expr)
-                if type(fullExpr.expr) in (c_ast.ArrayRef, c_ast.StructRef, c_ast.Constant, c_ast.ID, c_ast.Assignment) or (type(fullExpr.expr) is c_ast.UnaryOp and fullExpr.expr.op in ('*', '--','++')):
-                    val = self.visitor_visit(state, fullExpr.expr, "VALUE", "WSE", func_arg=True, **kwargs)
-                else:
-                    val = self.visitor_visit(state, fullExpr.expr, "VALUE", "WSE", **kwargs)
+                #if type(fullExpr.expr) in (c_ast.ArrayRef, c_ast.StructRef, c_ast.Constant, c_ast.ID, c_ast.Assignment) or (type(fullExpr.expr) is c_ast.UnaryOp and fullExpr.expr.op in ('*', '--','++')):
+                #    val = self.visitor_visit(state, fullExpr.expr, "VALUE", "WSE", func_arg=True, **kwargs)
+                #else:
+                val = self.visit_cut(state, fullExpr.expr, "VALUE", "WSE", **kwargs)
                 return "return "+self.comma_expr(getval, val)
             else:
                 return "return"
@@ -1910,6 +1910,8 @@ class AbsDrRules:
             fncCallCode = fncName+"("+",".join(args)+")"
             if auxvar_type is None:
                 statements.append(fncCallCode)
+            elif ret_type == "_Bool":
+                statements.append(self.auxvars.write(fullExpr, fncCallCode, self.assign_abstr_1))
             elif (not self.is_abstractable(ret_type)) or self.abstr_bits >= 8 * self.abstrTypesSizeof[ret_type]:
                 statements.append(self.auxvars.write(fullExpr, fncCallCode))
             else:
