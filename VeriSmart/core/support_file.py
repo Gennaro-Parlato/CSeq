@@ -17,6 +17,23 @@ class BakAndRestore:
     def __exit__(self, exc_type, exc_value, exc_traceback):
         setattr(self.obj, self.field, self.bak)
         
+class StructTypeInfo:
+    def __init__(self, n, typenames_enum):
+        self.name = n.name
+        self.type_idx = len(typenames_enum)
+        self.typemap_name = "other_struct_"+self.name+"_"+str(self.type_idx)
+        self.type_name = "struct "+self.name
+        self.typename_enum = "TYPENAME_"+self.type_name.upper().replace(" ","_")+"_"+str(self.type_idx)
+        typenames_enum.append(self.typename_enum)
+        self.fields = {f.name: ID(self.typemap_name+"."+f.name) for f in n.decls if not f.name.startswith('__cs_bump_struct_size')}
+        
+    def compute_struct_field_types(self, bookNodeType):
+        ans = []
+        for fname, fobj in self.fields.items():
+            expr_to_evaluate = "(("+self.type_name+" *)0)->"+fname
+            ans += (bookNodeType(fobj, expr_to_evaluate))
+        return ans
+        
 class SupportFileManager(CGenerator):
     def __init__(self):
         super().__init__()
@@ -57,7 +74,12 @@ class SupportFileManager(CGenerator):
             9: ('unsigned', 'unsigned long long'),
             10: ('...', 'other')}
             
-        self.boilerplate = """
+        self.struct_types = dict()
+        
+        self.typenames_enum = "TYPENAME_INT,TYPENAME_CHAR,TYPENAME_LONG_INT,TYPENAME_SHORT,TYPENAME_LONG_LONG,TYPENAME_UNSIGNED_INT,TYPENAME_UNSIGNED_CHAR,TYPENAME_UNSIGNED_LONG_INT,TYPENAME_UNSIGNED_SHORT,TYPENAME_UNSIGNED_LONG_LONG,TYPENAME_OTHER".split(",")
+            
+        self.base_typename_def = self.get_typename_def()
+        self.boilerplate = lambda: """
 #include <stdio.h>
 #include <errno.h>
 #include \""""+os.path.abspath(os.getcwd())+"""/modules/pthread_defs.c\"
@@ -68,19 +90,7 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
 void *__cs_safe_malloc(int __cs_size);
 void *__cs_getspecific(int key){return 0;}
 typedef struct {int x1;int x2;int x3;int x4;int x5;int x6;int x7;int x8;int x9;} __cs_t;
-enum t_typename {
-       TYPENAME_INT,
-       TYPENAME_CHAR,
-       TYPENAME_LONG_INT,
-       TYPENAME_SHORT,
-       TYPENAME_LONG_LONG,
-       TYPENAME_UNSIGNED_INT,
-       TYPENAME_UNSIGNED_CHAR,
-       TYPENAME_UNSIGNED_LONG_INT,
-       TYPENAME_UNSIGNED_SHORT,
-       TYPENAME_UNSIGNED_LONG_LONG,
-       TYPENAME_OTHER
-};
+enum t_typename {"""+",\n".join(self.typenames_enum)+"""};
 
 #ifndef THREADS
 #define THREADS 2
@@ -90,7 +100,10 @@ enum t_typename {
 #define __cs_thread_index 0
 #endif
                                                                                                                                                                                                                                                                                                             \
-#define typename(x) _Generic((x),                                                                                                                                                                                                                                                                           \
+""" + self.base_typename_def
+        
+    def get_typename_def(self):
+        return """#define typename(x) _Generic((x),                                                                                                                                                                                                                                                                           \
         char: TYPENAME_CHAR,                                                                                                                                                                                                                                                                                \
         unsigned char: TYPENAME_UNSIGNED_CHAR,                                                                                                                                                                                                                                                              \
         short: TYPENAME_SHORT,                                                                                                                                                                                                                                                                              \
@@ -101,8 +114,20 @@ enum t_typename {
         unsigned long int: TYPENAME_UNSIGNED_LONG_INT,                                                                                                                                                                                                                                                      \
         long long : TYPENAME_LONG_LONG,                                                                                                                                                                                                                                                                     \
         unsigned long long:  TYPENAME_UNSIGNED_LONG_LONG,                                                                                                                                                                                                                                                   \
-        default:  TYPENAME_OTHER)
-        """
+        """+"".join([s.type_name+": "+s.typename_enum+", " for s in self.struct_types.values()])+""" \
+        default:  TYPENAME_OTHER)"""
+        
+    def get_struct_field_types(self, typemap_name):
+        sti = self.struct_types[typemap_name]
+        out = dict()
+        for fname, fid in sti.fields.items():
+            tp_f = self.get_type(fid)
+            isstr_f = self.is_struct(fid)
+            if isstr_f:
+                out[fname] = self.get_struct_field_types(tp_f)
+            else:
+                out[fname] = tp_f
+        return out
         
     def set_can_value(self, x):
         return BakAndRestore(self, 'can_value', x)
@@ -194,7 +219,7 @@ enum t_typename {
             else:
                 mainContent += self.visit(ext)
                 lastNode = ext
-        return "\n".join([self.boilerplate, "int main(){","printf(\"ADDRBITS, %lld\\n\",8*sizeof(int*));"]+mainContent+["return 0;","}"])
+        return "\n".join([self.boilerplate(), "int main(){","printf(\"ADDRBITS, %lld\\n\",8*sizeof(int*));"]+mainContent+["return 0;","}"])
     
     def visit_Constant(self, n):
         self.child_has_side_effect = False
@@ -373,10 +398,16 @@ enum t_typename {
                     visitNcp = visitNcp[:-6]+"()"
                 ans += [visitNcp+fbody]
             elif self.global_decl and (type(n.type) is not FuncDecl or n.name != "main"):
+                sti_decl = []
                 if type(n.type) is Struct:
                     n = copy.deepcopy(n)
                     self.bump_size_struct(n.type)
-                ans += [self.cgenerator.visit(n)+";"]
+                    if n.type.decls is not None:
+                        sti = StructTypeInfo(n.type, self.typenames_enum)
+                        self.struct_types[sti.typemap_name] = sti
+                        self.types_map[sti.type_idx] = ("...", sti.typemap_name)
+                        sti_decl = [l+";" for l in sti.compute_struct_field_types(lambda x,e: self.bookNodeType(x,e))]+[self.get_typename_def()]
+                ans += [self.cgenerator.visit(n)+";"] + sti_decl
             if type(n.type) is FuncDecl and n.type.args is not None:
                 oldsdis = self.store_def_in_stack
                 self.store_def_in_stack = False
@@ -434,17 +465,29 @@ enum t_typename {
         if n.name in self.already_in:
             if not self.already_in[n.name]:
                 self.already_in[n.name] = True
+                sti_decl=[]
                 if type(n.type.type) is Struct: 
                     n = copy.deepcopy(n)
                     self.bump_size_struct(n.type.type)
-                return [self.cgenerator.visit(n)+";"]
+                    if n.type.type.decls is not None:
+                        sti = StructTypeInfo(n.type.type, self.typenames_enum)
+                        self.struct_types[sti.typemap_name] = sti
+                        self.types_map[sti.type_idx] = ("...", sti.typemap_name)
+                        sti_decl = [l+";" for l in sti.compute_struct_field_types(lambda x,e: self.bookNodeType(x,e))]+[self.get_typename_def()]
+                return [self.cgenerator.visit(n)+";"]+sti_decl
             else:
                 return []
         else:
+            sti_decl=[]
             if type(n.type.type) is Struct: 
                 n = copy.deepcopy(n)
                 self.bump_size_struct(n.type.type)
-            return [self.cgenerator.visit(n)+";"]
+                if n.type.type.decls is not None:
+                    sti = StructTypeInfo(n.type.type, self.typenames_enum)
+                    self.struct_types[sti.typemap_name] = sti
+                    self.types_map[sti.type_idx] = ("...", sti.typemap_name)
+                    sti_decl = [l+";" for l in sti.compute_struct_field_types(lambda x,e: self.bookNodeType(x,e))]+[self.get_typename_def()]
+            return [self.cgenerator.visit(n)+";"]+sti_decl
         
     def visit_Cast(self, n):
         ans = []

@@ -1,7 +1,7 @@
 from pycparser import c_ast
 from pycparser.c_generator import CGenerator
 from core.support_file import SupportFileManager
-from pycparser.c_ast import BinaryOp
+from pycparser.c_ast import BinaryOp, ExprList, Constant, UnaryOp
 from core.var_simplifier import Cleaner
 from collections import defaultdict, deque
 import string
@@ -80,7 +80,7 @@ class AuxVars:
         self.concrete_vars = TypedHelperVars("__cs_typedvar_")
         
     def create(self, ast_node, typ, with_side_effect=False):
-        assert(typ != "other")
+        assert(not typ.startswith("other"))
         aux = AuxVars.AuxVar("__cs_valuevar_"+str(len(self.all_vv)), self.concrete_vars, typ=typ, with_side_effect=with_side_effect)
         self.all_vv.append(aux)
         self.value_var_nodes[ast_node] = aux
@@ -1049,8 +1049,8 @@ class AbsDrRules:
         else:
             return val
         
-    def nz(self, expr):
-        return "__CPROVER_nz_bits("+expr+", "+str(self.abstr_bits)+")"
+    def nz(self, expr, bits):
+        return "__CPROVER_nz_bits("+expr+", "+str(bits)+")"
         
     def visit_nz(self, state, expr, abs_mode, dr_mode, **kwargs):
         if "negate" in kwargs and kwargs["negate"]:
@@ -1062,10 +1062,17 @@ class AbsDrRules:
         typ = self.supportFile.get_type(expr)
         val = self.visitor_visit(state, expr, abs_mode, dr_mode, **kwargs)
         if self.is_abstractable(typ):
-            if isNeg:
-                return "!("+self.nz(val)+")"
+            e = expr
+            while type(e) is ExprList:
+                e = expr.exprs[-1]
+            if (type(e) is BinaryOp and e.op in ("==","!=","<",">","<=",">=","&&","||")) or (type(e) is UnaryOp and e.op == ("!")) or (type(e) is Constant and e.value in ("0","1")):
+                bits = 1
             else:
-                return self.nz(val)
+                bits = self.abstr_bits
+            if isNeg:
+                return "!("+self.nz(val, bits)+")"
+            else:
+                return self.nz(val, bits)
         else:
             if isNeg:
                 return "!("+val+")"
@@ -1842,7 +1849,7 @@ class AbsDrRules:
             auxvar_type = None
             if self.is_abstractable(ret_type) and ret_type in self.abstrTypesSizeof and self.abstrTypesSizeof[ret_type]*8 > self.abstr_bits:
                 auxvar_type = "intb" if ret_type in self.abstrTypesSigned else "uintb"
-            elif ret_type == "other":
+            elif ret_type.startswith("other"):
                 ret_type = kwargs['func_types'][fncName] if fncName in kwargs['func_types'] else "void"
                 if ret_type != "void":
                     auxvar_type = ret_type
@@ -3172,6 +3179,29 @@ class AbsDrRules:
                         break
         return self.encode(inner, xtype)
         
+    def __assignment_str_what_to_copy(self, *exps):
+        fields = self.supportFile.get_struct_field_types(self.supportFile.get_type(exps[0]))
+        return self.__assignment_str_what_to_copy_inner(exps, fields)
+        
+    def __assignment_str_what_to_copy_inner(self, exps, fields):
+        any_abstr = False
+        copies_to_do = []
+        for (fname, ftype) in fields.items():
+            subexps = [c_ast.StructRef(e,'.',c_ast.ID(fname)) for e in exps]
+            if type(ftype) is dict:
+                f_cp = self.__assignment_str_what_to_copy_inner(subexps, ftype)
+                if f_cp[0]:
+                    any_abstr = True
+                copies_to_do += f_cp[1]
+            else:
+                is_f_abs = self.is_abstractable(ftype) and self.abstr_bits < 8 * self.abstrTypesSizeof[ftype]
+                if is_f_abs:
+                    any_abstr = True
+                copies_to_do += [(subexps, is_f_abs)]
+        if any_abstr:
+            return (True, copies_to_do)
+        else:
+            return (False, [(exps, False)])
         
     def rule_Assignment(self, state, assn, abs_mode, dr_mode, full_statement, **kwargs):
         is_func_arg = kwargs.pop("func_arg", False)
@@ -3200,6 +3230,7 @@ class AbsDrRules:
         assExpType = self.supportFile.get_type(assExp)
         is_unExprType_abs = self.is_abstractable(unExprType) and self.abstr_bits < 8 * self.abstrTypesSizeof[unExprType]
         is_assExpType_abs = self.is_abstractable(assExpType) and self.abstr_bits < 8 * self.abstrTypesSizeof[assExpType]
+        assExpType_str_abs = self.__assignment_str_what_to_copy(unExp,assExp) if self.supportFile.is_struct(assExp) else (False, None)
         
         stmts = []
         stmts.append(self.if_abs_or_dr(lambda: self.visitor_visit(state, unExp, "SET_VAL" if op == "=" else "UPD_VAL", "NO_ACCESS", **kwargs)))
@@ -3221,6 +3252,21 @@ class AbsDrRules:
             stmts.append(self.setsm("&("+self.visitor_visit(state, unExp, "LVALUE", "WSE", **kwargs)+")", self.sm_abs, self.cp(state, "bav")))
             if not self.abs_on:
                 stmts.append(self.visitor_visit(state, unExp, "LVALUE", "WSE", **kwargs)+" = ("+self.visit_cut(state, assExp, "VALUE", "WSE", **kwargs)+")")
+            elif assExpType_str_abs[0]:
+                fields_to_copy = assExpType_str_abs[1]
+                for (f_exps, isAbs) in fields_to_copy:
+                    lvalues = [self.visitor_visit(state, e, "LVALUE", "WSE", **kwargs) for e in f_exps] # unExp,assExp
+                    if self.underapprox:
+                        bav_f = self.or_expr_prop(self.cp(state, "bap"), self.getsm("&("+lvalues[1]+")", self.sm_abs))
+                    else:
+                        bav_f = self.getsm("&("+lvalues[1]+")", self.sm_abs)
+                    stmts.append(self.setsm("&("+lvalues[0]+")", self.sm_abs, bav_f))
+                    
+                    value = self.visitor_visit(state, f_exps[1], "VALUE", "WSE", **kwargs)
+                    if isAbs:
+                        stmts.append(self.assign_abstr(lvalues[0], value))
+                    else:
+                        stmts.append(lvalues[0]+" = ("+value+")")
             elif isCondVar and is_assExpType_abs:
                 stmts.append(self.assign_abstr_1(self.visitor_visit(state, unExp, "LVALUE", "WSE", **kwargs), self.visit_nz(state, assExp, "VALUE", "WSE", **kwargs)))
             elif isCondVar and not is_assExpType_abs:
