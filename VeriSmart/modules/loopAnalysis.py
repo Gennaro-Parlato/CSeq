@@ -196,7 +196,7 @@ class loopAnalysis(core.module.Translator):
 
 	def substitute(self, seqCode, list, tName, startIndex, maxlabels):
 		self.__threadIndex["main_thread"] = self.__threadIndex["main"]
-		bw_cs_pc = int(math.floor(math.log(max(1,self.__lines[tName]),2)))+1
+		bw_cs_pc = "ERROR" if len(self.__lines) == 0 else int(math.floor(math.log(max(1,self.__lines[tName]),2)))+1
 		if tName == 'main' and not self.isSeqCode:
 			tName = 'main_thread'
 		output = []
