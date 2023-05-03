@@ -3230,7 +3230,7 @@ class AbsDrRules:
         assExpType = self.supportFile.get_type(assExp)
         is_unExprType_abs = self.is_abstractable(unExprType) and self.abstr_bits < 8 * self.abstrTypesSizeof[unExprType]
         is_assExpType_abs = self.is_abstractable(assExpType) and self.abstr_bits < 8 * self.abstrTypesSizeof[assExpType]
-        assExpType_str_abs = self.__assignment_str_what_to_copy(unExp,assExp) if self.supportFile.is_struct(assExp) else (False, None)
+        assExpType_str_abs = (False, None) #self.__assignment_str_what_to_copy(unExp,assExp) if self.supportFile.is_struct(assExp) else (False, None)
         
         stmts = []
         stmts.append(self.if_abs_or_dr(lambda: self.visitor_visit(state, unExp, "SET_VAL" if op == "=" else "UPD_VAL", "NO_ACCESS", **kwargs)))
