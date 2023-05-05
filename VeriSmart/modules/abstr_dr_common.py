@@ -72,12 +72,12 @@ class MacroFileManager:
     def auxvars(self, transs):
         if self.do_inline:
             #return "#ifndef NULL\n#define NULL 0\n#endif\n#ifndef bool\n#define bool _Bool\n#endif\n"+
-            return "int main(void); "+transs[0].strip().replace("\n"," \\\n")
+            return "int main(void); "+transs[0].strip().replace("\n"," \\\n")+"\n uint1 __CPROVER_get_field(void*, char*);"
         else:
             self.macro_with_brackets["AUXVARS"] = False
             self.macro_name_with_brackets["AUXVARS"] = True
             self.macroToExprs["AUXVARS"] = ["main(void); "+t.strip().replace("\n"," \\\n") for t in transs]
-            return "int AUXVARS();"
+            return "int AUXVARS();"+"\n uint1 __CPROVER_get_field(void*, char*);"
             
     def resetaux_args_def(self, transs):
         self.macro_with_brackets["RESETAUX_ARGS"] = False
@@ -309,6 +309,7 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
         
         self.current_function = None # name of the function being translated
         self.function_types = {'__cs_getspecific':'void*'}
+        self.no_bap1 = False
         
     def insertGlobalVarInit(self, x):
         return x.replace("int main(void) {", "int main(void) {\n"+self.global_var_initializations, 1)
@@ -700,7 +701,7 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
         self.scope = 'local'
         func_name = n.decl.name
         with BakAndRestore(self, 'current_function', func_name):
-            max_nesting = self.support_file_mgr.if_nesting_level[self.current_function]
+            max_nesting = self.support_file_mgr.bap1if_level[self.current_function]
             if func_name.startswith('__cs_') or func_name == 'assume_abort_if_not':
                 # those functions are made by us: won't touch them
                 with self.no_any_instrument():
@@ -726,7 +727,7 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
                 self._lazyseqnewschedule__atomic = oldatomic
                 self._lazyseqnewschedule__currentThread = ''
                 self._lazyseqnewschedule__visit_funcReference = False
-                funclocal_decls = self.macro_file_manager.expression(c_ast.EmptyStatement(), self.do_rule('rule_FunctionLocalDecls',c_ast.EmptyStatement(), read_bap_passthrough=True,staticbap=False), passthrough=False, brackets=False) #bap
+                funclocal_decls = self.macro_file_manager.expression(c_ast.EmptyStatement(), self.do_rule('rule_FunctionLocalDecls',c_ast.EmptyStatement(), max_nesting=max_nesting, read_bap_passthrough=True,staticbap=False), passthrough=False, brackets=False) #bap
                 body = "{" + resetaux + '\n' + funclocal_decls + '\n' + passassn + "\n" + body.strip()[1:]
                 s = passdef+"\n"+decl + '\n' + body + '\n'
                 for i in range(len(self.conf_adr)):
@@ -739,7 +740,7 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
                 with BakAndRestore(self, 'skip_on_plain', True):
                     resetaux = '__CSEQ_rawline("#define RESETAUX() '+self.macro_file_manager.expression(n, self.do_rule('rule_ChangeResetAux', n, max_nesting=max_nesting), passthrough=False, brackets=False)+'");'
                 body_begin = ans.find("{")
-                ans = ans[:body_begin+1] + resetaux + "\n" + self.macro_file_manager.expression(c_ast.EmptyStatement(), self.do_rule('rule_FunctionLocalDecls',c_ast.EmptyStatement(),staticbap=True), passthrough=False, brackets=False) + ans[body_begin+1:]
+                ans = ans[:body_begin+1] + resetaux + "\n" + self.macro_file_manager.expression(c_ast.EmptyStatement(), self.do_rule('rule_FunctionLocalDecls',c_ast.EmptyStatement(), max_nesting=max_nesting, staticbap=True), passthrough=False, brackets=False) + ans[body_begin+1:]
                 for i in range(len(self.conf_adr)):
                     self.conf_adr[i].end_of_thread_function()
                 return ans
@@ -1471,7 +1472,9 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
         #    return super().visit_If(n)
         ifStart = self._lazyseqnewschedule__maxInCompound   # label where the if stmt begins
         
-        max_nesting = self.support_file_mgr.if_nesting_level[self.current_function]
+        max_nesting = self.support_file_mgr.bap1if_level[self.current_function]
+        
+        assume_bap_in_cond = self.support_file_mgr.do_assume_bap_in_cond[n]
 
         s = 'if ('
 
@@ -1480,6 +1483,10 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
             if self.dr_on:
                 extra_args['dr_vp_state'] = self.abs_dr_vpstate
                 extra_args['atomic'] = self._lazyseqnewschedule__atomic or self.atomicLvl > 0
+            if self.no_bap1 or assume_bap_in_cond:
+                extra_args['no_bap1'] = True
+            if assume_bap_in_cond:
+                extra_args['assume_bap_in_cond'] = True
             #with BakAndRestore(self, 'full_statement', False):
             condition = self.macro_file_manager.expression(n.cond, self.do_rule('rule_IfCond', n, **extra_args), passthrough=not self.full_statement, typlbl="IfCond", brackets=not self.full_statement) #TODO: for plain we did rule_IfCond
             s += condition
@@ -1494,18 +1501,9 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
         elseLbl = "else_lbl_"+str(self.elseLblProgr)
         self.elseLblProgr += 1
         
-        resetBap = self.macro_file_manager.expression(n.cond, [adr.bap+" = "+adr.getBap1If(n)+";" if adr.underapprox else "" for adr in self.conf_adr], passthrough=not self.full_statement, typlbl="ResetBap",with_semic=True, brackets=not self.full_statement)
+        resetBap = "" if self.no_bap1 or assume_bap_in_cond else (self.macro_file_manager.expression(n.cond, [adr.bap+" = "+adr.getBap1If(n)+";" if adr.underapprox else "" for adr in self.conf_adr], passthrough=not self.full_statement, typlbl="ResetBap",with_semic=True, brackets=not self.full_statement))
         with BakAndRestore(self, 'skip_on_plain', True):
             s = '__CSEQ_rawline("#define RESETAUX() '+self.macro_file_manager.expression(n.cond, self.do_rule('rule_ChangeResetAux', n, max_nesting=max_nesting, **extra_args), passthrough=False, brackets=False)+'");\n' + s
-        if n.iffalse: #there is else
-            pass
-            '''jmpElse = self.macro_file_manager.expression(n.cond, ["if("+adr.getBav1(n)+") {goto "+elseLbl+";}" if adr.underapprox else "" for adr in self.conf_adr], passthrough=not self.full_statement, typlbl="JmpElse",with_semic=True, brackets=not self.full_statement)
-            thenblock = thenblock.strip()[1:-1]
-            thenblock = "{\n"+thenblock+"\n"+jmpElse+"}\n"'''
-        else:
-            pass
-            '''thenblock = thenblock.strip()[1:-1]
-            thenblock = "{\n"+thenblock+"\n"+resetBap+"}\n"'''
             
         s += thenblock
 
@@ -1514,14 +1512,12 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
 
         if n.iffalse: # and not (isinstance(n.iffalse, c_ast.Compound) and n.iffalse.block_items is None):
             self.abs_dr_state = stateElse
-            assert(self.full_statement)
-            elseBlock = self._generate_stmt(n.iffalse, add_indent=True)
-            assert(self.full_statement)
-            '''elseBlock = elseBlock.strip()[1:-1].strip()
-            #elseLblMacro = self.macro_file_manager.expression(n.cond, [elseLbl+":"+(";" if elseBlock.startswith("static ") else "") if adr.underapprox else "" for adr in self.conf_adr], passthrough=not self.full_statement, typlbl="ElseLbl",with_semic=True, brackets=not self.full_statement)
-            resetBap = self.macro_file_manager.expression(n.cond, [adr.bap+" = "+adr.getBap1If(n)+";" if adr.underapprox else "" for adr in self.conf_adr], passthrough=not self.full_statement, typlbl="ResetBap",with_semic=True, brackets=not self.full_statement)
-            #elseBlock = "{\n"+elseLblMacro+"\n"+elseBlock+"\n"+resetBap+"}\n"
-            elseBlock = "{\n"+elseBlock+"\n"+resetBap+"}\n"'''
+            with BakAndRestore(self, 'no_bap1', not self.support_file_mgr.needs_bap1if[n.iffalse]):
+                #if self.no_bap1:
+                #    print(n)
+                assert(self.full_statement)
+                elseBlock = self._generate_stmt(n.iffalse, add_indent=True)
+                assert(self.full_statement)
 
             elseEnd = self._lazyseqnewschedule__maxInCompound   # label for the last stmt in the if_false block if () {...} else { block; }
 
@@ -1548,14 +1544,15 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
             #s += self._make_indent() + 'else\n'
             
             elseCond = self.macro_file_manager.expression(n.cond, self.do_rule('rule_ElseCond', n.cond, **extra_args), passthrough=False, typlbl="ElseCond",with_semic=True, brackets=False)
-            s += self._make_indent() + elseCond + '\n' #TODO experiment
+            s += self._make_indent() + elseCond + '\n'
 
             elseBlock = elseBlock.replace('{', '{ '+elseHeader, 1)
             s += elseBlock
-            
-            s += resetBap
-            
+                
             self.abs_dr_state = [stateThen[i].doMerge(stateThen[i], stateElse[i]) for i in range(len(stateThen))]
+            
+        if not (self.no_bap1 or assume_bap_in_cond):
+            s += resetBap
 
         header = ''
 
@@ -1587,9 +1584,10 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
             else: header = ''
         '''
         assert(self.full_statement)
-        for adr in self.conf_adr:
-            if adr.underapprox:
-                adr.releaseBap1If(n)
+        if not (self.no_bap1 or assume_bap_in_cond):
+            for adr in self.conf_adr:
+                if adr.underapprox:
+                    adr.releaseBap1If(n)
         with BakAndRestore(self, 'skip_on_plain', True):
             s += '__CSEQ_rawline("#define RESETAUX() '+self.macro_file_manager.expression(n.cond, self.do_rule('rule_ChangeResetAux', n, max_nesting=max_nesting, **extra_args), passthrough=False, brackets=False)+'");\n'
         return header + s + self._make_indent() + footer

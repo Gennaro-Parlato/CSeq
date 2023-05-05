@@ -1069,10 +1069,16 @@ class AbsDrRules:
                 bits = 1
             else:
                 bits = self.abstr_bits
-            if isNeg:
-                return "!("+self.nz(val, bits)+")"
+            
+            if val.startswith("__cs_typedvar_uint1_") or val.startswith("__cs_cond_") or type(e) is BinaryOp and e.op in ("==","!=","<",">","<=",">="):
+                inner_part = val
             else:
-                return self.nz(val, bits)
+                inner_part = self.nz(val, bits)
+            
+            if isNeg:
+                return "!("+inner_part+")"
+            else:
+                return inner_part
         else:
             if isNeg:
                 return "!("+val+")"
@@ -2061,7 +2067,7 @@ class AbsDrRules:
             if self.underapprox:
                 trans = self.comma_expr(
                     self.assume_expr(self.not_cp(state, "bap")),
-                    self.assume_expr(self.not_cp(state, "bav")),
+                    #self.assume_expr(self.not_cp(state, "bav")),
                     self.assert_expr("0"))
             else:
                 trans = self.assert_expr("0")
@@ -2072,23 +2078,26 @@ class AbsDrRules:
     def fakeIfAssignment(self, n):
         return self.assign_var("___fakeifvar___", n)
         
-    def __ifcond_underapprox(self, state, n, **kwargs):
+    def __ifcond_underapprox(self, state, n, hasBap1, assume_bap1_in_cond, **kwargs):
         #assert(self.underapprox and not self.dr_on)
         exp = n.cond
         #bav1 = self.getBav1(n)
-        bap1 = self.getBap1If(n)
+        bap1 = self.getBap1If(n) if hasBap1 else None
         return self.comma_expr(
-            self.assign_var(bap1, self.bap),
+            self.assign_var(bap1, self.bap) if bap1 is not None else "",
             self.visitor_visit(state, exp, "GET_VAL", "ACCESS", **kwargs),
             #self.assign_var(bav1, self.bav),
             self.assign_with_prop(state,"bap",self.or_expr_prop(self.cp(state,"bap"), self.cp(state,"bav"))),
-            self.or_expr_prop(self.cp(state,"bav"), self.visit_nz(state, exp, "VALUE", "WSE", **kwargs))
+            self.assume_expr(self.not_cp(state, "bap")) if assume_bap1_in_cond else "", 
+            self.visit_nz_cond(state, exp, "VALUE", "WSE", **kwargs) if assume_bap1_in_cond else self.or_expr_prop(self.cp(state,"bav"), self.visit_nz_cond(state, exp, "VALUE", "WSE", **kwargs))
         )
             
     def rule_IfCond(self, state, n, abs_mode, dr_mode, full_statement, **kwargs):
         exp = n.cond
         if self.underapprox:
-            trans = self.__ifcond_underapprox(state, n, **kwargs)
+            hasBap1 = not "no_bap1" in kwargs or not kwargs["no_bap1"]
+            assume_bap_in_cond = "assume_bap_in_cond" in kwargs and kwargs["assume_bap_in_cond"]
+            trans = self.__ifcond_underapprox(state, n, hasBap1, assume_bap_in_cond, **kwargs)
         elif not self.abs_on and not self.dr_on:
             trans = self.visitor_visit(state, exp, "VALUE", "WSE", **kwargs)
         else:
@@ -2107,7 +2116,8 @@ class AbsDrRules:
         return self.store_content(full_statement, self.fakeIfAssignment(trans), exp, abs_mode, dr_mode)
         
     def rule_ElseCond(self, state, n, abs_mode, dr_mode, full_statement, **kwargs):
-        if self.underapprox:
+        assume_bap_in_cond = "assume_bap_in_cond" in kwargs and kwargs["assume_bap_in_cond"]
+        if self.underapprox and not assume_bap_in_cond:
             #that's ok doing GET_VAL once more because if conditions are stored in auxiliary vars (hence no side effects, see conditionextractor module)
             ans = "if("+self.comma_expr(self.visitor_visit(state, n, "GET_VAL", "NO_ACCESS", **kwargs), self.or_expr_prop(self.cp(state, "bav"), "!"+self.visitor_visit(state, n, "VALUE", "WSE", **kwargs)))+")" # TODO for dr do something else
             return self.store_content(full_statement, ans, n, abs_mode, dr_mode)
@@ -3368,9 +3378,9 @@ class AbsDrRules:
         
     def rule_FunctionLocalDecls(self, state, fnc, abs_mode, dr_mode, full_statement, **kwargs):
         return self.if_ua(
-            lambda: ("static " if kwargs['staticbap'] else "")+self.unsigned_1+" "+", ".join([self.bap]+["__cs_bap1_if_"+str(v) for v in range(self.bap1s_if_max)])+"; "+
+            lambda: ("static " if kwargs['staticbap'] else "")+self.unsigned_1+" "+", ".join([self.bap]+["__cs_bap1_if_"+str(v) for v in range(kwargs['max_nesting'])])+"; "+
                 (self.bap + " = " + self.bap_passaround + "; " if 'read_bap_passthrough' in kwargs and kwargs['read_bap_passthrough'] else " ")+
-                "RESETAUX();")
+                "RESETAUX();") #replace kwargs['max_nesting'] with self.bap1s_if_max to be more efficient, but there will be trobles with RESETAUX
         
     def rule_ResetAux(self, state, fnc, abs_mode, dr_mode, full_statement, **kwargs):
         return "RESETAUX()"

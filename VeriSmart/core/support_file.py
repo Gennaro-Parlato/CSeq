@@ -44,6 +44,11 @@ class SupportFileManager(CGenerator):
         self.if_nesting_level = dict() #function -> deepest if level
         self.current_nesting_level = None
         self.max_nesting_level = None
+        self.bap1if_level = dict() #function -> deepest bap1if level
+        self.needs_bap1if = dict() #if.iffalse -> needs a bap1if
+        self.current_bap1if_level = None
+        self.max_bap1if_level = None
+        self.do_assume_bap_in_cond = dict() #if -> do an assume !bap in cond, as a branch leads to assume !bap
         self.child_has_side_effect = None
         self.progLbl = 0
         self.typecastLbl = 0
@@ -52,6 +57,10 @@ class SupportFileManager(CGenerator):
         self.can_value = False 
         # True only when the declaration is global.
         self.global_decl = True 
+        
+        self.has_compulsory_assumeBap = list() # True iff a path leads to assume(!bap)
+        self.has_assumeBap = list() # True iff a path leads to assume(!bap)
+        self.has_assumeBap_idx = -1
         
         # GG: ensure that those typedef appear only once
         self.already_in = {'pthread_t':False, 'pthread_attr_t':False, 'size_t':False, '__cs_t':True}
@@ -101,6 +110,31 @@ enum t_typename {"""+",\n".join(self.typenames_enum)+"""};
 #endif
                                                                                                                                                                                                                                                                                                             \
 """ + self.base_typename_def
+
+    def new_assumeBap_block(self):
+        self.has_assumeBap_idx += 1
+        if self.has_assumeBap_idx == len(self.has_assumeBap):
+            self.has_assumeBap.append(False)
+        else:
+            self.has_assumeBap[self.has_assumeBap_idx] = False
+            
+    def release_assumeBap_block(self):
+        self.has_assumeBap_idx -= 1
+        
+    def newrel_assumeBap_block(self, val=False):
+        self.new_assumeBap_block()
+        if val:
+            self.mark_assumeBap_block(val)
+        self.release_assumeBap_block()
+        
+    def mark_assumeBap_block(self, val=True):
+        self.has_assumeBap[self.has_assumeBap_idx] = self.has_assumeBap[self.has_assumeBap_idx] or val
+        
+    def mark_bottom_assumeBap_block(self):
+        self.mark_assumeBap_block(self.has_assumeBap[self.has_assumeBap_idx+1])
+        
+    def get_assumeBap_block(self, delta=0):
+        return self.has_assumeBap[self.has_assumeBap_idx + delta]
         
     def get_typename_def(self):
         return """#define typename(x) _Generic((x),                                                                                                                                                                                                                                                                           \
@@ -217,12 +251,15 @@ enum t_typename {"""+",\n".join(self.typenames_enum)+"""};
                     mainContent += self.visit(ext)
                     lastNode = ext
             else:
+                self.new_assumeBap_block()
                 mainContent += self.visit(ext)
+                self.release_assumeBap_block()
                 lastNode = ext
         return "\n".join([self.boilerplate(), "int main(){","printf(\"ADDRBITS, %lld\\n\",8*sizeof(int*));"]+mainContent+["return 0;","}"])
     
     def visit_Constant(self, n):
         self.child_has_side_effect = False
+        self.newrel_assumeBap_block()
         if self.can_value:
             return self.bookNodeType(n)
         else:
@@ -230,29 +267,40 @@ enum t_typename {"""+",\n".join(self.typenames_enum)+"""};
     
     def visit_ID(self, n):
         self.child_has_side_effect = False
+        self.newrel_assumeBap_block()
         if self.can_value:
             return self.bookNodeType(n)
         else:
             return []
         
     def visit_ArrayRef(self, n):
+        self.new_assumeBap_block()
         ans = []
         ans += self.bookNodeType(n)
         with self.set_can_value(True):
             ans += self.visit(n.name)
+            self.mark_bottom_assumeBap_block()
             left_se = self.child_has_side_effect
             ans += self.visit(n.subscript)
+            self.mark_bottom_assumeBap_block()
             self.child_has_side_effect = self.child_has_side_effect or left_se
         return ans
         
     def visit_StructRef(self, n):
+        self.new_assumeBap_block()
         ans = []
         ans += self.bookNodeType(n)
         with self.set_can_value(True):
             ans += self.visit(n.name)
+            self.mark_bottom_assumeBap_block()
+        self.release_assumeBap_block()
         return ans
         
     def visit_FuncCall(self, n):
+        self.new_assumeBap_block()
+        #assumeBap: it might/might not, let's say we do not restrict this unless specific functions
+        if n.name.name in ("__cs_safe_malloc", "__CSEQ_assert", "assert", "__CSEQ_assume", "assume_abort_if_not", "__cs_mutex_lock", "__cs_mutex_unlock", "__cs_attr_init", "__cs_create", "__cs_join", "__cs_mutex_init", "__cs_exit", "exit", "__assert_fail"):
+             self.mark_assumeBap_block()
         self.child_has_side_effect = True
         ans = []
         '''if n.name.name in ("__cs_safe_malloc", "__CSEQ_assert", "assert", "__CSEQ_assume", "assume_abort_if_not", "__cs_mutex_lock", "__cs_mutex_unlock", "__cs_attr_init"):
@@ -274,40 +322,50 @@ enum t_typename {"""+",\n".join(self.typenames_enum)+"""};
             if n.args is not None:
                 for a in n.args.exprs:
                     ans += self.visit(a)
+                    self.mark_bottom_assumeBap_block()
         '''if self.can_value:
             ans += self.bookNodeType(n)
         # TODO might have to visit n.name for function pointers?
         with self.set_can_value(True):
             ans += self.visit(n.args)'''
+        self.release_assumeBap_block()
         return ans
     
     def visit_UnaryOp(self, n):
+        self.new_assumeBap_block()
         ans = []
         ans += self.bookNodeType(n)
         with self.set_can_value(self.can_value or n.op in ("--","++","p++","p--",'+','-','~','!','*')):
             ans += self.visit(n.expr)
+            self.mark_bottom_assumeBap_block()
             self.child_has_side_effect = self.child_has_side_effect or n.op in ("--","++","p++","p--") #TODO unsure about ("*","&") 
             if n.op in ("++", "p++"):
                 ans += self.bookNodeType(BinaryOp("+", n.expr, Constant("int","1")))
             elif n.op in ("--", "p--"):
                 ans += self.bookNodeType(BinaryOp("-", n.expr, Constant("int","1")))
+        self.release_assumeBap_block()
         return ans
     
     def visit_BinaryOp(self, n):
+        self.new_assumeBap_block()
         ans = []
         ans += self.bookNodeType(n)
         ans += self.bookNodeType(n.left)
         ans += self.bookNodeType(n.right)
         with self.set_can_value(True):
             ans += self.visit(n.left)
+            self.mark_bottom_assumeBap_block()
             left_se = self.child_has_side_effect
             ans += self.visit(n.right)
+            self.mark_bottom_assumeBap_block()
             if n.op in ("&&","||"):
                 self.has_side_effects[n.right] = self.child_has_side_effect
             self.child_has_side_effect = self.child_has_side_effect or left_se
+        self.release_assumeBap_block()
         return ans
         
     def visit_Assignment(self, n):
+        self.new_assumeBap_block()
         ans = []
         if self.can_value:
             ans += self.bookNodeType(n)
@@ -317,8 +375,11 @@ enum t_typename {"""+",\n".join(self.typenames_enum)+"""};
             ans += self.bookNodeType(n.lvalue)
             ans += self.bookNodeType(n.rvalue)
             ans += self.visit(n.lvalue)
+            self.mark_bottom_assumeBap_block()
             ans += self.visit(n.rvalue)
+            self.mark_bottom_assumeBap_block()
             self.child_has_side_effect = True
+        self.release_assumeBap_block()
         return ans
     
     def __getType(self, node_info):
@@ -326,6 +387,7 @@ enum t_typename {"""+",\n".join(self.typenames_enum)+"""};
     
     def visit_Decl(self, n, no_type=False):
         ans = []
+        self.new_assumeBap_block()
         if type(n.type) is TypeDecl and type(n.type.type) is Struct:
             struct_t_name = "struct "+n.type.type.name
             if hasattr(n, 'quals') and len(getattr(n, 'quals')) >= 1 and getattr(n, 'quals')[0] == 'const':
@@ -347,6 +409,7 @@ enum t_typename {"""+",\n".join(self.typenames_enum)+"""};
                         oldsdis = self.store_def_in_stack
                         self.store_def_in_stack = False
                         ans += self.visit(n.init)
+                        self.mark_bottom_assumeBap_block()
                         self.store_def_in_stack = oldsdis
         elif type(n.type) is PtrDecl and type(n.type.type) is TypeDecl and type(n.type.type.type) is Struct:
             struct_t_name = "struct "+n.type.type.type.name
@@ -367,6 +430,7 @@ enum t_typename {"""+",\n".join(self.typenames_enum)+"""};
                         oldsdis = self.store_def_in_stack
                         self.store_def_in_stack = False
                         ans += self.visit(n.init)
+                        self.mark_bottom_assumeBap_block()
                         self.store_def_in_stack = oldsdis
         else:
             if self.global_decl and (type(n.type) is FuncDecl and n.name != "main"):
@@ -412,6 +476,7 @@ enum t_typename {"""+",\n".join(self.typenames_enum)+"""};
                 oldsdis = self.store_def_in_stack
                 self.store_def_in_stack = False
                 ans += self.visit(n.type.args)
+                self.mark_bottom_assumeBap_block()
                 self.store_def_in_stack = oldsdis
             if n.init is not None:
                 type_of_n = self.__getType(n.type)
@@ -426,6 +491,7 @@ enum t_typename {"""+",\n".join(self.typenames_enum)+"""};
                         oldsdis = self.store_def_in_stack
                         self.store_def_in_stack = False
                         ans += self.visit(n.init)
+                        self.mark_bottom_assumeBap_block()
                         self.store_def_in_stack = oldsdis
         #strans = "\n".join(ans)
         ans_no_dup = []
@@ -437,12 +503,16 @@ enum t_typename {"""+",\n".join(self.typenames_enum)+"""};
                 ans_no_dup.append(strans)
                 if self.store_def_in_stack:
                     self.knownDeclsStack[-1].add(strans)
+        self.release_assumeBap_block()
         return ans_no_dup
         
     def visit_DeclList(self, n):
+        self.new_assumeBap_block()
         ans = []
         for d in n.decls:
             ans += self.visit(d)
+            self.mark_bottom_assumeBap_block()
+        self.release_assumeBap_block()
         return ans
 
     def bump_size_struct(self, n):
@@ -462,6 +532,7 @@ enum t_typename {"""+",\n".join(self.typenames_enum)+"""};
                                               ))
         
     def visit_Typedef(self, n):
+        self.new_assumeBap_block()
         if n.name in self.already_in:
             if not self.already_in[n.name]:
                 self.already_in[n.name] = True
@@ -474,8 +545,10 @@ enum t_typename {"""+",\n".join(self.typenames_enum)+"""};
                         self.struct_types[sti.typemap_name] = sti
                         self.types_map[sti.type_idx] = ("...", sti.typemap_name)
                         sti_decl = [l+";" for l in sti.compute_struct_field_types(lambda x,e: self.bookNodeType(x,e))]+[self.get_typename_def()]
+                self.release_assumeBap_block()
                 return [self.cgenerator.visit(n)+";"]+sti_decl
             else:
+                self.release_assumeBap_block()
                 return []
         else:
             sti_decl=[]
@@ -487,9 +560,11 @@ enum t_typename {"""+",\n".join(self.typenames_enum)+"""};
                     self.struct_types[sti.typemap_name] = sti
                     self.types_map[sti.type_idx] = ("...", sti.typemap_name)
                     sti_decl = [l+";" for l in sti.compute_struct_field_types(lambda x,e: self.bookNodeType(x,e))]+[self.get_typename_def()]
+            self.release_assumeBap_block()
             return [self.cgenerator.visit(n)+";"]+sti_decl
         
     def visit_Cast(self, n):
+        self.new_assumeBap_block()
         ans = []
         if self.can_value:
             ans += self.bookNodeType(n)
@@ -497,47 +572,60 @@ enum t_typename {"""+",\n".join(self.typenames_enum)+"""};
             ans += self.bookNodeType(n.to_type, '__cs_typeofcast_'+str(self.typecastLbl))
             self.typecastLbl+=1
             ans += self.visit(n.to_type)
+            self.mark_bottom_assumeBap_block()
         with self.set_can_value(True):
             ans += self.visit(n.expr)
+            self.mark_bottom_assumeBap_block()
+        self.release_assumeBap_block()
         return ans
 
     def visit_ExprList(self, n):
+        self.new_assumeBap_block()
         ans = []
         any_se = False
         with self.set_can_value(False):
             for expr in n.exprs[:-1]:
                 ans += self.visit(expr)
+                self.mark_bottom_assumeBap_block()
                 any_se = any_se or self.child_has_side_effect
         ans += self.visit(n.exprs[-1])
         self.child_has_side_effect = self.child_has_side_effect or any_se
+        self.release_assumeBap_block()
         return ans
         
     def visit_InitList(self, n):
+        self.mark_bottom_assumeBap_block()
         ans = []
         any_se = False
         with self.set_can_value(True):
             for expr in n.exprs:
                 ans += self.visit(expr)
+                self.mark_bottom_assumeBap_block()
                 any_se = any_se or self.child_has_side_effect
         self.child_has_side_effect = any_se
+        self.release_assumeBap_block()
         return ans
 
     def visit_Enum(self, n):
+        self.newrel_assumeBap_block()
         ans = []
         if self.global_decl:
             ans += [self.cgenerator.visit(n)+";"]
         return ans
 
     def visit_Alignas(self, n):
+        self.newrel_assumeBap_block()
         return []
 
     def visit_Enumerator(self, n):
+        self.newrel_assumeBap_block()
         ans = []
         if self.global_decl:
             ans += [self.cgenerator.visit(n)+";"]
         return ans
 
     def visit_FuncDef(self, n):
+        self.new_assumeBap_block()
         ans = []
         if type(n.decl.type.type.type) is IdentifierType and n.decl.type.type.type.names[0] == "void":
             #void function
@@ -545,28 +633,42 @@ enum t_typename {"""+",\n".join(self.typenames_enum)+"""};
             #ncp.body = Compound([])
             #ans += [self.cgenerator.visit(ncp)]
             ans += self.visit(n.decl)
+            self.mark_bottom_assumeBap_block()
             if n.decl.type.args is not None:
                 ans += self.visit(n.decl.type.args)
+                self.mark_bottom_assumeBap_block()
         elif type(n.decl.type.type.type) is IdentifierType and n.decl.type.type.type.names[0] == "int":
             #int function
             #ncp = copy.copy(n)
             #ncp.body = Compound([Return(Constant("int","0"))])
             ans += self.visit(n.decl)
+            self.mark_bottom_assumeBap_block()
             if n.decl.type.args is not None:
                 ans += self.visit(n.decl.type.args)
+                self.mark_bottom_assumeBap_block()
         else:
             ans += self.visit(n.decl)
+            self.mark_bottom_assumeBap_block()
         if n.param_decls:
             ans += self.visit(n.param_decls)
+            self.mark_bottom_assumeBap_block()
         self.current_nesting_level = 0
         self.max_nesting_level = 0
+        self.current_bap1if_level = 0
+        self.max_bap1if_level = 0
         ans += self.visit(n.body)
+        self.mark_bottom_assumeBap_block()
         self.if_nesting_level[n.decl.name] = self.max_nesting_level
+        self.bap1if_level[n.decl.name] = self.max_bap1if_level
         self.current_nesting_level = None
         self.max_nesting_level = None
+        self.current_bap1if_level = None
+        self.max_bap1if_level = None
+        self.release_assumeBap_block()
         return ans
         
     def visit_Compound(self, n):
+        self.new_assumeBap_block()
         ans = []
         ans += ["{"]
         self.knownDeclsStack.append(set())
@@ -574,15 +676,22 @@ enum t_typename {"""+",\n".join(self.typenames_enum)+"""};
             with self.set_can_value(False):
                 for stmt in n.block_items:
                     ans += self.visit(stmt)
+                    self.mark_bottom_assumeBap_block()
         ans += ["}"]
         self.knownDeclsStack.pop()
+        self.release_assumeBap_block()
         return ans
 
     def visit_CompoundLiteral(self, n):
-        return self.visit(n.init)
+        self.new_assumeBap_block()
+        ans = self.visit(n.init)
+        self.mark_bottom_assumeBap_block()
+        self.release_assumeBap_block()
+        return ans
     
     def visit_EmptyStatement(self, n):
         self.child_has_side_effect = False
+        self.newrel_assumeBap_block()
         return []
         
     def __cleanParamDecl(self, n):
@@ -597,16 +706,24 @@ enum t_typename {"""+",\n".join(self.typenames_enum)+"""};
         return n_cp
     
     def visit_ParamList(self, n):
+        self.new_assumeBap_block()
         ans = []
         for p in n.params:
             ans += self.visit(self.__cleanParamDecl(p))
+            self.mark_bottom_assumeBap_block()
+        self.release_assumeBap_block()
         return ans
             
     def visit_Return(self, n):
+        self.new_assumeBap_block()
+        self.mark_assumeBap_block()
         if n.expr: 
             with self.set_can_value(True):
-                return self.visit(n.expr)
+                ans = self.visit(n.expr)
+                self.release_assumeBap_block()
+                return ans
         else:
+            self.release_assumeBap_block()
             return []
 
     def visit_Break(self, n):
@@ -616,27 +733,83 @@ enum t_typename {"""+",\n".join(self.typenames_enum)+"""};
         assert(False)
 
     def visit_TernaryOp(self, n):
+        self.new_assumeBap_block()
         ans = []
         ans += self.visit(n.cond)
+        self.mark_bottom_assumeBap_block()
         any_se = self.child_has_side_effect
         ans += self.visit(n.iftrue)
+        self.mark_bottom_assumeBap_block()
         self.has_side_effects[n.iftrue] = self.child_has_side_effect
         any_se = self.child_has_side_effect or any_se
         ans += self.visit(n.iffalse)
+        self.mark_bottom_assumeBap_block()
         self.has_side_effects[n.iffalse] = self.child_has_side_effect
         self.child_has_side_effect = self.child_has_side_effect or any_se
+        self.release_assumeBap_block()
         return ans
 
     def visit_If(self, n):
+        self.new_assumeBap_block()
         ans = []
         self.current_nesting_level += 1
         self.max_nesting_level = max(self.max_nesting_level, self.current_nesting_level)
         with self.set_can_value(True):
             ans += self.visit(n.cond)
+            self.mark_bottom_assumeBap_block()
         ans += self.visit(n.iftrue)
+        self.mark_bottom_assumeBap_block()
+        self.needs_bap1if[n.iffalse] = not self.check_elseif(n.iffalse)
+        if self.needs_bap1if[n.iffalse]:
+            self.current_bap1if_level += 1
+            self.max_bap1if_level = max(self.max_bap1if_level, self.current_bap1if_level)
         ans += self.visit(n.iffalse)
+        self.mark_bottom_assumeBap_block()
+        if self.needs_bap1if[n.iffalse]:
+            self.current_bap1if_level -= 1
+        self.do_assume_bap_in_cond[n] = self.get_assumeBap_block()
         self.current_nesting_level -= 1
+        self.release_assumeBap_block()
         return ans
+        
+    def check_elseif(self, cmpnd):
+        #returns True <==> cmpnd represents an elseif block: i.e, it is
+        #  static bool cond;
+        #  cond = ....
+        #  if(cond){...} (else {...})?
+        if type(cmpnd) is not Compound:
+            return False
+        decl_cond = None
+        has_assn_cond = False
+        has_if_cond = False
+        for n in cmpnd.block_items:
+            if type(n) is EmptyStatement:
+                continue
+            elif type(n) is Decl:
+                #print("CE_D")
+                if decl_cond is not None:
+                    return False
+                ifcond_idx = n.name.rfind("if_cond")
+                if ifcond_idx == -1:
+                    return False
+                if len(n.name) > ifcond_idx + 7 and (n.name[ifcond_idx + 7] != "_" or any(n.name[i] not in "0123456789" for i in range(ifcond_idx + 8, len(n.name)))):
+                    return False
+                decl_cond = n.name
+            elif type(n) is Assignment:
+                #print("CE_A")
+                if type(n.lvalue) is not ID or n.lvalue.name != decl_cond:
+                    return False
+                has_assn_cond = True
+            elif type(n) is If:
+                #print("CE_I")
+                if type(n.cond) is not ID or n.cond.name != decl_cond:
+                    return False
+                else:
+                    has_if_cond = True
+            else:
+                return False
+        #print("CE", decl_cond is not None, has_assn_cond, has_if_cond)
+        return decl_cond is not None and has_assn_cond and has_if_cond
 
     def visit_For(self, n):
         assert(False)
@@ -660,24 +833,38 @@ enum t_typename {"""+",\n".join(self.typenames_enum)+"""};
         assert(False)
 
     def visit_Label(self, n):
-        return self.visit(n.stmt)
+        self.new_assumeBap_block()
+        ans = self.visit(n.stmt)
+        self.mark_bottom_assumeBap_block()
+        self.release_assumeBap_block()
+        return ans
 
     def visit_Goto(self, n):
+        self.new_assumeBap_block()
+        self.mark_assumeBap_block()
+        self.release_assumeBap_block()
         return []
 
     def visit_EllipsisParam(self, n):
+        self.newrel_assumeBap_block()
         return []
 
     def visit_Struct(self, n):
+        self.newrel_assumeBap_block()
         return [self.cgenerator.visit(n)+";"]
 
     def visit_Typename(self, n):
+        self.newrel_assumeBap_block()
         return []
 
     def visit_Union(self, n):
+        self.newrel_assumeBap_block()
         return [self.cgenerator.visit(n)+";"]
 
     def visit_NamedInitializer(self, n):
+        self.new_assumeBap_block()
         ans = []
         ans += self.visit(n.expr)
+        self.mark_bottom_assumeBap_block()
+        self.release_assumeBap_block()
         return ans
