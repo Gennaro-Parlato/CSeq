@@ -351,6 +351,8 @@ class inliner(core.module.Translator):
         # Pthread exit()s can only be within thread functions,
         # no need to check whether we're in a thread.
         #
+        if fref == "reach_error":
+            return "assert(0)"
         if fref == core.common.changeID['pthread_exit']:
             args = self.visit(n.args)
             self.__exit_args[self.currentFunction[-1]] = args
