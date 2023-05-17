@@ -463,7 +463,7 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
         auxvars1 = {adr: "" if adr is None else adr.aux_vars_decl() for adr in self.conf_adr}
                 
         s_parts[0] += self.macro_file_manager.fake_typedef_bits()
-        s_parts[2] += self.macro_file_manager.auxvars(['\n'.join([auxvars1[adr], adr.extra_vars_decl(), adr.cond_vars_decl(), adr.bav1_vars_decl(), adr.bap1_vars_decl(), adr.nondet_vars_decl()]) for adr in self.conf_adr])
+        s_parts[2] += self.macro_file_manager.auxvars(['\n'.join([auxvars1[adr], adr.extra_vars_decl(), adr.cond_vars_decl(), adr.bav1_vars_decl(), adr.bap1_vars_decl(), adr.nondet_vars_decl(True)]) for adr in self.conf_adr])
         self.macro_file_manager.resetaux_args_def([adr.reset_vars_stmt() for adr in self.conf_adr])
         
         old_SOP = self.skip_on_plain

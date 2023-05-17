@@ -504,6 +504,9 @@ class AbsDrRules:
             return "intb" if typ in self.abstrTypesSigned else "uintb"
         else:
             return None
+            
+    def cast_uint1(self, expr):
+        return "(("+self.unsigned_1+")("+expr+"))"
         
     def get_type_bounds(self, tp):
         sz = min(self.abstrTypesSizeof[tp], self.abstr_bits)
@@ -602,8 +605,19 @@ class AbsDrRules:
     def cond_vars_decl(self):
         return self.compound_expr("\n",*(['unsigned __CPROVER_bitvector[1] __cs_cond_'+str(v)+';' for v in range(self.conds_max)]))[0]
         
-    def nondet_vars_decl(self):
-        return self.compound_expr("\n",*([v[0]+' '+v[1]+';' for v in self.nondetvars.values()]))[0]
+    def nvd_get_decl(self, tp, vname, in_h_file):
+        if in_h_file and vname.startswith("__cs_nondet_v_bv"):
+            bvtype = vname[len("__cs_nondet_v_bv"):].split("_")[0]
+            if bvtype[0] == "u":
+                tp = "unsigned __CPROVER_bitvector["+bvtype[1:]+"]"
+            elif bvtype[0] == "s":
+                tp = "__CPROVER_bitvector["+bvtype[1:]+"]"
+            else:
+                tp = "__CPROVER_bitvector["+bvtype+"]"
+        return tp+' '+vname
+        
+    def nondet_vars_decl(self, in_h_file):
+        return self.compound_expr("\n",*([self.nvd_get_decl(v[0], v[1], in_h_file)+';' for v in self.nondetvars.values()]))[0]
         
     def bav1_vars_decl(self):
         return self.compound_expr("\n",*(['unsigned __CPROVER_bitvector[1] __cs_bav1_'+str(v)+';' for v in range(self.bav1s_max)]+['unsigned __CPROVER_bitvector[1] '+x+';' for x in self.bavH.list_all()]))[0]
@@ -1566,7 +1580,7 @@ class AbsDrRules:
                 condvar = self.getCondition(top)
                 trans = self.comma_expr(
                     self.visitor_visit(state, lorExp, "GET_VAL", "ACCESS", **kwargs),
-                    self.if_abs(lambda: self.assign_var(condvar, self.eager_ternary_expr(state, self.cp(state, "bav"), lambda state: self.getNondetvarBv(top, "u1"), lambda state: self.visit_nz(state, lorExp, "VALUE", "WSE", **kwargs)))),
+                    self.if_abs(lambda: self.assign_var(condvar, self.eager_ternary_expr(state, self.cp(state, "bav"), lambda state: self.getNondetvarBv(top, "u1"), lambda state: self.cast_uint1(self.visit_nz(state, lorExp, "VALUE", "WSE", **kwargs))))),
                     self.if_no_abs(lambda: self.assign_var(condvar, self.visitor_visit(state, lorExp, "VALUE", "WSE", **kwargs))),
                     self.ternary_expr(state, condvar, 
                         lambda state: self.brackets(self.visitor_visit(state, exp, "GET_VAL", "ACCESS", **kwargs)), 
@@ -1673,7 +1687,7 @@ class AbsDrRules:
         castExp = notop.expr
         kw2 = kwargs.copy()
         kw2["negate"] = True
-        ok = lambda state: self.visit_nz(state, castExp, "VALUE", "WSE", **kw2) 
+        ok = lambda state: self.cast_uint1(self.visit_nz(state, castExp, "VALUE", "WSE", **kw2)) 
         err = lambda state: self.getNondetvarBv(notop, "u1") # self.nondet()
         value = self.getCondition(notop)
         castexp_getval = self.visitor_visit(state, castExp, "GET_VAL", "ACCESS", **kwargs)
@@ -1821,7 +1835,7 @@ class AbsDrRules:
         elif state.cp_bav is None:
             return self.eager_ternary_expr(state, self.cp(state, "bav"),
                 lambda state: self.getNondetvarBv(assexp, "u1"), 
-                lambda state: self.visit_nz(state, exp, "VALUE", "WSE", **kwargs))
+                lambda state: self.cast_uint1(self.visit_nz(state, exp, "VALUE", "WSE", **kwargs)))
         else:
             assert(False)
             
@@ -2156,7 +2170,7 @@ class AbsDrRules:
             trans = self.visitor_visit(state, exp, "VALUE", "WSE", **kwargs)
         else:
             exp_getval = self.visitor_visit(state, exp, "GET_VAL", "ACCESS", **kwargs)
-            exp_val = lambda state: self.visit_nz_cond(state, exp, "VALUE", "WSE", **kwargs)
+            exp_val = lambda state: self.cast_uint1(self.visit_nz_cond(state, exp, "VALUE", "WSE", **kwargs))
             
             if state.cp_bav == 0:
                 trans = self.comma_expr(exp_getval, exp_val(state))
@@ -2511,7 +2525,7 @@ class AbsDrRules:
         # return (([[expr, GET_VAL, ACCESS]], bav)? nondet : [[expr, VALUE]])
         # with cp
         expr_getval = self.visitor_visit(state, expr, "GET_VAL", "ACCESS", **kwargs)
-        expr_val = lambda state: self.visit_nz(state, expr, "VALUE", "WSE", **kwargs)
+        expr_val = lambda state: self.cast_uint1(self.visit_nz(state, expr, "VALUE", "WSE", **kwargs))
         if not self.abs_on or state.cp_bav == 0:
             return self.comma_expr(expr_getval, expr_val(state))
         elif state.cp_bav == 1:
