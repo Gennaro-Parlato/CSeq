@@ -778,6 +778,24 @@ class AbsDrRules:
             nonzero_items = tuple(x for x in items if x != "0")
             return self.or_expr(*nonzero_items)
             
+    # join parts to form an eager or expression (i.e., all parts are evaluated)
+    def eager_or_expr(self, *items):
+        ors, parts = self.compound_expr(", ", *items)
+        if parts == 0:
+            return "0"
+        elif parts == 1:
+            return ors
+        else:
+            return "__CPROVER_myor(" + ors + ")"
+    
+    # apply cp to or expression, i.e., if any item is "1" return "1", remove "0"s
+    def eager_or_expr_prop(self, *items):
+        if "1" in items:
+            return "1"
+        else:
+            nonzero_items = tuple(x for x in items if x != "0")
+            return self.eager_or_expr(*nonzero_items)
+            
     # apply cp to and expression, i.e., if any item is "0" return "0", remove "1"s
     def and_expr_prop(self, *items):
         if "0" in items:
@@ -795,6 +813,24 @@ class AbsDrRules:
             return ands
         else:
             return "(" + ands + ")"
+            
+    # apply cp to and expression, i.e., if any item is "0" return "0", remove "1"s
+    def eager_and_expr_prop(self, *items):
+        if "0" in items:
+            return "0"
+        else:
+            nonzero_items = tuple(x for x in items if x != "1")
+            return self.eager_and_expr(*nonzero_items)
+        
+    # join parts to form an eager and expression
+    def eager_and_expr(self, *items):
+        ands, parts = self.compound_expr(", ", *items)
+        if parts == 0:
+            return "1"
+        elif parts == 1:
+            return ands
+        else:
+            return "__CPROVER_myand(" + ands + ")"
             
     # join parts to form a comma expression
     def comma_expr(self, *items):
@@ -957,6 +993,24 @@ class AbsDrRules:
             if expr_els in ("()",""):
                 expr_els = "((void)0)"
             ans = "((" + cond + ")?(" + expr_then + "):(" + expr_els + "))"
+            state.doMerge(stateThen, stateEls)
+            return ans
+            
+    def eager_ternary_expr(self, state, cond, then, els):
+        if cond == "0":
+            return els(state)
+        elif cond == "1":
+            return then(state)
+        else:
+            stateThen = state.copy()
+            stateEls = state.copy()
+            expr_then = then(stateThen)
+            expr_els = els(stateEls)
+            if expr_then in ("()",""):
+                expr_then = "((void)0)"
+            if expr_els in ("()",""):
+                expr_els = "((void)0)"
+            ans = "__CPROVER_mytern(" + cond + ", " + expr_then + ", " + expr_els + ")"
             state.doMerge(stateThen, stateEls)
             return ans
         
@@ -1238,7 +1292,7 @@ class AbsDrRules:
         elif tmp_bav_cp[0] == "0" and tmp_bav_cp[1] == 0: #(False || False)
             return self.comma_expr(self.assign_with_prop(state, "bal", "0"), self.assign(state, "bav", getsm()))
         else: # (? || ?) (False || ?) (? || False)
-            return self.assign(state, "bav", self.or_expr(self.assign(state,"bal",self.or_expr_prop(bav_tmp,self.cp(state,"bav"))),getsm())) 
+            return self.assign(state, "bav", self.eager_or_expr(self.assign(state,"bal",self.or_expr_prop(bav_tmp,self.cp(state,"bav"))),getsm())) 
         
             
     def rule_ArrayRef(self, state, arrexp, abs_mode, dr_mode, full_statement, **kwargs): # postExp[exp]
@@ -1309,7 +1363,7 @@ class AbsDrRules:
         elif cp[0] in (0, None) and cp[1] == 1: #bal = False/?, bav = True
             return self.assign_with_prop(state, "bal", self.cp(state, "bav"))
         elif cp[1] is None: #bal = False/True/?, bav = ?
-            return self.comma_expr(self.assign_with_prop(state, "bal", self.cp(state, "bav")), self.assign_with_prop(state, "bav",  getsm()))
+            return self.comma_expr(self.assign_with_prop(state, "bal", self.cp(state, "bav")), self.assign_with_prop(state, "bav",  self.eager_or_expr(self.cp(state, "bav"), getsm())))
         else:
             assert(False)
             
@@ -1372,7 +1426,7 @@ class AbsDrRules:
         elif state.cp_bal == 0:
             return self.assign(state, "bav", getsm())
         elif state.cp_bal is None:
-            return self.assign(state, "bav", self.or_expr(self.cp(state,"bal"),getsm()))
+            return self.comma_expr(self.assign(state, "bal", self.cp(state,"bav")), self.assign(state, "bav", self.eager_or_expr(self.cp(state,"bal"),getsm())))
         else:
             assert(False)
             
@@ -1471,7 +1525,7 @@ class AbsDrRules:
                     self.visitor_visit(state, lorExp, "GET_VAL", "ACCESS", **kwargs),
                     self.assign_var(bav1, self.cp(state, "bav")),
                     self.assign_with_prop(state, "bap", self.or_expr_prop(self.cp(state, "bap"), self.cp(state, "bav"))),
-                    self.assign_var(condvar, self.or_expr_prop(self.cp(state, "bav"), self.visit_nz(state, lorExp, "VALUE", "WSE", **kwargs)))
+                    self.assign_var(condvar, self.eager_or_expr_prop(self.cp(state, "bav"), self.visit_nz(state, lorExp, "VALUE", "WSE", **kwargs)))
                 ]
                 condChoice = parts[-1]
                 stateThen = state.copy()
@@ -1502,7 +1556,7 @@ class AbsDrRules:
                 lambda state: self.visitor_visit(state, exp, None, None, **kwargs), \
                 lambda state: self.visitor_visit(state, condExp, None, None, **kwargs)), top, abs_mode, dr_mode)
         elif abs_mode in ("VALUE",None) and dr_mode in ("WSE", None):
-            return self.store_content(full_statement,self.ternary_expr(state, self.getCondition(top), 
+            return self.store_content(full_statement,self.eager_ternary_expr(state, self.getCondition(top), 
                 lambda state: (self.visitor_visit(state, exp, "VALUE", "WSE", **kwargs)), 
                 lambda state: (self.visitor_visit(state, condExp, "VALUE", "WSE", **kwargs))), top, abs_mode, dr_mode)
         elif abs_mode in ("GET_VAL",None) and dr_mode in ("ACCESS","PREFIX","NO_ACCESS", None):
@@ -1512,7 +1566,7 @@ class AbsDrRules:
                 condvar = self.getCondition(top)
                 trans = self.comma_expr(
                     self.visitor_visit(state, lorExp, "GET_VAL", "ACCESS", **kwargs),
-                    self.if_abs(lambda: self.assign_var(condvar, self.ternary_expr(state, self.cp(state, "bav"), lambda state: self.getNondetvarBv(top, "u1"), lambda state: self.visit_nz(state, lorExp, "VALUE", "WSE", **kwargs)))),
+                    self.if_abs(lambda: self.assign_var(condvar, self.eager_ternary_expr(state, self.cp(state, "bav"), lambda state: self.getNondetvarBv(top, "u1"), lambda state: self.visit_nz(state, lorExp, "VALUE", "WSE", **kwargs)))),
                     self.if_no_abs(lambda: self.assign_var(condvar, self.visitor_visit(state, lorExp, "VALUE", "WSE", **kwargs))),
                     self.ternary_expr(state, condvar, 
                         lambda state: self.brackets(self.visitor_visit(state, exp, "GET_VAL", "ACCESS", **kwargs)), 
@@ -1553,13 +1607,13 @@ class AbsDrRules:
         if cp[0] == 0 and cp[1] == 0: #bal = False, bav = False
             return self.assign(state, "bal", getsm())
         elif cp[0] in (1, None) and cp[1] == 0: #bal = True/?, bav = False
-            return self.comma_expr(self.assign_with_prop(state, "bal", self.cp(state, "bav")), self.assign(state, "bal", getsm()))
+            return self.comma_expr(self.assign_with_prop(state, "bal", self.cp(state, "bav")), self.assign(state, "bav", getsm()))
         elif cp[0] == 1 and cp[1] == 1: #bal = True, bav = True
             return ""
         elif cp[0] in (0, None) and cp[1] == 1: #bal = False/?, bav = True
             return self.assign_with_prop(state, "bal", self.cp(state, "bav"))
         elif cp[1] is None: #bal = False/True/?, bav = ?
-            return self.comma_expr(self.assign_with_prop(state, "bal", self.cp(state, "bav")), self.assign(state, "bal", getsm()))
+            return self.comma_expr(self.assign_with_prop(state, "bal", self.cp(state, "bav")), self.assign(state, "bav", self.eager_or_expr(self.cp(state, "bav"), getsm())))
         else:
             assert(False)     
                     
@@ -1636,7 +1690,7 @@ class AbsDrRules:
                 self.assign_with_prop(state,"bav","0"))
         elif state.cp_bav is None:
             return self.comma_expr_lambda(
-                lambda: self.assign_var(value, self.ternary_expr(state, self.comma_expr(castexp_getval,self.bav), err, ok)),
+                lambda: self.assign_var(value, self.eager_ternary_expr(state, self.comma_expr(castexp_getval,self.bav), err, ok)),
                 lambda: self.assign_with_prop(state,"bav","0")
             )
         else:
@@ -1765,7 +1819,7 @@ class AbsDrRules:
         elif state.cp_bav == 1:
             return self.getNondetvarBv(assexp, "u1")
         elif state.cp_bav is None:
-            return self.ternary_expr(state, self.cp(state, "bav"),
+            return self.eager_ternary_expr(state, self.cp(state, "bav"),
                 lambda state: self.getNondetvarBv(assexp, "u1"), 
                 lambda state: self.visit_nz(state, exp, "VALUE", "WSE", **kwargs))
         else:
@@ -2005,7 +2059,7 @@ class AbsDrRules:
         return self.comma_expr(
             self.assume_expr(self.not_cp(state, "bap")), 
             self.visitor_visit(state, exp, "GET_VAL", "ACCESS", **kwargs),
-            self.assume_expr(self.and_expr_prop(self.not_cp(state, "bav"), 
+            self.assume_expr(self.eager_and_expr_prop(self.not_cp(state, "bav"), 
                     self.visit_nz(state, exp, "VALUE", "WSE", **kwargs))))
                     
     def __assert_underapprox(self, state, exp, **kwargs):
@@ -2089,7 +2143,7 @@ class AbsDrRules:
             #self.assign_var(bav1, self.bav),
             self.assign_with_prop(state,"bap",self.or_expr_prop(self.cp(state,"bap"), self.cp(state,"bav"))),
             self.assume_expr(self.not_cp(state, "bap")) if assume_bap1_in_cond else "", 
-            self.visit_nz_cond(state, exp, "VALUE", "WSE", **kwargs) if assume_bap1_in_cond else self.or_expr_prop(self.cp(state,"bav"), self.visit_nz_cond(state, exp, "VALUE", "WSE", **kwargs))
+            self.visit_nz_cond(state, exp, "VALUE", "WSE", **kwargs) if assume_bap1_in_cond else self.eager_or_expr_prop(self.cp(state,"bav"), self.visit_nz_cond(state, exp, "VALUE", "WSE", **kwargs))
         )
             
     def rule_IfCond(self, state, n, abs_mode, dr_mode, full_statement, **kwargs):
@@ -2109,7 +2163,7 @@ class AbsDrRules:
             elif state.cp_bav == 1:
                 trans = self.comma_expr(exp_getval, self.getNondetvarBv(n, "u1"))
             elif state.cp_bav is None:
-                texp = self.ternary_expr(state, self.cp(state, "bav"),lambda state: self.getNondetvarBv(n, "u1"), exp_val)
+                texp = self.eager_ternary_expr(state, self.cp(state, "bav"),lambda state: self.getNondetvarBv(n, "u1"), exp_val)
                 trans = self.comma_expr(exp_getval, texp)
             else:
                 assert(False)
@@ -2119,7 +2173,7 @@ class AbsDrRules:
         assume_bap_in_cond = "assume_bap_in_cond" in kwargs and kwargs["assume_bap_in_cond"]
         if self.underapprox and not assume_bap_in_cond:
             #that's ok doing GET_VAL once more because if conditions are stored in auxiliary vars (hence no side effects, see conditionextractor module)
-            ans = "if("+self.comma_expr(self.visitor_visit(state, n, "GET_VAL", "NO_ACCESS", **kwargs), self.or_expr_prop(self.cp(state, "bav"), "!"+self.visitor_visit(state, n, "VALUE", "WSE", **kwargs)))+")" # TODO for dr do something else
+            ans = "if("+self.comma_expr(self.visitor_visit(state, n, "GET_VAL", "NO_ACCESS", **kwargs), self.eager_or_expr_prop(self.cp(state, "bav"), "!"+self.visitor_visit(state, n, "VALUE", "WSE", **kwargs)))+")" # TODO for dr do something else
             return self.store_content(full_statement, ans, n, abs_mode, dr_mode)
         else:
             return self.store_content(full_statement, "else", n, abs_mode, dr_mode)
@@ -2463,7 +2517,7 @@ class AbsDrRules:
         elif state.cp_bav == 1:
             return self.comma_expr(expr_getval, self.getNondetvarBv(expr, "u1"))#self.nondet())
         elif state.cp_bav is None:
-            return self.ternary_expr(state, self.comma_expr(expr_getval,self.cp(state, "bav")), lambda state: self.getNondetvarBv(expr, "u1"), expr_val) #self.nondet(), expr_val)
+            return self.eager_ternary_expr(state, self.comma_expr(expr_getval,self.cp(state, "bav")), lambda state: self.getNondetvarBv(expr, "u1"), expr_val) #self.nondet(), expr_val)
         
     def __or_underapproxOld(self, state, fullOp, **kwargs):
         # returns value = part1 || part2
@@ -2521,8 +2575,8 @@ class AbsDrRules:
         part2 = [self.visitor_visit(state, exp2, "GET_VAL", "ACCESS", **kwargs)] 
         part3 = [
             self.assign_with_prop(state, "bap", bap1),
-            self.assign_with_prop(state, "bav", self.and_expr_prop(self.or_expr_prop(self.cp(state, "bav"), bav1), self.or_expr_prop(bav1, self.visit_nz(state, exp1, "VALUE", "WSE", **kwargs)), self.or_expr_prop(self.cp(state, "bav"), self.visit_nz(state, exp2, "VALUE", "WSE", **kwargs)))),
-            self.assign_var(value, self.and_expr_prop(self.visit_nz(state, exp1, "VALUE", "WSE", **kwargs), self.visit_nz(state, exp2, "VALUE", "WSE", **kwargs)))
+            self.assign_with_prop(state, "bav", self.eager_and_expr_prop(self.or_expr_prop(self.cp(state, "bav"), bav1), self.eager_or_expr_prop(bav1, self.visit_nz(state, exp1, "VALUE", "WSE", **kwargs)), self.eager_or_expr_prop(self.cp(state, "bav"), self.visit_nz(state, exp2, "VALUE", "WSE", **kwargs)))),
+            self.assign_var(value, self.eager_and_expr_prop(self.visit_nz(state, exp1, "VALUE", "WSE", **kwargs), self.visit_nz(state, exp2, "VALUE", "WSE", **kwargs)))
         ]
         return self.comma_expr(*(part1+part2+part3))
         
@@ -2547,7 +2601,7 @@ class AbsDrRules:
                     self.assign_var(bap1, self.cp(state, "bap")),
                     self.assign_with_prop(state, "bap", self.or_expr_prop(self.cp(state, "bap"), self.cp(state, "bav")))
                 ]
-                part2a = self.or_expr_prop(self.cp(state, "bav"), self.visit_nz(state, exp1, "VALUE", "WSE", **kwargs))
+                part2a = self.eager_or_expr_prop(self.cp(state, "bav"), self.visit_nz(state, exp1, "VALUE", "WSE", **kwargs))
                 stateTillPart2a = state.copy()
                 statePart2b = state.copy()
                 part2b = "("+self.visitor_visit(statePart2b, exp2, "GET_VAL", "ACCESS", **kwargs)+")"
@@ -2555,8 +2609,8 @@ class AbsDrRules:
                 part2 = [self.and_expr_prop(part2a, part2b)]
                 part3 = [
                     self.assign_with_prop(state, "bap", bap1),
-                    self.assign_with_prop(state, "bav", self.or_expr_prop(self.cp(state, "bav"), self.and_expr_prop(bav1, self.visit_nz(state, exp2, "VALUE", "WSE", **kwargs)))),
-                    self.assign_var(value, self.and_expr_prop(self.visit_nz(state, exp1, "VALUE", "WSE", **kwargs), self.visit_nz(state, exp2, "VALUE", "WSE", **kwargs)))
+                    self.assign_with_prop(state, "bav", self.eager_or_expr_prop(self.cp(state, "bav"), self.eager_and_expr_prop(bav1, self.visit_nz(state, exp2, "VALUE", "WSE", **kwargs)))),
+                    self.assign_var(value, self.eager_and_expr_prop(self.visit_nz(state, exp1, "VALUE", "WSE", **kwargs), self.visit_nz(state, exp2, "VALUE", "WSE", **kwargs)))
                 ]
         return self.comma_expr(*(part1+part2+part3))
         
@@ -2580,8 +2634,8 @@ class AbsDrRules:
                 part2 = [self.visitor_visit(state, exp2, "GET_VAL", "ACCESS", **kwargs)] 
                 part3 = [
                     self.assign_with_prop(state, "bap", bap1),
-                    self.assign_with_prop(state, "bav", self.and_expr_prop(self.or_expr_prop(self.cp(state, "bav"), bav1), self.or_expr_prop(bav1, "!("+self.visit_nz(state, exp1, "VALUE", "WSE", **kwargs)+")"), self.or_expr_prop(self.cp(state, "bav"), "!("+self.visit_nz(state, exp2, "VALUE", "WSE", **kwargs)+")"))),
-                    self.assign_var(value, self.or_expr_prop(self.visit_nz(state, exp1, "VALUE", "WSE", **kwargs), self.visit_nz(state, exp2, "VALUE", "WSE", **kwargs)))
+                    self.assign_with_prop(state, "bav", self.eager_and_expr_prop(self.or_expr_prop(self.cp(state, "bav"), bav1), self.eager_or_expr_prop(bav1, "!("+self.visit_nz(state, exp1, "VALUE", "WSE", **kwargs)+")"), self.eager_or_expr_prop(self.cp(state, "bav"), "!("+self.visit_nz(state, exp2, "VALUE", "WSE", **kwargs)+")"))),
+                    self.assign_var(value, self.eager_or_expr_prop(self.visit_nz(state, exp1, "VALUE", "WSE", **kwargs), self.visit_nz(state, exp2, "VALUE", "WSE", **kwargs)))
                 ]
         return self.comma_expr(*(part1+part2+part3))
         
@@ -2614,7 +2668,7 @@ class AbsDrRules:
                 ]
                 kwneg = kwargs.copy()
                 kwneg['negate'] = True
-                part2a = self.and_expr_prop(self.not_cp(state, "bav"), self.visit_nz(state, exp1, "VALUE", "WSE", **kwneg))
+                part2a = self.eager_and_expr_prop(self.not_cp(state, "bav"), self.visit_nz(state, exp1, "VALUE", "WSE", **kwneg))
                 stateTillPart2a = state.copy()
                 statePart2b = state.copy()
                 part2b = "("+self.visitor_visit(statePart2b, exp2, "GET_VAL", "ACCESS", **kwargs)+")"
@@ -2624,8 +2678,8 @@ class AbsDrRules:
                 kwneg2['negate'] = True
                 part3 = [
                     self.assign_with_prop(state, "bap", bap1),
-                    self.assign_with_prop(state, "bav", self.or_expr_prop(self.cp(state, "bav"), self.and_expr_prop(bav1, self.visit_nz(state, exp2ForVal, "VALUE", "WSE", **kwneg2)))),
-                    self.assign_var(value, self.or_expr_prop(self.visit_nz(state, exp1, "VALUE", "WSE", **kwargs), self.visit_nz(state, exp2ForVal, "VALUE", "WSE", **kwargs)))
+                    self.assign_with_prop(state, "bav", self.eager_or_expr_prop(self.cp(state, "bav"), self.eager_and_expr_prop(bav1, self.visit_nz(state, exp2ForVal, "VALUE", "WSE", **kwneg2)))),
+                    self.assign_var(value, self.eager_or_expr_prop(self.visit_nz(state, exp1, "VALUE", "WSE", **kwargs), self.visit_nz(state, exp2ForVal, "VALUE", "WSE", **kwargs)))
                 ]
         return self.comma_expr(*(part1+part2+part3))
         
@@ -3258,7 +3312,7 @@ class AbsDrRules:
                 stmts.append(helpvar + " = ("+self.visitor_visit(state, assExp, "VALUE", "WSE", **kwargs)+")")
                 bav_or_test.append(self.bounds_failure(helpvar, unExprType))
             if len(bav_or_test) > 1:
-                stmts.append(self.assign_with_prop(state,"bav",self.or_expr_prop(*bav_or_test)))
+                stmts.append(self.assign_with_prop(state,"bav",self.eager_or_expr_prop(*bav_or_test)))
             stmts.append(self.setsm("&("+self.visitor_visit(state, unExp, "LVALUE", "WSE", **kwargs)+")", self.sm_abs, self.cp(state, "bav")))
             if not self.abs_on:
                 stmts.append(self.visitor_visit(state, unExp, "LVALUE", "WSE", **kwargs)+" = ("+self.visit_cut(state, assExp, "VALUE", "WSE", **kwargs)+")")
@@ -3267,7 +3321,7 @@ class AbsDrRules:
                 for (f_exps, isAbs) in fields_to_copy:
                     lvalues = [self.visitor_visit(state, e, "LVALUE", "WSE", **kwargs) for e in f_exps] # unExp,assExp
                     if self.underapprox:
-                        bav_f = self.or_expr_prop(self.cp(state, "bap"), self.getsm("&("+lvalues[1]+")", self.sm_abs))
+                        bav_f = self.eager_or_expr_prop(self.cp(state, "bap"), self.getsm("&("+lvalues[1]+")", self.sm_abs))
                     else:
                         bav_f = self.getsm("&("+lvalues[1]+")", self.sm_abs)
                     stmts.append(self.setsm("&("+lvalues[0]+")", self.sm_abs, bav_f))
@@ -3323,11 +3377,11 @@ class AbsDrRules:
                         with self.bavH() as bav1:
                             stmts.append(self.binary_op_of(lhs, innOp, rhs, "&("+self.visitor_visit(state, unExp, "LVALUE", "WSE", **kwargs)+")", "&"+bav1))
                             bav_or_test.append(bav1)
-                            stmts.append(self.assign_with_prop(state,"bav",self.or_expr_prop(*bav_or_test)))
+                            stmts.append(self.assign_with_prop(state,"bav",self.eager_or_expr_prop(*bav_or_test)))
                     else:
                         stmts.append(self.binary_op_no_of(lhs, innOp, rhs, "&("+self.visitor_visit(state, unExp, "LVALUE", "WSE", **kwargs)+")"))
                         if len(bav_or_test) > 1:
-                            stmts.append(self.assign_with_prop(state,"bav",self.or_expr_prop(*bav_or_test)))
+                            stmts.append(self.assign_with_prop(state,"bav",self.eager_or_expr_prop(*bav_or_test)))
                     if helpvar is not None:
                         self.release_help_var(helpvar)
         ans = self.comma_expr(*stmts)
