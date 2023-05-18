@@ -594,7 +594,7 @@ enum t_typename {"""+",\n".join(self.typenames_enum)+"""};
         return ans
         
     def visit_InitList(self, n):
-        self.mark_bottom_assumeBap_block()
+        self.new_assumeBap_block()
         ans = []
         any_se = False
         with self.set_can_value(True):
@@ -777,7 +777,7 @@ enum t_typename {"""+",\n".join(self.typenames_enum)+"""};
         #  static bool cond;
         #  cond = ....
         #  if(cond){...} (else {...})?
-        if type(cmpnd) is not Compound:
+        if type(cmpnd) is not Compound or cmpnd.block_items is None:
             return False
         decl_cond = None
         has_assn_cond = False

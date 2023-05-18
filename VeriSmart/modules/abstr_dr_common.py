@@ -1051,6 +1051,8 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
             return self.macro_file_manager.expression(n, self.do_rule('rule_Sizeof', n, **extra_args), passthrough=not self.full_statement, brackets=not self.full_statement)
         elif fref == '__cs_safe_malloc':
             return self.macro_file_manager.expression(n, self.do_rule('rule_Malloc', n, **extra_args), passthrough=not self.full_statement, brackets=not self.full_statement)
+        elif fref == 'calloc':
+            return self.macro_file_manager.expression(n, self.do_rule('rule_Calloc', n, **extra_args), passthrough=not self.full_statement, brackets=not self.full_statement)
         elif fref == '__CSEQ_nondet_bool':
             return self.macro_file_manager.expression(n, self.do_rule('rule_NondetBool', n, **extra_args), passthrough=not self.full_statement, brackets=not self.full_statement)
         #elif fref.startswith('__CSEQ_atomic_'): # so that atomic functions aren't catched by my code TODO this will go with proper implementation of function calls that use shadow memory
@@ -1307,10 +1309,14 @@ void __CPROVER_set_field(void *a, char field[100], _Bool c){return;}
                     self.program_pointers.append(n.name)
                 
                 if self.scope == 'global':
+                    ncp = copy.deepcopy(n)
+                    ncp.init = None
+                    #if n.name == "a":
+                    #    print("a", "XXX", self.scope)
                     #with self.no_any_instrument(): 
                     with BakAndRestore(self, 'full_statement', False):       
                         #print("NOINSTR6", n)
-                        ans = self.LZvisit_Decl(n)
+                        ans = self.LZvisit_Decl(ncp)
                 else:
                     #with self.no_any_instrument(): 
                     with BakAndRestore(self, 'full_statement', False):  

@@ -1880,8 +1880,41 @@ class AbsDrRules:
                 self.comma_expr(
                     self.visitor_visit(state, exp, "GET_VAL", "ACCESS", **kwargs),
                     self.__malloc_inner(state, **kwargs),
-                    self.auxvars.write(fullExpr, fncName+"("+self.visitor_visit(state, exp, "VALUE", "WSE", **kwargs)+")")
-                    #self.assign_var(malloc_value, fncName+"("+self.visitor_visit(state, exp, "VALUE", "WSE", **kwargs)+")")
+                    self.auxvars.write(fullExpr, fncName+"("+self.visitor_visit(state, exp, "VALUE", "WSE", **kwargs)+")"),
+                    self.assign_with_prop(state,"bav", "0") #if you are here, bav is 0 for sure. If you had troubles before, either you failed or assume(0)-ed
+                ) \
+            , fullExpr, abs_mode, dr_mode)
+        else:
+            assert(False)
+            
+    def rule_Calloc(self, state, fullExpr, abs_mode, dr_mode, full_statement, **kwargs):
+        self.assertDisabledIIFModesAreNone(abs_mode, dr_mode, **kwargs) 
+        if dr_mode == "TOP_ACCESS":
+            return self.store_content(full_statement, self.fakeIfAssignment(self.comma_expr(
+                    self.visitor_visit(state, fullExpr, abs_mode, "ACCESS", **kwargs),
+                    self.visitor_visit(state, fullExpr, abs_mode, "WSE", **kwargs)
+                )), fullExpr, abs_mode, dr_mode)
+        exp = fullExpr.args.exprs
+        fncName = fullExpr.name.name
+        if abs_mode in ("VALUE", None) and dr_mode in ("WSE",None):
+            malloc_type = "char *"
+            #ans = self.get_value_var_node(fullExpr, malloc_type)
+            ans = self.auxvars.read(fullExpr)
+            return self.store_content(full_statement,ans, \
+                fullExpr, abs_mode, dr_mode)
+        
+        elif abs_mode in ("GET_VAL",None) and dr_mode in ("NO_ACCESS","ACCESS","PREFIX",None):
+            malloc_type = "char *"
+            #malloc_value = self.get_value_var_node(fullExpr, malloc_type)
+            self.auxvars.create(fullExpr, malloc_type)
+            return self.store_content(full_statement, \
+                self.comma_expr(
+                    self.visitor_visit(state, exp[0], "GET_VAL", "ACCESS", **kwargs),
+                    self.__malloc_inner(state, **kwargs),
+                    self.visitor_visit(state, exp[1], "GET_VAL", "ACCESS", **kwargs),
+                    self.__malloc_inner(state, **kwargs),
+                    self.auxvars.write(fullExpr, fncName+"("+self.visitor_visit(state, exp[0], "VALUE", "WSE", **kwargs)+","+self.visitor_visit(state, exp[1], "VALUE", "WSE", **kwargs)+")"),
+                    self.assign_with_prop(state,"bav", "0") #if you are here, bav is 0 for sure. If you had troubles before, either you failed or assume(0)-ed
                 ) \
             , fullExpr, abs_mode, dr_mode)
         else:
@@ -3413,8 +3446,14 @@ class AbsDrRules:
         ans = "((void)0)"
         if self.abs_on:
             unExp = c_ast.ID(name=n.name)
-            unExprType = self.supportFile.get_type(unExp)
-            if self.is_abstractable(unExprType):
+            is_abstr = False
+            unExprType = None
+            try:
+                unExprType = self.supportFile.get_type(unExp)
+                is_abstr = self.is_abstractable(unExprType)
+            except KeyError: #this variable is never used, keep as is
+                pass
+            if is_abstr:
                 ans = self.setsm("&("+self.visitor_visit(state, unExp, "LVALUE", "WSE", **kwargs)+")", self.sm_abs, self.bounds_failure(self.visitor_visit(state, unExp, "LVALUE", "WSE", **kwargs), unExprType))
         return ans
         
