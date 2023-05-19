@@ -1158,6 +1158,10 @@ class AbsDrRules:
             return "__CPROVER_nz_bits("+expr.name+", 1)"
         else:
             return self.visit_nz(state, expr, abs_mode, dr_mode, **kwargs)
+            
+    def set_nondet_bav(self, state):
+        state.cp_bav = None
+        return "__CPROVER_havoc_object(&"+self.bav+")"
                 
     def rule_preOp(self, state, preop, abs_mode, dr_mode, full_statement, **kwargs): # --x, ++x
         is_func_arg = kwargs.pop("func_arg", False)
@@ -3043,7 +3047,11 @@ class AbsDrRules:
                 return self.cut(self.getNondetvar(fnc))
         else:
             typ=kwargs['ndtype']
-            return self.if_abs(lambda:self.assign_with_prop(state,"bav", self.bounds_failure(self.getNondetvar(fnc), typ)))
+            if (not self.is_abstractable(typ)) or self.abstr_bits >= 8 * self.abstrTypesSizeof[typ]:
+                return self.assign_with_prop(state,"bav", "0")
+            else:
+                return self.set_nondet_bav(state)
+            #return self.if_abs(lambda:self.assign_with_prop(state,"bav", self.bounds_failure(self.getNondetvar(fnc), typ)))
                 
     # nondeterministic returning function. Treat as a constant
     def rule_NondetBool(self, state, fnc, abs_mode, dr_mode, full_statement, **kwargs):      
@@ -3450,11 +3458,15 @@ class AbsDrRules:
             unExprType = None
             try:
                 unExprType = self.supportFile.get_type(unExp)
-                is_abstr = self.is_abstractable(unExprType)
+                is_abstr = self.is_abstractable(unExprType) and self.abstrTypesSizeof[unExprType]*8 > self.abstr_bits
             except KeyError: #this variable is never used, keep as is
                 pass
             if is_abstr:
-                ans = self.setsm("&("+self.visitor_visit(state, unExp, "LVALUE", "WSE", **kwargs)+")", self.sm_abs, self.bounds_failure(self.visitor_visit(state, unExp, "LVALUE", "WSE", **kwargs), unExprType))
+                #ans = self.setsm("&("+self.visitor_visit(state, unExp, "LVALUE", "WSE", **kwargs)+")", self.sm_abs, self.bounds_failure(self.visitor_visit(state, unExp, "LVALUE", "WSE", **kwargs), unExprType))
+                ans = self.comma_expr(self.set_nondet_bav(state), self.setsm("&("+self.visitor_visit(state, unExp, "LVALUE", "WSE", **kwargs)+")", self.sm_abs, self.bav))
+            else:
+                ans = self.setsm("&("+self.visitor_visit(state, unExp, "LVALUE", "WSE", **kwargs)+")", self.sm_abs, "0")
+                
         return ans
         
     def rule_InitCondvar(self, state, n, abs_mode, dr_mode, full_statement, **kwargs):
