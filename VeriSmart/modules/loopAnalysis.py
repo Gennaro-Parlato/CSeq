@@ -193,6 +193,12 @@ class loopAnalysis(core.module.Translator):
 		else:
 			self.printIsSafe(totaltime, env.inputfile, env.isSwarm)
 		return
+		
+	def get_label_name(self, tName, labsub):
+	    if labsub[1] == 0:
+	        return "t%s_%s" % (tName, labsub[0])
+	    else:
+	        return "x%s_%s_%s" % (tName, labsub[0], labsub[1])
 
 	def substitute(self, seqCode, list, tName, startIndex, maxlabels):
 		self.__threadIndex["main_thread"] = self.__threadIndex["main"]
@@ -205,7 +211,7 @@ class loopAnalysis(core.module.Translator):
 		done = False
 		j = i
 		ICount = 0
-		count = 0
+		count = [0, 0]
 		iList = 0
 		cRange = range(list[iList][0], list[iList][1] + 1)
 		while (i < len(seqCode) and not done):
@@ -217,7 +223,7 @@ class loopAnalysis(core.module.Translator):
 					output.append(seqCode[j:i])
 					stringToStrip = ''
 
-					l1 = count
+					l1 = count[0]
 					#l2 = count + 1
 					if (self.__satSwarm): 
 						l1 = self.__ctrlVarPrefix + '_' +  str(self.__threadIndex[tName]) + '_' + str(l1)
@@ -230,16 +236,18 @@ class loopAnalysis(core.module.Translator):
 						m += 1
 
 					# First statement of thread
-					if count == 0:
+					if count[0] == 0:
 						while(seqCode[m-5 : m] != "@£@I3"):   #take DR_S from "@£@I2 DR_S @£@I3 S @£@I4"
                                                 	stringToStrip += seqCode[m]
                                                 	m += 1	
+                                                	
+						jmplbl = self.get_label_name(tName, [count[0]+1, 0])
 
 						for sub in (
-							("@£@I1",'__CSEQ_rawline("IF(%s,%s,t%s_%s,%d)");' % (self.__threadIndex[tName], l1, tName, count+1, bw_cs_pc)),
-							("@£@J1",'__CSEQ_rawline("IF(%s,%s,t%s_%s,%d)");' % (self.__threadIndex[tName], l1, tName, count+1, bw_cs_pc)),
-							("@£@L1", str(count)),
-							("@£@L2", str(count)),
+							("@£@I1",'__CSEQ_rawline("IF(%s,%s,%s,%d)");' % (self.__threadIndex[tName], l1, jmplbl, bw_cs_pc)),
+							("@£@J1",'__CSEQ_rawline("IF(%s,%s,%s,%d)");' % (self.__threadIndex[tName], l1, jmplbl, bw_cs_pc)),
+							("@£@L1", str(count[0])),
+							("@£@L2", str(count[0])),
 							("@£@I2", ''), 
 							("@£@I3", '')):
     							stringToStrip = stringToStrip.replace(*sub)
@@ -252,7 +260,7 @@ class loopAnalysis(core.module.Translator):
 
 						while(seqCode[m-5 : m] != "@£@I4"): #delete "S @£@I4" from "@£@I2 DR_S @£@I3 S @£@I4"
                                                 	m += 1	
-						count += 1
+						count = [count[0]+1, 0]
 						i = m
 
 					
@@ -265,11 +273,13 @@ class loopAnalysis(core.module.Translator):
 						while(seqCode[m-5 : m] != "@£@I4"): #delete "S @£@I4" from "@£@I2 DR_S @£@I3 S @£@I4"
                                                 	m += 1	
 
+						thislbl = self.get_label_name(tName, count)
+						jmplbl = self.get_label_name(tName, [count[0]+1, 0])
 						for sub in (
-							("@£@I1", '__CSEQ_rawline("t%s_%s:"); %s __CSEQ_rawline("IF(%s,%s,t%s_%s,%d)");' % (tName, count, self.resetaux_call, self.__threadIndex[tName], l1, tName, count + 1, bw_cs_pc)),
-							("@£@J1", '__CSEQ_rawline("t%s_%s:"); %s __CSEQ_rawline("IF(%s,%s,t%s_%s,%d)");' % (tName, count, self.resetaux_call, self.__threadIndex[tName], l1, tName, count + 1, bw_cs_pc)),
-							("@£@L1", str(count)),
-							("@£@L2", str(count)),
+							("@£@I1", '__CSEQ_rawline("%s:"); %s __CSEQ_rawline("IF(%s,%s,%s,%d)");' % (thislbl, self.resetaux_call, self.__threadIndex[tName], l1, jmplbl, bw_cs_pc)),
+							("@£@J1", '__CSEQ_rawline("%s:"); %s __CSEQ_rawline("IF(%s,%s,%s,%d)");' % (thislbl, self.resetaux_call, self.__threadIndex[tName], l1, jmplbl, bw_cs_pc)),
+							("@£@L1", str(count[0])),
+							("@£@L2", str(count[0])),
 							("@£@I2", ''), 
 							("@£@I3", '')):
     							stringToStrip = stringToStrip.replace(*sub)
@@ -279,7 +289,7 @@ class loopAnalysis(core.module.Translator):
 							fname = 'nondet' + str(self.__threadIndex[tName])
 							self.__ctrlVarDefs.append('unsigned int %s = %s();' % (l1,fname))
 
-						count += 1
+						count = [count[0]+1, 0]
 						if isCompulsoryVP: # that was a compulsory vp. You shouldn't be counting it, treat it like it was invisible
 							ICount -= 1
 						elif ICount == list[iList][1] and iList < len(list) - 1:
@@ -313,18 +323,38 @@ class loopAnalysis(core.module.Translator):
 				# Guard label
 				elif seqCode[i + 3] == 'G':
 					s = seqCode[j:i] + '__CSEQ_assume(__CPROVER_uge_bits(__cs_pc_cs[%s], %s, %d));' % (
-						self.__threadIndex[tName], count, bw_cs_pc)
+						self.__threadIndex[tName], count[0], bw_cs_pc)
 					output.append(s)
 					i += 4
 					j = i
+					
+				# Label without jump, then increase sublabel count
+				elif seqCode[i + 3] == 'Q':
+					thislbl = self.get_label_name(tName, count)
+					s = seqCode[j:i] + '__CSEQ_rawline("%s: ");' % (thislbl, )
+					output.append(s)
+					count = [count[0], count[1]+1]
+					i += 4
+					j = i
+					
+				
+				# Jump without label	
+				elif seqCode[i + 3] == 'H':
+					thislbl = self.get_label_name(tName, count)
+					s = seqCode[j:i] + '__CSEQ_rawline("IF(%s,%s,%s,%d)");' % (self.__threadIndex[tName], l1, thislbl, bw_cs_pc)
+					output.append(s)
+					i += 4
+					j = i	
+					
 
 				# Last statement of thread
 				else:
-					s = seqCode[j:i] + '__CSEQ_rawline("t%s_%s: "); %s' % (tName, count,self.resetaux_call)
+					thislbl = self.get_label_name(tName, count)
+					s = seqCode[j:i] + '__CSEQ_rawline("%s: "); %s' % (thislbl,self.resetaux_call)
 					output.append(s)
 					i += 4
 					done = True
-					maxlabels[tName] = count
+					maxlabels[tName] = count[0]
 			else:
 				i += 1
 		del self.__threadIndex["main_thread"]

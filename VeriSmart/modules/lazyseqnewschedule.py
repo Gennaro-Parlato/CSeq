@@ -620,23 +620,45 @@ class lazyseqnewschedule(core.module.Translator):
 
 	def visit_If(self, n):
 		ifStart = self.__maxInCompound   # label where the if stmt begins
+		
+		vp_after_cond = '@£@Q' # VP jump ends after condition evaluation. To avoid spoiling the guard simplification algorithm, use the if structure to enter the relevant branch
 
-		s = 'if ('
+		s = vp_after_cond + 'if ('
 
 		if n.cond:
 			condition = self.visit(n.cond)
 			s += condition
 
 		s += ')\n'
-		s += self._generate_stmt(n.iftrue, add_indent=True)
-
+		
+		lbl_pre_then = self.__maxInCompound
+		thenBlock = self._generate_stmt(n.iftrue, add_indent=True)
+		lbl_post_then = self.__maxInCompound
 		ifEnd = self.__maxInCompound   # label for the last stmt in the if block:  if () { block; }
 		nextLabelID = ifEnd+1
-
+		
+		lbl_pre_else = self.__maxInCompound
 		if n.iffalse:
 			elseBlock = self._generate_stmt(n.iffalse, add_indent=True)
-
 			elseEnd = self.__maxInCompound   # label for the last stmt in the if_false block if () {...} else { block; }
+		lbl_post_else = self.__maxInCompound	
+		
+		vpThen = lbl_pre_then < lbl_post_then
+		vpElse = lbl_pre_else < lbl_post_else
+		
+		
+		thenBlock = thenBlock.replace('{', '{@£@H\n', 1) #jump to the first label in the branch
+		thenBlock = "@£@Q;}".join(thenBlock.rsplit('}', 1)) #put the label at the end of the branch -> avoids jumping into the else branch. Weird code because there isn't the rreplace function
+		
+		s += thenBlock
+
+		
+
+		#lbl_pre_else = self.__maxInCompound
+		if n.iffalse:
+			#elseBlock = self._generate_stmt(n.iffalse, add_indent=True)
+
+			#elseEnd = self.__maxInCompound   # label for the last stmt in the if_false block if () {...} else { block; }
 
 			if ifStart < ifEnd:
 				#threadIndex = self.Parser.threadIndex[self.__currentThread] if self.__currentThread in self.Parser.threadIndex else 0
@@ -657,11 +679,13 @@ class lazyseqnewschedule(core.module.Translator):
 
 			else:
 				elseHeader = ''
+			elseHeader += '\n@£@H '
 
 			nextLabelID = elseEnd+1
 			s += self._make_indent() + 'else\n'
 
 			elseBlock = elseBlock.replace('{', '{ '+elseHeader, 1)
+			elseBlock = "@£@Q;}".join(elseBlock.rsplit('}', 1))
 			s += elseBlock
 
 		header = ''

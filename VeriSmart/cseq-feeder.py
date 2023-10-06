@@ -167,6 +167,7 @@ class cseqenv:
     #bit_width = 3
     cases_abstr = ["plain"]
     no_inline_atomic = False
+    macro_file = None
 
 
 def parseChainCommand(s):
@@ -324,6 +325,7 @@ def usage(cmd, errormsg, showhelp=True, detail=False, isSwarm=False):
         #print("   --abstr_under                     turn on abstraction underapproximation (default: 0 false)")
         #print("   --bit_width                       abstraction precision [3-32] bits (default: 3 bit)")
         print("   --macro-file                      macro file name for the over-approximation schema (default: macro_plain.h)")
+        print("   --extra-file                      macro file name to be included only at cbmc time (i.e., won't be seen by lazy)")
         # Module-specific params for the given chain (or for the default one)
         print("")
         print("module options:")
@@ -576,7 +578,7 @@ def main():
                     "sat-swarm",
                     
                     # Abstraction
-                    "abstr_cases=","macro-file=", "no-inline-atomic"]
+                    "abstr_cases=","macro-file=", "no-inline-atomic", "extra-file="]
 
         # add one command-line parameter for each module-specific parameter
         for p in cseqenv.params:
@@ -750,6 +752,9 @@ def main():
             cseqenv.macro_file = a
         elif o in ('--abstr_cases'):
             cseqenv.cases_abstr = [k.strip() for k in a.split(",")]
+            
+        elif o in ("--extra-file",):
+            cseqenv.extra_file = a
             
         elif o in ('--no-inline-atomic'):
             cseqenv.no_inline_atomic = True

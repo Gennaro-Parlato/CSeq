@@ -152,8 +152,10 @@ class feeder(core.module.BasicModule):
 		slevel = int(self.getInputParamValue('slevel'))
 		timelimit = self.getInputParamValue('time')
 		backend = self.getInputParamValue('backend')
-		pathbackend = self.getInputParamValue('path-backend')
+		#pathbackend = self.getInputParamValue('path-backend')
+		pathbackend = env.backend_path
 		witness = self.getInputParamValue('witness')
+		cmdl = env.extra_args
 
 		engine = self.getInputParamValue('backend-engine')
 
@@ -230,7 +232,7 @@ class feeder(core.module.BasicModule):
 			exe = pathbackend
 		
 		#Caledem
-		if backend == "cbmc":
+		if backend == "cbmc" and not (pathbackend is not None and pathbackend):
 			if sys.platform.startswith('darwin'):
 				exe = "./cbmc-SM-mac"
 			else:
@@ -270,6 +272,8 @@ class feeder(core.module.BasicModule):
 			for key in backendOpt:
 				if backendOpt[key]:
 					cmdline += ' --%s' % key
+			if cmdl != None:
+			    cmdline = exe + " " + cmdl + " " + seqfile
 		elif backend == 'llbmc':
 			# llbmc and clang need to be match
 			clangpath = '' if self.getInputParamValue('llvm') is None else self.getInputParamValue('llvm')
@@ -361,6 +365,6 @@ class feeder(core.module.BasicModule):
 		else:
 			core.utils.saveFile(logfile, out)   # klee outputs errors to stdout, all other backends to stderr
 			core.utils.saveFile(seqfile + '.' + backend + '.log', out)   # klee outputs errors to stdout, all other backends to stderr
-			# core.utils.saveFile(seqfile + '.' + backend + '.err', err)   # klee outputs errors to stdout, all other backends to stderr
+			core.utils.saveFile(seqfile + '.' + backend + '.err', err.decode())   # klee outputs errors to stdout, all other backends to stderr
 			self.output = out
 

@@ -491,6 +491,13 @@ class instrumenter(core.module.Translator):
 			else:
 				s = s.replace('int ', '__CPROVER_bitvector[%s] ' % k, 1)
 		return s
+		
+	def visit_FuncDef(self,n):
+	    ans = super().visit_FuncDef(n)
+	    if self.env.macro_file is not None and n.decl.name == "main_thread":
+	        return "#include \""+self.env.macro_file+"\"\n"+ans
+	    else:
+	        return ans
 
 	''' converts function calls '''
 	def visit_FuncCall(self,n):
