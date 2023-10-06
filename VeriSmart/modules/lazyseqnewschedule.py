@@ -621,15 +621,13 @@ class lazyseqnewschedule(core.module.Translator):
 	def visit_If(self, n):
 		ifStart = self.__maxInCompound   # label where the if stmt begins
 		
-		vp_after_cond = '@£@Q' # VP jump ends after condition evaluation. To avoid spoiling the guard simplification algorithm, use the if structure to enter the relevant branch
-
-		s = vp_after_cond + 'if ('
+		if_header = 'if ('
 
 		if n.cond:
 			condition = self.visit(n.cond)
-			s += condition
+			if_header += condition
 
-		s += ')\n'
+		if_header += ')\n'
 		
 		lbl_pre_then = self.__maxInCompound
 		thenBlock = self._generate_stmt(n.iftrue, add_indent=True)
@@ -646,11 +644,19 @@ class lazyseqnewschedule(core.module.Translator):
 		vpThen = lbl_pre_then < lbl_post_then
 		vpElse = lbl_pre_else < lbl_post_else
 		
+		if vpThen or vpElse:
+		    if_header = '@£@Q' + if_header # VP jump ends after condition evaluation. To avoid spoiling the guard simplification algorithm, use the if structure to enter the relevant branch
+		    thenBlock = thenBlock.replace('{', '{@£@H\n', 1) #jump to the first label in the branch
+		    thenBlock = "@£@Q;}".join(thenBlock.rsplit('}', 1)) #put the label at the end of the branch -> avoids jumping into the else branch. Weird code because there isn't the rreplace function
+		    
 		
-		thenBlock = thenBlock.replace('{', '{@£@H\n', 1) #jump to the first label in the branch
-		thenBlock = "@£@Q;}".join(thenBlock.rsplit('}', 1)) #put the label at the end of the branch -> avoids jumping into the else branch. Weird code because there isn't the rreplace function
-		
+		s = if_header
 		s += thenBlock
+		
+		
+		
+		
+		
 
 		
 
@@ -679,13 +685,16 @@ class lazyseqnewschedule(core.module.Translator):
 
 			else:
 				elseHeader = ''
-			elseHeader += '\n@£@H '
+			
+			if vpThen or vpElse:
+			    elseHeader += '\n@£@H '
 
 			nextLabelID = elseEnd+1
 			s += self._make_indent() + 'else\n'
 
 			elseBlock = elseBlock.replace('{', '{ '+elseHeader, 1)
-			elseBlock = "@£@Q;}".join(elseBlock.rsplit('}', 1))
+			if vpThen or vpElse:
+			    elseBlock = "@£@Q;}".join(elseBlock.rsplit('}', 1))
 			s += elseBlock
 
 		header = ''
