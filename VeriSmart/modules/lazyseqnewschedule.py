@@ -685,6 +685,8 @@ class lazyseqnewschedule(core.module.Translator):
 
 			else:
 				elseHeader = ''
+				
+			elseHeader = ''
 			
 			if vpThen or vpElse:
 			    elseHeader += '\n@£@H '
@@ -717,6 +719,8 @@ class lazyseqnewschedule(core.module.Translator):
 
 		else:
 			footer = ''
+			
+		footer = ''
 
 		'''
 		if n.iffalse:
