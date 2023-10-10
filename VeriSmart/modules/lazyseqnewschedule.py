@@ -463,7 +463,7 @@ class lazyseqnewschedule(core.module.Translator):
 					guard = ''
 					if not self.__atomic:
 						guard = '@£@G'
-					guard = '@£@H'
+					guard = '@£@H' if not(code.startswith("@£@I") or code.startswith("@£@J")) else ''
 					code = self._make_indent() + stmt.name + ': ' + guard + code + '\n'
 					compoundList.append(code)
 				elif type(stmt) is pycparser.c_ast.Compound:

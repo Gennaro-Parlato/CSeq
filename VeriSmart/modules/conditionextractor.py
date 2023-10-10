@@ -119,9 +119,14 @@ class conditionextractor(core.module.Translator):
             cond = self.visit(n.cond)
 
             if self.funcCallFound == True:
-                extraBlock = ';_Bool __cz_tmp_while_cond_%s; __cz_tmp_while_cond_%s = (%s); ' % (
-                    self.whileCondCount, self.whileCondCount, cond)
-                s += '__cz_tmp_while_cond_%s' % (self.whileCondCount)
+                if cond == "__CSEQ_nondet_bool()":
+                    wc_name = "__cz_tmp_nondet_while_cond_%s"%(self.whileCondCount, )
+                    extraBlock = ';_Bool '+wc_name+'; '
+                else:
+                    wc_name = "__cz_tmp_while_cond_%s"%(self.whileCondCount, )
+                    extraBlock = ';_Bool %s; %s = (%s); ' % (
+                    wc_name, wc_name, cond)
+                s += wc_name
                 s = extraBlock + '\n' + self._make_indent() + s
                 s += ')\n'
 
@@ -131,7 +136,7 @@ class conditionextractor(core.module.Translator):
                     t = self._make_indent() + '{\n' + t + self._make_indent() + '}\n'
 
                 t = t[:t.rfind('}')]
-                t = t + self._make_indent() + '__cz_tmp_while_cond_%s = (%s);\n' % (self.whileCondCount, cond)
+                t = t + self._make_indent() + '%s = (%s);\n' % (wc_name, cond)
                 t = t + self._make_indent() + '}'
 
                 self.whileCondCount += 1
@@ -182,8 +187,9 @@ class conditionextractor(core.module.Translator):
     def visit_FuncCall(self, n):
         fref = self._parenthesize_unless_simple(n.name)
         args = self.visit(n.args)
-        if fref in self.Parser.funcName:
-            self.funcCallFound = True
+        #if fref in self.Parser.funcName:
+        #    self.funcCallFound = True
+        self.funcCallFound = True
 
         if n.args is None:
             self.lastFuncParams = []
