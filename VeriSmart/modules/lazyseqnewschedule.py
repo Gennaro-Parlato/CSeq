@@ -54,6 +54,7 @@ class lazyseqnewschedule(core.module.Translator):
 	__labelLine = {}                 # statement number where labels are defined [function, label]
 	__gotoLine = {}                  # statement number where goto to labels appear [function, label]
 	__maxInCompound = 0              # max label within a compound
+	__goto_count = 0                 # number of gotos found so far
 	__labelLength = 55               # for labels to have all the same length, adding padding when needed
 	__startChar = 't'                # special char to distinguish between labeled and non-labelled lines
 
@@ -462,6 +463,7 @@ class lazyseqnewschedule(core.module.Translator):
 					guard = ''
 					if not self.__atomic:
 						guard = '@£@G'
+					guard = '@£@H'
 					code = self._make_indent() + stmt.name + ': ' + guard + code + '\n'
 					compoundList.append(code)
 				elif type(stmt) is pycparser.c_ast.Compound:
@@ -629,20 +631,24 @@ class lazyseqnewschedule(core.module.Translator):
 
 		if_header += ')\n'
 		
+		gc_pre_then = self.__goto_count
 		lbl_pre_then = self.__maxInCompound
 		thenBlock = self._generate_stmt(n.iftrue, add_indent=True)
+		gc_post_then = self.__goto_count
 		lbl_post_then = self.__maxInCompound
 		ifEnd = self.__maxInCompound   # label for the last stmt in the if block:  if () { block; }
 		nextLabelID = ifEnd+1
 		
 		lbl_pre_else = self.__maxInCompound
+		gc_pre_else = self.__goto_count
 		if n.iffalse:
 			elseBlock = self._generate_stmt(n.iffalse, add_indent=True)
 			elseEnd = self.__maxInCompound   # label for the last stmt in the if_false block if () {...} else { block; }
 		lbl_post_else = self.__maxInCompound	
+		gc_post_else = self.__goto_count
 		
-		vpThen = lbl_pre_then < lbl_post_then
-		vpElse = lbl_pre_else < lbl_post_else
+		vpThen = lbl_pre_then < lbl_post_then or gc_pre_then < gc_post_then
+		vpElse = lbl_pre_else < lbl_post_else or gc_pre_else < gc_post_else
 		
 		if vpThen or vpElse:
 		    if_header = '@£@Q' + if_header # VP jump ends after condition evaluation. To avoid spoiling the guard simplification algorithm, use the if structure to enter the relevant branch
@@ -751,7 +757,8 @@ class lazyseqnewschedule(core.module.Translator):
 	def visit_Goto(self, n):
 		self.__gotoLine[self.__currentThread, n.name] = self.__stmtCount
 		extra = '<%s,%s>\n' % (self.__currentThread, n.name) + self._make_indent()
-		extra = ''
+		extra = '@£@Q '
+		self.__goto_count += 1
 		return extra + 'goto ' + n.name + ';'
 
 	def fixArrayIndex(self,s):
