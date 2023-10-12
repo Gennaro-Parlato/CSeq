@@ -199,6 +199,21 @@ class loopAnalysis(core.module.Translator):
 	        return "t%s_%s" % (tName, labsub[0])
 	    else:
 	        return "x%s_%s_%s" % (tName, labsub[0], labsub[1])
+	        
+	def search_for_H_and_Q(self, stringToStrip, m, count, seqCode, tName, l1, bw_cs_pc):
+		if seqCode.startswith("@£@H", m):
+			thislbl = self.get_label_name(tName, count)
+			stringToStrip += '__CSEQ_rawline("IF(%s,%s,%s,%d)");' % (self.__threadIndex[tName], l1, thislbl, bw_cs_pc)
+			m += 4
+		elif seqCode.startswith("@£@Q", m):
+			thislbl = self.get_label_name(tName, count)
+			stringToStrip += '__CSEQ_rawline("%s: ");' % (thislbl, )
+			count = [count[0], count[1]+1]
+			m += 4
+		else:
+			stringToStrip += seqCode[m]
+			m += 1
+		return stringToStrip, m, count
 
 	def substitute(self, seqCode, list, tName, startIndex, maxlabels):
 		self.__threadIndex["main_thread"] = self.__threadIndex["main"]
@@ -230,16 +245,18 @@ class loopAnalysis(core.module.Translator):
 						original_tName = 'main' if tName == 'main_thread' else tName 
 						self.__bitwidths['',l1] = math.ceil(math.log(self.__lines[original_tName],2))
 					#	l2 = self.__ctrlVarPrefix + tName + str(l2)
-							
+					
 					while(seqCode[m-5 : m] != "@£@I2"):
-						stringToStrip += seqCode[m]
-						m += 1
+						#stringToStrip += seqCode[m]
+						#m += 1
+						stringToStrip, m, count = self.search_for_H_and_Q(stringToStrip, m, count, seqCode, tName, l1, bw_cs_pc)
 
 					# First statement of thread
 					if count[0] == 0:
 						while(seqCode[m-5 : m] != "@£@I3"):   #take DR_S from "@£@I2 DR_S @£@I3 S @£@I4"
-                                                	stringToStrip += seqCode[m]
-                                                	m += 1	
+                                                	#stringToStrip += seqCode[m]
+                                                	#m += 1	
+                                                	stringToStrip, m, count = self.search_for_H_and_Q(stringToStrip, m, count, seqCode, tName, l1, bw_cs_pc)
                                                 	
 						jmplbl = self.get_label_name(tName, [count[0]+1, 0])
 
@@ -267,8 +284,9 @@ class loopAnalysis(core.module.Translator):
 					elif ICount in cRange or isCompulsoryVP:
 
 						while(seqCode[m-5 : m] != "@£@I3"):   #include "DR_S @£@I3" from " DR_S @£@I3 S @£@I4"
-                                                	stringToStrip += seqCode[m]
-                                                	m += 1	
+                                                	#stringToStrip += seqCode[m]
+                                                	#m += 1	
+                                                	stringToStrip, m, count = self.search_for_H_and_Q(stringToStrip, m, count, seqCode, tName, l1, bw_cs_pc)
 
 						while(seqCode[m-5 : m] != "@£@I4"): #delete "S @£@I4" from "@£@I2 DR_S @£@I3 S @£@I4"
                                                 	m += 1	
@@ -305,8 +323,9 @@ class loopAnalysis(core.module.Translator):
 						stringToStrip = ''  #delete portion "@£@I1...@£@I2"
 
 						while(seqCode[m-5 : m] != "@£@I4"): #include "S @£@I4" from "DR_S @£@I3 S @£@I4"
-                                                	stringToStrip += seqCode[m]
-                                                	m += 1	
+                                                	#stringToStrip += seqCode[m]
+                                                	#m += 1	
+                                                	stringToStrip, m, count = self.search_for_H_and_Q(stringToStrip, m, count, seqCode, tName, l1, bw_cs_pc)
 
 						stringToStrip = stringToStrip.replace('@£@I4','')
 						output.append(stringToStrip)

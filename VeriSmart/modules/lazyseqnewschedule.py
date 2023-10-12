@@ -438,7 +438,13 @@ class lazyseqnewschedule(core.module.Translator):
 						self.__maxInCompound = self.__stmtCount
 						threadIndex = self.Parser.threadOccurenceIndex[self.__currentThread]
 						s = self.visit(stmt.stmt)
-						code = '@£@I1' + self.additionalCode(threadIndex) + '@£@I2' + s + '@£@I3' + self.alternateCode(stmt.stmt) + '@£@I4' + ';\n' 
+						#if s.lstrip().startswith("@£@Q"):
+						#    s = s.lstrip()[4:]
+						code = '@£@I1' + self.additionalCode(threadIndex) + '@£@I2' + s + '@£@I3'
+						ac = self.alternateCode(stmt.stmt)
+						#if ac.lstrip().startswith("@£@Q"):
+						#    ac = ac.lstrip()[4:]
+						code += ac + '@£@I4' + ';\n' 
 					elif (not self.__visit_funcReference and (
 						(type(stmt) == pycparser.c_ast.FuncCall and stmt.name.name == '__CSEQ_atomic_begin') or
 						(not self.__atomic and
@@ -456,7 +462,13 @@ class lazyseqnewschedule(core.module.Translator):
 #@@@@		code = self.visit(stmt)
 						threadIndex = self.Parser.threadOccurenceIndex[self.__currentThread]
 						s = self.visit(stmt.stmt)
-						code = '@£@I1' + self.additionalCode(threadIndex) + '@£@I2' + s + '@£@I3' + self.alternateCode(stmt.stmt) + '@£@I4' + ';\n'
+						#if s.lstrip().startswith("@£@Q"):
+						#    s = s.lstrip()[4:]
+						code = '@£@I1' + self.additionalCode(threadIndex) + '@£@I2' + s + '@£@I3'
+						ac = self.alternateCode(stmt.stmt)
+						#if ac.lstrip().startswith("@£@Q"):
+						#    ac = ac.lstrip()[4:]
+						code += ac + '@£@I4' + ';\n' 
 					else:
 						code = self.visit(stmt.stmt) + ';\n'
 
@@ -488,8 +500,14 @@ class lazyseqnewschedule(core.module.Translator):
 						self.__stmtCount += 1
 						self.__maxInCompound = self.__stmtCount
 						threadIndex = self.Parser.threadOccurenceIndex[self.__currentThread]
-						s =  self.visit(stmt)
-						code = '@£@I1' + self.additionalCode(threadIndex)+ '@£@I2' + s + '@£@I3' + self.alternateCode(stmt) + '@£@I4' + ';\n'
+						s = self.visit(stmt)
+						#if s.lstrip().startswith("@£@Q"):
+						#    s = s.lstrip()[4:]
+						code = '@£@I1' + self.additionalCode(threadIndex) + '@£@I2' + s + '@£@I3'
+						ac = self.alternateCode(stmt)
+						#if ac.lstrip().startswith("@£@Q"):
+						#    ac = ac.lstrip()[4:]
+						code += ac + '@£@I4' + ';\n' 
 					elif not self.__visit_funcReference and (
 						(type(stmt) == pycparser.c_ast.FuncCall and stmt.name.name == '__CSEQ_atomic_begin') or
 						(not self.__atomic and
@@ -508,10 +526,16 @@ class lazyseqnewschedule(core.module.Translator):
 						self.__stmtCount += 1
 						self.__maxInCompound = self.__stmtCount
 						threadIndex = self.Parser.threadOccurenceIndex[self.__currentThread]
+						
 						s = self.visit(stmt)
+						#if s.lstrip().startswith("@£@Q"):
+						#    s = s.lstrip()[4:]
 						prefix = '@£@J1' if is_compulsory_vp else '@£@I1'
-						code = prefix + self.additionalCode(threadIndex) + '@£@I2' + s + '@£@I3' + self.alternateCode(stmt) + '@£@I4' + ';\n'
-	
+						code = prefix + self.additionalCode(threadIndex) + '@£@I2' + s + '@£@I3'
+						ac = self.alternateCode(stmt)
+						#if ac.lstrip().startswith("@£@Q"):
+						#    ac = ac.lstrip()[4:]
+						code += ac + '@£@I4' + ';\n' 
 					else:
 						code = self.visit(stmt) + ";\n"
 					compoundList.append(code)

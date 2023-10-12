@@ -228,7 +228,7 @@ class unroller(core.module.Translator):
                 if i == self._calculateLoopBound(n): break
             else:
                 if cond != '1':
-                    s += self._make_indent() + 'if(!(' + cond + ')) { goto __exit_loop_%s; }\n' % currentLoopID
+                    s += self._make_indent() + 'if(' + cond + ') {\n' 
 
             # Reset the list of labels before visiting the compound block,
             # after _generate_stmt this list is used to reconstruct
@@ -288,7 +288,7 @@ class unroller(core.module.Translator):
         else:
             s += self._make_indent() + 'assume(!(%s)); __exit_loop_%s: ;\n' % (cond, currentLoopID)   # case 3
         '''
-        s += self._make_indent() + '__CSEQ_assume(!(%s)); __exit_loop_%s: ;\n' % (cond, currentLoopID)  # case 3
+        s += self._make_indent() + '__CSEQ_assume(!(%s)); __exit_loop_%s: ; %s\n' % (cond, currentLoopID, ("}"*bound) if cond != '1' else '')  # case 3
         # ~s += self._make_indent() + '/* --------->       END loop_%s (depth:%s)  <----------------------- */\n' % (currentLoopID, self.__loopDepth)
 
         self.__loopDepth -= 1
@@ -323,7 +323,7 @@ class unroller(core.module.Translator):
                 s += self._make_indent()  # ~+ '/*  - - - - > loop %s, iter = %s */\n' % (currentLoopID, i);
 
             if cond != '1':
-                s += self._make_indent() + 'if(!(' + cond + ')) { goto __exit_loop_%s; }\n' % currentLoopID
+                s += self._make_indent() + 'if(' + cond + ') {\n'
 
             # Reset the list of labels before visiting the compound block,
             # after _generate_stmt this list is used to reconstruct
@@ -364,7 +364,7 @@ class unroller(core.module.Translator):
 
         # print("LOOP ENDS: " + str(datetime.datetime.now().time()))
 
-        s += self._make_indent() + '__CSEQ_assume(!(%s)); __exit_loop_%s: ;\n' % (cond, currentLoopID)
+        s += self._make_indent() + '__CSEQ_assume(!(%s)); __exit_loop_%s: ;%s\n' % (cond, currentLoopID, ("}"*self.whileunwind) if cond != '1' else '')
         # ~s += self._make_indent() + '/* --------->       END loop_%s (depth:%s)  <----------------------- */\n' % (currentLoopID, self.__loopDepth)
 
         self.__loopDepth -= 1

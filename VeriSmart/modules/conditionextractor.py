@@ -118,14 +118,14 @@ class conditionextractor(core.module.Translator):
             self.funcCallFound = False
             cond = self.visit(n.cond)
 
-            if self.funcCallFound == True:
-                if cond == "__CSEQ_nondet_bool()":
-                    wc_name = "__cz_tmp_nondet_while_cond_%s"%(self.whileCondCount, )
-                    extraBlock = ';_Bool '+wc_name+'; '
-                else:
-                    wc_name = "__cz_tmp_while_cond_%s"%(self.whileCondCount, )
-                    extraBlock = ';_Bool %s; %s = (%s); ' % (
-                    wc_name, wc_name, cond)
+            if True: #self.funcCallFound == True:
+                #if cond == "__CSEQ_nondet_bool()":
+                #    wc_name = "__cz_tmp_nondet_while_cond_%s"%(self.whileCondCount, )
+                #    extraBlock = ';_Bool '+wc_name+'; '
+                #else:
+                wc_name = "__cz_tmp_while_cond_%s"%(self.whileCondCount, )
+                extraBlock = ';_Bool %s; %s = (%s); ' % (
+                wc_name, wc_name, cond)
                 s += wc_name
                 s = extraBlock + '\n' + self._make_indent() + s
                 s += ')\n'
@@ -164,7 +164,7 @@ class conditionextractor(core.module.Translator):
         if n.cond:
             self.funcCallFound = False
 
-            if self.funcCallFound == True:
+            if True: #self.funcCallFound == True:
                 extraBlock = ';_Bool __cz_tmp_for_cond_%s; __cz_tmp_for_cond_%s = (%s);\n' % (
                     self.forCondCount, self.forCondCount, cond) + self._make_indent()
 
@@ -177,7 +177,7 @@ class conditionextractor(core.module.Translator):
                 t = t + self._make_indent() + '__cz_tmp_for_cond_%s = (%s);\n' % (self.forCondCount, cond)
                 t = t + self._make_indent() + '}'
 
-                cond = '; __cz_tmp_for_cond_%s' % (self.forCondCount)
+                cond = ' __cz_tmp_for_cond_%s' % (self.forCondCount)
                 self.forCondCount += 1
 
         s = 'for (%s; %s; %s)' % (init, cond, next)
