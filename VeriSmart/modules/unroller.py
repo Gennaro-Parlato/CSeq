@@ -153,6 +153,7 @@ class unroller(core.module.Translator):
 
             return True
         else:
+            #print("C", n.init, n.cond, n.next)
             return False
 
     def _calculateLoopBasevalue(self, n):
@@ -212,6 +213,7 @@ class unroller(core.module.Translator):
                     bound = self._calculateLoopBound(n)
 
         # print("LOOP STARTS: " + str(datetime.datetime.now().time()))
+        bounded_loop = self._loopIsBounded(n)
         for i in range(0, bound):
             self.__loopUnwindRound = i
 
@@ -224,7 +226,7 @@ class unroller(core.module.Translator):
 
             #
             #
-            if self._loopIsBounded(n):
+            if bounded_loop:
                 if i == self._calculateLoopBound(n): break
             else:
                 if cond != '1':
@@ -278,6 +280,8 @@ class unroller(core.module.Translator):
                 s += block + '\n' + self._make_indent() + '__continue_%s_loop_%s: ;\n' % (i, currentLoopID)
             else:
                 s += block
+            if not bounded_loop:
+                s += "}"
 
         # print("LOOP ENDS: " + str(datetime.datetime.now().time()))
         '''
@@ -288,7 +292,7 @@ class unroller(core.module.Translator):
         else:
             s += self._make_indent() + 'assume(!(%s)); __exit_loop_%s: ;\n' % (cond, currentLoopID)   # case 3
         '''
-        s += self._make_indent() + '__CSEQ_assume(!(%s)); __exit_loop_%s: ; %s\n' % (cond, currentLoopID, ("}"*bound) if cond != '1' else '')  # case 3
+        s += self._make_indent() + '__CSEQ_assume(!(%s)); __exit_loop_%s: ; %s\n' % (cond, currentLoopID, '')  # case 3
         # ~s += self._make_indent() + '/* --------->       END loop_%s (depth:%s)  <----------------------- */\n' % (currentLoopID, self.__loopDepth)
 
         self.__loopDepth -= 1
@@ -361,10 +365,11 @@ class unroller(core.module.Translator):
                 s += block + '\n' + self._make_indent() + '__continue_%s_loop_%s: ;\n' % (i, currentLoopID)
             else:
                 s += block
+            s += "}"
 
         # print("LOOP ENDS: " + str(datetime.datetime.now().time()))
 
-        s += self._make_indent() + '__CSEQ_assume(!(%s)); __exit_loop_%s: ;%s\n' % (cond, currentLoopID, ("}"*self.whileunwind) if cond != '1' else '')
+        s += self._make_indent() + '__CSEQ_assume(!(%s)); __exit_loop_%s: ;%s\n' % (cond, currentLoopID, '')
         # ~s += self._make_indent() + '/* --------->       END loop_%s (depth:%s)  <----------------------- */\n' % (currentLoopID, self.__loopDepth)
 
         self.__loopDepth -= 1

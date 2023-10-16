@@ -150,6 +150,34 @@ class conditionextractor(core.module.Translator):
                     t = self._make_indent() + '{\n' + t + self._make_indent() + '}\n'
 
         return s + t
+        
+    def _loopIsBounded(self, n):
+        if (  # init  is an assignment statement of one variable to a constant
+                type(n.init) == pycparser.c_ast.Assignment and
+                type(n.init.lvalue) == pycparser.c_ast.ID and
+                type(n.init.rvalue) == pycparser.c_ast.Constant and
+
+                # cond  is a binary op which left and right parts are a variable and a constant, respectively
+                # TODO op must be '<'
+                type(n.cond) == pycparser.c_ast.BinaryOp and
+                type(n.cond.left) == pycparser.c_ast.ID and
+                type(n.cond.right) == pycparser.c_ast.Constant and
+                ((n.cond.op) == '<' or (n.cond.op) == '<=') and
+
+                # next  is a unary op ++
+                type(n.next) == pycparser.c_ast.UnaryOp and
+                type(n.next.expr) == pycparser.c_ast.ID and
+                ((n.next.op) == 'p++' or (n.next.op) == '++') and
+
+                # all the three blocks  init, cond, next  refer to the same variable
+                self.visit(n.init.lvalue) == self.visit(n.cond.left) == self.visit(n.next.expr)
+        ):
+
+            # TODO magicvariable must not be accessed in the  stmt  block
+            # TODO no breaks in the  stmt  block
+            magicvariable = self.visit(n.init.lvalue)
+
+            return 1
 
     def visit_For(self, n):
         init = cond = next = ''
@@ -164,9 +192,21 @@ class conditionextractor(core.module.Translator):
         if n.cond:
             self.funcCallFound = False
 
-            if True: #self.funcCallFound == True:
-                extraBlock = ';_Bool __cz_tmp_for_cond_%s; __cz_tmp_for_cond_%s = (%s);\n' % (
-                    self.forCondCount, self.forCondCount, cond) + self._make_indent()
+            if not self._loopIsBounded(n): #self.funcCallFound == True:
+                #extraBlock = ';_Bool __cz_tmp_for_cond_%s; __cz_tmp_for_cond_%s = (%s);\n' % (
+                #    self.forCondCount, self.forCondCount, cond) + self._make_indent()
+                extraBlock = ';_Bool __cz_tmp_for_cond_%s;\n' % (
+                    self.forCondCount) + self._make_indent()
+                
+                if init != "":
+                    init = "(%s, __cz_tmp_for_cond_%s = (%s))" % (init, self.forCondCount, cond)
+                else:
+                    init = "__cz_tmp_for_cond_%s = (%s)" % (self.forCondCount, cond)
+                    
+                if next != "":
+                    next = "(%s, __cz_tmp_for_cond_%s = (%s))" % (next, self.forCondCount, cond)
+                else:
+                    next = "__cz_tmp_for_cond_%s = (%s)" % (self.forCondCount, cond)
 
                 # add brakets for single non parenthesised statements after if
                 # if not t.startswith(self._make_indent()+ ('{\n')):
@@ -174,7 +214,7 @@ class conditionextractor(core.module.Translator):
                     t = self._make_indent() + '{\n' + t + self._make_indent() + '}\n'
 
                 t = t[:t.rfind('}')]
-                t = t + self._make_indent() + '__cz_tmp_for_cond_%s = (%s);\n' % (self.forCondCount, cond)
+                #t = t + self._make_indent() + '__cz_tmp_for_cond_%s = (%s);\n' % (self.forCondCount, cond)
                 t = t + self._make_indent() + '}'
 
                 cond = ' __cz_tmp_for_cond_%s' % (self.forCondCount)
