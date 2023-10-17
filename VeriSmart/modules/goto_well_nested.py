@@ -77,7 +77,7 @@ class goto_well_nested(core.module.Translator):
         this_gotos.update(self.__gotos)
             
         if len(self.__labels) > 0:
-            cond = (" || ".join([self.jump_var_name(jmp) for jmp in self.__labels])) + " || "+cond
+            cond = (" || ".join([self.jump_var_name(jmp) for jmp in self.__labels])) + " || ("+cond+")"
         
         if stmt.iffalse:
             then_gotos = set(self.__gotos)
@@ -104,6 +104,27 @@ class goto_well_nested(core.module.Translator):
         self.__gotos = list(this_gotos.difference(this_labels))
         return out
         
+    def insert_outermost_in_if(self, code):
+        out = ""
+        i = 0
+        while code[i:i+4] != "if (":
+            out += code[i]
+            i += 1
+        out += code[i:i+3]
+        i+=3
+        brackets = 1
+        cond = code[i]
+        i+=1
+        while brackets > 0:
+            cond += code[i]
+            if code[i] == "(":
+                brackets += 1
+            elif code[i] == ")":
+                brackets -= 1
+            i += 1
+        out += "("+self.outermost_if_stack+" && "+cond+")"
+        out += code[i:]
+        return out
         
     def visit_Compound(self, stmt): #metti le jmpvar in uscita nel blocco piu' esterno, che copre tutto
         this_labels = []
@@ -150,7 +171,7 @@ class goto_well_nested(core.module.Translator):
         out = "{\n"
         if_headers, nr_ifs = self.print_if_stack(label_closure_queue, enabled_closure_queue, skip_innermost=len(stmt.block_items)>0 and has_labels[0], store_outermost=len(stmt.block_items)>0 and type(stmt.block_items[0]) is pycparser.c_ast.If and not stmt.block_items[0].iffalse and (len(gotos_at[0]) > 0 or len(stmt.block_items) == 1))
         if self.outermost_if_stack is not None:
-            code_blocks[0] = code_blocks[0].replace("if (", "if ("+self.outermost_if_stack+" && ", 1)
+            code_blocks[0] = self.insert_outermost_in_if(code_blocks[0])
             self.outermost_if_stack = None
         out += if_headers
         for i in range(len(stmt.block_items)):
@@ -174,15 +195,16 @@ class goto_well_nested(core.module.Translator):
                     if jmp not in where_is_label:
                         label_closure_queue[-1].append(jmp)
                         enabled_closure_queue[-1].append(True)
-                        where_is_label[jmp] = [queue_max_size-1, len(label_closure_queue[0])-1]
+                        where_is_label[jmp] = [queue_max_size-1, len(label_closure_queue[-1])-1]
                     else:
                         loc = where_is_label[jmp]
+                        assert(label_closure_queue[loc[0]-how_many_pops][loc[1]] == jmp)
                         #print(jmp, loc, label_closure_queue, enabled_closure_queue, loc[0]-how_many_pops,loc[1], where_is_label, how_many_pops)
                         enabled_closure_queue[loc[0]-how_many_pops][loc[1]] = True
                         #print(enabled_closure_queue)
                 if_headers, nr_ifs = self.print_if_stack(label_closure_queue, enabled_closure_queue, skip_innermost=has_labels[i+1], store_outermost=type(stmt.block_items[i+1]) is pycparser.c_ast.If and not stmt.block_items[i+1].iffalse and (len(gotos_at[i+1]) > 0 or len(stmt.block_items) == i+2))
                 if self.outermost_if_stack is not None:
-                    code_blocks[i+1] = code_blocks[i+1].replace("if (", "if ("+self.outermost_if_stack+" && ", 1)
+                    code_blocks[i+1] = self.insert_outermost_in_if(code_blocks[i+1])
                     self.outermost_if_stack = None
                 out += if_headers
         out += ("}"*nr_ifs+"\n") if nr_ifs > 0 else ""
