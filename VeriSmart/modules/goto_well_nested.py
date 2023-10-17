@@ -16,8 +16,7 @@ class goto_well_nested(core.module.Translator):
     def visit_Label(self, stmt):
         self.__labels.append(stmt.name)
         if stmt.name in self.__opens: # somebody references this label
-            #lbl_text = stmt.name+": "
-            lbl_text = ""
+            lbl_text = stmt.name+": "
             self.__opens[stmt.name][1] = self.__goto_label_counter
             self.__goto_label_counter += 1
             return lbl_text + self.visit(stmt.stmt)
