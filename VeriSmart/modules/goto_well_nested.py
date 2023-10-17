@@ -127,90 +127,95 @@ class goto_well_nested(core.module.Translator):
         return out
         
     def visit_Compound(self, stmt): #metti le jmpvar in uscita nel blocco piu' esterno, che copre tutto
-        this_labels = []
-        this_gotos = set()
-        label_closure_queue = deque() # queue that contains closed labels. Earlier closures require a more nested if
-        enabled_closure_queue = deque()
-        glc_start = self.__goto_label_counter # see which jumps were open when compound begins
-        how_many_pops = 0
-        queue_max_size = 0
-        where_is_label = dict()
-        code_blocks = []
-        has_labels = []
-        DEBUG_labels = []
-        gotos_at = []
-        for s in stmt.block_items:
-            self.__labels = []
+        if stmt.block_items is not None:
+            this_labels = []
+            this_gotos = set()
+            label_closure_queue = deque() # queue that contains closed labels. Earlier closures require a more nested if
+            enabled_closure_queue = deque()
+            glc_start = self.__goto_label_counter # see which jumps were open when compound begins
+            how_many_pops = 0
+            queue_max_size = 0
+            where_is_label = dict()
+            code_blocks = []
+            has_labels = []
+            DEBUG_labels = []
+            gotos_at = []
+            for s in stmt.block_items:
+                self.__labels = []
+                self.__gotos = []
+                code_blocks.append(self.visit(s))
+                this_gotos.update(self.__gotos)
+                gotos_at.append(self.__gotos)
+                has_labels.append(len(self.__labels) > 0)
+                DEBUG_labels.append(self.__labels)
+                if has_labels[-1]:
+                    #print("Found labels: ", self.__labels)
+                    this_labels += self.__labels
+                    label_closure_queue.append(self.__labels)
+                    lcnt = 0
+                    ecs_element = []
+                    enabled_closure_queue.append(ecs_element)
+                    for l in self.__labels:
+                        where_is_label[l] = [queue_max_size, lcnt]
+                        ecs_element.append(l in self.__opens and self.__opens[l][0] is not None and self.__opens[l][0] < glc_start) # enabled at compound begin time
+                        lcnt += 1
+                    queue_max_size += 1
+            # last queue block is reserved for goto labels not closed in this compound. Will be filled fater each goto happens
+            label_closure_queue.append([])
+            enabled_closure_queue.append([])
+            queue_max_size += 1
+            #######
+            #print("LCS", label_closure_queue)
+            #print("STK", enabled_closure_queue)
+            #print("GOTOS", gotos_at)
+            #print("".join(code_blocks))
+            out = "{\n"
+            if_headers, nr_ifs = self.print_if_stack(label_closure_queue, enabled_closure_queue, skip_innermost=len(stmt.block_items)>0 and has_labels[0], store_outermost=len(stmt.block_items)>0 and type(stmt.block_items[0]) is pycparser.c_ast.If and not stmt.block_items[0].iffalse and (len(gotos_at[0]) > 0 or len(stmt.block_items) == 1))
+            if self.outermost_if_stack is not None:
+                code_blocks[0] = self.insert_outermost_in_if(code_blocks[0])
+                self.outermost_if_stack = None
+            out += if_headers
+            for i in range(len(stmt.block_items)):
+                if has_labels[i]: 
+                    #print("Has label", i, "popping", label_closure_queue[0])
+                    # close the currently open if block, such as anybody that needs to jump therein can do it
+                    # you just need to close the innermost if! Beware that if none of the labels are enabled, there's no if
+                    if any(enabled_closure_queue[0]) and i>0 and len(gotos_at[i-1]) == 0:
+                        out += "}\n"
+                        nr_ifs -= 1
+                    label_closure_queue.popleft()
+                    enabled_closure_queue.popleft()
+                    how_many_pops += 1
+                out += code_blocks[i]+(";" if code_blocks[i] != ";" else "")+"\n"#+"// labels "+str(DEBUG_labels[i]) +" gotos "+str(gotos_at[i])+"\n"
+                if i != len(stmt.block_items)-1 and len(gotos_at[i]) > 0:
+                    # there are gotos here, we should re-evaluate every jump variable starting from the outermost that might have changed TODO optimize 
+                    out += ("}"*nr_ifs+"\n") if nr_ifs > 0 else ""
+                    # set the jump vars as enabled
+                    for jmp in gotos_at[i]:
+                        #print("GOTO", jmp)
+                        if jmp not in where_is_label:
+                            label_closure_queue[-1].append(jmp)
+                            enabled_closure_queue[-1].append(True)
+                            where_is_label[jmp] = [queue_max_size-1, len(label_closure_queue[-1])-1]
+                        else:
+                            loc = where_is_label[jmp]
+                            assert(label_closure_queue[loc[0]-how_many_pops][loc[1]] == jmp)
+                            #print(jmp, loc, label_closure_queue, enabled_closure_queue, loc[0]-how_many_pops,loc[1], where_is_label, how_many_pops)
+                            enabled_closure_queue[loc[0]-how_many_pops][loc[1]] = True
+                            #print(enabled_closure_queue)
+                    if_headers, nr_ifs = self.print_if_stack(label_closure_queue, enabled_closure_queue, skip_innermost=has_labels[i+1], store_outermost=type(stmt.block_items[i+1]) is pycparser.c_ast.If and not stmt.block_items[i+1].iffalse and (len(gotos_at[i+1]) > 0 or len(stmt.block_items) == i+2))
+                    if self.outermost_if_stack is not None:
+                        code_blocks[i+1] = self.insert_outermost_in_if(code_blocks[i+1])
+                        self.outermost_if_stack = None
+                    out += if_headers
+            out += ("}"*nr_ifs+"\n") if nr_ifs > 0 else ""
+            self.__labels = this_labels
+            self.__gotos = list(this_gotos.difference(this_labels))
+            return out + "}\n"
+        else:
+            self.__labels = set()
             self.__gotos = []
-            code_blocks.append(self.visit(s))
-            this_gotos.update(self.__gotos)
-            gotos_at.append(self.__gotos)
-            has_labels.append(len(self.__labels) > 0)
-            DEBUG_labels.append(self.__labels)
-            if has_labels[-1]:
-                #print("Found labels: ", self.__labels)
-                this_labels += self.__labels
-                label_closure_queue.append(self.__labels)
-                lcnt = 0
-                ecs_element = []
-                enabled_closure_queue.append(ecs_element)
-                for l in self.__labels:
-                    where_is_label[l] = [queue_max_size, lcnt]
-                    ecs_element.append(l in self.__opens and self.__opens[l][0] is not None and self.__opens[l][0] < glc_start) # enabled at compound begin time
-                    lcnt += 1
-                queue_max_size += 1
-        # last queue block is reserved for goto labels not closed in this compound. Will be filled fater each goto happens
-        label_closure_queue.append([])
-        enabled_closure_queue.append([])
-        queue_max_size += 1
-        #######
-        #print("LCS", label_closure_queue)
-        #print("STK", enabled_closure_queue)
-        #print("GOTOS", gotos_at)
-        #print("".join(code_blocks))
-        out = "{\n"
-        if_headers, nr_ifs = self.print_if_stack(label_closure_queue, enabled_closure_queue, skip_innermost=len(stmt.block_items)>0 and has_labels[0], store_outermost=len(stmt.block_items)>0 and type(stmt.block_items[0]) is pycparser.c_ast.If and not stmt.block_items[0].iffalse and (len(gotos_at[0]) > 0 or len(stmt.block_items) == 1))
-        if self.outermost_if_stack is not None:
-            code_blocks[0] = self.insert_outermost_in_if(code_blocks[0])
-            self.outermost_if_stack = None
-        out += if_headers
-        for i in range(len(stmt.block_items)):
-            if has_labels[i]: 
-                #print("Has label", i, "popping", label_closure_queue[0])
-                # close the currently open if block, such as anybody that needs to jump therein can do it
-                # you just need to close the innermost if! Beware that if none of the labels are enabled, there's no if
-                if any(enabled_closure_queue[0]) and i>0 and len(gotos_at[i-1]) == 0:
-                    out += "}\n"
-                    nr_ifs -= 1
-                label_closure_queue.popleft()
-                enabled_closure_queue.popleft()
-                how_many_pops += 1
-            out += code_blocks[i]+(";" if code_blocks[i] != ";" else "")+"\n"#+"// labels "+str(DEBUG_labels[i]) +" gotos "+str(gotos_at[i])+"\n"
-            if i != len(stmt.block_items)-1 and len(gotos_at[i]) > 0:
-                # there are gotos here, we should re-evaluate every jump variable starting from the outermost that might have changed TODO optimize 
-                out += ("}"*nr_ifs+"\n") if nr_ifs > 0 else ""
-                # set the jump vars as enabled
-                for jmp in gotos_at[i]:
-                    #print("GOTO", jmp)
-                    if jmp not in where_is_label:
-                        label_closure_queue[-1].append(jmp)
-                        enabled_closure_queue[-1].append(True)
-                        where_is_label[jmp] = [queue_max_size-1, len(label_closure_queue[-1])-1]
-                    else:
-                        loc = where_is_label[jmp]
-                        assert(label_closure_queue[loc[0]-how_many_pops][loc[1]] == jmp)
-                        #print(jmp, loc, label_closure_queue, enabled_closure_queue, loc[0]-how_many_pops,loc[1], where_is_label, how_many_pops)
-                        enabled_closure_queue[loc[0]-how_many_pops][loc[1]] = True
-                        #print(enabled_closure_queue)
-                if_headers, nr_ifs = self.print_if_stack(label_closure_queue, enabled_closure_queue, skip_innermost=has_labels[i+1], store_outermost=type(stmt.block_items[i+1]) is pycparser.c_ast.If and not stmt.block_items[i+1].iffalse and (len(gotos_at[i+1]) > 0 or len(stmt.block_items) == i+2))
-                if self.outermost_if_stack is not None:
-                    code_blocks[i+1] = self.insert_outermost_in_if(code_blocks[i+1])
-                    self.outermost_if_stack = None
-                out += if_headers
-        out += ("}"*nr_ifs+"\n") if nr_ifs > 0 else ""
-        self.__labels = this_labels
-        self.__gotos = list(this_gotos.difference(this_labels))
-        return out + "}\n"
+            return "{\n}\n"
         
     def visit_FuncDef(self, n):
         self.__opens = dict() 
