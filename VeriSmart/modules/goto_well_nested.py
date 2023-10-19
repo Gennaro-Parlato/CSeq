@@ -186,8 +186,11 @@ class goto_well_nested(core.module.Translator):
                     label_closure_queue.popleft()
                     enabled_closure_queue.popleft()
                     how_many_pops += 1
+                if type(stmt.block_items[i]) is pycparser.c_ast.Decl:
+                    out += ("}"*nr_ifs+"\n") if nr_ifs > 0 else ""
+                    nr_ifs = 0
                 out += code_blocks[i]+(";" if code_blocks[i] != ";" else "")+"\n"#+"// labels "+str(DEBUG_labels[i]) +" gotos "+str(gotos_at[i])+"\n"
-                if i != len(stmt.block_items)-1 and len(gotos_at[i]) > 0:
+                if i != len(stmt.block_items)-1 and (len(gotos_at[i]) > 0 or type(stmt.block_items[i]) is pycparser.c_ast.Decl):
                     # there are gotos here, we should re-evaluate every jump variable starting from the outermost that might have changed TODO optimize 
                     out += ("}"*nr_ifs+"\n") if nr_ifs > 0 else ""
                     # set the jump vars as enabled
@@ -232,3 +235,4 @@ class goto_well_nested(core.module.Translator):
         else:
             return decl + '\n' + body + '\n'
         
+
