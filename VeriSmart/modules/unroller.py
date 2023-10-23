@@ -281,7 +281,8 @@ class unroller(core.module.Translator):
             else:
                 s += block
             if not bounded_loop:
-                s += "}"
+                if cond != '1':
+                    s += "}"
 
         # print("LOOP ENDS: " + str(datetime.datetime.now().time()))
         '''
@@ -365,7 +366,8 @@ class unroller(core.module.Translator):
                 s += block + '\n' + self._make_indent() + '__continue_%s_loop_%s: ;\n' % (i, currentLoopID)
             else:
                 s += block
-            s += "}"
+            if cond != '1':
+                s += "}"
 
         # print("LOOP ENDS: " + str(datetime.datetime.now().time()))
 

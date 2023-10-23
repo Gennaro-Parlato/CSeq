@@ -47,6 +47,8 @@ import os, sys, getopt, time
 import pycparser.c_parser, pycparser.c_ast, pycparser.c_generator
 import core.module, core.parser, core.utils
 
+condvarextr = True
+
 
 class conditionextractor(core.module.Translator):
     funcCallFound = False
@@ -72,7 +74,7 @@ class conditionextractor(core.module.Translator):
             cond = self.visit(n.cond)
 
             ###if self.funcCallFound == True:
-            if True:  # force temporary variables regardless of the complexity of the expression
+            if condvarextr and True:  # force temporary variables regardless of the complexity of the expression
                 extraBlock = ';_Bool __cz_tmp_if_cond_%s; __cz_tmp_if_cond_%s = (%s); ' % (
                     self.ifCondCount, self.ifCondCount, cond)
                 s += '__cz_tmp_if_cond_%s' % (self.ifCondCount)
@@ -118,7 +120,7 @@ class conditionextractor(core.module.Translator):
             self.funcCallFound = False
             cond = self.visit(n.cond)
 
-            if True: #self.funcCallFound == True:
+            if condvarextr and True: #self.funcCallFound == True:
                 #if cond == "__CSEQ_nondet_bool()":
                 #    wc_name = "__cz_tmp_nondet_while_cond_%s"%(self.whileCondCount, )
                 #    extraBlock = ';_Bool '+wc_name+'; '
@@ -192,7 +194,7 @@ class conditionextractor(core.module.Translator):
         if n.cond:
             self.funcCallFound = False
 
-            if not self._loopIsBounded(n): #self.funcCallFound == True:
+            if condvarextr and not self._loopIsBounded(n): #self.funcCallFound == True:
                 #extraBlock = ';_Bool __cz_tmp_for_cond_%s; __cz_tmp_for_cond_%s = (%s);\n' % (
                 #    self.forCondCount, self.forCondCount, cond) + self._make_indent()
                 extraBlock = ';_Bool __cz_tmp_for_cond_%s;\n' % (
