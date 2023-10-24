@@ -400,8 +400,8 @@ class goto_well_nested(core.module.Translator):
         decl = self.visit(n.decl)
         self.indent_level = 0
         body = self.visit(n.body)
-        if len(self.__labels) > 0:
-            jmp_decls = "static _Bool "+(", ".join([goto_well_nested.jump_var_name(jmp) for jmp in self.__labels if jmp in self.needs_label]))+";\n"
+        jmp_decls = "static _Bool "+(", ".join([goto_well_nested.jump_var_name(jmp) for jmp in self.__labels if jmp in self.needs_label]))+";\n"
+        if len(jmp_decls) > 15:
             body = body.replace("{", "{"+jmp_decls, 1)
         if n.param_decls:
             knrdecls = ';\n'.join(self.visit(p) for p in n.param_decls)
