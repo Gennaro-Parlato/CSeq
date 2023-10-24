@@ -143,6 +143,8 @@ class goto_well_nested(core.module.Translator):
     __opens = dict() # maps each label l found so far with a pair (o, c) where o is the first "goto l;" found so far, and c is where the label was defined
     __goto_label_counter = 0 # count how many goto/labels found so far
     outermost_if_stack = None
+    next_statement_stk = deque()
+    needs_label = set()
     
     @staticmethod
     def jump_var_name(lbl):
@@ -170,7 +172,19 @@ class goto_well_nested(core.module.Translator):
         else: # first time this label is referenced
             self.__opens[stmt.name] = [self.__goto_label_counter, None]
         self.__goto_label_counter += 1
-        return goto_well_nested.jump_var_name(stmt.name)+" = 1" #"goto "+stmt.name+";"
+        needs_label_here = True
+        if stmt.name not in self.needs_label and len(self.next_statement_stk)>0:
+            nxt_stmt = self.next_statement_stk[-1]
+            while needs_label_here and nxt_stmt is pycparser.c_ast.Label:
+                if nxt_stmt.name == stmt.name:
+                    needs_label_here = False
+                nxt_stmt = nxt_stmt.stmt
+            if needs_label_here:
+                self.needs_label.add(stmt.name)
+        if needs_label_here:
+            return goto_well_nested.jump_var_name(stmt.name)+" = 1" #"goto "+stmt.name+";"
+        else:
+            return ";"
         
     def print_if_stack(self, label_closure_stack, enabled_closure_stack, skip_innermost=False, store_outermost=False):
         # print ifs for active variables according to the stack in reverse order
@@ -281,10 +295,19 @@ class goto_well_nested(core.module.Translator):
             has_labels = []
             DEBUG_labels = []
             gotos_at = []
-            for s in stmt.block_items:
+            s_nxt = 0 # index of the first statement in the block that isn't an EmptyStatement
+            for s_i, s in enumerate(stmt.block_items):
                 self.__labels = []
                 self.__gotos = []
+                if s_i >= s_nxt:
+                    s_nxt = s_i + 1
+                    while s_nxt < len(stmt.block_items) and type(stmt.block_items[s_nxt]) is pycparser.c_ast.EmptyStatement:
+                        s_nxt += 1
+                    if s_nxt < len(stmt.block_items):
+                        self.next_statement_stk.append(stmt.block_items[s_nxt])
                 code_blocks.append(self.visit(s))
+                if s_i+1 >= s_nxt and s_nxt < len(stmt.block_items):
+                    self.next_statement_stk.pop()
                 this_gotos.update(self.__gotos)
                 gotos_at.append(self.__gotos)
                 has_labels.append(len(self.__labels) > 0)
@@ -373,11 +396,12 @@ class goto_well_nested(core.module.Translator):
     def visit_FuncDef(self, n):
         self.__opens = dict() 
         self.__goto_label_counter = 0
+        self.needs_label = set()
         decl = self.visit(n.decl)
         self.indent_level = 0
         body = self.visit(n.body)
         if len(self.__labels) > 0:
-            jmp_decls = "static _Bool "+(", ".join([goto_well_nested.jump_var_name(jmp) for jmp in self.__labels]))+";\n"
+            jmp_decls = "static _Bool "+(", ".join([goto_well_nested.jump_var_name(jmp) for jmp in self.__labels if jmp in self.needs_label]))+";\n"
             body = body.replace("{", "{"+jmp_decls, 1)
         if n.param_decls:
             knrdecls = ';\n'.join(self.visit(p) for p in n.param_decls)
