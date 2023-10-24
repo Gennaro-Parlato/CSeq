@@ -175,7 +175,7 @@ class goto_well_nested(core.module.Translator):
         needs_label_here = True
         if stmt.name not in self.needs_label and len(self.next_statement_stk)>0:
             nxt_stmt = self.next_statement_stk[-1]
-            while needs_label_here and nxt_stmt is pycparser.c_ast.Label:
+            while needs_label_here and type(nxt_stmt) is pycparser.c_ast.Label:
                 if nxt_stmt.name == stmt.name:
                     needs_label_here = False
                 nxt_stmt = nxt_stmt.stmt
