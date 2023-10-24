@@ -7,12 +7,13 @@ class JumpBlock:
         self.parent = parent
         self.cond = cond
         self.code_blocks = []
-        self.cbs_type = [] # for each code_block: "S" regular statement, "J" JumpBlock, "I" if, "E" empty, "D" decl
+        self.cbs_type = [] # for each code_block: "S" regular statement, "J" JumpBlock, "I" if, "E" empty
         self.all_empty = True
         self.numJ = 0
         self.all_jump_empty = True
         self.numI = 0
         self.all_if_empty = True
+        self.decls = []
     
     def add_statement(self, cb, typ):
         self.code_blocks.append(cb)
@@ -27,12 +28,15 @@ class JumpBlock:
             self.all_jump_empty = False
         if typ not in ("I", "E"):
             self.all_if_empty = False
+            
+    def add_decl(self, cb):
+        self.decls.append(cb)
         
     def output(self):
+        out = "{\n" + "".join(d+";\n" for d in self.decls)
         if self.all_empty:
-            return "\n".join(self.code_blocks)
+            return out+"\n".join(self.code_blocks)+"}"
         if self.all_jump_empty and self.numJ == 1:
-            out = ""
             for i in range(len(self.code_blocks)):
                 if self.cbs_type[i] == "E":
                     out += self.code_blocks[i] + "\n"
@@ -41,9 +45,8 @@ class JumpBlock:
                     out += self.code_blocks[i].output() + "\n"
                 else:
                     assert False
-            return "{\n"+out+"}"
+            return out+"}"
         if self.all_if_empty and self.numI == 1:
-            out = ""
             for i in range(len(self.code_blocks)):
                 if self.cbs_type[i] == "E":
                     out += self.code_blocks[i] + "\n"
@@ -55,12 +58,10 @@ class JumpBlock:
                         out += self.insert_in_if(self.code_blocks[i], this_cond) + "\n"
                 else:
                     assert False
-            return "{\n"+out+"}"
+            return out+"}"
         #default case
         if len(self.cond) > 0:
-            out = "if ("+" && ".join("("+c+")" for c in self.cond[::-1])+"){"
-        else:
-            out = "{"
+            out = "if ("+" && ".join("("+c+")" for c in self.cond[::-1])+")"+out
         for i in range(len(self.code_blocks)):
             if self.cbs_type[i] == "J":
                 out += self.code_blocks[i].output() + "\n"
@@ -102,7 +103,7 @@ class CompoundJumpBlockBuilder:
         n_ifs = 0
         conds = []
         for (active_jump_block, enabled_jumps) in zip(label_closure_stack, enabled_closure_stack):
-            conds.append(" && ".join(["!"+goto_well_nested.jump_var_name(jmp) for (jmp, enabled) in zip(active_jump_block, enabled_jumps) if enabled]))
+            conds.append(" && ".join(["!("+goto_well_nested.jump_var_name(jmp)+")" for (jmp, enabled) in zip(active_jump_block, enabled_jumps) if enabled]))
         # in reverse
         for cond in conds[::-1]:
             if len(cond) > 0:
@@ -119,14 +120,15 @@ class CompoundJumpBlockBuilder:
     def add(self, code, item):
         while type(item) == pycparser.c_ast.Label:
             item = item.stmt
-        tp = "S"
-        if type(item) is pycparser.c_ast.If:
-            tp = "I"
-        elif type(item) is pycparser.c_ast.EmptyStatement:
-            tp = "E"
-        elif type(item) is pycparser.c_ast.Decl:
-            tp = "D"
-        self.where_to_add.add_statement(code, tp)
+        if type(item) is pycparser.c_ast.Decl:
+            self.root.add_decl(code)
+        else:
+            tp = "S"
+            if type(item) is pycparser.c_ast.If:
+                tp = "I"
+            elif type(item) is pycparser.c_ast.EmptyStatement:
+                tp = "E"
+            self.where_to_add.add_statement(code, tp)
         
     def compile(self):
         assert self.root == self.where_to_add
@@ -175,7 +177,7 @@ class goto_well_nested(core.module.Translator):
         n_ifs = 0
         conds = []
         for (active_jump_block, enabled_jumps) in zip(label_closure_stack, enabled_closure_stack):
-            conds.append(" && ".join(["!"+goto_well_nested.jump_var_name(jmp) for (jmp, enabled) in zip(active_jump_block, enabled_jumps) if enabled]))
+            conds.append(" && ".join(["!("+goto_well_nested.jump_var_name(jmp)+")" for (jmp, enabled) in zip(active_jump_block, enabled_jumps) if enabled]))
         self.outermost_if_stack = None
         start = len(conds) - 1
         while store_outermost and start >= 0 and self.outermost_if_stack is None:
@@ -213,7 +215,7 @@ class goto_well_nested(core.module.Translator):
         open_then = [l for l in self.__labels if l in self.__opens and self.__opens[l][0] is not None and self.__opens[l][0] < glc_start] # enabled at compound begin time
             
         if len(open_then) > 0:
-            cond = (" || ".join([goto_well_nested.jump_var_name(jmp) for jmp in open_then])) + " || ("+cond+")"
+            cond = (" || ".join(["("+goto_well_nested.jump_var_name(jmp)+")" for jmp in open_then])) + " || ("+cond+")"
         
         if stmt.iffalse:
             then_gotos = set(self.__gotos)
@@ -227,10 +229,10 @@ class goto_well_nested(core.module.Translator):
             else_header = "else "
             open_else = [l for l in self.__labels if l in self.__opens and self.__opens[l][0] is not None and self.__opens[l][0] < else_start] # enabled at compound begin time
             if len(open_else) > 0:
-                cond = (" && ".join(["!"+goto_well_nested.jump_var_name(jmp) for jmp in open_else])) + " && ("+cond+")"
+                cond = (" && ".join(["!("+goto_well_nested.jump_var_name(jmp)+")" for jmp in open_else])) + " && ("+cond+")"
                 if else_labels & then_gotos:
                     # jump from then to else
-                    else_cond = (" || ".join([goto_well_nested.jump_var_name(jmp) for jmp in open_else])) + " || !("+orig_cond+")"
+                    else_cond = (" || ".join(["("+goto_well_nested.jump_var_name(jmp)+")" for jmp in open_else])) + " || !("+orig_cond+")"
                     else_header = "if ("+else_cond+") "
             
         out += "if ("+cond+")"
@@ -327,13 +329,13 @@ class goto_well_nested(core.module.Translator):
                     label_closure_queue.popleft()
                     enabled_closure_queue.popleft()
                     how_many_pops += 1
-                if type(stmt.block_items[i]) is pycparser.c_ast.Decl:
-                    #out += ("}"*nr_ifs+"\n") if nr_ifs > 0 else ""
-                    cmpb.close_ifs(nr_ifs)
-                    nr_ifs = 0
+                #if type(stmt.block_items[i]) is pycparser.c_ast.Decl:
+                #    #out += ("}"*nr_ifs+"\n") if nr_ifs > 0 else ""
+                #    cmpb.close_ifs(nr_ifs)
+                #    nr_ifs = 0
                 cmpb.add(code_blocks[i], stmt.block_items[i])
                 #out += code_blocks[i]+(";" if code_blocks[i] != ";" else "")+"\n"#+"// labels "+str(DEBUG_labels[i]) +" gotos "+str(gotos_at[i])+"\n"
-                if i != len(stmt.block_items)-1 and (len(gotos_at[i]) > 0 or type(stmt.block_items[i]) is pycparser.c_ast.Decl):
+                if i != len(stmt.block_items)-1 and (len(gotos_at[i]) > 0): #or type(stmt.block_items[i]) is pycparser.c_ast.Decl):
                     # there are gotos here, we should re-evaluate every jump variable starting from the outermost that might have changed TODO optimize 
                     #out += ("}"*nr_ifs+"\n") if nr_ifs > 0 else ""
                     cmpb.close_ifs(nr_ifs)
